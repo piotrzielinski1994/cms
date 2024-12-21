@@ -1,26 +1,39 @@
 // storage-adapter-import-placeholder
-import { mongooseAdapter } from '@payloadcms/db-mongodb'
+import { mongooseAdapter } from '@payloadcms/db-mongodb';
 
-import sharp from 'sharp' // sharp-import
-import path from 'path'
-import { buildConfig } from 'payload'
-import { fileURLToPath } from 'url'
+import path from 'path';
+import { buildConfig } from 'payload';
+import sharp from 'sharp';
+import { fileURLToPath } from 'url';
 
-import { Categories } from './collections/Categories'
-import { Media } from './collections/Media'
-import { Pages } from './collections/Pages'
-import { Posts } from './collections/Posts'
-import { Users } from './collections/Users'
-import { Footer } from './Footer/config'
-import { Header } from './Header/config'
-import { plugins } from './plugins'
-import { defaultLexical } from '@/fields/defaultLexical'
-import { getServerSideURL } from './utilities/getURL'
+import { Categories } from '@/collections/Categories';
+import { Media } from '@/collections/Media';
+import { Pages } from '@/collections/Pages';
+import { Posts } from '@/collections/Posts';
+import { Users } from '@/collections/Users';
+import { defaultLexical } from '@/fields/defaultLexical';
+import { Footer } from '@/Footer/config';
+import { Header } from '@/Header/config';
+import { plugins } from '@/plugins';
+import { getServerSideURL } from '@/utilities/getURL';
+import { en } from '@payloadcms/translations/languages/en';
+import { pl } from '@payloadcms/translations/languages/pl';
 
-const filename = fileURLToPath(import.meta.url)
-const dirname = path.dirname(filename)
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
 
 export default buildConfig({
+  i18n: {
+    supportedLanguages: {
+      en,
+      pl,
+    },
+    fallbackLanguage: 'en',
+  },
+  localization: {
+    locales: ['en', 'pl'],
+    defaultLocale: 'en',
+  },
   admin: {
     components: {
       // The `BeforeLogin` component renders a message that you see while logging into your admin panel.
@@ -74,4 +87,4 @@ export default buildConfig({
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
-})
+});
