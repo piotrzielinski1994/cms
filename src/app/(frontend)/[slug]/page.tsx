@@ -1,40 +1,37 @@
 import type { Metadata } from 'next';
 
 import { PayloadRedirects } from '@/components/PayloadRedirects';
-import configPromise from '@payload-config';
-import { getPayload } from 'payload';
-import { draftMode } from 'next/headers';
-import React, { cache } from 'react';
 import { homeStatic } from '@/endpoints/seed/home-static';
+import configPromise from '@payload-config';
+import { draftMode } from 'next/headers';
+import { getPayload } from 'payload';
+import { cache } from 'react';
 
 import type { Page as PageType } from '@/payload-types';
 
 import { RenderBlocks } from '@/blocks/RenderBlocks';
+import { LivePreviewListener } from '@/components/LivePreviewListener';
 import { RenderHero } from '@/heros/RenderHero';
 import { generateMeta } from '@/utilities/generateMeta';
 import PageClient from './page.client';
-import { LivePreviewListener } from '@/components/LivePreviewListener';
 
 export async function generateStaticParams() {
   const payload = await getPayload({ config: configPromise });
   const pages = await payload.find({
     collection: 'pages',
+    locale: 'all',
     draft: false,
     limit: 1000,
     overrideAccess: false,
     pagination: false,
     select: {
       slug: true,
+      localizedSlugs: true,
     },
   });
-
   const params = pages.docs
-    ?.filter((doc) => {
-      return doc.slug !== 'home';
-    })
-    .map(({ slug }) => {
-      return { slug };
-    });
+    ?.flatMap(({ localizedSlugs }) => Object.values(localizedSlugs ?? {}).map((slug) => ({ slug })))
+    .filter((param) => param.slug !== 'home');
 
   return params;
 }
@@ -95,6 +92,10 @@ const queryPageBySlug = cache(async ({ slug }: { slug: string }) => {
 
   const payload = await getPayload({ config: configPromise });
 
+  const locales =
+    payload.config.localization === false
+      ? []
+      : payload.config.localization.locales.map((locale) => locale.code);
   const result = await payload.find({
     collection: 'pages',
     draft,
@@ -102,9 +103,10 @@ const queryPageBySlug = cache(async ({ slug }: { slug: string }) => {
     pagination: false,
     overrideAccess: draft,
     where: {
-      slug: {
-        equals: slug,
-      },
+      or: [
+        { slug: { equals: slug } },
+        ...locales.map((locale) => ({ [`slug.${locale}`]: { equals: slug } })),
+      ],
     },
   });
 

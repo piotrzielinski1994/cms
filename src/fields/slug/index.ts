@@ -7,7 +7,7 @@ type Overrides = {
   checkboxOverrides?: Partial<CheckboxField>;
 };
 
-type Slug = (fieldToUse?: string, overrides?: Overrides) => [TextField, CheckboxField];
+type Slug = (fieldToUse?: string, overrides?: Overrides) => [TextField, CheckboxField, TextField];
 
 export const slugField: Slug = (fieldToUse = 'title', overrides = {}) => {
   const { slugOverrides, checkboxOverrides } = overrides;
@@ -28,8 +28,12 @@ export const slugField: Slug = (fieldToUse = 'title', overrides = {}) => {
   const slugField: TextField = {
     name: 'slug',
     type: 'text',
+    localized: true,
     index: true,
-    label: 'Slug',
+    label: {
+      en: 'Slug',
+      pl: 'Slug',
+    },
     ...(slugOverrides || {}),
     hooks: {
       // Kept this in for hook or API based updates
@@ -50,5 +54,26 @@ export const slugField: Slug = (fieldToUse = 'title', overrides = {}) => {
     },
   };
 
-  return [slugField, checkBoxField];
+  // Expect ts error here because of typescript mismatching Partial<TextField> with TextField
+  // @ts-expect-error
+  const localizedSlugsVirtualField: GroupField = {
+    name: 'localizedSlugs',
+    type: 'group',
+    virtual: true,
+    admin: {
+      hidden: true,
+    },
+    fields: [
+      {
+        name: 'en',
+        type: 'text',
+      },
+      {
+        name: 'pl',
+        type: 'text',
+      },
+    ],
+  };
+
+  return [slugField, checkBoxField, localizedSlugsVirtualField];
 };

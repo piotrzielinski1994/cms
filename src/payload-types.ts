@@ -139,6 +139,10 @@ export interface Page {
   publishedAt?: string | null;
   slug?: string | null;
   slugLock?: boolean | null;
+  localizedSlugs?: {
+    en?: string | null;
+    pl?: string | null;
+  };
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -186,6 +190,10 @@ export interface Post {
     | null;
   slug?: string | null;
   slugLock?: boolean | null;
+  localizedSlugs?: {
+    en?: string | null;
+    pl?: string | null;
+  };
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -865,6 +873,12 @@ export interface PagesSelect<T extends boolean = true> {
   publishedAt?: T;
   slug?: T;
   slugLock?: T;
+  localizedSlugs?:
+    | T
+    | {
+        en?: T;
+        pl?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
@@ -980,6 +994,12 @@ export interface PostsSelect<T extends boolean = true> {
       };
   slug?: T;
   slugLock?: T;
+  localizedSlugs?:
+    | T
+    | {
+        en?: T;
+        pl?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   _status?: T;

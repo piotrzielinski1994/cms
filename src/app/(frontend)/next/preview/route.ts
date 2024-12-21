@@ -1,8 +1,7 @@
+import configPromise from '@payload-config';
 import { draftMode } from 'next/headers';
 import { redirect } from 'next/navigation';
-import { getPayload, type PayloadRequest } from 'payload';
-import configPromise from '@payload-config';
-import { CollectionSlug } from 'payload';
+import { CollectionSlug, getPayload, type PayloadRequest } from 'payload';
 
 const payloadToken = 'payload-token';
 
@@ -63,6 +62,10 @@ export async function GET(
       return new Response('You are not allowed to preview this page', { status: 403 });
     }
 
+    const locales =
+      payload.config.localization === false
+        ? []
+        : payload.config.localization.locales.map((locale) => locale.code);
     // Verify the given slug exists
     try {
       const docs = await payload.find({
@@ -74,9 +77,10 @@ export async function GET(
         depth: 0,
         select: {},
         where: {
-          slug: {
-            equals: slug,
-          },
+          or: [
+            { slug: { equals: slug } },
+            ...locales.map((locale) => ({ [`slug.${locale}`]: { equals: slug } })),
+          ],
         },
       });
 
