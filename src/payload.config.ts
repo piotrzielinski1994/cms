@@ -13,9 +13,9 @@ import { Posts } from '@/_old/collections/Posts';
 import { Users } from '@/_old/collections/Users';
 import { defaultLexical } from '@/_old/fields/defaultLexical';
 import { Footer } from '@/_old/Footer/config';
+import { Header } from '@/_old/Header/config';
 import { plugins } from '@/_old/plugins';
 import { getServerSideURL } from '@/_old/utilities/getURL';
-import { Header } from '@/Header/config';
 import { en } from '@payloadcms/translations/languages/en';
 import { pl } from '@payloadcms/translations/languages/pl';
 
