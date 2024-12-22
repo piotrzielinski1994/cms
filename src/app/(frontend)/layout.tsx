@@ -6,9 +6,9 @@ import React from 'react';
 import { cn } from 'src/utilities/cn';
 
 import { AdminBar } from '@/_old/components/AdminBar';
+import { Footer } from '@/_old/Footer/Component';
 import { InitTheme } from '@/_old/providers/Theme/InitTheme';
 import { mergeOpenGraph } from '@/_old/utilities/mergeOpenGraph';
-import { Footer } from '@/Footer/Component';
 import { Header } from '@/Header/Component';
 import { Providers } from '@/providers';
 import { draftMode } from 'next/headers';
