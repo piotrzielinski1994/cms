@@ -18,7 +18,7 @@ import { generatePreviewPath } from '@/utilities/generatePreviewPath';
 import { populateAuthors } from './hooks/populateAuthors';
 import { revalidateDelete, revalidatePost } from './hooks/revalidatePost';
 
-import { slugField } from '@/fields/slug';
+import { slugField } from '@/_old/fields/slug';
 import {
   MetaDescriptionField,
   MetaImageField,

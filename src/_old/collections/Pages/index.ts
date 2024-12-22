@@ -7,7 +7,7 @@ import { CallToAction } from '@/_old/blocks/CallToAction/config';
 import { Content } from '@/_old/blocks/Content/config';
 import { FormBlock } from '@/_old/blocks/Form/config';
 import { MediaBlock } from '@/_old/blocks/MediaBlock/config';
-import { slugField } from '@/fields/slug';
+import { slugField } from '@/_old/fields/slug';
 import { hero } from '@/heros/config';
 import { populatePublishedAt } from '@/hooks/populatePublishedAt';
 import { generatePreviewPath } from '@/utilities/generatePreviewPath';
