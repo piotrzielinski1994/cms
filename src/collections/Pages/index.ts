@@ -2,8 +2,8 @@ import type { CollectionConfig } from 'payload';
 
 import { slugField } from '@/fields/slug';
 import { hero } from '@/heros/config';
-import { authenticated } from '../../access/authenticated';
-import { authenticatedOrPublished } from '../../access/authenticatedOrPublished';
+import { authenticated } from '../../_old/access/authenticated';
+import { authenticatedOrPublished } from '../../_old/access/authenticatedOrPublished';
 import { Archive } from '../../blocks/ArchiveBlock/config';
 import { CallToAction } from '../../blocks/CallToAction/config';
 import { Content } from '../../blocks/Content/config';
