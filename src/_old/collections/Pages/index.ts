@@ -1,5 +1,7 @@
 import type { CollectionConfig } from 'payload';
 
+import { authenticated } from '@/_old/access/authenticated';
+import { authenticatedOrPublished } from '@/_old/access/authenticatedOrPublished';
 import { Archive } from '@/_old/blocks/ArchiveBlock/config';
 import { CallToAction } from '@/_old/blocks/CallToAction/config';
 import { Content } from '@/_old/blocks/Content/config';
@@ -7,10 +9,8 @@ import { FormBlock } from '@/_old/blocks/Form/config';
 import { MediaBlock } from '@/_old/blocks/MediaBlock/config';
 import { slugField } from '@/fields/slug';
 import { hero } from '@/heros/config';
-import { authenticated } from '../../_old/access/authenticated';
-import { authenticatedOrPublished } from '../../_old/access/authenticatedOrPublished';
-import { populatePublishedAt } from '../../hooks/populatePublishedAt';
-import { generatePreviewPath } from '../../utilities/generatePreviewPath';
+import { populatePublishedAt } from '@/hooks/populatePublishedAt';
+import { generatePreviewPath } from '@/utilities/generatePreviewPath';
 import { revalidateDelete, revalidatePage } from './hooks/revalidatePage';
 
 import {
