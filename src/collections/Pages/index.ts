@@ -6,7 +6,7 @@ import { Content } from '@/_old/blocks/Content/config';
 import { FormBlock } from '@/_old/blocks/Form/config';
 import { MediaBlock } from '@/_old/blocks/MediaBlock/config';
 import { slugField } from '@/_old/fields/slug';
-import { hero } from '@/heros/config';
+import { hero } from '@/_old/heros/config';
 import { authenticated } from '../../_old/access/authenticated';
 import { authenticatedOrPublished } from '../../_old/access/authenticatedOrPublished';
 import { populatePublishedAt } from '../../_old/hooks/populatePublishedAt';

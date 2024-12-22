@@ -9,8 +9,8 @@ import { getPayload } from 'payload';
 import { cache } from 'react';
 
 import { LivePreviewListener } from '@/_old/components/LivePreviewListener';
+import { PostHero } from '@/_old/heros/PostHero';
 import { generateMeta } from '@/_old/utilities/generateMeta';
-import { PostHero } from '@/heros/PostHero';
 import PageClient from './page.client';
 
 export async function generateStaticParams() {

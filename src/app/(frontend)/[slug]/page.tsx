@@ -11,8 +11,8 @@ import type { Page as PageType } from '@/payload-types';
 
 import { RenderBlocks } from '@/_old/blocks/RenderBlocks';
 import { LivePreviewListener } from '@/_old/components/LivePreviewListener';
+import { RenderHero } from '@/_old/heros/RenderHero';
 import { generateMeta } from '@/_old/utilities/generateMeta';
-import { RenderHero } from '@/heros/RenderHero';
 import PageClient from './page.client';
 
 export async function generateStaticParams() {
