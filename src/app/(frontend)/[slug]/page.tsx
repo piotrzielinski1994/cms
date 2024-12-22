@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 
-import { PayloadRedirects } from '@/components/PayloadRedirects';
+import { PayloadRedirects } from '@/_old/components/PayloadRedirects';
 import { homeStatic } from '@/endpoints/seed/home-static';
 import configPromise from '@payload-config';
 import { draftMode } from 'next/headers';
@@ -9,8 +9,8 @@ import { cache } from 'react';
 
 import type { Page as PageType } from '@/payload-types';
 
+import { LivePreviewListener } from '@/_old/components/LivePreviewListener';
 import { RenderBlocks } from '@/blocks/RenderBlocks';
-import { LivePreviewListener } from '@/components/LivePreviewListener';
 import { RenderHero } from '@/heros/RenderHero';
 import { generateMeta } from '@/utilities/generateMeta';
 import PageClient from './page.client';
