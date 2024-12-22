@@ -6,10 +6,10 @@ import React from 'react';
 import { cn } from 'src/utilities/cn';
 
 import { AdminBar } from '@/_old/components/AdminBar';
+import { InitTheme } from '@/_old/providers/Theme/InitTheme';
 import { Footer } from '@/Footer/Component';
 import { Header } from '@/Header/Component';
 import { Providers } from '@/providers';
-import { InitTheme } from '@/providers/Theme/InitTheme';
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph';
 import { draftMode } from 'next/headers';
 
