@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import type { Header as HeaderType } from '@/payload-types';
+import type { Header as HeaderType } from '@/_old/payload.types';
 
 import { CMSLink } from '@/_old/components/Link';
 import { SearchIcon } from 'lucide-react';

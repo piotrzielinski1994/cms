@@ -3,7 +3,7 @@ import type { Metadata } from 'next/types';
 import { CollectionArchive } from '@/_old/components/CollectionArchive';
 import { PageRange } from '@/_old/components/PageRange';
 import { Pagination } from '@/_old/components/Pagination';
-import configPromise from '@payload-config';
+import configPromise from '@/_old/payload.config';
 import { getPayload } from 'payload';
 import PageClient from './page.client';
 

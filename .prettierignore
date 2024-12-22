@@ -1,4 +1,4 @@
-**/payload-types.ts
+**/_old/payload.types.ts
 .tmp
 **/.git
 **/.hg
@@ -11,4 +11,3 @@
 **/temp
 **/docs/**
 tsconfig.json
-

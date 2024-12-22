@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { RelatedPosts } from '@/_old/blocks/RelatedPosts/Component';
 import { PayloadRedirects } from '@/_old/components/PayloadRedirects';
 import RichText from '@/_old/components/RichText';
-import configPromise from '@payload-config';
+import configPromise from '@/_old/payload.config';
 import { draftMode } from 'next/headers';
 import { getPayload } from 'payload';
 import { cache } from 'react';

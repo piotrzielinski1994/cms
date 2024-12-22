@@ -1,6 +1,6 @@
 import React from 'react';
 
-import type { Page } from '@/payload-types';
+import type { Page } from '@/_old/payload.types';
 
 import { CMSLink } from '@/_old/components/Link';
 import { Media } from '@/_old/components/Media';

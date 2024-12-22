@@ -1,4 +1,4 @@
-import configPromise from '@payload-config';
+import configPromise from '@/_old/payload.config';
 import { draftMode } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { CollectionSlug, getPayload, type PayloadRequest } from 'payload';
@@ -83,7 +83,7 @@ export async function GET(
           ],
         },
       });
-
+      console.log('@@@ docs | ', docs);
       if (!docs.docs.length) {
         return new Response('Document not found', { status: 404 });
       }

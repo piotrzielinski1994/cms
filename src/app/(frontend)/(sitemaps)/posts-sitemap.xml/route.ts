@@ -1,7 +1,7 @@
+import config from '@/_old/payload.config';
 import { getServerSideSitemap } from 'next-sitemap';
-import { getPayload } from 'payload';
-import config from '@payload-config';
 import { unstable_cache } from 'next/cache';
+import { getPayload } from 'payload';
 
 const getPostsSitemap = unstable_cache(
   async () => {

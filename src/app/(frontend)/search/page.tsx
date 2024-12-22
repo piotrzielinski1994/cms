@@ -2,8 +2,8 @@ import type { Metadata } from 'next/types';
 
 import { CardPostData } from '@/_old/components/Card';
 import { CollectionArchive } from '@/_old/components/CollectionArchive';
+import configPromise from '@/_old/payload.config';
 import { Search } from '@/_old/search/Component';
-import configPromise from '@payload-config';
 import { getPayload } from 'payload';
 import PageClient from './page.client';
 

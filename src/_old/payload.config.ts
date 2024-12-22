@@ -85,6 +85,6 @@ export default buildConfig({
   secret: process.env.PAYLOAD_SECRET,
   sharp,
   typescript: {
-    outputFile: path.resolve(dirname, 'payload-types.ts'),
+    outputFile: path.resolve(dirname, '_old/payload.types.ts'),
   },
 });

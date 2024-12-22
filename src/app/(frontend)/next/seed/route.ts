@@ -1,5 +1,5 @@
 import { seed } from '@/_old/endpoints/seed';
-import config from '@payload-config';
+import config from '@/_old/payload.config';
 import { headers } from 'next/headers';
 import { createLocalReq, getPayload } from 'payload';
 

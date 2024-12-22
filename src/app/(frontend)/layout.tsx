@@ -1,16 +1,16 @@
 import type { Metadata } from 'next';
 
+import { cn } from '@/_old/utilities/cn';
 import { GeistMono } from 'geist/font/mono';
 import { GeistSans } from 'geist/font/sans';
 import React from 'react';
-import { cn } from 'src/utilities/cn';
 
 import { AdminBar } from '@/_old/components/AdminBar';
 import { Footer } from '@/_old/Footer/Component';
 import { Header } from '@/_old/Header/Component';
+import { Providers } from '@/_old/providers';
 import { InitTheme } from '@/_old/providers/Theme/InitTheme';
 import { mergeOpenGraph } from '@/_old/utilities/mergeOpenGraph';
-import { Providers } from '@/providers';
 import { draftMode } from 'next/headers';
 
 import { getServerSideURL } from '@/_old/utilities/getURL';
