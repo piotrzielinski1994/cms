@@ -7,13 +7,13 @@ import { cn } from 'src/utilities/cn';
 
 import { AdminBar } from '@/_old/components/AdminBar';
 import { InitTheme } from '@/_old/providers/Theme/InitTheme';
+import { mergeOpenGraph } from '@/_old/utilities/mergeOpenGraph';
 import { Footer } from '@/Footer/Component';
 import { Header } from '@/Header/Component';
 import { Providers } from '@/providers';
-import { mergeOpenGraph } from '@/utilities/mergeOpenGraph';
 import { draftMode } from 'next/headers';
 
-import { getServerSideURL } from '@/utilities/getURL';
+import { getServerSideURL } from '@/_old/utilities/getURL';
 import './globals.css';
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {

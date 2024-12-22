@@ -1,4 +1,4 @@
-import { getCachedGlobal } from '@/utilities/getGlobals';
+import { getCachedGlobal } from '@/_old/utilities/getGlobals';
 import Link from 'next/link';
 
 import type { Footer } from '@/payload-types';

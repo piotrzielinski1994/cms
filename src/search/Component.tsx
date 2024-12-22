@@ -1,7 +1,7 @@
 'use client';
 import { Input } from '@/_old/components/ui/input';
 import { Label } from '@/_old/components/ui/label';
-import { useDebounce } from '@/utilities/useDebounce';
+import { useDebounce } from '@/_old/utilities/useDebounce';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 

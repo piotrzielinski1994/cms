@@ -12,10 +12,10 @@ import { Pages } from '@/_old/collections/Pages';
 import { Posts } from '@/_old/collections/Posts';
 import { Users } from '@/_old/collections/Users';
 import { defaultLexical } from '@/_old/fields/defaultLexical';
+import { getServerSideURL } from '@/_old/utilities/getURL';
 import { Footer } from '@/Footer/config';
 import { Header } from '@/Header/config';
 import { plugins } from '@/plugins';
-import { getServerSideURL } from '@/utilities/getURL';
 import { en } from '@payloadcms/translations/languages/en';
 import { pl } from '@payloadcms/translations/languages/pl';
 

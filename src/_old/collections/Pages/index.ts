@@ -9,8 +9,8 @@ import { FormBlock } from '@/_old/blocks/Form/config';
 import { MediaBlock } from '@/_old/blocks/MediaBlock/config';
 import { slugField } from '@/_old/fields/slug';
 import { populatePublishedAt } from '@/_old/hooks/populatePublishedAt';
+import { generatePreviewPath } from '@/_old/utilities/generatePreviewPath';
 import { hero } from '@/heros/config';
-import { generatePreviewPath } from '@/utilities/generatePreviewPath';
 import { revalidateDelete, revalidatePage } from './hooks/revalidatePage';
 
 import {

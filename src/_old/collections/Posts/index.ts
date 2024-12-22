@@ -14,7 +14,7 @@ import { authenticatedOrPublished } from '@/_old/access/authenticatedOrPublished
 import { Banner } from '@/_old/blocks/Banner/config';
 import { Code } from '@/_old/blocks/Code/config';
 import { MediaBlock } from '@/_old/blocks/MediaBlock/config';
-import { generatePreviewPath } from '@/utilities/generatePreviewPath';
+import { generatePreviewPath } from '@/_old/utilities/generatePreviewPath';
 import { populateAuthors } from './hooks/populateAuthors';
 import { revalidateDelete, revalidatePost } from './hooks/revalidatePost';
 
