@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
+import { RelatedPosts } from '@/_old/blocks/RelatedPosts/Component';
 import { PayloadRedirects } from '@/_old/components/PayloadRedirects';
 import RichText from '@/_old/components/RichText';
-import { RelatedPosts } from '@/blocks/RelatedPosts/Component';
 import configPromise from '@payload-config';
 import { draftMode } from 'next/headers';
 import { getPayload } from 'payload';

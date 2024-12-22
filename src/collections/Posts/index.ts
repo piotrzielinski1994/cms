@@ -9,11 +9,11 @@ import {
   lexicalEditor,
 } from '@payloadcms/richtext-lexical';
 
+import { Banner } from '@/_old/blocks/Banner/config';
+import { Code } from '@/_old/blocks/Code/config';
+import { MediaBlock } from '@/_old/blocks/MediaBlock/config';
 import { authenticated } from '../../_old/access/authenticated';
 import { authenticatedOrPublished } from '../../_old/access/authenticatedOrPublished';
-import { Banner } from '../../blocks/Banner/config';
-import { Code } from '../../blocks/Code/config';
-import { MediaBlock } from '../../blocks/MediaBlock/config';
 import { generatePreviewPath } from '../../utilities/generatePreviewPath';
 import { populateAuthors } from './hooks/populateAuthors';
 import { revalidateDelete, revalidatePost } from './hooks/revalidatePost';
