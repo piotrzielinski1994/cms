@@ -2,7 +2,7 @@ import type { Metadata } from 'next/types';
 
 import { CardPostData } from '@/_old/components/Card';
 import { CollectionArchive } from '@/_old/components/CollectionArchive';
-import { Search } from '@/search/Component';
+import { Search } from '@/_old/search/Component';
 import configPromise from '@payload-config';
 import { getPayload } from 'payload';
 import PageClient from './page.client';

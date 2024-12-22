@@ -1,6 +1,6 @@
 import { revalidateRedirects } from '@/_old/hooks/revalidateRedirects';
-import { beforeSyncWithSearch } from '@/search/beforeSync';
-import { searchFields } from '@/search/fieldOverrides';
+import { beforeSyncWithSearch } from '@/_old/search/beforeSync';
+import { searchFields } from '@/_old/search/fieldOverrides';
 import { payloadCloudPlugin } from '@payloadcms/payload-cloud';
 import { formBuilderPlugin } from '@payloadcms/plugin-form-builder';
 import { nestedDocsPlugin } from '@payloadcms/plugin-nested-docs';
