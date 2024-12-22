@@ -15,7 +15,7 @@ import { defaultLexical } from '@/_old/fields/defaultLexical';
 import { getServerSideURL } from '@/_old/utilities/getURL';
 import { Footer } from '@/Footer/config';
 import { Header } from '@/Header/config';
-import { plugins } from '@/plugins';
+import { plugins } from '@/_old/plugins';
 import { en } from '@payloadcms/translations/languages/en';
 import { pl } from '@payloadcms/translations/languages/pl';
 
