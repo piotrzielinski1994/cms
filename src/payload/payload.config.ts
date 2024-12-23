@@ -1,11 +1,7 @@
 import { getServerSideURL } from '@/_old/utilities/getURL';
 import { Footer } from '@/components/layout/footer/payload/footer.payload.config';
 import { Header } from '@/components/layout/header/payload/header.payload.config';
-import { Categories } from '@/payload/collections/Categories';
-import { Media } from '@/payload/collections/Media';
-import { Pages } from '@/payload/collections/Pages';
-import { Posts } from '@/payload/collections/Posts';
-import { Users } from '@/payload/collections/Users';
+import { collections } from '@/payload/collections';
 import { defaultLexical } from '@/payload/fields/defaultLexical';
 import { plugins } from '@/payload/plugins';
 import { mongooseAdapter } from '@payloadcms/db-mongodb';
@@ -43,7 +39,7 @@ export default buildConfig({
     importMap: {
       baseDir: path.resolve(dirname),
     },
-    user: Users.slug,
+    user: collections.Users.slug,
     livePreview: {
       breakpoints: [
         {
@@ -72,10 +68,10 @@ export default buildConfig({
   db: mongooseAdapter({
     url: process.env.DATABASE_URI || '',
   }),
-  collections: [Pages, Posts, Media, Categories, Users],
+  collections: Object.values(collections),
   cors: [getServerSideURL()].filter(Boolean),
   globals: [Header, Footer],
-  plugins,
+  plugins: Object.values(plugins),
   secret: process.env.PAYLOAD_SECRET,
   sharp,
   typescript: {
