@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
 import { PayloadRedirects } from '@/_old/components/PayloadRedirects';
-import { homeStatic } from '@/_old/endpoints/seed/home-static';
 import configPromise from '@/_old/payload.config';
+import { homeStatic } from '@/payload/seed/home-static';
 import { draftMode } from 'next/headers';
 import { getPayload } from 'payload';
 import { cache } from 'react';
