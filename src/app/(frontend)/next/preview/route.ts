@@ -1,4 +1,4 @@
-import configPromise from '@/_old/payload.config';
+import configPromise from '@/payload/payload.config';
 import { draftMode } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { CollectionSlug, getPayload, type PayloadRequest } from 'payload';

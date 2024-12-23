@@ -1,4 +1,4 @@
-import config from '@/_old/payload.config';
+import config from '@/payload/payload.config';
 import { seed } from '@/payload/seed';
 import { headers } from 'next/headers';
 import { createLocalReq, getPayload } from 'payload';

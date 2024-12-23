@@ -1,4 +1,4 @@
-import config from '@/_old/payload.config';
+import config from '@/payload/payload.config';
 import { getServerSideSitemap } from 'next-sitemap';
 import { unstable_cache } from 'next/cache';
 import { getPayload } from 'payload';
