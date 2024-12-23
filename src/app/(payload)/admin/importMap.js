@@ -18,8 +18,8 @@ import { HorizontalRuleFeatureClient as HorizontalRuleFeatureClient_e70f5e05f09f
 import { BlocksFeatureClient as BlocksFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
 import { LinkToDoc as LinkToDoc_aead06e4cbf6b2620c5c51c9ab283634 } from '@payloadcms/plugin-search/client'
 import { ReindexButton as ReindexButton_aead06e4cbf6b2620c5c51c9ab283634 } from '@payloadcms/plugin-search/client'
-import { default as default_6299a1de84778db6942e37f0fe1a78cb } from '@/components/layout/header/payload/row-label.payload.component'
-import { RowLabel as RowLabel_fee2447cc17f1dfb61add3e2e9af28d1 } from '@/_old/Footer/RowLabel'
+import { RowLabel as RowLabel_6299a1de84778db6942e37f0fe1a78cb } from '@/components/layout/header/payload/row-label.payload.component'
+import { RowLabel as RowLabel_64f2c7d18baa0e669ccba01c7c690ce7 } from '@/components/layout/footer/payload/row-label.payload.component'
 import { default as default_60ce4692d70580e1e7253c93c3543237 } from '@/_old/components/BeforeDashboard'
 import { default as default_74ce999f04185d2634eee38f0d4c4a15 } from '@/_old/components/BeforeLogin'
 
@@ -44,8 +44,8 @@ export const importMap = {
   "@payloadcms/richtext-lexical/client#BlocksFeatureClient": BlocksFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
   "@payloadcms/plugin-search/client#LinkToDoc": LinkToDoc_aead06e4cbf6b2620c5c51c9ab283634,
   "@payloadcms/plugin-search/client#ReindexButton": ReindexButton_aead06e4cbf6b2620c5c51c9ab283634,
-  "@/components/layout/header/payload/row-label.payload.component#default": default_6299a1de84778db6942e37f0fe1a78cb,
-  "@/_old/Footer/RowLabel#RowLabel": RowLabel_fee2447cc17f1dfb61add3e2e9af28d1,
+  "@/components/layout/header/payload/row-label.payload.component#RowLabel": RowLabel_6299a1de84778db6942e37f0fe1a78cb,
+  "@/components/layout/footer/payload/row-label.payload.component#RowLabel": RowLabel_64f2c7d18baa0e669ccba01c7c690ce7,
   "@/_old/components/BeforeDashboard#default": default_60ce4692d70580e1e7253c93c3543237,
   "@/_old/components/BeforeLogin#default": default_74ce999f04185d2634eee38f0d4c4a15
 }

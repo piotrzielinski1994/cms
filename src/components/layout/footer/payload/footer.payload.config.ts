@@ -1,7 +1,7 @@
 import type { GlobalConfig } from 'payload';
 
 import { link } from '@/_old/fields/link';
-import { revalidateFooter } from './hooks/revalidateFooter';
+import { revalidateFooter } from './footer.payload.hooks';
 
 export const Footer: GlobalConfig = {
   slug: 'footer',
@@ -21,7 +21,7 @@ export const Footer: GlobalConfig = {
       admin: {
         initCollapsed: true,
         components: {
-          RowLabel: '@/_old/Footer/RowLabel#RowLabel',
+          RowLabel: '@/components/layout/footer/payload/row-label.payload.component#RowLabel',
         },
       },
     },

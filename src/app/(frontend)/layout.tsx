@@ -6,10 +6,10 @@ import { GeistSans } from 'geist/font/sans';
 import React from 'react';
 
 import { AdminBar } from '@/_old/components/AdminBar';
-import { Footer } from '@/_old/Footer/Component';
 import { Providers } from '@/_old/providers';
 import { InitTheme } from '@/_old/providers/Theme/InitTheme';
 import { mergeOpenGraph } from '@/_old/utilities/mergeOpenGraph';
+import { Footer } from '@/components/layout/footer/footer';
 import { Header } from '@/components/layout/header/header';
 import { draftMode } from 'next/headers';
 
