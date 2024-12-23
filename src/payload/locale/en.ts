@@ -14,6 +14,7 @@ export const customTranslations = {
   fields: {
     label: 'Label',
     title: 'Title',
+    heading: 'Heading',
     description: 'Description',
     image: 'Image',
     publishedAt: 'Published At',

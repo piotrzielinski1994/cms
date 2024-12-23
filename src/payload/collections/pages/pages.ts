@@ -1,12 +1,7 @@
 import type { CollectionConfig } from 'payload';
 
-import { Archive } from '@/_old/blocks/ArchiveBlock/config';
-import { CallToAction } from '@/_old/blocks/CallToAction/config';
-import { Content } from '@/_old/blocks/Content/config';
-import { FormBlock } from '@/_old/blocks/Form/config';
-import { MediaBlock } from '@/_old/blocks/MediaBlock/config';
-import { hero } from '@/_old/heros/config';
 import { generatePreviewPath } from '@/_old/utilities/generatePreviewPath';
+import { hero1BlockConfig } from '@/components/blocks/hero/hero-1/hero-1.payload.config';
 import { authenticated } from '@/payload/access/authenticated';
 import { authenticatedOrPublished } from '@/payload/access/authenticatedOrPublished';
 import { slugField } from '@/payload/fields/slug';
@@ -73,16 +68,12 @@ export const Pages: CollectionConfig<'pages'> = {
       type: 'tabs',
       tabs: [
         {
-          fields: [hero],
-          label: 'Hero',
-        },
-        {
           fields: [
             {
-              name: 'layout',
+              name: 'sections',
               type: 'blocks',
-              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock],
-              required: true,
+              blocks: [hero1BlockConfig],
+              required: false,
               admin: {
                 initCollapsed: true,
               },
@@ -94,13 +85,13 @@ export const Pages: CollectionConfig<'pages'> = {
           },
         },
         {
-          name: 'meta',
+          name: 'seo',
           label: 'SEO',
           fields: [
             OverviewField({
-              titlePath: 'meta.title',
-              descriptionPath: 'meta.description',
-              imagePath: 'meta.image',
+              titlePath: 'seo.title',
+              descriptionPath: 'seo.description',
+              imagePath: 'seo.image',
             }),
             MetaTitleField({
               hasGenerateFn: true,
@@ -115,8 +106,8 @@ export const Pages: CollectionConfig<'pages'> = {
               hasGenerateFn: true,
 
               // field paths to match the target field for data
-              titlePath: 'meta.title',
-              descriptionPath: 'meta.description',
+              titlePath: 'seo.title',
+              descriptionPath: 'seo.description',
             }),
           ],
         },

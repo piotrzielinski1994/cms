@@ -16,6 +16,7 @@ export const customTranslations = {
   fields: {
     label: 'Etykieta',
     title: 'Tytuł',
+    heading: 'Naglówek',
     description: 'Opis',
     image: 'Zdjęcie',
     publishedAt: 'Data publikacji',
