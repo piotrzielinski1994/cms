@@ -12,6 +12,7 @@ export const customTranslations = {
     content: 'Content',
   },
   fields: {
+    label: 'Label',
     title: 'Title',
     description: 'Description',
     image: 'Image',
@@ -51,5 +52,9 @@ export const customTranslations = {
       editor: 'Editor',
       admin: 'Admin',
     },
+  },
+  components: {
+    header: 'Header',
+    footer: 'Footer',
   },
 };

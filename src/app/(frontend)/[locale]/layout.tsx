@@ -14,10 +14,20 @@ import { Header } from '@/components/layout/header/header';
 import { draftMode } from 'next/headers';
 
 import { getServerSideURL } from '@/_old/utilities/getURL';
+import { TypedLocale } from 'payload';
 import './globals.css';
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
+type Args = {
+  children: React.ReactNode;
+  params: Promise<{
+    locale: TypedLocale;
+  }>;
+};
+
+export default async function RootLayout({ children, params }: Args) {
   const { isEnabled } = await draftMode();
+
+  const { locale } = await params;
 
   return (
     <html className={cn(GeistSans.variable, GeistMono.variable)} lang="en" suppressHydrationWarning>
@@ -34,9 +44,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             }}
           />
 
-          <Header />
+          <Header locale={locale} />
           {children}
-          <Footer />
+          <Footer locale={locale} />
         </Providers>
       </body>
     </html>

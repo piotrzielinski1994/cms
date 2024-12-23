@@ -14,6 +14,7 @@ export const customTranslations = {
     content: 'Treść',
   },
   fields: {
+    label: 'Etykieta',
     title: 'Tytuł',
     description: 'Opis',
     image: 'Zdjęcie',
@@ -53,5 +54,9 @@ export const customTranslations = {
       editor: 'Edytor',
       admin: 'Administrator',
     },
+  },
+  components: {
+    header: 'Nagłówek',
+    footer: 'Stopka',
   },
 } satisfies typeof en;

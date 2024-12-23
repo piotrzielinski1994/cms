@@ -1,6 +1,7 @@
 import type { GlobalConfig } from 'payload';
 
 import { link } from '@/payload/fields/link';
+import { AdminTranslations, customTranslations } from '@/payload/locale';
 import { revalidateFooter } from './footer.payload.hooks';
 
 export const Footer: GlobalConfig = {
@@ -10,14 +11,11 @@ export const Footer: GlobalConfig = {
   },
   admin: {
     group: {
-      en: 'Layout',
-      pl: 'Układ',
+      en: customTranslations.en.groups.layout,
+      pl: customTranslations.pl.groups.layout,
     },
   },
-  label: {
-    en: 'Footer',
-    pl: 'Stopka',
-  },
+  label: ({ t }: { t: AdminTranslations }) => t('components:footer'),
   fields: [
     {
       name: 'navItems',

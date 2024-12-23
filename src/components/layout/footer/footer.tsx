@@ -6,9 +6,10 @@ import type { Footer } from '@/payload/payload.types';
 import { CMSLink } from '@/_old/components/Link';
 import { Logo } from '@/_old/components/Logo/Logo';
 import { ThemeSelector } from '@/_old/providers/Theme/ThemeSelector';
+import { TypedLocale } from 'payload';
 
-export async function Footer() {
-  const footerData: Footer = await getCachedGlobal('footer', 1)();
+export async function Footer({ locale }: { locale: TypedLocale }) {
+  const footerData: Footer = await getCachedGlobal('footer', locale, 1)();
 
   const navItems = footerData?.navItems || [];
 

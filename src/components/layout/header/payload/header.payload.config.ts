@@ -1,6 +1,7 @@
 import type { GlobalConfig } from 'payload';
 
 import { link } from '@/payload/fields/link';
+import { AdminTranslations, customTranslations } from '@/payload/locale';
 import { revalidateHeader } from './header.payload.hooks';
 
 export const Header: GlobalConfig = {
@@ -10,14 +11,11 @@ export const Header: GlobalConfig = {
   },
   admin: {
     group: {
-      en: 'Layout',
-      pl: 'Układ',
+      en: customTranslations.en.groups.layout,
+      pl: customTranslations.pl.groups.layout,
     },
   },
-  label: {
-    en: 'Header',
-    pl: 'Nagłówek',
-  },
+  label: ({ t }: { t: AdminTranslations }) => t('components:header'),
   fields: [
     {
       name: 'navItems',

@@ -1,6 +1,7 @@
 import type { Field } from 'payload';
 
 import deepMerge from '@/_old/utilities/deepMerge';
+import { AdminTranslations } from '../locale';
 
 export type LinkAppearances = 'default' | 'outline';
 
@@ -108,8 +109,9 @@ export const link: LinkType = ({ appearances, disableLabel = false, overrides = 
           admin: {
             width: '50%',
           },
-          label: 'Label',
+          label: ({ t }: { t: AdminTranslations }) => t('fields:label'),
           required: true,
+          localized: true,
         },
       ],
     });
