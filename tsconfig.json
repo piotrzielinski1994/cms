@@ -28,6 +28,7 @@
     ],
     "paths": {
       "react": ["./node_modules/@types/react"],
+      "@payload-config": ["./src/payload/payload.config.ts"],
       "@/*": ["./src/*"],
       "@/pages/frontend/*": ["./src/app/(frontend)/*"],
       "@/pages/payload/*": ["./src/app/(payload)/*"],
