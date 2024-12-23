@@ -2,7 +2,7 @@
 import { useHeaderTheme } from '@/_old/providers/HeaderTheme';
 import React, { useEffect } from 'react';
 
-import type { Page } from '@/_old/payload.types';
+import type { Page } from '@/payload/payload.types';
 
 import { CMSLink } from '@/_old/components/Link';
 import { Media } from '@/_old/components/Media';

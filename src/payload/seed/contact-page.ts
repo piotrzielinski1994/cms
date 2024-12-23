@@ -1,4 +1,4 @@
-import type { Page } from '@/_old/payload.types';
+import type { Page } from '@/payload/payload.types';
 
 export const contact: Partial<Page> = {
   slug: 'contact',

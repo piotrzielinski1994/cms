@@ -1,4 +1,4 @@
-import type { Page } from '@/_old/payload.types';
+import type { Page } from '@/payload/payload.types';
 
 // Used for pre-seeded content so that the homepage is not empty
 // @ts-expect-error

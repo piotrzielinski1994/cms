@@ -1,4 +1,4 @@
-import type { BannerBlock as BannerBlockProps } from '@/_old/payload.types';
+import type { BannerBlock as BannerBlockProps } from '@/payload/payload.types';
 
 import RichText from '@/_old/components/RichText';
 import { cn } from '@/_old/utilities/cn';

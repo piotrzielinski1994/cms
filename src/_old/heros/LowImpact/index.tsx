@@ -1,6 +1,6 @@
 import React from 'react';
 
-import type { Page } from '@/_old/payload.types';
+import type { Page } from '@/payload/payload.types';
 
 import RichText from '@/_old/components/RichText';
 

@@ -7,7 +7,7 @@ import { draftMode } from 'next/headers';
 import { getPayload } from 'payload';
 import { cache } from 'react';
 
-import type { Page as PageType } from '@/_old/payload.types';
+import type { Page as PageType } from '@/payload/payload.types';
 
 import { RenderBlocks } from '@/_old/blocks/RenderBlocks';
 import { LivePreviewListener } from '@/_old/components/LivePreviewListener';

@@ -4,7 +4,7 @@ import RichText from '@/_old/components/RichText';
 import { cn } from '@/_old/utilities/cn';
 import React from 'react';
 
-import type { MediaBlock as MediaBlockProps } from '@/_old/payload.types';
+import type { MediaBlock as MediaBlockProps } from '@/payload/payload.types';
 
 import { Media } from '@/_old/components/Media';
 

@@ -1,4 +1,4 @@
-import { User } from '@/_old/payload.types';
+import { User } from '@/payload/payload.types';
 import type { CollectionAfterReadHook } from 'payload';
 
 // The `user` collection has access control locked so that users are not publicly accessible

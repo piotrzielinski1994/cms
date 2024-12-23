@@ -1,4 +1,4 @@
-import type { Config } from '@/_old/payload.types';
+import type { Config } from '@/payload/payload.types';
 
 import configPromise from '@/payload/payload.config';
 import { unstable_cache } from 'next/cache';

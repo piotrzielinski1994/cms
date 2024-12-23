@@ -1,7 +1,7 @@
 import { getCachedGlobal } from '@/_old/utilities/getGlobals';
 import Link from 'next/link';
 
-import type { Footer } from '@/_old/payload.types';
+import type { Footer } from '@/payload/payload.types';
 
 import { CMSLink } from '@/_old/components/Link';
 import { Logo } from '@/_old/components/Logo/Logo';

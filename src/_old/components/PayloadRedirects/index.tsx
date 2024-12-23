@@ -1,4 +1,4 @@
-import type { Page, Post } from '@/_old/payload.types';
+import type { Page, Post } from '@/payload/payload.types';
 import type React from 'react';
 
 import { getCachedDocument } from '@/_old/utilities/getDocument';

@@ -2,7 +2,7 @@ import RichText from '@/_old/components/RichText';
 import clsx from 'clsx';
 import React from 'react';
 
-import type { Post } from '@/_old/payload.types';
+import type { Post } from '@/payload/payload.types';
 
 import { Card } from '@/_old/components/Card';
 

@@ -4,7 +4,7 @@ import useClickableCard from '@/_old/utilities/useClickableCard';
 import Link from 'next/link';
 import React, { Fragment } from 'react';
 
-import type { Post } from '@/_old/payload.types';
+import type { Post } from '@/payload/payload.types';
 
 import { Media } from '@/_old/components/Media';
 

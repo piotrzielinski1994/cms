@@ -1,6 +1,6 @@
 import React from 'react';
 
-import type { CallToActionBlock as CTABlockProps } from '@/_old/payload.types';
+import type { CallToActionBlock as CTABlockProps } from '@/payload/payload.types';
 
 import { CMSLink } from '@/_old/components/Link';
 import RichText from '@/_old/components/RichText';

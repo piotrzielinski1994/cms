@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
-import type { Header } from '@/_old/payload.types';
+import type { Header } from '@/payload/payload.types';
 
 import { Logo } from '@/_old/components/Logo/Logo';
 import { HeaderNav } from './scaffold/navbar';

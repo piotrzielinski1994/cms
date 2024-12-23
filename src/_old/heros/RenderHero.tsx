@@ -1,6 +1,6 @@
 import React from 'react';
 
-import type { Page } from '@/_old/payload.types';
+import type { Page } from '@/payload/payload.types';
 
 import { HighImpactHero } from '@/_old/heros/HighImpact';
 import { LowImpactHero } from '@/_old/heros/LowImpact';

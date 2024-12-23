@@ -10,12 +10,12 @@ import { CodeBlock, CodeBlockProps } from '@/_old/blocks/Code/Component';
 
 import { BannerBlock } from '@/_old/blocks/Banner/Component';
 import { CallToActionBlock } from '@/_old/blocks/CallToAction/Component';
+import { cn } from '@/_old/utilities/cn';
 import type {
   BannerBlock as BannerBlockProps,
   CallToActionBlock as CTABlockProps,
   MediaBlock as MediaBlockProps,
-} from '@/_old/payload.types';
-import { cn } from '@/_old/utilities/cn';
+} from '@/payload/payload.types';
 
 type NodeTypes =
   | DefaultNodeTypes
