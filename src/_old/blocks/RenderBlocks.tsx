@@ -7,6 +7,7 @@ import { CallToActionBlock } from '@/_old/blocks/CallToAction/Component';
 import { ContentBlock } from '@/_old/blocks/Content/Component';
 import { FormBlock } from '@/_old/blocks/Form/Component';
 import { MediaBlock } from '@/_old/blocks/MediaBlock/Component';
+import Hero1 from '@/components/blocks/hero/hero-1/hero-1';
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -14,13 +15,13 @@ const blockComponents = {
   cta: CallToActionBlock,
   formBlock: FormBlock,
   mediaBlock: MediaBlock,
+  'hero-1': Hero1,
 };
 
 export const RenderBlocks: React.FC<{
-  blocks: Page['layout'][0][];
+  blocks: Page['sections'];
 }> = (props) => {
   const { blocks } = props;
-
   const hasBlocks = blocks && Array.isArray(blocks) && blocks.length > 0;
 
   if (hasBlocks) {

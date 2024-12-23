@@ -1,17 +1,13 @@
 import type { Metadata } from 'next';
 
 import { PayloadRedirects } from '@/_old/components/PayloadRedirects';
-import { homeStatic } from '@/_old/seed/home-static';
 import configPromise from '@/payload/payload.config';
 import { draftMode } from 'next/headers';
 import { getPayload, TypedLocale } from 'payload';
 import { cache } from 'react';
 
-import type { Page as PageType } from '@/payload/payload.types';
-
 import { RenderBlocks } from '@/_old/blocks/RenderBlocks';
 import { LivePreviewListener } from '@/_old/components/LivePreviewListener';
-import { RenderHero } from '@/_old/heros/RenderHero';
 import { generateMeta } from '@/_old/utilities/generateMeta';
 import PageClient from './page.client';
 
@@ -38,33 +34,27 @@ export async function generateStaticParams() {
 
 type Args = {
   params: Promise<{
-    slug?: string;
+    segments?: string[];
     locale: TypedLocale;
   }>;
 };
 
 export default async function Page({ params: paramsPromise }: Args) {
   const { isEnabled: draft } = await draftMode();
-  const { slug = 'home', locale = 'en' } = await paramsPromise;
+  const { segments, locale = 'en' } = await paramsPromise;
+  const slug = segments?.at(-1) ?? 'home';
   const url = '/' + slug;
 
-  let page: PageType | null;
-
-  page = await queryPage({
+  const page = await queryPage({
     slug,
     locale,
   });
-
-  // Remove this code once your website is seeded
-  if (!page && slug === 'home') {
-    page = homeStatic;
-  }
 
   if (!page) {
     return <PayloadRedirects url={url} />;
   }
 
-  const { hero, layout } = page;
+  const { sections } = page;
 
   return (
     <article className="pt-16 pb-24">
@@ -74,8 +64,7 @@ export default async function Page({ params: paramsPromise }: Args) {
 
       {draft && <LivePreviewListener />}
 
-      <RenderHero {...hero} />
-      <RenderBlocks blocks={layout} />
+      <RenderBlocks blocks={sections} />
     </article>
   );
 }
@@ -110,29 +99,3 @@ const queryPage = cache(async ({ slug, locale }: { slug: string; locale: TypedLo
 
   return result.docs?.[0] || null;
 });
-
-// const queryPageBySlug = cache(async ({ slug }: { slug: string }) => {
-//   const { isEnabled: draft } = await draftMode();
-
-//   const payload = await getPayload({ config: configPromise });
-
-//   const locales =
-//     payload.config.localization === false
-//       ? []
-//       : payload.config.localization.locales.map((locale) => locale.code);
-//   const result = await payload.find({
-//     collection: 'pages',
-//     draft,
-//     limit: 1,
-//     pagination: false,
-//     overrideAccess: draft,
-//     where: {
-//       or: [
-//         { slug: { equals: slug } },
-//         ...locales.map((locale) => ({ [`slug.${locale}`]: { equals: slug } })),
-//       ],
-//     },
-//   });
-
-//   return result.docs?.[0] || null;
-// });
