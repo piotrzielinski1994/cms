@@ -1,12 +1,3 @@
-// storage-adapter-import-placeholder
-import { mongooseAdapter } from '@payloadcms/db-mongodb';
-
-import path from 'path';
-import { buildConfig } from 'payload';
-import sharp from 'sharp';
-import { fileURLToPath } from 'url';
-
-import { plugins } from '@/_old/plugins';
 import { getServerSideURL } from '@/_old/utilities/getURL';
 import { Footer } from '@/components/layout/footer/payload/footer.payload.config';
 import { Header } from '@/components/layout/header/payload/header.payload.config';
@@ -16,8 +7,14 @@ import { Pages } from '@/payload/collections/Pages';
 import { Posts } from '@/payload/collections/Posts';
 import { Users } from '@/payload/collections/Users';
 import { defaultLexical } from '@/payload/fields/defaultLexical';
+import { plugins } from '@/payload/plugins';
+import { mongooseAdapter } from '@payloadcms/db-mongodb';
 import { en } from '@payloadcms/translations/languages/en';
 import { pl } from '@payloadcms/translations/languages/pl';
+import path from 'path';
+import { buildConfig } from 'payload';
+import sharp from 'sharp';
+import { fileURLToPath } from 'url';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -78,10 +75,7 @@ export default buildConfig({
   collections: [Pages, Posts, Media, Categories, Users],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [Header, Footer],
-  plugins: [
-    ...plugins,
-    // storage-adapter-placeholder
-  ],
+  plugins,
   secret: process.env.PAYLOAD_SECRET,
   sharp,
   typescript: {
