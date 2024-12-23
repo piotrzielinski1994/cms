@@ -18,6 +18,10 @@ export const customTranslations = {
     publishedAt: 'Published At',
     fullName: 'Full Name',
     parent: 'Parent Element',
+    role: {
+      singular: 'Role',
+      plural: 'Roles',
+    },
   },
   collections: {
     pages: {
@@ -32,9 +36,20 @@ export const customTranslations = {
       singular: 'Post',
       plural: 'Posts',
     },
+    sites: {
+      singular: 'Site',
+      plural: 'Sites',
+    },
     users: {
       singular: 'User',
       plural: 'Users',
+    },
+  },
+  enums: {
+    role: {
+      user: 'User',
+      editor: 'Editor',
+      admin: 'Admin',
     },
   },
 };
