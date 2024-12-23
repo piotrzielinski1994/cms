@@ -3,6 +3,7 @@ import type { CollectionConfig } from 'payload';
 import { anyone } from '@/payload/access/anyone';
 import { authenticated } from '@/payload/access/authenticated';
 import { AdminTranslations } from '@/payload/locale';
+import { createParentField } from '@payloadcms/plugin-nested-docs';
 
 export const Categories: CollectionConfig = {
   slug: 'categories',
@@ -24,6 +25,11 @@ export const Categories: CollectionConfig = {
       name: 'title',
       type: 'text',
       required: true,
+      localized: true,
+      label: ({ t }: { t: AdminTranslations }) => t('fields:title'),
     },
+    createParentField('categories', {
+      label: ({ t }: { t: AdminTranslations }) => t('fields:parent'),
+    }),
   ],
 };

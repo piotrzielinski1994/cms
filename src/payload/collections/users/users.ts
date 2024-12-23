@@ -25,6 +25,7 @@ export const Users: CollectionConfig = {
     {
       name: 'name',
       type: 'text',
+      label: ({ t }: { t: AdminTranslations }) => t('fields:fullName'),
     },
   ],
   timestamps: true,

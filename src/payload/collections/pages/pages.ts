@@ -11,7 +11,7 @@ import { authenticated } from '@/payload/access/authenticated';
 import { authenticatedOrPublished } from '@/payload/access/authenticatedOrPublished';
 import { slugField } from '@/payload/fields/slug';
 import { populatePublishedAt } from '@/payload/hooks/populatePublishedAt';
-import { AdminTranslations } from '@/payload/locale';
+import { AdminTranslations, customTranslations } from '@/payload/locale';
 import {
   MetaDescriptionField,
   MetaImageField,
@@ -67,6 +67,7 @@ export const Pages: CollectionConfig<'pages'> = {
       type: 'text',
       required: true,
       localized: true,
+      label: ({ t }: { t: AdminTranslations }) => t('fields:title'),
     },
     {
       type: 'tabs',
@@ -87,7 +88,10 @@ export const Pages: CollectionConfig<'pages'> = {
               },
             },
           ],
-          label: 'Content',
+          label: {
+            en: customTranslations.en.tabs.content,
+            pl: customTranslations.pl.tabs.content,
+          },
         },
         {
           name: 'meta',
@@ -124,6 +128,7 @@ export const Pages: CollectionConfig<'pages'> = {
       admin: {
         position: 'sidebar',
       },
+      label: ({ t }: { t: AdminTranslations }) => t('fields:publishedAt'),
     },
     ...slugField(),
   ],

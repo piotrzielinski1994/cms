@@ -1,17 +1,25 @@
 import { customTranslations as en } from './en';
 
 export const customTranslations = {
-  groups: {
-    layout: {
-      singular: 'Układ',
-      plural: 'Układy',
+  common: {
+    related: {
+      singular: 'Powiązany',
+      plural: 'Powiązane',
     },
   },
+  groups: {
+    layout: 'Układ',
+  },
+  tabs: {
+    content: 'Treść',
+  },
   fields: {
-    title: {
-      singular: 'Tytuł',
-      plural: 'Tytuły',
-    },
+    title: 'Tytuł',
+    description: 'Opis',
+    image: 'Zdjęcie',
+    publishedAt: 'Data publikacji',
+    fullName: 'Imię i Nazwisko',
+    parent: 'Element nadrzędny',
   },
   collections: {
     pages: {

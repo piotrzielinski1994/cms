@@ -19,7 +19,7 @@ import { populateAuthors } from './hooks/populateAuthors';
 import { revalidateDelete, revalidatePost } from './hooks/revalidatePost';
 
 import { slugField } from '@/payload/fields/slug';
-import { AdminTranslations } from '@/payload/locale';
+import { AdminTranslations, customTranslations } from '@/payload/locale';
 import {
   MetaDescriptionField,
   MetaImageField,
@@ -78,6 +78,8 @@ export const Posts: CollectionConfig<'posts'> = {
       name: 'title',
       type: 'text',
       required: true,
+      localized: true,
+      label: ({ t }: { t: AdminTranslations }) => t('fields:title'),
     },
     {
       type: 'tabs',
@@ -108,7 +110,10 @@ export const Posts: CollectionConfig<'posts'> = {
               required: true,
             },
           ],
-          label: 'Content',
+          label: {
+            en: customTranslations.en.tabs.content,
+            pl: customTranslations.pl.tabs.content,
+          },
         },
         {
           fields: [
@@ -127,6 +132,8 @@ export const Posts: CollectionConfig<'posts'> = {
               },
               hasMany: true,
               relationTo: 'posts',
+              label: ({ t }: { t: AdminTranslations }) =>
+                `${t('common:related:plural')} ${t('collections:posts:plural')}`,
             },
             {
               name: 'categories',
@@ -136,6 +143,7 @@ export const Posts: CollectionConfig<'posts'> = {
               },
               hasMany: true,
               relationTo: 'categories',
+              label: ({ t }: { t: AdminTranslations }) => t('collections:categories:plural'),
             },
           ],
           label: 'Meta',

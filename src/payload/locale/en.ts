@@ -1,15 +1,23 @@
 export const customTranslations = {
-  groups: {
-    layout: {
-      singular: 'Layout',
-      plural: 'Layouts',
+  common: {
+    related: {
+      singular: 'Related',
+      plural: 'Related',
     },
   },
+  groups: {
+    layout: 'Layout',
+  },
+  tabs: {
+    content: 'Content',
+  },
   fields: {
-    title: {
-      singular: 'Title',
-      plural: 'Titles',
-    },
+    title: 'Title',
+    description: 'Description',
+    image: 'Image',
+    publishedAt: 'Published At',
+    fullName: 'Full Name',
+    parent: 'Parent Element',
   },
   collections: {
     pages: {
