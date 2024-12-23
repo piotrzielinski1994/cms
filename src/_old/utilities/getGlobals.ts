@@ -6,22 +6,12 @@ import { getPayload, TypedLocale } from 'payload';
 
 type Global = keyof Config['globals'];
 
-async function getGlobal(slug: Global, locale: TypedLocale = 'en', depth = 0) {
+async function getGlobal(slug: Global, locale: TypedLocale = 'en', depth = 1) {
   const payload = await getPayload({ config: configPromise });
-  const global = await payload.findGlobal({
-    slug,
-    depth,
-    locale,
-  });
-
-  return global;
+  return payload.findGlobal({ slug, depth, locale });
 }
 
-/**
- * Returns a unstable_cache function mapped with the cache tag for the slug
- */
-export const getCachedGlobal = (slug: Global, locale: TypedLocale, depth = 0) => {
-  return unstable_cache(async () => getGlobal(slug, locale, depth), [slug, locale], {
-    tags: [`global_${locale}_${slug}`],
-  });
+export const getCachedGlobal = (slug: Global, locale: TypedLocale, depth = 1) => {
+  const cacheConfig = { tags: [`global__${locale}_${slug}`] };
+  return unstable_cache(() => getGlobal(slug, locale, depth), [slug, locale], cacheConfig);
 };

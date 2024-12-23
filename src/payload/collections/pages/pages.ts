@@ -1,7 +1,7 @@
 import type { CollectionConfig } from 'payload';
 
 import { generatePreviewPath } from '@/_old/utilities/generatePreviewPath';
-import { hero1BlockConfig } from '@/components/blocks/hero/hero-1/hero-1.payload.config';
+import { hero1BlockPayloadConfig } from '@/components/blocks/hero/hero-1/hero-1.payload.config';
 import { authenticated } from '@/payload/access/authenticated';
 import { authenticatedOrPublished } from '@/payload/access/authenticatedOrPublished';
 import { slugField } from '@/payload/fields/slug';
@@ -72,7 +72,7 @@ export const Pages: CollectionConfig<'pages'> = {
             {
               name: 'sections',
               type: 'blocks',
-              blocks: [hero1BlockConfig],
+              blocks: [hero1BlockPayloadConfig],
               required: false,
               admin: {
                 initCollapsed: true,

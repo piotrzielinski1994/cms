@@ -4,7 +4,7 @@ import { link } from '@/payload/fields/link';
 import { AdminTranslations, customTranslations } from '@/payload/locale';
 import { revalidateHeader } from './header.payload.hooks';
 
-export const Header: GlobalConfig = {
+export const headerPayloadConfig: GlobalConfig = {
   slug: 'header',
   access: {
     read: () => true,

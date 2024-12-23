@@ -1,7 +1,7 @@
 import { AdminTranslations } from '@/payload/locale';
 import type { Block } from 'payload';
 
-export const hero1BlockConfig = {
+export const hero1BlockPayloadConfig = {
   slug: 'hero-1',
   interfaceName: 'Hero 1',
   fields: [

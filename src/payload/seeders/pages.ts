@@ -2,7 +2,7 @@ import { Payload, RequiredDataFromCollectionSlug } from 'payload';
 
 const pages: RequiredDataFromCollectionSlug<'pages'>[] = [
   {
-    slug: 'home',
+    slug: '',
     _status: 'published',
     title: 'Home',
     seo: {

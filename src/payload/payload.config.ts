@@ -1,6 +1,6 @@
 import { getServerSideURL } from '@/_old/utilities/getURL';
 import { Footer } from '@/components/layout/footer/payload/footer.payload.config';
-import { Header } from '@/components/layout/header/payload/header.payload.config';
+import { headerPayloadConfig } from '@/components/layout/header/payload/header.payload.config';
 import { collections } from '@/payload/collections';
 import { defaultLexical } from '@/payload/fields/defaultLexical';
 import { adminLocale, contentLocale, customTranslations } from '@/payload/locale';
@@ -67,7 +67,7 @@ export default buildConfig({
   }),
   collections: Object.values(collections),
   cors: [getServerSideURL()].filter(Boolean),
-  globals: [Header, Footer],
+  globals: [headerPayloadConfig, Footer],
   plugins: Object.values(plugins),
   secret: process.env.PAYLOAD_SECRET,
   sharp,

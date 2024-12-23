@@ -27,7 +27,7 @@ export async function generateStaticParams() {
   });
   const params = pages.docs
     ?.flatMap(({ localizedSlugs }) => Object.values(localizedSlugs ?? {}).map((slug) => ({ slug })))
-    .filter((param) => param.slug !== 'home');
+    .filter((param) => param.slug !== '');
 
   return params;
 }
@@ -42,7 +42,7 @@ type Args = {
 export default async function Page({ params: paramsPromise }: Args) {
   const { isEnabled: draft } = await draftMode();
   const { segments, locale = 'en' } = await paramsPromise;
-  const slug = segments?.at(-1) ?? 'home';
+  const slug = segments?.at(-1) ?? '';
   const url = '/' + slug;
 
   const page = await queryPage({
