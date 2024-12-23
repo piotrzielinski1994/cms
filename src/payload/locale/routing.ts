@@ -5,6 +5,7 @@ import { contentLocale } from './index';
 export const routing = defineRouting({
   locales: contentLocale.list,
   defaultLocale: contentLocale.default,
+  localePrefix: 'as-needed',
 });
 
 // Lightweight wrappers around Next.js' navigation APIs
