@@ -7,10 +7,10 @@ import { FormBlock } from '@/_old/blocks/Form/config';
 import { MediaBlock } from '@/_old/blocks/MediaBlock/config';
 import { slugField } from '@/_old/fields/slug';
 import { hero } from '@/_old/heros/config';
-import { populatePublishedAt } from '@/_old/hooks/populatePublishedAt';
-import { generatePreviewPath } from '@/_old/utilities/generatePreviewPath';
-import { authenticated } from '@/payload/access/authenticated';
-import { authenticatedOrPublished } from '@/payload/access/authenticatedOrPublished';
+import { populatePublishedAt } from '../../_old/hooks/populatePublishedAt';
+import { authenticated } from '../../payload/access/authenticated';
+import { authenticatedOrPublished } from '../../payload/access/authenticatedOrPublished';
+import { generatePreviewPath } from '../../utilities/generatePreviewPath';
 import { revalidateDelete, revalidatePage } from './hooks/revalidatePage';
 
 import {
@@ -23,16 +23,6 @@ import {
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
-  labels: {
-    singular: {
-      en: 'Page',
-      pl: 'Strona',
-    },
-    plural: {
-      en: 'Pages',
-      pl: 'Strony',
-    },
-  },
   access: {
     create: authenticated,
     delete: authenticated,

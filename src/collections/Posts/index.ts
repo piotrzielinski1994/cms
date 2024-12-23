@@ -12,13 +12,13 @@ import {
 import { Banner } from '@/_old/blocks/Banner/config';
 import { Code } from '@/_old/blocks/Code/config';
 import { MediaBlock } from '@/_old/blocks/MediaBlock/config';
-import { generatePreviewPath } from '@/_old/utilities/generatePreviewPath';
-import { authenticated } from '@/payload/access/authenticated';
-import { authenticatedOrPublished } from '@/payload/access/authenticatedOrPublished';
+import { authenticated } from '../../payload/access/authenticated';
+import { authenticatedOrPublished } from '../../payload/access/authenticatedOrPublished';
+import { generatePreviewPath } from '../../utilities/generatePreviewPath';
 import { populateAuthors } from './hooks/populateAuthors';
 import { revalidateDelete, revalidatePost } from './hooks/revalidatePost';
 
-import { slugField } from '@/_old/fields/slug';
+import { slugField } from '@/fields/slug';
 import {
   MetaDescriptionField,
   MetaImageField,
@@ -29,16 +29,6 @@ import {
 
 export const Posts: CollectionConfig<'posts'> = {
   slug: 'posts',
-  labels: {
-    singular: {
-      en: 'Post',
-      pl: 'Post',
-    },
-    plural: {
-      en: 'Posts',
-      pl: 'Posty',
-    },
-  },
   access: {
     create: authenticated,
     delete: authenticated,

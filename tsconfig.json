@@ -29,8 +29,8 @@
     "paths": {
       "react": ["./node_modules/@types/react"],
       "@/*": ["./src/*"],
-      "@/frontend/*": ["./src/app/(frontend)/*"],
-      "@/payload/*": ["./src/app/(payload)/*"],
+      "@/pages/frontend/*": ["./src/app/(frontend)/*"],
+      "@/pages/payload/*": ["./src/app/(payload)/*"],
     }
   },
   "include": [
