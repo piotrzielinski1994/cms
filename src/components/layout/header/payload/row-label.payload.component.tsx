@@ -11,3 +11,5 @@ export const RowLabel: React.FC<RowLabelProps> = (props) => {
 
   return <div>{label}</div>;
 };
+
+export default RowLabel;

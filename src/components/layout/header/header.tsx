@@ -1,5 +1,5 @@
 import { getCachedGlobal } from '@/_old/utilities/getGlobals';
-import { HeaderClient } from './Component.client';
+import { HeaderClient } from './header.client';
 
 import type { Header } from '@/_old/payload.types';
 
