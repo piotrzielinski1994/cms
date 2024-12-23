@@ -4,7 +4,7 @@ import { PayloadRedirects } from '@/_old/components/PayloadRedirects';
 import configPromise from '@/payload/payload.config';
 import { homeStatic } from '@/payload/seed/home-static';
 import { draftMode } from 'next/headers';
-import { getPayload } from 'payload';
+import { getPayload, TypedLocale } from 'payload';
 import { cache } from 'react';
 
 import type { Page as PageType } from '@/payload/payload.types';
@@ -39,20 +39,20 @@ export async function generateStaticParams() {
 type Args = {
   params: Promise<{
     slug?: string;
+    locale: TypedLocale;
   }>;
 };
 
 export default async function Page({ params: paramsPromise }: Args) {
-  const asd = await paramsPromise;
-  console.log('@@@ asd | ', asd);
   const { isEnabled: draft } = await draftMode();
-  const { slug = 'home' } = await paramsPromise;
+  const { slug = 'home', locale = 'en' } = await paramsPromise;
   const url = '/' + slug;
 
   let page: PageType | null;
 
-  page = await queryPageBySlug({
+  page = await queryPage({
     slug,
+    locale,
   });
 
   // Remove this code once your website is seeded
@@ -81,36 +81,58 @@ export default async function Page({ params: paramsPromise }: Args) {
 }
 
 export async function generateMetadata({ params: paramsPromise }): Promise<Metadata> {
-  const { slug = 'home' } = await paramsPromise;
-  const page = await queryPageBySlug({
+  const { slug = 'home', locale = 'en' } = await paramsPromise;
+  const page = await queryPage({
     slug,
+    locale,
   });
 
   return generateMeta({ doc: page });
 }
 
-const queryPageBySlug = cache(async ({ slug }: { slug: string }) => {
+const queryPage = cache(async ({ slug, locale }: { slug: string; locale: TypedLocale }) => {
   const { isEnabled: draft } = await draftMode();
 
   const payload = await getPayload({ config: configPromise });
 
-  const locales =
-    payload.config.localization === false
-      ? []
-      : payload.config.localization.locales.map((locale) => locale.code);
   const result = await payload.find({
     collection: 'pages',
     draft,
     limit: 1,
-    pagination: false,
+    locale,
     overrideAccess: draft,
     where: {
-      or: [
-        { slug: { equals: slug } },
-        ...locales.map((locale) => ({ [`slug.${locale}`]: { equals: slug } })),
-      ],
+      slug: {
+        equals: slug,
+      },
     },
   });
 
   return result.docs?.[0] || null;
 });
+
+// const queryPageBySlug = cache(async ({ slug }: { slug: string }) => {
+//   const { isEnabled: draft } = await draftMode();
+
+//   const payload = await getPayload({ config: configPromise });
+
+//   const locales =
+//     payload.config.localization === false
+//       ? []
+//       : payload.config.localization.locales.map((locale) => locale.code);
+//   const result = await payload.find({
+//     collection: 'pages',
+//     draft,
+//     limit: 1,
+//     pagination: false,
+//     overrideAccess: draft,
+//     where: {
+//       or: [
+//         { slug: { equals: slug } },
+//         ...locales.map((locale) => ({ [`slug.${locale}`]: { equals: slug } })),
+//       ],
+//     },
+//   });
+
+//   return result.docs?.[0] || null;
+// });
