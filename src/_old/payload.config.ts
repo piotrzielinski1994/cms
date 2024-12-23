@@ -6,11 +6,11 @@ import { buildConfig } from 'payload';
 import sharp from 'sharp';
 import { fileURLToPath } from 'url';
 
-import { Categories } from '@/_old/collections/Categories';
-import { Media } from '@/_old/collections/Media';
-import { Pages } from '@/_old/collections/Pages';
-import { Posts } from '@/_old/collections/Posts';
-import { Users } from '@/_old/collections/Users';
+import { Categories } from '@/payload/collections/Categories';
+import { Media } from '@/payload/collections/Media';
+import { Pages } from '@/payload/collections/Pages';
+import { Posts } from '@/payload/collections/Posts';
+import { Users } from '@/payload/collections/Users';
 import { defaultLexical } from '@/_old/fields/defaultLexical';
 import { plugins } from '@/_old/plugins';
 import { getServerSideURL } from '@/_old/utilities/getURL';
