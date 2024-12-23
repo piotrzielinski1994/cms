@@ -5,12 +5,12 @@ import { CallToAction } from '@/_old/blocks/CallToAction/config';
 import { Content } from '@/_old/blocks/Content/config';
 import { FormBlock } from '@/_old/blocks/Form/config';
 import { MediaBlock } from '@/_old/blocks/MediaBlock/config';
-import { slugField } from '@/_old/fields/slug';
 import { hero } from '@/_old/heros/config';
 import { populatePublishedAt } from '@/_old/hooks/populatePublishedAt';
 import { generatePreviewPath } from '@/_old/utilities/generatePreviewPath';
 import { authenticated } from '@/payload/access/authenticated';
 import { authenticatedOrPublished } from '@/payload/access/authenticatedOrPublished';
+import { slugField } from '@/payload/fields/slug';
 import { revalidateDelete, revalidatePage } from './hooks/revalidatePage';
 
 import {

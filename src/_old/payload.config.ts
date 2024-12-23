@@ -6,16 +6,16 @@ import { buildConfig } from 'payload';
 import sharp from 'sharp';
 import { fileURLToPath } from 'url';
 
+import { plugins } from '@/_old/plugins';
+import { getServerSideURL } from '@/_old/utilities/getURL';
+import { Footer } from '@/components/layout/footer/payload/footer.payload.config';
+import { Header } from '@/components/layout/header/payload/header.payload.config';
 import { Categories } from '@/payload/collections/Categories';
 import { Media } from '@/payload/collections/Media';
 import { Pages } from '@/payload/collections/Pages';
 import { Posts } from '@/payload/collections/Posts';
 import { Users } from '@/payload/collections/Users';
-import { defaultLexical } from '@/_old/fields/defaultLexical';
-import { plugins } from '@/_old/plugins';
-import { getServerSideURL } from '@/_old/utilities/getURL';
-import { Footer } from '@/components/layout/footer/payload/footer.payload.config';
-import { Header } from '@/components/layout/header/payload/header.payload.config';
+import { defaultLexical } from '@/payload/fields/defaultLexical';
 import { en } from '@payloadcms/translations/languages/en';
 import { pl } from '@payloadcms/translations/languages/pl';
 
