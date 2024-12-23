@@ -1,18 +1,13 @@
 import type { CollectionConfig } from 'payload';
 
 import { authenticated } from '@/payload/access/authenticated';
+import { AdminTranslations } from '@/payload/locale';
 
 export const Users: CollectionConfig = {
   slug: 'users',
   labels: {
-    singular: {
-      en: 'User',
-      pl: 'Użytkownik',
-    },
-    plural: {
-      en: 'Users',
-      pl: 'Użytkownicy',
-    },
+    singular: ({ t }: { t: AdminTranslations }) => t('collections:users:singular'),
+    plural: ({ t }: { t: AdminTranslations }) => t('collections:users:plural'),
   },
   access: {
     admin: authenticated,

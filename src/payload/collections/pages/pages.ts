@@ -11,8 +11,7 @@ import { authenticated } from '@/payload/access/authenticated';
 import { authenticatedOrPublished } from '@/payload/access/authenticatedOrPublished';
 import { slugField } from '@/payload/fields/slug';
 import { populatePublishedAt } from '@/payload/hooks/populatePublishedAt';
-import { revalidateDelete, revalidatePage } from './hooks/revalidatePage';
-
+import { AdminTranslations } from '@/payload/locale';
 import {
   MetaDescriptionField,
   MetaImageField,
@@ -20,18 +19,13 @@ import {
   OverviewField,
   PreviewField,
 } from '@payloadcms/plugin-seo/fields';
+import { revalidateDelete, revalidatePage } from './hooks/revalidatePage';
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
   labels: {
-    singular: {
-      en: 'Page',
-      pl: 'Strona',
-    },
-    plural: {
-      en: 'Pages',
-      pl: 'Strony',
-    },
+    singular: ({ t }: { t: AdminTranslations }) => t('collections:pages:singular'),
+    plural: ({ t }: { t: AdminTranslations }) => t('collections:pages:plural'),
   },
   access: {
     create: authenticated,

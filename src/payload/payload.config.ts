@@ -3,10 +3,9 @@ import { Footer } from '@/components/layout/footer/payload/footer.payload.config
 import { Header } from '@/components/layout/header/payload/header.payload.config';
 import { collections } from '@/payload/collections';
 import { defaultLexical } from '@/payload/fields/defaultLexical';
+import { adminLocale, contentLocale, customTranslations } from '@/payload/locale';
 import { plugins } from '@/payload/plugins';
 import { mongooseAdapter } from '@payloadcms/db-mongodb';
-import { en } from '@payloadcms/translations/languages/en';
-import { pl } from '@payloadcms/translations/languages/pl';
 import path from 'path';
 import { buildConfig } from 'payload';
 import sharp from 'sharp';
@@ -17,15 +16,13 @@ const dirname = path.dirname(filename);
 
 export default buildConfig({
   i18n: {
-    supportedLanguages: {
-      en,
-      pl,
-    },
-    fallbackLanguage: 'en',
+    supportedLanguages: adminLocale.list,
+    fallbackLanguage: adminLocale.default,
+    translations: customTranslations,
   },
   localization: {
-    locales: ['en', 'pl'],
-    defaultLocale: 'en',
+    locales: contentLocale.list,
+    defaultLocale: contentLocale.default,
   },
   admin: {
     components: {

@@ -19,6 +19,7 @@ import { populateAuthors } from './hooks/populateAuthors';
 import { revalidateDelete, revalidatePost } from './hooks/revalidatePost';
 
 import { slugField } from '@/payload/fields/slug';
+import { AdminTranslations } from '@/payload/locale';
 import {
   MetaDescriptionField,
   MetaImageField,
@@ -30,14 +31,8 @@ import {
 export const Posts: CollectionConfig<'posts'> = {
   slug: 'posts',
   labels: {
-    singular: {
-      en: 'Post',
-      pl: 'Post',
-    },
-    plural: {
-      en: 'Posts',
-      pl: 'Posty',
-    },
+    singular: ({ t }: { t: AdminTranslations }) => t('collections:posts:singular'),
+    plural: ({ t }: { t: AdminTranslations }) => t('collections:posts:plural'),
   },
   access: {
     create: authenticated,
