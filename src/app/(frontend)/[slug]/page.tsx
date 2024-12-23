@@ -43,6 +43,8 @@ type Args = {
 };
 
 export default async function Page({ params: paramsPromise }: Args) {
+  const asd = await paramsPromise;
+  console.log('@@@ asd | ', asd);
   const { isEnabled: draft } = await draftMode();
   const { slug = 'home' } = await paramsPromise;
   const url = '/' + slug;
