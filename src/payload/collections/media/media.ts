@@ -6,12 +6,10 @@ import {
   lexicalEditor,
 } from '@payloadcms/richtext-lexical';
 import path from 'path';
-import { fileURLToPath } from 'url';
 
 import { anyone } from '@/payload/access/anyone';
 import { authenticated } from '@/payload/access/authenticated';
 
-const filename = fileURLToPath(import.meta.url);
 const root = path.resolve(process.cwd());
 
 export const Media: CollectionConfig = {

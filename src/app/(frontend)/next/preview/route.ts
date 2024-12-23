@@ -83,7 +83,7 @@ export async function GET(
           ],
         },
       });
-      console.log('@@@ docs | ', docs);
+
       if (!docs.docs.length) {
         return new Response('Document not found', { status: 404 });
       }
