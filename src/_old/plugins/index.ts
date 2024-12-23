@@ -28,6 +28,22 @@ export const plugins: Plugin[] = [
   redirectsPlugin({
     collections: ['pages', 'posts'],
     overrides: {
+      admin: {
+        group: {
+          en: 'Admin',
+          pl: 'Administrator',
+        },
+      },
+      labels: {
+        singular: {
+          en: 'Redirect',
+          pl: 'Przekierowanie',
+        },
+        plural: {
+          en: 'Redirects',
+          pl: 'Przekierowania',
+        },
+      },
       // @ts-expect-error - This is a valid override, mapped fields don't resolve to the same type
       fields: ({ defaultFields }) => {
         return defaultFields.map((field) => {

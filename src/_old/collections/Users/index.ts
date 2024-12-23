@@ -4,6 +4,16 @@ import { authenticated } from '@/_old/access/authenticated';
 
 export const Users: CollectionConfig = {
   slug: 'users',
+  labels: {
+    singular: {
+      en: 'User',
+      pl: 'Użytkownik',
+    },
+    plural: {
+      en: 'Users',
+      pl: 'Użytkownicy',
+    },
+  },
   access: {
     admin: authenticated,
     create: authenticated,

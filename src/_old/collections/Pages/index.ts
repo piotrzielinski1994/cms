@@ -23,6 +23,16 @@ import {
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
+  labels: {
+    singular: {
+      en: 'Page',
+      pl: 'Strona',
+    },
+    plural: {
+      en: 'Pages',
+      pl: 'Strony',
+    },
+  },
   access: {
     create: authenticated,
     delete: authenticated,

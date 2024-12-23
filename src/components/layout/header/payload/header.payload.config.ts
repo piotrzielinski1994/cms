@@ -14,6 +14,10 @@ export const Header: GlobalConfig = {
       pl: 'Układ',
     },
   },
+  label: {
+    en: 'Header',
+    pl: 'Nagłówek',
+  },
   fields: [
     {
       name: 'navItems',

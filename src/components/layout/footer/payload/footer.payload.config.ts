@@ -14,6 +14,10 @@ export const Footer: GlobalConfig = {
       pl: 'Układ',
     },
   },
+  label: {
+    en: 'Footer',
+    pl: 'Stopka',
+  },
   fields: [
     {
       name: 'navItems',
