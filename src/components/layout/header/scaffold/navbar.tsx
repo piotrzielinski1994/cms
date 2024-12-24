@@ -1,9 +1,8 @@
 'use client';
 
-// import { CMSLink } from '@/_old/components/Link';
+import { Link } from '@/payload/locale/routing';
 import type { Header as HeaderType } from '@/payload/payload.types';
 import React from 'react';
-import HeaderNavItem from './nav-item';
 
 const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
   const navItems = (data?.navItems ?? []).map((it) => ({
@@ -14,7 +13,11 @@ const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
   return (
     <nav className="flex-grow flex justify-end">
       {navItems.map(({ id, label, path }) => {
-        return <HeaderNavItem key={id} label={label} href={path} />;
+        return (
+          <Link key={id} className="p-2" href={path}>
+            {label}
+          </Link>
+        );
       })}
     </nav>
   );

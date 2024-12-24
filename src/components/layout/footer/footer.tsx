@@ -1,34 +1,35 @@
-import { getCachedGlobal } from '@/_old/utilities/getGlobals';
-import Link from 'next/link';
-
-import type { Footer } from '@/payload/payload.types';
-
-import { CMSLink } from '@/_old/components/Link';
 import { Logo } from '@/_old/components/Logo/Logo';
-import { ThemeSelector } from '@/_old/providers/Theme/ThemeSelector';
-import { TypedLocale } from 'payload';
+import { cn } from '@/_old/utilities/cn';
+import { getCachedGlobal } from '@/_old/utilities/getGlobals';
+import Container from '@/components/layout/container/container';
+import Section from '@/components/layout/section/section';
+import { Link } from '@/payload/locale/routing';
+import { FooterProps } from './footer.types';
 
-export async function Footer({ locale }: { locale: TypedLocale }) {
-  const footerData: Footer = await getCachedGlobal('footer', locale, 1)();
-
-  const navItems = footerData?.navItems || [];
+export async function Footer({ locale }: FooterProps) {
+  const footerData = await getCachedGlobal('footer', locale)();
+  const navItems = (footerData?.navItems ?? []).map((it) => ({
+    id: it.id,
+    label: it.link.label,
+    path: `/${it.link.reference?.value.slug}`,
+  }));
 
   return (
-    <footer className="mt-auto border-t border-border bg-black dark:bg-card text-white">
-      <div className="container py-8 gap-8 flex flex-col md:flex-row md:justify-between">
+    <Section as="footer" className="mt-auto bg-red-600">
+      <Container className={cn('flex items-center')}>
         <Link className="flex items-center" href="/">
           <Logo />
         </Link>
-
-        <div className="flex flex-col-reverse items-start md:flex-row gap-4 md:items-center">
-          <ThemeSelector />
-          <nav className="flex flex-col md:flex-row gap-4">
-            {navItems.map(({ link }, i) => {
-              return <CMSLink className="text-white" key={i} {...link} />;
-            })}
-          </nav>
-        </div>
-      </div>
-    </footer>
+        <nav className="flex-grow flex justify-end ">
+          {navItems.map(({ id, label, path }) => {
+            return (
+              <Link key={id} className="p-2" href={path}>
+                {label}
+              </Link>
+            );
+          })}
+        </nav>
+      </Container>
+    </Section>
   );
 }

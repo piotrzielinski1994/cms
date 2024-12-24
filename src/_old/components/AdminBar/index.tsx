@@ -10,6 +10,8 @@ import React, { useState } from 'react';
 import './index.scss';
 
 import { getClientSideURL } from '@/_old/utilities/getURL';
+import Container from '@/components/layout/container/container';
+import Section from '@/components/layout/section/section';
 
 const baseClass = 'admin-bar';
 
@@ -44,13 +46,14 @@ export const AdminBar: React.FC<{
   }, []);
 
   return (
-    <div
+    <Section
+      as="div"
       className={cn(baseClass, 'py-2 bg-black text-white', {
         block: show,
         hidden: !show,
       })}
     >
-      <div className="container">
+      <Container>
         <PayloadAdminBar
           {...adminBarProps}
           className="py-2 text-white"
@@ -80,7 +83,7 @@ export const AdminBar: React.FC<{
             zIndex: 'unset',
           }}
         />
-      </div>
-    </div>
+      </Container>
+    </Section>
   );
 };
