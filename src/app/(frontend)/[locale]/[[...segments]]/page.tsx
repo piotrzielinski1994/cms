@@ -57,7 +57,7 @@ export default async function Page({ params: paramsPromise }: Args) {
   const { sections } = page;
 
   return (
-    <article className="pt-16 pb-24">
+    <main>
       <PageClient />
       {/* Allows redirects for valid pages too */}
       <PayloadRedirects disableNotFound url={url} />
@@ -65,12 +65,12 @@ export default async function Page({ params: paramsPromise }: Args) {
       {draft && <LivePreviewListener />}
 
       <RenderBlocks blocks={sections} />
-    </article>
+    </main>
   );
 }
 
 export async function generateMetadata({ params: paramsPromise }): Promise<Metadata> {
-  const { slug = 'home', locale = 'en' } = await paramsPromise;
+  const { slug = '', locale = 'en' } = await paramsPromise;
   const page = await queryPage({
     slug,
     locale,

@@ -12,13 +12,17 @@ const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
   }));
   return (
     <nav className="flex-grow flex justify-end">
-      {navItems.map(({ id, label, path }) => {
-        return (
-          <Link key={id} className="p-2" href={path}>
-            {label}
-          </Link>
-        );
-      })}
+      <ul className="contents">
+        {navItems.map(({ id, label, path }) => {
+          return (
+            <li key={id} className="contents">
+              <Link className="p-2" href={path}>
+                {label}
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
     </nav>
   );
 };
