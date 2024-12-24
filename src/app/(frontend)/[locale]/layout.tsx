@@ -36,7 +36,7 @@ export default async function RootLayout({ children, params }: Args) {
         <link href="/favicon.ico" rel="icon" sizes="32x32" />
         <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
       </head>
-      <body>
+      <body className={cn('flex flex-col', 'min-h-[100vh]')}>
         <Providers>
           <AdminBar
             adminBarProps={{
@@ -45,7 +45,7 @@ export default async function RootLayout({ children, params }: Args) {
           />
 
           <Header locale={locale} />
-          {children}
+          <main className="flex-grow grid">{children}</main>
           <Footer locale={locale} />
         </Providers>
       </body>
