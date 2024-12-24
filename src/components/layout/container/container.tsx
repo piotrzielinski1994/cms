@@ -5,14 +5,7 @@ const Container = ({ as: HtmlTag = 'div', children, className, ...rest }: Contai
   return (
     <HtmlTag
       {...rest}
-      className={cn(
-        'border-blue-600 border-2',
-        'w-full max-w-screen-2xl',
-        'mx-auto',
-        'grid',
-        'cms-container',
-        className,
-      )}
+      className={cn('w-full max-w-screen-2xl', 'mx-auto', 'grid', 'cms-container', className)}
     >
       {children}
     </HtmlTag>

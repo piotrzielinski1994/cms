@@ -4,10 +4,7 @@ import { SectionProps } from './section.types';
 
 const Section = ({ as: HtmlTag = 'section', children, className, ...rest }: SectionProps) => {
   return (
-    <HtmlTag
-      {...rest}
-      className={cn('border-red-600 border-2', 'px-4', 'grid', 'cms-section', className)}
-    >
+    <HtmlTag {...rest} className={cn('px-4', 'grid', 'cms-section', className)}>
       <Container>{children}</Container>
     </HtmlTag>
   );

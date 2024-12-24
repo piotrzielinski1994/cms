@@ -40,15 +40,12 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
           reference.value.slug
         }`
       : url;
-  console.log('@@@ ASD | ', reference?.value?.slug, href);
   if (!href) return null;
-  console.log('@@@ href | ', href, url);
   const finalHref = href || url || '';
   const Link = finalHref.startsWith('/admin') ? NextLink : i18nLink;
 
   const size = appearance === 'link' ? 'clear' : sizeFromProps;
   const newTabProps = newTab ? { rel: 'noopener noreferrer', target: '_blank' } : {};
-  console.log('@@@ url | ', url, finalHref);
   /* Ensure we don't break any styles set by richText */
   if (appearance === 'inline') {
     return (
