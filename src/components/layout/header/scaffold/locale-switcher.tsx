@@ -31,12 +31,12 @@ const LocaleSwitcher = () => {
   return (
     <SelectPrimitive.Root onValueChange={onSelectChange} value={locale}>
       <SelectPrimitive.Trigger className={cn('px-3 py-2 -mr-3', 'text-sm')}>
-        <SelectPrimitive.Value placeholder="Theme" aria-label={locale} />
+        <SelectPrimitive.Value placeholder="Locale" aria-label={locale} />
       </SelectPrimitive.Trigger>
       <SelectPrimitive.Portal>
         <SelectPrimitive.Content
           position="popper"
-          className={cn('bg-card text-popover-foreground', 'overflow-hidden')}
+          className={cn('bg-card text-popover-foreground', 'relative overflow-hidden')}
         >
           <SelectPrimitive.Viewport>
             {contentLocale.list

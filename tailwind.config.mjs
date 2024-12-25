@@ -53,6 +53,16 @@ export default {
         sm: 'calc(var(--radius) - 4px)',
       },
       colors: {
+        themes: {
+          light: {
+            background: 'hsl(0 0% 100%)',
+            foreground: 'hsl(222.2 84% 4.9%)',
+          },
+          dark: {
+            background: 'hsl(0 0% 0%)',
+            foreground: 'hsl(210 40% 98%)',
+          },
+        },
         accent: {
           DEFAULT: 'hsl(var(--accent))',
           foreground: 'hsl(var(--accent-foreground))',

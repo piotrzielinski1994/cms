@@ -1,0 +1,17 @@
+.theme-selector {
+  circle,
+  path {
+    fill: var(--_bg);
+    stroke: var(--_text);
+  }
+
+  &--dark {
+    --_bg: theme('colors.themes.dark.background');
+    --_text: theme('colors.themes.dark.foreground');
+  }
+
+  &--light {
+    --_bg: theme('colors.themes.light.background');
+    --_text: theme('colors.themes.light.foreground');
+  }
+}

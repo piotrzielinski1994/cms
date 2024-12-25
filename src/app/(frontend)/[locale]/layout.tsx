@@ -30,13 +30,17 @@ export default async function RootLayout({ children, params }: Args) {
   const { locale } = await params;
 
   return (
-    <html className={cn(GeistSans.variable, GeistMono.variable)} lang="en" suppressHydrationWarning>
+    <html
+      className={cn(GeistSans.variable, GeistMono.variable)}
+      lang={locale}
+      suppressHydrationWarning
+    >
       <head>
         <InitTheme />
         <link href="/favicon.ico" rel="icon" sizes="32x32" />
         <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
       </head>
-      <body className={cn('flex flex-col', 'min-h-[100vh]')}>
+      <body className={cn('bg-background text-foreground', 'flex flex-col', 'min-h-[100vh]')}>
         <Providers>
           <AdminBar
             adminBarProps={{

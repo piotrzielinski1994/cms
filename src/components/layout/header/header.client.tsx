@@ -2,6 +2,7 @@
 
 import { Logo } from '@/_old/components/Logo/Logo';
 import { useHeaderTheme } from '@/_old/providers/HeaderTheme';
+import { ThemeSelector } from '@/_old/providers/Theme/ThemeSelector';
 import { cn } from '@/_old/utilities/cn';
 import Container from '@/components/layout/container/container';
 import Section from '@/components/layout/section/section';
@@ -31,6 +32,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
           <Logo />
         </Link>
         <HeaderNav data={data} />
+        <ThemeSelector />
         <LocaleSwitcher />
       </Container>
     </Section>
