@@ -18,15 +18,15 @@ export type AdminTranslations = TFunction<CustomTranslationsKeys | DefaultTransl
 
 // Variables ====================================
 
-export const adminLocale: { list: SupportedLanguages; default: AcceptedLanguages } = {
+export const adminLocale = {
   list: { en, pl },
   default: 'en',
-};
+} satisfies { list: SupportedLanguages; default: AcceptedLanguages };
 
-export const contentLocale: { list: AcceptedLanguages[]; default: AcceptedLanguages } = {
+export const contentLocale = {
   list: ['en', 'pl'],
   default: 'en',
-};
+} satisfies { list: AcceptedLanguages[]; default: AcceptedLanguages };
 
 export const customTranslations = {
   en: customEn,

@@ -1,5 +1,6 @@
 import type { CheckboxField, TextField } from 'payload';
 
+import { contentLocale } from '@/payload/locale';
 import { formatSlugHook } from './formatSlug';
 
 type Overrides = {
@@ -28,6 +29,7 @@ export const slugField: Slug = (fieldToUse = 'title', overrides = {}) => {
   const slugField: TextField = {
     name: 'slug',
     type: 'text',
+    unique: true,
     localized: true,
     index: true,
     ...(slugOverrides || {}),
@@ -59,16 +61,10 @@ export const slugField: Slug = (fieldToUse = 'title', overrides = {}) => {
     admin: {
       hidden: true,
     },
-    fields: [
-      {
-        name: 'en',
-        type: 'text',
-      },
-      {
-        name: 'pl',
-        type: 'text',
-      },
-    ],
+    fields: contentLocale.list.map((it) => ({
+      name: it,
+      type: 'text',
+    })),
   };
 
   return [slugField, checkBoxField, localizedSlugsVirtualField];
