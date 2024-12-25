@@ -7,6 +7,7 @@ import { authenticatedOrPublished } from '@/payload/access/authenticatedOrPublis
 import { slugField } from '@/payload/fields/slug';
 import { populatePublishedAt } from '@/payload/hooks/populatePublishedAt';
 import { AdminTranslations, customTranslations } from '@/payload/locale';
+import { createParentField } from '@payloadcms/plugin-nested-docs';
 import {
   MetaDescriptionField,
   MetaImageField,
@@ -122,6 +123,9 @@ export const Pages: CollectionConfig<'pages'> = {
       label: ({ t }: { t: AdminTranslations }) => t('fields:publishedAt'),
     },
     ...slugField(),
+    createParentField('pages', {
+      label: ({ t }: { t: AdminTranslations }) => t('fields:parent'),
+    }),
   ],
   hooks: {
     afterChange: [revalidatePage],

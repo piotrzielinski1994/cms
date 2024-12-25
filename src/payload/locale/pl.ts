@@ -19,9 +19,9 @@ export const customTranslations = {
     heading: 'Naglówek',
     description: 'Opis',
     image: 'Zdjęcie',
-    publishedAt: 'Data publikacji',
+    publishedAt: 'Data Publikacji',
     fullName: 'Imię i Nazwisko',
-    parent: 'Element nadrzędny',
+    parent: 'Element Nadrzędny',
     role: {
       singular: 'Rola',
       plural: 'Role',

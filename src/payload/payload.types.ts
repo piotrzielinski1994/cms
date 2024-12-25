@@ -211,6 +211,15 @@ export interface Page {
     en?: string | null;
     pl?: string | null;
   };
+  parent?: (string | null) | Page;
+  breadcrumbs?:
+    | {
+        doc?: (string | null) | Page;
+        url?: string | null;
+        label?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -763,6 +772,15 @@ export interface PagesSelect<T extends boolean = true> {
     | {
         en?: T;
         pl?: T;
+      };
+  parent?: T;
+  breadcrumbs?:
+    | T
+    | {
+        doc?: T;
+        url?: T;
+        label?: T;
+        id?: T;
       };
   updatedAt?: T;
   createdAt?: T;
