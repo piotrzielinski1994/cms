@@ -6,7 +6,7 @@ import { seedUsers } from './users';
 export const seed = async ({ payload }: { payload: Payload; req: PayloadRequest }) => {
   payload.logger.info('Seeding database...');
 
-  const [_, pages] = await Promise.all([seedUsers, seedPages].map((cb) => cb(payload)));
+  const [_1, [_2, ...pages]] = await Promise.all([seedUsers, seedPages].map((cb) => cb(payload)));
   await Promise.all([seedLayoutItems(pages)].map((cb) => cb(payload)));
 
   payload.logger.info('Seeded database successfully!');
