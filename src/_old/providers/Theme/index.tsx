@@ -24,7 +24,6 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     if (themeToSet === null) {
       window.localStorage.removeItem(themeLocalStorageKey);
       const implicitPreference = getImplicitPreference();
-      console.log('@@@ implicitPreference | ', implicitPreference);
       document.documentElement.setAttribute('data-theme', implicitPreference || '');
       if (implicitPreference) setThemeState(implicitPreference);
     } else {

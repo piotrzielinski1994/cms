@@ -1,14 +1,13 @@
 import type { Metadata } from 'next';
 
+import { RenderBlocks } from '@/_old/blocks/RenderBlocks';
+import { LivePreviewListener } from '@/_old/components/LivePreviewListener';
 import { PayloadRedirects } from '@/_old/components/PayloadRedirects';
+import { generateMeta } from '@/_old/utilities/generateMeta';
 import configPromise from '@/payload/payload.config';
 import { draftMode } from 'next/headers';
 import { getPayload, TypedLocale } from 'payload';
 import { cache } from 'react';
-
-import { RenderBlocks } from '@/_old/blocks/RenderBlocks';
-import { LivePreviewListener } from '@/_old/components/LivePreviewListener';
-import { generateMeta } from '@/_old/utilities/generateMeta';
 import PageClient from './page.client';
 
 export async function generateStaticParams() {
@@ -23,13 +22,21 @@ export async function generateStaticParams() {
     select: {
       slug: true,
       localizedSlugs: true,
+      breadcrumbs: true,
     },
   });
-  const params = pages.docs
-    ?.flatMap(({ localizedSlugs }) => Object.values(localizedSlugs ?? {}).map((slug) => ({ slug })))
-    .filter((param) => param.slug !== '');
 
-  return params;
+  return pages.docs
+    .flatMap((it) =>
+      Object.entries(it.breadcrumbs ?? {}).map(([locale, items]) => ({
+        locale,
+        url: items.at(-1).url as string,
+      })),
+    )
+    .map(({ locale, url }) => ({
+      locale,
+      segments: url.split('/').filter(Boolean),
+    }));
 }
 
 type Args = {
@@ -41,20 +48,13 @@ type Args = {
 
 export default async function Page({ params: paramsPromise }: Args) {
   const { isEnabled: draft } = await draftMode();
-  const { segments, locale = 'en' } = await paramsPromise;
-  const slug = segments?.at(-1) ?? '';
-  const url = '/' + slug;
-
-  const page = await queryPage({
-    slug,
-    locale,
-  });
+  const { segments = [], locale } = await paramsPromise;
+  const url = `/${segments.join('/')}`;
+  const page = await queryPage({ url, locale });
 
   if (!page) {
     return <PayloadRedirects url={url} />;
   }
-
-  const { sections } = page;
 
   return (
     <>
@@ -64,26 +64,23 @@ export default async function Page({ params: paramsPromise }: Args) {
 
       {draft && <LivePreviewListener />}
 
-      <RenderBlocks blocks={sections} />
+      <RenderBlocks blocks={page.sections} />
     </>
   );
 }
 
-export async function generateMetadata({ params: paramsPromise }): Promise<Metadata> {
-  const { slug = '', locale = 'en' } = await paramsPromise;
-  const page = await queryPage({
-    slug,
-    locale,
-  });
+export async function generateMetadata({ params: paramsPromise }: Args): Promise<Metadata> {
+  const { segments = [], locale } = await paramsPromise;
+  const page = await queryPage({ url: `/${segments.join('/')}`, locale });
 
   return generateMeta({ doc: page });
 }
 
-const queryPage = cache(async ({ slug, locale }: { slug: string; locale: TypedLocale }) => {
+const queryPage = cache(async ({ url, locale }: { url: string; locale: TypedLocale }) => {
   const { isEnabled: draft } = await draftMode();
+  const slug = url.split('/').at(-1) ?? '';
 
   const payload = await getPayload({ config: configPromise });
-
   const result = await payload.find({
     collection: 'pages',
     draft,
@@ -91,9 +88,8 @@ const queryPage = cache(async ({ slug, locale }: { slug: string; locale: TypedLo
     locale,
     overrideAccess: draft,
     where: {
-      slug: {
-        equals: slug,
-      },
+      'breadcrumbs.url': { equals: url },
+      slug: { equals: slug },
     },
   });
 
