@@ -11,8 +11,8 @@ export const Footer: GlobalConfig = {
   },
   admin: {
     group: {
-      en: customTranslations.en.groups.layout,
-      pl: customTranslations.pl.groups.layout,
+      en: customTranslations.en.common.layout,
+      pl: customTranslations.pl.common.layout,
     },
   },
   label: ({ t }: { t: AdminTranslations }) => t('components:footer'),

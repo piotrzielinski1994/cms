@@ -1,15 +1,15 @@
 export const customTranslations = {
   common: {
+    content: 'Content',
+    layout: 'Layout',
+    section: {
+      singular: 'Section',
+      plural: 'Sections',
+    },
     related: {
       singular: 'Related',
       plural: 'Related',
     },
-  },
-  groups: {
-    layout: 'Layout',
-  },
-  tabs: {
-    content: 'Content',
   },
   fields: {
     label: 'Label',

@@ -2,16 +2,16 @@ import { customTranslations as en } from './en';
 
 export const customTranslations = {
   common: {
+    content: 'Content',
+    layout: 'Layout',
+    section: {
+      singular: 'Section',
+      plural: 'Sections',
+    },
     related: {
       singular: 'Powiązany',
       plural: 'Powiązane',
     },
-  },
-  groups: {
-    layout: 'Układ',
-  },
-  tabs: {
-    content: 'Treść',
   },
   fields: {
     label: 'Etykieta',

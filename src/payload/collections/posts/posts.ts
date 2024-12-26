@@ -111,8 +111,8 @@ export const Posts: CollectionConfig<'posts'> = {
             },
           ],
           label: {
-            en: customTranslations.en.tabs.content,
-            pl: customTranslations.pl.tabs.content,
+            en: customTranslations.en.common.content,
+            pl: customTranslations.pl.common.content,
           },
         },
         {
