@@ -207,6 +207,7 @@ export interface Page {
   publishedAt?: string | null;
   slug?: string | null;
   slugLock?: boolean | null;
+  path?: string | null;
   parent?: (string | null) | Page;
   breadcrumbs?:
     | {
@@ -759,6 +760,7 @@ export interface PagesSelect<T extends boolean = true> {
   publishedAt?: T;
   slug?: T;
   slugLock?: T;
+  path?: T;
   parent?: T;
   breadcrumbs?:
     | T

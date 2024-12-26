@@ -6,7 +6,8 @@ import { authenticated } from '@/payload/access/authenticated';
 import { authenticatedOrPublished } from '@/payload/access/authenticatedOrPublished';
 import { slugField } from '@/payload/fields/slug';
 import { populatePublishedAt } from '@/payload/hooks/populatePublishedAt';
-import { AdminTranslations, customTranslations } from '@/payload/locale';
+import { AdminTranslations, contentLocale, customTranslations } from '@/payload/locale';
+import { Page } from '@/payload/payload.types';
 import { createParentField } from '@payloadcms/plugin-nested-docs';
 import {
   MetaDescriptionField,
@@ -123,6 +124,18 @@ export const Pages: CollectionConfig<'pages'> = {
       label: ({ t }: { t: AdminTranslations }) => t('fields:publishedAt'),
     },
     ...slugField(),
+    {
+      name: 'path',
+      type: 'text',
+      virtual: true,
+      localized: true,
+      label: ({ t }: { t: AdminTranslations }) => t('fields:path'),
+      admin: {
+        hidden: false,
+        position: 'sidebar',
+        readOnly: true,
+      },
+    },
     createParentField('pages', {
       label: ({ t }: { t: AdminTranslations }) => t('fields:parent'),
     }),
@@ -130,6 +143,21 @@ export const Pages: CollectionConfig<'pages'> = {
   hooks: {
     afterChange: [revalidatePage],
     beforeChange: [populatePublishedAt],
+    beforeRead: [
+      ({ doc, req }) => {
+        if (!doc) return;
+
+        const pathPerLocale = Object.fromEntries(
+          Object.entries(doc.breadcrumbs ?? {}).map(
+            ([key, value]: [(typeof contentLocale.list)[number], Page['breadcrumbs']]) => {
+              return [key, value!.at(-1)?.url ?? '/'];
+            },
+          ),
+        );
+
+        doc.path = pathPerLocale[req.locale ?? 'all'] ?? pathPerLocale;
+      },
+    ],
     beforeDelete: [revalidateDelete],
   },
   versions: {

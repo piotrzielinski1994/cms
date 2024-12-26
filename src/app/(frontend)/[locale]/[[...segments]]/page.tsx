@@ -22,20 +22,13 @@ export async function generateStaticParams() {
     select: {
       slug: true,
       breadcrumbs: true,
+      path: true,
     },
   });
 
   return pages.docs
-    .flatMap((it) =>
-      Object.entries(it.breadcrumbs ?? {}).map(([locale, items]) => ({
-        locale,
-        url: items.at(-1).url as string,
-      })),
-    )
-    .map(({ locale, url }) => ({
-      locale,
-      segments: url.split('/').filter(Boolean),
-    }));
+    .flatMap((it) => Object.entries(it.path ?? {}).map(([locale, path]) => ({ locale, path })))
+    .map(({ locale, path }) => ({ locale, segments: path.split('/').filter(Boolean) }));
 }
 
 type Args = {

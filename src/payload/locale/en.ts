@@ -13,6 +13,8 @@ export const customTranslations = {
   },
   fields: {
     label: 'Label',
+    slug: 'Slug',
+    path: 'Path',
     title: 'Title',
     heading: 'Heading',
     description: 'Description',

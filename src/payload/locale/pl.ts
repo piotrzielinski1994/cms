@@ -15,6 +15,8 @@ export const customTranslations = {
   },
   fields: {
     label: 'Etykieta',
+    slug: 'Slug',
+    path: 'Ścieżka',
     title: 'Tytuł',
     heading: 'Naglówek',
     description: 'Opis',
