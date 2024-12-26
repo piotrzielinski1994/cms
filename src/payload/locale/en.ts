@@ -28,10 +28,9 @@ export const customTranslations = {
       singular: 'Role',
       plural: 'Roles',
     },
-    navItems: {
-      singular: 'Navigation item',
-      plural: 'Navigation items',
-    },
+    menu: 'Menu',
+    submenu: 'Submenu',
+    navItem: 'Navigation item',
     internalLink: 'Internal link',
     documentToLinkTo: 'Document to link to',
   },

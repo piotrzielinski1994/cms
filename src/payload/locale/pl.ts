@@ -30,10 +30,9 @@ export const customTranslations = {
       singular: 'Rola',
       plural: 'Role',
     },
-    navItems: {
-      singular: 'Element nawigacji',
-      plural: 'Elementy nawigacji',
-    },
+    menu: 'Menu',
+    submenu: 'Submenu',
+    navItem: 'Element nawigacji',
     internalLink: 'Wewnętrzny link',
     documentToLinkTo: 'Dokument do podlinkowania',
   },

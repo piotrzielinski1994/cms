@@ -20,9 +20,15 @@ type LinkType = (options?: {
   appearances?: LinkAppearances[] | false;
   disableLabel?: boolean;
   overrides?: Record<string, unknown>;
+  depth?: number;
 }) => Field;
 
-export const link: LinkType = ({ appearances, disableLabel = false, overrides = {} } = {}) => {
+export const link: LinkType = ({
+  depth = 0,
+  appearances,
+  disableLabel = false,
+  overrides = {},
+} = {}) => {
   const linkResult: Field = {
     name: 'link',
     type: 'group',
@@ -37,7 +43,7 @@ export const link: LinkType = ({ appearances, disableLabel = false, overrides = 
           {
             name: 'type',
             type: 'radio',
-            label: ({ t }: { t: AdminTranslations }) => t('fields:navItems:singular'),
+            label: ({ t }: { t: AdminTranslations }) => t('fields:navItem'),
             admin: {
               layout: 'horizontal',
               width: '50%',
@@ -136,6 +142,30 @@ export const link: LinkType = ({ appearances, disableLabel = false, overrides = 
       },
       defaultValue: 'default',
       options: appearanceOptionsToUse,
+    });
+  }
+
+  if (depth > 0) {
+    linkResult.fields.push({
+      name: 'navItems',
+      type: 'array',
+      label: ({ t }: { t: AdminTranslations }) => t('fields:submenu'),
+      fields: [
+        link({
+          appearances: false,
+          depth: depth - 1,
+        }),
+      ],
+      maxRows: 6,
+      admin: {
+        style: {
+          paddingLeft: 200,
+        },
+        initCollapsed: true,
+        components: {
+          RowLabel: '@/components/layout/header/payload/row-label.payload.component#RowLabel',
+        },
+      },
     });
   }
 

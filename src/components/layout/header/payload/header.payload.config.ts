@@ -20,11 +20,11 @@ export const headerPayloadConfig: GlobalConfig = {
     {
       name: 'navItems',
       type: 'array',
-      label: ({ t }: { t: AdminTranslations }) => t('fields:navItems:plural'),
+      label: ({ t }: { t: AdminTranslations }) => t('fields:menu'),
       fields: [
         link({
           appearances: false,
-          __depth: 1,
+          depth: 1,
         }),
       ],
       maxRows: 6,
