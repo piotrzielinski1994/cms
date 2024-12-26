@@ -8,7 +8,7 @@ const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
   const navItems = (data?.navItems ?? []).map((it) => ({
     id: it.id,
     label: it.link.label,
-    path: `/${it.link.reference?.value.slug}`,
+    path: it.link.reference?.value.path,
   }));
   return (
     <nav className="flex-grow flex justify-end">
