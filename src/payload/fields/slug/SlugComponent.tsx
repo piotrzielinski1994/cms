@@ -3,7 +3,7 @@
 import { Button, FieldLabel, TextInput, useField, useForm, useFormFields } from '@payloadcms/ui';
 import { TextFieldClientProps } from 'payload';
 import React, { useCallback, useEffect } from 'react';
-import slugify from 'slugify';
+import { formatSlug } from './formatSlug';
 import './index.scss';
 
 type SlugComponentProps = {
@@ -42,7 +42,7 @@ export const SlugComponent: React.FC<SlugComponentProps> = ({
   useEffect(() => {
     if (checkboxValue) {
       if (targetFieldValue) {
-        const formattedSlug = slugify(targetFieldValue);
+        const formattedSlug = formatSlug(targetFieldValue);
 
         if (value !== formattedSlug) setValue(formattedSlug);
       } else {
