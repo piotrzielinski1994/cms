@@ -1,10 +1,9 @@
 'use client';
-import React, { useCallback, useEffect } from 'react';
+
+import { Button, FieldLabel, TextInput, useField, useForm, useFormFields } from '@payloadcms/ui';
 import { TextFieldClientProps } from 'payload';
-
-import { useField, Button, TextInput, FieldLabel, useFormFields, useForm } from '@payloadcms/ui';
-
-import { formatSlug } from './formatSlug';
+import React, { useCallback, useEffect } from 'react';
+import slugify from 'slugify';
 import './index.scss';
 
 type SlugComponentProps = {
@@ -43,7 +42,7 @@ export const SlugComponent: React.FC<SlugComponentProps> = ({
   useEffect(() => {
     if (checkboxValue) {
       if (targetFieldValue) {
-        const formattedSlug = formatSlug(targetFieldValue);
+        const formattedSlug = slugify(targetFieldValue);
 
         if (value !== formattedSlug) setValue(formattedSlug);
       } else {

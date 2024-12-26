@@ -1,6 +1,5 @@
 import type { CheckboxField, TextField } from 'payload';
 
-import { contentLocale } from '@/payload/locale';
 import { formatSlugHook } from './formatSlug';
 
 type Overrides = {
@@ -8,7 +7,7 @@ type Overrides = {
   checkboxOverrides?: Partial<CheckboxField>;
 };
 
-type Slug = (fieldToUse?: string, overrides?: Overrides) => [TextField, CheckboxField, TextField];
+type Slug = (fieldToUse?: string, overrides?: Overrides) => [TextField, CheckboxField];
 
 export const slugField: Slug = (fieldToUse = 'title', overrides = {}) => {
   const { slugOverrides, checkboxOverrides } = overrides;
@@ -52,20 +51,5 @@ export const slugField: Slug = (fieldToUse = 'title', overrides = {}) => {
     },
   };
 
-  // Expect ts error here because of typescript mismatching Partial<TextField> with TextField
-  // @ts-expect-error
-  const localizedSlugsVirtualField: GroupField = {
-    name: 'localizedSlugs',
-    type: 'group',
-    virtual: true,
-    admin: {
-      hidden: true,
-    },
-    fields: contentLocale.list.map((it) => ({
-      name: it,
-      type: 'text',
-    })),
-  };
-
-  return [slugField, checkBoxField, localizedSlugsVirtualField];
+  return [slugField, checkBoxField];
 };

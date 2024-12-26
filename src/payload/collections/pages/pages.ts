@@ -131,18 +131,6 @@ export const Pages: CollectionConfig<'pages'> = {
     afterChange: [revalidatePage],
     beforeChange: [populatePublishedAt],
     beforeDelete: [revalidateDelete],
-    beforeRead: [
-      ({ doc }) => {
-        if (doc) {
-          doc.localizedSlugs =
-            typeof doc.slug === 'object'
-              ? doc.slug
-              : {
-                  en: doc.slug,
-                };
-        }
-      },
-    ],
   },
   versions: {
     drafts: {

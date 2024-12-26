@@ -21,7 +21,6 @@ export async function generateStaticParams() {
     pagination: false,
     select: {
       slug: true,
-      localizedSlugs: true,
       breadcrumbs: true,
     },
   });
