@@ -8,7 +8,7 @@ import { slugField } from '@/payload/fields/slug';
 import { populatePublishedAt } from '@/payload/hooks/populatePublishedAt';
 import { AdminTranslations, contentLocale, customTranslations } from '@/payload/locale';
 import { Page } from '@/payload/payload.types';
-import { createParentField } from '@payloadcms/plugin-nested-docs';
+import { createBreadcrumbsField, createParentField } from '@payloadcms/plugin-nested-docs';
 import {
   MetaDescriptionField,
   MetaImageField,
@@ -139,6 +139,7 @@ export const Pages: CollectionConfig<'pages'> = {
     createParentField('pages', {
       label: ({ t }: { t: AdminTranslations }) => t('fields:parent'),
     }),
+    createBreadcrumbsField('pages', { admin: { hidden: true } }),
   ],
   hooks: {
     afterChange: [revalidatePage],

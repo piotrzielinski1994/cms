@@ -7,4 +7,5 @@ export default nestedDocsPlugin({
       const withoutTrailingSlash = url.endsWith('/') ? url.slice(0, -1) : url;
       return `${withoutTrailingSlash}/${slug}`;
     }, ''),
+  generateLabel: () => 'zxc',
 });
