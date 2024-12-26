@@ -10,22 +10,30 @@ export const customTranslations = {
       singular: 'Related',
       plural: 'Related',
     },
+    openInNewTab: 'Open in new tab',
   },
   fields: {
     label: 'Label',
     slug: 'Slug',
     path: 'Path',
+    type: 'Type',
     title: 'Title',
     heading: 'Heading',
     description: 'Description',
     image: 'Image',
-    publishedAt: 'Published At',
-    fullName: 'Full Name',
-    parent: 'Parent Element',
+    publishedAt: 'Published at',
+    fullName: 'Full name',
+    parent: 'Parent element',
     role: {
       singular: 'Role',
       plural: 'Roles',
     },
+    navItems: {
+      singular: 'Navigation item',
+      plural: 'Navigation items',
+    },
+    internalLink: 'Internal link',
+    documentToLinkTo: 'Document to link to',
   },
   collections: {
     pages: {

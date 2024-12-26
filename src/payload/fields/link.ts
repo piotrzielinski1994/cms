@@ -26,6 +26,7 @@ export const link: LinkType = ({ appearances, disableLabel = false, overrides = 
   const linkResult: Field = {
     name: 'link',
     type: 'group',
+    label: ({ t }: { t: AdminTranslations }) => t('fields:type'),
     admin: {
       hideGutter: true,
     },
@@ -36,6 +37,7 @@ export const link: LinkType = ({ appearances, disableLabel = false, overrides = 
           {
             name: 'type',
             type: 'radio',
+            label: ({ t }: { t: AdminTranslations }) => t('fields:navItems:singular'),
             admin: {
               layout: 'horizontal',
               width: '50%',
@@ -43,11 +45,11 @@ export const link: LinkType = ({ appearances, disableLabel = false, overrides = 
             defaultValue: 'reference',
             options: [
               {
-                label: 'Internal link',
+                label: ({ t }: { t: AdminTranslations }) => t('fields:internalLink'),
                 value: 'reference',
               },
               {
-                label: 'Custom URL',
+                label: ({ t }: { t: AdminTranslations }) => t('fields:customURL'),
                 value: 'custom',
               },
             ],
@@ -61,7 +63,7 @@ export const link: LinkType = ({ appearances, disableLabel = false, overrides = 
               },
               width: '50%',
             },
-            label: 'Open in new tab',
+            label: ({ t }: { t: AdminTranslations }) => t('common:openInNewTab'),
           },
         ],
       },
@@ -75,7 +77,7 @@ export const link: LinkType = ({ appearances, disableLabel = false, overrides = 
       admin: {
         condition: (_, siblingData) => siblingData?.type === 'reference',
       },
-      label: 'Document to link to',
+      label: ({ t }: { t: AdminTranslations }) => t('fields:documentToLinkTo'),
       relationTo: ['pages', 'posts'],
       required: true,
     },

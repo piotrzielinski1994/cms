@@ -2,32 +2,40 @@ import { customTranslations as en } from './en';
 
 export const customTranslations = {
   common: {
-    content: 'Content',
-    layout: 'Layout',
+    content: 'Treść',
+    layout: 'Układ',
     section: {
-      singular: 'Section',
-      plural: 'Sections',
+      singular: 'Sekcja',
+      plural: 'Sekcje',
     },
     related: {
       singular: 'Powiązany',
       plural: 'Powiązane',
     },
+    openInNewTab: 'Otwórz w nowej karcie',
   },
   fields: {
     label: 'Etykieta',
     slug: 'Slug',
     path: 'Ścieżka',
+    type: 'Typ',
     title: 'Tytuł',
     heading: 'Naglówek',
     description: 'Opis',
     image: 'Zdjęcie',
-    publishedAt: 'Data Publikacji',
-    fullName: 'Imię i Nazwisko',
-    parent: 'Element Nadrzędny',
+    publishedAt: 'Data publikacji',
+    fullName: 'Imię i nazwisko',
+    parent: 'Element nadrzędny',
     role: {
       singular: 'Rola',
       plural: 'Role',
     },
+    navItems: {
+      singular: 'Element nawigacji',
+      plural: 'Elementy nawigacji',
+    },
+    internalLink: 'Wewnętrzny link',
+    documentToLinkTo: 'Dokument do podlinkowania',
   },
   collections: {
     pages: {
