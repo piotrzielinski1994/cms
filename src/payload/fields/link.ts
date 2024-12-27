@@ -1,8 +1,6 @@
-import type { Field } from 'payload';
-
 import deepMerge from '@/_old/utilities/deepMerge';
-import { AdminTranslations } from '../locale';
-
+import { AdminTranslations } from '@/payload/locale';
+import type { Field } from 'payload';
 export type LinkAppearances = 'default' | 'outline';
 
 export const appearanceOptions: Record<LinkAppearances, { label: string; value: string }> = {
@@ -93,7 +91,7 @@ export const link: LinkType = ({
       admin: {
         condition: (_, siblingData) => siblingData?.type === 'custom',
       },
-      label: 'Custom URL',
+      label: ({ t }: { t: AdminTranslations }) => t('fields:customURL'),
       required: true,
     },
   ];

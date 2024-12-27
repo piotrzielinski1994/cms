@@ -10,6 +10,7 @@ const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
     label: it.link.label,
     path: it.link.reference?.value.path,
   }));
+
   return (
     <nav className="flex-grow flex justify-end">
       <ul className="contents">
