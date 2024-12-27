@@ -14,7 +14,9 @@ import { customTranslations as customPl } from './pl';
 
 type CustomTranslations = typeof customEn;
 type CustomTranslationsKeys = NestedKeysStripped<CustomTranslations>;
+
 export type AdminTranslations = TFunction<CustomTranslationsKeys | DefaultTranslationKeys>;
+export type ContentLocale = (typeof contentLocale.list)[number];
 
 // Variables ====================================
 

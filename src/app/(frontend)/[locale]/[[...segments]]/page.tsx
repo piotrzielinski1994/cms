@@ -41,18 +41,18 @@ type Args = {
 export default async function Page({ params: paramsPromise }: Args) {
   const { isEnabled: draft } = await draftMode();
   const { segments = [], locale } = await paramsPromise;
-  const url = `/${segments.join('/')}`;
-  const page = await queryPage({ url, locale });
+  const path = `/${segments.join('/')}`;
+  const { page, pathPerLocale } = await queryPage({ path, locale });
 
   if (!page) {
-    return <PayloadRedirects url={url} />;
+    return <PayloadRedirects url={path} />;
   }
 
   return (
     <>
-      <PageClient />
+      <PageClient currentPaths={pathPerLocale} />
       {/* Allows redirects for valid pages too */}
-      <PayloadRedirects disableNotFound url={url} />
+      <PayloadRedirects disableNotFound url={path} />
 
       {draft && <LivePreviewListener />}
 
@@ -63,27 +63,50 @@ export default async function Page({ params: paramsPromise }: Args) {
 
 export async function generateMetadata({ params: paramsPromise }: Args): Promise<Metadata> {
   const { segments = [], locale } = await paramsPromise;
-  const page = await queryPage({ url: `/${segments.join('/')}`, locale });
+  const { page } = await queryPage({ path: `/${segments.join('/')}`, locale });
 
   return generateMeta({ doc: page });
 }
 
-const queryPage = cache(async ({ url, locale }: { url: string; locale: TypedLocale }) => {
+const queryPage = cache(async ({ path, locale }: { path: string; locale: TypedLocale }) => {
   const { isEnabled: draft } = await draftMode();
-  const slug = url.split('/').at(-1) ?? '';
+  const slug = path.split('/').at(-1) ?? '';
 
   const payload = await getPayload({ config: configPromise });
-  const result = await payload.find({
-    collection: 'pages',
-    draft,
-    limit: 1,
-    locale,
-    overrideAccess: draft,
-    where: {
-      'breadcrumbs.url': { equals: url },
-      slug: { equals: slug },
-    },
-  });
+  const page = await payload
+    .find({
+      collection: 'pages',
+      draft,
+      limit: 1,
+      locale,
+      overrideAccess: draft,
+      where: {
+        'breadcrumbs.url': { equals: path },
+        slug: { equals: slug },
+      },
+    })
+    .then((it) => it.docs?.[0]);
 
-  return result.docs?.[0] || null;
+  if (!page) {
+    return { page: null, pathPerLocale: {} };
+  }
+
+  const pathPerLocale = await payload
+    .find({
+      collection: 'pages',
+      draft,
+      limit: 1,
+      locale: 'all',
+      overrideAccess: draft,
+      select: {
+        breadcrumbs: true,
+        path: true,
+      },
+      where: {
+        id: { equals: page.id },
+      },
+    })
+    .then((it) => it.docs?.[0].path ?? {});
+
+  return { page, pathPerLocale };
 });

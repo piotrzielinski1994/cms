@@ -6,7 +6,7 @@ import { authenticated } from '@/payload/access/authenticated';
 import { authenticatedOrPublished } from '@/payload/access/authenticatedOrPublished';
 import { slugField } from '@/payload/fields/slug';
 import { populatePublishedAt } from '@/payload/hooks/populatePublishedAt';
-import { AdminTranslations, contentLocale, customTranslations } from '@/payload/locale';
+import { AdminTranslations, ContentLocale, customTranslations } from '@/payload/locale';
 import { Page } from '@/payload/payload.types';
 import { createBreadcrumbsField, createParentField } from '@payloadcms/plugin-nested-docs';
 import {
@@ -152,7 +152,7 @@ export const Pages: CollectionConfig<'pages'> = {
 
         const pathPerLocale = Object.fromEntries(
           Object.entries(doc.breadcrumbs ?? {}).map(
-            ([key, value]: [(typeof contentLocale.list)[number], Page['breadcrumbs']]) => {
+            ([key, value]: [ContentLocale, Page['breadcrumbs']]) => {
               return [key, value!.at(-1)?.url ?? '/'];
             },
           ),
