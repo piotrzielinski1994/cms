@@ -195,7 +195,7 @@ export interface Media {
 export interface Page {
   id: string;
   title: string;
-  sections?: Hero1[] | null;
+  sections?: (Hero1 | ImageBlocks)[] | null;
   seo?: {
     title?: string | null;
     /**
@@ -310,6 +310,40 @@ export interface User {
   loginAttempts?: number | null;
   lockUntil?: string | null;
   password?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Image Blocks".
+ */
+export interface ImageBlocks {
+  items?: ImageBlock1[] | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'image-blocks';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Image Block 1".
+ */
+export interface ImageBlock1 {
+  heading?: string | null;
+  subheading: string;
+  cta: {
+    label: string;
+    reference:
+      | {
+          relationTo: 'pages';
+          value: string | Page;
+        }
+      | {
+          relationTo: 'posts';
+          value: string | Post;
+        };
+    selector?: string | null;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'image-block-1';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -763,6 +797,7 @@ export interface PagesSelect<T extends boolean = true> {
     | T
     | {
         'hero-1'?: T | Hero1Select<T>;
+        'image-blocks'?: T | ImageBlocksSelect<T>;
       };
   seo?:
     | T
@@ -793,6 +828,36 @@ export interface PagesSelect<T extends boolean = true> {
  * via the `definition` "Hero 1_select".
  */
 export interface Hero1Select {
+  heading?: boolean;
+  subheading?: boolean;
+  cta?:
+    | boolean
+    | {
+        label?: boolean;
+        reference?: boolean;
+        selector?: boolean;
+      };
+  id?: boolean;
+  blockName?: boolean;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Image Blocks_select".
+ */
+export interface ImageBlocksSelect {
+  items?:
+    | boolean
+    | {
+        'image-block-1'?: boolean | ImageBlock1Select;
+      };
+  id?: boolean;
+  blockName?: boolean;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Image Block 1_select".
+ */
+export interface ImageBlock1Select {
   heading?: boolean;
   subheading?: boolean;
   cta?:

@@ -1,13 +1,13 @@
-import React, { Fragment } from 'react';
-
-import type { Page } from '@/payload/payload.types';
-
 import { ArchiveBlock } from '@/_old/blocks/ArchiveBlock/Component';
 import { CallToActionBlock } from '@/_old/blocks/CallToAction/Component';
 import { ContentBlock } from '@/_old/blocks/Content/Component';
 import { FormBlock } from '@/_old/blocks/Form/Component';
 import { MediaBlock } from '@/_old/blocks/MediaBlock/Component';
 import Hero1 from '@/components/blocks/hero/hero-1/hero-1';
+import ImageBlock1 from '@/components/blocks/image-block/image-block-1/image-block-1';
+import ImageBlocks from '@/components/blocks/image-block/image-blocks/image-blocks';
+import type * as BlockTypes from '@/payload/payload.types';
+import React, { Fragment } from 'react';
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -16,10 +16,12 @@ const blockComponents = {
   formBlock: FormBlock,
   mediaBlock: MediaBlock,
   'hero-1': Hero1,
+  'image-blocks': ImageBlocks,
+  'image-block-1': ImageBlock1,
 };
 
 export const RenderBlocks: React.FC<{
-  blocks: Page['sections'];
+  blocks: (BlockTypes.Hero1 | BlockTypes.ImageBlocks | BlockTypes.ImageBlock1)[];
 }> = (props) => {
   const { blocks } = props;
   const hasBlocks = blocks && Array.isArray(blocks) && blocks.length > 0;

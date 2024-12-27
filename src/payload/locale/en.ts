@@ -11,6 +11,10 @@ export const customTranslations = {
       plural: 'Related',
     },
     openInNewTab: 'Open in new tab',
+    item: {
+      singular: 'Item',
+      plural: 'Items',
+    },
   },
   fields: {
     label: 'Label',

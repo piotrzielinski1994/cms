@@ -2,6 +2,7 @@ import type { CollectionConfig } from 'payload';
 
 import { generatePreviewPath } from '@/_old/utilities/generatePreviewPath';
 import { hero1BlockPayloadConfig } from '@/components/blocks/hero/hero-1/hero-1.payload.config';
+import { imageBlocksBlockPayloadConfig } from '@/components/blocks/image-block/image-blocks/image-blocks.payload.config';
 import { authenticated } from '@/payload/access/authenticated';
 import { authenticatedOrPublished } from '@/payload/access/authenticatedOrPublished';
 import { slugField } from '@/payload/fields/slug';
@@ -76,11 +77,12 @@ export const Pages: CollectionConfig<'pages'> = {
             {
               name: 'sections',
               type: 'blocks',
-              blocks: [hero1BlockPayloadConfig],
+              blocks: [hero1BlockPayloadConfig, imageBlocksBlockPayloadConfig],
               required: false,
               admin: {
                 initCollapsed: true,
               },
+              label: ({ t }: { t: AdminTranslations }) => t('common:section:plural'),
             },
           ],
           label: {

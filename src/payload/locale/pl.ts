@@ -13,6 +13,10 @@ export const customTranslations = {
       plural: 'Powiązane',
     },
     openInNewTab: 'Otwórz w nowej karcie',
+    item: {
+      singular: 'Element',
+      plural: 'Elementy',
+    },
   },
   fields: {
     label: 'Etykieta',
