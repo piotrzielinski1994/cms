@@ -19,6 +19,7 @@ export const customTranslations = {
     type: 'Type',
     title: 'Title',
     heading: 'Heading',
+    subheading: 'Subheading',
     description: 'Description',
     image: 'Image',
     publishedAt: 'Published at',
@@ -33,6 +34,8 @@ export const customTranslations = {
     navItem: 'Navigation item',
     internalLink: 'Internal link',
     documentToLinkTo: 'Document to link to',
+    cta: 'CTA',
+    selector: 'Selector',
   },
   collections: {
     pages: {

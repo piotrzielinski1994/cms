@@ -226,7 +226,21 @@ export interface Page {
  * via the `definition` "Hero 1".
  */
 export interface Hero1 {
-  heading: string;
+  heading?: string | null;
+  subheading: string;
+  cta: {
+    label: string;
+    reference:
+      | {
+          relationTo: 'pages';
+          value: string | Page;
+        }
+      | {
+          relationTo: 'posts';
+          value: string | Post;
+        };
+    selector?: string | null;
+  };
   id?: string | null;
   blockName?: string | null;
   blockType: 'hero-1';
@@ -780,6 +794,14 @@ export interface PagesSelect<T extends boolean = true> {
  */
 export interface Hero1Select {
   heading?: boolean;
+  subheading?: boolean;
+  cta?:
+    | boolean
+    | {
+        label?: boolean;
+        reference?: boolean;
+        selector?: boolean;
+      };
   id?: boolean;
   blockName?: boolean;
 }

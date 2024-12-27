@@ -21,6 +21,7 @@ export const customTranslations = {
     type: 'Typ',
     title: 'Tytuł',
     heading: 'Naglówek',
+    subheading: 'Podnagłówek',
     description: 'Opis',
     image: 'Zdjęcie',
     publishedAt: 'Data publikacji',
@@ -35,6 +36,8 @@ export const customTranslations = {
     navItem: 'Element nawigacji',
     internalLink: 'Wewnętrzny link',
     documentToLinkTo: 'Dokument do podlinkowania',
+    cta: 'CTA',
+    selector: 'Selektor',
   },
   collections: {
     pages: {
