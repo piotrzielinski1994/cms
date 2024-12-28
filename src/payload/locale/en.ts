@@ -40,6 +40,7 @@ export const customTranslations = {
     documentToLinkTo: 'Document to link to',
     cta: 'CTA',
     selector: 'Selector',
+    isReversed: 'Reversed layout',
   },
   collections: {
     pages: {

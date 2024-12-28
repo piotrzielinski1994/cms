@@ -6,6 +6,18 @@ export const imageBlock1BlockPayloadConfig = {
   interfaceName: 'Image Block 1',
   fields: [
     {
+      name: 'media',
+      type: 'upload',
+      relationTo: 'media',
+      required: true,
+      label: ({ t }: { t: AdminTranslations }) => t('fields:image'),
+    },
+    {
+      name: 'isReversed',
+      type: 'checkbox',
+      label: ({ t }: { t: AdminTranslations }) => t('fields:isReversed'),
+    },
+    {
       name: 'heading',
       type: 'text',
       localized: true,

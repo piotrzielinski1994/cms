@@ -42,6 +42,7 @@ export const customTranslations = {
     documentToLinkTo: 'Dokument do podlinkowania',
     cta: 'CTA',
     selector: 'Selektor',
+    isReversed: 'Odwrócony układ',
   },
   collections: {
     pages: {

@@ -326,6 +326,8 @@ export interface ImageBlocks {
  * via the `definition` "Image Block 1".
  */
 export interface ImageBlock1 {
+  media: string | Media;
+  isReversed?: boolean | null;
   heading?: string | null;
   subheading: string;
   cta: {
@@ -858,6 +860,8 @@ export interface ImageBlocksSelect {
  * via the `definition` "Image Block 1_select".
  */
 export interface ImageBlock1Select {
+  media?: boolean;
+  isReversed?: boolean;
   heading?: boolean;
   subheading?: boolean;
   cta?:
