@@ -1,11 +1,12 @@
-import { Media } from '@/_old/components/Media';
 import { cn } from '@/_old/utilities/cn';
 import ButtonLink from '@/components/basic/button-link/button-link';
+import Image from '@/components/basic/image/image';
+import * as PayloadTypes from '@/payload/payload.types';
 import { ImageBlock1Props } from './image-block-1.types';
 
 const ImageBlock1 = ({ isReversed, media, heading, subheading, cta }: ImageBlock1Props) => {
   const path = cta?.reference?.value.path;
-
+  const asd = media as PayloadTypes.Media;
   return (
     <div className="border-2 border-gray-600 grid md:grid-cols-2">
       <div
@@ -23,7 +24,8 @@ const ImageBlock1 = ({ isReversed, media, heading, subheading, cta }: ImageBlock
         )}
       </div>
       <div className={cn('border-2 border-gray-600', isReversed ? 'md:order-1' : 'md:order-2')}>
-        <Media resource={media} src={''} />
+        <Image {...asd} />
+        {/* <Media resource={media} src={''} /> */}
       </div>
     </div>
   );
