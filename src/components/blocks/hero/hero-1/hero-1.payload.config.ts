@@ -3,7 +3,7 @@ import type { Block } from 'payload';
 
 export const hero1BlockPayloadConfig = {
   slug: 'hero-1',
-  interfaceName: 'Hero 1',
+  interfaceName: 'Hero1Block',
   fields: [
     {
       name: 'heading',

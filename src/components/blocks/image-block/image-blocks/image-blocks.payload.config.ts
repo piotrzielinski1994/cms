@@ -4,7 +4,7 @@ import type { Block } from 'payload';
 
 export const imageBlocksBlockPayloadConfig = {
   slug: 'image-blocks',
-  interfaceName: 'Image Blocks',
+  interfaceName: 'ImageBlocksBlock',
   fields: [
     {
       name: 'items',

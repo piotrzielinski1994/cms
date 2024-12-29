@@ -3,12 +3,12 @@ import type { Block } from 'payload';
 
 export const imageBlock1BlockPayloadConfig = {
   slug: 'image-block-1',
-  interfaceName: 'Image Block 1',
+  interfaceName: 'ImageBlock1Block',
   fields: [
     {
       name: 'media',
       type: 'upload',
-      relationTo: 'media',
+      relationTo: 'images',
       required: true,
       label: ({ t }: { t: AdminTranslations }) => t('fields:image'),
     },

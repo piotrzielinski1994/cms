@@ -1,5 +1,6 @@
-import type { CollectionConfig } from 'payload';
-
+import { Archive } from '@/_old/blocks/ArchiveBlock/config';
+import { CallToAction } from '@/_old/blocks/CallToAction/config';
+import { Content } from '@/_old/blocks/Content/config';
 import { generatePreviewPath } from '@/_old/utilities/generatePreviewPath';
 import { hero1BlockPayloadConfig } from '@/components/blocks/hero/hero-1/hero-1.payload.config';
 import { imageBlocksBlockPayloadConfig } from '@/components/blocks/image-block/image-blocks/image-blocks.payload.config';
@@ -17,6 +18,7 @@ import {
   OverviewField,
   PreviewField,
 } from '@payloadcms/plugin-seo/fields';
+import type { CollectionConfig } from 'payload';
 import { revalidateDelete, revalidatePage } from './hooks/revalidatePage';
 
 export const Pages: CollectionConfig<'pages'> = {
@@ -77,7 +79,13 @@ export const Pages: CollectionConfig<'pages'> = {
             {
               name: 'sections',
               type: 'blocks',
-              blocks: [hero1BlockPayloadConfig, imageBlocksBlockPayloadConfig],
+              blocks: [
+                hero1BlockPayloadConfig,
+                imageBlocksBlockPayloadConfig,
+                Archive,
+                CallToAction,
+                Content,
+              ],
               required: false,
               admin: {
                 initCollapsed: true,
@@ -103,7 +111,7 @@ export const Pages: CollectionConfig<'pages'> = {
               hasGenerateFn: true,
             }),
             MetaImageField({
-              relationTo: 'media',
+              relationTo: 'images',
             }),
 
             MetaDescriptionField({}),

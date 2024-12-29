@@ -8,7 +8,7 @@ import type { Post } from '@/payload/payload.types';
 
 import { Media } from '@/_old/components/Media';
 
-export type CardPostData = Pick<Post, 'slug' | 'categories' | 'meta' | 'title'>;
+export type CardPostData = Pick<Post, 'slug' | 'categories' | 'seo' | 'title'>;
 
 export const Card: React.FC<{
   alignItems?: 'center';
@@ -21,7 +21,7 @@ export const Card: React.FC<{
   const { card, link } = useClickableCard({});
   const { className, doc, relationTo, showCategories, title: titleFromProps } = props;
 
-  const { slug, categories, meta, title } = doc || {};
+  const { slug, categories, seo: meta, title } = doc || {};
   const { description, image: metaImage } = meta || {};
 
   const hasCategories = categories && Array.isArray(categories) && categories.length > 0;

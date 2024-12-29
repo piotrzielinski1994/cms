@@ -17,6 +17,14 @@ export const seedPages = async (payload: Payload) => {
         {
           blockType: 'hero-1',
           heading: 'Home Page',
+          subheading: 'Home Page',
+          cta: {
+            label: 'CTA',
+            reference: {
+              relationTo: 'pages',
+              value: '',
+            },
+          },
         },
       ],
     },
@@ -36,6 +44,14 @@ export const seedPages = async (payload: Payload) => {
         {
           blockType: 'hero-1',
           heading: 'About Us Page',
+          subheading: 'About Us Page',
+          cta: {
+            label: 'CTA',
+            reference: {
+              relationTo: 'pages',
+              value: '',
+            },
+          },
         },
       ],
       parent: homePage.id,
@@ -56,6 +72,14 @@ export const seedPages = async (payload: Payload) => {
         {
           blockType: 'hero-1',
           heading: 'Contact Page',
+          subheading: 'Contact Page',
+          cta: {
+            label: 'CTA',
+            reference: {
+              relationTo: 'pages',
+              value: '',
+            },
+          },
         },
       ],
       parent: aboutUsPage.id,

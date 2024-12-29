@@ -5,6 +5,7 @@ import Section from '@/components/layout/section/section';
 import { Hero1Props } from './hero-1.types';
 
 const Hero1 = ({ heading, subheading, cta }: Hero1Props) => {
+  // @ts-expect-error
   const path = cta?.reference?.value.path;
 
   return (

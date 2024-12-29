@@ -8,6 +8,7 @@ const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
   const navItems = (data?.navItems ?? []).map((it) => ({
     id: it.id,
     label: it.link.label,
+    // @ts-expect-error
     path: it.link.reference?.value.path,
   }));
 

@@ -21,7 +21,14 @@ const blockComponents = {
 };
 
 export const RenderBlocks: React.FC<{
-  blocks: (BlockTypes.Hero1 | BlockTypes.ImageBlocks | BlockTypes.ImageBlock1)[];
+  blocks: (
+    | BlockTypes.Hero1Block
+    | BlockTypes.ImageBlocksBlock
+    | BlockTypes.ImageBlock1Block
+    | BlockTypes.ArchiveBlock
+    | BlockTypes.CallToActionBlock
+    | BlockTypes.ContentBlock
+  )[];
 }> = (props) => {
   const { blocks } = props;
   const hasBlocks = blocks && Array.isArray(blocks) && blocks.length > 0;

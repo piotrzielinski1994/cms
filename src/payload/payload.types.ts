@@ -12,7 +12,7 @@ export interface Config {
   };
   collections: {
     categories: Category;
-    media: Media;
+    images: Image;
     pages: Page;
     posts: Post;
     users: User;
@@ -27,7 +27,7 @@ export interface Config {
   collectionsJoins: {};
   collectionsSelect: {
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
-    media: MediaSelect<false> | MediaSelect<true>;
+    images: ImagesSelect<false> | ImagesSelect<true>;
     pages: PagesSelect<false> | PagesSelect<true>;
     posts: PostsSelect<false> | PostsSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
@@ -98,9 +98,9 @@ export interface Category {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media".
+ * via the `definition` "images".
  */
-export interface Media {
+export interface Image {
   id: string;
   alt: string;
   updatedAt: string;
@@ -112,18 +112,6 @@ export interface Media {
   filesize?: number | null;
   width?: number | null;
   height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
-  sizes?: {
-    thumbnail?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-  };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -132,13 +120,13 @@ export interface Media {
 export interface Page {
   id: string;
   title: string;
-  sections?: (Hero1 | ImageBlocks)[] | null;
+  sections?: (Hero1Block | ImageBlocksBlock | ArchiveBlock | CallToActionBlock | ContentBlock)[] | null;
   seo?: {
     title?: string | null;
     /**
      * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
      */
-    image?: (string | null) | Media;
+    image?: (string | null) | Image;
     description?: string | null;
   };
   publishedAt?: string | null;
@@ -160,9 +148,9 @@ export interface Page {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Hero 1".
+ * via the `definition` "Hero1Block".
  */
-export interface Hero1 {
+export interface Hero1Block {
   heading?: string | null;
   subheading: string;
   cta: {
@@ -189,7 +177,7 @@ export interface Hero1 {
 export interface Post {
   id: string;
   title: string;
-  heroImage?: (string | null) | Media;
+  heroImage?: (string | null) | Image;
   content: {
     root: {
       type: string;
@@ -207,12 +195,12 @@ export interface Post {
   };
   relatedPosts?: (string | Post)[] | null;
   categories?: (string | Category)[] | null;
-  meta?: {
+  seo?: {
     title?: string | null;
     /**
      * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
      */
-    image?: (string | null) | Media;
+    image?: (string | null) | Image;
     description?: string | null;
   };
   publishedAt?: string | null;
@@ -250,20 +238,20 @@ export interface User {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Image Blocks".
+ * via the `definition` "ImageBlocksBlock".
  */
-export interface ImageBlocks {
-  items?: ImageBlock1[] | null;
+export interface ImageBlocksBlock {
+  items?: ImageBlock1Block[] | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'image-blocks';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Image Block 1".
+ * via the `definition` "ImageBlock1Block".
  */
-export interface ImageBlock1 {
-  media: string | Media;
+export interface ImageBlock1Block {
+  media: string | Image;
   isReversed?: boolean | null;
   heading?: string | null;
   subheading: string;
@@ -283,6 +271,138 @@ export interface ImageBlock1 {
   id?: string | null;
   blockName?: string | null;
   blockType: 'image-block-1';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ArchiveBlock".
+ */
+export interface ArchiveBlock {
+  introContent?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  populateBy?: ('collection' | 'selection') | null;
+  relationTo?: 'posts' | null;
+  categories?: (string | Category)[] | null;
+  limit?: number | null;
+  selectedDocs?:
+    | {
+        relationTo: 'posts';
+        value: string | Post;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'archive';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CallToActionBlock".
+ */
+export interface CallToActionBlock {
+  richText?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  links?:
+    | {
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: string | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: string | Post;
+              } | null);
+          url?: string | null;
+          label: string;
+          /**
+           * Choose how the link should be rendered.
+           */
+          appearance?: ('default' | 'outline') | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'cta';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContentBlock".
+ */
+export interface ContentBlock {
+  columns?:
+    | {
+        size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
+        richText?: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        enableLink?: boolean | null;
+        link?: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: string | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: string | Post;
+              } | null);
+          url?: string | null;
+          label: string;
+          /**
+           * Choose how the link should be rendered.
+           */
+          appearance?: ('default' | 'outline') | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'content';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -518,7 +638,7 @@ export interface Search {
   meta?: {
     title?: string | null;
     description?: string | null;
-    image?: (string | null) | Media;
+    image?: (string | null) | Image;
   };
   categories?:
     | {
@@ -542,8 +662,8 @@ export interface PayloadLockedDocument {
         value: string | Category;
       } | null)
     | ({
-        relationTo: 'media';
-        value: string | Media;
+        relationTo: 'images';
+        value: string | Image;
       } | null)
     | ({
         relationTo: 'pages';
@@ -635,9 +755,9 @@ export interface CategoriesSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media_select".
+ * via the `definition` "images_select".
  */
-export interface MediaSelect<T extends boolean = true> {
+export interface ImagesSelect<T extends boolean = true> {
   alt?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -648,22 +768,6 @@ export interface MediaSelect<T extends boolean = true> {
   filesize?: T;
   width?: T;
   height?: T;
-  focalX?: T;
-  focalY?: T;
-  sizes?:
-    | T
-    | {
-        thumbnail?:
-          | T
-          | {
-              url?: T;
-              width?: T;
-              height?: T;
-              mimeType?: T;
-              filesize?: T;
-              filename?: T;
-            };
-      };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -674,8 +778,11 @@ export interface PagesSelect<T extends boolean = true> {
   sections?:
     | T
     | {
-        'hero-1'?: T | Hero1Select<T>;
-        'image-blocks'?: T | ImageBlocksSelect<T>;
+        'hero-1'?: T | Hero1BlockSelect<T>;
+        'image-blocks'?: T | ImageBlocksBlockSelect<T>;
+        archive?: T | ArchiveBlockSelect<T>;
+        cta?: T | CallToActionBlockSelect<T>;
+        content?: T | ContentBlockSelect<T>;
       };
   seo?:
     | T
@@ -703,52 +810,116 @@ export interface PagesSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Hero 1_select".
+ * via the `definition` "Hero1Block_select".
  */
-export interface Hero1Select {
-  heading?: boolean;
-  subheading?: boolean;
+export interface Hero1BlockSelect<T extends boolean = true> {
+  heading?: T;
+  subheading?: T;
   cta?:
-    | boolean
+    | T
     | {
-        label?: boolean;
-        reference?: boolean;
-        selector?: boolean;
+        label?: T;
+        reference?: T;
+        selector?: T;
       };
-  id?: boolean;
-  blockName?: boolean;
+  id?: T;
+  blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Image Blocks_select".
+ * via the `definition` "ImageBlocksBlock_select".
  */
-export interface ImageBlocksSelect {
+export interface ImageBlocksBlockSelect<T extends boolean = true> {
   items?:
-    | boolean
+    | T
     | {
-        'image-block-1'?: boolean | ImageBlock1Select;
+        'image-block-1'?: T | ImageBlock1BlockSelect<T>;
       };
-  id?: boolean;
-  blockName?: boolean;
+  id?: T;
+  blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Image Block 1_select".
+ * via the `definition` "ImageBlock1Block_select".
  */
-export interface ImageBlock1Select {
-  media?: boolean;
-  isReversed?: boolean;
-  heading?: boolean;
-  subheading?: boolean;
+export interface ImageBlock1BlockSelect<T extends boolean = true> {
+  media?: T;
+  isReversed?: T;
+  heading?: T;
+  subheading?: T;
   cta?:
-    | boolean
+    | T
     | {
-        label?: boolean;
-        reference?: boolean;
-        selector?: boolean;
+        label?: T;
+        reference?: T;
+        selector?: T;
       };
-  id?: boolean;
-  blockName?: boolean;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ArchiveBlock_select".
+ */
+export interface ArchiveBlockSelect<T extends boolean = true> {
+  introContent?: T;
+  populateBy?: T;
+  relationTo?: T;
+  categories?: T;
+  limit?: T;
+  selectedDocs?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CallToActionBlock_select".
+ */
+export interface CallToActionBlockSelect<T extends boolean = true> {
+  richText?: T;
+  links?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+              appearance?: T;
+            };
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContentBlock_select".
+ */
+export interface ContentBlockSelect<T extends boolean = true> {
+  columns?:
+    | T
+    | {
+        size?: T;
+        richText?: T;
+        enableLink?: T;
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+              appearance?: T;
+            };
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -760,7 +931,7 @@ export interface PostsSelect<T extends boolean = true> {
   content?: T;
   relatedPosts?: T;
   categories?: T;
-  meta?:
+  seo?:
     | T
     | {
         title?: T;
@@ -1199,7 +1370,7 @@ export interface CodeBlock {
  * via the `definition` "MediaBlock".
  */
 export interface MediaBlock {
-  media: string | Media;
+  media: string | Image;
   id?: string | null;
   blockName?: string | null;
   blockType: 'mediaBlock';

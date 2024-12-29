@@ -47,7 +47,7 @@ export const Posts: CollectionConfig<'posts'> = {
     title: true,
     slug: true,
     categories: true,
-    meta: {
+    seo: {
       image: true,
       description: true,
     },
@@ -89,7 +89,7 @@ export const Posts: CollectionConfig<'posts'> = {
             {
               name: 'heroImage',
               type: 'upload',
-              relationTo: 'media',
+              relationTo: 'images',
             },
             {
               name: 'content',
@@ -149,19 +149,19 @@ export const Posts: CollectionConfig<'posts'> = {
           label: 'Meta',
         },
         {
-          name: 'meta',
+          name: 'seo',
           label: 'SEO',
           fields: [
             OverviewField({
-              titlePath: 'meta.title',
-              descriptionPath: 'meta.description',
-              imagePath: 'meta.image',
+              titlePath: 'seo.title',
+              descriptionPath: 'seo.description',
+              imagePath: 'seo.image',
             }),
             MetaTitleField({
               hasGenerateFn: true,
             }),
             MetaImageField({
-              relationTo: 'media',
+              relationTo: 'images',
             }),
 
             MetaDescriptionField({}),
@@ -170,8 +170,8 @@ export const Posts: CollectionConfig<'posts'> = {
               hasGenerateFn: true,
 
               // field paths to match the target field for data
-              titlePath: 'meta.title',
-              descriptionPath: 'meta.description',
+              titlePath: 'seo.title',
+              descriptionPath: 'seo.description',
             }),
           ],
         },

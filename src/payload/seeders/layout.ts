@@ -19,5 +19,6 @@ const getLayoutItems = (pages: Page[]) => {
 };
 
 export const seedLayoutItems = (pages: Page[]) => async (payload: Payload) => {
+  // @ts-expect-error
   return Promise.all(getLayoutItems(pages).map((it) => payload.updateGlobal(it)));
 };

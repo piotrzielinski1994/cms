@@ -11,6 +11,7 @@ export async function Footer({ locale }: FooterProps) {
   const navItems = (footerData?.navItems ?? []).map((it) => ({
     id: it.id,
     label: it.link.label,
+    // @ts-expect-error
     path: `/${it.link.reference?.value.slug}`,
   }));
 

@@ -1,12 +1,12 @@
 import { Categories } from './categories/categories';
-import { Media } from './media/media';
+import { Images } from './images/images';
 import { Pages } from './pages/pages';
 import { Posts } from './posts/posts';
 import { Users } from './users/users';
 
 export const collections = {
   Categories,
-  Media,
+  Images,
   Pages,
   Posts,
   Users,

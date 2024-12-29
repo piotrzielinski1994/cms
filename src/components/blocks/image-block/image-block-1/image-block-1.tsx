@@ -5,8 +5,9 @@ import * as PayloadTypes from '@/payload/payload.types';
 import { ImageBlock1Props } from './image-block-1.types';
 
 const ImageBlock1 = ({ isReversed, media, heading, subheading, cta }: ImageBlock1Props) => {
+  // @ts-expect-error
   const path = cta?.reference?.value.path;
-  const asd = media as PayloadTypes.Media;
+  const asd = media as PayloadTypes.Image;
   return (
     <div className="border-2 border-gray-600 grid md:grid-cols-2">
       <div

@@ -56,7 +56,7 @@ export default async function Page({ params: paramsPromise }: Args) {
 
       {draft && <LivePreviewListener />}
 
-      <RenderBlocks blocks={page.sections} />
+      <RenderBlocks blocks={page.sections!} />
     </>
   );
 }
@@ -65,7 +65,7 @@ export async function generateMetadata({ params: paramsPromise }: Args): Promise
   const { segments = [], locale } = await paramsPromise;
   const { page } = await queryPage({ path: `/${segments.join('/')}`, locale });
 
-  return generateMeta({ doc: page });
+  return generateMeta({ doc: page! });
 }
 
 const queryPage = cache(async ({ path, locale }: { path: string; locale: TypedLocale }) => {

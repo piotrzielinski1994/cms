@@ -17,6 +17,10 @@ export const customTranslations = {
       singular: 'Element',
       plural: 'Elementy',
     },
+    files: {
+      singular: 'Plik',
+      plural: 'Pliki',
+    },
   },
   fields: {
     label: 'Etykieta',
@@ -64,6 +68,10 @@ export const customTranslations = {
     users: {
       singular: 'Użytkownik',
       plural: 'Użytkownicy',
+    },
+    images: {
+      singular: 'Zdjęcie',
+      plural: 'Zdjęcia',
     },
   },
   enums: {

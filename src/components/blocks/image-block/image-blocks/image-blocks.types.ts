@@ -1,3 +1,3 @@
-import { ImageBlocks as ImageBlocksBlockConfigProps } from '@/payload/payload.types';
+import { ImageBlocksBlock } from '@/payload/payload.types';
 
-export interface ImageBlocksProps extends ImageBlocksBlockConfigProps {}
+export interface ImageBlocksProps extends ImageBlocksBlock {}

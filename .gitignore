@@ -1,13 +1,15 @@
-build
-dist / media
-node_modules
+# Default
 .DS_Store
-.env
+node_modules
+build
 .next
 .vercel
+dist / media
 
-# Payload default media upload directory
-public/media/
+# Env
+.env
 
-public/robots.txt
-public/sitemap*.xml
+# Static files
+public/*
+!public/favicon.ico
+!public/favicon.svg
