@@ -100,7 +100,10 @@ export const Pages: CollectionConfig<'pages'> = {
         },
         {
           name: 'seo',
-          label: 'SEO',
+          label: {
+            en: customTranslations.en.fields.seo,
+            pl: customTranslations.pl.fields.seo,
+          },
           fields: [
             OverviewField({
               titlePath: 'seo.title',
@@ -123,6 +126,23 @@ export const Pages: CollectionConfig<'pages'> = {
               titlePath: 'seo.title',
               descriptionPath: 'seo.description',
             }),
+          ],
+        },
+        {
+          name: 'subpages',
+          virtual: true,
+          label: {
+            en: customTranslations.en.fields.subpages,
+            pl: customTranslations.pl.fields.subpages,
+          },
+          fields: [
+            {
+              name: 'children',
+              type: 'join',
+              on: 'parent',
+              collection: 'pages',
+              label: ({ t }: { t: AdminTranslations }) => t('fields:children'),
+            },
           ],
         },
       ],

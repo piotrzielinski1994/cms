@@ -35,6 +35,7 @@ export const customTranslations = {
     publishedAt: 'Data publikacji',
     fullName: 'Imię i nazwisko',
     parent: 'Element nadrzędny',
+    children: 'Elementy podrzędne',
     role: {
       singular: 'Rola',
       plural: 'Role',
@@ -47,6 +48,8 @@ export const customTranslations = {
     cta: 'CTA',
     selector: 'Selektor',
     isReversed: 'Odwrócony układ',
+    subpages: 'Podstrony',
+    seo: 'SEO',
   },
   collections: {
     pages: {

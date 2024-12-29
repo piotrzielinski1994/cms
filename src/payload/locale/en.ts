@@ -33,6 +33,7 @@ export const customTranslations = {
     publishedAt: 'Published at',
     fullName: 'Full name',
     parent: 'Parent element',
+    children: 'Child elements',
     role: {
       singular: 'Role',
       plural: 'Roles',
@@ -45,6 +46,8 @@ export const customTranslations = {
     cta: 'CTA',
     selector: 'Selector',
     isReversed: 'Reversed layout',
+    subpages: 'Subpages',
+    seo: 'SEO',
   },
   collections: {
     pages: {
