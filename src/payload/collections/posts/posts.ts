@@ -19,7 +19,7 @@ import { populateAuthors } from './hooks/populateAuthors';
 import { revalidateDelete, revalidatePost } from './hooks/revalidatePost';
 
 import { slugField } from '@/payload/fields/slug';
-import { AdminTranslations, customTranslations } from '@/payload/locale';
+import { AdminTranslations, adminLocale } from '@/payload/locale';
 import {
   MetaDescriptionField,
   MetaImageField,
@@ -111,8 +111,8 @@ export const Posts: CollectionConfig<'posts'> = {
             },
           ],
           label: {
-            en: customTranslations.en.common.content,
-            pl: customTranslations.pl.common.content,
+            en: adminLocale.customList.en.common.content,
+            pl: adminLocale.customList.pl.common.content,
           },
         },
         {

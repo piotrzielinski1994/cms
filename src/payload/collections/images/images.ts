@@ -1,6 +1,6 @@
 import { anyone } from '@/payload/access/anyone';
 import { authenticated } from '@/payload/access/authenticated';
-import { AdminTranslations, customTranslations } from '@/payload/locale';
+import { AdminTranslations, adminLocale } from '@/payload/locale';
 import path from 'path';
 import type { CollectionConfig } from 'payload';
 
@@ -14,8 +14,8 @@ export const Images: CollectionConfig<'images'> = {
   },
   admin: {
     group: {
-      en: customTranslations.en.common.files.plural,
-      pl: customTranslations.pl.common.files.plural,
+      en: adminLocale.customList.en.common.files.plural,
+      pl: adminLocale.customList.pl.common.files.plural,
     },
   },
   access: {

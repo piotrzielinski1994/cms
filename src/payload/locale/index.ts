@@ -1,5 +1,5 @@
+import { clientEnv, serverEnv } from '@/env';
 import {
-  AcceptedLanguages,
   DefaultTranslationKeys,
   NestedKeysStripped,
   SupportedLanguages,
@@ -12,32 +12,21 @@ import { en as customEn } from './en';
 import { pl as customPl } from './pl';
 
 // Types ====================================
-type CustomTranslations = typeof customEn;
-
 export type AdminTranslations = TFunction<
-  NestedKeysStripped<CustomTranslations> | DefaultTranslationKeys
+  NestedKeysStripped<typeof customEn> | DefaultTranslationKeys
 >;
-export type ContentLocale = (typeof contentLocale.list)[number];
 
 // Variables ====================================
 export const adminLocale = {
-  list: pick(
-    (process.env.NEXT_PUBLIC_FEATURE_ADMIN_LOCALES.split(',') || [
-      'en',
-    ]) as (keyof SupportedLanguages)[],
-    { en, pl } as SupportedLanguages,
-  ),
-  default: process.env.NEXT_PUBLIC_FEATURE_DEFAULT_ADMIN_LOCALE as AcceptedLanguages,
+  list: pick(serverEnv.feature.locale.admin.list, { en, pl } as SupportedLanguages),
+  customList: {
+    en: customEn,
+    pl: customPl,
+  },
+  default: serverEnv.feature.locale.admin.default,
 };
 
 export const contentLocale = {
-  list: (process.env.NEXT_PUBLIC_FEATURE_CONTENT_LOCALES.split(',') || [
-    'en',
-  ]) as AcceptedLanguages[],
-  default: process.env.NEXT_PUBLIC_FEATURE_DEFAULT_CONTENT_LOCALE as AcceptedLanguages,
-};
-
-export const customTranslations = {
-  en: customEn,
-  pl: customPl,
+  list: clientEnv.feature.locale.admin.list,
+  default: clientEnv.feature.locale.admin.default,
 };

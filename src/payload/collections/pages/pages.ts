@@ -8,7 +8,7 @@ import { authenticated } from '@/payload/access/authenticated';
 import { authenticatedOrPublished } from '@/payload/access/authenticatedOrPublished';
 import { slugField } from '@/payload/fields/slug';
 import { populatePublishedAt } from '@/payload/hooks/populatePublishedAt';
-import { AdminTranslations, ContentLocale, customTranslations } from '@/payload/locale';
+import { AdminTranslations, adminLocale } from '@/payload/locale';
 import { Page } from '@/payload/payload.types';
 import { createBreadcrumbsField, createParentField } from '@payloadcms/plugin-nested-docs';
 import {
@@ -18,6 +18,7 @@ import {
   OverviewField,
   PreviewField,
 } from '@payloadcms/plugin-seo/fields';
+import { SupportedLanguages } from '@payloadcms/translations';
 import type { CollectionConfig } from 'payload';
 import { revalidateDelete, revalidatePage } from './hooks/revalidatePage';
 
@@ -94,15 +95,15 @@ export const Pages: CollectionConfig<'pages'> = {
             },
           ],
           label: {
-            en: customTranslations.en.common.content,
-            pl: customTranslations.pl.common.content,
+            en: adminLocale.customList.en.common.content,
+            pl: adminLocale.customList.pl.common.content,
           },
         },
         {
           name: 'seo',
           label: {
-            en: customTranslations.en.fields.seo,
-            pl: customTranslations.pl.fields.seo,
+            en: adminLocale.customList.en.fields.seo,
+            pl: adminLocale.customList.pl.fields.seo,
           },
           fields: [
             OverviewField({
@@ -132,8 +133,8 @@ export const Pages: CollectionConfig<'pages'> = {
           name: 'subpages',
           virtual: true,
           label: {
-            en: customTranslations.en.fields.subpages,
-            pl: customTranslations.pl.fields.subpages,
+            en: adminLocale.customList.en.fields.subpages,
+            pl: adminLocale.customList.pl.fields.subpages,
           },
           fields: [
             {
@@ -182,7 +183,7 @@ export const Pages: CollectionConfig<'pages'> = {
 
         const pathPerLocale = Object.fromEntries(
           Object.entries(doc.breadcrumbs ?? {}).map(
-            ([key, value]: [ContentLocale, Page['breadcrumbs']]) => {
+            ([key, value]: [keyof SupportedLanguages, Page['breadcrumbs']]) => {
               return [key, value!.at(-1)?.url ?? '/'];
             },
           ),
