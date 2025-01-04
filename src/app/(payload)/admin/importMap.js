@@ -16,8 +16,6 @@ import { PreviewComponent as PreviewComponent_a8a977ebc872c5d5ea7ee689724c0860 }
 import { SlugComponent as SlugComponent_2f7cb6d15a7be4cbd9d669ac9f96d997 } from '@/payload/fields/slug/SlugComponent'
 import { HorizontalRuleFeatureClient as HorizontalRuleFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
 import { BlocksFeatureClient as BlocksFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
-import { LinkToDoc as LinkToDoc_aead06e4cbf6b2620c5c51c9ab283634 } from '@payloadcms/plugin-search/client'
-import { ReindexButton as ReindexButton_aead06e4cbf6b2620c5c51c9ab283634 } from '@payloadcms/plugin-search/client'
 import { RowLabel as RowLabel_6299a1de84778db6942e37f0fe1a78cb } from '@/components/layout/header/payload/row-label.payload.component'
 import { RowLabel as RowLabel_64f2c7d18baa0e669ccba01c7c690ce7 } from '@/components/layout/footer/payload/row-label.payload.component'
 import { default as default_60ce4692d70580e1e7253c93c3543237 } from '@/_old/components/BeforeDashboard'
@@ -42,8 +40,6 @@ export const importMap = {
   "@/payload/fields/slug/SlugComponent#SlugComponent": SlugComponent_2f7cb6d15a7be4cbd9d669ac9f96d997,
   "@payloadcms/richtext-lexical/client#HorizontalRuleFeatureClient": HorizontalRuleFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
   "@payloadcms/richtext-lexical/client#BlocksFeatureClient": BlocksFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
-  "@payloadcms/plugin-search/client#LinkToDoc": LinkToDoc_aead06e4cbf6b2620c5c51c9ab283634,
-  "@payloadcms/plugin-search/client#ReindexButton": ReindexButton_aead06e4cbf6b2620c5c51c9ab283634,
   "@/components/layout/header/payload/row-label.payload.component#RowLabel": RowLabel_6299a1de84778db6942e37f0fe1a78cb,
   "@/components/layout/footer/payload/row-label.payload.component#RowLabel": RowLabel_64f2c7d18baa0e669ccba01c7c690ce7,
   "@/_old/components/BeforeDashboard#default": default_60ce4692d70580e1e7253c93c3543237,

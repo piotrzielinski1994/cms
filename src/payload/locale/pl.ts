@@ -1,6 +1,6 @@
-import { customTranslations as en } from './en';
+import { en } from './en';
 
-export const customTranslations = {
+export const pl = {
   common: {
     content: 'Treść',
     layout: 'Układ',

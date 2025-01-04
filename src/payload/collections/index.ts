@@ -5,9 +5,9 @@ import { Posts } from './posts/posts';
 import { Users } from './users/users';
 
 export const collections = {
-  Categories,
-  Images,
   Pages,
   Posts,
+  Categories,
+  Images,
   Users,
 };

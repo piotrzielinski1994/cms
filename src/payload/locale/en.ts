@@ -1,4 +1,4 @@
-export const customTranslations = {
+export const en = {
   common: {
     content: 'Content',
     layout: 'Layout',
