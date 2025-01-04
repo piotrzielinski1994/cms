@@ -1,7 +1,9 @@
 import { AcceptedLanguages, SupportedLanguages } from '@payloadcms/translations';
 
-if (!process.env.PAYLOAD_SECRET) throw Error;
-if (!process.env.DATABASE_URI) throw Error;
+if (typeof window === 'undefined') {
+  if (!process.env.PAYLOAD_SECRET) throw Error;
+  if (!process.env.DATABASE_URI) throw Error;
+}
 
 const defaultLang: keyof SupportedLanguages = 'en';
 
