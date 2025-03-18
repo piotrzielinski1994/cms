@@ -16,6 +16,7 @@ import { draftMode } from 'next/headers';
 import { getServerSideURL } from '@/_old/utilities/getURL';
 import { TypedLocale } from 'payload';
 import './globals.css';
+import { NextIntlClientProvider } from 'next-intl';
 
 type Args = {
   children: React.ReactNode;
@@ -41,17 +42,19 @@ export default async function RootLayout({ children, params }: Args) {
         <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
       </head>
       <body className={cn('bg-background text-foreground', 'flex flex-col', 'min-h-[100vh]')}>
-        <Providers>
-          <AdminBar
-            adminBarProps={{
-              preview: isEnabled,
-            }}
-          />
+        <NextIntlClientProvider>
+          <Providers>
+            <AdminBar
+              adminBarProps={{
+                preview: isEnabled,
+              }}
+            />
 
-          <Header locale={locale} />
-          <main className="flex-grow grid">{children}</main>
-          <Footer locale={locale} />
-        </Providers>
+            <Header locale={locale} />
+            <main className="flex-grow grid">{children}</main>
+            <Footer locale={locale} />
+          </Providers>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

@@ -6,11 +6,12 @@ import { ThemeSelector } from '@/_old/providers/Theme/ThemeSelector';
 import { cn } from '@/_old/utilities/cn';
 import Container from '@/components/layout/container/container';
 import Section from '@/components/layout/section/section';
-import { Link, usePathname } from '@/payload/locale/routing';
+import { Link } from '@/payload/locale/routing';
 import React, { useEffect, useState } from 'react';
 import { HeaderClientProps } from './header.types';
 import LocaleSwitcher from './scaffold/locale-switcher';
 import HeaderNav from './scaffold/navbar';
+import { usePathname } from 'next/navigation';
 
 export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
   /* Storing the value in a useState to avoid hydration errors */
