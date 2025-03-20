@@ -44,8 +44,6 @@ export default async function Page({ params: paramsPromise }: Args) {
   const path = `/${segments.join('/')}`;
   const { page, pathPerLocale } = await queryPage({ path, locale });
 
-  console.log('@@@ page | ', page);
-
   if (!page) {
     return <PayloadRedirects url={path} />;
   }
