@@ -3,6 +3,7 @@ import { CallToAction } from '@/_old/blocks/CallToAction/config';
 import { Content } from '@/_old/blocks/Content/config';
 import { generatePreviewPath } from '@/_old/utilities/generatePreviewPath';
 import { hero1BlockPayloadConfig } from '@/components/blocks/hero/hero-1/hero-1.payload.config';
+import { imageBlock1BlockPayloadConfig } from '@/components/blocks/image-block/image-block-1/image-block-1.payload.config';
 import { imageBlocksBlockPayloadConfig } from '@/components/blocks/image-block/image-blocks/image-blocks.payload.config';
 import { authenticated } from '@/payload/access/authenticated';
 import { authenticatedOrPublished } from '@/payload/access/authenticatedOrPublished';
@@ -83,11 +84,12 @@ export const Pages: CollectionConfig<'pages'> = {
               blocks: [
                 hero1BlockPayloadConfig,
                 imageBlocksBlockPayloadConfig,
+                imageBlock1BlockPayloadConfig,
                 Archive,
                 CallToAction,
                 Content,
               ],
-              required: false,
+              required: true,
               admin: {
                 initCollapsed: true,
               },

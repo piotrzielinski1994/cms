@@ -1,6 +1,6 @@
 'use client';
 
-import { cn } from '@/_old/utilities/cn';
+import { cn } from '@/_old/utilities/ui';
 import * as SelectPrimitive from '@radix-ui/react-select';
 import { Contrast } from 'lucide-react';
 import { FC, useEffect, useState, useSyncExternalStore } from 'react';

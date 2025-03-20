@@ -1,5 +1,5 @@
 'use client';
-import type { Form as FormType } from '@payloadcms/plugin-form-builder/types';
+import type { FormFieldBlock, Form as FormType } from '@payloadcms/plugin-form-builder/types';
 
 import RichText from '@/_old/components/RichText';
 import { Button } from '@/_old/components/ui/button';
@@ -9,18 +9,7 @@ import React, { useCallback, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import { getClientSideURL } from '@/_old/utilities/getURL';
-import { buildInitialFormState } from './buildInitialFormState';
 import { fields } from './fields';
-
-export type Value = unknown;
-
-export interface Property {
-  [key: string]: Value;
-}
-
-export interface Data {
-  [key: string]: Property | Property[];
-}
 
 export type FormBlockType = {
   blockName?: string;
@@ -43,7 +32,7 @@ export const FormBlock: React.FC<
   } = props;
 
   const formMethods = useForm({
-    defaultValues: buildInitialFormState(formFromProps.fields),
+    defaultValues: formFromProps.fields,
   });
   const {
     control,
@@ -58,7 +47,7 @@ export const FormBlock: React.FC<
   const router = useRouter();
 
   const onSubmit = useCallback(
-    (data: Data) => {
+    (data: FormFieldBlock[]) => {
       let loadingTimerID: ReturnType<typeof setTimeout>;
       const submitForm = async () => {
         setError(undefined);
@@ -142,7 +131,8 @@ export const FormBlock: React.FC<
                 {formFromProps &&
                   formFromProps.fields &&
                   formFromProps.fields?.map((field, index) => {
-                    const Field: React.FC<any> = fields?.[field.blockType];
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    const Field: React.FC<any> = fields?.[field.blockType as keyof typeof fields];
                     if (Field) {
                       return (
                         <div className="mb-6 last:mb-0" key={index}>

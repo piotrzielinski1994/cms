@@ -10,7 +10,7 @@ export const imageBlocksBlockPayloadConfig = {
       name: 'items',
       type: 'blocks',
       blocks: [imageBlock1BlockPayloadConfig],
-      required: false,
+      required: true,
       admin: {
         initCollapsed: true,
       },

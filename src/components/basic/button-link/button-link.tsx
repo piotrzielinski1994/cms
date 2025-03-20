@@ -1,4 +1,4 @@
-import { cn } from '@/_old/utilities/cn';
+import { cn } from '@/_old/utilities/ui';
 import { Link } from '@/payload/locale/routing';
 import { ComponentProps } from 'react';
 

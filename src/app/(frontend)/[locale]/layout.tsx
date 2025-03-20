@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 
-import { cn } from '@/_old/utilities/cn';
+import { cn } from '@/_old/utilities/ui';
 import { GeistMono } from 'geist/font/mono';
 import { GeistSans } from 'geist/font/sans';
 import React from 'react';
@@ -14,9 +14,9 @@ import { Header } from '@/components/layout/header/header';
 import { draftMode } from 'next/headers';
 
 import { getServerSideURL } from '@/_old/utilities/getURL';
+import { NextIntlClientProvider } from 'next-intl';
 import { TypedLocale } from 'payload';
 import './globals.css';
-import { NextIntlClientProvider } from 'next-intl';
 
 type Args = {
   children: React.ReactNode;

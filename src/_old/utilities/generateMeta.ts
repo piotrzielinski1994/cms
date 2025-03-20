@@ -8,19 +8,22 @@ import { mergeOpenGraph } from './mergeOpenGraph';
 const getImageURL = (image?: Media | Config['db']['defaultIDType'] | null) => {
   const serverUrl = getServerSideURL();
 
-  let url = serverUrl + '/website-template-OG.webp';
+  const url = serverUrl + '/website-template-OG.webp';
 
-  if (image && typeof image === 'object' && 'url' in image) {
-    url = serverUrl + image.url;
-  }
+  // TODO: Replaced Media with Image type
+  // if (image && typeof image === 'object' && 'url' in image) {
+  //   const ogUrl = image.sizes?.og?.url;
+
+  //   url = ogUrl ? serverUrl + ogUrl : serverUrl + image.url;
+  // }
 
   return url;
 };
 
 export const generateMeta = async (args: {
-  doc: Partial<Page> | Partial<Post>;
+  doc: Partial<Page> | Partial<Post> | null;
 }): Promise<Metadata> => {
-  const { doc } = args || {};
+  const { doc } = args;
 
   const ogImage = getImageURL(doc?.seo?.image);
 

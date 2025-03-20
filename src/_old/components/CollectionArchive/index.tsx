@@ -1,4 +1,4 @@
-import { cn } from '@/_old/utilities/cn';
+import { cn } from '@/_old/utilities/ui';
 import React from 'react';
 
 import { Card, CardPostData } from '@/_old/components/Card';

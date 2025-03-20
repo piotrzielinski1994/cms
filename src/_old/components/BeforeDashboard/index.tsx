@@ -1,10 +1,10 @@
-import { Banner } from '@payloadcms/ui/elements/Banner';
-import React from 'react';
+import { Banner } from '@payloadcms/ui/elements/Banner'
+import React from 'react'
 
-import { SeedButton } from './SeedButton';
-import './index.scss';
+import { SeedButton } from './SeedButton'
+import './index.scss'
 
-const baseClass = 'before-dashboard';
+const baseClass = 'before-dashboard'
 
 const BeforeDashboard: React.FC = () => {
   return (
@@ -60,7 +60,7 @@ const BeforeDashboard: React.FC = () => {
       </ul>
       {'Pro Tip: This block is a '}
       <a
-        href="https://payloadcms.com/docs/admin/components#base-component-overrides"
+        href="https://payloadcms.com/docs/admin/custom-components/overview#base-component-overrides"
         rel="noopener noreferrer"
         target="_blank"
       >
@@ -68,7 +68,7 @@ const BeforeDashboard: React.FC = () => {
       </a>
       , you can remove it at any time by updating your <strong>payload.config</strong>.
     </div>
-  );
-};
+  )
+}
 
-export default BeforeDashboard;
+export default BeforeDashboard

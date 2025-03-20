@@ -1,6 +1,6 @@
 'use client';
 
-import { cn } from '@/_old/utilities/cn';
+import { cn } from '@/_old/utilities/ui';
 import { contentLocale } from '@/payload/locale';
 import { useRouter } from '@/payload/locale/routing';
 import * as SelectPrimitive from '@radix-ui/react-select';

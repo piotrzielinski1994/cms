@@ -1,4 +1,4 @@
-import { cn } from '@/_old/utilities/cn';
+import { cn } from '@/_old/utilities/ui';
 import ButtonLink from '@/components/basic/button-link/button-link';
 import Container from '@/components/layout/container/container';
 import Section from '@/components/layout/section/section';

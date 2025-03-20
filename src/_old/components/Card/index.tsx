@@ -1,5 +1,5 @@
 'use client';
-import { cn } from '@/_old/utilities/cn';
+import { cn } from '@/_old/utilities/ui';
 import useClickableCard from '@/_old/utilities/useClickableCard';
 import Link from 'next/link';
 import React, { Fragment } from 'react';
@@ -21,8 +21,8 @@ export const Card: React.FC<{
   const { card, link } = useClickableCard({});
   const { className, doc, relationTo, showCategories, title: titleFromProps } = props;
 
-  const { slug, categories, seo: meta, title } = doc || {};
-  const { description, image: metaImage } = meta || {};
+  const { slug, categories, seo, title } = doc || {};
+  const { description, image: metaImage } = seo || {};
 
   const hasCategories = categories && Array.isArray(categories) && categories.length > 0;
   const titleToUse = titleFromProps || title;

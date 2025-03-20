@@ -1,4 +1,4 @@
-import { cn } from '@/_old/utilities/cn';
+import { cn } from '@/_old/utilities/ui';
 import ButtonLink from '@/components/basic/button-link/button-link';
 import Image from '@/components/basic/image/image';
 import * as PayloadTypes from '@/payload/payload.types';

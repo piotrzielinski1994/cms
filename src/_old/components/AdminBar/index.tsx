@@ -1,17 +1,15 @@
 'use client';
 
-import type { PayloadAdminBarProps } from 'payload-admin-bar';
+import type { PayloadAdminBarProps, PayloadMeUser } from '@payloadcms/admin-bar';
 
-import { cn } from '@/_old/utilities/cn';
+import { cn } from '@/_old/utilities/ui';
+import { PayloadAdminBar } from '@payloadcms/admin-bar';
 import { useRouter, useSelectedLayoutSegments } from 'next/navigation';
-import { PayloadAdminBar } from 'payload-admin-bar';
 import React, { useState } from 'react';
 
 import './index.scss';
 
 import { getClientSideURL } from '@/_old/utilities/getURL';
-import Container from '@/components/layout/container/container';
-import Section from '@/components/layout/section/section';
 
 const baseClass = 'admin-bar';
 
@@ -38,22 +36,23 @@ export const AdminBar: React.FC<{
   const { adminBarProps } = props || {};
   const segments = useSelectedLayoutSegments();
   const [show, setShow] = useState(false);
-  const collection = collectionLabels?.[segments?.[1]] ? segments?.[1] : 'pages';
+  const collection = (
+    collectionLabels[segments?.[1] as keyof typeof collectionLabels] ? segments[1] : 'pages'
+  ) as keyof typeof collectionLabels;
   const router = useRouter();
 
-  const onAuthChange = React.useCallback((user) => {
-    setShow(user?.id);
+  const onAuthChange = React.useCallback((user: PayloadMeUser) => {
+    setShow(Boolean(user?.id));
   }, []);
 
   return (
-    <Section
-      as="div"
+    <div
       className={cn(baseClass, 'py-2 bg-black text-white', {
         block: show,
         hidden: !show,
       })}
     >
-      <Container>
+      <div className="container">
         <PayloadAdminBar
           {...adminBarProps}
           className="py-2 text-white"
@@ -63,7 +62,7 @@ export const AdminBar: React.FC<{
             user: 'text-white',
           }}
           cmsURL={getClientSideURL()}
-          collection={collection}
+          collectionSlug={collection}
           collectionLabels={{
             plural: collectionLabels[collection]?.plural || 'Pages',
             singular: collectionLabels[collection]?.singular || 'Page',
@@ -83,7 +82,7 @@ export const AdminBar: React.FC<{
             zIndex: 'unset',
           }}
         />
-      </Container>
-    </Section>
+      </div>
+    </div>
   );
 };

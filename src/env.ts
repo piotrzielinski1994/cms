@@ -8,8 +8,8 @@ if (typeof window === 'undefined') {
 const defaultLang: keyof SupportedLanguages = 'en';
 
 export const serverEnv = {
-  payloadSecret: process.env.PAYLOAD_SECRET,
-  dbUri: process.env.DATABASE_URI,
+  payloadSecret: process.env.PAYLOAD_SECRET as string,
+  dbUri: process.env.DATABASE_URI as string,
   publicUrl: process.env.NEXT_PUBLIC_SERVER_URL,
   feature: {
     locale: {

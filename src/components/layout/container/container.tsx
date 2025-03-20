@@ -1,4 +1,4 @@
-import { cn } from '@/_old/utilities/cn';
+import { cn } from '@/_old/utilities/ui';
 import { ContainerProps } from './container.types';
 
 const Container = ({ as: HtmlTag = 'div', children, className, ...rest }: ContainerProps) => {

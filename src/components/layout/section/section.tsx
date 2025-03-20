@@ -1,4 +1,4 @@
-import { cn } from '@/_old/utilities/cn';
+import { cn } from '@/_old/utilities/ui';
 import { SectionProps } from './section.types';
 
 const Section = ({ as: HtmlTag = 'section', children, className, ...rest }: SectionProps) => {

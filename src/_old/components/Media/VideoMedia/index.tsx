@@ -1,6 +1,6 @@
 'use client';
 
-import { cn } from '@/_old/utilities/cn';
+import { cn } from '@/_old/utilities/ui';
 import React, { useEffect, useRef } from 'react';
 
 import type { Props as MediaProps } from '../types';

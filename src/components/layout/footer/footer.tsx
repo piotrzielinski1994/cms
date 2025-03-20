@@ -1,6 +1,6 @@
 import { Logo } from '@/_old/components/Logo/Logo';
-import { cn } from '@/_old/utilities/cn';
 import { getCachedGlobal } from '@/_old/utilities/getGlobals';
+import { cn } from '@/_old/utilities/ui';
 import Container from '@/components/layout/container/container';
 import Section from '@/components/layout/section/section';
 import { Link } from '@/payload/locale/routing';
