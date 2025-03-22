@@ -27,6 +27,6 @@ export const adminLocale = {
 };
 
 export const contentLocale = {
-  list: clientEnv.feature.locale.admin.list,
-  default: clientEnv.feature.locale.admin.default,
+  list: clientEnv.feature.locale.content.list,
+  default: clientEnv.feature.locale.content.default,
 };

@@ -182,17 +182,17 @@ export interface Page {
 export interface Hero1Block {
   heading?: string | null;
   subheading: string;
-  cta: {
-    label: string;
-    reference:
-      | {
+  cta?: {
+    label?: string | null;
+    reference?:
+      | ({
           relationTo: 'pages';
           value: string | Page;
-        }
-      | {
+        } | null)
+      | ({
           relationTo: 'posts';
           value: string | Post;
-        };
+        } | null);
     selector?: string | null;
   };
   id?: string | null;

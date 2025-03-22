@@ -22,11 +22,14 @@ export const hero1BlockPayloadConfig = {
       name: 'cta',
       type: 'group',
       label: ({ t }: { t: AdminTranslations }) => t('fields:cta'),
+      admin: {
+        condition: () => false, // TODO: This hides the field unless explicitly enabled
+      },
       fields: [
         {
           name: 'label',
           type: 'text',
-          required: true,
+          // TODO: required: true,
           localized: true,
           label: ({ t }: { t: AdminTranslations }) => t('fields:label'),
         },
@@ -35,7 +38,7 @@ export const hero1BlockPayloadConfig = {
           type: 'relationship',
           label: ({ t }: { t: AdminTranslations }) => t('fields:documentToLinkTo'),
           relationTo: ['pages', 'posts'],
-          required: true,
+          // TODO: required: true,
         },
         {
           name: 'selector',
