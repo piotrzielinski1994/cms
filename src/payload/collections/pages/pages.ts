@@ -21,7 +21,7 @@ import {
 } from '@payloadcms/plugin-seo/fields';
 import { SupportedLanguages } from '@payloadcms/translations';
 import type { CollectionConfig } from 'payload';
-import { revalidateDelete, revalidatePage } from './hooks/revalidatePage';
+import { revalidatePage } from './hooks/revalidatePage';
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
@@ -48,8 +48,10 @@ export const Pages: CollectionConfig<'pages'> = {
     defaultColumns: ['title', 'slug', '_status', 'updatedAt'],
     livePreview: {
       url: ({ data, req }) => {
+        const slug = typeof data?.slug === 'string' ? data.slug : '';
         const path = generatePreviewPath({
-          slug: typeof data?.slug === 'string' ? data.slug : '',
+          slug,
+          path: `/${req.locale}${data.path}`.replace(/[^/]+$/, slug),
           collection: 'pages',
           req,
         });
@@ -57,12 +59,15 @@ export const Pages: CollectionConfig<'pages'> = {
         return path;
       },
     },
-    preview: (data, { req }) =>
-      generatePreviewPath({
-        slug: typeof data?.slug === 'string' ? data.slug : '',
+    preview: (data, { req }) => {
+      const slug = typeof data?.slug === 'string' ? data.slug : '';
+      return generatePreviewPath({
+        slug,
+        path: `/${req.locale}${data.path}`.replace(/[^/]+$/, slug),
         collection: 'pages',
         req,
-      }),
+      });
+    },
     useAsTitle: 'title',
   },
   fields: [
@@ -169,6 +174,24 @@ export const Pages: CollectionConfig<'pages'> = {
         hidden: false,
         position: 'sidebar',
         readOnly: true,
+        components: {
+          Field: {
+            path: '@/payload/fields/slug/SlugComponent#SlugComponent',
+            clientProps: {
+              fieldToUse: 'slug',
+              checkboxFieldPath: 'pathLock',
+            },
+          },
+        },
+      },
+    },
+    {
+      name: 'pathLock',
+      type: 'checkbox',
+      defaultValue: true,
+      admin: {
+        hidden: true,
+        position: 'sidebar',
       },
     },
     createParentField('pages', {
@@ -194,7 +217,6 @@ export const Pages: CollectionConfig<'pages'> = {
         doc.path = pathPerLocale[req.locale ?? 'all'] ?? pathPerLocale;
       },
     ],
-    beforeDelete: [revalidateDelete],
   },
   versions: {
     drafts: {

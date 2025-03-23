@@ -17,9 +17,11 @@ export async function GET(
   const payload = await getPayload({ config: configPromise });
   const token = req.cookies.get(payloadToken)?.value;
   const { searchParams } = new URL(req.url);
-  const path = searchParams.get('path');
   const collection = searchParams.get('collection') as CollectionSlug;
   const slug = searchParams.get('slug');
+  const path = searchParams.get('path')?.replace(/[^/]+$/, slug ?? '');
+
+  console.log('@@@ path | ', path);
 
   const previewSecret = searchParams.get('previewSecret');
 

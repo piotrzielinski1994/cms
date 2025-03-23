@@ -35,21 +35,17 @@ export const SlugComponent: React.FC<SlugComponentProps> = ({
   });
 
   // The value of the field we're listening to for the slug
-  const targetFieldValue = useFormFields(([fields]) => {
-    return fields[fieldToUse]?.value as string;
+  const [targetFieldValue, prev] = useFormFields(([fields]) => {
+    return [fields[fieldToUse]?.value as string, fields[path]?.value as string];
   });
 
   useEffect(() => {
-    if (checkboxValue) {
-      if (targetFieldValue) {
-        const formattedSlug = formatSlug(targetFieldValue);
-
-        if (value !== formattedSlug) setValue(formattedSlug);
-      } else {
-        if (value !== '') setValue('');
-      }
-    }
-  }, [targetFieldValue, checkboxValue, setValue, value]);
+    if (!checkboxValue) return;
+    if (!targetFieldValue) return setValue('');
+    if (path !== 'path') return setValue(formatSlug(targetFieldValue));
+    if (prev.split('/').at(-1) === targetFieldValue) return;
+    setValue(prev.replace(/[^/]+$/, targetFieldValue));
+  }, [targetFieldValue, checkboxValue, setValue, value, path, prev]);
 
   const handleLock = useCallback(
     (e) => {

@@ -7,13 +7,17 @@ type Overrides = {
   checkboxOverrides?: Partial<CheckboxField>;
 };
 
-type Slug = (fieldToUse?: string, overrides?: Overrides) => [TextField, CheckboxField];
+type Slug = (
+  fieldToUse?: string,
+  overrides?: Overrides,
+  name?: string,
+) => [TextField, CheckboxField];
 
-export const slugField: Slug = (fieldToUse = 'title', overrides = {}) => {
+export const slugField: Slug = (fieldToUse = 'title', overrides = {}, name = 'slug') => {
   const { slugOverrides, checkboxOverrides } = overrides;
 
   const checkBoxField: CheckboxField = {
-    name: 'slugLock',
+    name: `${name}Lock`,
     type: 'checkbox',
     defaultValue: true,
     admin: {
@@ -26,7 +30,7 @@ export const slugField: Slug = (fieldToUse = 'title', overrides = {}) => {
   // Expect ts error here because of typescript mismatching Partial<TextField> with TextField
   // @ts-expect-error
   const slugField: TextField = {
-    name: 'slug',
+    name,
     type: 'text',
     unique: true,
     localized: true,

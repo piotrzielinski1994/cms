@@ -19,7 +19,7 @@ export const serverEnv = {
           defaultLang,
         ]) as (keyof SupportedLanguages)[],
         default: (process.env.NEXT_PUBLIC_FEATURE_DEFAULT_ADMIN_LOCALE ??
-          defaultLang) as keyof AcceptedLanguages,
+          defaultLang) as AcceptedLanguages,
       },
       content: {
         list: (process.env.NEXT_PUBLIC_FEATURE_CONTENT_LOCALES?.split(',') ?? [

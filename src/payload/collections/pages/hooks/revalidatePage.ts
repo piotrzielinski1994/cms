@@ -11,7 +11,7 @@ export const revalidatePage: CollectionAfterChangeHook<Page> = ({
 }) => {
   if (!context.disableRevalidate) {
     if (doc._status === 'published') {
-      const path = doc.slug === '' ? '/' : `/${doc.slug}`;
+      const path = doc.path ?? (doc.slug === '' ? '/' : `/${doc.slug}`);
 
       payload.logger.info(`Revalidating page at path: ${path}`);
 
