@@ -4,9 +4,8 @@ import Image from '@/components/basic/image/image';
 import * as PayloadTypes from '@/payload/payload.types';
 import { ImageBlock1Props } from './image-block-1.types';
 
-const ImageBlock1 = ({ isReversed, media, heading, subheading, cta }: ImageBlock1Props) => {
+const ImageBlock1 = ({ isReversed, media, heading, subheading, buttons }: ImageBlock1Props) => {
   // @ts-expect-error
-  const path = cta?.reference?.value.path;
   const asd = media as PayloadTypes.Image;
   return (
     <div className="border-2 border-gray-600 grid md:grid-cols-2">
@@ -18,11 +17,18 @@ const ImageBlock1 = ({ isReversed, media, heading, subheading, cta }: ImageBlock
       >
         <h3 className="text-4xl font-semibold">{heading}</h3>
         {subheading && <p>{subheading}</p>}
-        {cta && (
-          <ButtonLink href={`${path}${cta.selector ? '#' + cta.selector : ''}`}>
-            {cta.label}
-          </ButtonLink>
-        )}
+        {buttons?.map((button) => {
+          // @ts-expect-error
+          const path = button?.reference?.value.path;
+          return (
+            <ButtonLink
+              key={button.label}
+              href={`${path}${button.selector ? '#' + button.selector : ''}`}
+            >
+              {button.label}
+            </ButtonLink>
+          );
+        })}
       </div>
       <div className={cn('border-2 border-gray-600', isReversed ? 'md:order-1' : 'md:order-2')}>
         <Image {...asd} />

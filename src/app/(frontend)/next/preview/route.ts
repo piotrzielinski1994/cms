@@ -20,9 +20,6 @@ export async function GET(
   const collection = searchParams.get('collection') as CollectionSlug;
   const slug = searchParams.get('slug');
   const path = searchParams.get('path')?.replace(/[^/]+$/, slug ?? '');
-
-  console.log('@@@ path | ', path);
-
   const previewSecret = searchParams.get('previewSecret');
 
   if (previewSecret) {

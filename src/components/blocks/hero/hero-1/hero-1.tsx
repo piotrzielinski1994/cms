@@ -11,7 +11,6 @@ const Hero1 = ({ heading, subheading, buttons }: Hero1Props) => {
         <h1 className={cn('text-6xl font-semibold')}>{heading}</h1>
         {subheading && <p>{subheading}</p>}
         {buttons?.map((button) => {
-          console.log('@@@ button | ', button);
           // @ts-expect-error
           const path = button?.reference?.value.path;
           return (
@@ -23,11 +22,6 @@ const Hero1 = ({ heading, subheading, buttons }: Hero1Props) => {
             </ButtonLink>
           );
         })}
-        {/* {cta && (
-          <ButtonLink href={`${path}${cta.selector ? '#' + cta.selector : ''}`}>
-            {cta.label}
-          </ButtonLink>
-        )} */}
       </Container>
     </Section>
   );

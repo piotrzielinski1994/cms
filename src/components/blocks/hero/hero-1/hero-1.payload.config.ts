@@ -47,32 +47,5 @@ export const hero1BlockPayloadConfig = {
         },
       ],
     },
-    // {
-    //   name: 'cta',
-    //   type: 'group',
-    //   label: ({ t }: { t: AdminTranslations }) => t('fields:cta'),
-    //   defaultValue: undefined,
-    //   fields: [
-    //     {
-    //       name: 'label',
-    //       type: 'text',
-    //       // TODO: required: true,
-    //       localized: true,
-    //       label: ({ t }: { t: AdminTranslations }) => t('fields:label'),
-    //     },
-    //     {
-    //       name: 'reference',
-    //       type: 'relationship',
-    //       label: ({ t }: { t: AdminTranslations }) => t('fields:documentToLinkTo'),
-    //       relationTo: ['pages', 'posts'],
-    //       // TODO: required: true,
-    //     },
-    //     {
-    //       name: 'selector',
-    //       type: 'text',
-    //       label: ({ t }: { t: AdminTranslations }) => t('fields:selector'),
-    //     },
-    //   ],
-    // },
   ],
 } satisfies Block;

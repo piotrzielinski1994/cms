@@ -324,19 +324,22 @@ export interface ImageBlock1Block {
   isReversed?: boolean | null;
   heading?: string | null;
   subheading: string;
-  cta: {
-    label: string;
-    reference:
-      | {
-          relationTo: 'pages';
-          value: string | Page;
-        }
-      | {
-          relationTo: 'posts';
-          value: string | Post;
-        };
-    selector?: string | null;
-  };
+  buttons?:
+    | {
+        label: string;
+        reference:
+          | {
+              relationTo: 'pages';
+              value: string | Page;
+            }
+          | {
+              relationTo: 'posts';
+              value: string | Post;
+            };
+        selector?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'image-block-1';
@@ -857,12 +860,13 @@ export interface ImageBlock1BlockSelect<T extends boolean = true> {
   isReversed?: T;
   heading?: T;
   subheading?: T;
-  cta?:
+  buttons?:
     | T
     | {
         label?: T;
         reference?: T;
         selector?: T;
+        id?: T;
       };
   id?: T;
   blockName?: T;

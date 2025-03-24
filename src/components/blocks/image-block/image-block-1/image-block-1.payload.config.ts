@@ -31,9 +31,12 @@ export const imageBlock1BlockPayloadConfig = {
       label: ({ t }: { t: AdminTranslations }) => t('fields:subheading'),
     },
     {
-      name: 'cta',
-      type: 'group',
-      label: ({ t }: { t: AdminTranslations }) => t('fields:cta'),
+      name: 'buttons',
+      type: 'array',
+      label: ({ t }: { t: AdminTranslations }) => t('fields:buttons'),
+      admin: {
+        initCollapsed: true,
+      },
       fields: [
         {
           name: 'label',
