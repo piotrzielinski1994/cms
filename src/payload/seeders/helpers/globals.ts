@@ -5,6 +5,7 @@ import { SelectFromGlobalSlug } from 'node_modules/payload/dist/globals/config/t
 import { Options } from 'node_modules/payload/dist/globals/operations/local/update';
 import { DataFromGlobalSlug, GlobalSlug, Payload } from 'payload';
 
+/* @ts-expect-error TODO: Fix */
 type GlobalToCreate<T extends GlobalSlug> = Options<T, SelectFromGlobalSlug<T>>;
 
 export const createGlobal = async <T extends GlobalSlug>(
