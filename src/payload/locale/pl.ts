@@ -45,7 +45,7 @@ export const pl = {
     navItem: 'Element nawigacji',
     internalLink: 'Wewnętrzny link',
     documentToLinkTo: 'Dokument do podlinkowania',
-    cta: 'CTA',
+    buttons: 'Przyciski',
     selector: 'Selektor',
     isReversed: 'Odwrócony układ',
     subpages: 'Podstrony',

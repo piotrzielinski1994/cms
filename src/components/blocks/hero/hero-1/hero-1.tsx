@@ -4,26 +4,30 @@ import Container from '@/components/layout/container/container';
 import Section from '@/components/layout/section/section';
 import { Hero1Props } from './hero-1.types';
 
-const Hero1 = ({ heading, subheading, cta }: Hero1Props) => {
-  // @ts-expect-error
-  const path = cta?.reference?.value.path;
-
+const Hero1 = ({ heading, subheading, buttons }: Hero1Props) => {
   return (
     <Section>
-      <Container
-        className={cn(
-          'border-2 border-gray-600',
-          'py-10',
-          'justify-items-start content-center gap-4',
-        )}
-      >
+      <Container className={cn('py-10', 'justify-items-start content-center gap-4', 'bg-gray-100')}>
         <h1 className={cn('text-6xl font-semibold')}>{heading}</h1>
         {subheading && <p>{subheading}</p>}
-        {cta && (
+        {buttons?.map((button) => {
+          console.log('@@@ button | ', button);
+          // @ts-expect-error
+          const path = button?.reference?.value.path;
+          return (
+            <ButtonLink
+              key={button.label}
+              href={`${path}${button.selector ? '#' + button.selector : ''}`}
+            >
+              {button.label}
+            </ButtonLink>
+          );
+        })}
+        {/* {cta && (
           <ButtonLink href={`${path}${cta.selector ? '#' + cta.selector : ''}`}>
             {cta.label}
           </ButtonLink>
-        )}
+        )} */}
       </Container>
     </Section>
   );

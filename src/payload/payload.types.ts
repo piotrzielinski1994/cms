@@ -183,19 +183,22 @@ export interface Page {
 export interface Hero1Block {
   heading?: string | null;
   subheading: string;
-  cta?: {
-    label?: string | null;
-    reference?:
-      | ({
-          relationTo: 'pages';
-          value: string | Page;
-        } | null)
-      | ({
-          relationTo: 'posts';
-          value: string | Post;
-        } | null);
-    selector?: string | null;
-  };
+  buttons?:
+    | {
+        label: string;
+        reference:
+          | {
+              relationTo: 'pages';
+              value: string | Page;
+            }
+          | {
+              relationTo: 'posts';
+              value: string | Post;
+            };
+        selector?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'hero-1';
@@ -821,12 +824,13 @@ export interface PagesSelect<T extends boolean = true> {
 export interface Hero1BlockSelect<T extends boolean = true> {
   heading?: T;
   subheading?: T;
-  cta?:
+  buttons?:
     | T
     | {
         label?: T;
         reference?: T;
         selector?: T;
+        id?: T;
       };
   id?: T;
   blockName?: T;

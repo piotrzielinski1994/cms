@@ -19,17 +19,17 @@ export const hero1BlockPayloadConfig = {
       label: ({ t }: { t: AdminTranslations }) => t('fields:subheading'),
     },
     {
-      name: 'cta',
-      type: 'group',
-      label: ({ t }: { t: AdminTranslations }) => t('fields:cta'),
+      name: 'buttons',
+      type: 'array',
+      label: ({ t }: { t: AdminTranslations }) => t('fields:buttons'),
       admin: {
-        condition: () => false, // TODO: This hides the field unless explicitly enabled
+        initCollapsed: true,
       },
       fields: [
         {
           name: 'label',
           type: 'text',
-          // TODO: required: true,
+          required: true,
           localized: true,
           label: ({ t }: { t: AdminTranslations }) => t('fields:label'),
         },
@@ -38,7 +38,7 @@ export const hero1BlockPayloadConfig = {
           type: 'relationship',
           label: ({ t }: { t: AdminTranslations }) => t('fields:documentToLinkTo'),
           relationTo: ['pages', 'posts'],
-          // TODO: required: true,
+          required: true,
         },
         {
           name: 'selector',
@@ -47,5 +47,32 @@ export const hero1BlockPayloadConfig = {
         },
       ],
     },
+    // {
+    //   name: 'cta',
+    //   type: 'group',
+    //   label: ({ t }: { t: AdminTranslations }) => t('fields:cta'),
+    //   defaultValue: undefined,
+    //   fields: [
+    //     {
+    //       name: 'label',
+    //       type: 'text',
+    //       // TODO: required: true,
+    //       localized: true,
+    //       label: ({ t }: { t: AdminTranslations }) => t('fields:label'),
+    //     },
+    //     {
+    //       name: 'reference',
+    //       type: 'relationship',
+    //       label: ({ t }: { t: AdminTranslations }) => t('fields:documentToLinkTo'),
+    //       relationTo: ['pages', 'posts'],
+    //       // TODO: required: true,
+    //     },
+    //     {
+    //       name: 'selector',
+    //       type: 'text',
+    //       label: ({ t }: { t: AdminTranslations }) => t('fields:selector'),
+    //     },
+    //   ],
+    // },
   ],
 } satisfies Block;

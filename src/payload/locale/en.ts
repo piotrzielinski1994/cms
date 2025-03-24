@@ -43,7 +43,7 @@ export const en = {
     navItem: 'Navigation item',
     internalLink: 'Internal link',
     documentToLinkTo: 'Document to link to',
-    cta: 'CTA',
+    buttons: 'Buttons',
     selector: 'Selector',
     isReversed: 'Reversed layout',
     subpages: 'Subpages',
