@@ -2,27 +2,21 @@ import { Payload } from 'payload';
 import { createPage } from './helpers/pages';
 import { ImageBlocksBlock } from '../payload.types';
 import placeholderPng from './placeholder.png';
-import { serverEnv } from '@/env';
+import { createImage } from './helpers/files';
 
 export const seedPages = async (payload: Payload) => {
-  const response = await fetch(`${serverEnv.publicUrl}${placeholderPng.src}`);
-  console.log('@@@ url | ', `${serverEnv.publicUrl}${placeholderPng.src}`);
-  const arrayBuffer = await response.arrayBuffer();
-  const data = Buffer.from(arrayBuffer);
-  const file = {
-    name: placeholderPng.src.split('/').pop() || `file-${Date.now()}`,
-    data,
-    mimetype: `image/${placeholderPng.src.split('.').pop()}`,
-    size: data.byteLength,
-  };
-
-  const image = await payload.create({
-    collection: 'images',
-    data: {
-      alt: 'Alt ',
+  const image = await createImage(
+    placeholderPng,
+    {
+      alt: 'Alt EN',
     },
-    file: file,
-  });
+    (image) => ({
+      pl: {
+        id: image.id,
+        alt: 'Alt PL',
+      },
+    }),
+  );
   const homePage = await createPage(
     payload,
     {
@@ -76,8 +70,8 @@ export const seedPages = async (payload: Payload) => {
                 id: (page.sections[1] as ImageBlocksBlock).items[0].id,
                 blockType: 'image-block-1',
                 media: '',
-                heading: 'Image Block 1 Heading',
-                subheading: 'Image Block 1 Subheading',
+                heading: 'Blok Zdjęciowy 1 Nagłówek',
+                subheading: 'Blok Zdjęciowy 1 Podnagłówek',
               },
             ],
           },

@@ -29,6 +29,7 @@ export const Images: CollectionConfig<'images'> = {
       name: 'alt',
       type: 'text',
       required: true,
+      localized: true,
     },
   ],
   upload: {
