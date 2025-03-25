@@ -20,6 +20,7 @@ import { RowLabel as RowLabel_6299a1de84778db6942e37f0fe1a78cb } from '@/compone
 import { RowLabel as RowLabel_64f2c7d18baa0e669ccba01c7c690ce7 } from '@/components/layout/footer/payload/row-label.payload.component'
 import { default as default_60ce4692d70580e1e7253c93c3543237 } from '@/_old/components/BeforeDashboard'
 import { default as default_74ce999f04185d2634eee38f0d4c4a15 } from '@/_old/components/BeforeLogin'
+import { VercelBlobClientUploadHandler as VercelBlobClientUploadHandler_16c82c5e25f430251a3e3ba57219ff4e } from '@payloadcms/storage-vercel-blob/client'
 
 export const importMap = {
   "@payloadcms/richtext-lexical/rsc#RscEntryLexicalCell": RscEntryLexicalCell_44fe37237e0ebf4470c9990d8cb7b07e,
@@ -43,5 +44,6 @@ export const importMap = {
   "@/components/layout/header/payload/row-label.payload.component#RowLabel": RowLabel_6299a1de84778db6942e37f0fe1a78cb,
   "@/components/layout/footer/payload/row-label.payload.component#RowLabel": RowLabel_64f2c7d18baa0e669ccba01c7c690ce7,
   "@/_old/components/BeforeDashboard#default": default_60ce4692d70580e1e7253c93c3543237,
-  "@/_old/components/BeforeLogin#default": default_74ce999f04185d2634eee38f0d4c4a15
+  "@/_old/components/BeforeLogin#default": default_74ce999f04185d2634eee38f0d4c4a15,
+  "@payloadcms/storage-vercel-blob/client#VercelBlobClientUploadHandler": VercelBlobClientUploadHandler_16c82c5e25f430251a3e3ba57219ff4e
 }

@@ -69,7 +69,7 @@ export default buildConfig({
   collections: Object.values(collections),
   cors: [getServerSideURL()].filter(Boolean),
   globals: [headerPayloadConfig, Footer],
-  plugins: Object.values(plugins),
+  plugins: Object.values(plugins).filter((it) => it !== undefined),
   secret: serverEnv.payloadSecret,
   sharp,
   typescript: {

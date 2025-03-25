@@ -30,6 +30,9 @@ export const serverEnv = {
       },
     },
   },
+  vercel: {
+    blobStorageToken: process.env.BLOB_READ_WRITE_TOKEN ?? '',
+  },
 };
 
 export const clientEnv = {
