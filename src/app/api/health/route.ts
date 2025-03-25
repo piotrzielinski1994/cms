@@ -4,5 +4,5 @@ export const revalidate = 0;
 
 export async function GET() {
   await fetch(`https://${process.env.VERCEL_URL}/admin`);
-  return NextResponse.json({ ok: true, url: process.env.VERCEL_URL });
+  return NextResponse.json({ ok: true });
 }
