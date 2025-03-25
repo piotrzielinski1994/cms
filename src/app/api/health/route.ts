@@ -3,5 +3,6 @@ import { NextResponse } from 'next/server';
 export const revalidate = 0;
 
 export async function GET() {
-  return NextResponse.json({ ok: true });
+  await fetch(`https://${process.env.VERCEL_URL}/admin`);
+  return NextResponse.json({ ok: true, url: process.env.VERCEL_URL });
 }
