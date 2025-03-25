@@ -1,4 +1,3 @@
-import { serverEnv } from '@/env';
 import cloud from './cloud';
 import formBuilder from './form-builder';
 import nestedDocs from './nested-docs';
@@ -12,7 +11,7 @@ const plugins = {
   redirects,
   seo,
   formBuilder,
-  vercelStorage: serverEnv.vercel.blobStorageToken ? vercelStorage : undefined,
+  vercelStorage,
 };
 
 export { plugins };
