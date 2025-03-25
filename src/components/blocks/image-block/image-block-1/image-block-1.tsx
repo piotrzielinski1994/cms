@@ -7,7 +7,7 @@ import { ImageBlock1Props } from './image-block-1.types';
 const ImageBlock1 = ({ isReversed, image, heading, subheading, buttons }: ImageBlock1Props) => {
   const asd = image as PayloadTypes.Image;
   return (
-    <div className="border-2 border-gray-600 grid md:grid-cols-2">
+    <div className="grid md:grid-cols-2">
       <div
         className={cn(
           'grid justify-items-start content-center gap-4',

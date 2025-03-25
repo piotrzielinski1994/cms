@@ -43,6 +43,13 @@ export const seedPages = async (payload: Payload) => {
               heading: 'Image Block 1 Heading',
               subheading: 'Image Block 1 Subheading',
             },
+            {
+              blockType: 'image-block-1',
+              isReversed: true,
+              image: image.id,
+              heading: 'Image Block 1 Heading',
+              subheading: 'Image Block 1 Subheading',
+            },
           ],
         },
       ],
@@ -69,7 +76,12 @@ export const seedPages = async (payload: Payload) => {
               {
                 id: (page.sections[1] as ImageBlocksBlock).items[0].id,
                 blockType: 'image-block-1',
-                media: '',
+                heading: 'Blok Zdjęciowy 1 Nagłówek',
+                subheading: 'Blok Zdjęciowy 1 Podnagłówek',
+              },
+              {
+                id: (page.sections[1] as ImageBlocksBlock).items[1].id,
+                blockType: 'image-block-1',
                 heading: 'Blok Zdjęciowy 1 Nagłówek',
                 subheading: 'Blok Zdjęciowy 1 Podnagłówek',
               },

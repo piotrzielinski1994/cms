@@ -6,7 +6,7 @@ import { ImageBlocksProps } from './image-blocks.types';
 const ImageBlocks = (props: ImageBlocksProps) => {
   return (
     <Section>
-      <Container className="border-2 border-gray-600">
+      <Container className="bg-gray-100 grid gap-8">
         <RenderBlocks blocks={props.items ?? []} />
       </Container>
     </Section>
