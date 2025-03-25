@@ -6,7 +6,7 @@ export const imageBlock1BlockPayloadConfig = {
   interfaceName: 'ImageBlock1Block',
   fields: [
     {
-      name: 'media',
+      name: 'image',
       type: 'upload',
       relationTo: 'images',
       required: true,

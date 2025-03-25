@@ -320,7 +320,7 @@ export interface ImageBlocksBlock {
  * via the `definition` "ImageBlock1Block".
  */
 export interface ImageBlock1Block {
-  media: string | Image;
+  image: string | Image;
   isReversed?: boolean | null;
   heading?: string | null;
   subheading: string;
@@ -856,7 +856,7 @@ export interface ImageBlocksBlockSelect<T extends boolean = true> {
  * via the `definition` "ImageBlock1Block_select".
  */
 export interface ImageBlock1BlockSelect<T extends boolean = true> {
-  media?: T;
+  image?: T;
   isReversed?: T;
   heading?: T;
   subheading?: T;
