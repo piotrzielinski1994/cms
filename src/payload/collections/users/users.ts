@@ -19,7 +19,6 @@ export const Users: CollectionConfig = {
     defaultColumns: ['name', 'email'],
     useAsTitle: 'name',
   },
-  // auth: true,
   auth: {
     // This property controls how deeply "populated"
     // relationship docs are that are stored in the req.user.
@@ -40,11 +39,11 @@ export const Users: CollectionConfig = {
       label: ({ t }: { t: AdminTranslations }) => t('fields:role:plural'),
       hasMany: true,
       defaultValue: ['user'],
-      access: {
-        create: access.admin,
-        read: access.admin,
-        update: access.admin,
-      },
+      // access: {
+      //   create: access.admin,
+      //   read: access.admin,
+      //   update: access.admin,
+      // },
       options: [
         {
           label: ({ t }: { t: AdminTranslations }) => t('enums:role:user'),
