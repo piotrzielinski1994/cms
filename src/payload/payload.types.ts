@@ -310,6 +310,8 @@ export interface User {
  * via the `definition` "ImageBlocksBlock".
  */
 export interface ImageBlocksBlock {
+  heading?: string | null;
+  subheading?: string | null;
   items: ImageBlock1Block[];
   id?: string | null;
   blockName?: string | null;
@@ -843,6 +845,8 @@ export interface Hero1BlockSelect<T extends boolean = true> {
  * via the `definition` "ImageBlocksBlock_select".
  */
 export interface ImageBlocksBlockSelect<T extends boolean = true> {
+  heading?: T;
+  subheading?: T;
   items?:
     | T
     | {

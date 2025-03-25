@@ -8,12 +8,12 @@ export const seedPages = async (payload: Payload) => {
   const image = await createImage(
     placeholderPng,
     {
-      alt: 'Alt EN',
+      alt: 'Image description',
     },
     (image) => ({
       pl: {
         id: image.id,
-        alt: 'Alt PL',
+        alt: 'Opis zdjęcia',
       },
     }),
   );
@@ -26,29 +26,31 @@ export const seedPages = async (payload: Payload) => {
       title: 'Home',
       seo: {
         title: 'Home',
-        description: 'Home Page Description',
+        description: 'Home page description',
       },
       sections: [
         {
           blockType: 'hero-1',
-          heading: 'Home Page',
-          subheading: 'Home Page',
+          heading: 'Home page',
+          subheading: 'Home page',
         },
         {
           blockType: 'image-blocks',
+          heading: 'Image blocks heading',
+          subheading: 'Image blocks subeading',
           items: [
             {
               blockType: 'image-block-1',
               image: image.id,
-              heading: 'Image Block 1 Heading',
-              subheading: 'Image Block 1 Subheading',
+              heading: 'Image block 1 heading',
+              subheading: 'Image block 1 subheading',
             },
             {
               blockType: 'image-block-1',
               isReversed: true,
               image: image.id,
-              heading: 'Image Block 1 Heading',
-              subheading: 'Image Block 1 Subheading',
+              heading: 'Image block 1 heading',
+              subheading: 'Image block 1 subheading',
             },
           ],
         },
@@ -66,24 +68,26 @@ export const seedPages = async (payload: Payload) => {
           {
             id: page.sections[0].id,
             blockType: 'hero-1',
-            heading: 'Strona Główna',
-            subheading: 'Strona Główna',
+            heading: 'Strona główna',
+            subheading: 'Strona główna',
           },
           {
             id: page.sections[1].id,
             blockType: 'image-blocks',
+            heading: 'Nagłówek sekcji z blokami zdjęciowymi',
+            subheading: 'Podnagłówek sekcji z blokami zdjęciowymi',
             items: [
               {
                 id: (page.sections[1] as ImageBlocksBlock).items[0].id,
                 blockType: 'image-block-1',
-                heading: 'Blok Zdjęciowy 1 Nagłówek',
-                subheading: 'Blok Zdjęciowy 1 Podnagłówek',
+                heading: 'Blok zdjęciowy 1 nagłówek',
+                subheading: 'Blok zdjęciowy 1 podnagłówek',
               },
               {
                 id: (page.sections[1] as ImageBlocksBlock).items[1].id,
                 blockType: 'image-block-1',
-                heading: 'Blok Zdjęciowy 1 Nagłówek',
-                subheading: 'Blok Zdjęciowy 1 Podnagłówek',
+                heading: 'Blok zdjęciowy 1 nagłówek',
+                subheading: 'Blok zdjęciowy 1 podnagłówek',
               },
             ],
           },
@@ -98,16 +102,16 @@ export const seedPages = async (payload: Payload) => {
       slug: 'about-us',
       path: '/about-us',
       _status: 'published',
-      title: 'About Us',
+      title: 'About us',
       seo: {
-        title: 'About Us',
-        description: 'About Us Page Description',
+        title: 'About us',
+        description: 'About us page description',
       },
       sections: [
         {
           blockType: 'hero-1',
-          heading: 'About Us Page',
-          subheading: 'About Us Page',
+          heading: 'About us page heading',
+          subheading: 'About us page subheading',
         },
       ],
       parent: homePage.id,
@@ -125,8 +129,8 @@ export const seedPages = async (payload: Payload) => {
           {
             id: page.sections[0].id,
             blockType: 'hero-1',
-            heading: 'Strona O Nas',
-            subheading: 'Strona O Nas',
+            heading: 'Strona o nas',
+            subheading: 'Strona o nas',
           },
         ],
         parent: homePage.id,
@@ -143,13 +147,13 @@ export const seedPages = async (payload: Payload) => {
       title: 'Contact',
       seo: {
         title: 'Contact',
-        description: 'Contact Page Description',
+        description: 'Contact page description',
       },
       sections: [
         {
           blockType: 'hero-1',
-          heading: 'Contact Page',
-          subheading: 'Contact Page',
+          heading: 'Contact page',
+          subheading: 'Contact page',
         },
       ],
       parent: aboutUsPage.id,
@@ -167,8 +171,8 @@ export const seedPages = async (payload: Payload) => {
           {
             id: page.sections[0].id,
             blockType: 'hero-1',
-            heading: 'Strona Kontakt',
-            subheading: 'Strona Kontakt',
+            heading: 'Strona kontakt',
+            subheading: 'Strona kontakt',
           },
         ],
         parent: aboutUsPage.id,

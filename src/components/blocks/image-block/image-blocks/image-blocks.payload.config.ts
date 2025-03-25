@@ -7,6 +7,18 @@ export const imageBlocksBlockPayloadConfig = {
   interfaceName: 'ImageBlocksBlock',
   fields: [
     {
+      name: 'heading',
+      type: 'text',
+      localized: true,
+      label: ({ t }: { t: AdminTranslations }) => t('fields:heading'),
+    },
+    {
+      name: 'subheading',
+      type: 'text',
+      localized: true,
+      label: ({ t }: { t: AdminTranslations }) => t('fields:subheading'),
+    },
+    {
       name: 'items',
       type: 'blocks',
       blocks: [imageBlock1BlockPayloadConfig],
