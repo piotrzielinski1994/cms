@@ -7,13 +7,19 @@ export default {
     require('@tailwindcss/container-queries'),
     require('tw-colors').createThemes({
       light: {
-        background: 'pink',
+        background: '#fff',
+        background1: '#f3f4f6',
+        foreground: '#000',
       },
       dark: {
-        background: 'green',
+        background: '#090b10',
+        background1: '#0f111a',
+        foreground: '#7b83a3',
       },
       custom: {
-        background: 'blue',
+        background: '#ff0',
+        background1: '#ff0',
+        foreground: '#000',
       },
     }),
   ],

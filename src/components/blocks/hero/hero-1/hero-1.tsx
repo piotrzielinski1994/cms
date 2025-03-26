@@ -7,7 +7,9 @@ import { Hero1Props } from './hero-1.types';
 const Hero1 = ({ heading, subheading, buttons }: Hero1Props) => {
   return (
     <Section>
-      <Container className={cn('py-10', 'justify-items-start content-center gap-4', 'bg-gray-100')}>
+      <Container
+        className={cn('py-10', 'justify-items-start content-center gap-4', 'bg-background1')}
+      >
         <h1 className={cn('text-6xl font-semibold')}>{heading}</h1>
         {subheading && <p>{subheading}</p>}
         {buttons?.map((button) => {

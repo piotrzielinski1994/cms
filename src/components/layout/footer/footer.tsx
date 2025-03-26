@@ -16,7 +16,7 @@ export async function Footer({ locale }: FooterProps) {
   }));
 
   return (
-    <Section as="footer" className="mt-auto py-5 bg-gray-100">
+    <Section as="footer" className="mt-auto py-5 bg-background1">
       <Container className={cn('flex items-center')}>
         <Link className="flex items-center" href="/">
           <Logo />

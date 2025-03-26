@@ -1,12 +1,12 @@
 import { Payload } from 'payload';
 import { createPage } from './helpers/pages';
 import { ImageBlocksBlock } from '../payload.types';
-import placeholderPng from './placeholder.png';
+import placeholderJpg from './placeholder.jpg';
 import { createImage } from './helpers/files';
 
 export const seedPages = async (payload: Payload) => {
   const image = await createImage(
-    placeholderPng,
+    placeholderJpg,
     {
       alt: 'Image description',
     },
