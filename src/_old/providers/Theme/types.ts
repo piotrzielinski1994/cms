@@ -7,6 +7,6 @@ export interface ThemeContextType {
   theme?: Theme | null;
 }
 
-export function themeIsValid(string: null | Theme): string is Theme {
-  return string ? availableThemes.includes(string) : false;
+export function themeIsValid(string: null | string): string is Theme {
+  return string ? availableThemes.includes(string as Theme) : false;
 }
