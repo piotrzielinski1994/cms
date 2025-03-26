@@ -29,7 +29,7 @@ const ImageBlock1 = ({ isReversed, image, heading, subheading, buttons }: ImageB
           );
         })}
       </div>
-      <div className={cn('border-2 border-gray-600', isReversed ? 'md:order-1' : 'md:order-2')}>
+      <div className={cn(isReversed ? 'md:order-1' : 'md:order-2')}>
         <Image {...asd} />
         {/* <Media resource={media} src={''} /> */}
       </div>
