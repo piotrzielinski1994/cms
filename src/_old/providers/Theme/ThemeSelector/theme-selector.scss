@@ -5,13 +5,18 @@
     stroke: var(--_text);
   }
 
+  &--light {
+    --_bg: theme('colors.themes.light.background');
+    --_text: theme('colors.themes.light.foreground');
+  }
+
   &--dark {
     --_bg: theme('colors.themes.dark.background');
     --_text: theme('colors.themes.dark.foreground');
   }
 
-  &--light {
-    --_bg: theme('colors.themes.light.background');
-    --_text: theme('colors.themes.light.foreground');
+  &--custom {
+    --_bg: theme('colors.themes.custom.background');
+    --_text: theme('colors.themes.custom.foreground');
   }
 }

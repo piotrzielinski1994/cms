@@ -8,6 +8,7 @@ import { useTheme } from '..';
 import './theme-selector.scss';
 import type { Theme } from './types';
 import { themeLocalStorageKey } from './types';
+import { availableThemes } from '../types';
 
 export const ThemeSelector: FC = () => {
   const { setTheme } = useTheme();
@@ -40,7 +41,7 @@ export const ThemeSelector: FC = () => {
           className={cn('bg-card text-popover-foreground', 'relative overflow-hidden')}
         >
           <SelectPrimitive.Viewport>
-            {['auto', 'dark', 'light'].map((it) => (
+            {[...availableThemes, 'auto'].map((it) => (
               <SelectPrimitive.Item
                 key={it}
                 value={it}
