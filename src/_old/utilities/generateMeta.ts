@@ -1,23 +1,14 @@
 import type { Metadata } from 'next';
 
-import type { Config, Image as Media, Page, Post } from '@/payload/payload.types';
+import type { Config, Image, Page, Post } from '@/payload/payload.types';
 
 import { getServerSideURL } from './getURL';
 import { mergeOpenGraph } from './mergeOpenGraph';
 
-const getImageURL = (image?: Media | Config['db']['defaultIDType'] | null) => {
+const getImageURL = (image?: Image | Config['db']['defaultIDType'] | null) => {
   const serverUrl = getServerSideURL();
-
-  const url = serverUrl + '/website-template-OG.webp';
-
-  // TODO: Replaced Media with Image type
-  // if (image && typeof image === 'object' && 'url' in image) {
-  //   const ogUrl = image.sizes?.og?.url;
-
-  //   url = ogUrl ? serverUrl + ogUrl : serverUrl + image.url;
-  // }
-
-  return url;
+  const imagePath = (image as Image)?.url ?? '';
+  return `${serverUrl}${imagePath}`;
 };
 
 export const generateMeta = async (args: {
