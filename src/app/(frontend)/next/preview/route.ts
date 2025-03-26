@@ -25,15 +25,11 @@ export async function GET(
   if (previewSecret) {
     return new Response('You are not allowed to preview this page', { status: 403 });
   } else {
-    if (!path) {
+    if (path === undefined) {
       return new Response('No path provided', { status: 404 });
     }
 
     if (!collection) {
-      return new Response('No path provided', { status: 404 });
-    }
-
-    if (!slug) {
       return new Response('No path provided', { status: 404 });
     }
 
