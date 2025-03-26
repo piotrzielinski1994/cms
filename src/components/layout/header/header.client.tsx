@@ -27,7 +27,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
   }, [headerTheme]);
 
   return (
-    <Section as="header" className="py-5 bg-asd sticky top-0">
+    <Section as="header" className="py-5 bg-background1 sticky top-0 z-header">
       <Container className={cn('flex items-center')}>
         <Link href="/">
           <Logo />

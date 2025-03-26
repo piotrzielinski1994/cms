@@ -25,6 +25,9 @@ export default {
   ],
   theme: {
     extend: {
+      zIndex: {
+        header: '100',
+      },
       colors: {
         themes: {
           light: {
