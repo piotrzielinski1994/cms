@@ -28,16 +28,16 @@ export default {
       colors: {
         themes: {
           light: {
-            background: 'hsl(0 0% 100%)',
-            foreground: 'hsl(222.2 84% 4.9%)',
+            background: '#fff',
+            foreground: '#000',
           },
           dark: {
-            background: 'hsl(0 0% 0%)',
-            foreground: 'hsl(210 40% 98%)',
+            background: '#090b10',
+            foreground: '#7b83a3',
           },
           custom: {
-            background: 'hsl(0 0% 0%)',
-            foreground: 'hsl(210 40% 98%)',
+            background: '#ff0',
+            foreground: '#000',
           },
         },
       },
