@@ -1,19 +1,32 @@
 import { Payload } from 'payload';
 import { createPage } from './helpers/pages';
 import { ImageBlocksBlock } from '../payload.types';
-import placeholderJpg from './placeholder.jpg';
+import placeholderWebp from './placeholder.webp';
+import placeholderDarkWebp from './placeholder-dark.webp';
 import { createImage } from './helpers/files';
 
 export const seedPages = async (payload: Payload) => {
-  const image = await createImage(
-    placeholderJpg,
+  const defaultImage = await createImage(
+    placeholderWebp,
     {
-      alt: 'Image description',
+      alt: 'Default image',
     },
     (image) => ({
       pl: {
         id: image.id,
-        alt: 'Opis zdjęcia',
+        alt: 'Domyślne zdjęcie',
+      },
+    }),
+  );
+  const darkImage = await createImage(
+    placeholderDarkWebp,
+    {
+      alt: 'Dark image',
+    },
+    (image) => ({
+      pl: {
+        id: image.id,
+        alt: 'Ciemne zdjęcie',
       },
     }),
   );
@@ -41,14 +54,20 @@ export const seedPages = async (payload: Payload) => {
           items: [
             {
               blockType: 'image-block-1',
-              image: image.id,
+              image: {
+                default: defaultImage,
+                dark: darkImage,
+              },
               heading: 'Image block 1 heading',
               subheading: 'Image block 1 subheading',
             },
             {
               blockType: 'image-block-1',
               isReversed: true,
-              image: image.id,
+              image: {
+                default: defaultImage,
+                dark: darkImage,
+              },
               heading: 'Image block 1 heading',
               subheading: 'Image block 1 subheading',
             },

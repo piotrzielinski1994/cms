@@ -322,7 +322,10 @@ export interface ImageBlocksBlock {
  * via the `definition` "ImageBlock1Block".
  */
 export interface ImageBlock1Block {
-  image: string | Image;
+  image: {
+    default: string | Image;
+    dark?: (string | null) | Image;
+  };
   isReversed?: boolean | null;
   heading?: string | null;
   subheading: string;
@@ -860,7 +863,12 @@ export interface ImageBlocksBlockSelect<T extends boolean = true> {
  * via the `definition` "ImageBlock1Block_select".
  */
 export interface ImageBlock1BlockSelect<T extends boolean = true> {
-  image?: T;
+  image?:
+    | T
+    | {
+        default?: T;
+        dark?: T;
+      };
   isReversed?: T;
   heading?: T;
   subheading?: T;

@@ -1,11 +1,20 @@
+'use client';
+
 import { cn } from '@/_old/utilities/ui';
 import ButtonLink from '@/components/basic/button-link/button-link';
 import Image from '@/components/basic/image/image';
-import * as PayloadTypes from '@/payload/payload.types';
 import { ImageBlock1Props } from './image-block-1.types';
+import { Image as ImageModel } from '@/payload/payload.types';
+import { useTheme } from '@/_old/providers/Theme';
 
 const ImageBlock1 = ({ isReversed, image, heading, subheading, buttons }: ImageBlock1Props) => {
-  const asd = image as PayloadTypes.Image;
+  const { theme } = useTheme();
+  const { default: defaultImage, dark: darkImage } = image as {
+    default: ImageModel;
+    dark?: ImageModel;
+  };
+  const imageToShow = theme === 'light' ? defaultImage : (darkImage ?? defaultImage);
+
   return (
     <div className="grid md:grid-cols-2">
       <div
@@ -30,8 +39,7 @@ const ImageBlock1 = ({ isReversed, image, heading, subheading, buttons }: ImageB
         })}
       </div>
       <div className={cn(isReversed ? 'md:order-1' : 'md:order-2')}>
-        <Image {...asd} />
-        {/* <Media resource={media} src={''} /> */}
+        <Image {...imageToShow} />
       </div>
     </div>
   );

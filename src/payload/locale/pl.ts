@@ -21,6 +21,8 @@ export const pl = {
       singular: 'Plik',
       plural: 'Pliki',
     },
+    default: 'Domyślny',
+    dark: 'Ciemny',
   },
   fields: {
     label: 'Etykieta',

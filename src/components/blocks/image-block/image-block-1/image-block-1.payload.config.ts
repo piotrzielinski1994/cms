@@ -7,10 +7,34 @@ export const imageBlock1BlockPayloadConfig = {
   fields: [
     {
       name: 'image',
-      type: 'upload',
-      relationTo: 'images',
-      required: true,
+      type: 'group',
       label: ({ t }: { t: AdminTranslations }) => t('fields:image'),
+      fields: [
+        {
+          type: 'row',
+          fields: [
+            {
+              name: 'default',
+              type: 'upload',
+              relationTo: 'images',
+              required: true,
+              label: ({ t }: { t: AdminTranslations }) => t('common:default'),
+              admin: {
+                width: '50%',
+              },
+            },
+            {
+              name: 'dark',
+              type: 'upload',
+              relationTo: 'images',
+              label: ({ t }: { t: AdminTranslations }) => t('common:dark'),
+              admin: {
+                width: '50%',
+              },
+            },
+          ],
+        },
+      ],
     },
     {
       name: 'isReversed',

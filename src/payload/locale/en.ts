@@ -19,6 +19,8 @@ export const en = {
       singular: 'File',
       plural: 'Files',
     },
+    default: 'Default',
+    dark: 'Dark',
   },
   fields: {
     label: 'Label',

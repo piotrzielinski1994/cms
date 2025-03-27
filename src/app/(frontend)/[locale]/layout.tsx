@@ -51,7 +51,7 @@ export default async function RootLayout({ children, params }: Args) {
             />
 
             <Header locale={locale} />
-            <main className="flex-grow my-16 grid gap-16">{children}</main>
+            <main className="flex-grow my-20 grid gap-20">{children}</main>
             <Footer locale={locale} />
           </Providers>
         </NextIntlClientProvider>

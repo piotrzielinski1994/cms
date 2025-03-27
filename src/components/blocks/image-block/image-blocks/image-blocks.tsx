@@ -8,7 +8,7 @@ const ImageBlocks = ({ heading, subheading, items }: ImageBlocksProps) => {
   const hasHeader = Boolean(heading || subheading);
   return (
     <Section>
-      <Container className="bg-background1 grid gap-8">
+      <Container className="grid gap-16">
         {hasHeader && (
           <header className="text-center">
             {heading && <h1 className={cn('text-4xl font-semibold')}>{heading}</h1>}
