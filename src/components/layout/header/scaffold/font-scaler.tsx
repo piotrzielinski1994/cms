@@ -1,9 +1,9 @@
 'use client';
 
-import { Theme } from '@/_old/providers/Theme/ThemeSelector/types';
 import { cn } from '@/_old/utilities/ui';
+import FontScalerSvg from '@/icons/font-scaler.svg';
 import * as SelectPrimitive from '@radix-ui/react-select';
-import { FC, useEffect, useState, useSyncExternalStore } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 export const FontScaler: FC = () => {
   const [value, setValue] = useState('');
@@ -15,9 +15,7 @@ export const FontScaler: FC = () => {
   return (
     <SelectPrimitive.Root onValueChange={setValue} value={value}>
       <SelectPrimitive.Trigger className={cn('p-2', 'text-sm')}>
-        <SelectPrimitive.Value placeholder="Aa" aria-label={'@@@ Font scaler'}>
-          Aa
-        </SelectPrimitive.Value>
+        <SelectPrimitive.Value placeholder={<FontScalerSvg />} aria-label={'@@@ Font scaler'} />
       </SelectPrimitive.Trigger>
       <SelectPrimitive.Portal>
         <SelectPrimitive.Content
@@ -25,7 +23,7 @@ export const FontScaler: FC = () => {
           className={cn('bg-background1 text-foreground', 'relative z-popover overflow-hidden')}
         >
           <SelectPrimitive.Viewport>
-            {['sm', 'md', 'lg'].map((it) => (
+            {['xs', 'md', 'xl'].map((it) => (
               <SelectPrimitive.Item
                 key={it}
                 value={it}
@@ -36,7 +34,9 @@ export const FontScaler: FC = () => {
                   'cursor-pointer outline-none ',
                 )}
               >
-                <SelectPrimitive.ItemText>{it.toUpperCase()}</SelectPrimitive.ItemText>
+                <SelectPrimitive.ItemText>
+                  <FontScalerSvg className={`text-${it}`} />
+                </SelectPrimitive.ItemText>
               </SelectPrimitive.Item>
             ))}
           </SelectPrimitive.Viewport>
@@ -45,25 +45,6 @@ export const FontScaler: FC = () => {
       </SelectPrimitive.Portal>
     </SelectPrimitive.Root>
   );
-};
-
-const useColorScheme = (): Theme => {
-  const subscribe = (callback: () => void) => {
-    const mediaQuery = '(prefers-color-scheme: dark)';
-    const mql = window.matchMedia(mediaQuery);
-
-    mql.addEventListener('change', callback);
-
-    return () => mql.removeEventListener('change', callback);
-  };
-
-  const getSnapshot = (): Theme => {
-    const mediaQuery = '(prefers-color-scheme: dark)';
-    const mql = window.matchMedia(mediaQuery);
-    return mql.matches ? 'dark' : 'light';
-  };
-
-  return useSyncExternalStore(subscribe, getSnapshot, () => 'light');
 };
 
 export default FontScaler;

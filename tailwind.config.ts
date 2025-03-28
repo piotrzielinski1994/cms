@@ -27,10 +27,10 @@ export default {
         ':root': {
           'font-size': '16px',
         },
-        '[data-scale="sm"]': {
+        '[data-scale="xs"]': {
           'font-size': '12px',
         },
-        '[data-scale="lg"]': {
+        '[data-scale="xl"]': {
           'font-size': '20px',
         },
       }),
