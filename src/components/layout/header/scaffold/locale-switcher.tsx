@@ -36,7 +36,7 @@ const LocaleSwitcher = () => {
       <SelectPrimitive.Portal>
         <SelectPrimitive.Content
           position="popper"
-          className={cn('bg-card text-popover-foreground', 'relative overflow-hidden')}
+          className={cn('bg-background1 text-foreground', 'relative z-popover overflow-hidden')}
         >
           <SelectPrimitive.Viewport>
             {contentLocale.list

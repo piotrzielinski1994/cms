@@ -1,39 +1,27 @@
 'use client';
 
+import { Theme } from '@/_old/providers/Theme/ThemeSelector/types';
 import { cn } from '@/_old/utilities/ui';
+import { FontSizeIcon } from '@radix-ui/react-icons';
 import * as SelectPrimitive from '@radix-ui/react-select';
-import { Contrast } from 'lucide-react';
 import { FC, useEffect, useState, useSyncExternalStore } from 'react';
-import { useTheme } from '..';
-import { availableThemes } from '../types';
-import './theme-selector.scss';
-import type { Theme } from './types';
-import { themeLocalStorageKey } from './types';
 
-export const ThemeSelector: FC = () => {
-  const { setTheme } = useTheme();
+export const FontScaler: FC = () => {
   const [value, setValue] = useState('');
-  const implicitColorScheme = useColorScheme();
-
-  const onThemeChange = (themeToSet: Theme & 'auto') => {
-    if (themeToSet === 'auto') {
-      setTheme(null);
-      setValue('auto');
-    } else {
-      setTheme(themeToSet);
-      setValue(themeToSet);
-    }
-  };
 
   useEffect(() => {
-    const preference = window.localStorage.getItem(themeLocalStorageKey);
-    setValue(preference ?? 'auto');
-  }, []);
+    document.documentElement.setAttribute('data-scale', value);
+  }, [value]);
 
   return (
-    <SelectPrimitive.Root onValueChange={onThemeChange} value={value}>
+    <SelectPrimitive.Root onValueChange={setValue} value={value}>
       <SelectPrimitive.Trigger className={cn('p-2', 'text-sm')}>
-        <SelectPrimitive.Value placeholder="Theme" />
+        <SelectPrimitive.Value
+          placeholder={<FontSizeIcon height="1.5em" width="1.5em" />}
+          aria-label={'@@@ Font scaler'}
+        >
+          <FontSizeIcon height="1.5em" width="1.5em" />
+        </SelectPrimitive.Value>
       </SelectPrimitive.Trigger>
       <SelectPrimitive.Portal>
         <SelectPrimitive.Content
@@ -41,7 +29,7 @@ export const ThemeSelector: FC = () => {
           className={cn('bg-background1 text-foreground', 'relative z-popover overflow-hidden')}
         >
           <SelectPrimitive.Viewport>
-            {[...availableThemes, 'auto'].map((it) => (
+            {['sm', 'md', 'lg'].map((it) => (
               <SelectPrimitive.Item
                 key={it}
                 value={it}
@@ -52,11 +40,7 @@ export const ThemeSelector: FC = () => {
                   'cursor-pointer outline-none ',
                 )}
               >
-                <SelectPrimitive.ItemText>
-                  <Contrast
-                    className={`theme-selector theme-selector--${it === 'auto' ? implicitColorScheme : it}`}
-                  />
-                </SelectPrimitive.ItemText>
+                <SelectPrimitive.ItemText>{it.toUpperCase()}</SelectPrimitive.ItemText>
               </SelectPrimitive.Item>
             ))}
           </SelectPrimitive.Viewport>
@@ -67,7 +51,7 @@ export const ThemeSelector: FC = () => {
   );
 };
 
-export const useColorScheme = (): Theme => {
+const useColorScheme = (): Theme => {
   const subscribe = (callback: () => void) => {
     const mediaQuery = '(prefers-color-scheme: dark)';
     const mql = window.matchMedia(mediaQuery);
@@ -85,3 +69,5 @@ export const useColorScheme = (): Theme => {
 
   return useSyncExternalStore(subscribe, getSnapshot, () => 'light');
 };
+
+export default FontScaler;

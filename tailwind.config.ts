@@ -22,11 +22,25 @@ export default {
         foreground: '#000',
       },
     }),
+    require('tailwindcss/plugin')(({ addBase }) =>
+      addBase({
+        ':root': {
+          'font-size': '16px',
+        },
+        '[data-scale="sm"]': {
+          'font-size': '12px',
+        },
+        '[data-scale="lg"]': {
+          'font-size': '20px',
+        },
+      }),
+    ),
   ],
   theme: {
     extend: {
       zIndex: {
         header: '100',
+        popover: '200',
       },
       colors: {
         themes: {
