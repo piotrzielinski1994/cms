@@ -1,9 +1,19 @@
 .theme-selector {
-  circle,
-  path {
+  rect {
     fill: var(--_bg);
     stroke: var(--_text);
   }
+  polygon {
+    fill: var(--_text);
+  }
+  // rect,
+  // polygon {
+  //   color: var(--_text);
+  // }
+
+  // rect {
+  //   fill: var(--_bg);
+  // }
 
   &--light {
     --_bg: theme('colors.themes.light.background');

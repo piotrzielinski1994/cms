@@ -2,7 +2,6 @@
 
 import { Theme } from '@/_old/providers/Theme/ThemeSelector/types';
 import { cn } from '@/_old/utilities/ui';
-import { FontSizeIcon } from '@radix-ui/react-icons';
 import * as SelectPrimitive from '@radix-ui/react-select';
 import { FC, useEffect, useState, useSyncExternalStore } from 'react';
 
@@ -16,11 +15,8 @@ export const FontScaler: FC = () => {
   return (
     <SelectPrimitive.Root onValueChange={setValue} value={value}>
       <SelectPrimitive.Trigger className={cn('p-2', 'text-sm')}>
-        <SelectPrimitive.Value
-          placeholder={<FontSizeIcon height="1.5em" width="1.5em" />}
-          aria-label={'@@@ Font scaler'}
-        >
-          <FontSizeIcon height="1.5em" width="1.5em" />
+        <SelectPrimitive.Value placeholder="Aa" aria-label={'@@@ Font scaler'}>
+          Aa
         </SelectPrimitive.Value>
       </SelectPrimitive.Trigger>
       <SelectPrimitive.Portal>

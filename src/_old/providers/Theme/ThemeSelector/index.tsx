@@ -1,8 +1,8 @@
 'use client';
 
 import { cn } from '@/_old/utilities/ui';
+import ContrastIcon from '@/icons/contrast.svg';
 import * as SelectPrimitive from '@radix-ui/react-select';
-import { Contrast } from 'lucide-react';
 import { FC, useEffect, useState, useSyncExternalStore } from 'react';
 import { useTheme } from '..';
 import { availableThemes } from '../types';
@@ -33,7 +33,7 @@ export const ThemeSelector: FC = () => {
   return (
     <SelectPrimitive.Root onValueChange={onThemeChange} value={value}>
       <SelectPrimitive.Trigger className={cn('p-2', 'text-sm')}>
-        <SelectPrimitive.Value placeholder="Theme" />
+        <SelectPrimitive.Value placeholder={<ContrastIcon />} aria-label="@@@ Theme switcher" />
       </SelectPrimitive.Trigger>
       <SelectPrimitive.Portal>
         <SelectPrimitive.Content
@@ -53,7 +53,7 @@ export const ThemeSelector: FC = () => {
                 )}
               >
                 <SelectPrimitive.ItemText>
-                  <Contrast
+                  <ContrastIcon
                     className={`theme-selector theme-selector--${it === 'auto' ? implicitColorScheme : it}`}
                   />
                 </SelectPrimitive.ItemText>
