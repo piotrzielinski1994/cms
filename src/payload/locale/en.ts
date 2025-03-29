@@ -22,6 +22,7 @@ export const en = {
     default: 'Default',
     dark: 'Dark',
   },
+
   fields: {
     label: 'Label',
     slug: 'Slug',
@@ -51,6 +52,9 @@ export const en = {
     subpages: 'Subpages',
     seo: 'SEO',
   },
+  groups: {
+    admin: 'Admin',
+  },
   collections: {
     pages: {
       singular: 'Page',
@@ -75,6 +79,10 @@ export const en = {
     images: {
       singular: 'Image',
       plural: 'Images',
+    },
+    redirects: {
+      singular: 'Redirect',
+      plural: 'Redirects',
     },
   },
   enums: {

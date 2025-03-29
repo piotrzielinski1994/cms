@@ -53,6 +53,9 @@ export const pl = {
     subpages: 'Podstrony',
     seo: 'SEO',
   },
+  groups: {
+    admin: 'Administrator',
+  },
   collections: {
     pages: {
       singular: 'Strona',
@@ -77,6 +80,10 @@ export const pl = {
     images: {
       singular: 'Zdjęcie',
       plural: 'Zdjęcia',
+    },
+    redirects: {
+      singular: 'Przekierowanie',
+      plural: 'Przekierowania',
     },
   },
   enums: {

@@ -1,4 +1,5 @@
 import { revalidateRedirects } from '@/payload/hooks/revalidateRedirects';
+import { adminLocale, AdminTranslations } from '@/payload/locale';
 import { redirectsPlugin } from '@payloadcms/plugin-redirects';
 
 export default redirectsPlugin({
@@ -6,19 +7,13 @@ export default redirectsPlugin({
   overrides: {
     admin: {
       group: {
-        en: 'Admin',
-        pl: 'Administrator',
+        en: adminLocale.customList.en.groups.admin,
+        pl: adminLocale.customList.pl.groups.admin,
       },
     },
     labels: {
-      singular: {
-        en: 'Redirect',
-        pl: 'Przekierowanie',
-      },
-      plural: {
-        en: 'Redirects',
-        pl: 'Przekierowania',
-      },
+      singular: ({ t }: { t: AdminTranslations }) => t('collections:redirects:singular'),
+      plural: ({ t }: { t: AdminTranslations }) => t('collections:redirects:plural'),
     },
     // @ts-expect-error - This is a valid override, mapped fields don't resolve to the same type
     fields: ({ defaultFields }) => {
