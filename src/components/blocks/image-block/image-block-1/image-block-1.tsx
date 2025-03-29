@@ -3,12 +3,12 @@
 import { cn } from '@/_old/utilities/ui';
 import ButtonLink from '@/components/basic/button-link/button-link';
 import Image from '@/components/basic/image/image';
-import { ImageBlock1Props } from './image-block-1.types';
 import { Image as ImageModel } from '@/payload/payload.types';
-import { useTheme } from '@/_old/providers/Theme';
+import useThemeStore from '@/store/theme';
+import { ImageBlock1Props } from './image-block-1.types';
 
 const ImageBlock1 = ({ isReversed, image, heading, subheading, buttons }: ImageBlock1Props) => {
-  const { theme } = useTheme();
+  const theme = useThemeStore((store) => store.theme);
   const { default: defaultImage, dark: darkImage } = image as {
     default: ImageModel;
     dark?: ImageModel;

@@ -6,8 +6,6 @@ import { GeistSans } from 'geist/font/sans';
 import React from 'react';
 
 import { AdminBar } from '@/_old/components/AdminBar';
-import { Providers } from '@/_old/providers';
-import { InitTheme } from '@/_old/providers/Theme/InitTheme';
 import { mergeOpenGraph } from '@/_old/utilities/mergeOpenGraph';
 import { Footer } from '@/components/layout/footer/footer';
 import { Header } from '@/components/layout/header/header';
@@ -41,23 +39,20 @@ export default async function RootLayout({ children, params }: Args) {
       suppressHydrationWarning
     >
       <head>
-        <InitTheme />
         <link href="/favicon.ico" rel="icon" sizes="32x32" />
         <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
       </head>
       <body className={cn('bg-background text-foreground', 'flex flex-col', 'min-h-[100vh]')}>
         <NextIntlClientProvider>
-          <Providers>
-            <AdminBar
-              adminBarProps={{
-                preview: isEnabled,
-              }}
-            />
+          <AdminBar
+            adminBarProps={{
+              preview: isEnabled,
+            }}
+          />
 
-            <Header locale={locale} />
-            <main className="flex-grow my-20 grid gap-20">{children}</main>
-            <Footer locale={locale} />
-          </Providers>
+          <Header locale={locale} />
+          <main className="flex-grow my-20 grid gap-20">{children}</main>
+          <Footer locale={locale} />
         </NextIntlClientProvider>
       </body>
     </html>
