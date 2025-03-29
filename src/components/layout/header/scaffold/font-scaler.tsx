@@ -3,20 +3,19 @@
 import { cn } from '@/_old/utilities/ui';
 import { clientEnv } from '@/env';
 import FontScalerSvg from '@/icons/font-scaler.svg';
+import useFontScale from '@/store/font-scale';
 import * as SelectPrimitive from '@radix-ui/react-select';
-import { FC, useEffect, useState } from 'react';
+import { FC } from 'react';
 
 export const FontScaler: FC = () => {
-  const [value, setValue] = useState('');
-
-  useEffect(() => {
-    document.documentElement.setAttribute('data-scale', value);
-  }, [value]);
+  const { scale, setScale } = useFontScale();
 
   return (
-    <SelectPrimitive.Root onValueChange={setValue} value={value}>
+    <SelectPrimitive.Root onValueChange={setScale} value={scale}>
       <SelectPrimitive.Trigger className={cn('p-2', 'text-sm')}>
-        <SelectPrimitive.Value placeholder={<FontScalerSvg />} aria-label={'@@@ Font scaler'} />
+        <SelectPrimitive.Value placeholder={<FontScalerSvg />} aria-label={'@@@ Font scaler'}>
+          <FontScalerSvg />
+        </SelectPrimitive.Value>
       </SelectPrimitive.Trigger>
       <SelectPrimitive.Portal>
         <SelectPrimitive.Content
