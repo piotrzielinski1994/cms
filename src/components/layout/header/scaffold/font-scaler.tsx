@@ -3,17 +3,21 @@
 import { cn } from '@/_old/utilities/ui';
 import { clientEnv } from '@/env.client';
 import FontScalerSvg from '@/icons/font-scaler.svg';
+import { adminLocale } from '@/payload/locale';
 import { useFontScaleStore } from '@/store/font-scale';
 import * as SelectPrimitive from '@radix-ui/react-select';
+import { useLocale } from 'next-intl';
 import { FC } from 'react';
 
 export const FontScaler: FC = () => {
   const { scale, setScale } = useFontScaleStore();
+  const locale = useLocale() as keyof typeof adminLocale.customList;
+  const label = adminLocale.customList[locale].frontend.fontScaleSwitcher;
 
   return (
     <SelectPrimitive.Root onValueChange={setScale} value={scale}>
       <SelectPrimitive.Trigger className={cn('p-2', 'text-sm')}>
-        <SelectPrimitive.Value placeholder={<FontScalerSvg />} aria-label={'@@@ Font scaler'}>
+        <SelectPrimitive.Value aria-label={label}>
           <FontScalerSvg />
         </SelectPrimitive.Value>
       </SelectPrimitive.Trigger>

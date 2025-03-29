@@ -22,7 +22,6 @@ export const en = {
     default: 'Default',
     dark: 'Dark',
   },
-
   fields: {
     label: 'Label',
     slug: 'Slug',
@@ -95,5 +94,10 @@ export const en = {
   components: {
     header: 'Header',
     footer: 'Footer',
+  },
+  frontend: {
+    localeSwitcher: 'Locale switcher',
+    themeSwitcher: 'Theme switcher',
+    fontScaleSwitcher: 'Font scale switcher',
   },
 };

@@ -3,18 +3,24 @@
 import { cn } from '@/_old/utilities/ui';
 import { clientEnv } from '@/env.client';
 import ContrastIcon from '@/icons/contrast.svg';
+import { adminLocale } from '@/payload/locale';
 import { useThemeStore } from '@/store/theme';
 import * as SelectPrimitive from '@radix-ui/react-select';
+import { useLocale } from 'next-intl';
 import { FC } from 'react';
 import './theme-switcher.scss';
 
 export const ThemeSwitcher: FC = () => {
   const { theme, setTheme } = useThemeStore();
+  const locale = useLocale() as keyof typeof adminLocale.customList;
+  const label = adminLocale.customList[locale].frontend.themeSwitcher;
 
   return (
     <SelectPrimitive.Root onValueChange={setTheme} value={theme}>
       <SelectPrimitive.Trigger className={cn('p-2', 'text-sm')}>
-        <SelectPrimitive.Value placeholder={<ContrastIcon />} aria-label="@@@ Theme switcher" />
+        <SelectPrimitive.Value aria-label={label}>
+          <ContrastIcon />
+        </SelectPrimitive.Value>
       </SelectPrimitive.Trigger>
       <SelectPrimitive.Portal>
         <SelectPrimitive.Content

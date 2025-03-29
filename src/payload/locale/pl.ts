@@ -97,4 +97,9 @@ export const pl = {
     header: 'Nagłówek',
     footer: 'Stopka',
   },
+  frontend: {
+    localeSwitcher: 'Przełącznik języka',
+    themeSwitcher: 'Przełącznik motywu',
+    fontScaleSwitcher: 'Przełącznik skalowania czcionki',
+  },
 } satisfies typeof en;
