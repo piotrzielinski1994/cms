@@ -9,11 +9,10 @@ const generateTitle: GenerateTitle<Post | Page> = ({ doc }) => {
 
 const generateURL: GenerateURL<Post | Page> = ({ doc }) => {
   const url = getServerSideURL();
-
   return doc?.slug ? `${url}/${doc.slug}` : url;
 };
 
-export default seoPlugin({
+export const seo = seoPlugin({
   generateTitle,
   generateURL,
 });

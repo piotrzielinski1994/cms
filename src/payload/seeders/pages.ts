@@ -1,9 +1,9 @@
 import { Payload } from 'payload';
-import { createPage } from './helpers/pages';
 import { ImageBlocksBlock } from '../payload.types';
-import placeholderWebp from './placeholder.webp';
-import placeholderDarkWebp from './placeholder-dark.webp';
+import placeholderDarkWebp from './assets/placeholder-dark.webp';
+import placeholderWebp from './assets/placeholder.webp';
 import { createImage } from './helpers/files';
+import { createPage } from './helpers/pages';
 
 export const seedPages = async (payload: Payload) => {
   const defaultImage = await createImage(

@@ -1,6 +1,6 @@
 import { nestedDocsPlugin } from '@payloadcms/plugin-nested-docs';
 
-export default nestedDocsPlugin({
+export const nestedDocs = nestedDocsPlugin({
   collections: ['pages', 'categories'],
   generateURL: (docs) =>
     docs.reduce((url, { slug }) => {

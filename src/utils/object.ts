@@ -1,8 +1,8 @@
 // https://stackoverflow.com/questions/69019873/how-can-i-get-typed-object-entries-and-object-fromentries-in-typescript
 export const toEntries = <T extends Record<PropertyKey, unknown>>(
   obj: T,
-): { [K in keyof T]: [K, T[K]] }[keyof T][] => {
-  return Object.entries(obj) as { [K in keyof T]: [K, T[K]] }[keyof T][];
+): [keyof T, T[keyof T]][] => {
+  return Object.entries(obj) as [keyof T, T[keyof T]][];
 };
 
 // https://stackoverflow.com/questions/69019873/how-can-i-get-typed-object-entries-and-object-fromentries-in-typescript

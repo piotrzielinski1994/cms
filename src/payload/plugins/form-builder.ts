@@ -1,7 +1,7 @@
 import { formBuilderPlugin } from '@payloadcms/plugin-form-builder';
 import { FixedToolbarFeature, HeadingFeature, lexicalEditor } from '@payloadcms/richtext-lexical';
 
-export default formBuilderPlugin({
+export const formBuilder = formBuilderPlugin({
   fields: {
     payment: false,
   },

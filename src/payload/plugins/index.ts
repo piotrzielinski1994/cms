@@ -1,11 +1,11 @@
-import cloud from './cloud';
-import formBuilder from './form-builder';
-import nestedDocs from './nested-docs';
-import redirects from './redirects';
-import seo from './seo';
-import vercelStorage from './vercel-storage';
+import { cloud } from './cloud';
+import { formBuilder } from './form-builder';
+import { nestedDocs } from './nested-docs';
+import { redirects } from './redirects';
+import { seo } from './seo';
+import { vercelStorage } from './vercel-storage';
 
-const plugins = {
+export const plugins = {
   cloud,
   nestedDocs,
   redirects,
@@ -13,5 +13,3 @@ const plugins = {
   formBuilder,
   vercelStorage,
 };
-
-export { plugins };
