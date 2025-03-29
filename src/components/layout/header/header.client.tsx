@@ -1,11 +1,11 @@
 'use client';
 
-import { Logo } from '@/_old/components/Logo/Logo';
 import { useHeaderTheme } from '@/_old/providers/HeaderTheme';
 import { ThemeSelector } from '@/_old/providers/Theme/ThemeSelector';
 import { cn } from '@/_old/utilities/ui';
 import Container from '@/components/layout/container/container';
 import Section from '@/components/layout/section/section';
+import LogoSvg from '@/icons/logo.svg';
 import { Link } from '@/payload/locale/routing';
 import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
@@ -31,7 +31,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
     <Section as="header" className="py-5 bg-background1 sticky top-0 z-header">
       <Container className={cn('flex items-center')}>
         <Link href="/">
-          <Logo />
+          <LogoSvg />
         </Link>
         <HeaderNav data={data} />
         <FontScaler />
