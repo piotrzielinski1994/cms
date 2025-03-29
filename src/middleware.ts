@@ -1,8 +1,6 @@
 import { routing } from '@/payload/locale/routing';
 import createMiddleware from 'next-intl/middleware';
 
-export default createMiddleware(routing);
-
 // see https://next-intl-docs.vercel.app/docs/routing/middleware
 export const config = {
   matcher: [
@@ -12,3 +10,5 @@ export const config = {
     '/((?!api|_next|_vercel|admin|next|.*\\..*).*)',
   ],
 };
+
+export default createMiddleware(routing);

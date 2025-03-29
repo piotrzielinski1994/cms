@@ -1,7 +1,7 @@
 import type { Config } from 'tailwindcss';
 import resolveConfig from 'tailwindcss/resolveConfig';
 import { clientEnv } from './src/env.client';
-import { toEntries } from './src/utils/object';
+import { fromEntries, toEntries } from './src/utils/object';
 
 const tailwindConfig = {
   content: ['./src/**/*.{ts,tsx}'],
@@ -30,9 +30,9 @@ const tailwindConfig = {
         .sort(([key]) => (key === 'base' ? -1 : 1))
         .map(([key, value]) => {
           const selector = key === 'base' ? ':root' : `[data-scale="${key}"]`;
-          return [selector, { 'font-size': `${value}px` }];
+          return [selector, { 'font-size': `${value}px` }] as [string, object];
         });
-      addBase(Object.fromEntries(entries));
+      addBase(fromEntries(entries));
     }),
   ],
   theme: {
