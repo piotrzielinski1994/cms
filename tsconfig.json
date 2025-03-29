@@ -32,6 +32,7 @@
       "@/*": ["./src/*"],
       "@/pages/frontend/*": ["./src/app/(frontend)/*"],
       "@/pages/payload/*": ["./src/app/(payload)/*"],
+      "@/tailwind-config": ["./tailwind.config.ts"],
     }
   },
   "include": [

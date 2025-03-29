@@ -1,6 +1,7 @@
 'use client';
 
 import { cn } from '@/_old/utilities/ui';
+import { clientEnv } from '@/env';
 import FontScalerSvg from '@/icons/font-scaler.svg';
 import * as SelectPrimitive from '@radix-ui/react-select';
 import { FC, useEffect, useState } from 'react';
@@ -23,7 +24,7 @@ export const FontScaler: FC = () => {
           className={cn('bg-background1 text-foreground', 'relative z-popover overflow-hidden')}
         >
           <SelectPrimitive.Viewport>
-            {['xs', 'md', 'xl'].map((it) => (
+            {clientEnv.feature.fontScales.map((it) => (
               <SelectPrimitive.Item
                 key={it}
                 value={it}

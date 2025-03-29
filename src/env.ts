@@ -1,12 +1,13 @@
+import { fullTailwindConfig } from '@/tailwind-config';
 import { AcceptedLanguages, SupportedLanguages } from '@payloadcms/translations';
 import { Config } from './payload/payload.types';
 
 if (typeof window === 'undefined') {
   if (!process.env.PAYLOAD_SECRET) throw Error;
   if (!process.env.DATABASE_URI) throw Error;
+  if (!process.env.NEXT_PUBLIC_SERVER_URL) throw Error;
 }
-
-const defaultLang: keyof SupportedLanguages = 'en';
+const defaultLang = 'en' satisfies keyof SupportedLanguages;
 
 export const serverEnv = {
   payloadSecret: process.env.PAYLOAD_SECRET as string,
@@ -39,5 +40,7 @@ export const clientEnv = {
   publicUrl: serverEnv.publicUrl,
   feature: {
     locale: serverEnv.feature.locale,
+    fontScales: (process.env.NEXT_PUBLIC_FONT_SCALES?.split(',') ??
+      []) as unknown as (keyof typeof fullTailwindConfig.theme.fontSize)[],
   },
 };

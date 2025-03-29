@@ -1,6 +1,7 @@
 import type { Config } from 'tailwindcss';
+import resolveConfig from 'tailwindcss/resolveConfig';
 
-export default {
+const tailwindConfig = {
   content: ['./src/**/*.{ts,tsx}'],
   darkMode: ['selector', '[data-theme="dark"]'],
   plugins: [
@@ -61,3 +62,7 @@ export default {
     },
   },
 } satisfies Config;
+
+export const fullTailwindConfig = resolveConfig(tailwindConfig);
+
+export default tailwindConfig;
