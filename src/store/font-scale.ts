@@ -10,6 +10,8 @@ export type FontScaleStore = {
   setScale: (scale: FontScaleStore['scale']) => void;
 };
 
+export const FONT_SCALE_STORAGE_KEY = 'font-scale' as const;
+
 const updateDom = (scale: FontScaleStore['scale']) => {
   document.documentElement.setAttribute('data-scale', scale);
 };
@@ -20,13 +22,13 @@ export const createFontScaleStore = (initialFontScale: FontScaleStore['scale']) 
       (set) => ({
         scale: initialFontScale,
         setScale: (scale) => {
-          setCookie('font-scale', scale);
+          setCookie(FONT_SCALE_STORAGE_KEY, scale);
           updateDom(scale);
           set({ scale });
         },
       }),
       {
-        name: 'FontScaleStore',
+        name: FONT_SCALE_STORAGE_KEY,
         onRehydrateStorage: () => (state) => {
           if (!state) return;
           updateDom(state.scale);

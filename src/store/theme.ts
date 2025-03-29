@@ -9,6 +9,8 @@ export type ThemeStore = {
   setTheme: (theme: ThemeStore['theme']) => void;
 };
 
+export const THEME_STORAGE_KEY = 'theme' as const;
+
 const updateDom = (theme: ThemeStore['theme']) => {
   document.documentElement.setAttribute('data-theme', theme);
 };
@@ -20,12 +22,12 @@ export const createThemeStore = (initialTheme: ThemeStore['theme']) => {
         theme: initialTheme,
         setTheme: (theme) => {
           updateDom(theme);
-          setCookie('theme', theme);
+          setCookie(THEME_STORAGE_KEY, theme);
           set({ theme });
         },
       }),
       {
-        name: 'ThemeStore',
+        name: THEME_STORAGE_KEY,
         onRehydrateStorage: () => (state) => {
           if (!state) return;
           updateDom(state.theme);
