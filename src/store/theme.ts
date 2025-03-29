@@ -1,5 +1,7 @@
+import { ThemeContext } from '@/providers/theme-provider';
+import { useContext } from 'react';
 import { setCookie } from 'typescript-cookie';
-import { create } from 'zustand';
+import { createStore, useStore } from 'zustand';
 import { persist } from 'zustand/middleware';
 
 export type ThemeStore = {
@@ -11,25 +13,37 @@ const updateDom = (theme: ThemeStore['theme']) => {
   document.documentElement.setAttribute('data-theme', theme);
 };
 
-const useThemeStore = create<ThemeStore>()(
-  persist(
-    (set) => ({
-      theme: 'light',
-      setTheme: (theme) => {
-        console.log('@@@ theme | ', theme);
-        updateDom(theme);
-        setCookie('theme', theme);
-        set({ theme });
+export const useThemeStore = <T>(selector: (state: ThemeStore) => T) => {
+  const context = useContext(ThemeContext);
+
+  if (!context) {
+    throw new Error('ThemeContext is missing');
+  }
+
+  return useStore(context, selector);
+};
+
+export const createThemeStore = (initialTheme: ThemeStore['theme']) => {
+  return createStore<ThemeStore>()(
+    persist(
+      (set) => ({
+        theme: initialTheme,
+        setTheme: (theme) => {
+          console.log('@@@ theme | ', theme);
+          updateDom(theme);
+          setCookie('theme', theme);
+          set({ theme });
+        },
+      }),
+      {
+        name: 'ThemeStore',
+        onRehydrateStorage: () => (state) => {
+          if (!state) return;
+          updateDom(state.theme);
+        },
       },
-    }),
-    {
-      name: 'ThemeStore',
-      onRehydrateStorage: () => (state) => {
-        if (!state) return;
-        updateDom(state.theme);
-      },
-    },
-  ),
-);
+    ),
+  );
+};
 
 export default useThemeStore;
