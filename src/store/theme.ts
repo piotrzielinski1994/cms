@@ -13,23 +13,12 @@ const updateDom = (theme: ThemeStore['theme']) => {
   document.documentElement.setAttribute('data-theme', theme);
 };
 
-export const useThemeStore = <T>(selector: (state: ThemeStore) => T) => {
-  const context = useContext(ThemeContext);
-
-  if (!context) {
-    throw new Error('ThemeContext is missing');
-  }
-
-  return useStore(context, selector);
-};
-
 export const createThemeStore = (initialTheme: ThemeStore['theme']) => {
   return createStore<ThemeStore>()(
     persist(
       (set) => ({
         theme: initialTheme,
         setTheme: (theme) => {
-          console.log('@@@ theme | ', theme);
           updateDom(theme);
           setCookie('theme', theme);
           set({ theme });
@@ -46,4 +35,12 @@ export const createThemeStore = (initialTheme: ThemeStore['theme']) => {
   );
 };
 
-export default useThemeStore;
+export const useThemeStore = <T = ThemeStore>(selector?: (state: ThemeStore) => T) => {
+  const context = useContext(ThemeContext);
+
+  if (!context) {
+    throw new Error('ThemeContext is missing');
+  }
+
+  return useStore(context, selector ?? ((state) => state as T));
+};

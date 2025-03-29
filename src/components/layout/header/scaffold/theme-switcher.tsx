@@ -3,7 +3,7 @@
 import { cn } from '@/_old/utilities/ui';
 import { clientEnv } from '@/env.client';
 import ContrastIcon from '@/icons/contrast.svg';
-import useThemeStore from '@/store/theme';
+import { useThemeStore } from '@/store/theme';
 import * as SelectPrimitive from '@radix-ui/react-select';
 import { FC } from 'react';
 import './theme-switcher.scss';

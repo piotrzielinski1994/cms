@@ -4,7 +4,7 @@ import { cn } from '@/_old/utilities/ui';
 import ButtonLink from '@/components/basic/button-link/button-link';
 import Image from '@/components/basic/image/image';
 import { Image as ImageModel } from '@/payload/payload.types';
-import useThemeStore from '@/store/theme';
+import { useThemeStore } from '@/store/theme';
 import { ImageBlock1Props } from './image-block-1.types';
 
 const ImageBlock1 = ({ isReversed, image, heading, subheading, buttons }: ImageBlock1Props) => {

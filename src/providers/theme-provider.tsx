@@ -13,7 +13,6 @@ export const ThemeContext = createContext<StoreApi<ThemeStore> | undefined>(unde
 
 const ThemeProvider = ({ children, initialTheme }: ThemeProviderProps) => {
   const [store] = useState(() => createThemeStore(initialTheme));
-  console.log('@@@ ThemeProvider rerender | ');
   return <ThemeContext.Provider value={store}>{children}</ThemeContext.Provider>;
 };
 

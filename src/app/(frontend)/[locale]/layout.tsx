@@ -29,7 +29,6 @@ export default async function RootLayout({ children, params }: Args) {
   const { isEnabled } = await draftMode();
   const { locale } = await params;
   const { theme, fontSize } = await getPreferences();
-  console.log('@@@ preferences | ', theme, fontSize);
 
   return (
     <html
