@@ -10,7 +10,7 @@ export const getPreferences = async () => {
     theme = prefersDark ? 'dark' : 'light';
   }
 
-  const fontSize = cookieStore.get('font-size')?.value ?? 'base';
+  const fontSize = cookieStore.get('font-scale')?.value ?? 'base';
 
   return {
     theme,

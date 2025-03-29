@@ -14,6 +14,7 @@ import { Header } from '@/components/layout/header/header';
 import { draftMode } from 'next/headers';
 
 import { getServerSideURL } from '@/_old/utilities/getURL';
+import { getPreferences } from '@/utils/headers';
 import { NextIntlClientProvider } from 'next-intl';
 import { TypedLocale } from 'payload';
 import './globals.css';
@@ -27,13 +28,16 @@ type Args = {
 
 export default async function RootLayout({ children, params }: Args) {
   const { isEnabled } = await draftMode();
-
   const { locale } = await params;
+  const { theme, fontSize } = await getPreferences();
+  console.log('@@@ preferences | ', theme, fontSize);
 
   return (
     <html
       className={cn(GeistSans.variable, GeistMono.variable)}
       lang={locale}
+      data-theme={theme}
+      data-scale={fontSize}
       suppressHydrationWarning
     >
       <head>

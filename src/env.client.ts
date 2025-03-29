@@ -62,6 +62,7 @@ export const clientEnv = {
         default: env.NEXT_PUBLIC_FEATURE_DEFAULT_CONTENT_LOCALE as Config['locale'],
       },
     },
+    themes: env.NEXT_PUBLIC_THEMES,
     fontScales: env.NEXT_PUBLIC_FONT_SCALES as Record<
       keyof typeof fullTailwindConfig.theme.fontSize,
       number
