@@ -1,3 +1,4 @@
+import { FontScaleStore } from '@/store/font-scale';
 import { cookies, headers } from 'next/headers';
 
 export const getPreferences = async () => {
@@ -10,7 +11,7 @@ export const getPreferences = async () => {
     theme = prefersDark ? 'dark' : 'light';
   }
 
-  const fontSize = cookieStore.get('font-scale')?.value ?? 'base';
+  const fontSize = (cookieStore.get('font-scale')?.value ?? 'base') as FontScaleStore['scale'];
 
   return {
     theme,

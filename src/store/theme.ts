@@ -1,4 +1,4 @@
-import { ThemeContext } from '@/providers/theme-provider';
+import { ThemeContext } from '@/providers/theme.provider';
 import { useContext } from 'react';
 import { setCookie } from 'typescript-cookie';
 import { createStore, useStore } from 'zustand';

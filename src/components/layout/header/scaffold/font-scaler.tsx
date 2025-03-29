@@ -3,12 +3,12 @@
 import { cn } from '@/_old/utilities/ui';
 import { clientEnv } from '@/env.client';
 import FontScalerSvg from '@/icons/font-scaler.svg';
-import useFontScale from '@/store/font-scale';
+import { useFontScaleStore } from '@/store/font-scale';
 import * as SelectPrimitive from '@radix-ui/react-select';
 import { FC } from 'react';
 
 export const FontScaler: FC = () => {
-  const { scale, setScale } = useFontScale();
+  const { scale, setScale } = useFontScaleStore();
 
   return (
     <SelectPrimitive.Root onValueChange={setScale} value={scale}>
