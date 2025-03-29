@@ -1,6 +1,5 @@
-import NextImage from 'next/image';
-// import { ImageProps } from './image.types';
 import { cssVariables } from '@/_old/cssVariables';
+import NextImage from 'next/image';
 
 const { breakpoints } = cssVariables;
 

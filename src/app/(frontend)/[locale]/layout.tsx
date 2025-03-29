@@ -1,20 +1,18 @@
 import type { Metadata } from 'next';
 
-import { cn } from '@/_old/utilities/ui';
-import { GeistMono } from 'geist/font/mono';
-import { GeistSans } from 'geist/font/sans';
-import React from 'react';
-
 import { AdminBar } from '@/_old/components/AdminBar';
+import { getServerSideURL } from '@/_old/utilities/getURL';
 import { mergeOpenGraph } from '@/_old/utilities/mergeOpenGraph';
+import { cn } from '@/_old/utilities/ui';
 import { Footer } from '@/components/layout/footer/footer';
 import { Header } from '@/components/layout/header/header';
-import { draftMode } from 'next/headers';
-
-import { getServerSideURL } from '@/_old/utilities/getURL';
 import { Providers } from '@/providers';
 import { getPreferences } from '@/utils/headers';
+import { GeistMono } from 'geist/font/mono';
+import { GeistSans } from 'geist/font/sans';
+import { draftMode } from 'next/headers';
 import { TypedLocale } from 'payload';
+import React from 'react';
 import './globals.css';
 
 type Args = {
@@ -22,6 +20,15 @@ type Args = {
   params: Promise<{
     locale: TypedLocale;
   }>;
+};
+
+export const metadata: Metadata = {
+  metadataBase: new URL(getServerSideURL()),
+  openGraph: mergeOpenGraph(),
+  twitter: {
+    card: 'summary_large_image',
+    creator: '@payloadcms',
+  },
 };
 
 export default async function RootLayout({ children, params }: Args) {
@@ -43,12 +50,7 @@ export default async function RootLayout({ children, params }: Args) {
       </head>
       <body className={cn('bg-background text-foreground', 'flex flex-col', 'min-h-[100vh]')}>
         <Providers initialTheme={theme} initialFontScale={fontSize}>
-          <AdminBar
-            adminBarProps={{
-              preview: isEnabled,
-            }}
-          />
-
+          <AdminBar adminBarProps={{ preview: isEnabled }} />
           <Header locale={locale} />
           <main className="flex-grow my-20 grid gap-20">{children}</main>
           <Footer locale={locale} />
@@ -57,12 +59,3 @@ export default async function RootLayout({ children, params }: Args) {
     </html>
   );
 }
-
-export const metadata: Metadata = {
-  metadataBase: new URL(getServerSideURL()),
-  openGraph: mergeOpenGraph(),
-  twitter: {
-    card: 'summary_large_image',
-    creator: '@payloadcms',
-  },
-};
