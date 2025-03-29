@@ -5,6 +5,7 @@ import { LivePreviewListener } from '@/_old/components/LivePreviewListener';
 import { PayloadRedirects } from '@/_old/components/PayloadRedirects';
 import { generateMeta } from '@/_old/utilities/generateMeta';
 import configPromise from '@/payload/payload.config';
+import { getPreferences } from '@/utils/headers';
 import { draftMode } from 'next/headers';
 import { getPayload, TypedLocale } from 'payload';
 import { cache } from 'react';
@@ -42,6 +43,10 @@ export default async function Page({ params: paramsPromise }: Args) {
   const { isEnabled: draft } = await draftMode();
   const { segments = [], locale } = await paramsPromise;
   const path = `/${segments.join('/')}`;
+  const preferemces = await getPreferences();
+
+  console.log('@@@ preferemces | ', preferemces);
+
   const { page, pathPerLocale } = await queryPage({ path, locale });
 
   if (!page) {
@@ -51,11 +56,8 @@ export default async function Page({ params: paramsPromise }: Args) {
   return (
     <>
       <PageClient currentPaths={pathPerLocale} />
-      {/* Allows redirects for valid pages too */}
       <PayloadRedirects disableNotFound url={path} />
-
       {draft && <LivePreviewListener />}
-
       <RenderBlocks blocks={page.sections!} />
     </>
   );
