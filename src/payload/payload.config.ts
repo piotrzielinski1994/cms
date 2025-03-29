@@ -1,7 +1,7 @@
 import { getServerSideURL } from '@/_old/utilities/getURL';
 import { Footer } from '@/components/layout/footer/payload/footer.payload.config';
 import { headerPayloadConfig } from '@/components/layout/header/payload/header.payload.config';
-import { serverEnv } from '@/env';
+import { serverEnv } from '@/env.server';
 import { collections } from '@/payload/collections';
 import { defaultLexical } from '@/payload/fields/defaultLexical';
 import { adminLocale, contentLocale } from '@/payload/locale';

@@ -10,9 +10,9 @@ import { Link } from '@/payload/locale/routing';
 import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { HeaderClientProps } from './header.types';
+import FontScaler from './scaffold/font-scaler';
 import LocaleSwitcher from './scaffold/locale-switcher';
 import HeaderNav from './scaffold/navbar';
-import FontScaler from './scaffold/font-scaler';
 
 export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
   /* Storing the value in a useState to avoid hydration errors */

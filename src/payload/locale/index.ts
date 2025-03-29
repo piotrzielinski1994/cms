@@ -1,4 +1,4 @@
-import { clientEnv, serverEnv } from '@/env';
+import { clientEnv } from '@/env.client';
 import {
   DefaultTranslationKeys,
   NestedKeysStripped,
@@ -18,12 +18,12 @@ export type AdminTranslations = TFunction<
 
 // Variables ====================================
 export const adminLocale = {
-  list: pick(serverEnv.feature.locale.admin.list, { en, pl } as SupportedLanguages),
+  list: pick(clientEnv.feature.locale.admin.list, { en, pl } as SupportedLanguages),
   customList: {
     en: customEn,
     pl: customPl,
   },
-  default: serverEnv.feature.locale.admin.default,
+  default: clientEnv.feature.locale.admin.default,
 };
 
 export const contentLocale = {

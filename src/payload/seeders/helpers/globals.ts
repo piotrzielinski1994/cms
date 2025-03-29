@@ -1,6 +1,6 @@
 import { contentLocale } from '@/payload/locale';
 import { Config } from '@/payload/payload.types';
-import { entries } from '@/utils/object';
+import { toEntries } from '@/utils/object';
 import { SelectFromGlobalSlug } from 'node_modules/payload/dist/globals/config/types';
 import { Options } from 'node_modules/payload/dist/globals/operations/local/update';
 import { DataFromGlobalSlug, GlobalSlug, Payload } from 'payload';
@@ -19,7 +19,9 @@ export const createGlobal = async <T extends GlobalSlug>(
     locale: contentLocale.default,
     ...mainLocaleGlobal,
   });
-  const rest = entries(getLocalizedGlobals(global) as Record<Config['locale'], GlobalToCreate<T>>);
+  const rest = toEntries(
+    getLocalizedGlobals(global) as Record<Config['locale'], GlobalToCreate<T>>,
+  );
   for (const [locale, data] of rest) {
     await payload.updateGlobal({ ...data, locale });
   }

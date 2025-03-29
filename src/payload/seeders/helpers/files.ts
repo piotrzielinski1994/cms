@@ -1,10 +1,10 @@
-import { serverEnv } from '@/env';
+import { clientEnv } from '@/env.client';
+import { contentLocale } from '@/payload/locale';
+import { Config, Image } from '@/payload/payload.types';
+import { toEntries } from '@/utils/object';
+import configPromise from '@payload-config';
 import { StaticImageData } from 'next/image';
 import { getPayload } from 'payload';
-import configPromise from '@payload-config';
-import { Config, Image } from '@/payload/payload.types';
-import { contentLocale } from '@/payload/locale';
-import { entries } from '@/utils/object';
 
 type ImageToCreate = Omit<Image, 'createdAt' | 'id' | 'updatedAt'>;
 
@@ -16,7 +16,7 @@ export const createImage = async (
   ) => Omit<Record<Config['locale'], ImageToCreate>, typeof contentLocale.default>,
 ) => {
   const payload = await getPayload({ config: configPromise });
-  const response = await fetch(`${serverEnv.publicUrl}${imageFile.src}`);
+  const response = await fetch(`${clientEnv.publicUrl}${imageFile.src}`);
   const arrayBuffer = await response.arrayBuffer();
   const data = Buffer.from(arrayBuffer);
 
@@ -31,7 +31,7 @@ export const createImage = async (
     },
   });
 
-  for (const [locale, data] of entries(getLocalizedImages(uploadedImage))) {
+  for (const [locale, data] of toEntries(getLocalizedImages(uploadedImage))) {
     await payload.update({
       collection: 'images',
       id: uploadedImage.id,

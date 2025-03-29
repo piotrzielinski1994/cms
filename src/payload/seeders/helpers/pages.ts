@@ -1,6 +1,6 @@
 import { contentLocale } from '@/payload/locale';
 import { Config, Page } from '@/payload/payload.types';
-import { entries } from '@/utils/object';
+import { toEntries } from '@/utils/object';
 import { Payload } from 'payload';
 
 type PageToCreate = Omit<Page, 'createdAt' | 'id' | 'sizes' | 'updatedAt'>;
@@ -18,7 +18,7 @@ export const createPage = async (
     data: mainLocalePage,
   });
 
-  for (const [locale, data] of entries(getLocalizedPages(page))) {
+  for (const [locale, data] of toEntries(getLocalizedPages(page))) {
     await payload.update({
       collection: 'pages',
       id: page.id,

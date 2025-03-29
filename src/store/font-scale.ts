@@ -1,10 +1,10 @@
-import { clientEnv } from '@/env';
+import { clientEnv } from '@/env.client';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
 type FontScaleStore = {
-  scale: (typeof clientEnv.feature.fontScales)[number];
-  setScale: (scale: (typeof clientEnv.feature.fontScales)[number]) => void;
+  scale: keyof typeof clientEnv.feature.fontScales;
+  setScale: (scale: FontScaleStore['scale']) => void;
 };
 
 const useFontScale = create<FontScaleStore>()(

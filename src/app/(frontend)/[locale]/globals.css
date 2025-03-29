@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-html:not([data-theme]) {
+html:not([data-theme]),
+html:not([data-scale]) {
   opacity: 0;
 }

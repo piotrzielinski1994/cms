@@ -1,4 +1,4 @@
-import { serverEnv } from '@/env';
+import { serverEnv } from '@/env.server';
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
 
 const vercelStorage = vercelBlobStorage({

@@ -1,3 +1,3 @@
-export const entries = <T extends Record<string, unknown>>(qwe: T) => {
+export const toEntries = <T extends Record<string, unknown>>(qwe: T) => {
   return Object.entries(qwe) as [keyof T, T[keyof T]][];
 };

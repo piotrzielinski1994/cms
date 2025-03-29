@@ -1,5 +1,7 @@
 import type { Config } from 'tailwindcss';
 import resolveConfig from 'tailwindcss/resolveConfig';
+import { clientEnv } from './src/env.client';
+import { toEntries } from './src/utils/object';
 
 const tailwindConfig = {
   content: ['./src/**/*.{ts,tsx}'],
@@ -23,19 +25,15 @@ const tailwindConfig = {
         foreground: '#000',
       },
     }),
-    require('tailwindcss/plugin')(({ addBase }) =>
-      addBase({
-        ':root': {
-          'font-size': '16px',
-        },
-        '[data-scale="xs"]': {
-          'font-size': '12px',
-        },
-        '[data-scale="xl"]': {
-          'font-size': '20px',
-        },
-      }),
-    ),
+    require('tailwindcss/plugin')(({ addBase }) => {
+      const entries = toEntries(clientEnv.feature.fontScales)
+        .sort(([key]) => (key === 'base' ? -1 : 1))
+        .map(([key, value]) => {
+          const selector = key === 'base' ? ':root' : `[data-scale="${key}"]`;
+          return [selector, { 'font-size': `${value}px` }];
+        });
+      addBase(Object.fromEntries(entries));
+    }),
   ],
   theme: {
     extend: {
