@@ -1,15 +1,16 @@
-# Default
-.DS_Store
+# System
+**/.DS_Store
+
+# Framework
 node_modules
 build
 .next
 .vercel
-dist / media
 
-# Env
+# Environment
 .env
 
-# Static files
+# Static
 public/*
 !public/favicon.ico
 !public/favicon.svg

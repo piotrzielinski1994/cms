@@ -28,12 +28,7 @@ const tailwindConfig = {
         popover: '200',
       },
       colors: {
-        themes: fromPairs(
-          toPairs(themes).map(([key, value]) => [
-            key,
-            { background: value.background, foreground: value.foreground },
-          ]),
-        ),
+        themes,
       },
     },
   },
