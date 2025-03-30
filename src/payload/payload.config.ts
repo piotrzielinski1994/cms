@@ -1,4 +1,3 @@
-import { getServerSideURL } from '@/_old/utilities/getURL';
 import { Footer } from '@/components/layout/footer/payload/footer.payload.config';
 import { headerPayloadConfig } from '@/components/layout/header/payload/header.payload.config';
 import { env } from '@/config/env.config';
@@ -74,7 +73,7 @@ const payloadConfig = buildConfig({
     url: env.dbUri,
   }),
   collections: values(collections),
-  cors: [getServerSideURL()].filter(Boolean),
+  cors: [env.publicUrl],
   globals: [headerPayloadConfig, Footer],
   plugins: values(plugins),
   secret: env.payloadSecret,
