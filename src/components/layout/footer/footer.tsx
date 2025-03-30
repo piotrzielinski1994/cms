@@ -8,12 +8,14 @@ import { FooterProps } from './footer.types';
 
 export async function Footer({ locale }: FooterProps) {
   const footerData = await getCachedGlobal('footer', locale)();
-  const navItems = (footerData?.navItems ?? []).map((it) => ({
-    id: it.id,
-    label: it.link.label,
-    // @ts-expect-error
-    path: `/${it.link.reference?.value.slug}`,
-  }));
+  const navItems = (footerData?.navItems ?? []).map((it) => {
+    return {
+      id: it.id,
+      label: it.link.label,
+      // @ts-expect-error
+      path: it.link.reference?.value.path,
+    };
+  });
 
   return (
     <Section as="footer" className="mt-auto py-5 bg-background1">
