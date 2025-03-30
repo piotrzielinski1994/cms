@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
 import React, { useCallback, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
-import { env } from '@/config/env.config';
+import { clientEnv } from '@/config/env.client.config';
 import { fields } from './fields';
 
 export type FormBlockType = {
@@ -63,7 +63,7 @@ export const FormBlock: React.FC<
         }, 1000);
 
         try {
-          const req = await fetch(`${env.publicUrl}/api/form-submissions`, {
+          const req = await fetch(`${clientEnv.publicUrl}/api/form-submissions`, {
             body: JSON.stringify({
               form: formID,
               submissionData: dataToSend,

@@ -2,7 +2,7 @@ import { AdminBar } from '@/_old/components/AdminBar';
 import { mergeOpenGraph } from '@/_old/utilities/mergeOpenGraph';
 import { Footer } from '@/components/layout/footer/footer';
 import { Header } from '@/components/layout/header/header';
-import { env } from '@/config/env.config';
+import { clientEnv } from '@/config/env.client.config';
 import { Providers } from '@/providers';
 import { getPreferences } from '@/utils/headers';
 import { cn } from '@/utils/tailwind';
@@ -22,7 +22,7 @@ type Args = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL(env.publicUrl),
+  metadataBase: new URL(clientEnv.publicUrl),
   openGraph: mergeOpenGraph(),
   twitter: {
     card: 'summary_large_image',

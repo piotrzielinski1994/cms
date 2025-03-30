@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { RenderBlocks } from '@/_old/blocks/RenderBlocks';
 import { LivePreviewListener } from '@/_old/components/LivePreviewListener';
 import { PayloadRedirects } from '@/_old/components/PayloadRedirects';
-import { env } from '@/config/env.config';
+import { clientEnv } from '@/config/env.client.config';
 import { getPages, queryPage } from '@/payload/collections/pages/pages.utils';
 import { Image } from '@/payload/payload.types';
 import { toPageMetadata } from '@/utils/metadata';
@@ -34,7 +34,7 @@ export async function generateMetadata({ params: paramsPromise }: PageProps): Pr
   return toPageMetadata({
     title: page?.seo?.title ?? page?.title,
     description: page?.seo?.description ?? '',
-    imageUrl: optional(page?.seo?.image as Image, (image) => `${env.publicUrl}${image.url}`),
+    imageUrl: optional(page?.seo?.image as Image, (image) => `${clientEnv.publicUrl}${image.url}`),
   });
 }
 

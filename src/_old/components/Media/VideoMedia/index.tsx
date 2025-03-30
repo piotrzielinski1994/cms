@@ -1,6 +1,6 @@
 'use client';
 
-import { env } from '@/config/env.config';
+import { clientEnv } from '@/config/env.client.config';
 import { cn } from '@/utils/tailwind';
 import React, { useEffect, useRef } from 'react';
 import type { Props as MediaProps } from '../types';
@@ -35,7 +35,7 @@ export const VideoMedia: React.FC<MediaProps> = (props) => {
         playsInline
         ref={videoRef}
       >
-        <source src={`${env.publicUrl}/media/${filename}`} />
+        <source src={`${clientEnv.publicUrl}/media/${filename}`} />
       </video>
     );
   }

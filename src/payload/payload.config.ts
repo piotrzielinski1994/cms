@@ -1,4 +1,5 @@
-import { env } from '@/config/env.config';
+import { clientEnv } from '@/config/env.client.config';
+import { serverEnv } from '@/config/env.server.config';
 import {
   adminLocales,
   contentLocales,
@@ -70,13 +71,13 @@ const payloadConfig = buildConfig({
   // This config helps us configure global or default features that the other editors can inherit
   editor: defaultLexical,
   db: mongooseAdapter({
-    url: env.dbUri,
+    url: serverEnv.dbUri,
   }),
   collections: values(collections),
-  cors: [env.publicUrl],
+  cors: [clientEnv.publicUrl],
   globals: [Header, Footer],
   plugins: values(plugins),
-  secret: env.payloadSecret,
+  secret: serverEnv.payloadSecret,
   sharp,
   typescript: {
     outputFile: path.resolve(dirname, 'payload.types.ts'),

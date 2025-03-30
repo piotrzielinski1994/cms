@@ -1,4 +1,4 @@
-import { env } from '@/config/env.config';
+import { clientEnv } from '@/config/env.client.config';
 import { Metadata } from 'next';
 import { optional } from './optional';
 
@@ -7,7 +7,7 @@ const toPageMetadata = (options: {
   description?: string;
   imageUrl?: string;
 }): Metadata => {
-  const title = options.title ?? env.pageTitle;
+  const title = options.title ?? clientEnv.pageTitle;
   return {
     title,
     description: options.description,

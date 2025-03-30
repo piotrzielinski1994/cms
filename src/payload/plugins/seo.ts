@@ -1,14 +1,14 @@
-import { env } from '@/config/env.config';
+import { clientEnv } from '@/config/env.client.config';
 import { Page, Post } from '@/payload.types';
 import { seoPlugin } from '@payloadcms/plugin-seo';
 import { GenerateTitle, GenerateURL } from '@payloadcms/plugin-seo/types';
 
 const generateTitle: GenerateTitle<Post | Page> = ({ doc }) => {
-  return doc?.title ?? env.pageTitle;
+  return doc?.title ?? clientEnv.pageTitle;
 };
 
 const generateURL: GenerateURL<Post | Page> = ({ doc }) => {
-  return doc?.slug ? `${env.publicUrl}/${doc.slug}` : env.publicUrl;
+  return doc?.slug ? `${clientEnv.publicUrl}/${doc.slug}` : clientEnv.publicUrl;
 };
 
 const seo = seoPlugin({

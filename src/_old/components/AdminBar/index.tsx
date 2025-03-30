@@ -1,6 +1,6 @@
 'use client';
 
-import { env } from '@/config/env.config';
+import { clientEnv } from '@/config/env.client.config';
 import { cn } from '@/utils/tailwind';
 import type { PayloadAdminBarProps, PayloadMeUser } from '@payloadcms/admin-bar';
 import { PayloadAdminBar } from '@payloadcms/admin-bar';
@@ -58,7 +58,7 @@ export const AdminBar: React.FC<{
             logo: 'text-white',
             user: 'text-white',
           }}
-          cmsURL={env.publicUrl}
+          cmsURL={clientEnv.publicUrl}
           collectionSlug={collection}
           collectionLabels={{
             plural: collectionLabels[collection]?.plural || 'Pages',

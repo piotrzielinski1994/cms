@@ -1,7 +1,7 @@
 'use client';
 
 import { cssVariables } from '@/_old/cssVariables';
-import { env } from '@/config/env.config';
+import { clientEnv } from '@/config/env.client.config';
 import { cn } from '@/utils/tailwind';
 import type { StaticImageData } from 'next/image';
 import NextImage from 'next/image';
@@ -40,7 +40,7 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
 
     const cacheTag = resource.updatedAt;
 
-    src = `${env.publicUrl}${url}?${cacheTag}`;
+    src = `${clientEnv.publicUrl}${url}?${cacheTag}`;
   }
 
   const loading = loadingFromProps || (!priority ? 'lazy' : undefined);

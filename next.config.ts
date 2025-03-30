@@ -1,4 +1,4 @@
-import { env } from '@/config/env.config';
+import { clientEnv } from '@/config/env.client.config';
 import { withPayload } from '@payloadcms/next/withPayload';
 import type { NextConfig } from 'next';
 import createNextIntlPlugin from 'next-intl/plugin';
@@ -7,7 +7,7 @@ import { RemotePattern } from 'next/dist/shared/lib/image-config';
 const withNextIntl = createNextIntlPlugin('./src/config/next.routing.config.ts');
 const nextConfig = {
   images: {
-    remotePatterns: [env.publicUrl].map((item) => {
+    remotePatterns: [clientEnv.publicUrl].map((item) => {
       const url = new URL(item);
       return {
         hostname: url.hostname,
