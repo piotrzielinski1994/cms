@@ -2,6 +2,7 @@ import { Container } from '@/components/layout/container/container';
 import { Section } from '@/components/layout/section/section';
 import { Link } from '@/config/next.routing.config';
 import LogoSvg from '@/icons/logo.svg';
+import { Page } from '@/payload/payload.types';
 import { getCachedGlobal } from '@/payload/utils/globals';
 import { cn } from '@/utils/tailwind';
 import { TypedLocale } from 'payload';
@@ -15,8 +16,7 @@ const Footer = async ({ locale }: FooterProps) => {
   const navItems = (footerData?.navItems ?? []).map((it) => ({
     id: it.id,
     label: it.link.label,
-    // @ts-expect-error
-    path: `/${it.link.reference?.value.slug}`,
+    path: `/${(it.link.reference?.value as Page).slug}`,
   }));
 
   return (
