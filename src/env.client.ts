@@ -1,4 +1,4 @@
-import { fullTailwindConfig } from '@/tailwind.config';
+import { fullTailwindConfig } from '@/tailwind-config';
 import { AcceptedLanguages, SupportedLanguages } from '@payloadcms/translations';
 import { z } from 'zod';
 import { Config } from './payload/payload.types';

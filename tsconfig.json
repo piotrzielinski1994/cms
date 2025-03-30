@@ -29,11 +29,11 @@
     "paths": {
       "react": ["./node_modules/@types/react"],
       "@/*": ["./src/*"],
-      "@/payload.config": ["./src/payload/payload.config.ts"],
+      "@payload-config": ["./src/payload/payload.config.ts"],
       "@/payload.types": ["./src/payload/payload.types.ts"],
       "@/pages/frontend/*": ["./src/app/(frontend)/*"],
       "@/pages/payload/*": ["./src/app/(payload)/*"],
-      "@/tailwind.config": ["./tailwind.config.ts"],
+      "@/tailwind-config": ["./tailwind.config.ts"],
     }
   },
   "include": [
