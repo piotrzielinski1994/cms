@@ -1,10 +1,10 @@
 'use client';
 
-import { cn } from '@/_old/utilities/ui';
 import { Container } from '@/components/layout/container/container';
 import { Section } from '@/components/layout/section/section';
 import LogoSvg from '@/icons/logo.svg';
 import { Link } from '@/payload/locale/routing';
+import { cn } from '@/utils/tailwind';
 import { DataFromGlobalSlug } from 'payload';
 import React from 'react';
 import FontScaler from './scaffold/font-scaler';

@@ -1,10 +1,10 @@
 'use client';
 
-import { cn } from '@/_old/utilities/ui';
 import { ButtonLink } from '@/components/basic/button-link/button-link';
 import { Image } from '@/components/basic/image/image';
 import { ImageBlock1Block, Image as ImageModel } from '@/payload.types';
 import { useThemeStore } from '@/store/theme';
+import { cn } from '@/utils/tailwind';
 
 const ImageBlock1 = ({ isReversed, image, heading, subheading, buttons }: ImageBlock1Block) => {
   const theme = useThemeStore((store) => store.theme);

@@ -1,5 +1,5 @@
-import { cn } from '@/_old/utilities/ui';
 import { Link } from '@/payload/locale/routing';
+import { cn } from '@/utils/tailwind';
 import { ComponentProps } from 'react';
 
 const ButtonLink = ({ className, ...rest }: ComponentProps<typeof Link>) => {

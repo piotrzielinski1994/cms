@@ -1,4 +1,4 @@
-import { cn } from '@/_old/utilities/ui';
+import { cn } from '@/utils/tailwind';
 import { ComponentPropsWithoutRef } from 'react';
 
 type SectionProps = ComponentPropsWithoutRef<'section'> & {

@@ -1,6 +1,6 @@
 'use client';
 
-import { cn } from '@/_old/utilities/ui';
+import { cn } from '@/utils/tailwind';
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox';
 import { Check } from 'lucide-react';
 import * as React from 'react';

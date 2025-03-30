@@ -1,5 +1,5 @@
 import { Button, type ButtonProps } from '@/_old/components/ui/button';
-import { cn } from '@/_old/utilities/ui';
+import { cn } from '@/utils/tailwind';
 import Link from 'next/link';
 import React from 'react';
 

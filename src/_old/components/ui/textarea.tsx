@@ -1,4 +1,4 @@
-import { cn } from '@/_old/utilities/ui';
+import { cn } from '@/utils/tailwind';
 import * as React from 'react';
 
 const Textarea: React.FC<

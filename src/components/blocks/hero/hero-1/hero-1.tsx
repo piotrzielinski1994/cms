@@ -1,8 +1,8 @@
-import { cn } from '@/_old/utilities/ui';
 import { ButtonLink } from '@/components/basic/button-link/button-link';
 import { Container } from '@/components/layout/container/container';
 import { Section } from '@/components/layout/section/section';
 import { Hero1Block } from '@/payload/payload.types';
+import { cn } from '@/utils/tailwind';
 
 const Hero1 = ({ heading, subheading, buttons }: Hero1Block) => {
   return (

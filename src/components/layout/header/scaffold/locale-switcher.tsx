@@ -1,8 +1,8 @@
 'use client';
 
-import { cn } from '@/_old/utilities/ui';
 import { contentLocales, customTranslations } from '@/config/locales.config';
 import { useRouter } from '@/payload/locale/routing';
+import { cn } from '@/utils/tailwind';
 import * as SelectPrimitive from '@radix-ui/react-select';
 import { useLocale } from 'next-intl';
 import { useParams } from 'next/navigation';

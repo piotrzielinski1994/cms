@@ -1,5 +1,5 @@
 import RichText from '@/_old/components/RichText';
-import { cn } from '@/_old/utilities/ui';
+import { cn } from '@/utils/tailwind';
 import React from 'react';
 
 import type { ContentBlock as ContentBlockProps } from '@/payload.types';

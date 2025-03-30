@@ -2,7 +2,7 @@
 
 import type { PayloadAdminBarProps, PayloadMeUser } from '@payloadcms/admin-bar';
 
-import { cn } from '@/_old/utilities/ui';
+import { cn } from '@/utils/tailwind';
 import { PayloadAdminBar } from '@payloadcms/admin-bar';
 import { useRouter, useSelectedLayoutSegments } from 'next/navigation';
 import React, { useState } from 'react';

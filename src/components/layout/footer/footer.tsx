@@ -1,9 +1,9 @@
 import { getCachedGlobal } from '@/_old/utilities/getGlobals';
-import { cn } from '@/_old/utilities/ui';
 import { Container } from '@/components/layout/container/container';
 import { Section } from '@/components/layout/section/section';
 import LogoSvg from '@/icons/logo.svg';
 import { Link } from '@/payload/locale/routing';
+import { cn } from '@/utils/tailwind';
 import { TypedLocale } from 'payload';
 
 type FooterProps = {

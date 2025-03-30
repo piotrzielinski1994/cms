@@ -1,7 +1,7 @@
 import type { StaticImageData } from 'next/image';
 
 import RichText from '@/_old/components/RichText';
-import { cn } from '@/_old/utilities/ui';
+import { cn } from '@/utils/tailwind';
 import React from 'react';
 
 import type { MediaBlock as MediaBlockProps } from '@/payload.types';

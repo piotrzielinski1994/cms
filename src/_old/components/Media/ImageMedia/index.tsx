@@ -2,7 +2,7 @@
 
 import type { StaticImageData } from 'next/image';
 
-import { cn } from '@/_old/utilities/ui';
+import { cn } from '@/utils/tailwind';
 import NextImage from 'next/image';
 import React from 'react';
 

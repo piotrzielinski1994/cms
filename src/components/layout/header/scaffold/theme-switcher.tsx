@@ -1,10 +1,10 @@
 'use client';
 
-import { cn } from '@/_old/utilities/ui';
 import { customTranslations } from '@/config/locales.config';
 import { themes } from '@/config/themes.config';
 import ContrastIcon from '@/icons/contrast.svg';
 import { useThemeStore } from '@/store/theme';
+import { cn } from '@/utils/tailwind';
 import * as SelectPrimitive from '@radix-ui/react-select';
 import { useLocale } from 'next-intl';
 import { FC } from 'react';

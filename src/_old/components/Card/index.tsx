@@ -1,6 +1,6 @@
 'use client';
-import { cn } from '@/_old/utilities/ui';
 import useClickableCard from '@/_old/utilities/useClickableCard';
+import { cn } from '@/utils/tailwind';
 import Link from 'next/link';
 import React, { Fragment } from 'react';
 

@@ -1,10 +1,10 @@
 'use client';
 
-import { cn } from '@/_old/utilities/ui';
 import { fontScales } from '@/config/font-scales.config';
 import { customTranslations } from '@/config/locales.config';
 import FontScalerSvg from '@/icons/font-scaler.svg';
 import { useFontScaleStore } from '@/store/font-scale';
+import { cn } from '@/utils/tailwind';
 import * as SelectPrimitive from '@radix-ui/react-select';
 import { useLocale } from 'next-intl';
 import { keys } from 'ramda';
