@@ -2,7 +2,7 @@ import RichText from '@/_old/components/RichText';
 import clsx from 'clsx';
 import React from 'react';
 
-import type { Post } from '@/payload/payload.types';
+import type { Post } from '@/payload.types';
 
 import { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical';
 import { Card } from '../../components/Card';

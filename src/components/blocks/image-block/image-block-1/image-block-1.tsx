@@ -3,7 +3,7 @@
 import { cn } from '@/_old/utilities/ui';
 import ButtonLink from '@/components/basic/button-link/button-link';
 import Image from '@/components/basic/image/image';
-import { Image as ImageModel } from '@/payload/payload.types';
+import { Image as ImageModel } from '@/payload.types';
 import { useThemeStore } from '@/store/theme';
 import { ImageBlock1Props } from './image-block-1.types';
 

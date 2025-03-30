@@ -1,7 +1,7 @@
 import { clientEnv } from '@/env.client';
 import configPromise from '@/payload.config';
 import { contentLocale } from '@/payload/locale';
-import { Config, Image } from '@/payload/payload.types';
+import { Config, Image } from '@/payload.types';
 import { toEntries } from '@/utils/object';
 import { StaticImageData } from 'next/image';
 import { getPayload } from 'payload';

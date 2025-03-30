@@ -1,4 +1,4 @@
-import { User } from '@/payload/payload.types';
+import { User } from '@/payload.types';
 import { FieldAccess } from 'payload';
 
 export const adminFieldLevel: FieldAccess<{ id: string }, User> = ({ req: { user } }) => {

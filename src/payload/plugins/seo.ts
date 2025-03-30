@@ -1,5 +1,5 @@
 import { getServerSideURL } from '@/_old/utilities/getURL';
-import { Page, Post } from '@/payload/payload.types';
+import { Page, Post } from '@/payload.types';
 import { seoPlugin } from '@payloadcms/plugin-seo';
 import { GenerateTitle, GenerateURL } from '@payloadcms/plugin-seo/types';
 

@@ -1,7 +1,7 @@
 'use client';
 
+import type { Header as HeaderType } from '@/payload.types';
 import { Link } from '@/payload/locale/routing';
-import type { Header as HeaderType } from '@/payload/payload.types';
 import React from 'react';
 
 const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {

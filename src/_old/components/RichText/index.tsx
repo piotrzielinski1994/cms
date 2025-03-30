@@ -20,7 +20,7 @@ import type {
   BannerBlock as BannerBlockProps,
   CallToActionBlock as CTABlockProps,
   MediaBlock as MediaBlockProps,
-} from '@/payload/payload.types';
+} from '@/payload.types';
 
 type NodeTypes =
   | DefaultNodeTypes

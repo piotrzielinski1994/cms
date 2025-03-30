@@ -1,4 +1,4 @@
-import type { ArchiveBlock as ArchiveBlockProps, Post } from '@/payload/payload.types';
+import type { ArchiveBlock as ArchiveBlockProps, Post } from '@/payload.types';
 
 import RichText from '@/_old/components/RichText';
 import configPromise from '@/payload.config';

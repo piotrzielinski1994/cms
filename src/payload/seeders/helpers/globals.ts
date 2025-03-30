@@ -1,5 +1,5 @@
+import { Config } from '@/payload.types';
 import { contentLocale } from '@/payload/locale';
-import { Config } from '@/payload/payload.types';
 import { toEntries } from '@/utils/object';
 import { SelectFromGlobalSlug } from 'node_modules/payload/dist/globals/config/types';
 import { Options } from 'node_modules/payload/dist/globals/operations/local/update';

@@ -10,7 +10,7 @@ import { authenticatedOrPublished } from '@/payload/access/authenticatedOrPublis
 import { slugField } from '@/payload/fields/slug';
 import { populatePublishedAt } from '@/payload/hooks/populatePublishedAt';
 import { AdminTranslations, adminLocale } from '@/payload/locale';
-import { Page } from '@/payload/payload.types';
+import { Page } from '@/payload.types';
 import { createBreadcrumbsField, createParentField } from '@payloadcms/plugin-nested-docs';
 import {
   MetaDescriptionField,

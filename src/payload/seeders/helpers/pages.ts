@@ -1,5 +1,5 @@
+import { Config, Page } from '@/payload.types';
 import { contentLocale } from '@/payload/locale';
-import { Config, Page } from '@/payload/payload.types';
 import { toEntries } from '@/utils/object';
 import { Payload } from 'payload';
 

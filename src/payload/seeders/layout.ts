@@ -1,4 +1,4 @@
-import { Config, Header, Page } from '@/payload/payload.types';
+import { Config, Header, Page } from '@/payload.types';
 import { GlobalSlug, Payload } from 'payload';
 import { contentLocale } from '../locale';
 import { createGlobal } from './helpers/globals';
