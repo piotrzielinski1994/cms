@@ -31,12 +31,10 @@ export async function generateMetadata({ params: paramsPromise }: PageProps): Pr
   const { segments = [], locale } = await paramsPromise;
   const { page } = await queryPage({ path: toPath(segments), locale });
 
-  if (!page) return {};
-
   return toPageMetadata({
-    title: page.seo?.title ?? page.title,
-    description: page.seo?.description ?? '',
-    imageUrl: optional(page.seo?.image as Image, (image) => `${env.publicUrl}${image.url}`),
+    title: page?.seo?.title ?? page?.title,
+    description: page?.seo?.description ?? '',
+    imageUrl: optional(page?.seo?.image as Image, (image) => `${env.publicUrl}${image.url}`),
   });
 }
 
