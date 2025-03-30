@@ -1,12 +1,8 @@
-import {
-  contentLocales,
-  customTranslations,
-  defaultContentLocale,
-  Locale,
-} from '@/config/locales.config';
+import { contentLocales, customTranslations, defaultContentLocale } from '@/config/locales.config';
 import { createNavigation } from 'next-intl/navigation';
 import { defineRouting } from 'next-intl/routing';
 import { getRequestConfig } from 'next-intl/server';
+import { TypedLocale } from 'payload';
 
 // Types ====================================
 
@@ -25,7 +21,7 @@ const routing = defineRouting({
 const { Link, redirect, usePathname, useRouter } = createNavigation(routing);
 
 const request = getRequestConfig(async ({ requestLocale }) => {
-  let locale = (await requestLocale) as Locale;
+  let locale = (await requestLocale) as TypedLocale;
 
   if (!locale || !routing.locales.includes(locale)) {
     locale = routing.defaultLocale;

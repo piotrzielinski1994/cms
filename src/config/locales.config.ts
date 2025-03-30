@@ -8,17 +8,17 @@ import {
 } from '@payloadcms/translations';
 import { en } from '@payloadcms/translations/languages/en';
 import { pl } from '@payloadcms/translations/languages/pl';
+import { TypedLocale } from 'payload';
 import { pick } from 'ramda';
 
 // Types ====================================
 
 type AdminTranslations = TFunction<NestedKeysStripped<typeof customEn> | DefaultTranslationKeys>;
-type Locale = (typeof contentLocales)[number];
 
 // Variables ====================================
 
 const contentLocales = ['en', 'pl'] satisfies (keyof SupportedLanguages)[];
-const defaultContentLocale = 'en' satisfies Locale;
+const defaultContentLocale = 'en' satisfies TypedLocale;
 
 const adminLocales = pick(contentLocales, { en, pl }) satisfies SupportedLanguages;
 const defaultAdminLocale = 'en' satisfies keyof typeof adminLocales;
@@ -26,7 +26,7 @@ const defaultAdminLocale = 'en' satisfies keyof typeof adminLocales;
 const customTranslations = {
   en: customEn,
   pl: customPl,
-} satisfies Record<Locale, typeof customEn>;
+} satisfies Record<TypedLocale, typeof customEn>;
 
 export {
   adminLocales,
@@ -35,5 +35,4 @@ export {
   defaultAdminLocale,
   defaultContentLocale,
   type AdminTranslations,
-  type Locale,
 };

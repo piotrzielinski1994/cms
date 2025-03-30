@@ -1,8 +1,8 @@
-import { getCachedGlobal } from '@/_old/utilities/getGlobals';
 import { Container } from '@/components/layout/container/container';
 import { Section } from '@/components/layout/section/section';
 import { Link } from '@/config/next.routing.config';
 import LogoSvg from '@/icons/logo.svg';
+import { getCachedGlobal } from '@/payload/utils/globals';
 import { cn } from '@/utils/tailwind';
 import { TypedLocale } from 'payload';
 

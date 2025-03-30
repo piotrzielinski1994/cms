@@ -1,8 +1,8 @@
-import { Locale } from '@/config/locales.config';
 import { useLocale } from 'next-intl';
+import { TypedLocale } from 'payload';
 
 const useLocaleStore = () => {
-  return useLocale() as Locale;
+  return useLocale() as TypedLocale;
 };
 
 export { useLocaleStore };
