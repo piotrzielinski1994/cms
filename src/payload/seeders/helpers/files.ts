@@ -1,5 +1,5 @@
+import { env } from '@/config/env.config';
 import { defaultContentLocale } from '@/config/locales.config';
-import { clientEnv } from '@/env.client';
 import { Config, Image } from '@/payload.types';
 import configPromise from '@payload-config';
 import { StaticImageData } from 'next/image';
@@ -16,7 +16,7 @@ const createImage = async (
   ) => Omit<Record<Config['locale'], ImageToCreate>, typeof defaultContentLocale>,
 ) => {
   const payload = await getPayload({ config: configPromise });
-  const response = await fetch(`${clientEnv.publicUrl}${imageFile.src}`);
+  const response = await fetch(`${env.publicUrl}${imageFile.src}`);
   const arrayBuffer = await response.arrayBuffer();
   const data = Buffer.from(arrayBuffer);
 
