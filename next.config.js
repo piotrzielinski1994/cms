@@ -1,6 +1,5 @@
 import { withPayload } from '@payloadcms/next/withPayload';
 import createNextIntlPlugin from 'next-intl/plugin';
-import redirects from './redirects.js';
 
 const withNextIntl = createNextIntlPlugin('./src/payload/locale/request.ts');
 
@@ -23,7 +22,22 @@ const nextConfig = {
     ],
   },
   reactStrictMode: true,
-  redirects,
+  redirects: async () => {
+    const internetExplorerRedirect = {
+      destination: '/ie-incompatible.html',
+      has: [
+        {
+          type: 'header',
+          key: 'user-agent',
+          value: '(.*Trident.*)', // all ie browsers
+        },
+      ],
+      permanent: false,
+      source: '/:path((?!ie-incompatible.html$).*)', // all pages except the incompatibility page
+    };
+
+    return [internetExplorerRedirect];
+  },
   webpack: (config) => {
     config.module.rules.push({
       test: /\.svg$/,
