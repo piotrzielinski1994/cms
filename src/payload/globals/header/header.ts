@@ -1,10 +1,10 @@
 import { AdminTranslations, customTranslations } from '@/config/locales.config';
 import { link } from '@/payload/fields/link';
 import type { GlobalConfig } from 'payload';
-import { revalidateFooter } from './footer.payload.hooks';
+import { revalidateHeader } from './header.hooks';
 
-export const Footer: GlobalConfig = {
-  slug: 'footer',
+const Header: GlobalConfig = {
+  slug: 'header',
   access: {
     read: () => true,
   },
@@ -14,26 +14,30 @@ export const Footer: GlobalConfig = {
       pl: customTranslations.pl.common.layout,
     },
   },
-  label: ({ t }: { t: AdminTranslations }) => t('components:footer'),
+  label: ({ t }: { t: AdminTranslations }) => t('components:header'),
   fields: [
     {
       name: 'navItems',
       type: 'array',
+      label: ({ t }: { t: AdminTranslations }) => t('fields:menu'),
       fields: [
         link({
           appearances: false,
+          depth: 1,
         }),
       ],
       maxRows: 6,
       admin: {
         initCollapsed: true,
         components: {
-          RowLabel: '@/components/layout/footer/payload/row-label.payload.component#RowLabel',
+          RowLabel: '@/payload/components/row-label#RowLabel',
         },
       },
     },
   ],
   hooks: {
-    afterChange: [revalidateFooter],
+    afterChange: [revalidateHeader],
   },
 };
+
+export { Header };

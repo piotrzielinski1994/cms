@@ -1,5 +1,3 @@
-import { Footer } from '@/components/layout/footer/payload/footer.payload.config';
-import { headerPayloadConfig } from '@/components/layout/header/payload/header.payload.config';
 import { env } from '@/config/env.config';
 import {
   adminLocales,
@@ -10,6 +8,8 @@ import {
 } from '@/config/locales.config';
 import { collections } from '@/payload/collections';
 import { defaultLexical } from '@/payload/fields/defaultLexical';
+import { Footer } from '@/payload/globals/footer/footer';
+import { Header } from '@/payload/globals/header/header';
 import { plugins } from '@/payload/plugins';
 import { mongooseAdapter } from '@payloadcms/db-mongodb';
 import path from 'path';
@@ -74,7 +74,7 @@ const payloadConfig = buildConfig({
   }),
   collections: values(collections),
   cors: [env.publicUrl],
-  globals: [headerPayloadConfig, Footer],
+  globals: [Header, Footer],
   plugins: values(plugins),
   secret: env.payloadSecret,
   sharp,

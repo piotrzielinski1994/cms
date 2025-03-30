@@ -160,7 +160,7 @@ const link: LinkType = ({ depth = 0, appearances, disableLabel = false, override
         },
         initCollapsed: true,
         components: {
-          RowLabel: '@/components/layout/header/payload/row-label.payload.component#RowLabel',
+          RowLabel: '@/payload/components/row-label#RowLabel',
         },
       },
     });
