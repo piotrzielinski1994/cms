@@ -2,8 +2,8 @@
 
 import { Container } from '@/components/layout/container/container';
 import { Section } from '@/components/layout/section/section';
+import { Link } from '@/config/next.routing.config';
 import LogoSvg from '@/icons/logo.svg';
-import { Link } from '@/payload/locale/routing';
 import { cn } from '@/utils/tailwind';
 import { DataFromGlobalSlug } from 'payload';
 import React from 'react';

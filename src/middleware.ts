@@ -1,4 +1,4 @@
-import { routing } from '@/payload/locale/routing';
+import { routing } from '@/config/next.routing.config';
 import createMiddleware from 'next-intl/middleware';
 
 // see https://next-intl-docs.vercel.app/docs/routing/middleware

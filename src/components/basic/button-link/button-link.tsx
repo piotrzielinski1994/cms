@@ -1,4 +1,4 @@
-import { Link } from '@/payload/locale/routing';
+import { Link } from '@/config/next.routing.config';
 import { cn } from '@/utils/tailwind';
 import { ComponentProps } from 'react';
 

@@ -1,7 +1,7 @@
 'use client';
 
+import { Link } from '@/config/next.routing.config';
 import type { Header as HeaderType } from '@/payload.types';
-import { Link } from '@/payload/locale/routing';
 import React from 'react';
 
 const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
