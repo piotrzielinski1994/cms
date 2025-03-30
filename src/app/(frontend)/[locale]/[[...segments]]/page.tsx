@@ -5,6 +5,8 @@ import { LivePreviewListener } from '@/_old/components/LivePreviewListener';
 import { PayloadRedirects } from '@/_old/components/PayloadRedirects';
 import { env } from '@/config/env.config';
 import { getPages, queryPage } from '@/payload/collections/pages/pages.utils';
+import { Image } from '@/payload/payload.types';
+import { toPageMetadata } from '@/utils/metadata';
 import { optional } from '@/utils/optional';
 import { toPath } from '@/utils/url';
 import { draftMode } from 'next/headers';
@@ -31,15 +33,11 @@ export async function generateMetadata({ params: paramsPromise }: PageProps): Pr
 
   if (!page) return {};
 
-  return {
+  return toPageMetadata({
     title: page.seo?.title ?? page.title,
-    description: page.seo?.description,
-    openGraph: optional(page.seo, (seo) => ({
-      title: seo.title ?? page.title,
-      description: seo.description ?? '',
-      images: [{ url: optional(seo.image, (it) => `${env.publicUrl}${it}`) ?? '' }],
-    })),
-  };
+    description: page.seo?.description ?? '',
+    imageUrl: optional(page.seo?.image as Image, (image) => `${env.publicUrl}${image.url}`),
+  });
 }
 
 export default async function Page({ params: paramsPromise }: PageProps) {

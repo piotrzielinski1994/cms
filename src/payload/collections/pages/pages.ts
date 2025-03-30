@@ -16,8 +16,6 @@ import {
   MetaDescriptionField,
   MetaImageField,
   MetaTitleField,
-  OverviewField,
-  PreviewField,
 } from '@payloadcms/plugin-seo/fields';
 import { SupportedLanguages } from '@payloadcms/translations';
 import type { CollectionConfig } from 'payload';
@@ -99,7 +97,16 @@ const Pages: CollectionConfig<'pages'> = {
               admin: {
                 initCollapsed: true,
               },
-              label: ({ t }: { t: AdminTranslations }) => t('common:section:plural'),
+              labels: {
+                singular: {
+                  en: customTranslations.en.common.section.singular,
+                  pl: customTranslations.pl.common.section.singular,
+                },
+                plural: {
+                  en: customTranslations.en.common.section.plural,
+                  pl: customTranslations.pl.common.section.plural,
+                },
+              },
             },
           ],
           label: {
@@ -114,26 +121,23 @@ const Pages: CollectionConfig<'pages'> = {
             pl: customTranslations.pl.fields.seo,
           },
           fields: [
-            OverviewField({
-              titlePath: 'seo.title',
-              descriptionPath: 'seo.description',
-              imagePath: 'seo.image',
-            }),
             MetaTitleField({
               hasGenerateFn: true,
+              overrides: {
+                label: ({ t }: { t: AdminTranslations }) => t('fields:title'),
+              },
+            }),
+            MetaDescriptionField({
+              overrides: {
+                label: ({ t }: { t: AdminTranslations }) => t('fields:description'),
+              },
             }),
             MetaImageField({
               relationTo: 'images',
-            }),
-
-            MetaDescriptionField({}),
-            PreviewField({
-              // if the `generateUrl` function is configured
-              hasGenerateFn: true,
-
-              // field paths to match the target field for data
-              titlePath: 'seo.title',
-              descriptionPath: 'seo.description',
+              overrides: {
+                label: ({ t }: { t: AdminTranslations }) => t('fields:image'),
+                localized: false,
+              },
             }),
           ],
         },

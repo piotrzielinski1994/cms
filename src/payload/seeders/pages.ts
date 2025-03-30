@@ -83,6 +83,7 @@ const seedPages = async (payload: Payload) => {
         seo: {
           title: 'Główna',
           description: 'Opis strony głównej',
+          image: defaultImage,
         },
         sections: [
           {

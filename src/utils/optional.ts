@@ -1,6 +1,5 @@
-const optional = <T, R>(val: T | undefined | null, fn: (val: T) => R): R | undefined | null => {
+const optional = <T, R>(val: T | undefined, fn: (val: T) => R): R | undefined => {
   if (val === undefined) return undefined;
-  if (val === null) return null;
   return fn(val);
 };
 

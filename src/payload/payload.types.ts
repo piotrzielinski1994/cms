@@ -145,11 +145,11 @@ export interface Page {
   sections: (Hero1Block | ImageBlocksBlock | ImageBlock1Block | ArchiveBlock | CallToActionBlock | ContentBlock)[];
   seo?: {
     title?: string | null;
+    description?: string | null;
     /**
      * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
      */
     image?: (string | null) | Image;
-    description?: string | null;
   };
   subpages?: {
     children?: {
@@ -799,8 +799,8 @@ export interface PagesSelect<T extends boolean = true> {
     | T
     | {
         title?: T;
-        image?: T;
         description?: T;
+        image?: T;
       };
   subpages?:
     | T
