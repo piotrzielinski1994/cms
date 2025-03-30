@@ -3,8 +3,9 @@ import type { Metadata } from 'next';
 import { RenderBlocks } from '@/_old/blocks/RenderBlocks';
 import { LivePreviewListener } from '@/_old/components/LivePreviewListener';
 import { PayloadRedirects } from '@/_old/components/PayloadRedirects';
-import { generateMeta } from '@/_old/utilities/generateMeta';
+import { env } from '@/config/env.config';
 import { getPages, queryPage } from '@/payload/collections/pages/pages.utils';
+import { optional } from '@/utils/optional';
 import { draftMode } from 'next/headers';
 import { TypedLocale } from 'payload';
 import PageClient from './page.client';
@@ -27,7 +28,17 @@ export async function generateMetadata({ params: paramsPromise }: PageProps): Pr
   const { segments = [], locale } = await paramsPromise;
   const { page } = await queryPage({ path: `/${segments.join('/')}`, locale });
 
-  return generateMeta({ doc: page! });
+  if (!page) throw new Error('Page not found');
+
+  return {
+    title: page.seo?.title,
+    description: page.seo?.description,
+    openGraph: optional(page.seo, (seo) => ({
+      title: seo.title ?? '',
+      description: seo.description ?? '',
+      images: [{ url: optional(seo.image, (it) => `${env.publicUrl}${it}`) ?? '' }],
+    })),
+  };
 }
 
 export default async function Page({ params: paramsPromise }: PageProps) {

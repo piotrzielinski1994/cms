@@ -1,16 +1,13 @@
+import { env } from '@/config/env.config';
 import { withPayload } from '@payloadcms/next/withPayload';
 import type { NextConfig } from 'next';
 import createNextIntlPlugin from 'next-intl/plugin';
 import { RemotePattern } from 'next/dist/shared/lib/image-config';
 
 const withNextIntl = createNextIntlPlugin('./src/config/next.routing.config.ts');
-const serverUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
-  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-  : process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000';
-
 const nextConfig = {
   images: {
-    remotePatterns: [serverUrl].map((item) => {
+    remotePatterns: [env.publicUrl].map((item) => {
       const url = new URL(item);
       return {
         hostname: url.hostname,
