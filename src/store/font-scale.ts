@@ -22,8 +22,8 @@ export const createFontScaleStore = (initialFontScale: FontScaleStore['scale']) 
       (set) => ({
         scale: initialFontScale,
         setScale: (scale) => {
-          setCookie(FONT_SCALE_STORAGE_KEY, scale);
           updateDom(scale);
+          setCookie(FONT_SCALE_STORAGE_KEY, scale);
           set({ scale });
         },
       }),
@@ -32,6 +32,7 @@ export const createFontScaleStore = (initialFontScale: FontScaleStore['scale']) 
         onRehydrateStorage: () => (state) => {
           if (!state) return;
           updateDom(state.scale);
+          setCookie(FONT_SCALE_STORAGE_KEY, state.scale);
         },
       },
     ),

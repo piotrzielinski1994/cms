@@ -31,6 +31,7 @@ export const createThemeStore = (initialTheme: ThemeStore['theme']) => {
         onRehydrateStorage: () => (state) => {
           if (!state) return;
           updateDom(state.theme);
+          setCookie(THEME_STORAGE_KEY, state.theme);
         },
       },
     ),
