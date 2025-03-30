@@ -2,9 +2,9 @@
 
 import { contentLocales, customTranslations } from '@/config/locales.config';
 import { useRouter } from '@/config/next.routing.config';
+import { useLocaleStore } from '@/store/locale';
 import { cn } from '@/utils/tailwind';
 import * as SelectPrimitive from '@radix-ui/react-select';
-import { useLocale } from 'next-intl';
 import { useParams } from 'next/navigation';
 import { TypedLocale } from 'payload';
 import { useTransition } from 'react';
@@ -12,7 +12,7 @@ import { useTransition } from 'react';
 const LocaleSwitcher = () => {
   const router = useRouter();
   const params = useParams();
-  const locale = useLocale();
+  const locale = useLocaleStore();
   const [, startTransition] = useTransition();
   const label = customTranslations[locale].frontend.fontScaleSwitcher;
 

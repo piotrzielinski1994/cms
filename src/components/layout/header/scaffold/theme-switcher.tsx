@@ -3,16 +3,16 @@
 import { customTranslations } from '@/config/locales.config';
 import { themes } from '@/config/themes.config';
 import ContrastIcon from '@/icons/contrast.svg';
+import { useLocaleStore } from '@/store/locale';
 import { useThemeStore } from '@/store/theme';
 import { cn } from '@/utils/tailwind';
 import * as SelectPrimitive from '@radix-ui/react-select';
-import { useLocale } from 'next-intl';
 import { FC } from 'react';
 import './theme-switcher.scss';
 
 export const ThemeSwitcher: FC = () => {
   const { theme, setTheme } = useThemeStore();
-  const locale = useLocale();
+  const locale = useLocaleStore();
   const label = customTranslations[locale].frontend.themeSwitcher;
 
   return (

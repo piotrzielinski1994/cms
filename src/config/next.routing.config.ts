@@ -1,4 +1,9 @@
-import { contentLocales, customTranslations, defaultContentLocale } from '@/config/locales.config';
+import {
+  contentLocales,
+  customTranslations,
+  defaultContentLocale,
+  Locale,
+} from '@/config/locales.config';
 import { createNavigation } from 'next-intl/navigation';
 import { defineRouting } from 'next-intl/routing';
 import { getRequestConfig } from 'next-intl/server';
@@ -20,7 +25,7 @@ const routing = defineRouting({
 const { Link, redirect, usePathname, useRouter } = createNavigation(routing);
 
 const request = getRequestConfig(async ({ requestLocale }) => {
-  let locale = (await requestLocale) as (typeof contentLocales)[number];
+  let locale = (await requestLocale) as Locale;
 
   if (!locale || !routing.locales.includes(locale)) {
     locale = routing.defaultLocale;

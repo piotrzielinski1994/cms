@@ -4,15 +4,15 @@ import { fontScales } from '@/config/font-scales.config';
 import { customTranslations } from '@/config/locales.config';
 import FontScalerSvg from '@/icons/font-scaler.svg';
 import { useFontScaleStore } from '@/store/font-scale';
+import { useLocaleStore } from '@/store/locale';
 import { cn } from '@/utils/tailwind';
 import * as SelectPrimitive from '@radix-ui/react-select';
-import { useLocale } from 'next-intl';
 import { keys } from 'ramda';
 import { FC } from 'react';
 
 export const FontScaler: FC = () => {
   const { scale, setScale } = useFontScaleStore();
-  const locale = useLocale();
+  const locale = useLocaleStore();
   const label = customTranslations[locale].frontend.fontScaleSwitcher;
 
   return (
