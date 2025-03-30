@@ -1,7 +1,10 @@
 {
   "name": "cms",
   "version": "1.0.0",
-  "description": "Website template for Payload",
+  "description": "CMS scaffold",
+  "author": {
+    "name": "Piotr Zieliński"
+  },
   "license": "MIT",
   "type": "module",
   "scripts": {
@@ -84,6 +87,6 @@
     "typescript": "5.8.2"
   },
   "engines": {
-    "node": "^18.20.2 || >=22.12.0"
+    "node": ">=22"
   }
 }
