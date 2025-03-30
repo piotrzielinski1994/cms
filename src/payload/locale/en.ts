@@ -1,4 +1,4 @@
-export const en = {
+const en = {
   common: {
     content: 'Content',
     layout: 'Layout',
@@ -101,3 +101,5 @@ export const en = {
     fontScaleSwitcher: 'Font scale switcher',
   },
 };
+
+export { en };

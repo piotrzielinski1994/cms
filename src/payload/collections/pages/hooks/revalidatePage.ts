@@ -1,10 +1,8 @@
+import type { Page } from '@/payload.types';
+import { revalidatePath, revalidateTag } from 'next/cache';
 import type { CollectionAfterChangeHook, CollectionAfterDeleteHook } from 'payload';
 
-import { revalidatePath, revalidateTag } from 'next/cache';
-
-import type { Page } from '@/payload.types';
-
-export const revalidatePage: CollectionAfterChangeHook<Page> = ({
+const revalidatePage: CollectionAfterChangeHook<Page> = ({
   doc,
   previousDoc,
   req: { payload, context },
@@ -32,7 +30,7 @@ export const revalidatePage: CollectionAfterChangeHook<Page> = ({
   return doc;
 };
 
-export const revalidateDelete: CollectionAfterDeleteHook<Page> = ({ doc, req: { context } }) => {
+const revalidateDelete: CollectionAfterDeleteHook<Page> = ({ doc, req: { context } }) => {
   if (!context.disableRevalidate) {
     const path = doc?.slug === '' ? '/' : `/${doc?.slug}`;
     revalidatePath(path);
@@ -41,3 +39,5 @@ export const revalidateDelete: CollectionAfterDeleteHook<Page> = ({ doc, req: { 
 
   return doc;
 };
+
+export { revalidateDelete, revalidatePage };

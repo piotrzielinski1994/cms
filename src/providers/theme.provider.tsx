@@ -9,11 +9,11 @@ type ThemeProviderProps = {
   initialTheme: ThemeStore['theme'];
 };
 
-export const ThemeContext = createContext<StoreApi<ThemeStore> | undefined>(undefined);
+const ThemeContext = createContext<StoreApi<ThemeStore> | undefined>(undefined);
 
 const ThemeProvider = ({ children, initialTheme }: ThemeProviderProps) => {
   const [store] = useState(() => createThemeStore(initialTheme));
   return <ThemeContext.Provider value={store}>{children}</ThemeContext.Provider>;
 };
 
-export default ThemeProvider;
+export { ThemeContext, ThemeProvider };

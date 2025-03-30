@@ -5,7 +5,7 @@ import { anyone } from './anyone';
 import { authenticated } from './authenticated';
 import { authenticatedOrPublished } from './authenticatedOrPublished';
 
-export const access = {
+const access = {
   admin,
   adminFieldLevel,
   adminOrSelf,
@@ -13,3 +13,5 @@ export const access = {
   authenticated,
   authenticatedOrPublished,
 };
+
+export { access };

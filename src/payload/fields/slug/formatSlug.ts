@@ -1,11 +1,11 @@
 import type { FieldHook } from 'payload';
 import slugify from 'slugify';
 
-export const formatSlug = (value: string): string => {
+const formatSlug = (value: string): string => {
   return slugify(value, { lower: true });
 };
 
-export const formatSlugHook =
+const formatSlugHook =
   (fallback: string): FieldHook =>
   ({ data, operation, originalDoc, value }) => {
     if (typeof value === 'string') {
@@ -22,3 +22,5 @@ export const formatSlugHook =
 
     return value;
   };
+
+export { formatSlug, formatSlugHook };

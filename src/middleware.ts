@@ -1,8 +1,8 @@
 import { routing } from '@/payload/locale/routing';
 import createMiddleware from 'next-intl/middleware';
 
-// see https://next-intl-docs.vercel.app/docs/routing/middleware
-export const config = {
+// https://next-intl-docs.vercel.app/docs/routing/middleware
+const config = {
   matcher: [
     // Match all pathnames except for
     // - … if they start with `/api`, `/_next`, `/_vercel`, or `/admin`
@@ -11,4 +11,7 @@ export const config = {
   ],
 };
 
-export default createMiddleware(routing);
+const middleware = createMiddleware(routing);
+
+export { config };
+export default middleware;

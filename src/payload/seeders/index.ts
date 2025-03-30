@@ -3,7 +3,7 @@ import { seedLayoutItems } from './layout';
 import { seedPages } from './pages';
 import { seedUsers } from './users';
 
-export const seed = async ({ payload }: { payload: Payload; req?: PayloadRequest }) => {
+const seed = async ({ payload }: { payload: Payload; req?: PayloadRequest }) => {
   payload.logger.info('Seeding database...');
 
   await seedUsers(payload);
@@ -12,3 +12,5 @@ export const seed = async ({ payload }: { payload: Payload; req?: PayloadRequest
 
   payload.logger.info('Seeded database successfully!');
 };
+
+export { seed };

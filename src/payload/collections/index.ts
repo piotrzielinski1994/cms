@@ -4,10 +4,12 @@ import { Pages } from './pages/pages';
 import { Posts } from './posts/posts';
 import { Users } from './users/users';
 
-export const collections = {
+const collections = {
   Pages,
   Posts,
   Categories,
   Images,
   Users,
 };
+
+export { collections };

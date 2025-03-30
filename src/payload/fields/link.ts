@@ -3,7 +3,18 @@ import { AdminTranslations } from '@/payload/locale';
 import type { Field } from 'payload';
 export type LinkAppearances = 'default' | 'outline';
 
-export const appearanceOptions: Record<LinkAppearances, { label: string; value: string }> = {
+// Types ====================================
+
+type LinkType = (options?: {
+  appearances?: LinkAppearances[] | false;
+  disableLabel?: boolean;
+  overrides?: Record<string, unknown>;
+  depth?: number;
+}) => Field;
+
+// Variables ====================================
+
+const appearanceOptions: Record<LinkAppearances, { label: string; value: string }> = {
   default: {
     label: 'Default',
     value: 'default',
@@ -14,19 +25,7 @@ export const appearanceOptions: Record<LinkAppearances, { label: string; value: 
   },
 };
 
-type LinkType = (options?: {
-  appearances?: LinkAppearances[] | false;
-  disableLabel?: boolean;
-  overrides?: Record<string, unknown>;
-  depth?: number;
-}) => Field;
-
-export const link: LinkType = ({
-  depth = 0,
-  appearances,
-  disableLabel = false,
-  overrides = {},
-} = {}) => {
+const link: LinkType = ({ depth = 0, appearances, disableLabel = false, overrides = {} } = {}) => {
   const linkResult: Field = {
     name: 'link',
     type: 'group',
@@ -169,3 +168,5 @@ export const link: LinkType = ({
 
   return deepMerge(linkResult, overrides);
 };
+
+export { appearanceOptions, link };

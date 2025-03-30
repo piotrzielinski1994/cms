@@ -1,5 +1,9 @@
 import { cn } from '@/_old/utilities/ui';
-import { SectionProps } from './section.types';
+import { ComponentPropsWithoutRef } from 'react';
+
+type SectionProps = ComponentPropsWithoutRef<'section'> & {
+  as?: keyof HTMLElementTagNameMap;
+};
 
 const Section = ({ as: HtmlTag = 'section', children, className, ...rest }: SectionProps) => {
   return (
@@ -9,4 +13,4 @@ const Section = ({ as: HtmlTag = 'section', children, className, ...rest }: Sect
   );
 };
 
-export default Section;
+export { Section };

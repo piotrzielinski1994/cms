@@ -21,8 +21,10 @@ const users: RequiredDataFromCollectionSlug<'users'>[] = [
   },
 ];
 
-export const seedUsers = async (payload: Payload) => {
+const seedUsers = async (payload: Payload) => {
   return Promise.all(
     users.map((it) => payload.create({ collection: 'users', depth: 0, data: it })),
   );
 };
+
+export { seedUsers };

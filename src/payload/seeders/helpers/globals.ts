@@ -8,7 +8,7 @@ import { DataFromGlobalSlug, GlobalSlug, Payload } from 'payload';
 /* @ts-expect-error TODO: Fix */
 type GlobalToCreate<T extends GlobalSlug> = Options<T, SelectFromGlobalSlug<T>>;
 
-export const createGlobal = async <T extends GlobalSlug>(
+const createGlobal = async <T extends GlobalSlug>(
   payload: Payload,
   mainLocaleGlobal: GlobalToCreate<T>,
   getLocalizedGlobals: (
@@ -28,3 +28,5 @@ export const createGlobal = async <T extends GlobalSlug>(
 
   return global;
 };
+
+export { createGlobal };

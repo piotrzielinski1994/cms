@@ -2,7 +2,7 @@ import { FONT_SCALE_STORAGE_KEY, FontScaleStore } from '@/store/font-scale';
 import { THEME_STORAGE_KEY } from '@/store/theme';
 import { cookies, headers } from 'next/headers';
 
-export const getPreferences = async () => {
+const getPreferences = async () => {
   const cookieStore = await cookies();
   let theme = cookieStore.get(THEME_STORAGE_KEY)?.value;
 
@@ -20,3 +20,5 @@ export const getPreferences = async () => {
     fontSize,
   };
 };
+
+export { getPreferences };

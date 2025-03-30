@@ -2,7 +2,7 @@ import { revalidateRedirects } from '@/payload/hooks/revalidateRedirects';
 import { adminLocale, AdminTranslations } from '@/payload/locale';
 import { redirectsPlugin } from '@payloadcms/plugin-redirects';
 
-export const redirects = redirectsPlugin({
+const redirects = redirectsPlugin({
   collections: ['pages', 'posts'],
   overrides: {
     admin: {
@@ -34,3 +34,5 @@ export const redirects = redirectsPlugin({
     },
   },
 });
+
+export { redirects };

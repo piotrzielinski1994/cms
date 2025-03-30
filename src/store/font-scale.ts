@@ -5,18 +5,21 @@ import { setCookie } from 'typescript-cookie';
 import { createStore, useStore } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-export type FontScaleStore = {
+// Types ====================================
+type FontScaleStore = {
   scale: keyof typeof clientEnv.feature.fontScales;
   setScale: (scale: FontScaleStore['scale']) => void;
 };
 
-export const FONT_SCALE_STORAGE_KEY = 'font-scale' as const;
+// Variables ====================================
+
+const FONT_SCALE_STORAGE_KEY = 'font-scale' as const;
 
 const updateDom = (scale: FontScaleStore['scale']) => {
   document.documentElement.setAttribute('data-scale', scale);
 };
 
-export const createFontScaleStore = (initialFontScale: FontScaleStore['scale']) => {
+const createFontScaleStore = (initialFontScale: FontScaleStore['scale']) => {
   return createStore<FontScaleStore>()(
     persist(
       (set) => ({
@@ -39,7 +42,7 @@ export const createFontScaleStore = (initialFontScale: FontScaleStore['scale']) 
   );
 };
 
-export const useFontScaleStore = <T = FontScaleStore>(selector?: (state: FontScaleStore) => T) => {
+const useFontScaleStore = <T = FontScaleStore>(selector?: (state: FontScaleStore) => T) => {
   const context = useContext(FontScaleContext);
 
   if (!context) {
@@ -48,3 +51,5 @@ export const useFontScaleStore = <T = FontScaleStore>(selector?: (state: FontSca
 
   return useStore(context, selector ?? ((state) => state as T));
 };
+
+export { createFontScaleStore, FONT_SCALE_STORAGE_KEY, useFontScaleStore, type FontScaleStore };

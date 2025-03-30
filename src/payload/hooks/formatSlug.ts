@@ -1,7 +1,7 @@
 import type { FieldHook } from 'payload';
 import slugify from 'slugify';
 
-export const format = (value: string): string => {
+const format = (value: string): string => {
   return slugify(value, { lower: true });
 };
 
@@ -23,4 +23,4 @@ const formatSlug =
     return value;
   };
 
-export default formatSlug;
+export { format, formatSlug };

@@ -5,12 +5,12 @@ import { generatePreviewPath } from '@/_old/utilities/generatePreviewPath';
 import { hero1BlockPayloadConfig } from '@/components/blocks/hero/hero-1/hero-1.payload.config';
 import { imageBlock1BlockPayloadConfig } from '@/components/blocks/image-block/image-block-1/image-block-1.payload.config';
 import { imageBlocksBlockPayloadConfig } from '@/components/blocks/image-block/image-blocks/image-blocks.payload.config';
+import { Page } from '@/payload.types';
 import { authenticated } from '@/payload/access/authenticated';
 import { authenticatedOrPublished } from '@/payload/access/authenticatedOrPublished';
 import { slugField } from '@/payload/fields/slug';
 import { populatePublishedAt } from '@/payload/hooks/populatePublishedAt';
 import { AdminTranslations, adminLocale } from '@/payload/locale';
-import { Page } from '@/payload.types';
 import { createBreadcrumbsField, createParentField } from '@payloadcms/plugin-nested-docs';
 import {
   MetaDescriptionField,
@@ -23,7 +23,7 @@ import { SupportedLanguages } from '@payloadcms/translations';
 import type { CollectionConfig } from 'payload';
 import { revalidatePage } from './hooks/revalidatePage';
 
-export const Pages: CollectionConfig<'pages'> = {
+const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
   labels: {
     singular: ({ t }: { t: AdminTranslations }) => t('collections:pages:singular'),
@@ -227,3 +227,5 @@ export const Pages: CollectionConfig<'pages'> = {
     maxPerDoc: 50,
   },
 };
+
+export { Pages };

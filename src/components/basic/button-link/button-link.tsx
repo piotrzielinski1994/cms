@@ -8,4 +8,4 @@ const ButtonLink = ({ className, ...rest }: ComponentProps<typeof Link>) => {
   );
 };
 
-export default ButtonLink;
+export { ButtonLink };

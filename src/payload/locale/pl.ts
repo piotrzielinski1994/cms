@@ -1,6 +1,6 @@
 import { en } from './en';
 
-export const pl = {
+const pl = {
   common: {
     content: 'Treść',
     layout: 'Układ',
@@ -103,3 +103,5 @@ export const pl = {
     fontScaleSwitcher: 'Przełącznik skalowania czcionki',
   },
 } satisfies typeof en;
+
+export { pl };

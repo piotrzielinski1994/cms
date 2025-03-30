@@ -1,6 +1,6 @@
 import { nestedDocsPlugin } from '@payloadcms/plugin-nested-docs';
 
-export const nestedDocs = nestedDocsPlugin({
+const nestedDocs = nestedDocsPlugin({
   collections: ['pages', 'categories'],
   generateURL: (docs) =>
     docs.reduce((url, { slug }) => {
@@ -8,3 +8,5 @@ export const nestedDocs = nestedDocsPlugin({
       return `${withoutTrailingSlash}/${slug}`;
     }, ''),
 });
+
+export { nestedDocs };

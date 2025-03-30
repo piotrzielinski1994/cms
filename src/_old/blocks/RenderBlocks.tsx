@@ -7,11 +7,11 @@ import { CallToActionBlock } from '@/_old/blocks/CallToAction/Component';
 import { ContentBlock } from '@/_old/blocks/Content/Component';
 import { FormBlock } from '@/_old/blocks/Form/Component';
 import { MediaBlock } from '@/_old/blocks/MediaBlock/Component';
-import Hero1 from '@/components/blocks/hero/hero-1/hero-1';
+import { Hero1 } from '@/components/blocks/hero/hero-1/hero-1';
 import { hero1BlockPayloadConfig } from '@/components/blocks/hero/hero-1/hero-1.payload.config';
-import ImageBlock1 from '@/components/blocks/image-block/image-block-1/image-block-1';
+import { ImageBlock1 } from '@/components/blocks/image-block/image-block-1/image-block-1';
 import { imageBlock1BlockPayloadConfig } from '@/components/blocks/image-block/image-block-1/image-block-1.payload.config';
-import ImageBlocks from '@/components/blocks/image-block/image-blocks/image-blocks';
+import { ImageBlocks } from '@/components/blocks/image-block/image-blocks/image-blocks';
 import { imageBlocksBlockPayloadConfig } from '@/components/blocks/image-block/image-blocks/image-blocks.payload.config';
 
 const blockComponents = {

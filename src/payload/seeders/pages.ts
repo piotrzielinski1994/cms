@@ -5,7 +5,7 @@ import placeholderWebp from './assets/placeholder.webp';
 import { createImage } from './helpers/files';
 import { createPage } from './helpers/pages';
 
-export const seedPages = async (payload: Payload) => {
+const seedPages = async (payload: Payload) => {
   const defaultImage = await createImage(
     placeholderWebp,
     {
@@ -201,3 +201,5 @@ export const seedPages = async (payload: Payload) => {
 
   return [homePage, aboutUsPage, contactPage];
 };
+
+export { seedPages };

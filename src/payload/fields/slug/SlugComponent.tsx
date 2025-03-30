@@ -11,7 +11,7 @@ type SlugComponentProps = {
   checkboxFieldPath: string;
 } & TextFieldClientProps;
 
-export const SlugComponent: React.FC<SlugComponentProps> = ({
+const SlugComponent: React.FC<SlugComponentProps> = ({
   field,
   fieldToUse,
   checkboxFieldPath: checkboxFieldPathFromProps,
@@ -81,3 +81,5 @@ export const SlugComponent: React.FC<SlugComponentProps> = ({
     </div>
   );
 };
+
+export { SlugComponent };

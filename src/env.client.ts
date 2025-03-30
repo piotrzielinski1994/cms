@@ -49,7 +49,7 @@ const env = envSchema.parse({
   NEXT_PUBLIC_FONT_SCALES: process.env.NEXT_PUBLIC_FONT_SCALES,
 });
 
-export const clientEnv = {
+const clientEnv = {
   publicUrl: env.NEXT_PUBLIC_SERVER_URL,
   feature: {
     locale: {
@@ -69,3 +69,5 @@ export const clientEnv = {
     >,
   },
 };
+
+export { clientEnv };

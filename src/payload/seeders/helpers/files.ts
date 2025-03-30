@@ -1,6 +1,6 @@
 import { clientEnv } from '@/env.client';
-import { contentLocale } from '@/payload/locale';
 import { Config, Image } from '@/payload.types';
+import { contentLocale } from '@/payload/locale';
 import { toEntries } from '@/utils/object';
 import configPromise from '@payload-config';
 import { StaticImageData } from 'next/image';
@@ -8,7 +8,7 @@ import { getPayload } from 'payload';
 
 type ImageToCreate = Omit<Image, 'createdAt' | 'id' | 'updatedAt'>;
 
-export const createImage = async (
+const createImage = async (
   imageFile: StaticImageData,
   mainLocaleImage: ImageToCreate,
   getLocalizedImages: (
@@ -42,3 +42,5 @@ export const createImage = async (
 
   return uploadedImage;
 };
+
+export { createImage };

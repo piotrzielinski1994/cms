@@ -1,26 +1,19 @@
 import { getRequestConfig } from 'next-intl/server';
+import { adminLocale } from '.';
 import { routing } from './routing';
 
-import en from './messages/en.json';
-
-type Messages = typeof en;
-
 declare global {
-  // Use type safe message keys with `next-intl`
-  interface IntlMessages extends Messages {}
+  type IntlMessages = typeof adminLocale.customList.en;
 }
 
-export default getRequestConfig(async ({ requestLocale }) => {
-  // This typically corresponds to the `[locale]` segment
-  let locale = await requestLocale;
+const request = getRequestConfig(async ({ requestLocale }) => {
+  let locale = (await requestLocale) as keyof typeof adminLocale.customList;
 
-  // Ensure that a valid locale is used
-  if (!locale || !routing.locales.includes(locale as any)) {
+  if (!locale || !routing.locales.includes(locale)) {
     locale = routing.defaultLocale;
   }
 
-  return {
-    locale,
-    messages: (await import(`./messages/${locale}.json`)).default,
-  };
+  return { locale, messages: adminLocale.customList[locale] };
 });
+
+export default request;

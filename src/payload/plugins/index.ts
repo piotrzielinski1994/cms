@@ -5,7 +5,7 @@ import { redirects } from './redirects';
 import { seo } from './seo';
 import { vercelStorage } from './vercel-storage';
 
-export const plugins = {
+const plugins = {
   cloud,
   nestedDocs,
   redirects,
@@ -13,3 +13,5 @@ export const plugins = {
   formBuilder,
   vercelStorage,
 };
+
+export { plugins };

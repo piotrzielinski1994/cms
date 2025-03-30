@@ -3,7 +3,7 @@ import { GlobalSlug, Payload } from 'payload';
 import { contentLocale } from '../locale';
 import { createGlobal } from './helpers/globals';
 
-export const seedLayoutItems = async (payload: Payload) => {
+const seedLayoutItems = async (payload: Payload) => {
   const pagesPerLocale = await Promise.all(
     contentLocale.list.map(async (locale) => {
       const pages = await payload.find({
@@ -58,3 +58,5 @@ export const seedLayoutItems = async (payload: Payload) => {
     }));
   });
 };
+
+export { seedLayoutItems };

@@ -1,14 +1,14 @@
-import { Config } from 'payload';
 import {
   BoldFeature,
   ItalicFeature,
+  lexicalEditor,
   LinkFeature,
   ParagraphFeature,
-  lexicalEditor,
   UnderlineFeature,
 } from '@payloadcms/richtext-lexical';
+import { Config } from 'payload';
 
-export const defaultLexical: Config['editor'] = lexicalEditor({
+const defaultLexical: Config['editor'] = lexicalEditor({
   features: () => {
     return [
       ParagraphFeature(),
@@ -40,3 +40,5 @@ export const defaultLexical: Config['editor'] = lexicalEditor({
     ];
   },
 });
+
+export { defaultLexical };

@@ -2,7 +2,7 @@ import { beforeSyncWithSearch } from '@/_old/search/beforeSync';
 import { searchFields } from '@/_old/search/fieldOverrides';
 import { searchPlugin } from '@payloadcms/plugin-search';
 
-export const search = searchPlugin({
+const search = searchPlugin({
   collections: ['posts'],
   beforeSync: beforeSyncWithSearch,
   searchOverrides: {
@@ -11,3 +11,5 @@ export const search = searchPlugin({
     },
   },
 });
+
+export { search };

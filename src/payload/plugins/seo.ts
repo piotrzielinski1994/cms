@@ -12,7 +12,9 @@ const generateURL: GenerateURL<Post | Page> = ({ doc }) => {
   return doc?.slug ? `${url}/${doc.slug}` : url;
 };
 
-export const seo = seoPlugin({
+const seo = seoPlugin({
   generateTitle,
   generateURL,
 });
+
+export { seo };

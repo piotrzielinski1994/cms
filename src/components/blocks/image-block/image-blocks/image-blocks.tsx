@@ -1,10 +1,10 @@
 import { RenderBlocks } from '@/_old/blocks/RenderBlocks';
-import Container from '@/components/layout/container/container';
-import Section from '@/components/layout/section/section';
-import { ImageBlocksProps } from './image-blocks.types';
 import { cn } from '@/_old/utilities/ui';
+import { Container } from '@/components/layout/container/container';
+import { Section } from '@/components/layout/section/section';
+import { ImageBlocksBlock } from '@/payload.types';
 
-const ImageBlocks = ({ heading, subheading, items }: ImageBlocksProps) => {
+const ImageBlocks = ({ heading, subheading, items }: ImageBlocksBlock) => {
   const hasHeader = Boolean(heading || subheading);
   return (
     <Section>
@@ -21,4 +21,4 @@ const ImageBlocks = ({ heading, subheading, items }: ImageBlocksProps) => {
   );
 };
 
-export default ImageBlocks;
+export { ImageBlocks };

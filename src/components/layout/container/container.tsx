@@ -1,5 +1,9 @@
 import { cn } from '@/_old/utilities/ui';
-import { ContainerProps } from './container.types';
+import { ComponentPropsWithoutRef } from 'react';
+
+type ContainerProps = ComponentPropsWithoutRef<'section'> & {
+  as?: keyof HTMLElementTagNameMap;
+};
 
 const Container = ({ as: HtmlTag = 'div', children, className, ...rest }: ContainerProps) => {
   return (
@@ -12,4 +16,4 @@ const Container = ({ as: HtmlTag = 'div', children, className, ...rest }: Contai
   );
 };
 
-export default Container;
+export { Container };

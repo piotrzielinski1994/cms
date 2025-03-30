@@ -12,12 +12,10 @@ import { en as customEn } from './en';
 import { pl as customPl } from './pl';
 
 // Types ====================================
-export type AdminTranslations = TFunction<
-  NestedKeysStripped<typeof customEn> | DefaultTranslationKeys
->;
+type AdminTranslations = TFunction<NestedKeysStripped<typeof customEn> | DefaultTranslationKeys>;
 
 // Variables ====================================
-export const adminLocale = {
+const adminLocale = {
   list: pick(clientEnv.feature.locale.admin.list, { en, pl } as SupportedLanguages),
   customList: {
     en: customEn,
@@ -26,7 +24,9 @@ export const adminLocale = {
   default: clientEnv.feature.locale.admin.default,
 };
 
-export const contentLocale = {
+const contentLocale = {
   list: clientEnv.feature.locale.content.list,
   default: clientEnv.feature.locale.content.default,
 };
+
+export { adminLocale, contentLocale, type AdminTranslations };

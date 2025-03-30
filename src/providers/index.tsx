@@ -1,7 +1,7 @@
 import { NextIntlClientProvider } from 'next-intl';
 import React, { ComponentProps } from 'react';
-import FontScaleProvider from './font-scale.provider';
-import ThemeProvider from './theme.provider';
+import { FontScaleProvider } from './font-scale.provider';
+import { ThemeProvider } from './theme.provider';
 
 type ProvidersProps = {
   children: React.ReactNode;
@@ -9,7 +9,7 @@ type ProvidersProps = {
   initialFontScale: ComponentProps<typeof FontScaleProvider>['initialFontScale'];
 };
 
-export const Providers = ({ children, initialTheme, initialFontScale }: ProvidersProps) => {
+const Providers = ({ children, initialTheme, initialFontScale }: ProvidersProps) => {
   return (
     <NextIntlClientProvider>
       <ThemeProvider initialTheme={initialTheme}>
@@ -18,3 +18,5 @@ export const Providers = ({ children, initialTheme, initialFontScale }: Provider
     </NextIntlClientProvider>
   );
 };
+
+export { Providers };

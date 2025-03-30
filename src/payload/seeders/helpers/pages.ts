@@ -5,7 +5,7 @@ import { Payload } from 'payload';
 
 type PageToCreate = Omit<Page, 'createdAt' | 'id' | 'sizes' | 'updatedAt'>;
 
-export const createPage = async (
+const createPage = async (
   payload: Payload,
   mainLocalePage: PageToCreate,
   getLocalizedPages: (
@@ -29,3 +29,5 @@ export const createPage = async (
 
   return page;
 };
+
+export { createPage };

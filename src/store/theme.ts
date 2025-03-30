@@ -4,18 +4,22 @@ import { setCookie } from 'typescript-cookie';
 import { createStore, useStore } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-export type ThemeStore = {
+// Types ====================================
+
+type ThemeStore = {
   theme: 'light' | 'dark' | string;
   setTheme: (theme: ThemeStore['theme']) => void;
 };
 
-export const THEME_STORAGE_KEY = 'theme' as const;
+// Variables ====================================
+
+const THEME_STORAGE_KEY = 'theme' as const;
 
 const updateDom = (theme: ThemeStore['theme']) => {
   document.documentElement.setAttribute('data-theme', theme);
 };
 
-export const createThemeStore = (initialTheme: ThemeStore['theme']) => {
+const createThemeStore = (initialTheme: ThemeStore['theme']) => {
   return createStore<ThemeStore>()(
     persist(
       (set) => ({
@@ -38,7 +42,7 @@ export const createThemeStore = (initialTheme: ThemeStore['theme']) => {
   );
 };
 
-export const useThemeStore = <T = ThemeStore>(selector?: (state: ThemeStore) => T) => {
+const useThemeStore = <T = ThemeStore>(selector?: (state: ThemeStore) => T) => {
   const context = useContext(ThemeContext);
 
   if (!context) {
@@ -47,3 +51,5 @@ export const useThemeStore = <T = ThemeStore>(selector?: (state: ThemeStore) => 
 
   return useStore(context, selector ?? ((state) => state as T));
 };
+
+export { createThemeStore, THEME_STORAGE_KEY, useThemeStore, type ThemeStore };

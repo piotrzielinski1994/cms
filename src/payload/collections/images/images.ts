@@ -6,7 +6,7 @@ import type { CollectionConfig } from 'payload';
 
 const root = path.resolve(process.cwd());
 
-export const Images: CollectionConfig<'images'> = {
+const Images: CollectionConfig<'images'> = {
   slug: 'images',
   labels: {
     singular: ({ t }: { t: AdminTranslations }) => t('collections:images:singular'),
@@ -38,3 +38,5 @@ export const Images: CollectionConfig<'images'> = {
     focalPoint: false,
   },
 };
+
+export { Images };

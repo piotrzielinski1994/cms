@@ -27,4 +27,4 @@ const Image = (props: any) => {
   );
 };
 
-export default Image;
+export { Image };

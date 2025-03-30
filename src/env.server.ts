@@ -11,10 +11,12 @@ const envSchema = z.object({
 
 const env = envSchema.parse(process.env);
 
-export const serverEnv = {
+const serverEnv = {
   payloadSecret: env.PAYLOAD_SECRET,
   dbUri: env.DATABASE_URI,
   vercel: {
     blobStorageToken: env.BLOB_READ_WRITE_TOKEN,
   },
 };
+
+export { serverEnv };

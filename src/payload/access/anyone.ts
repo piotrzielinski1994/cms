@@ -1,3 +1,5 @@
 import type { Access } from 'payload';
 
-export const anyone: Access = () => true;
+const anyone: Access = () => true;
+
+export { anyone };

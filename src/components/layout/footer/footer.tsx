@@ -1,12 +1,16 @@
 import { getCachedGlobal } from '@/_old/utilities/getGlobals';
 import { cn } from '@/_old/utilities/ui';
-import Container from '@/components/layout/container/container';
-import Section from '@/components/layout/section/section';
+import { Container } from '@/components/layout/container/container';
+import { Section } from '@/components/layout/section/section';
 import LogoSvg from '@/icons/logo.svg';
 import { Link } from '@/payload/locale/routing';
-import { FooterProps } from './footer.types';
+import { TypedLocale } from 'payload';
 
-export async function Footer({ locale }: FooterProps) {
+type FooterProps = {
+  locale: TypedLocale;
+};
+
+const Footer = async ({ locale }: FooterProps) => {
   const footerData = await getCachedGlobal('footer', locale)();
   const navItems = (footerData?.navItems ?? []).map((it) => ({
     id: it.id,
@@ -37,4 +41,6 @@ export async function Footer({ locale }: FooterProps) {
       </Container>
     </Section>
   );
-}
+};
+
+export { Footer };

@@ -3,7 +3,7 @@ import type { CollectionConfig } from 'payload';
 import { access } from '@/payload/access';
 import { AdminTranslations } from '@/payload/locale';
 
-export const Users: CollectionConfig = {
+const Users: CollectionConfig = {
   slug: 'users',
   labels: {
     singular: ({ t }: { t: AdminTranslations }) => t('collections:users:singular'),
@@ -62,3 +62,5 @@ export const Users: CollectionConfig = {
   ],
   timestamps: true,
 };
+
+export { Users };

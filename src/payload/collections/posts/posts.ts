@@ -1,23 +1,9 @@
-import type { CollectionConfig } from 'payload';
-
-import {
-  BlocksFeature,
-  FixedToolbarFeature,
-  HeadingFeature,
-  HorizontalRuleFeature,
-  InlineToolbarFeature,
-  lexicalEditor,
-} from '@payloadcms/richtext-lexical';
-
 import { Banner } from '@/_old/blocks/Banner/config';
 import { Code } from '@/_old/blocks/Code/config';
 import { MediaBlock } from '@/_old/blocks/MediaBlock/config';
 import { generatePreviewPath } from '@/_old/utilities/generatePreviewPath';
 import { authenticated } from '@/payload/access/authenticated';
 import { authenticatedOrPublished } from '@/payload/access/authenticatedOrPublished';
-import { populateAuthors } from './hooks/populateAuthors';
-import { revalidateDelete, revalidatePost } from './hooks/revalidatePost';
-
 import { slugField } from '@/payload/fields/slug';
 import { AdminTranslations, adminLocale } from '@/payload/locale';
 import {
@@ -27,8 +13,19 @@ import {
   OverviewField,
   PreviewField,
 } from '@payloadcms/plugin-seo/fields';
+import {
+  BlocksFeature,
+  FixedToolbarFeature,
+  HeadingFeature,
+  HorizontalRuleFeature,
+  InlineToolbarFeature,
+  lexicalEditor,
+} from '@payloadcms/richtext-lexical';
+import type { CollectionConfig } from 'payload';
+import { populateAuthors } from './hooks/populateAuthors';
+import { revalidateDelete, revalidatePost } from './hooks/revalidatePost';
 
-export const Posts: CollectionConfig<'posts'> = {
+const Posts: CollectionConfig<'posts'> = {
   slug: 'posts',
   labels: {
     singular: ({ t }: { t: AdminTranslations }) => t('collections:posts:singular'),
@@ -246,3 +243,5 @@ export const Posts: CollectionConfig<'posts'> = {
     maxPerDoc: 50,
   },
 };
+
+export { Posts };

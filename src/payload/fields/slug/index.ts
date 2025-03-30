@@ -1,6 +1,7 @@
 import type { CheckboxField, TextField } from 'payload';
-
 import { formatSlugHook } from './formatSlug';
+
+// Types ====================================
 
 type Overrides = {
   slugOverrides?: Partial<TextField>;
@@ -13,7 +14,9 @@ type Slug = (
   name?: string,
 ) => [TextField, CheckboxField];
 
-export const slugField: Slug = (fieldToUse = 'title', overrides = {}, name = 'slug') => {
+// Variables ====================================
+
+const slugField: Slug = (fieldToUse = 'title', overrides = {}, name = 'slug') => {
   const { slugOverrides, checkboxOverrides } = overrides;
 
   const checkBoxField: CheckboxField = {
@@ -57,3 +60,5 @@ export const slugField: Slug = (fieldToUse = 'title', overrides = {}, name = 'sl
 
   return [slugField, checkBoxField];
 };
+
+export { slugField };

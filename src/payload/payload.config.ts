@@ -15,7 +15,7 @@ import { fileURLToPath } from 'url';
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
-export default buildConfig({
+const payloadConfig = buildConfig({
   i18n: {
     supportedLanguages: adminLocale.list,
     fallbackLanguage: adminLocale.default,
@@ -76,3 +76,5 @@ export default buildConfig({
     outputFile: path.resolve(dirname, 'payload.types.ts'),
   },
 });
+
+export default payloadConfig;

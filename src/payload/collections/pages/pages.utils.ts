@@ -3,7 +3,7 @@ import { draftMode } from 'next/headers';
 import { getPayload, TypedLocale } from 'payload';
 import { cache } from 'react';
 
-export const getPages = async () => {
+const getPages = async () => {
   const payload = await getPayload({ config: payloadConfig });
   return payload.find({
     collection: 'pages',
@@ -19,7 +19,7 @@ export const getPages = async () => {
   });
 };
 
-export const queryPage = cache(async ({ path, locale }: { path: string; locale: TypedLocale }) => {
+const queryPage = cache(async ({ path, locale }: { path: string; locale: TypedLocale }) => {
   const { isEnabled: draft } = await draftMode();
   const slug = path.split('/').at(-1) ?? '';
 
@@ -61,3 +61,5 @@ export const queryPage = cache(async ({ path, locale }: { path: string; locale: 
 
   return { page, pathPerLocale };
 });
+
+export { getPages, queryPage };
