@@ -29,7 +29,7 @@ export async function generateMetadata({ params: paramsPromise }: PageProps): Pr
   const { segments = [], locale } = await paramsPromise;
   const { page } = await queryPage({ path: toPath(segments), locale });
 
-  if (!page) throw new Error('Page not found');
+  if (!page) return {};
 
   return {
     title: page.seo?.title ?? page.title,

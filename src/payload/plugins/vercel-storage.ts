@@ -1,9 +1,9 @@
-import { serverEnv } from '@/env.server';
+import { env } from '@/config/env.config';
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
 
 const vercelStorage = vercelBlobStorage({
-  enabled: Boolean(serverEnv.vercel.blobStorageToken),
-  token: serverEnv.vercel.blobStorageToken,
+  enabled: Boolean(env.vercel.blobStorageToken),
+  token: env.vercel.blobStorageToken,
   collections: {
     images: true,
   },

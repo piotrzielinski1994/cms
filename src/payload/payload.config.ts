@@ -1,6 +1,7 @@
 import { getServerSideURL } from '@/_old/utilities/getURL';
 import { Footer } from '@/components/layout/footer/payload/footer.payload.config';
 import { headerPayloadConfig } from '@/components/layout/header/payload/header.payload.config';
+import { env } from '@/config/env.config';
 import {
   adminLocales,
   contentLocales,
@@ -8,13 +9,13 @@ import {
   defaultAdminLocale,
   defaultContentLocale,
 } from '@/config/locales.config';
-import { serverEnv } from '@/env.server';
 import { collections } from '@/payload/collections';
 import { defaultLexical } from '@/payload/fields/defaultLexical';
 import { plugins } from '@/payload/plugins';
 import { mongooseAdapter } from '@payloadcms/db-mongodb';
 import path from 'path';
 import { buildConfig } from 'payload';
+import { values } from 'ramda';
 import sharp from 'sharp';
 import { fileURLToPath } from 'url';
 
@@ -70,13 +71,13 @@ const payloadConfig = buildConfig({
   // This config helps us configure global or default features that the other editors can inherit
   editor: defaultLexical,
   db: mongooseAdapter({
-    url: serverEnv.dbUri,
+    url: env.dbUri,
   }),
-  collections: Object.values(collections),
+  collections: values(collections),
   cors: [getServerSideURL()].filter(Boolean),
   globals: [headerPayloadConfig, Footer],
-  plugins: Object.values(plugins).filter((it) => it !== undefined),
-  secret: serverEnv.payloadSecret,
+  plugins: values(plugins),
+  secret: env.payloadSecret,
   sharp,
   typescript: {
     outputFile: path.resolve(dirname, 'payload.types.ts'),
