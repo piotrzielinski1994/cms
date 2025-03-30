@@ -1,5 +1,5 @@
 import { imageBlock1BlockPayloadConfig } from '@/components/blocks/image-block/image-block-1/image-block-1.payload.config';
-import { AdminTranslations } from '@/payload/locale';
+import { AdminTranslations } from '@/config/locales.config';
 import type { Block } from 'payload';
 
 export const imageBlocksBlockPayloadConfig = {

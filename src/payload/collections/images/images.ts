@@ -1,6 +1,6 @@
+import { AdminTranslations, customTranslations } from '@/config/locales.config';
 import { anyone } from '@/payload/access/anyone';
 import { authenticated } from '@/payload/access/authenticated';
-import { AdminTranslations, adminLocale } from '@/payload/locale';
 import path from 'path';
 import type { CollectionConfig } from 'payload';
 
@@ -14,8 +14,8 @@ const Images: CollectionConfig<'images'> = {
   },
   admin: {
     group: {
-      en: adminLocale.customList.en.common.files.plural,
-      pl: adminLocale.customList.pl.common.files.plural,
+      en: customTranslations.en.common.files.plural,
+      pl: customTranslations.pl.common.files.plural,
     },
   },
   access: {

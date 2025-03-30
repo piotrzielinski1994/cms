@@ -2,10 +2,10 @@ import { Banner } from '@/_old/blocks/Banner/config';
 import { Code } from '@/_old/blocks/Code/config';
 import { MediaBlock } from '@/_old/blocks/MediaBlock/config';
 import { generatePreviewPath } from '@/_old/utilities/generatePreviewPath';
+import { AdminTranslations, customTranslations } from '@/config/locales.config';
 import { authenticated } from '@/payload/access/authenticated';
 import { authenticatedOrPublished } from '@/payload/access/authenticatedOrPublished';
 import { slugField } from '@/payload/fields/slug';
-import { AdminTranslations, adminLocale } from '@/payload/locale';
 import {
   MetaDescriptionField,
   MetaImageField,
@@ -108,8 +108,8 @@ const Posts: CollectionConfig<'posts'> = {
             },
           ],
           label: {
-            en: adminLocale.customList.en.common.content,
-            pl: adminLocale.customList.pl.common.content,
+            en: customTranslations.en.common.content,
+            pl: customTranslations.pl.common.content,
           },
         },
         {

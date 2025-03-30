@@ -1,10 +1,16 @@
 import { getServerSideURL } from '@/_old/utilities/getURL';
 import { Footer } from '@/components/layout/footer/payload/footer.payload.config';
 import { headerPayloadConfig } from '@/components/layout/header/payload/header.payload.config';
+import {
+  adminLocales,
+  contentLocales,
+  customTranslations,
+  defaultAdminLocale,
+  defaultContentLocale,
+} from '@/config/locales.config';
 import { serverEnv } from '@/env.server';
 import { collections } from '@/payload/collections';
 import { defaultLexical } from '@/payload/fields/defaultLexical';
-import { adminLocale, contentLocale } from '@/payload/locale';
 import { plugins } from '@/payload/plugins';
 import { mongooseAdapter } from '@payloadcms/db-mongodb';
 import path from 'path';
@@ -17,13 +23,13 @@ const dirname = path.dirname(filename);
 
 const payloadConfig = buildConfig({
   i18n: {
-    supportedLanguages: adminLocale.list,
-    fallbackLanguage: adminLocale.default,
-    translations: adminLocale.customList,
+    supportedLanguages: adminLocales,
+    fallbackLanguage: defaultAdminLocale,
+    translations: customTranslations,
   },
   localization: {
-    locales: contentLocale.list,
-    defaultLocale: contentLocale.default,
+    locales: contentLocales,
+    defaultLocale: defaultContentLocale,
   },
   admin: {
     components: {

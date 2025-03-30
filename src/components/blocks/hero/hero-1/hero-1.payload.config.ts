@@ -1,4 +1,4 @@
-import { AdminTranslations } from '@/payload/locale';
+import { AdminTranslations } from '@/config/locales.config';
 import type { Block } from 'payload';
 
 export const hero1BlockPayloadConfig = {

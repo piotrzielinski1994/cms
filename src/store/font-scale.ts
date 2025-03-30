@@ -1,4 +1,4 @@
-import { clientEnv } from '@/env.client';
+import { fontScales } from '@/config/font-scales.config';
 import { FontScaleContext } from '@/providers/font-scale.provider';
 import { useContext } from 'react';
 import { setCookie } from 'typescript-cookie';
@@ -7,7 +7,7 @@ import { persist } from 'zustand/middleware';
 
 // Types ====================================
 type FontScaleStore = {
-  scale: keyof typeof clientEnv.feature.fontScales;
+  scale: keyof typeof fontScales;
   setScale: (scale: FontScaleStore['scale']) => void;
 };
 

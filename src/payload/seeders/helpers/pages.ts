@@ -1,7 +1,7 @@
+import { defaultContentLocale } from '@/config/locales.config';
 import { Config, Page } from '@/payload.types';
-import { contentLocale } from '@/payload/locale';
-import { toEntries } from '@/utils/object';
 import { Payload } from 'payload';
+import { toPairs } from 'ramda';
 
 type PageToCreate = Omit<Page, 'createdAt' | 'id' | 'sizes' | 'updatedAt'>;
 
@@ -10,15 +10,15 @@ const createPage = async (
   mainLocalePage: PageToCreate,
   getLocalizedPages: (
     page: Page,
-  ) => Omit<Record<Config['locale'], PageToCreate>, typeof contentLocale.default>,
+  ) => Omit<Record<Config['locale'], PageToCreate>, typeof defaultContentLocale>,
 ) => {
   const page = await payload.create({
     collection: 'pages',
-    locale: contentLocale.default,
+    locale: defaultContentLocale,
     data: mainLocalePage,
   });
 
-  for (const [locale, data] of toEntries(getLocalizedPages(page))) {
+  for (const [locale, data] of toPairs(getLocalizedPages(page))) {
     await payload.update({
       collection: 'pages',
       id: page.id,

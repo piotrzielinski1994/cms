@@ -1,9 +1,9 @@
 'use client';
 
 import { cn } from '@/_old/utilities/ui';
-import { clientEnv } from '@/env.client';
+import { customTranslations } from '@/config/locales.config';
+import { themes } from '@/config/themes.config';
 import ContrastIcon from '@/icons/contrast.svg';
-import { adminLocale } from '@/payload/locale';
 import { useThemeStore } from '@/store/theme';
 import * as SelectPrimitive from '@radix-ui/react-select';
 import { useLocale } from 'next-intl';
@@ -12,8 +12,8 @@ import './theme-switcher.scss';
 
 export const ThemeSwitcher: FC = () => {
   const { theme, setTheme } = useThemeStore();
-  const locale = useLocale() as keyof typeof adminLocale.customList;
-  const label = adminLocale.customList[locale].frontend.themeSwitcher;
+  const locale = useLocale();
+  const label = customTranslations[locale].frontend.themeSwitcher;
 
   return (
     <SelectPrimitive.Root onValueChange={setTheme} value={theme}>
@@ -28,7 +28,7 @@ export const ThemeSwitcher: FC = () => {
           className={cn('bg-background1 text-foreground', 'relative z-popover overflow-hidden')}
         >
           <SelectPrimitive.Viewport>
-            {clientEnv.feature.themes.map((it) => (
+            {Object.keys(themes).map((it) => (
               <SelectPrimitive.Item
                 key={it}
                 value={it}

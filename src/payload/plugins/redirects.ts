@@ -1,5 +1,5 @@
+import { AdminTranslations, customTranslations } from '@/config/locales.config';
 import { revalidateRedirects } from '@/payload/hooks/revalidateRedirects';
-import { adminLocale, AdminTranslations } from '@/payload/locale';
 import { redirectsPlugin } from '@payloadcms/plugin-redirects';
 
 const redirects = redirectsPlugin({
@@ -7,8 +7,8 @@ const redirects = redirectsPlugin({
   overrides: {
     admin: {
       group: {
-        en: adminLocale.customList.en.groups.admin,
-        pl: adminLocale.customList.pl.groups.admin,
+        en: customTranslations.en.groups.admin,
+        pl: customTranslations.pl.groups.admin,
       },
     },
     labels: {

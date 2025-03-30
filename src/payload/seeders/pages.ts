@@ -30,6 +30,7 @@ const seedPages = async (payload: Payload) => {
       },
     }),
   );
+
   const homePage = await createPage(
     payload,
     {
@@ -98,12 +99,14 @@ const seedPages = async (payload: Payload) => {
             items: [
               {
                 id: (page.sections[1] as ImageBlocksBlock).items[0].id,
+                image: (page.sections[1] as ImageBlocksBlock).items[0].image,
                 blockType: 'image-block-1',
                 heading: 'Blok zdjęciowy 1 nagłówek',
                 subheading: 'Blok zdjęciowy 1 podnagłówek',
               },
               {
                 id: (page.sections[1] as ImageBlocksBlock).items[1].id,
+                image: (page.sections[1] as ImageBlocksBlock).items[1].image,
                 blockType: 'image-block-1',
                 heading: 'Blok zdjęciowy 1 nagłówek',
                 subheading: 'Blok zdjęciowy 1 podnagłówek',

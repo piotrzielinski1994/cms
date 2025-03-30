@@ -1,11 +1,12 @@
+import { contentLocales, defaultContentLocale } from '@/config/locales.config';
 import { Config, Header, Page } from '@/payload.types';
 import { GlobalSlug, Payload } from 'payload';
-import { contentLocale } from '../locale';
+import { fromPairs } from 'ramda';
 import { createGlobal } from './helpers/globals';
 
 const seedLayoutItems = async (payload: Payload) => {
   const pagesPerLocale = await Promise.all(
-    contentLocale.list.map(async (locale) => {
+    contentLocales.map(async (locale) => {
       const pages = await payload.find({
         collection: 'pages',
         locale,
@@ -18,10 +19,10 @@ const seedLayoutItems = async (payload: Payload) => {
           title: true,
         },
       });
-      return [locale, pages.docs] as unknown as [typeof contentLocale.list, Page[]];
+      return [locale, pages.docs] as [typeof locale, Page[]];
     }),
   );
-  const navItemsPerLocale: Record<Config['locale'], Header['navItems']> = Object.fromEntries(
+  const navItemsPerLocale: Record<Config['locale'], Header['navItems']> = fromPairs(
     pagesPerLocale.map(([locale, pages]) => [
       locale,
       pages.map((page) => ({
@@ -38,9 +39,9 @@ const seedLayoutItems = async (payload: Payload) => {
   );
 
   const {
-    [contentLocale.default]: mainLocaleNavItems,
+    [defaultContentLocale]: mainLocaleNavItems,
     ...untypedRestNavItems
-  }: { [key: string]: Header['navItems'] } = navItemsPerLocale;
+  }: { [key: Config['locale'][number]]: Header['navItems'] } = navItemsPerLocale;
   const restNavItems = untypedRestNavItems as Record<Config['locale'], Header['navItems']>;
 
   const layoutElements: GlobalSlug[] = ['header', 'footer'];

@@ -1,7 +1,7 @@
 'use client';
 
 import { cn } from '@/_old/utilities/ui';
-import { adminLocale, contentLocale } from '@/payload/locale';
+import { contentLocales, customTranslations } from '@/config/locales.config';
 import { useRouter } from '@/payload/locale/routing';
 import * as SelectPrimitive from '@radix-ui/react-select';
 import { useLocale } from 'next-intl';
@@ -12,9 +12,9 @@ import { useTransition } from 'react';
 const LocaleSwitcher = () => {
   const router = useRouter();
   const params = useParams();
-  const locale = useLocale() as keyof typeof adminLocale.customList;
+  const locale = useLocale();
   const [, startTransition] = useTransition();
-  const label = adminLocale.customList[locale].frontend.fontScaleSwitcher;
+  const label = customTranslations[locale].frontend.fontScaleSwitcher;
 
   function onSelectChange(value: TypedLocale) {
     const nextPathname = JSON.parse(sessionStorage.getItem('__page') ?? '{}')[value];
@@ -40,7 +40,7 @@ const LocaleSwitcher = () => {
           className={cn('bg-background1 text-foreground', 'relative z-popover overflow-hidden')}
         >
           <SelectPrimitive.Viewport>
-            {contentLocale.list
+            {contentLocales
               .sort((a, b) => a.localeCompare(b))
               .map((it) => (
                 <SelectPrimitive.Item

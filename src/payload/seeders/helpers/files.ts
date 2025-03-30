@@ -1,10 +1,10 @@
+import { defaultContentLocale } from '@/config/locales.config';
 import { clientEnv } from '@/env.client';
 import { Config, Image } from '@/payload.types';
-import { contentLocale } from '@/payload/locale';
-import { toEntries } from '@/utils/object';
 import configPromise from '@payload-config';
 import { StaticImageData } from 'next/image';
 import { getPayload } from 'payload';
+import { toPairs } from 'ramda';
 
 type ImageToCreate = Omit<Image, 'createdAt' | 'id' | 'updatedAt'>;
 
@@ -13,7 +13,7 @@ const createImage = async (
   mainLocaleImage: ImageToCreate,
   getLocalizedImages: (
     image: Image,
-  ) => Omit<Record<Config['locale'], ImageToCreate>, typeof contentLocale.default>,
+  ) => Omit<Record<Config['locale'], ImageToCreate>, typeof defaultContentLocale>,
 ) => {
   const payload = await getPayload({ config: configPromise });
   const response = await fetch(`${clientEnv.publicUrl}${imageFile.src}`);
@@ -31,7 +31,7 @@ const createImage = async (
     },
   });
 
-  for (const [locale, data] of toEntries(getLocalizedImages(uploadedImage))) {
+  for (const [locale, data] of toPairs(getLocalizedImages(uploadedImage))) {
     await payload.update({
       collection: 'images',
       id: uploadedImage.id,

@@ -1,7 +1,6 @@
-import type { GlobalConfig } from 'payload';
-
+import { AdminTranslations, customTranslations } from '@/config/locales.config';
 import { link } from '@/payload/fields/link';
-import { AdminTranslations, adminLocale } from '@/payload/locale';
+import type { GlobalConfig } from 'payload';
 import { revalidateHeader } from './header.payload.hooks';
 
 export const headerPayloadConfig: GlobalConfig = {
@@ -11,8 +10,8 @@ export const headerPayloadConfig: GlobalConfig = {
   },
   admin: {
     group: {
-      en: adminLocale.customList.en.common.layout,
-      pl: adminLocale.customList.pl.common.layout,
+      en: customTranslations.en.common.layout,
+      pl: customTranslations.pl.common.layout,
     },
   },
   label: ({ t }: { t: AdminTranslations }) => t('components:header'),

@@ -1,5 +1,5 @@
 import deepMerge from '@/_old/utilities/deepMerge';
-import { AdminTranslations } from '@/payload/locale';
+import { AdminTranslations } from '@/config/locales.config';
 import type { Field } from 'payload';
 export type LinkAppearances = 'default' | 'outline';
 

@@ -5,12 +5,12 @@ import { generatePreviewPath } from '@/_old/utilities/generatePreviewPath';
 import { hero1BlockPayloadConfig } from '@/components/blocks/hero/hero-1/hero-1.payload.config';
 import { imageBlock1BlockPayloadConfig } from '@/components/blocks/image-block/image-block-1/image-block-1.payload.config';
 import { imageBlocksBlockPayloadConfig } from '@/components/blocks/image-block/image-blocks/image-blocks.payload.config';
+import { AdminTranslations, customTranslations } from '@/config/locales.config';
 import { Page } from '@/payload.types';
 import { authenticated } from '@/payload/access/authenticated';
 import { authenticatedOrPublished } from '@/payload/access/authenticatedOrPublished';
 import { slugField } from '@/payload/fields/slug';
 import { populatePublishedAt } from '@/payload/hooks/populatePublishedAt';
-import { AdminTranslations, adminLocale } from '@/payload/locale';
 import { createBreadcrumbsField, createParentField } from '@payloadcms/plugin-nested-docs';
 import {
   MetaDescriptionField,
@@ -21,6 +21,7 @@ import {
 } from '@payloadcms/plugin-seo/fields';
 import { SupportedLanguages } from '@payloadcms/translations';
 import type { CollectionConfig } from 'payload';
+import { fromPairs } from 'ramda';
 import { revalidatePage } from './hooks/revalidatePage';
 
 const Pages: CollectionConfig<'pages'> = {
@@ -102,15 +103,15 @@ const Pages: CollectionConfig<'pages'> = {
             },
           ],
           label: {
-            en: adminLocale.customList.en.common.content,
-            pl: adminLocale.customList.pl.common.content,
+            en: customTranslations.en.common.content,
+            pl: customTranslations.pl.common.content,
           },
         },
         {
           name: 'seo',
           label: {
-            en: adminLocale.customList.en.fields.seo,
-            pl: adminLocale.customList.pl.fields.seo,
+            en: customTranslations.en.fields.seo,
+            pl: customTranslations.pl.fields.seo,
           },
           fields: [
             OverviewField({
@@ -140,8 +141,8 @@ const Pages: CollectionConfig<'pages'> = {
           name: 'subpages',
           virtual: true,
           label: {
-            en: adminLocale.customList.en.fields.subpages,
-            pl: adminLocale.customList.pl.fields.subpages,
+            en: customTranslations.en.fields.subpages,
+            pl: customTranslations.pl.fields.subpages,
           },
           fields: [
             {
@@ -206,7 +207,7 @@ const Pages: CollectionConfig<'pages'> = {
       ({ doc, req }) => {
         if (!doc) return;
 
-        const pathPerLocale = Object.fromEntries(
+        const pathPerLocale = fromPairs(
           Object.entries(doc.breadcrumbs ?? {}).map(
             ([key, value]: [keyof SupportedLanguages, Page['breadcrumbs']]) => {
               return [key, value!.at(-1)?.url ?? '/'];

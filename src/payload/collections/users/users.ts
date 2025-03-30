@@ -1,7 +1,7 @@
 import type { CollectionConfig } from 'payload';
 
+import { AdminTranslations } from '@/config/locales.config';
 import { access } from '@/payload/access';
-import { AdminTranslations } from '@/payload/locale';
 
 const Users: CollectionConfig = {
   slug: 'users',

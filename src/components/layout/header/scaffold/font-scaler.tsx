@@ -1,18 +1,19 @@
 'use client';
 
 import { cn } from '@/_old/utilities/ui';
-import { clientEnv } from '@/env.client';
+import { fontScales } from '@/config/font-scales.config';
+import { customTranslations } from '@/config/locales.config';
 import FontScalerSvg from '@/icons/font-scaler.svg';
-import { adminLocale } from '@/payload/locale';
 import { useFontScaleStore } from '@/store/font-scale';
 import * as SelectPrimitive from '@radix-ui/react-select';
 import { useLocale } from 'next-intl';
+import { keys } from 'ramda';
 import { FC } from 'react';
 
 export const FontScaler: FC = () => {
   const { scale, setScale } = useFontScaleStore();
-  const locale = useLocale() as keyof typeof adminLocale.customList;
-  const label = adminLocale.customList[locale].frontend.fontScaleSwitcher;
+  const locale = useLocale();
+  const label = customTranslations[locale].frontend.fontScaleSwitcher;
 
   return (
     <SelectPrimitive.Root onValueChange={setScale} value={scale}>
@@ -27,7 +28,7 @@ export const FontScaler: FC = () => {
           className={cn('bg-background1 text-foreground', 'relative z-popover overflow-hidden')}
         >
           <SelectPrimitive.Viewport>
-            {Object.keys(clientEnv.feature.fontScales).map((it) => (
+            {keys(fontScales).map((it) => (
               <SelectPrimitive.Item
                 key={it}
                 value={it}
