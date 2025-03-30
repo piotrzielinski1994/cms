@@ -1,14 +1,12 @@
 import { AdminBar } from '@/_old/components/AdminBar';
-import { mergeOpenGraph } from '@/_old/utilities/mergeOpenGraph';
 import { Footer } from '@/components/layout/footer/footer';
 import { Header } from '@/components/layout/header/header';
-import { clientEnv } from '@/config/env.client.config';
 import { Providers } from '@/providers';
 import { getPreferences } from '@/utils/headers';
+import { toPageMetadata } from '@/utils/metadata';
 import { cn } from '@/utils/tailwind';
 import { GeistMono } from 'geist/font/mono';
 import { GeistSans } from 'geist/font/sans';
-import type { Metadata } from 'next';
 import { draftMode } from 'next/headers';
 import { TypedLocale } from 'payload';
 import React from 'react';
@@ -21,14 +19,7 @@ type Args = {
   }>;
 };
 
-export const metadata: Metadata = {
-  metadataBase: new URL(clientEnv.publicUrl),
-  openGraph: mergeOpenGraph(),
-  twitter: {
-    card: 'summary_large_image',
-    creator: '@payloadcms',
-  },
-};
+export const metadata = toPageMetadata({});
 
 export default async function RootLayout({ children, params }: Args) {
   const { isEnabled } = await draftMode();

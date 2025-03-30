@@ -10,6 +10,7 @@ const toPageMetadata = (options: {
 }): Metadata => {
   const title = options.title ?? clientEnv.siteName;
   return {
+    metadataBase: new URL(clientEnv.publicUrl),
     title,
     description: options.description,
     openGraph: {
@@ -19,6 +20,11 @@ const toPageMetadata = (options: {
       description: options.description,
       images: [optional(options.imageUrl, (url) => ({ url }))].filter((it) => it !== undefined),
     },
+    // TODO
+    // twitter: {
+    //   card: 'summary_large_image',
+    //   creator: 'CMS',
+    // },
   };
 };
 
