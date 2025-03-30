@@ -1,15 +1,12 @@
 'use client';
 
-import type { StaticImageData } from 'next/image';
-
+import { cssVariables } from '@/_old/cssVariables';
+import { env } from '@/config/env.config';
 import { cn } from '@/utils/tailwind';
+import type { StaticImageData } from 'next/image';
 import NextImage from 'next/image';
 import React from 'react';
-
 import type { Props as MediaProps } from '../types';
-
-import { cssVariables } from '@/_old/cssVariables';
-import { getClientSideURL } from '@/_old/utilities/getURL';
 
 const { breakpoints } = cssVariables;
 
@@ -43,7 +40,7 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
 
     const cacheTag = resource.updatedAt;
 
-    src = `${getClientSideURL()}${url}?${cacheTag}`;
+    src = `${env.publicUrl}${url}?${cacheTag}`;
   }
 
   const loading = loadingFromProps || (!priority ? 'lazy' : undefined);

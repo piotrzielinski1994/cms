@@ -1,11 +1,9 @@
 'use client';
 
+import { env } from '@/config/env.config';
 import { cn } from '@/utils/tailwind';
 import React, { useEffect, useRef } from 'react';
-
 import type { Props as MediaProps } from '../types';
-
-import { getClientSideURL } from '@/_old/utilities/getURL';
 
 export const VideoMedia: React.FC<MediaProps> = (props) => {
   const { onClick, resource, videoClassName } = props;
@@ -37,7 +35,7 @@ export const VideoMedia: React.FC<MediaProps> = (props) => {
         playsInline
         ref={videoRef}
       >
-        <source src={`${getClientSideURL()}/media/${filename}`} />
+        <source src={`${env.publicUrl}/media/${filename}`} />
       </video>
     );
   }

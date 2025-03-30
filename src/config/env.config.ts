@@ -1,14 +1,16 @@
 import { z } from 'zod';
 
+const isServer = typeof window === 'undefined';
+
 const envSchema = z.object({
   // Default
-  PAYLOAD_SECRET: z.string().min(10),
-  DATABASE_URI: z.string(),
+  PAYLOAD_SECRET: isServer ? z.string().min(10) : z.undefined(),
+  DATABASE_URI: isServer ? z.string() : z.undefined(),
   NEXT_PUBLIC_PAGE_TITLE: z.string(),
   NEXT_PUBLIC_SERVER_URL: z.string().url(),
 
   // Vercel
-  BLOB_READ_WRITE_TOKEN: z.string().optional(),
+  BLOB_READ_WRITE_TOKEN: isServer ? z.string().optional() : z.undefined(),
 });
 
 const parsedEnv = envSchema.parse({

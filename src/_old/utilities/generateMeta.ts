@@ -1,14 +1,11 @@
-import type { Metadata } from 'next';
-
+import { env } from '@/config/env.config';
 import type { Config, Image, Page, Post } from '@/payload.types';
-
-import { getServerSideURL } from './getURL';
+import type { Metadata } from 'next';
 import { mergeOpenGraph } from './mergeOpenGraph';
 
 const getImageURL = (image?: Image | Config['db']['defaultIDType'] | null) => {
-  const serverUrl = getServerSideURL();
   const imagePath = (image as Image)?.url ?? '';
-  return `${serverUrl}${imagePath}`;
+  return `${env.publicUrl}${imagePath}`;
 };
 
 export const generateMeta = async (args: {

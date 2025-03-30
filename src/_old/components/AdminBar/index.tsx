@@ -1,15 +1,12 @@
 'use client';
 
-import type { PayloadAdminBarProps, PayloadMeUser } from '@payloadcms/admin-bar';
-
+import { env } from '@/config/env.config';
 import { cn } from '@/utils/tailwind';
+import type { PayloadAdminBarProps, PayloadMeUser } from '@payloadcms/admin-bar';
 import { PayloadAdminBar } from '@payloadcms/admin-bar';
 import { useRouter, useSelectedLayoutSegments } from 'next/navigation';
 import React, { useState } from 'react';
-
 import './index.scss';
-
-import { getClientSideURL } from '@/_old/utilities/getURL';
 
 const baseClass = 'admin-bar';
 
@@ -61,7 +58,7 @@ export const AdminBar: React.FC<{
             logo: 'text-white',
             user: 'text-white',
           }}
-          cmsURL={getClientSideURL()}
+          cmsURL={env.publicUrl}
           collectionSlug={collection}
           collectionLabels={{
             plural: collectionLabels[collection]?.plural || 'Pages',
