@@ -4,7 +4,7 @@ import { seoPlugin } from '@payloadcms/plugin-seo';
 import { GenerateTitle, GenerateURL } from '@payloadcms/plugin-seo/types';
 
 const generateTitle: GenerateTitle<Post | Page> = ({ doc }) => {
-  return doc?.title ?? clientEnv.pageTitle;
+  return doc?.title ?? clientEnv.siteName;
 };
 
 const generateURL: GenerateURL<Post | Page> = ({ doc }) => {

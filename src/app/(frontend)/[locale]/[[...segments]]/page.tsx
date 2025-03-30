@@ -29,9 +29,11 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params: paramsPromise }: PageProps): Promise<Metadata> {
   const { segments = [], locale } = await paramsPromise;
-  const { page } = await queryPage({ path: toPath(segments), locale });
+  const path = toPath(segments);
+  const { page } = await queryPage({ path, locale });
 
   return toPageMetadata({
+    url: `${clientEnv.publicUrl}${path}`,
     title: page?.seo?.title ?? page?.title,
     description: page?.seo?.description ?? '',
     imageUrl: optional(page?.seo?.image as Image, (image) => `${clientEnv.publicUrl}${image.url}`),
