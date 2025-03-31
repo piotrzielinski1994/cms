@@ -5,7 +5,7 @@ import { generatePreviewPath } from '@/_old/utilities/generatePreviewPath';
 import { AdminTranslations, customTranslations } from '@/config/locales.config';
 import { authenticated } from '@/payload/access/authenticated';
 import { authenticatedOrPublished } from '@/payload/access/authenticatedOrPublished';
-import { slugField } from '@/payload/fields/slug';
+import { createSlugField } from '@/payload/fields/slug/slug';
 import {
   MetaDescriptionField,
   MetaImageField,
@@ -227,7 +227,7 @@ const Posts: CollectionConfig<'posts'> = {
         },
       ],
     },
-    ...slugField(),
+    ...createSlugField(),
   ],
   hooks: {
     afterChange: [revalidatePost],

@@ -9,7 +9,7 @@ import { AdminTranslations, customTranslations } from '@/config/locales.config';
 import { Page } from '@/payload.types';
 import { authenticated } from '@/payload/access/authenticated';
 import { authenticatedOrPublished } from '@/payload/access/authenticatedOrPublished';
-import { slugField } from '@/payload/fields/slug';
+import { createSlugField } from '@/payload/fields/slug/slug';
 import { populatePublishedAt } from '@/payload/hooks/populatePublishedAt';
 import { createBreadcrumbsField, createParentField } from '@payloadcms/plugin-nested-docs';
 import {
@@ -168,7 +168,7 @@ const Pages: CollectionConfig<'pages'> = {
       },
       label: ({ t }: { t: AdminTranslations }) => t('fields:publishedAt'),
     },
-    ...slugField(),
+    ...createSlugField(),
     {
       name: 'path',
       type: 'text',
@@ -181,10 +181,10 @@ const Pages: CollectionConfig<'pages'> = {
         readOnly: true,
         components: {
           Field: {
-            path: '@/payload/fields/slug/SlugComponent#SlugComponent',
+            path: '@/payload/components/computed-field#ComputedField',
             clientProps: {
               fieldToUse: 'slug',
-              checkboxFieldPath: 'pathLock',
+              formatter: 'toPath',
             },
           },
         },

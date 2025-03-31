@@ -1,24 +1,23 @@
 import type { CheckboxField, TextField } from 'payload';
-import { formatSlugHook } from './formatSlug';
+import { formatSlugHook } from './slug.utils';
 
 // Types ====================================
 
-type Overrides = {
-  slugOverrides?: Partial<TextField>;
-  checkboxOverrides?: Partial<CheckboxField>;
+type SlugConfig = {
+  fieldToUse?: string;
+  name?: string;
+  overrides?: {
+    slug?: Partial<TextField>;
+    checkbox?: Partial<CheckboxField>;
+  };
 };
-
-type Slug = (
-  fieldToUse?: string,
-  overrides?: Overrides,
-  name?: string,
-) => [TextField, CheckboxField];
 
 // Variables ====================================
 
-const slugField: Slug = (fieldToUse = 'title', overrides = {}, name = 'slug') => {
-  const { slugOverrides, checkboxOverrides } = overrides;
-
+const createSlugField = ({ fieldToUse = 'title', name = 'slug', overrides }: SlugConfig = {}): [
+  TextField,
+  CheckboxField,
+] => {
   const checkBoxField: CheckboxField = {
     name: `${name}Lock`,
     type: 'checkbox',
@@ -27,31 +26,29 @@ const slugField: Slug = (fieldToUse = 'title', overrides = {}, name = 'slug') =>
       hidden: true,
       position: 'sidebar',
     },
-    ...checkboxOverrides,
+    ...overrides?.checkbox,
   };
 
-  // Expect ts error here because of typescript mismatching Partial<TextField> with TextField
-  // @ts-expect-error
   const slugField: TextField = {
+    ...((overrides?.slug as TextField) ?? {}),
     name,
     type: 'text',
     unique: true,
     localized: true,
     index: true,
-    ...(slugOverrides || {}),
     hooks: {
-      // Kept this in for hook or API based updates
       beforeValidate: [formatSlugHook(fieldToUse)],
     },
     admin: {
       position: 'sidebar',
-      ...(slugOverrides?.admin || {}),
+      ...(overrides?.slug?.admin || {}),
       components: {
         Field: {
-          path: '@/payload/fields/slug/SlugComponent#SlugComponent',
+          path: '@/payload/components/computed-field#ComputedField',
           clientProps: {
             fieldToUse,
             checkboxFieldPath: checkBoxField.name,
+            formatter: 'toSlug',
           },
         },
       },
@@ -61,4 +58,4 @@ const slugField: Slug = (fieldToUse = 'title', overrides = {}, name = 'slug') =>
   return [slugField, checkBoxField];
 };
 
-export { slugField };
+export { createSlugField };
