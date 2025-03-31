@@ -1,7 +1,7 @@
 import { ButtonLink } from '@/components/basic/button-link/button-link';
 import { Container } from '@/components/layout/container/container';
 import { Section } from '@/components/layout/section/section';
-import { Hero1Block } from '@/payload/payload.types';
+import { Hero1Block, Page } from '@/payload/payload.types';
 import { cn } from '@/utils/tailwind';
 
 const Hero1 = ({ heading, subheading, buttons }: Hero1Block) => {
@@ -13,8 +13,7 @@ const Hero1 = ({ heading, subheading, buttons }: Hero1Block) => {
         <h1 className={cn('text-6xl font-semibold')}>{heading}</h1>
         {subheading && <p>{subheading}</p>}
         {buttons?.map((button) => {
-          // @ts-expect-error
-          const path = button?.reference?.value.path;
+          const path = (button?.reference?.value as Page).path;
           return (
             <ButtonLink
               key={button.label}

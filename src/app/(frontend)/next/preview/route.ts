@@ -3,8 +3,6 @@ import { draftMode } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { CollectionSlug, getPayload, type PayloadRequest } from 'payload';
 
-const payloadToken = 'payload-token';
-
 export async function GET(
   req: Request & {
     cookies: {
@@ -15,7 +13,6 @@ export async function GET(
   },
 ): Promise<Response> {
   const payload = await getPayload({ config: configPromise });
-  const token = req.cookies.get(payloadToken)?.value;
   const { searchParams } = new URL(req.url);
   const collection = searchParams.get('collection') as CollectionSlug;
   const slug = searchParams.get('slug');

@@ -1,8 +1,8 @@
 'use client';
 
 import { ButtonLink } from '@/components/basic/button-link/button-link';
-import { Image } from '@/components/basic/image/image';
-import { ImageBlock1Block, Image as ImageModel } from '@/payload.types';
+import { Image as BasicImage } from '@/components/basic/image/image';
+import { ImageBlock1Block, Image as ImageModel, Page } from '@/payload.types';
 import { useThemeStore } from '@/store/theme';
 import { cn } from '@/utils/tailwind';
 
@@ -25,8 +25,7 @@ const ImageBlock1 = ({ isReversed, image, heading, subheading, buttons }: ImageB
         <h3 className="text-4xl font-semibold">{heading}</h3>
         {subheading && <p>{subheading}</p>}
         {buttons?.map((button) => {
-          // @ts-expect-error
-          const path = button?.reference?.value.path;
+          const path = (button?.reference?.value as Page).path;
           return (
             <ButtonLink
               key={button.label}
@@ -38,7 +37,7 @@ const ImageBlock1 = ({ isReversed, image, heading, subheading, buttons }: ImageB
         })}
       </div>
       <div className={cn(isReversed ? 'md:order-1' : 'md:order-2')}>
-        <Image {...imageToShow} />
+        <BasicImage {...imageToShow} />
       </div>
     </div>
   );
