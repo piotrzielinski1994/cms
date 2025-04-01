@@ -8,7 +8,7 @@ const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
   const navItems = (data?.navItems ?? []).map((it) => ({
     id: it.id,
     label: it.link.label,
-    path: `/${(it.link.reference?.value as Page).slug}`,
+    path: String((it.link.reference?.value as Page).path),
   }));
 
   return (

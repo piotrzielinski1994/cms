@@ -16,7 +16,7 @@ const Footer = async ({ locale }: FooterProps) => {
   const navItems = (footerData?.navItems ?? []).map((it) => ({
     id: it.id,
     label: it.link.label,
-    path: `/${(it.link.reference?.value as Page).slug}`,
+    path: String((it.link.reference?.value as Page).path),
   }));
 
   return (
