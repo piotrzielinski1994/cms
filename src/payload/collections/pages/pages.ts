@@ -17,9 +17,8 @@ import {
   MetaImageField,
   MetaTitleField,
 } from '@payloadcms/plugin-seo/fields';
-import { SupportedLanguages } from '@payloadcms/translations';
-import type { CollectionConfig } from 'payload';
-import { fromPairs } from 'ramda';
+import type { CollectionConfig, TypedLocale } from 'payload';
+import { fromPairs, toPairs } from 'ramda';
 import { revalidatePage } from './hooks/revalidatePage';
 
 const Pages: CollectionConfig<'pages'> = {
@@ -212,10 +211,8 @@ const Pages: CollectionConfig<'pages'> = {
         if (!doc) return;
 
         const pathPerLocale = fromPairs(
-          Object.entries(doc.breadcrumbs ?? {}).map(
-            ([key, value]: [keyof SupportedLanguages, Page['breadcrumbs']]) => {
-              return [key, value!.at(-1)?.url ?? '/'];
-            },
+          toPairs((doc.breadcrumbs ?? {}) as Record<TypedLocale, Page['breadcrumbs']>).map(
+            ([key, value]) => [key, value!.at(-1)?.url ?? '/'],
           ),
         );
 

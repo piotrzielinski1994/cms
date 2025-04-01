@@ -7,6 +7,7 @@ import { useLocaleStore } from '@/store/locale';
 import { useThemeStore } from '@/store/theme';
 import { cn } from '@/utils/tailwind';
 import * as SelectPrimitive from '@radix-ui/react-select';
+import { keys } from 'ramda';
 import { FC } from 'react';
 import './theme-switcher.scss';
 
@@ -28,7 +29,7 @@ export const ThemeSwitcher: FC = () => {
           className={cn('bg-background1 text-foreground', 'relative z-popover overflow-hidden')}
         >
           <SelectPrimitive.Viewport>
-            {Object.keys(themes).map((it) => (
+            {keys(themes).map((it) => (
               <SelectPrimitive.Item
                 key={it}
                 value={it}
@@ -40,7 +41,10 @@ export const ThemeSwitcher: FC = () => {
                 )}
               >
                 <SelectPrimitive.ItemText>
-                  <ContrastIcon className={`theme-selector theme-selector--${it}`} />
+                  <ContrastIcon
+                    className="theme-selector"
+                    style={{ '--_bg': themes[it].background, '--_text': themes[it].foreground }}
+                  />
                 </SelectPrimitive.ItemText>
               </SelectPrimitive.Item>
             ))}

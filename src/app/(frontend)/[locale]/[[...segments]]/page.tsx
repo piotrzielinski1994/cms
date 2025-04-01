@@ -11,8 +11,10 @@ import { optional } from '@/utils/optional';
 import { toPath } from '@/utils/url';
 import { draftMode } from 'next/headers';
 import { TypedLocale } from 'payload';
+import { toPairs } from 'ramda';
 import PageClient from './page.client';
 
+type PathPerLocale = Record<TypedLocale, string>;
 type PageProps = {
   params: Promise<{
     segments?: string[];
@@ -23,7 +25,9 @@ type PageProps = {
 export async function generateStaticParams() {
   const pages = await getPages();
   return pages.docs
-    .flatMap((it) => Object.entries(it.path ?? {}).map(([locale, path]) => ({ locale, path })))
+    .flatMap((it) =>
+      toPairs((it.path ?? {}) as PathPerLocale).map(([locale, path]) => ({ locale, path })),
+    )
     .map(({ locale, path }) => ({ locale, segments: path.split('/').filter(Boolean) }));
 }
 

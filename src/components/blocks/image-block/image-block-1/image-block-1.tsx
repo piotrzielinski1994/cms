@@ -2,6 +2,7 @@
 
 import { ButtonLink } from '@/components/basic/button-link/button-link';
 import { Image as BasicImage } from '@/components/basic/image/image';
+import { themes } from '@/config/themes.config';
 import { ImageBlock1Block, Image as ImageModel, Page } from '@/payload.types';
 import { useThemeStore } from '@/store/theme';
 import { cn } from '@/utils/tailwind';
@@ -12,7 +13,8 @@ const ImageBlock1 = ({ isReversed, image, heading, subheading, buttons }: ImageB
     default: ImageModel;
     dark?: ImageModel;
   };
-  const imageToShow = theme === 'light' ? defaultImage : (darkImage ?? defaultImage);
+  const prefersDark = themes[theme]._type === 'dark';
+  const imageToShow = !prefersDark ? defaultImage : (darkImage ?? defaultImage);
 
   return (
     <div className="grid md:grid-cols-2">

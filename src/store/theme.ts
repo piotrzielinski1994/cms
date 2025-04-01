@@ -1,3 +1,4 @@
+import { themes } from '@/config/themes.config';
 import { ThemeContext } from '@/providers/theme.provider';
 import { useContext } from 'react';
 import { setCookie } from 'typescript-cookie';
@@ -7,7 +8,7 @@ import { persist } from 'zustand/middleware';
 // Types ====================================
 
 type ThemeStore = {
-  theme: 'light' | 'dark' | string;
+  theme: keyof typeof themes;
   setTheme: (theme: ThemeStore['theme']) => void;
 };
 
