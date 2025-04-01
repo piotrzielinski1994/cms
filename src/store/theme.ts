@@ -1,4 +1,4 @@
-import { themes } from '@/config/themes.config';
+import { Theme } from '@/config/themes.config';
 import { ThemeContext } from '@/providers/theme.provider';
 import { useContext } from 'react';
 import { setCookie } from 'typescript-cookie';
@@ -8,19 +8,19 @@ import { persist } from 'zustand/middleware';
 // Types ====================================
 
 type ThemeStore = {
-  theme: keyof typeof themes;
-  setTheme: (theme: ThemeStore['theme']) => void;
+  theme: Theme;
+  setTheme: (theme: Theme) => void;
 };
 
 // Variables ====================================
 
 const THEME_STORAGE_KEY = 'theme' as const;
 
-const updateDom = (theme: ThemeStore['theme']) => {
+const updateDom = (theme: Theme) => {
   document.documentElement.setAttribute('data-theme', theme);
 };
 
-const createThemeStore = (initialTheme: ThemeStore['theme']) => {
+const createThemeStore = (initialTheme: Theme) => {
   return createStore<ThemeStore>()(
     persist(
       (set) => ({

@@ -1,4 +1,5 @@
-type Theme = {
+type Theme = keyof typeof themes;
+type ThemeConfig = {
   _type: 'light' | 'dark';
   background: string;
   background1: string;
@@ -30,6 +31,6 @@ const themes = {
     background1: '#000',
     foreground: '#ff0',
   },
-} satisfies Record<string, Theme>;
+} satisfies Record<string, ThemeConfig>;
 
-export { themes };
+export { themes, type Theme };
