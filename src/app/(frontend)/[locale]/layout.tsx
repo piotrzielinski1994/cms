@@ -1,6 +1,7 @@
 import { AdminBar } from '@/_old/components/AdminBar';
 import { Footer } from '@/components/layout/footer/footer';
 import { Header } from '@/components/layout/header/header';
+import { themes } from '@/config/themes.config';
 import { Providers } from '@/providers';
 import { getPreferences } from '@/utils/headers';
 import { toPageMetadata } from '@/utils/metadata';
@@ -33,6 +34,7 @@ export default async function RootLayout({ children, params }: Args) {
       data-theme={theme}
       data-scale={fontSize}
       suppressHydrationWarning
+      style={{ colorScheme: themes[theme]?._type }}
     >
       <head>
         <link href="/favicon.ico" rel="icon" sizes="32x32" />

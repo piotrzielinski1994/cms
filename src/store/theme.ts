@@ -1,4 +1,4 @@
-import { Theme } from '@/config/themes.config';
+import { Theme, themes } from '@/config/themes.config';
 import { ThemeContext } from '@/providers/theme.provider';
 import { useContext } from 'react';
 import { setCookie } from 'typescript-cookie';
@@ -20,15 +20,20 @@ const updateDom = (theme: Theme) => {
   document.documentElement.setAttribute('data-theme', theme);
 };
 
+const updateColorSchema = (theme: Theme) => {
+  document.documentElement.style.colorScheme = themes[theme]._type;
+};
+
 const createThemeStore = (initialTheme: Theme) => {
   return createStore<ThemeStore>()(
     persist(
       (set) => ({
         theme: initialTheme,
         setTheme: (theme) => {
-          updateDom(theme);
-          setCookie(THEME_STORAGE_KEY, theme);
           set({ theme });
+          updateDom(theme);
+          updateColorSchema(theme);
+          setCookie(THEME_STORAGE_KEY, theme);
         },
       }),
       {
@@ -36,6 +41,7 @@ const createThemeStore = (initialTheme: Theme) => {
         onRehydrateStorage: () => (state) => {
           if (!state) return;
           updateDom(state.theme);
+          updateColorSchema(state.theme);
           setCookie(THEME_STORAGE_KEY, state.theme);
         },
       },

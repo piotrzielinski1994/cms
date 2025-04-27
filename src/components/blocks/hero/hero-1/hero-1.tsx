@@ -1,4 +1,5 @@
 import { ButtonLink } from '@/components/basic/button-link/button-link';
+import TextInput from '@/components/basic/form/text-input';
 import { Container } from '@/components/layout/container/container';
 import { Section } from '@/components/layout/section/section';
 import { Hero1Block, Page } from '@/payload/payload.types';
@@ -10,6 +11,7 @@ const Hero1 = ({ heading, subheading, buttons }: Hero1Block) => {
       <Container
         className={cn('py-10', 'justify-items-start content-center gap-4', 'bg-background1')}
       >
+        <TextInput />
         <h1 className={cn('text-6xl font-semibold')}>{heading}</h1>
         {subheading && <p>{subheading}</p>}
         {buttons?.map((button) => {
