@@ -1,9 +1,9 @@
 import RichText from '@/_old/components/RichText';
-import clsx from 'clsx';
 import React from 'react';
 
 import type { Post } from '@/payload.types';
 
+import { cn } from '@/utils/tailwind';
 import { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical';
 import { Card } from '../../components/Card';
 
@@ -17,7 +17,7 @@ export const RelatedPosts: React.FC<RelatedPostsProps> = (props) => {
   const { className, docs, introContent } = props;
 
   return (
-    <div className={clsx('lg:container', className)}>
+    <div className={cn('lg:container', className)}>
       {introContent && <RichText data={introContent} enableGutter={false} />}
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 items-stretch">
