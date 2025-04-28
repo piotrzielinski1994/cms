@@ -1,12 +1,15 @@
 import { cn } from '@/utils/tailwind';
-import { ComponentProps, DetailedHTMLProps, InputHTMLAttributes, useId } from 'react';
+import { DetailedHTMLProps, InputHTMLAttributes } from 'react';
 import { Control, FieldValues, Path, useController } from 'react-hook-form';
 import Form from './form';
 
-type TextInputProps = Pick<ComponentProps<typeof Form.Group>, 'label' | 'error'> &
-  Omit<DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>, 'name'> & {
-    name: string;
-  };
+type TextInputProps = Omit<
+  DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
+  'name'
+> & {
+  name: string;
+  error?: string;
+};
 
 type TextInputContainerProps<T extends FieldValues> = Omit<TextInputProps, 'name'> & {
   control: Control<T>;
@@ -23,25 +26,24 @@ const classNames = ({ isValid }: { isValid: boolean }) => {
   ];
 };
 
-const TextInput = (props: TextInputProps) => {
-  const id = useId();
+const TextInput = ({ error, ...props }: TextInputProps) => {
   return (
-    <Form.Group label={props.label} error={props.error} htmlFor={id}>
+    <div className="flex flex-col gap-2">
       <input
         type="text"
-        id={id}
         {...props}
         value={props.value ?? ''}
-        className={cn(...classNames({ isValid: !props.error }), props?.className)}
+        className={cn(...classNames({ isValid: !error }), props?.className)}
       />
-    </Form.Group>
+      <Form.Error>{error}</Form.Error>
+    </div>
   );
 };
 
 const TextInputContainer = <T extends FieldValues>(props: TextInputContainerProps<T>) => {
-  const { control, label, name } = props;
+  const { control, name, ...rest } = props;
   const { field, fieldState } = useController({ control, name });
-  return <TextInput label={label} error={fieldState.error?.message} {...field} />;
+  return <TextInput error={fieldState.error?.message} {...rest} {...field} />;
 };
 
 export { classNames, TextInput, TextInputContainer };

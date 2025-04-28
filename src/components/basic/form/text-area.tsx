@@ -1,43 +1,36 @@
 import { cn } from '@/utils/tailwind';
-import { ComponentProps, TextareaHTMLAttributes, useId } from 'react';
+import { TextareaHTMLAttributes } from 'react';
 import { Control, FieldValues, Path, useController } from 'react-hook-form';
 import Form from './form';
 import { classNames } from './text-input';
 
-type TextAreaProps = Pick<ComponentProps<typeof Form.Group>, 'label' | 'error'> &
-  Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'name'> & {
-    name: string;
-  };
+type TextAreaProps = Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'name'> & {
+  name: string;
+  error?: string;
+};
 
 type TextAreaContainerProps<T extends FieldValues> = Omit<TextAreaProps, 'name'> & {
   control: Control<T>;
   name: Path<T>;
 };
 
-const TextArea = (props: TextAreaProps) => {
-  const id = useId();
+const TextArea = ({ error, ...props }: TextAreaProps) => {
   return (
-    <Form.Group label={props.label} error={props.error} htmlFor={id}>
+    <>
       <textarea
-        id={id}
         {...props}
-        className={cn(...classNames({ isValid: !props.error }), props?.className)}
+        value={props.value ?? ''}
+        className={cn(...classNames({ isValid: !error }), props?.className)}
       />
-    </Form.Group>
+      <Form.Error>{error}</Form.Error>
+    </>
   );
 };
 
 const TextAreaContainer = <T extends FieldValues>(props: TextAreaContainerProps<T>) => {
-  const { control, label, name } = props;
+  const { control, name, ...rest } = props;
   const { field, fieldState } = useController({ control, name });
-  return (
-    <TextArea
-      label={label}
-      error={fieldState.error?.message}
-      {...field}
-      value={field.value ?? ''}
-    />
-  );
+  return <TextArea error={fieldState.error?.message} {...rest} {...field} />;
 };
 
 export { TextArea, TextAreaContainer };
