@@ -1,4 +1,5 @@
 type Theme = keyof typeof themes;
+
 type ThemeConfig = {
   _type: 'light' | 'dark';
   background: string;
@@ -27,8 +28,8 @@ const themes = {
     background1: '#0f111a',
     foreground: '#7b83a3',
     primary: {
-      DEFAULT: '#fff',
-      foreground: '#000',
+      DEFAULT: '#7b83a3',
+      foreground: '#090b10',
     },
   },
   custom1: {
