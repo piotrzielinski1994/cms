@@ -1,4 +1,4 @@
-import { ButtonLink } from '@/components/basic/button-link/button-link';
+import { ButtonLink } from '@/components/basic/button/button';
 import { ContactForm } from '@/components/blocks/form/contact-form/contact-form';
 import { Container } from '@/components/layout/container/container';
 import { Section } from '@/components/layout/section/section';
