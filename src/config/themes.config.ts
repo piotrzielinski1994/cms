@@ -9,6 +9,7 @@ type ThemeConfig = {
     DEFAULT: string;
     foreground: string;
   };
+  input: string;
 };
 
 const themes = {
@@ -21,6 +22,7 @@ const themes = {
       DEFAULT: '#000',
       foreground: '#fff',
     },
+    input: '#fff',
   },
   dark: {
     _type: 'dark',
@@ -31,6 +33,7 @@ const themes = {
       DEFAULT: '#7b83a3',
       foreground: '#090b10',
     },
+    input: '#0f111a',
   },
   custom1: {
     _type: 'light',
@@ -41,6 +44,7 @@ const themes = {
       DEFAULT: '#000',
       foreground: '#ff0',
     },
+    input: '#ff0',
   },
   custom2: {
     _type: 'dark',
@@ -51,6 +55,7 @@ const themes = {
       DEFAULT: '#ff0',
       foreground: '#000',
     },
+    input: '#000',
   },
 } satisfies Record<string, ThemeConfig>;
 

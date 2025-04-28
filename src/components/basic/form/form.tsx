@@ -33,7 +33,7 @@ const Label = (props: HTMLProps<HTMLElement> & { as?: React.ElementType }) => {
 };
 
 const ErrorMessage = ({ className, ...props }: HTMLProps<HTMLParagraphElement>) => {
-  return <span role="alert" className={cn('text-red-500', className)} {...props} />;
+  return <span role="alert" className={cn('text-red-500 text-sm', className)} {...props} />;
 };
 
 export default { Error: ErrorMessage, Group, Label, Root };

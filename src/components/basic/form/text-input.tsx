@@ -13,6 +13,16 @@ type TextInputContainerProps<T extends FieldValues> = Omit<TextInputProps, 'name
   name: Path<T>;
 };
 
+const classNames = ({ isValid }: { isValid: boolean }) => {
+  return [
+    'p-2',
+    'border border-solid border-current bg-input',
+    'hover:border-foreground/90 hover:ring-foreground/90',
+    { '[&:not(:focus)]:text-red-500': !isValid },
+    'outline-none ring-inset focus:ring-1 ring-current',
+  ];
+};
+
 const TextInput = (props: TextInputProps) => {
   const id = useId();
   return (
@@ -21,13 +31,7 @@ const TextInput = (props: TextInputProps) => {
         type="text"
         id={id}
         {...props}
-        className={cn(
-          'p-2',
-          'border border-solid border-current bg-background1',
-          { '[&:not(:focus)]:text-red-500': !!props.error },
-          'outline-none ring-inset focus:ring-1 ring-current',
-          props?.className,
-        )}
+        className={cn(...classNames({ isValid: !props.error }), props?.className)}
       />
     </Form.Group>
   );
@@ -46,4 +50,4 @@ const TextInputContainer = <T extends FieldValues>(props: TextInputContainerProp
   );
 };
 
-export { TextInput, TextInputContainer };
+export { classNames, TextInput, TextInputContainer };

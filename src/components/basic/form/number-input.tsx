@@ -3,6 +3,7 @@ import { ComponentProps, DetailedHTMLProps, InputHTMLAttributes, useId } from 'r
 import { Control, FieldValues, Path, useController } from 'react-hook-form';
 import { z } from 'zod';
 import Form from './form';
+import { classNames } from './text-input';
 
 type NumberInputProps = Pick<ComponentProps<typeof Form.Group>, 'label' | 'error'> &
   Omit<DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>, 'name'> & {
@@ -23,14 +24,7 @@ const NumberInput = (props: NumberInputProps) => {
         id={id}
         {...props}
         value={props.value ?? ''}
-        className={cn(
-          'p-2',
-          'border border-solid border-current bg-background1',
-          'hover:border-foreground/90 hover:ring-foreground/90',
-          { '[&:not(:focus)]:text-red-500': !!props.error },
-          'outline-none ring-inset focus:ring-1 ring-current',
-          props?.className,
-        )}
+        className={cn(...classNames({ isValid: !props.error }), props?.className)}
         onChange={(e) => {
           const { success } = z.coerce.number().safeParse(e.target.value);
           if (!success && e.target.value !== '') return;

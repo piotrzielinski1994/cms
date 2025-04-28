@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from '@/components/basic/button/button';
+import { Button } from '@/components/basic/button';
 import Form from '@/components/basic/form/form';
 import { NumberInputContainer } from '@/components/basic/form/number-input';
 import Select from '@/components/basic/form/select';
