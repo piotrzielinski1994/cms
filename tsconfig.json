@@ -25,7 +25,7 @@
       "@/payload.types": ["./src/payload/payload.types.ts"],
       "@/pages/frontend/*": ["./src/app/(frontend)/*"],
       "@/pages/payload/*": ["./src/app/(payload)/*"],
-      "@/tailwind-config": ["./tailwind.config.ts"],
+      "@/tailwind-config": ["./tailwind.config.ts"]
     }
   },
   "include": [
@@ -34,7 +34,8 @@
     ".next/types/**/*.ts",
     "redirects.js",
     "next.config.ts",
-    "next-sitemap.config.cjs"
+    "next-sitemap.config.cjs",
+    "jest.config.ts"
   ],
   "exclude": ["node_modules"]
 }
