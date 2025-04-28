@@ -31,6 +31,7 @@ const TextInput = (props: TextInputProps) => {
         type="text"
         id={id}
         {...props}
+        value={props.value ?? ''}
         className={cn(...classNames({ isValid: !props.error }), props?.className)}
       />
     </Form.Group>
@@ -40,14 +41,7 @@ const TextInput = (props: TextInputProps) => {
 const TextInputContainer = <T extends FieldValues>(props: TextInputContainerProps<T>) => {
   const { control, label, name } = props;
   const { field, fieldState } = useController({ control, name });
-  return (
-    <TextInput
-      label={label}
-      error={fieldState.error?.message}
-      {...field}
-      value={field.value ?? ''}
-    />
-  );
+  return <TextInput label={label} error={fieldState.error?.message} {...field} />;
 };
 
 export { classNames, TextInput, TextInputContainer };

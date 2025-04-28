@@ -5,24 +5,22 @@ const Root = ({ className, ...props }: FormHTMLAttributes<HTMLFormElement>) => {
   return <form className={cn('', className)} {...props} />;
 };
 
-const Group = ({
-  label,
-  htmlFor,
-  error,
-  className,
-  ...props
-}: HTMLProps<HTMLDivElement> & {
-  label: string;
-  htmlFor: string;
-  error?: string;
-}) => {
+const Group = (
+  props: HTMLProps<HTMLDivElement> & { label: string; htmlFor: string; error?: string },
+) => {
+  const { label, htmlFor, error, className, ...rest } = props;
   return (
-    <div className={cn('grid gap-2', 'grid row-span-3 grid-rows-subgrid', className)} {...props}>
+    <div
+      className={cn('grid gap-2 content-start', 'grid row-span-3 grid-rows-subgrid', className)}
+      {...rest}
+    >
       <Label htmlFor={htmlFor} className={cn('self-end')}>
         {label}
       </Label>
-      {props.children}
-      {!!error && <ErrorMessage>{error}</ErrorMessage>}
+      <div className={cn('grid gap-2 content-start', 'grid row-span-2')}>
+        {props.children}
+        <ErrorMessage className={cn('-mt-1 min-h-[1em]')}>{error ?? ''}</ErrorMessage>
+      </div>
     </div>
   );
 };
@@ -33,7 +31,13 @@ const Label = (props: HTMLProps<HTMLElement> & { as?: React.ElementType }) => {
 };
 
 const ErrorMessage = ({ className, ...props }: HTMLProps<HTMLParagraphElement>) => {
-  return <span role="alert" className={cn('text-red-500 text-sm', className)} {...props} />;
+  return (
+    <span
+      role="alert"
+      className={cn('text-red-500 text-sm inline-block  leading-none', className)}
+      {...props}
+    />
+  );
 };
 
 export default { Error: ErrorMessage, Group, Label, Root };
