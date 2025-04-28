@@ -20,6 +20,7 @@ type Args = {
   }>;
 };
 
+export const dynamic = 'force-static'; // TODO: Check if worked: https://github.com/vercel/next.js/discussions/57644
 export const metadata = toPageMetadata({});
 
 export default async function RootLayout({ children, params }: Args) {
