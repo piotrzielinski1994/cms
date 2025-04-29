@@ -27,7 +27,7 @@ const ContactForm = () => {
 
   return (
     <Form.Root onSubmit={form.handleSubmit((data) => console.log('@@@ data | ', data))}>
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-4 gap-4 grid-rows-[repeat(3,_auto)_1fr]">
         <div className="row-span-4 grid grid-rows-subgrid">
           <Form.Group className="row-span-4">
             <Form.Label htmlFor={`${id}__message`}>
