@@ -101,6 +101,16 @@ const pl = {
     localeSwitcher: 'Przełącznik języka',
     themeSwitcher: 'Przełącznik motywu',
     fontScaleSwitcher: 'Przełącznik skalowania czcionki',
+    contactForm: {
+      fields: {
+        email: {
+          label: 'Email',
+        },
+        message: {
+          label: 'Wiadomość',
+        },
+      },
+    },
   },
 } satisfies typeof en;
 

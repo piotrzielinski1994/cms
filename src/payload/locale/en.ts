@@ -99,6 +99,16 @@ const en = {
     localeSwitcher: 'Locale switcher',
     themeSwitcher: 'Theme switcher',
     fontScaleSwitcher: 'Font scale switcher',
+    contactForm: {
+      fields: {
+        email: {
+          label: 'Email',
+        },
+        message: {
+          label: 'Message',
+        },
+      },
+    },
   },
 };
 

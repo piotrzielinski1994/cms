@@ -1,20 +1,13 @@
 import { cn } from '@/utils/tailwind';
 import { FormHTMLAttributes, HTMLProps } from 'react';
 
-const Root = ({ className, ...props }: FormHTMLAttributes<HTMLFormElement>) => {
-  return <form className={cn('', className)} {...props} />;
+const Root = (props: FormHTMLAttributes<HTMLFormElement>) => {
+  return <form {...props} />;
 };
 
 const Group = ({ className, ...props }: HTMLProps<HTMLDivElement>) => {
   return (
-    <div
-      className={cn(
-        'grid gap-2 content-start grid-rows-[auto_1fr]',
-        'grid row-span-2 grid-rows-subgrid',
-        className,
-      )}
-      {...props}
-    />
+    <div className={cn('grid gap-1 content-start grid-rows-[auto_1fr]', className)} {...props} />
   );
 };
 
@@ -26,8 +19,9 @@ const Label = (props: HTMLProps<HTMLElement> & { as?: React.ElementType }) => {
 const ErrorMessage = ({ className, ...props }: HTMLProps<HTMLParagraphElement>) => {
   return (
     <span
+      suppressHydrationWarning
       role="alert"
-      className={cn('-mt-1 min-h-[1em] text-sm text-red-500 leading-none', className)}
+      className={cn('min-h-[1em] text-sm text-red-500 leading-none', className)}
       {...props}
     />
   );

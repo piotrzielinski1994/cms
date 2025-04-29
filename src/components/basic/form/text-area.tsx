@@ -14,13 +14,17 @@ type TextAreaContainerProps<T extends FieldValues> = Omit<TextAreaProps, 'name'>
   name: Path<T>;
 };
 
-const TextArea = ({ error, ...props }: TextAreaProps) => {
+const TextArea = ({ error, className, ...props }: TextAreaProps) => {
   return (
     <>
       <textarea
         {...props}
         value={props.value ?? ''}
-        className={cn(...classNames({ isValid: !error }), props?.className)}
+        className={cn(
+          ...classNames({ isValid: !error }),
+          'min-h-[calc(2*1px+2*0.5rem+3*1.5rem)]',
+          className,
+        )}
       />
       <Form.Error>{error}</Form.Error>
     </>
