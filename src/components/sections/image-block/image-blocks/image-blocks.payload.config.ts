@@ -1,10 +1,10 @@
-import { imageBlock1BlockPayloadConfig } from '@/components/blocks/image-block/image-block-1/image-block-1.payload.config';
+import { imageBlock1BlockPayloadConfig } from '@/components/sections/image-block/image-block-1/image-block-1.payload.config';
 import { AdminTranslations } from '@/config/locales.config';
 import type { Block } from 'payload';
 
-export const imageBlocksBlockPayloadConfig = {
+const imageBlocksSectionPayloadConfig = {
   slug: 'image-blocks',
-  interfaceName: 'ImageBlocksBlock',
+  interfaceName: 'ImageBlocksSection',
   fields: [
     {
       name: 'heading',
@@ -30,3 +30,5 @@ export const imageBlocksBlockPayloadConfig = {
     },
   ],
 } satisfies Block;
+
+export { imageBlocksSectionPayloadConfig };

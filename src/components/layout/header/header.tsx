@@ -1,6 +1,6 @@
+import { Container } from '@/components/basic/container';
 import { Logo } from '@/components/basic/logo';
-import { Container } from '@/components/layout/container/container';
-import { Section } from '@/components/layout/section/section';
+import { Section } from '@/components/basic/section';
 import { getCachedGlobal } from '@/payload/utils/globals';
 import { cn } from '@/utils/tailwind';
 import { TypedLocale } from 'payload';

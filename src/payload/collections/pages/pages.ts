@@ -2,9 +2,10 @@ import { Archive } from '@/_old/blocks/ArchiveBlock/config';
 import { CallToAction } from '@/_old/blocks/CallToAction/config';
 import { Content } from '@/_old/blocks/Content/config';
 import { generatePreviewPath } from '@/_old/utilities/generatePreviewPath';
-import { hero1BlockPayloadConfig } from '@/components/blocks/hero/hero-1/hero-1.payload.config';
-import { imageBlock1BlockPayloadConfig } from '@/components/blocks/image-block/image-block-1/image-block-1.payload.config';
-import { imageBlocksBlockPayloadConfig } from '@/components/blocks/image-block/image-blocks/image-blocks.payload.config';
+import { contactUsSectionPayloadConfig } from '@/components/sections/form/contact-us/contact-us.payload.config';
+import { hero1SectionPayloadConfig } from '@/components/sections/hero/hero-1/hero-1.payload.config';
+import { imageBlock1BlockPayloadConfig } from '@/components/sections/image-block/image-block-1/image-block-1.payload.config';
+import { imageBlocksSectionPayloadConfig } from '@/components/sections/image-block/image-blocks/image-blocks.payload.config';
 import { AdminTranslations, customTranslations } from '@/config/locales.config';
 import { Page } from '@/payload.types';
 import { authenticated } from '@/payload/access/authenticated';
@@ -85,9 +86,10 @@ const Pages: CollectionConfig<'pages'> = {
               name: 'sections',
               type: 'blocks',
               blocks: [
-                hero1BlockPayloadConfig,
-                imageBlocksBlockPayloadConfig,
+                hero1SectionPayloadConfig,
+                imageBlocksSectionPayloadConfig,
                 imageBlock1BlockPayloadConfig,
+                contactUsSectionPayloadConfig,
                 Archive,
                 CallToAction,
                 Content,

@@ -1,6 +1,6 @@
+import { Container } from '@/components/basic/container';
 import { Logo } from '@/components/basic/logo';
-import { Container } from '@/components/layout/container/container';
-import { Section } from '@/components/layout/section/section';
+import { Section } from '@/components/basic/section';
 import { Link } from '@/config/next.routing.config';
 import { Page } from '@/payload/payload.types';
 import { getCachedGlobal } from '@/payload/utils/globals';

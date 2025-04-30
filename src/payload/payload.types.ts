@@ -142,7 +142,15 @@ export interface UserAuthOperations {
 export interface Page {
   id: string;
   title: string;
-  sections: (Hero1Block | ImageBlocksBlock | ImageBlock1Block | ArchiveBlock | CallToActionBlock | ContentBlock)[];
+  sections: (
+    | Hero1Block
+    | ImageBlocksSection
+    | ImageBlock1Block
+    | ContactUsSection
+    | ArchiveBlock
+    | CallToActionBlock
+    | ContentBlock
+  )[];
   seo?: {
     title?: string | null;
     description?: string | null;
@@ -307,9 +315,9 @@ export interface User {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ImageBlocksBlock".
+ * via the `definition` "ImageBlocksSection".
  */
-export interface ImageBlocksBlock {
+export interface ImageBlocksSection {
   heading?: string | null;
   subheading?: string | null;
   items: ImageBlock1Block[];
@@ -348,6 +356,15 @@ export interface ImageBlock1Block {
   id?: string | null;
   blockName?: string | null;
   blockType: 'image-block-1';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContactUsSection".
+ */
+export interface ContactUsSection {
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'contact-us';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -789,8 +806,9 @@ export interface PagesSelect<T extends boolean = true> {
     | T
     | {
         'hero-1'?: T | Hero1BlockSelect<T>;
-        'image-blocks'?: T | ImageBlocksBlockSelect<T>;
+        'image-blocks'?: T | ImageBlocksSectionSelect<T>;
         'image-block-1'?: T | ImageBlock1BlockSelect<T>;
+        'contact-us'?: T | ContactUsSectionSelect<T>;
         archive?: T | ArchiveBlockSelect<T>;
         cta?: T | CallToActionBlockSelect<T>;
         content?: T | ContentBlockSelect<T>;
@@ -845,9 +863,9 @@ export interface Hero1BlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ImageBlocksBlock_select".
+ * via the `definition` "ImageBlocksSection_select".
  */
-export interface ImageBlocksBlockSelect<T extends boolean = true> {
+export interface ImageBlocksSectionSelect<T extends boolean = true> {
   heading?: T;
   subheading?: T;
   items?:
@@ -880,6 +898,14 @@ export interface ImageBlock1BlockSelect<T extends boolean = true> {
         selector?: T;
         id?: T;
       };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContactUsSection_select".
+ */
+export interface ContactUsSectionSelect<T extends boolean = true> {
   id?: T;
   blockName?: T;
 }
