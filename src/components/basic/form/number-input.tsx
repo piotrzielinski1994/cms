@@ -36,7 +36,7 @@ const NumberInput = ({ error, step = 1, ...props }: NumberInputProps) => {
           autoComplete="off"
           {...props}
           value={props.value ?? ''}
-          className={cn(...classNames({ isValid: !error }), props?.className, 'pr-6')}
+          className={cn(...classNames({ isValid: !error }), 'w-full pr-6', props?.className)}
           onChange={(e) => {
             const { success } = z.coerce.number().safeParse(e.target.value);
             if (!success && e.target.value !== '') return;
@@ -45,6 +45,7 @@ const NumberInput = ({ error, step = 1, ...props }: NumberInputProps) => {
           onKeyDown={(e) => {
             if (e.key === 'ArrowUp') changeValue(1);
             if (e.key === 'ArrowDown') changeValue(-1);
+            props?.onKeyDown?.(e);
           }}
         />
         <div className="absolute inset-y-0 right-1 flex flex-col justify-center">
