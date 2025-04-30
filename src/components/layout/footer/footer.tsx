@@ -1,7 +1,7 @@
+import { Logo } from '@/components/basic/logo';
 import { Container } from '@/components/layout/container/container';
 import { Section } from '@/components/layout/section/section';
 import { Link } from '@/config/next.routing.config';
-import LogoSvg from '@/icons/logo.svg';
 import { Page } from '@/payload/payload.types';
 import { getCachedGlobal } from '@/payload/utils/globals';
 import { cn } from '@/utils/tailwind';
@@ -22,9 +22,7 @@ const Footer = async ({ locale }: FooterProps) => {
   return (
     <Section as="footer" className="mt-auto py-5 bg-background1">
       <Container className={cn('flex items-center')}>
-        <Link className="flex items-center" href="/">
-          <LogoSvg />
-        </Link>
+        <Logo />
         <nav className="flex-grow flex justify-end ">
           <ul className="contents">
             {navItems.map(({ id, label, path }) => {

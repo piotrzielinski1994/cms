@@ -11,7 +11,7 @@ const ImageBlocks = ({ heading, subheading, items }: ImageBlocksBlock) => {
       <Container className="grid gap-16">
         {hasHeader && (
           <header className="text-center">
-            {heading && <h1 className={cn('text-4xl font-semibold')}>{heading}</h1>}
+            {heading && <h2 className={cn('text-4xl font-semibold')}>{heading}</h2>}
             {subheading && <p>{subheading}</p>}
           </header>
         )}

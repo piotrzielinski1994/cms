@@ -1,8 +1,11 @@
 import { clientEnv } from '@/config/env.client.config';
+import bundleAnalyzer from '@next/bundle-analyzer';
 import { withPayload } from '@payloadcms/next/withPayload';
 import type { NextConfig } from 'next';
 import createNextIntlPlugin from 'next-intl/plugin';
 import { RemotePattern } from 'next/dist/shared/lib/image-config';
+
+const withBundleAnalyzer = bundleAnalyzer({ enabled: process.env.ANALYZE === 'true' });
 
 const withNextIntl = createNextIntlPlugin('./src/config/next.routing.config.ts');
 const nextConfig = {
@@ -35,4 +38,4 @@ const nextConfig = {
   },
 } satisfies NextConfig;
 
-export default withNextIntl(withPayload(nextConfig));
+export default withBundleAnalyzer(withNextIntl(withPayload(nextConfig)));
