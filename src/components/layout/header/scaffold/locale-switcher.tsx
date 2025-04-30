@@ -34,7 +34,7 @@ const LocaleSwitcher = () => {
     <SelectPrimitive.Root onValueChange={onSelectChange} value={locale}>
       <SelectPrimitive.Trigger
         aria-label={t.localeSwitcher}
-        className={cn('px-3 py-2 -mr-3', 'text-sm')}
+        className={cn('px-2 py-1 -mr-2', 'text-sm text-white')}
       >
         <SelectPrimitive.Value>{locale.toUpperCase()}</SelectPrimitive.Value>
       </SelectPrimitive.Trigger>
@@ -51,7 +51,7 @@ const LocaleSwitcher = () => {
                   key={it}
                   value={it}
                   className={cn(
-                    'px-3 py-2',
+                    'p-2',
                     'focus:bg-accent focus:text-accent-foreground',
                     'text-sm',
                     'cursor-pointer outline-none ',

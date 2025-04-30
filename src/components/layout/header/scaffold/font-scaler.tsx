@@ -15,7 +15,10 @@ export const FontScaler: FC = () => {
 
   return (
     <SelectPrimitive.Root onValueChange={setScale} value={scale}>
-      <SelectPrimitive.Trigger className={cn('p-2', 'text-sm')} aria-label={t.fontScaleSwitcher}>
+      <SelectPrimitive.Trigger
+        className={cn('p-2', 'text-sm text-white')}
+        aria-label={t.fontScaleSwitcher}
+      >
         <SelectPrimitive.Value>
           <FontScalerSvg />
         </SelectPrimitive.Value>

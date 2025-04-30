@@ -16,15 +16,21 @@ type HeaderProps = {
 const Header = async ({ locale }: HeaderProps) => {
   const header = await getCachedGlobal('header', locale)();
   return (
-    <Section as="header" className="py-5 bg-background1 sticky top-0 z-header">
-      <Container className={cn('flex items-center')}>
-        <Logo />
-        <HeaderNav data={header} />
-        <FontScaler />
-        <ThemeSwitcher />
-        <LocaleSwitcher />
-      </Container>
-    </Section>
+    <>
+      <Section as="div" className="bg-black">
+        <Container className={cn('flex justify-end items-center')}>
+          <FontScaler />
+          <ThemeSwitcher />
+          <LocaleSwitcher />
+        </Container>
+      </Section>
+      <Section as="header" className="py-5 bg-background1 sticky top-0 z-header">
+        <Container className={cn('flex items-center')}>
+          <Logo />
+          <HeaderNav data={header} />
+        </Container>
+      </Section>
+    </>
   );
 };
 

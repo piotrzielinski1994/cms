@@ -16,7 +16,10 @@ export const ThemeSwitcher: FC = () => {
 
   return (
     <SelectPrimitive.Root onValueChange={setTheme} value={theme}>
-      <SelectPrimitive.Trigger className={cn('p-2', 'text-sm')} aria-label={t.themeSwitcher}>
+      <SelectPrimitive.Trigger
+        className={cn('py-1.5 px-2', 'text-sm text-white')}
+        aria-label={t.themeSwitcher}
+      >
         <SelectPrimitive.Value>
           <ContrastIcon />
         </SelectPrimitive.Value>
