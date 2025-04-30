@@ -11,7 +11,7 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
 const ContactForm = () => {
-  const { contactForm: t } = useTranslationsStore();
+  const t = useTranslationsStore();
   const id = useId();
   const form = useForm({
     resolver: zodResolver(
@@ -28,14 +28,14 @@ const ContactForm = () => {
       className="grid gap-2"
     >
       <Form.Group>
-        <Form.Label htmlFor={`${id}__email`}>{t.fields.email.label}</Form.Label>
+        <Form.Label htmlFor={`${id}__email`}>{t.contactForm.fields.email.label}</Form.Label>
         <TextInputContainer id={`${id}__email`} name="email" control={form.control} />
       </Form.Group>
       <Form.Group>
-        <Form.Label htmlFor={`${id}__message`}>{t.fields.message.label}</Form.Label>
+        <Form.Label htmlFor={`${id}__message`}>{t.contactForm.fields.message.label}</Form.Label>
         <TextAreaContainer id={`${id}__message`} name="message" control={form.control} />
       </Form.Group>
-      <Button type="submit">Submit</Button>
+      <Button type="submit">{t.submit}</Button>
     </Form.Root>
   );
 };

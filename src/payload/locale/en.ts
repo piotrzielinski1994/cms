@@ -96,6 +96,7 @@ const en = {
     footer: 'Footer',
   },
   frontend: {
+    submit: 'Submit',
     localeSwitcher: 'Locale switcher',
     themeSwitcher: 'Theme switcher',
     fontScaleSwitcher: 'Font scale switcher',

@@ -98,6 +98,7 @@ const pl = {
     footer: 'Stopka',
   },
   frontend: {
+    submit: 'Zatwierdź',
     localeSwitcher: 'Przełącznik języka',
     themeSwitcher: 'Przełącznik motywu',
     fontScaleSwitcher: 'Przełącznik skalowania czcionki',
