@@ -2,6 +2,7 @@
 
 import { Button } from '@/components/basic/button';
 import Form from '@/components/basic/form/form';
+import { NumberInputContainer } from '@/components/basic/form/number-input';
 import { TextAreaContainer } from '@/components/basic/form/text-area';
 import { TextInputContainer } from '@/components/basic/form/text-input';
 import { useTranslationsStore } from '@/store/translations';
@@ -17,6 +18,7 @@ const ContactForm = () => {
     resolver: zodResolver(
       z.object({
         email: z.string().email(),
+        age: z.number().int(),
         message: z.string().min(50).max(2_000),
       }),
     ),
@@ -31,6 +33,11 @@ const ContactForm = () => {
         <Form.Label htmlFor={`${id}__email`}>{t.contactForm.fields.email.label}</Form.Label>
         <TextInputContainer id={`${id}__email`} name="email" control={form.control} />
       </Form.Group>
+      <Form.Group>
+        <Form.Label htmlFor={`${id}__age`}>Age</Form.Label>
+        <NumberInputContainer id={`${id}__age`} name="age" control={form.control} />
+      </Form.Group>
+      <input type="number" step={''} />
       <Form.Group>
         <Form.Label htmlFor={`${id}__message`}>{t.contactForm.fields.message.label}</Form.Label>
         <TextAreaContainer id={`${id}__message`} name="message" control={form.control} />

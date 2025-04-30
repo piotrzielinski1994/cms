@@ -1,5 +1,6 @@
 import { cn } from '@/utils/tailwind';
-import { DetailedHTMLProps, InputHTMLAttributes } from 'react';
+import { ChevronDown, ChevronUp } from 'lucide-react';
+import { ChangeEvent, DetailedHTMLProps, InputHTMLAttributes } from 'react';
 import { Control, FieldValues, Path, useController } from 'react-hook-form';
 import { z } from 'zod';
 import Form from './form';
@@ -11,6 +12,7 @@ type NumberInputProps = Omit<
 > & {
   name: string;
   error?: string;
+  step?: number;
 };
 
 type NumberInputContainerProps<T extends FieldValues> = Omit<NumberInputProps, 'name'> & {
@@ -18,20 +20,42 @@ type NumberInputContainerProps<T extends FieldValues> = Omit<NumberInputProps, '
   name: Path<T>;
 };
 
-const NumberInput = ({ error, ...props }: NumberInputProps) => {
+const NumberInput = ({ error, step = 1, ...props }: NumberInputProps) => {
+  const changeValue = (delta: number) => {
+    const current = Number(props.value ?? 0);
+    const next = current + delta * step;
+    const event = { target: { value: String(next) } } as ChangeEvent<HTMLInputElement>;
+    props?.onChange?.(event);
+  };
+
   return (
     <div className="flex flex-col gap-2">
-      <input
-        type="tel"
-        {...props}
-        value={props.value ?? ''}
-        className={cn(...classNames({ isValid: !error }), props?.className)}
-        onChange={(e) => {
-          const { success } = z.coerce.number().safeParse(e.target.value);
-          if (!success && e.target.value !== '') return;
-          props?.onChange?.(e);
-        }}
-      />
+      <div className="relative">
+        <input
+          type="tel"
+          autoComplete="off"
+          {...props}
+          value={props.value ?? ''}
+          className={cn(...classNames({ isValid: !error }), props?.className, 'pr-6')}
+          onChange={(e) => {
+            const { success } = z.coerce.number().safeParse(e.target.value);
+            if (!success && e.target.value !== '') return;
+            props?.onChange?.(e);
+          }}
+          onKeyDown={(e) => {
+            if (e.key === 'ArrowUp') changeValue(1);
+            if (e.key === 'ArrowDown') changeValue(-1);
+          }}
+        />
+        <div className="absolute inset-y-0 right-1 flex flex-col justify-center">
+          <button type="button" tabIndex={-1} onClick={() => changeValue(1)}>
+            <ChevronUp size="1rem" />
+          </button>
+          <button type="button" tabIndex={-1} onClick={() => changeValue(-1)}>
+            <ChevronDown size="1rem" />
+          </button>
+        </div>
+      </div>
       <Form.Error>{error}</Form.Error>
     </div>
   );
