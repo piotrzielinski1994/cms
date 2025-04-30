@@ -1,7 +1,6 @@
+import { Logo } from '@/components/basic/logo';
 import { Container } from '@/components/layout/container/container';
 import { Section } from '@/components/layout/section/section';
-import { Link } from '@/config/next.routing.config';
-import LogoSvg from '@/icons/logo.svg';
 import { getCachedGlobal } from '@/payload/utils/globals';
 import { cn } from '@/utils/tailwind';
 import { TypedLocale } from 'payload';
@@ -19,9 +18,7 @@ const Header = async ({ locale }: HeaderProps) => {
   return (
     <Section as="header" className="py-5 bg-background1 sticky top-0 z-header">
       <Container className={cn('flex items-center')}>
-        <Link href="/">
-          <LogoSvg />
-        </Link>
+        <Logo />
         <HeaderNav data={header} />
         <FontScaler />
         <ThemeSwitcher />

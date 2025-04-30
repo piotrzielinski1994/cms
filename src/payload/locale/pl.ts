@@ -99,6 +99,7 @@ const pl = {
   },
   frontend: {
     submit: 'Zatwierdź',
+    logo: 'Logo',
     localeSwitcher: 'Przełącznik języka',
     themeSwitcher: 'Przełącznik motywu',
     fontScaleSwitcher: 'Przełącznik skalowania czcionki',

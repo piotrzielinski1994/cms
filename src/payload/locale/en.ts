@@ -97,6 +97,7 @@ const en = {
   },
   frontend: {
     submit: 'Submit',
+    logo: 'Logo',
     localeSwitcher: 'Locale switcher',
     themeSwitcher: 'Theme switcher',
     fontScaleSwitcher: 'Font scale switcher',

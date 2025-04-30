@@ -1,8 +1,9 @@
 'use client';
 
-import { contentLocales, customTranslations } from '@/config/locales.config';
+import { contentLocales } from '@/config/locales.config';
 import { useRouter } from '@/config/next.routing.config';
 import { useLocaleStore } from '@/store/locale';
+import { useTranslationsStore } from '@/store/translations';
 import { cn } from '@/utils/tailwind';
 import * as SelectPrimitive from '@radix-ui/react-select';
 import { useParams } from 'next/navigation';
@@ -13,8 +14,8 @@ const LocaleSwitcher = () => {
   const router = useRouter();
   const params = useParams();
   const locale = useLocaleStore();
+  const t = useTranslationsStore();
   const [, startTransition] = useTransition();
-  const label = customTranslations[locale].frontend.fontScaleSwitcher;
 
   function onSelectChange(value: TypedLocale) {
     const nextPathname = JSON.parse(sessionStorage.getItem('__page') ?? '{}')[value];
@@ -31,7 +32,10 @@ const LocaleSwitcher = () => {
 
   return (
     <SelectPrimitive.Root onValueChange={onSelectChange} value={locale}>
-      <SelectPrimitive.Trigger aria-label={label} className={cn('px-3 py-2 -mr-3', 'text-sm')}>
+      <SelectPrimitive.Trigger
+        aria-label={t.localeSwitcher}
+        className={cn('px-3 py-2 -mr-3', 'text-sm')}
+      >
         <SelectPrimitive.Value>{locale.toUpperCase()}</SelectPrimitive.Value>
       </SelectPrimitive.Trigger>
       <SelectPrimitive.Portal>

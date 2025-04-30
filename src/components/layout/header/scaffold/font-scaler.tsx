@@ -1,10 +1,9 @@
 'use client';
 
 import { fontScales } from '@/config/font-scales.config';
-import { customTranslations } from '@/config/locales.config';
 import FontScalerSvg from '@/icons/font-scaler.svg';
 import { useFontScaleStore } from '@/store/font-scale';
-import { useLocaleStore } from '@/store/locale';
+import { useTranslationsStore } from '@/store/translations';
 import { cn } from '@/utils/tailwind';
 import * as SelectPrimitive from '@radix-ui/react-select';
 import { keys } from 'ramda';
@@ -12,13 +11,12 @@ import { FC } from 'react';
 
 export const FontScaler: FC = () => {
   const { scale, setScale } = useFontScaleStore();
-  const locale = useLocaleStore();
-  const label = customTranslations[locale].frontend.fontScaleSwitcher;
+  const t = useTranslationsStore();
 
   return (
     <SelectPrimitive.Root onValueChange={setScale} value={scale}>
-      <SelectPrimitive.Trigger className={cn('p-2', 'text-sm')}>
-        <SelectPrimitive.Value aria-label={label}>
+      <SelectPrimitive.Trigger className={cn('p-2', 'text-sm')} aria-label={t.fontScaleSwitcher}>
+        <SelectPrimitive.Value>
           <FontScalerSvg />
         </SelectPrimitive.Value>
       </SelectPrimitive.Trigger>

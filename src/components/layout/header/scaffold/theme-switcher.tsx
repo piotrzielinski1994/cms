@@ -1,10 +1,9 @@
 'use client';
 
-import { customTranslations } from '@/config/locales.config';
 import { themes } from '@/config/themes.config';
 import ContrastIcon from '@/icons/contrast.svg';
-import { useLocaleStore } from '@/store/locale';
 import { useThemeStore } from '@/store/theme';
+import { useTranslationsStore } from '@/store/translations';
 import { cn } from '@/utils/tailwind';
 import * as SelectPrimitive from '@radix-ui/react-select';
 import { keys } from 'ramda';
@@ -13,13 +12,12 @@ import './theme-switcher.scss';
 
 export const ThemeSwitcher: FC = () => {
   const { theme, setTheme } = useThemeStore();
-  const locale = useLocaleStore();
-  const label = customTranslations[locale].frontend.themeSwitcher;
+  const t = useTranslationsStore();
 
   return (
     <SelectPrimitive.Root onValueChange={setTheme} value={theme}>
-      <SelectPrimitive.Trigger className={cn('p-2', 'text-sm')}>
-        <SelectPrimitive.Value aria-label={label}>
+      <SelectPrimitive.Trigger className={cn('p-2', 'text-sm')} aria-label={t.themeSwitcher}>
+        <SelectPrimitive.Value>
           <ContrastIcon />
         </SelectPrimitive.Value>
       </SelectPrimitive.Trigger>
