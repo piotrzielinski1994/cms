@@ -37,7 +37,6 @@ const ContactForm = () => {
         <Form.Label htmlFor={`${id}__age`}>Age</Form.Label>
         <NumberInputContainer id={`${id}__age`} name="age" control={form.control} />
       </Form.Group>
-      <input type="number" step={''} />
       <Form.Group>
         <Form.Label htmlFor={`${id}__message`}>{t.contactForm.fields.message.label}</Form.Label>
         <TextAreaContainer id={`${id}__message`} name="message" control={form.control} />
