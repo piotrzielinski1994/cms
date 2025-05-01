@@ -2,7 +2,7 @@
 
 import { cn } from '@/utils/tailwind';
 import { ChevronDown } from 'lucide-react';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useId, useRef, useState } from 'react';
 
 type AccordionProps = {
   items: {
@@ -12,6 +12,7 @@ type AccordionProps = {
 };
 
 const Accordion = ({ items }: AccordionProps) => {
+  const id = useId();
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const contentRefs = useRef<HTMLDivElement[]>([]);
 
@@ -31,8 +32,11 @@ const Accordion = ({ items }: AccordionProps) => {
             className="bg-components-accordion text-components-accordion-foreground"
           >
             <button
+              type="button"
               className="w-full px-4 py-2 flex justify-between items-center gap-2 text-lg"
               onClick={() => setOpenIndex(openIndex === index ? null : index)}
+              aria-controls={`${id}__${index}`}
+              aria-expanded={isOpen}
             >
               <span>{heading}</span>
               <ChevronDown
@@ -42,12 +46,13 @@ const Accordion = ({ items }: AccordionProps) => {
               />
             </button>
             <div
+              id={`${id}__${index}`}
+              className="overflow-hidden transition-[max-height] duration-300 ease-in-out"
+              style={{ maxHeight: isOpen ? 'auto' : '0' }}
               ref={(el) => {
                 if (!el) return;
                 contentRefs.current[index] = el;
               }}
-              className="overflow-hidden transition-[max-height] duration-300 ease-in-out"
-              style={{ maxHeight: isOpen ? 'auto' : '0' }}
             >
               <div className="px-4 py-2">{content}</div>
             </div>
