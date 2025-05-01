@@ -1,5 +1,5 @@
 import { Payload } from 'payload';
-import { ImageBlocksBlock } from '../payload.types';
+import { ImageBlocksSection } from '../payload.types';
 import placeholderDarkWebp from './assets/placeholder-dark.webp';
 import placeholderWebp from './assets/placeholder.webp';
 import { createImage } from './helpers/files';
@@ -99,15 +99,15 @@ const seedPages = async (payload: Payload) => {
             subheading: 'Podnagłówek sekcji z blokami zdjęciowymi',
             items: [
               {
-                id: (page.sections[1] as ImageBlocksBlock).items[0].id,
-                image: (page.sections[1] as ImageBlocksBlock).items[0].image,
+                id: (page.sections[1] as ImageBlocksSection).items[0].id,
+                image: (page.sections[1] as ImageBlocksSection).items[0].image,
                 blockType: 'image-block-1',
                 heading: 'Blok zdjęciowy 1 nagłówek',
                 subheading: 'Blok zdjęciowy 1 podnagłówek',
               },
               {
-                id: (page.sections[1] as ImageBlocksBlock).items[1].id,
-                image: (page.sections[1] as ImageBlocksBlock).items[1].image,
+                id: (page.sections[1] as ImageBlocksSection).items[1].id,
+                image: (page.sections[1] as ImageBlocksSection).items[1].image,
                 blockType: 'image-block-1',
                 heading: 'Blok zdjęciowy 1 nagłówek',
                 subheading: 'Blok zdjęciowy 1 podnagłówek',
@@ -178,6 +178,9 @@ const seedPages = async (payload: Payload) => {
           heading: 'Contact page',
           subheading: 'Contact page',
         },
+        {
+          blockType: 'contact-us',
+        },
       ],
       parent: aboutUsPage.id,
     },
@@ -196,6 +199,10 @@ const seedPages = async (payload: Payload) => {
             blockType: 'hero-1',
             heading: 'Strona kontakt',
             subheading: 'Strona kontakt',
+          },
+          {
+            id: page.sections[1].id,
+            blockType: 'contact-us',
           },
         ],
         parent: aboutUsPage.id,
