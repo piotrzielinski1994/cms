@@ -147,6 +147,7 @@ export interface Page {
     | ImageBlocksSection
     | ImageBlock1Block
     | ContactUsSection
+    | FAQ
     | ArchiveBlock
     | CallToActionBlock
     | ContentBlock
@@ -365,6 +366,37 @@ export interface ContactUsSection {
   id?: string | null;
   blockName?: string | null;
   blockType: 'contact-us';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FAQ".
+ */
+export interface FAQ {
+  heading: string;
+  items?:
+    | {
+        question: string;
+        answer: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'faq';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -809,6 +841,7 @@ export interface PagesSelect<T extends boolean = true> {
         'image-blocks'?: T | ImageBlocksSectionSelect<T>;
         'image-block-1'?: T | ImageBlock1BlockSelect<T>;
         'contact-us'?: T | ContactUsSectionSelect<T>;
+        faq?: T | FAQSelect<T>;
         archive?: T | ArchiveBlockSelect<T>;
         cta?: T | CallToActionBlockSelect<T>;
         content?: T | ContentBlockSelect<T>;
@@ -906,6 +939,22 @@ export interface ImageBlock1BlockSelect<T extends boolean = true> {
  * via the `definition` "ContactUsSection_select".
  */
 export interface ContactUsSectionSelect<T extends boolean = true> {
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FAQ_select".
+ */
+export interface FAQSelect<T extends boolean = true> {
+  heading?: T;
+  items?:
+    | T
+    | {
+        question?: T;
+        answer?: T;
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }

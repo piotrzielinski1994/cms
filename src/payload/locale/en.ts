@@ -21,6 +21,8 @@ const en = {
     },
     default: 'Default',
     dark: 'Dark',
+    question: 'Question',
+    answer: 'Answer',
   },
   fields: {
     label: 'Label',

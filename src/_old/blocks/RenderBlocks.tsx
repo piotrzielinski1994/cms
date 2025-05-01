@@ -9,6 +9,8 @@ import { FormBlock } from '@/_old/blocks/Form/Component';
 import { MediaBlock } from '@/_old/blocks/MediaBlock/Component';
 import { ContactForm } from '@/components/advanced/form/contact-form/contact-form';
 import { contactFormBlockPayloadConfig } from '@/components/advanced/form/contact-form/contact-form.payload.config';
+import { Faq } from '@/components/sections/faq/faq';
+import { faqSectionPayloadConfig } from '@/components/sections/faq/faq.payload.config';
 import { ContactUs } from '@/components/sections/form/contact-us/contact-us';
 import { contactUsSectionPayloadConfig } from '@/components/sections/form/contact-us/contact-us.payload.config';
 import { Hero1 } from '@/components/sections/hero/hero-1/hero-1';
@@ -29,6 +31,7 @@ const blockComponents = {
   [imageBlocksSectionPayloadConfig.slug]: ImageBlocks,
   [imageBlock1BlockPayloadConfig.slug]: ImageBlock1,
   [contactUsSectionPayloadConfig.slug]: ContactUs,
+  [faqSectionPayloadConfig.slug]: Faq,
 };
 
 export const RenderBlocks: React.FC<{

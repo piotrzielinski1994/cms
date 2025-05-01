@@ -23,6 +23,8 @@ const pl = {
     },
     default: 'Domyślny',
     dark: 'Ciemny',
+    question: 'Pytanie',
+    answer: 'Odpowiedź',
   },
   fields: {
     label: 'Etykieta',
