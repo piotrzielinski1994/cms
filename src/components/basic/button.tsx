@@ -13,7 +13,7 @@ const Button = ({ className, ...rest }: ButtonHTMLAttributes<HTMLButtonElement>)
 };
 
 const ButtonLink = ({ className, ...rest }: ComponentProps<typeof Link>) => {
-  return <Link as={'a'} className={cn(...classNames, className)} {...rest} />;
+  return <Link className={cn(...classNames, className)} {...rest} />;
 };
 
 export { Button, ButtonLink };
