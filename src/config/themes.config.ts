@@ -10,6 +10,12 @@ type ThemeConfig = {
     foreground: string;
   };
   input: string;
+  components: {
+    accordion: {
+      DEFAULT: string;
+      foreground: string;
+    };
+  };
 };
 
 const themes = {
@@ -23,6 +29,12 @@ const themes = {
       foreground: '#fff',
     },
     input: '#fff',
+    components: {
+      accordion: {
+        DEFAULT: '#f3f4f6',
+        foreground: '#000',
+      },
+    },
   },
   dark: {
     _type: 'dark',
@@ -34,6 +46,12 @@ const themes = {
       foreground: '#090b10',
     },
     input: '#0f111a',
+    components: {
+      accordion: {
+        DEFAULT: '#0f111a',
+        foreground: '#7b83a3',
+      },
+    },
   },
   custom1: {
     _type: 'light',
@@ -45,6 +63,12 @@ const themes = {
       foreground: '#ff0',
     },
     input: '#ff0',
+    components: {
+      accordion: {
+        DEFAULT: '#000',
+        foreground: '#ff0',
+      },
+    },
   },
   custom2: {
     _type: 'dark',
@@ -56,6 +80,12 @@ const themes = {
       foreground: '#000',
     },
     input: '#000',
+    components: {
+      accordion: {
+        DEFAULT: '#ff0',
+        foreground: '#000',
+      },
+    },
   },
 } satisfies Record<string, ThemeConfig>;
 

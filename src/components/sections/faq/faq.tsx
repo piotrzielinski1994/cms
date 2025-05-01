@@ -13,10 +13,8 @@ const Faq = (props: FAQ) => {
 
   return (
     <Section>
-      <Container>
-        <header className="text-center">
-          <h2 className={cn('text-4xl font-semibold')}>{props.heading}</h2>
-        </header>
+      <Container className="grid gap-16">
+        <h2 className={cn('text-4xl font-semibold text-center')}>{props.heading}</h2>
         <Accordion items={items} />
       </Container>
     </Section>
