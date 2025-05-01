@@ -5,7 +5,7 @@ const envSchema = z.object({
   NEXT_PUBLIC_SITE_NAME: z.string(),
   NEXT_PUBLIC_SERVER_URL: z.string().url(),
   // Other
-  NEXT_PUBLIC_GTM_ID: z.string(),
+  NEXT_PUBLIC_GTM_ID: z.string().optional(),
 });
 
 const parsedEnv = envSchema.parse({

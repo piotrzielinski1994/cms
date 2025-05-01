@@ -40,7 +40,7 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
       <head>
         <link href="/favicon.ico" rel="icon" sizes="32x32" />
         <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
-        <GoogleTagManager gtmId={clientEnv.gtmId} />
+        {clientEnv.gtmId && <GoogleTagManager gtmId={clientEnv.gtmId} />}
       </head>
       <body className={cn('bg-background text-foreground', 'flex flex-col', 'min-h-[100vh]')}>
         <Providers initialTheme={theme} initialFontScale={fontSize}>
