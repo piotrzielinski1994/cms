@@ -5,6 +5,7 @@ import { getCachedGlobal } from '@/payload/utils/globals';
 import { cn } from '@/utils/tailwind';
 import { TypedLocale } from 'payload';
 import FontScaler from './scaffold/font-scaler';
+import { HeaderHeightMonitor } from './scaffold/header-height-monitor';
 import LocaleSwitcher from './scaffold/locale-switcher';
 import HeaderNav from './scaffold/navbar';
 import ThemeSwitcher from './scaffold/theme-switcher';
@@ -17,6 +18,7 @@ const Header = async ({ locale }: HeaderProps) => {
   const header = await getCachedGlobal('header', locale)();
   return (
     <>
+      <HeaderHeightMonitor />
       <Section as="div" className="bg-black">
         <Container className={cn('flex justify-end items-center')}>
           <FontScaler />
@@ -24,7 +26,7 @@ const Header = async ({ locale }: HeaderProps) => {
           <LocaleSwitcher />
         </Container>
       </Section>
-      <Section as="header" className="py-5 bg-background1 sticky top-0 z-header">
+      <Section as="header" className="py-5 bg-background1 sticky top-0 z-header" data-header>
         <Container className={cn('flex items-center')}>
           <Logo />
           <HeaderNav data={header} />
