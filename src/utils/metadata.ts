@@ -2,23 +2,23 @@ import { clientEnv } from '@/config/env.client.config';
 import { Metadata } from 'next';
 import { optional } from './optional';
 
-const toPageMetadata = (options: {
+const toPageMetadata = (options?: {
   url?: string;
   title?: string;
   description?: string;
   imageUrl?: string;
 }): Metadata => {
-  const title = options.title ?? clientEnv.siteName;
+  const title = options?.title ?? clientEnv.siteName;
   return {
     metadataBase: new URL(clientEnv.publicUrl),
     title,
-    description: options.description,
+    description: options?.description,
     openGraph: {
-      url: options.url ?? clientEnv.publicUrl,
+      url: options?.url ?? clientEnv.publicUrl,
       siteName: clientEnv.siteName,
       title,
-      description: options.description,
-      images: [optional(options.imageUrl, (url) => ({ url }))].filter((it) => it !== undefined),
+      description: options?.description,
+      images: [optional(options?.imageUrl, (url) => ({ url }))].filter((it) => it !== undefined),
     },
     // TODO
     // twitter: {

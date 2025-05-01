@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",
+    "@next/third-parties": "^15.3.1",
     "@payloadcms/admin-bar": "latest",
     "@payloadcms/db-mongodb": "latest",
     "@payloadcms/live-preview-react": "latest",
