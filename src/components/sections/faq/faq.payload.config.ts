@@ -8,9 +8,14 @@ const faqSectionPayloadConfig = {
     {
       name: 'heading',
       type: 'text',
-      required: true,
       localized: true,
       label: ({ t }: { t: AdminTranslations }) => t('fields:heading'),
+    },
+    {
+      name: 'subheading',
+      type: 'text',
+      localized: true,
+      label: ({ t }: { t: AdminTranslations }) => t('fields:subheading'),
     },
     {
       name: 'items',

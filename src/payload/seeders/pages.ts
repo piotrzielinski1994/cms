@@ -1,5 +1,5 @@
 import { Payload } from 'payload';
-import { ImageBlocksSection } from '../payload.types';
+import { FAQ, ImageBlocksSection } from '../payload.types';
 import placeholderDarkWebp from './assets/placeholder-dark.webp';
 import placeholderWebp from './assets/placeholder.webp';
 import { createImage } from './helpers/files';
@@ -136,6 +136,40 @@ const seedPages = async (payload: Payload) => {
           heading: 'About us page heading',
           subheading: 'About us page subheading',
         },
+        {
+          blockType: 'faq',
+          heading: 'FAQ',
+          subheading: 'FAQ subheading',
+          items: Array.from({ length: 3 }, (_, i) => i).map((_, index) => ({
+            question: `Question ${index + 1}`,
+            answer: {
+              root: {
+                type: 'root',
+                children: [
+                  {
+                    type: 'paragraph',
+                    children: [
+                      {
+                        type: 'text',
+                        detail: 0,
+                        format: 0,
+                        mode: 'normal',
+                        style: '',
+                        text: `Answer ${index + 1}`,
+                        version: 1,
+                      },
+                    ],
+                    version: 1,
+                  },
+                ],
+                direction: 'ltr',
+                format: '',
+                indent: 0,
+                version: 1,
+              },
+            },
+          })),
+        },
       ],
       parent: homePage.id,
     },
@@ -154,6 +188,42 @@ const seedPages = async (payload: Payload) => {
             blockType: 'hero-1',
             heading: 'Strona o nas',
             subheading: 'Strona o nas',
+          },
+          {
+            id: page.sections[1].id,
+            blockType: 'faq',
+            heading: 'FAQ',
+            subheading: 'FAQ Podnagłówek',
+            items: ((page.sections[1] as FAQ).items ?? [])?.map((item, index) => ({
+              ...item,
+              question: `Pytanie ${index + 1}`,
+              answer: {
+                root: {
+                  type: 'root',
+                  children: [
+                    {
+                      type: 'paragraph',
+                      children: [
+                        {
+                          type: 'text',
+                          detail: 0,
+                          format: 0,
+                          mode: 'normal',
+                          style: '',
+                          text: `Odpowiedź ${index + 1}`,
+                          version: 1,
+                        },
+                      ],
+                      version: 1,
+                    },
+                  ],
+                  direction: 'ltr',
+                  format: '',
+                  indent: 0,
+                  version: 1,
+                },
+              },
+            })),
           },
         ],
         parent: homePage.id,

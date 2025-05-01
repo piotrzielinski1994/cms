@@ -372,7 +372,8 @@ export interface ContactUsSection {
  * via the `definition` "FAQ".
  */
 export interface FAQ {
-  heading: string;
+  heading?: string | null;
+  subheading?: string | null;
   items?:
     | {
         question: string;
@@ -948,6 +949,7 @@ export interface ContactUsSectionSelect<T extends boolean = true> {
  */
 export interface FAQSelect<T extends boolean = true> {
   heading?: T;
+  subheading?: T;
   items?:
     | T
     | {
