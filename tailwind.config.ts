@@ -30,6 +30,7 @@ const tailwindConfig = {
       zIndex: {
         header: '100',
         popover: '200',
+        skipLink: '300',
       },
       colors: {
         themes: normalizedThemes,

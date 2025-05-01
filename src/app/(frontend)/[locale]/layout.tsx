@@ -1,4 +1,5 @@
 import { AdminBar } from '@/_old/components/AdminBar';
+import { SkipLink } from '@/components/basic/skip-link';
 import { Footer } from '@/components/layout/footer/footer';
 import { Header } from '@/components/layout/header/header';
 import { clientEnv } from '@/config/env.client.config';
@@ -44,9 +45,12 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
       </head>
       <body className={cn('bg-background text-foreground', 'flex flex-col', 'min-h-[100vh]')}>
         <Providers initialTheme={theme} initialFontScale={fontSize}>
+          <SkipLink />
           <AdminBar adminBarProps={{ preview: isEnabled }} />
           <Header locale={locale} />
-          <main className="flex-grow my-20 grid gap-20">{children}</main>
+          <main className="flex-grow my-20 grid gap-20" id="main">
+            {children}
+          </main>
           <Footer locale={locale} />
         </Providers>
       </body>

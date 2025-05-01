@@ -101,6 +101,9 @@ const en = {
     localeSwitcher: 'Locale switcher',
     themeSwitcher: 'Theme switcher',
     fontScaleSwitcher: 'Font scale switcher',
+    component: {
+      skipLink: 'Skip Link',
+    },
     contactForm: {
       fields: {
         email: {
