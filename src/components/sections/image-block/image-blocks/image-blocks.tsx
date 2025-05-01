@@ -1,10 +1,10 @@
 import { RenderBlocks } from '@/_old/blocks/RenderBlocks';
 import { Container } from '@/components/basic/container';
 import { Section } from '@/components/basic/section';
-import { ImageBlocksBlock } from '@/payload.types';
+import { ImageBlocksSection } from '@/payload.types';
 import { cn } from '@/utils/tailwind';
 
-const ImageBlocks = ({ heading, subheading, items }: ImageBlocksBlock) => {
+const ImageBlocks = ({ heading, subheading, items }: ImageBlocksSection) => {
   const hasHeader = Boolean(heading || subheading);
   return (
     <Section>
