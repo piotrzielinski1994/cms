@@ -1,5 +1,7 @@
 'use client';
 
+import { Container } from '@/components/basic/container';
+import { Section } from '@/components/basic/section';
 import { clientEnv } from '@/config/env.client.config';
 import { cn } from '@/utils/tailwind';
 import type { PayloadAdminBarProps, PayloadMeUser } from '@payloadcms/admin-bar';
@@ -43,13 +45,13 @@ export const AdminBar: React.FC<{
   }, []);
 
   return (
-    <div
-      className={cn(baseClass, 'py-2 bg-black text-white', {
-        block: show,
-        hidden: !show,
-      })}
-    >
-      <div className="container">
+    <Section>
+      <Container
+        className={cn(baseClass, 'py-2 bg-black text-white', {
+          block: show,
+          hidden: !show,
+        })}
+      >
         <PayloadAdminBar
           {...adminBarProps}
           className="py-2 text-white"
@@ -79,7 +81,7 @@ export const AdminBar: React.FC<{
             zIndex: 'unset',
           }}
         />
-      </div>
-    </div>
+      </Container>
+    </Section>
   );
 };
