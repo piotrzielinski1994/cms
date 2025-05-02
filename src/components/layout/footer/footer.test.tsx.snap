@@ -1,0 +1,48 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Footer > should match the snapshot 1`] = `
+<div>
+  <footer
+    class="px-4 sm:px-6 grid cms-section mt-auto py-5 bg-background1"
+  >
+    <div
+      class="w-full max-w-screen-2xl mx-auto cms-container flex items-center"
+    >
+      <a
+        aria-label="Logo"
+        href="/"
+      >
+        [Svg @/icons/logo.svg]
+      </a>
+      <nav
+        class="flex-grow flex justify-end "
+      >
+        <ul
+          class="contents"
+        >
+          <li
+            class="contents"
+          >
+            <a
+              class="p-2"
+              href="/"
+            >
+              Home
+            </a>
+          </li>
+          <li
+            class="contents"
+          >
+            <a
+              class="p-2"
+              href="/about"
+            >
+              About
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+</div>
+`;
