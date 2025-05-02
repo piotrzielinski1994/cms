@@ -1,8 +1,8 @@
 import { cn } from '@/utils/tailwind';
 import { TextareaHTMLAttributes } from 'react';
 import { Control, FieldValues, Path, useController } from 'react-hook-form';
-import Form from './root/form';
-import { classNames } from './text-input';
+import Form from '../root/form';
+import { classNames } from '../text-input/text-input';
 
 type TextAreaProps = Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'name'> & {
   name: string;

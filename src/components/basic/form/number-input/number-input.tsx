@@ -5,7 +5,7 @@ import { ChangeEvent, DetailedHTMLProps, InputHTMLAttributes } from 'react';
 import { Control, FieldValues, Path, useController } from 'react-hook-form';
 import { z } from 'zod';
 import Form from '../root/form';
-import { classNames } from '../text-input';
+import { classNames } from '../text-input/text-input';
 
 type NumberInputProps = Omit<
   DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,

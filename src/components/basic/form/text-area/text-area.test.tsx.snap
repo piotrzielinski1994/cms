@@ -1,0 +1,15 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`TextArea > should match the snapshot 1`] = `
+<div>
+  <textarea
+    class="p-2 border border-solid border-current bg-input hover:border-foreground/90 hover:ring-foreground/90 outline-none ring-inset focus:ring-1 ring-current min-h-[calc(2*1px+2*0.5rem+3*1.5rem)]"
+    id="id"
+    name="name"
+  />
+  <span
+    class="min-h-[1em] text-sm text-red-500 leading-none"
+    role="alert"
+  />
+</div>
+`;

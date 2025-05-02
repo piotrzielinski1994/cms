@@ -4,7 +4,7 @@ import { Button } from '@/components/basic/button';
 import { NumberInputContainer } from '@/components/basic/form/number-input/number-input';
 import Form from '@/components/basic/form/root/form';
 import { TextAreaContainer } from '@/components/basic/form/text-area';
-import { TextInputContainer } from '@/components/basic/form/text-input';
+import { TextInputContainer } from '@/components/basic/form/text-input/text-input';
 import { useTranslationsStore } from '@/store/translations';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useId } from 'react';

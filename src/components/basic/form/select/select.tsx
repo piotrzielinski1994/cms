@@ -1,4 +1,4 @@
-const Select = () => {
+const Select = (props: React.SelectHTMLAttributes<HTMLSelectElement>) => {
   return (
     <label>
       Please choose one or more pets:

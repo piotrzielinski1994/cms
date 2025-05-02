@@ -5,7 +5,7 @@ import { axe } from 'vitest-axe';
 import Form from '../root/form';
 import { NumberInput } from './number-input';
 
-describe('Accordion', () => {
+describe('NumberInput', () => {
   const defaultProps = {
     name: 'name',
     id: 'id',
