@@ -21,7 +21,8 @@
     "reinstall": "cross-env NODE_OPTIONS=--no-deprecation rm -rf node_modules && rm npm-lock.yaml && npm --ignore-workspace install",
     "serve": "cross-env NODE_OPTIONS=--no-deprecation next start",
     "upgrade": "npm-check-updates -u && npm update",
-    "test": "vitest -u"
+    "test": "vitest run -u",
+    "test:watch": "vitest -u"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",
@@ -77,6 +78,7 @@
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
     "@types/escape-html": "^1.0.4",
+    "@types/jest-axe": "^3.5.9",
     "@types/node": "22.15.2",
     "@types/ramda": "^0.30.2",
     "@types/react": "19.1.2",

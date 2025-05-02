@@ -1,6 +1,10 @@
 import '@testing-library/jest-dom';
-import { vi } from 'vitest';
-import 'vitest-axe/extend-expect';
+import { expect, vi } from 'vitest';
+import * as matchers from 'vitest-axe/matchers';
+
+expect.extend(matchers);
+
+HTMLCanvasElement.prototype.getContext = vi.fn();
 
 vi.mock('next/navigation', () => ({
   useRouter: vi.fn().mockReturnValue({}),
