@@ -1,0 +1,27 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Form > should match the snapshot 1`] = `
+<div>
+  <form>
+    <div
+      class="grid gap-1 content-start grid-rows-[auto_1fr]"
+    >
+      <label
+        class="self-end"
+        for="id"
+      >
+        Label
+      </label>
+      <input
+        id="id"
+      />
+      <span
+        class="min-h-[1em] text-sm text-red-500 leading-none"
+        role="alert"
+      >
+        Error
+      </span>
+    </div>
+  </form>
+</div>
+`;
