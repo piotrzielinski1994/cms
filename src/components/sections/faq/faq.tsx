@@ -1,4 +1,4 @@
-import { Accordion } from '@/components/basic/accordion';
+import { Accordion } from '@/components/basic/accordion/accordion';
 import { Container } from '@/components/basic/container';
 import { Section } from '@/components/basic/section';
 import { FAQ } from '@/payload/payload.types';
