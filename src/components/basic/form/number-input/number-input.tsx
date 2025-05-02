@@ -57,10 +57,7 @@ const NumberInput = ({ error, step = 1, t, ...props }: NumberInputProps) => {
           <button
             type="button"
             tabIndex={-1}
-            onClick={() => {
-              console.log('@@@ increment | ');
-              changeValue(1);
-            }}
+            onClick={() => changeValue(1)}
             aria-label={t?.increment}
           >
             <ChevronUp size="1rem" />
