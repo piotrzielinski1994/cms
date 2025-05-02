@@ -35,7 +35,8 @@
     "redirects.js",
     "next.config.ts",
     "next-sitemap.config.cjs",
-    "jest.config.ts"
+    "vitest.config.ts",
+    "vitest.setup.ts"
   ],
   "exclude": ["node_modules"]
 }

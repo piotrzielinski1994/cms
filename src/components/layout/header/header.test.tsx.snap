@@ -1,0 +1,80 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Header > should match the snapshot 1`] = `
+<div>
+  <div
+    class="px-4 sm:px-6 grid cms-section bg-black"
+  >
+    <div
+      class="w-full max-w-screen-2xl mx-auto cms-container flex justify-end items-center"
+    >
+      <button
+        aria-autocomplete="none"
+        aria-controls="radix-«r0»"
+        aria-expanded="false"
+        aria-label="Font scale switcher"
+        class="p-2 text-sm text-white"
+        data-state="closed"
+        dir="ltr"
+        role="combobox"
+        type="button"
+      >
+        <span
+          style="pointer-events: none;"
+        >
+          [Svg @/icons/font-scaler.svg]
+        </span>
+      </button>
+      <button
+        aria-autocomplete="none"
+        aria-controls="radix-«r1»"
+        aria-expanded="false"
+        aria-label="Theme switcher"
+        class="py-1.5 px-2 text-sm text-white"
+        data-state="closed"
+        dir="ltr"
+        role="combobox"
+        type="button"
+      >
+        <span
+          style="pointer-events: none;"
+        >
+          [Svg @/icons/contrast.svg]
+        </span>
+      </button>
+      <button
+        aria-autocomplete="none"
+        aria-controls="radix-«r2»"
+        aria-expanded="false"
+        aria-label="Locale switcher"
+        class="px-2 py-1 -mr-2 text-sm text-white"
+        data-state="closed"
+        dir="ltr"
+        role="combobox"
+        type="button"
+      >
+        <span
+          style="pointer-events: none;"
+        >
+          EN
+        </span>
+      </button>
+    </div>
+  </div>
+  <header
+    class="px-4 sm:px-6 grid cms-section sticky top-0 z-header py-5 bg-background1 shadow-sm"
+    data-header="true"
+  >
+    <div
+      class="w-full max-w-screen-2xl mx-auto cms-container flex items-center"
+    >
+      <a
+        aria-label="Logo"
+        href="/"
+      >
+        [Svg @/icons/logo.svg]
+      </a>
+    </div>
+  </header>
+</div>
+`;

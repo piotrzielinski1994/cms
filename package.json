@@ -21,8 +21,7 @@
     "reinstall": "cross-env NODE_OPTIONS=--no-deprecation rm -rf node_modules && rm npm-lock.yaml && npm --ignore-workspace install",
     "serve": "cross-env NODE_OPTIONS=--no-deprecation next start",
     "upgrade": "npm-check-updates -u && npm update",
-    "test": "jest",
-    "test:watch": "jest --watch"
+    "test": "vitest -u"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",
@@ -78,27 +77,26 @@
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
     "@types/escape-html": "^1.0.4",
-    "@types/jest": "^29.5.14",
-    "@types/jest-axe": "^3.5.9",
     "@types/node": "22.15.2",
     "@types/ramda": "^0.30.2",
     "@types/react": "19.1.2",
     "@types/react-dom": "19.1.2",
+    "@vitejs/plugin-react": "^4.4.1",
     "autoprefixer": "^10.4.21",
     "copyfiles": "^2.4.1",
     "eslint": "^9.25.1",
     "eslint-config-next": "15.3.1",
-    "jest": "^29.7.0",
-    "jest-axe": "^10.0.0",
-    "jest-environment-jsdom": "^29.7.0",
+    "jsdom": "^26.1.0",
     "npm-check-updates": "^18.0.1",
     "postcss": "^8.5.3",
     "prettier": "^3.5.3",
     "tailwindcss": "^3.4.17",
-    "ts-jest": "^29.3.2",
     "ts-node": "^10.9.2",
     "tw-colors": "^3.3.2",
-    "typescript": "5.8.3"
+    "typescript": "5.8.3",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^3.1.2",
+    "vitest-axe": "^0.1.0"
   },
   "engines": {
     "node": ">=22"
