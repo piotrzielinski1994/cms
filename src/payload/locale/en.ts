@@ -103,6 +103,8 @@ const en = {
     localeSwitcher: 'Locale switcher',
     themeSwitcher: 'Theme switcher',
     fontScaleSwitcher: 'Font scale switcher',
+    increment: 'Increment',
+    decrement: 'Decrement',
     component: {
       skipLink: 'Skip Link',
     },

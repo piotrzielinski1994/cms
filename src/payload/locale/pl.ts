@@ -105,6 +105,8 @@ const pl = {
     localeSwitcher: 'Przełącznik języka',
     themeSwitcher: 'Przełącznik motywu',
     fontScaleSwitcher: 'Przełącznik skalowania czcionki',
+    increment: 'Zwiększ',
+    decrement: 'Zmniejsz',
     component: {
       skipLink: 'Przejdź do głównej zawartości',
     },

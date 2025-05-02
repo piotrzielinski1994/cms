@@ -1,10 +1,11 @@
+import { useTranslationsStore } from '@/store/translations';
 import { cn } from '@/utils/tailwind';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { ChangeEvent, DetailedHTMLProps, InputHTMLAttributes } from 'react';
 import { Control, FieldValues, Path, useController } from 'react-hook-form';
 import { z } from 'zod';
-import Form from './form';
-import { classNames } from './text-input';
+import Form from '../root/form';
+import { classNames } from '../text-input';
 
 type NumberInputProps = Omit<
   DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
@@ -13,6 +14,10 @@ type NumberInputProps = Omit<
   name: string;
   error?: string;
   step?: number;
+  t?: {
+    increment: string;
+    decrement: string;
+  };
 };
 
 type NumberInputContainerProps<T extends FieldValues> = Omit<NumberInputProps, 'name'> & {
@@ -20,7 +25,7 @@ type NumberInputContainerProps<T extends FieldValues> = Omit<NumberInputProps, '
   name: Path<T>;
 };
 
-const NumberInput = ({ error, step = 1, ...props }: NumberInputProps) => {
+const NumberInput = ({ error, step = 1, t, ...props }: NumberInputProps) => {
   const changeValue = (delta: number) => {
     const current = Number(props.value ?? 0);
     const next = current + delta * step;
@@ -49,10 +54,23 @@ const NumberInput = ({ error, step = 1, ...props }: NumberInputProps) => {
           }}
         />
         <div className="absolute inset-y-0 right-1 flex flex-col justify-center">
-          <button type="button" tabIndex={-1} onClick={() => changeValue(1)}>
+          <button
+            type="button"
+            tabIndex={-1}
+            onClick={() => {
+              console.log('@@@ increment | ');
+              changeValue(1);
+            }}
+            aria-label={t?.increment}
+          >
             <ChevronUp size="1rem" />
           </button>
-          <button type="button" tabIndex={-1} onClick={() => changeValue(-1)}>
+          <button
+            type="button"
+            tabIndex={-1}
+            onClick={() => changeValue(-1)}
+            aria-label={t?.decrement}
+          >
             <ChevronDown size="1rem" />
           </button>
         </div>
@@ -64,10 +82,15 @@ const NumberInput = ({ error, step = 1, ...props }: NumberInputProps) => {
 
 const NumberInputContainer = <T extends FieldValues>(props: NumberInputContainerProps<T>) => {
   const { control, name, ...rest } = props;
+  const t = useTranslationsStore();
   const { field, fieldState } = useController({ control, name });
   return (
     <NumberInput
       error={fieldState.error?.message}
+      t={{
+        increment: t.increment,
+        decrement: t.decrement,
+      }}
       {...rest}
       {...field}
       onChange={(e) => {
