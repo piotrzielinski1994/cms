@@ -10,7 +10,7 @@ exports[`Header > should match the snapshot 1`] = `
     >
       <button
         aria-autocomplete="none"
-        aria-controls="radix-«r0»"
+        aria-controls="radix-«rc»"
         aria-expanded="false"
         aria-label="Font scale switcher"
         class="p-2 text-sm text-white"
@@ -27,7 +27,7 @@ exports[`Header > should match the snapshot 1`] = `
       </button>
       <button
         aria-autocomplete="none"
-        aria-controls="radix-«r1»"
+        aria-controls="radix-«rd»"
         aria-expanded="false"
         aria-label="Theme switcher"
         class="py-1.5 px-2 text-sm text-white"
@@ -44,7 +44,7 @@ exports[`Header > should match the snapshot 1`] = `
       </button>
       <button
         aria-autocomplete="none"
-        aria-controls="radix-«r2»"
+        aria-controls="radix-«re»"
         aria-expanded="false"
         aria-label="Locale switcher"
         class="px-2 py-1 -mr-2 text-sm text-white"
@@ -74,6 +74,34 @@ exports[`Header > should match the snapshot 1`] = `
       >
         [Svg @/icons/logo.svg]
       </a>
+      <nav
+        class="flex-grow flex justify-end"
+      >
+        <ul
+          class="contents"
+        >
+          <li
+            class="contents"
+          >
+            <a
+              class="p-2"
+              href="/"
+            >
+              Home
+            </a>
+          </li>
+          <li
+            class="contents"
+          >
+            <a
+              class="p-2"
+              href="/about"
+            >
+              About
+            </a>
+          </li>
+        </ul>
+      </nav>
     </div>
   </header>
 </div>
