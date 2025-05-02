@@ -45,7 +45,7 @@ export const AdminBar: React.FC<{
   }, []);
 
   return (
-    <Section className="py-2 bg-black text-white">
+    <Section className="bg-black text-white">
       <Container
         className={cn(baseClass, {
           block: show,
