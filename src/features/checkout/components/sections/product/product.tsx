@@ -9,7 +9,8 @@ import { ProductVariants } from '@/features/checkout/components/basic/product-va
 import { cn } from '@/utils/tailwind';
 
 const Product = () => {
-  const headerHeight = useHeaderHeight();
+  const headerHeight = useHeaderHeight() || 80;
+  console.log('@@@ headerHeight | ', headerHeight);
   return (
     <Section>
       <Container
@@ -23,8 +24,9 @@ const Product = () => {
           className={cn(
             'grid gap-4 justify-items-start',
             'sm:col-span-2 sm:row-span-2',
-            `sm:sticky sm:top-[${headerHeight}px]`,
+            `sm:sticky`,
           )}
+          style={{ top: `${headerHeight}px` }} // TODO: Check why the `sm:top-[${headerHeight}px]` doesn't work
         >
           <header>
             <h1 className="text-2xl font-semibold leading-none">PRODUCT</h1>
