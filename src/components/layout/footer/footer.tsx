@@ -22,7 +22,7 @@ const Footer = async ({ locale }: FooterProps) => {
   return (
     <Section as="footer" className="mt-auto py-5 bg-background1">
       <Container className={cn('flex items-center')}>
-        <Logo />
+        <Logo className="text-2xl" />
         <nav className="flex-grow flex justify-end ">
           <ul className="contents">
             {navItems.map(({ id, label, path }) => {
