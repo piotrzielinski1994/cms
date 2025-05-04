@@ -8,8 +8,8 @@ const Product = () => {
     <Section>
       <Container className="bg-background1 grid gap-2">
         <img src="https://placehold.co/600x400" />
-        <h1>PRODUCT</h1>
-        <span>$10.00</span>
+        <h1 className="text-2xl font-semibold">PRODUCT</h1>
+        <span className="text-lg font-semibold">$10.00</span>
         <div>
           {Array.from({ length: 2 }, (_, i) => i).map((group) => {
             return (
@@ -18,10 +18,7 @@ const Product = () => {
                 name={`group-${group}`}
                 label={`Variant group ${group}`}
                 variants={Array.from({ length: 5 }, (_, i) => i).map((it) => {
-                  return {
-                    value: String(it),
-                    label: `Variant ${it}`,
-                  };
+                  return { value: String(it), label: `Variant ${it}` };
                 })}
               />
             );

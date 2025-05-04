@@ -32,7 +32,7 @@ const Header = async ({ locale }: HeaderProps) => {
         data-header
       >
         <Container className={cn('flex items-center')}>
-          <Logo />
+          <Logo className="text-2xl" />
           <HeaderNav data={header} />
         </Container>
       </Section>

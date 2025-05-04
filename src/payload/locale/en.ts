@@ -106,7 +106,7 @@ const en = {
     increment: 'Increment',
     decrement: 'Decrement',
     component: {
-      skipLink: 'Skip Link',
+      skipLink: 'Go to the main content',
     },
     contactForm: {
       fields: {
