@@ -21,7 +21,9 @@ const ProductVariants = (props: ProductVariantsProps) => {
             key={variant.value}
             className={cn(
               'px-2 py-0.5 cursor-pointer',
-              'border border-foreground hover:bg-background1',
+              'border border-foreground',
+              'hover:bg-background1',
+              'has-[:disabled]:cursor-not-allowed has-[:disabled]:border-foreground/50  has-[:disabled]:text-foreground/50',
               'focus-within:tw-cms-focus',
               'has-[:checked]:bg-foreground has-[:checked]:text-background',
             )}
@@ -31,6 +33,7 @@ const ProductVariants = (props: ProductVariantsProps) => {
               id={optional(props.id, (id) => `${id}__${variant.value}`)}
               value={variant.value}
               name={props.name}
+              disabled={variant.value === '0'}
               className="sr-only"
             />
             <span>{variant.label}</span>
