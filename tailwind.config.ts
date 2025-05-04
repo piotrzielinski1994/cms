@@ -15,7 +15,7 @@ const tailwindConfig = {
   plugins: [
     require('@tailwindcss/container-queries'),
     require('tw-colors').createThemes(normalizedThemes),
-    require('tailwindcss/plugin')(({ addBase }) => {
+    ({ addBase }) => {
       const entries = toPairs(fontScales)
         .sort(([key]) => (key === 'base' ? -1 : 1))
         .map(([key, value]) => {
@@ -23,7 +23,7 @@ const tailwindConfig = {
           return [selector, { 'font-size': `${value}px` }] as [typeof selector, CSSRuleObject];
         });
       addBase(fromPairs(entries));
-    }),
+    },
     ({ addComponents }) => {
       addComponents({
         '.tw-cms-focus': {
