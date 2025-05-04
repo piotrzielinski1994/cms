@@ -19,7 +19,7 @@ const Header = async ({ locale }: HeaderProps) => {
   return (
     <>
       <HeaderHeightMonitor />
-      <Section as="div" className="bg-black">
+      <Section as="div" className="py-2 bg-black">
         <Container className={cn('flex justify-end items-center')}>
           <FontScaler />
           <ThemeSwitcher />
