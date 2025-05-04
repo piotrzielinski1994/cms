@@ -6,7 +6,7 @@ import { ProductVariants } from '@/features/checkout/components/basic/product-va
 const Product = () => {
   return (
     <Section>
-      <Container>
+      <Container className="bg-background1 grid gap-2">
         <img src="https://placehold.co/600x400" />
         <h1>PRODUCT</h1>
         <span>$10.00</span>

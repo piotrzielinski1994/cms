@@ -26,11 +26,12 @@ const tailwindConfig = {
     },
     ({ addComponents }) => {
       addComponents({
-        '.tw-cms-focus': {
+        '.tw-cms-outline': {
           outline: 'none',
           boxShadow: [
             '0 0 0 4px hsl(var(--twc-background))',
             '0 0 0 6px hsl(var(--twc-foreground))',
+            '-0.75px -0.75px 2px 6px hsl(var(--twc-background))',
           ].join(', '),
           zIndex: 999999,
         },

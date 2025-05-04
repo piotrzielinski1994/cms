@@ -16,7 +16,7 @@ type TextInputContainerProps<T extends FieldValues> = Omit<TextInputProps, 'name
   name: Path<T>;
 };
 
-const classNames = ({ isValid }: { isValid: boolean }) => {
+const inputClassNames = ({ isValid }: { isValid: boolean }) => {
   return [
     'p-2',
     'border border-solid border-current bg-input',
@@ -33,7 +33,7 @@ const TextInput = ({ error, ...props }: TextInputProps) => {
         type="text"
         {...props}
         value={props.value ?? ''}
-        className={cn(...classNames({ isValid: !error }), props?.className)}
+        className={cn(...inputClassNames({ isValid: !error }), props?.className)}
       />
       <Form.Error>{error}</Form.Error>
     </div>
@@ -46,4 +46,4 @@ const TextInputContainer = <T extends FieldValues>(props: TextInputContainerProp
   return <TextInput error={fieldState.error?.message} {...rest} {...field} />;
 };
 
-export { classNames, TextInput, TextInputContainer };
+export { inputClassNames, TextInput, TextInputContainer };

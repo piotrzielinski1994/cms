@@ -7,5 +7,5 @@ html {
 }
 
 :is(a, button):focus {
-  @apply tw-cms-focus;
+  @apply tw-cms-outline;
 }
