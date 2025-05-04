@@ -6,6 +6,7 @@ const classNames = [
   'px-6 py-3',
   'bg-primary hover:bg-primary/90 text-primary-foreground',
   'font-semibold',
+  'focus:tw-cms-focus',
 ];
 
 const Button = ({ className, ...rest }: ButtonHTMLAttributes<HTMLButtonElement>) => {

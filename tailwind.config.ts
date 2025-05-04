@@ -24,6 +24,18 @@ const tailwindConfig = {
         });
       addBase(fromPairs(entries));
     }),
+    ({ addComponents }) => {
+      addComponents({
+        '.tw-cms-focus': {
+          outline: 'none',
+          boxShadow: [
+            '0 0 0 4px hsl(var(--twc-background))',
+            '0 0 0 6px hsl(var(--twc-foreground))',
+          ].join(', '),
+          zIndex: 999999,
+        },
+      });
+    },
   ],
   theme: {
     extend: {

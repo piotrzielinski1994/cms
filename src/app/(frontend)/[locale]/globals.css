@@ -5,3 +5,7 @@
 html {
   scroll-behavior: smooth;
 }
+
+:is(a, button):focus {
+  @apply tw-cms-focus;
+}
