@@ -31,12 +31,15 @@ const Accordion = ({ items, activeItemIndex, className, ...props }: AccordionPro
           <div
             key={String(heading)}
             className="bg-components-accordion text-components-accordion-foreground"
+            role="group"
+            aria-labelledby={`${id}__${index}__button`}
           >
             <button
               type="button"
               className="w-full px-4 py-2 flex justify-between items-center gap-2 text-lg"
               onClick={() => setOpenIndex(openIndex === index ? undefined : index)}
-              aria-controls={`${id}__${index}`}
+              id={`${id}__${index}__button`}
+              aria-controls={`${id}__${index}__content`}
               aria-expanded={isOpen}
             >
               <span>{heading}</span>
@@ -47,7 +50,7 @@ const Accordion = ({ items, activeItemIndex, className, ...props }: AccordionPro
               />
             </button>
             <div
-              id={`${id}__${index}`}
+              id={`${id}__${index}__content`}
               className="overflow-hidden transition-[max-height] duration-300 ease-in-out"
               style={{ maxHeight: isOpen ? 'auto' : '0' }}
               ref={(el) => {
