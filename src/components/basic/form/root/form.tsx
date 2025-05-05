@@ -1,5 +1,5 @@
 import { cn } from '@/utils/tailwind';
-import { FormHTMLAttributes, HTMLAttributes } from 'react';
+import { FormHTMLAttributes, HTMLAttributes, HTMLProps } from 'react';
 
 const Root = (props: FormHTMLAttributes<HTMLFormElement>) => {
   return <form {...props} />;
@@ -11,7 +11,7 @@ const Group = ({ className, ...props }: HTMLAttributes<HTMLDivElement>) => {
   );
 };
 
-const Label = (props: HTMLAttributes<HTMLLabelElement> & { as?: React.ElementType }) => {
+const Label = (props: HTMLProps<HTMLLabelElement> & { as?: React.ElementType }) => {
   const { as: Cmp = 'label', className, ...rest } = props;
   return <Cmp className={cn('self-end', className)} {...rest} />;
 };
