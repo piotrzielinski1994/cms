@@ -9,10 +9,9 @@ const getZodErrorsMap: (t: ReturnType<typeof useTranslations<'zod'>>) => z.ZodEr
     switch (issue.code) {
       case z.ZodIssueCode.invalid_type:
         return {
-          message:
-            issue.received === 'undefined'
-              ? t('invalid_type_received_undefined', { path })
-              : t('invalid_type', { expected: issue.expected, received: issue.received }),
+          message: ['undefined', 'null'].includes(issue.received)
+            ? t('invalid_type_received_undefined', { path })
+            : t('invalid_type', { expected: issue.expected, received: issue.received }),
         };
       case z.ZodIssueCode.too_small:
         return {
@@ -30,7 +29,7 @@ const getZodErrorsMap: (t: ReturnType<typeof useTranslations<'zod'>>) => z.ZodEr
         };
       case z.ZodIssueCode.invalid_string:
         return {
-          message: t(`invalid_string.${issue.validation}`, { path }),
+          message: t(`invalid_string.${issue.validation}`, { validation: path }),
         };
       default:
         return { message: t('custom', { path }) };

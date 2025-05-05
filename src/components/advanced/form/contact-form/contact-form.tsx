@@ -34,7 +34,13 @@ const ContactForm = () => {
     >
       <Form.Group>
         <Form.Label htmlFor={`${id}__email`}>{t('contactForm.fields.email.label')}</Form.Label>
-        <TextInputContainer id={`${id}__email`} name="email" control={form.control} />
+        <TextInputContainer
+          id={`${id}__email`}
+          name="email"
+          type="email"
+          autoComplete="email"
+          control={form.control}
+        />
       </Form.Group>
       <Form.Group>
         <Form.Label htmlFor={`${id}__age`}>Age</Form.Label>
