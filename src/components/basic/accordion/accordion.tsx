@@ -2,28 +2,29 @@
 
 import { cn } from '@/utils/tailwind';
 import { ChevronDown } from 'lucide-react';
-import React, { useEffect, useId, useRef, useState } from 'react';
+import React, { HTMLAttributes, useEffect, useId, useRef, useState } from 'react';
 
-type AccordionProps = {
+type AccordionProps = HTMLAttributes<HTMLDivElement> & {
   items: {
     heading: React.ReactNode;
     content: React.ReactNode;
   }[];
+  activeItemIndex?: number;
 };
 
-const Accordion = ({ items }: AccordionProps) => {
+const Accordion = ({ items, activeItemIndex, className, ...props }: AccordionProps) => {
   const id = useId();
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [openIndex, setOpenIndex] = useState<number | undefined>(activeItemIndex);
   const contentRefs = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
-    if (openIndex === null) return;
+    if (openIndex === undefined) return;
     const content = contentRefs.current[openIndex];
     if (content) content.style.maxHeight = content.scrollHeight + 'px';
   }, [openIndex]);
 
   return (
-    <div className="grid gap-2">
+    <div {...props} className={cn('grid gap-2', 'cms-accordion', className)}>
       {items.map(({ heading, content }, index) => {
         const isOpen = openIndex === index;
         return (
@@ -34,7 +35,7 @@ const Accordion = ({ items }: AccordionProps) => {
             <button
               type="button"
               className="w-full px-4 py-2 flex justify-between items-center gap-2 text-lg"
-              onClick={() => setOpenIndex(openIndex === index ? null : index)}
+              onClick={() => setOpenIndex(openIndex === index ? undefined : index)}
               aria-controls={`${id}__${index}`}
               aria-expanded={isOpen}
             >

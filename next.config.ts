@@ -10,13 +10,14 @@ const withBundleAnalyzer = bundleAnalyzer({ enabled: process.env.ANALYZE === 'tr
 const withNextIntl = createNextIntlPlugin('./src/config/next.routing.config.ts');
 const nextConfig = {
   images: {
-    remotePatterns: [clientEnv.publicUrl].map((item) => {
+    remotePatterns: [clientEnv.publicUrl, 'https://placehold.co/**'].map((item) => {
       const url = new URL(item);
       return {
         hostname: url.hostname,
         protocol: url.protocol.replace(':', ''),
       } as RemotePattern;
     }),
+    dangerouslyAllowSVG: true, // TODO: Remove this line and the "placehold.co" from `remotePatterns`
   },
   reactStrictMode: true,
   redirects: async () => {

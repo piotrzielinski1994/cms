@@ -39,7 +39,15 @@ const ImageBlock1 = ({ isReversed, image, heading, subheading, buttons }: ImageB
         })}
       </div>
       <div className={cn(isReversed ? 'md:order-1' : 'md:order-2')}>
-        <BasicImage {...imageToShow} />
+        <BasicImage
+          src={imageToShow.url ?? ''}
+          alt={imageToShow.alt}
+          aspectRatio={
+            Boolean(imageToShow.width && imageToShow.height)
+              ? { width: imageToShow.width!, height: imageToShow.height! }
+              : undefined
+          }
+        />
       </div>
     </div>
   );

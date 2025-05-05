@@ -1,7 +1,9 @@
 'use client';
 
+import { Accordion } from '@/components/basic/accordion/accordion';
 import { Button } from '@/components/basic/button';
 import { Container } from '@/components/basic/container';
+import { Image } from '@/components/basic/image';
 import { Section } from '@/components/basic/section';
 import { useHeaderHeight } from '@/components/layout/header/header.hooks';
 import { ProductPrice } from '@/features/checkout/components/basic/product-price/product-price';
@@ -15,11 +17,11 @@ const Product = () => {
     <Section>
       <Container
         className={cn(
-          'bg-background1 grid gap-8 justify-items-start',
+          'bg-background1 grid grid-rows-[auto_1fr] gap-8 content-start',
           `sm:grid-cols-5 sm:items-start`,
         )}
       >
-        <img src="https://placehold.co/600x400" className={cn('sm:col-span-3')} />
+        <Image src="https://placehold.co/600x400" alt="" className={cn('sm:col-span-3')} />
         <div
           className={cn(
             'grid gap-4 justify-items-start',
@@ -38,24 +40,36 @@ const Product = () => {
           <ProductVariants />
           <Button>Add to cart</Button>
         </div>
-        <div className={cn('sm:col-span-3')}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-          exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-          dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-          Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-          anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-          nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-          irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-          deserunt mollit anim id est laborum.
-        </div>
+        <Accordion
+          className={cn('sm:col-span-3')}
+          items={[
+            {
+              heading: 'Product description',
+              content: (
+                <div>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
+                  incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                  exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                  irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                  pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+                  officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet,
+                  consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore
+                  magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                  nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                  voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                  occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+                  est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+                  eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                  veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+                  dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                  sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </div>
+              ),
+            },
+          ]}
+          // activeItemIndex={0}
+        />
       </Container>
     </Section>
   );
