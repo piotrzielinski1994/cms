@@ -57,7 +57,7 @@ exports[`ProductGallery > should match the snapshot 1`] = `
           />
           <img
             alt="Image 2"
-            class="object-cover cms-image w-14 h-14 group-focus-within:tw-cms-outline"
+            class="object-cover cms-image w-14 h-14 group-focus-within:tw-cms-outline opacity-80"
             data-nimg="1"
             decoding="async"
             height="0"
@@ -81,7 +81,7 @@ exports[`ProductGallery > should match the snapshot 1`] = `
           />
           <img
             alt="Image 3"
-            class="object-cover cms-image w-14 h-14 group-focus-within:tw-cms-outline"
+            class="object-cover cms-image w-14 h-14 group-focus-within:tw-cms-outline opacity-80"
             data-nimg="1"
             decoding="async"
             height="0"

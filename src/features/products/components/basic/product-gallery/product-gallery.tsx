@@ -21,20 +21,23 @@ const ProductGallery = ({ images, className, ...props }: ProductGalleryProps) =>
       <Image src={activeImage.src} alt={activeImage.alt} isEager />
       <ul className="flex justify-center gap-4 flex-wrap">
         {images.map(({ src, alt }, index) => {
+          const isActive = activeIndex === index;
           return (
             <li key={index}>
               <label className="group cursor-pointer">
                 <input
                   type="radio"
                   name={`${id}__product_gallery`}
-                  checked={activeIndex === index}
+                  checked={isActive}
                   onChange={() => setActiveIndex(index)}
                   className="sr-only"
                 />
                 <Image
                   src={src}
                   alt={alt}
-                  className="w-14 h-14 group-focus-within:tw-cms-outline"
+                  className={cn('w-14 h-14', 'group-focus-within:tw-cms-outline', {
+                    'opacity-80': !isActive,
+                  })}
                 />
               </label>
             </li>
