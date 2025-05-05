@@ -21,7 +21,6 @@ const Faq = ({ heading, subheading, items }: FAQ) => {
             heading: it.question,
             content: <RichText data={it.answer} />,
           }))}
-          activeItemIndex={1}
         />
       </Container>
     </Section>

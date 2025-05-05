@@ -11,21 +11,22 @@ import { ProductVariants } from '@/features/checkout/components/basic/product-va
 import { cn } from '@/utils/tailwind';
 
 const Product = () => {
-  const headerHeight = useHeaderHeight() || 80;
+  const headerHeight = useHeaderHeight();
   console.log('@@@ headerHeight | ', headerHeight);
   return (
     <Section>
       <Container
         className={cn(
-          'bg-background1 grid grid-rows-[auto_1fr] gap-8 content-start',
-          `sm:grid-cols-5 sm:items-start`,
+          'grid grid-rows-[auto_1fr] gap-8 content-start',
+          `sm:grid-cols-3 sm:items-start`,
         )}
       >
-        <Image src="https://placehold.co/600x400" alt="" className={cn('sm:col-span-3')} />
+        <Image src="https://placehold.co/600x400" alt="" className={cn('sm:col-span-2')} />
         <div
           className={cn(
+            'bg-background1',
             'grid gap-4 justify-items-start',
-            'sm:col-span-2 sm:row-span-2',
+            'sm:col-span-1 sm:row-span-2',
             `sm:sticky`,
           )}
           style={{ top: `${headerHeight}px` }} // TODO: Check why the `sm:top-[${headerHeight}px]` doesn't work
@@ -41,7 +42,8 @@ const Product = () => {
           <Button>Add to cart</Button>
         </div>
         <Accordion
-          className={cn('sm:col-span-3')}
+          className={cn('sm:col-span-2')}
+          activeItemIndex={0}
           items={[
             {
               heading: 'Product description',
@@ -68,7 +70,6 @@ const Product = () => {
               ),
             },
           ]}
-          // activeItemIndex={0}
         />
       </Container>
     </Section>
