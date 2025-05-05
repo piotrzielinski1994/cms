@@ -3,7 +3,7 @@
 exports[`Header > should match the snapshot 1`] = `
 <div>
   <div
-    class="px-4 sm:px-6 grid cms-section bg-black"
+    class="px-4 sm:px-6 grid cms-section py-2 bg-black"
   >
     <div
       class="w-full max-w-screen-2xl mx-auto cms-container flex justify-end items-center"
@@ -70,6 +70,7 @@ exports[`Header > should match the snapshot 1`] = `
     >
       <a
         aria-label="Logo"
+        class="text-2xl"
         href="/"
       >
         [Svg @/icons/logo.svg]
