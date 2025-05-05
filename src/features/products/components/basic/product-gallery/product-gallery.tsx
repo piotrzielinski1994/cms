@@ -18,7 +18,7 @@ const ProductGallery = ({ images, className, ...props }: ProductGalleryProps) =>
 
   return (
     <div className={cn('grid gap-4', className)} {...props}>
-      <Image src={activeImage.src} alt={activeImage.alt} />
+      <Image src={activeImage.src} alt={activeImage.alt} isEager />
       <ul className="flex justify-center gap-4 flex-wrap">
         {images.map(({ src, alt }, index) => {
           return (

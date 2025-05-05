@@ -6,6 +6,7 @@ type ImageProps = {
   src: string;
   alt: string;
   className?: string;
+  isEager?: boolean;
   aspectRatio?: {
     width: number;
     height: number;
@@ -18,7 +19,13 @@ const defaultSizing: ImageProps['sizing'] = Object.values(defaultTheme.screens)
   .sort((a, b) => a - b)
   .map((it) => ({ maxViewport: it, size: '100vw' }));
 
-const Image = ({ aspectRatio, className, sizing = defaultSizing, ...props }: ImageProps) => {
+const Image = ({
+  aspectRatio,
+  className,
+  isEager = false,
+  sizing = defaultSizing,
+  ...props
+}: ImageProps) => {
   const dimensions: Partial<NextImageProps> = aspectRatio ?? {
     width: 0,
     height: 0,
@@ -33,6 +40,7 @@ const Image = ({ aspectRatio, className, sizing = defaultSizing, ...props }: Ima
         .concat(', 100vw')}
       {...props}
       {...dimensions}
+      loading={isEager ? 'eager' : 'lazy'}
       className={cn(dimensions.className, 'object-cover cms-image', className)}
     />
   );
