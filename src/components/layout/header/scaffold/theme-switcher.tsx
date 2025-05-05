@@ -3,22 +3,22 @@
 import { themes } from '@/config/themes.config';
 import ContrastIcon from '@/icons/contrast.svg';
 import { useThemeStore } from '@/store/theme';
-import { useTranslationsStore } from '@/store/translations';
 import { cn } from '@/utils/tailwind';
 import * as SelectPrimitive from '@radix-ui/react-select';
+import { useTranslations } from 'next-intl';
 import { keys } from 'ramda';
 import { FC } from 'react';
 import './theme-switcher.scss';
 
 export const ThemeSwitcher: FC = () => {
   const { theme, setTheme } = useThemeStore();
-  const t = useTranslationsStore();
+  const t = useTranslations('frontend');
 
   return (
     <SelectPrimitive.Root onValueChange={setTheme} value={theme}>
       <SelectPrimitive.Trigger
         className={cn('py-1.5 px-2', 'text-sm text-white')}
-        aria-label={t.themeSwitcher}
+        aria-label={t('themeSwitcher')}
       >
         <SelectPrimitive.Value>
           <ContrastIcon />

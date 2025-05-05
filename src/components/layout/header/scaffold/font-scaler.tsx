@@ -3,21 +3,21 @@
 import { fontScales } from '@/config/font-scales.config';
 import FontScalerSvg from '@/icons/font-scaler.svg';
 import { useFontScaleStore } from '@/store/font-scale';
-import { useTranslationsStore } from '@/store/translations';
 import { cn } from '@/utils/tailwind';
 import * as SelectPrimitive from '@radix-ui/react-select';
+import { useTranslations } from 'next-intl';
 import { keys } from 'ramda';
 import { FC } from 'react';
 
 export const FontScaler: FC = () => {
   const { scale, setScale } = useFontScaleStore();
-  const t = useTranslationsStore();
+  const t = useTranslations('frontend');
 
   return (
     <SelectPrimitive.Root onValueChange={setScale} value={scale}>
       <SelectPrimitive.Trigger
         className={cn('p-2', 'text-sm text-white')}
-        aria-label={t.fontScaleSwitcher}
+        aria-label={t('fontScaleSwitcher')}
       >
         <SelectPrimitive.Value>
           <FontScalerSvg />

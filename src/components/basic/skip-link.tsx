@@ -1,9 +1,9 @@
-import { useTranslationsStore } from '@/store/translations';
 import { cn } from '@/utils/tailwind';
+import { useTranslations } from 'next-intl';
 import { ButtonLink } from './button';
 
 const SkipLink = () => {
-  const t = useTranslationsStore();
+  const t = useTranslations('frontend');
   return (
     <ButtonLink
       href="#main"
@@ -13,7 +13,7 @@ const SkipLink = () => {
         'w-fit',
       )}
     >
-      {t.component.skipLink}
+      {t('component.skipLink')}
     </ButtonLink>
   );
 };

@@ -3,9 +3,9 @@
 import { contentLocales } from '@/config/locales.config';
 import { useRouter } from '@/config/next.routing.config';
 import { useLocaleStore } from '@/store/locale';
-import { useTranslationsStore } from '@/store/translations';
 import { cn } from '@/utils/tailwind';
 import * as SelectPrimitive from '@radix-ui/react-select';
+import { useTranslations } from 'next-intl';
 import { useParams } from 'next/navigation';
 import { TypedLocale } from 'payload';
 import { useTransition } from 'react';
@@ -14,7 +14,7 @@ const LocaleSwitcher = () => {
   const router = useRouter();
   const params = useParams();
   const locale = useLocaleStore();
-  const t = useTranslationsStore();
+  const t = useTranslations('frontend');
   const [, startTransition] = useTransition();
 
   function onSelectChange(value: TypedLocale) {
@@ -33,7 +33,7 @@ const LocaleSwitcher = () => {
   return (
     <SelectPrimitive.Root onValueChange={onSelectChange} value={locale}>
       <SelectPrimitive.Trigger
-        aria-label={t.localeSwitcher}
+        aria-label={t('localeSwitcher')}
         className={cn('px-2 py-1 -mr-2', 'text-sm text-white')}
       >
         <SelectPrimitive.Value>{locale.toUpperCase()}</SelectPrimitive.Value>

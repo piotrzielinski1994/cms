@@ -44,7 +44,7 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
         {clientEnv.gtmId && <GoogleTagManager gtmId={clientEnv.gtmId} />}
       </head>
       <body className={cn('bg-background text-foreground', 'flex flex-col', 'min-h-[100vh]')}>
-        <Providers initialTheme={theme} initialFontScale={fontSize}>
+        <Providers locale={locale} initialTheme={theme} initialFontScale={fontSize}>
           <SkipLink />
           <AdminBar adminBarProps={{ preview: isEnabled }} />
           <Header locale={locale} />

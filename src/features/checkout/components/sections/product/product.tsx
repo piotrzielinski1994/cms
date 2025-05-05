@@ -12,7 +12,7 @@ import { cn } from '@/utils/tailwind';
 
 const Product = () => {
   const headerHeight = useHeaderHeight();
-  console.log('@@@ headerHeight | ', headerHeight);
+
   return (
     <Section>
       <Container

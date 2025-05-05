@@ -6,8 +6,10 @@ import { TypedLocale } from 'payload';
 
 // Types ====================================
 
-declare global {
-  type IntlMessages = typeof customTranslations.en;
+declare module 'next-intl' {
+  interface AppConfig {
+    Messages: typeof customTranslations.en;
+  }
 }
 
 // Variables ====================================

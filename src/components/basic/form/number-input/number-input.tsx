@@ -1,6 +1,6 @@
-import { useTranslationsStore } from '@/store/translations';
 import { cn } from '@/utils/tailwind';
 import { ChevronDown, ChevronUp } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { ChangeEvent, DetailedHTMLProps, InputHTMLAttributes } from 'react';
 import { Control, FieldValues, Path, useController } from 'react-hook-form';
 import { z } from 'zod';
@@ -79,14 +79,14 @@ const NumberInput = ({ error, step = 1, t, ...props }: NumberInputProps) => {
 
 const NumberInputContainer = <T extends FieldValues>(props: NumberInputContainerProps<T>) => {
   const { control, name, ...rest } = props;
-  const t = useTranslationsStore();
+  const t = useTranslations('frontend');
   const { field, fieldState } = useController({ control, name });
   return (
     <NumberInput
       error={fieldState.error?.message}
       t={{
-        increment: t.increment,
-        decrement: t.decrement,
+        increment: t('increment'),
+        decrement: t('decrement'),
       }}
       {...rest}
       {...field}
