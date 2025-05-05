@@ -3,12 +3,12 @@
 import { Accordion } from '@/components/basic/accordion/accordion';
 import { Button } from '@/components/basic/button';
 import { Container } from '@/components/basic/container';
-import { Image } from '@/components/basic/image';
 import { Section } from '@/components/basic/section';
 import { useHeaderHeight } from '@/components/layout/header/header.hooks';
-import { ProductPrice } from '@/features/checkout/components/basic/product-price/product-price';
-import { ProductVariants } from '@/features/checkout/components/basic/product-variants/product-variants';
+import { ProductPrice } from '@/features/products/components/basic/product-price/product-price';
+import { ProductVariants } from '@/features/products/components/basic/product-variants/product-variants';
 import { cn } from '@/utils/tailwind';
+import { ProductGallery } from '../../basic/product-gallery/product-gallery';
 
 const Product = () => {
   const headerHeight = useHeaderHeight();
@@ -21,7 +21,13 @@ const Product = () => {
           `sm:grid-cols-3 sm:items-start`,
         )}
       >
-        <Image src="https://placehold.co/600x400" alt="" className={cn('sm:col-span-2')} />
+        <ProductGallery
+          className="sm:col-span-2"
+          images={Array.from({ length: 3 }, (_, i) => i).map((it) => ({
+            src: `https://placehold.co/190x110/0f111a/7b83a3/?text=asdasd+${it}`,
+            alt: String(it),
+          }))}
+        />
         <div
           className={cn(
             'bg-background1',

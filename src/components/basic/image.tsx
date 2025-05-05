@@ -10,16 +10,16 @@ type ImageProps = {
     width: number;
     height: number;
   };
+  sizing?: { maxViewport: number; size: string }[];
 };
 
-const sizesPerBreakpoint = Object.values(defaultTheme.screens)
+const defaultSizing: ImageProps['sizing'] = Object.values(defaultTheme.screens)
   .map((it) => parseInt(it))
   .sort((a, b) => a - b)
-  .map((it) => `(max-width: ${it}px) 100vw`)
-  .join(', ');
+  .map((it) => ({ maxViewport: it, size: '100vw' }));
 
-const Image = ({ aspectRatio, className, ...props }: ImageProps) => {
-  const sizing: Partial<NextImageProps> = aspectRatio ?? {
+const Image = ({ aspectRatio, className, sizing = defaultSizing, ...props }: ImageProps) => {
+  const dimensions: Partial<NextImageProps> = aspectRatio ?? {
     width: 0,
     height: 0,
     className: 'w-full h-auto',
@@ -27,11 +27,13 @@ const Image = ({ aspectRatio, className, ...props }: ImageProps) => {
 
   return (
     <NextImage
-      objectFit="cover"
-      sizes={sizesPerBreakpoint}
+      sizes={sizing
+        .map(({ maxViewport, size }) => `(max-width: ${maxViewport}px) ${size}`)
+        .join(', ')
+        .concat(', 100vw')}
       {...props}
-      {...sizing}
-      className={cn(sizing.className, 'cms-image', className)}
+      {...dimensions}
+      className={cn(dimensions.className, 'object-cover cms-image', className)}
     />
   );
 };
