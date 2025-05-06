@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`TextInput > should match the snapshot 1`] = `
+exports[`Select > should match the snapshot 1`] = `
 <div>
   <label>
     Please choose one or more pets:
