@@ -11,20 +11,18 @@ import { cn } from '@/utils/tailwind';
 import { GoogleTagManager } from '@next/third-parties/google';
 import { GeistMono } from 'geist/font/mono';
 import { GeistSans } from 'geist/font/sans';
+import { Locale } from 'next-intl';
 import { draftMode } from 'next/headers';
-import { TypedLocale } from 'payload';
 import { PropsWithChildren } from 'react';
 import './globals.css';
 
-type RootLayoutProps = PropsWithChildren & {
-  params: Promise<{
-    locale: TypedLocale;
-  }>;
+type LayoutProps = PropsWithChildren & {
+  params: Promise<{ locale: Locale }>;
 };
 
-export const metadata = toPageMetadata();
+const metadata = toPageMetadata();
 
-export default async function RootLayout({ children, params }: RootLayoutProps) {
+const Layout = async ({ children, params }: LayoutProps) => {
   const { isEnabled } = await draftMode();
   const { locale } = await params;
   const { theme, fontSize } = await getPreferences();
@@ -56,4 +54,7 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
       </body>
     </html>
   );
-}
+};
+
+export { metadata };
+export default Layout;

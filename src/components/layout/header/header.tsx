@@ -3,15 +3,15 @@ import { Logo } from '@/components/basic/logo';
 import { Section } from '@/components/basic/section';
 import { getCachedGlobal } from '@/payload/utils/globals';
 import { cn } from '@/utils/tailwind';
-import { TypedLocale } from 'payload';
-import FontScaler from './scaffold/font-scaler';
+import { Locale } from 'next-intl';
+import { FontScaler } from './scaffold/font-scaler';
 import { HeaderHeightMonitor } from './scaffold/header-height-monitor';
-import LocaleSwitcher from './scaffold/locale-switcher';
-import HeaderNav from './scaffold/navbar';
-import ThemeSwitcher from './scaffold/theme-switcher';
+import { LocaleSwitcher } from './scaffold/locale-switcher';
+import { HeaderNav } from './scaffold/navbar';
+import { ThemeSwitcher } from './scaffold/theme-switcher';
 
 type HeaderProps = {
-  locale: TypedLocale;
+  locale: Locale;
 };
 
 const Header = async ({ locale }: HeaderProps) => {

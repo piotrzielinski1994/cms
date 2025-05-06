@@ -1,6 +1,7 @@
 import payloadConfig from '@/payload/payload.config';
+import { Locale } from 'next-intl';
 import { draftMode } from 'next/headers';
-import { getPayload, TypedLocale } from 'payload';
+import { getPayload } from 'payload';
 import { cache } from 'react';
 
 const getPages = async () => {
@@ -19,7 +20,7 @@ const getPages = async () => {
   });
 };
 
-const queryPage = cache(async ({ path, locale }: { path: string; locale: TypedLocale }) => {
+const queryPage = cache(async ({ path, locale }: { path: string; locale: Locale }) => {
   const { isEnabled: draft } = await draftMode();
   const slug = path.split('/').at(-1) ?? '';
 

@@ -9,29 +9,29 @@ import { Image } from '@/payload/payload.types';
 import { toPageMetadata } from '@/utils/metadata';
 import { optional } from '@/utils/optional';
 import { toPath } from '@/utils/url';
+import { Locale } from 'next-intl';
 import { draftMode } from 'next/headers';
-import { TypedLocale } from 'payload';
 import { toPairs } from 'ramda';
-import PageClient from './page.client';
+import { PageClient } from './page.client';
 
-type PathPerLocale = Record<TypedLocale, string>;
+type PathPerLocale = Record<Locale, string>;
 type PageProps = {
   params: Promise<{
+    locale: Locale;
     segments?: string[];
-    locale: TypedLocale;
   }>;
 };
 
-export async function generateStaticParams() {
+const generateStaticParams = async () => {
   const pages = await getPages();
   return pages.docs
     .flatMap((it) =>
       toPairs((it.path ?? {}) as PathPerLocale).map(([locale, path]) => ({ locale, path })),
     )
     .map(({ locale, path }) => ({ locale, segments: path.split('/').filter(Boolean) }));
-}
+};
 
-export async function generateMetadata({ params: paramsPromise }: PageProps): Promise<Metadata> {
+const generateMetadata = async ({ params: paramsPromise }: PageProps): Promise<Metadata> => {
   const { segments = [], locale } = await paramsPromise;
   const path = toPath(segments);
   const { page } = await queryPage({ path, locale });
@@ -42,9 +42,9 @@ export async function generateMetadata({ params: paramsPromise }: PageProps): Pr
     description: page?.seo?.description ?? '',
     imageUrl: optional(page?.seo?.image as Image, (image) => `${clientEnv.publicUrl}${image.url}`),
   });
-}
+};
 
-export default async function Page({ params: paramsPromise }: PageProps) {
+const Page = async ({ params: paramsPromise }: PageProps) => {
   const { isEnabled: draft } = await draftMode();
   const { segments = [], locale } = await paramsPromise;
   const path = toPath(segments);
@@ -62,4 +62,7 @@ export default async function Page({ params: paramsPromise }: PageProps) {
       <RenderBlocks blocks={page.sections!} />
     </>
   );
-}
+};
+
+export { generateMetadata, generateStaticParams };
+export default Page;

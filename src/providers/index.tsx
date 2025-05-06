@@ -1,14 +1,13 @@
 import { customTranslations } from '@/config/locales.config';
 import { Theme } from '@/config/themes.config';
-import { NextIntlClientProvider } from 'next-intl';
-import { TypedLocale } from 'payload';
+import { Locale, NextIntlClientProvider } from 'next-intl';
 import { ComponentProps, ReactNode } from 'react';
 import { FontScaleProvider } from './font-scale.provider';
 import { ThemeProvider } from './theme.provider';
 
 type ProvidersProps = {
   children: ReactNode;
-  locale: TypedLocale;
+  locale: Locale;
   initialTheme: Theme;
   initialFontScale: ComponentProps<typeof FontScaleProvider>['initialFontScale'];
 };

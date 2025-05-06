@@ -1,4 +1,4 @@
-const Select = (props: React.SelectHTMLAttributes<HTMLSelectElement>) => {
+const Select = (_: React.SelectHTMLAttributes<HTMLSelectElement>) => {
   return (
     <label>
       Please choose one or more pets:
@@ -20,4 +20,4 @@ const Select = (props: React.SelectHTMLAttributes<HTMLSelectElement>) => {
   );
 };
 
-export default Select;
+export { Select };

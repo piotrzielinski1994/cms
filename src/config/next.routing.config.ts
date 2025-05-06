@@ -8,6 +8,7 @@ import { TypedLocale } from 'payload';
 
 declare module 'next-intl' {
   interface AppConfig {
+    Locale: TypedLocale;
     Messages: typeof customTranslations.en;
   }
 }

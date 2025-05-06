@@ -10,7 +10,7 @@ const PageClient: React.FC<{
     sessionStorage.setItem('__page', JSON.stringify(currentPaths));
   }, [currentPaths]);
 
-  return <React.Fragment />;
+  return <></>;
 };
 
-export default PageClient;
+export { PageClient };

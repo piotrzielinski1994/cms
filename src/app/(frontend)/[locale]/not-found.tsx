@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 import { Button } from '@/_old/components/ui/button';
 
-export default function NotFound() {
+const NotFound = () => {
   return (
     <div className="container py-28">
       <div className="prose max-w-none">
@@ -14,4 +14,6 @@ export default function NotFound() {
       </Button>
     </div>
   );
-}
+};
+
+export default NotFound;

@@ -10,7 +10,7 @@ import { keys } from 'ramda';
 import { FC } from 'react';
 import './theme-switcher.scss';
 
-export const ThemeSwitcher: FC = () => {
+const ThemeSwitcher: FC = () => {
   const { theme, setTheme } = useThemeStore();
   const t = useTranslations('frontend');
 
@@ -57,4 +57,4 @@ export const ThemeSwitcher: FC = () => {
   );
 };
 
-export default ThemeSwitcher;
+export { ThemeSwitcher };

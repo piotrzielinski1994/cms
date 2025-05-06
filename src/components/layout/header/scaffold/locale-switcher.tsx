@@ -2,22 +2,20 @@
 
 import { contentLocales } from '@/config/locales.config';
 import { useRouter } from '@/config/next.routing.config';
-import { useLocaleStore } from '@/store/locale';
 import { cn } from '@/utils/tailwind';
 import * as SelectPrimitive from '@radix-ui/react-select';
-import { useTranslations } from 'next-intl';
+import { Locale, useLocale, useTranslations } from 'next-intl';
 import { useParams } from 'next/navigation';
-import { TypedLocale } from 'payload';
 import { useTransition } from 'react';
 
 const LocaleSwitcher = () => {
   const router = useRouter();
   const params = useParams();
-  const locale = useLocaleStore();
+  const locale = useLocale();
   const t = useTranslations('frontend');
   const [, startTransition] = useTransition();
 
-  function onSelectChange(value: TypedLocale) {
+  function onSelectChange(value: Locale) {
     const nextPathname = JSON.parse(sessionStorage.getItem('__page') ?? '{}')[value];
     startTransition(() => {
       router.replace(
@@ -68,4 +66,4 @@ const LocaleSwitcher = () => {
   );
 };
 
-export default LocaleSwitcher;
+export { LocaleSwitcher };

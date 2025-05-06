@@ -9,7 +9,7 @@ import { useTranslations } from 'next-intl';
 import { keys } from 'ramda';
 import { FC } from 'react';
 
-export const FontScaler: FC = () => {
+const FontScaler: FC = () => {
   const { scale, setScale } = useFontScaleStore();
   const t = useTranslations('frontend');
 
@@ -53,4 +53,4 @@ export const FontScaler: FC = () => {
   );
 };
 
-export default FontScaler;
+export { FontScaler };

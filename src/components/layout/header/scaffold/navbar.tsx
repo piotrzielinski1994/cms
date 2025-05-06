@@ -28,4 +28,4 @@ const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
   );
 };
 
-export default HeaderNav;
+export { HeaderNav };

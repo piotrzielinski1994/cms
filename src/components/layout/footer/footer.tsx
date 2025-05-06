@@ -5,10 +5,10 @@ import { Link } from '@/config/next.routing.config';
 import { Page } from '@/payload/payload.types';
 import { getCachedGlobal } from '@/payload/utils/globals';
 import { cn } from '@/utils/tailwind';
-import { TypedLocale } from 'payload';
+import { Locale } from 'next-intl';
 
 type FooterProps = {
-  locale: TypedLocale;
+  locale: Locale;
 };
 
 const Footer = async ({ locale }: FooterProps) => {
