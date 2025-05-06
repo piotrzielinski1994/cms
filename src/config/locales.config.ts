@@ -23,7 +23,7 @@ const defaultContentLocale = 'en' satisfies Locale;
 const adminLocales = pick(contentLocales, { en, pl }) satisfies SupportedLanguages;
 const defaultAdminLocale = 'en' satisfies keyof typeof adminLocales;
 
-const customTranslations = {
+const translations = {
   en: customEn,
   pl: customPl,
 } satisfies Record<Locale, typeof customEn>;
@@ -31,8 +31,8 @@ const customTranslations = {
 export {
   adminLocales,
   contentLocales,
-  customTranslations,
   defaultAdminLocale,
   defaultContentLocale,
+  translations,
   type AdminTranslations,
 };

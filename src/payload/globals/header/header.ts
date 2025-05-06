@@ -1,4 +1,4 @@
-import { AdminTranslations, customTranslations } from '@/config/locales.config';
+import { AdminTranslations, translations } from '@/config/locales.config';
 import { link } from '@/payload/fields/link';
 import type { GlobalConfig } from 'payload';
 import { revalidateHeader } from './header.hooks';
@@ -10,8 +10,8 @@ const Header: GlobalConfig = {
   },
   admin: {
     group: {
-      en: customTranslations.en.common.layout,
-      pl: customTranslations.pl.common.layout,
+      en: translations.en.common.layout,
+      pl: translations.pl.common.layout,
     },
   },
   label: ({ t }: { t: AdminTranslations }) => t('components:header'),

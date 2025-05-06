@@ -3,9 +3,9 @@ import { serverEnv } from '@/config/env.server.config';
 import {
   adminLocales,
   contentLocales,
-  customTranslations,
   defaultAdminLocale,
   defaultContentLocale,
+  translations,
 } from '@/config/locales.config';
 import { collections } from '@/payload/collections';
 import { defaultLexical } from '@/payload/fields/defaultLexical';
@@ -26,7 +26,7 @@ const payloadConfig = buildConfig({
   i18n: {
     supportedLanguages: adminLocales,
     fallbackLanguage: defaultAdminLocale,
-    translations: customTranslations,
+    translations: translations,
   },
   localization: {
     locales: contentLocales,

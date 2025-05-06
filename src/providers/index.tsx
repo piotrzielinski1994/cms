@@ -1,4 +1,4 @@
-import { customTranslations } from '@/config/locales.config';
+import { translations } from '@/config/locales.config';
 import { Theme } from '@/config/themes.config';
 import { Locale, NextIntlClientProvider } from 'next-intl';
 import { ComponentProps, ReactNode } from 'react';
@@ -14,7 +14,7 @@ type ProvidersProps = {
 
 const Providers = ({ children, locale, initialTheme, initialFontScale }: ProvidersProps) => {
   return (
-    <NextIntlClientProvider locale={locale} messages={customTranslations[locale]}>
+    <NextIntlClientProvider locale={locale} messages={translations[locale]}>
       <ThemeProvider initialTheme={initialTheme}>
         <FontScaleProvider initialFontScale={initialFontScale}>{children}</FontScaleProvider>
       </ThemeProvider>

@@ -1,4 +1,4 @@
-import { contentLocales, customTranslations, defaultContentLocale } from '@/config/locales.config';
+import { contentLocales, defaultContentLocale, translations } from '@/config/locales.config';
 import { createNavigation } from 'next-intl/navigation';
 import { defineRouting } from 'next-intl/routing';
 import { getRequestConfig } from 'next-intl/server';
@@ -9,7 +9,7 @@ import { TypedLocale } from 'payload';
 declare module 'next-intl' {
   interface AppConfig {
     Locale: TypedLocale;
-    Messages: typeof customTranslations.en;
+    Messages: typeof translations.en;
   }
 }
 
@@ -30,7 +30,7 @@ const request = getRequestConfig(async ({ requestLocale }) => {
     locale = routing.defaultLocale;
   }
 
-  return { locale, messages: customTranslations[locale] };
+  return { locale, messages: translations[locale] };
 });
 
 export { Link, redirect, routing, usePathname, useRouter };

@@ -2,7 +2,7 @@ import { Banner } from '@/_old/blocks/Banner/config';
 import { Code } from '@/_old/blocks/Code/config';
 import { MediaBlock } from '@/_old/blocks/MediaBlock/config';
 import { generatePreviewPath } from '@/_old/utilities/generatePreviewPath';
-import { AdminTranslations, customTranslations } from '@/config/locales.config';
+import { AdminTranslations, translations } from '@/config/locales.config';
 import { authenticated } from '@/payload/access/authenticated';
 import { authenticatedOrPublished } from '@/payload/access/authenticatedOrPublished';
 import { createSlugField } from '@/payload/fields/slug/slug';
@@ -108,8 +108,8 @@ const Posts: CollectionConfig<'posts'> = {
             },
           ],
           label: {
-            en: customTranslations.en.common.content,
-            pl: customTranslations.pl.common.content,
+            en: translations.en.common.content,
+            pl: translations.pl.common.content,
           },
         },
         {

@@ -7,7 +7,7 @@ import { contactUsSectionPayloadConfig } from '@/components/sections/form/contac
 import { hero1SectionPayloadConfig } from '@/components/sections/hero/hero-1/hero-1.payload.config';
 import { imageBlock1BlockPayloadConfig } from '@/components/sections/image-block/image-block-1/image-block-1.payload.config';
 import { imageBlocksSectionPayloadConfig } from '@/components/sections/image-block/image-blocks/image-blocks.payload.config';
-import { AdminTranslations, customTranslations } from '@/config/locales.config';
+import { AdminTranslations, translations } from '@/config/locales.config';
 import { Page } from '@/payload.types';
 import { authenticated } from '@/payload/access/authenticated';
 import { authenticatedOrPublished } from '@/payload/access/authenticatedOrPublished';
@@ -103,26 +103,26 @@ const Pages: CollectionConfig<'pages'> = {
               },
               labels: {
                 singular: {
-                  en: customTranslations.en.common.section.singular,
-                  pl: customTranslations.pl.common.section.singular,
+                  en: translations.en.common.section.singular,
+                  pl: translations.pl.common.section.singular,
                 },
                 plural: {
-                  en: customTranslations.en.common.section.plural,
-                  pl: customTranslations.pl.common.section.plural,
+                  en: translations.en.common.section.plural,
+                  pl: translations.pl.common.section.plural,
                 },
               },
             },
           ],
           label: {
-            en: customTranslations.en.common.content,
-            pl: customTranslations.pl.common.content,
+            en: translations.en.common.content,
+            pl: translations.pl.common.content,
           },
         },
         {
           name: 'seo',
           label: {
-            en: customTranslations.en.fields.seo,
-            pl: customTranslations.pl.fields.seo,
+            en: translations.en.fields.seo,
+            pl: translations.pl.fields.seo,
           },
           fields: [
             MetaTitleField({
@@ -149,8 +149,8 @@ const Pages: CollectionConfig<'pages'> = {
           name: 'subpages',
           virtual: true,
           label: {
-            en: customTranslations.en.fields.subpages,
-            pl: customTranslations.pl.fields.subpages,
+            en: translations.en.fields.subpages,
+            pl: translations.pl.fields.subpages,
           },
           fields: [
             {
