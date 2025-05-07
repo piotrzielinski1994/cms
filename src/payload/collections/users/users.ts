@@ -1,7 +1,7 @@
 import type { CollectionConfig } from 'payload';
 
 import { AdminTranslations } from '@/config/locales.config';
-import { access } from '@/payload/access';
+import { admin, adminOrSelf } from '@/payload/access';
 
 const Users: CollectionConfig = {
   slug: 'users',
@@ -10,10 +10,10 @@ const Users: CollectionConfig = {
     plural: ({ t }: { t: AdminTranslations }) => t('collections:users:plural'),
   },
   access: {
-    create: access.admin,
-    read: access.adminOrSelf,
-    update: access.adminOrSelf,
-    delete: access.admin,
+    create: admin,
+    read: adminOrSelf,
+    update: adminOrSelf,
+    delete: admin,
   },
   admin: {
     defaultColumns: ['name', 'email'],
@@ -40,9 +40,9 @@ const Users: CollectionConfig = {
       hasMany: true,
       defaultValue: ['user'],
       // access: {
-      //   create: access.admin,
-      //   read: access.admin,
-      //   update: access.admin,
+      //   create: admin,
+      //   read: admin,
+      //   update: admin,
       // },
       options: [
         {

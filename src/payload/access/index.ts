@@ -1,17 +1,29 @@
-import { admin } from './admin';
-import { adminFieldLevel } from './adminFieldLevel';
-import { adminOrSelf } from './adminOrSelf';
-import { anyone } from './anyone';
-import { authenticated } from './authenticated';
-import { authenticatedOrPublished } from './authenticatedOrPublished';
+import { User } from '@/payload.types';
+import { Access, FieldAccess } from 'payload';
 
-const access = {
-  admin,
-  adminFieldLevel,
-  adminOrSelf,
-  anyone,
-  authenticated,
-  authenticatedOrPublished,
+const anyone: Access = () => true;
+
+const authenticated: Access = ({ req: { user } }) => {
+  return Boolean(user);
 };
 
-export { access };
+const admin: Access = ({ req: { user } }) => {
+  return Boolean(user?.roles?.includes('admin'));
+};
+
+const adminOrSelf: Access = ({ req: { user } }) => {
+  if (!user) return false;
+  if (user.roles?.includes('admin')) return true;
+  return { id: { equals: user.id } };
+};
+
+const adminFieldLevel: FieldAccess<{ id: string }, User> = ({ req: { user } }) => {
+  return Boolean(user?.roles?.includes('admin'));
+};
+
+const authenticatedOrPublished: Access = ({ req: { user } }) => {
+  if (user) return true;
+  return { _status: { equals: 'published' } };
+};
+
+export { admin, adminFieldLevel, adminOrSelf, anyone, authenticated, authenticatedOrPublished };

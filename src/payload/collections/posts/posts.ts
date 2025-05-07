@@ -3,8 +3,7 @@ import { Code } from '@/_old/blocks/Code/config';
 import { MediaBlock } from '@/_old/blocks/MediaBlock/config';
 import { generatePreviewPath } from '@/_old/utilities/generatePreviewPath';
 import { AdminTranslations, translations } from '@/config/locales.config';
-import { authenticated } from '@/payload/access/authenticated';
-import { authenticatedOrPublished } from '@/payload/access/authenticatedOrPublished';
+import { authenticated, authenticatedOrPublished } from '@/payload/access';
 import { createSlugField } from '@/payload/fields/slug/slug';
 import {
   MetaDescriptionField,

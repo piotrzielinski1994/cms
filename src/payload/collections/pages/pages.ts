@@ -9,8 +9,7 @@ import { imageBlock1BlockPayloadConfig } from '@/components/sections/image-block
 import { imageBlocksSectionPayloadConfig } from '@/components/sections/image-block/image-blocks/image-blocks.payload.config';
 import { AdminTranslations, translations } from '@/config/locales.config';
 import { Page } from '@/payload.types';
-import { authenticated } from '@/payload/access/authenticated';
-import { authenticatedOrPublished } from '@/payload/access/authenticatedOrPublished';
+import { authenticated, authenticatedOrPublished } from '@/payload/access';
 import { createSlugField } from '@/payload/fields/slug/slug';
 import { populatePublishedAt } from '@/payload/hooks/populatePublishedAt';
 import { createBreadcrumbsField, createParentField } from '@payloadcms/plugin-nested-docs';

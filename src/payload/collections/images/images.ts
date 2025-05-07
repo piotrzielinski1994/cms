@@ -1,6 +1,5 @@
 import { AdminTranslations, translations } from '@/config/locales.config';
-import { anyone } from '@/payload/access/anyone';
-import { authenticated } from '@/payload/access/authenticated';
+import { anyone, authenticated } from '@/payload/access';
 import path from 'path';
 import type { CollectionConfig } from 'payload';
 
