@@ -1,5 +1,5 @@
 import { AdminTranslations } from '@/config/locales.config';
-import { anyone, authenticated } from '@/payload/access';
+import { anyone, authenticated } from '@/payload/utils/access';
 import { createParentField } from '@payloadcms/plugin-nested-docs';
 import type { CollectionConfig } from 'payload';
 
