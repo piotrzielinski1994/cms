@@ -1,7 +1,7 @@
 'use client';
 
 import { ButtonLink } from '@/components/basic/button';
-import { Image as BasicImage } from '@/components/basic/image';
+import { Image as BasicImage } from '@/components/basic/image/image';
 import { themes } from '@/config/themes.config';
 import { ImageBlock1Block, Image as ImageModel, Page } from '@/payload.types';
 import { useThemeStore } from '@/store/theme';

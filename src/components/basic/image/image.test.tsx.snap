@@ -1,0 +1,16 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Image > should match the snapshot 1`] = `
+<div>
+  <img
+    alt=""
+    class="w-full h-auto object-cover cms-image"
+    data-nimg="1"
+    decoding="async"
+    height="0"
+    loading="lazy"
+    style="color: transparent;"
+    width="0"
+  />
+</div>
+`;

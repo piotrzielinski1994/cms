@@ -11,21 +11,17 @@ type ImageProps = {
     width: number;
     height: number;
   };
-  sizing?: { maxViewport: number; size: string }[];
+  sizing?: { default: string } & Partial<Record<keyof typeof defaultTheme.screens, string>>;
 };
-
-const defaultSizing: ImageProps['sizing'] = Object.values(defaultTheme.screens)
-  .map((it) => parseInt(it))
-  .sort((a, b) => a - b)
-  .map((it) => ({ maxViewport: it, size: '100vw' }));
 
 const Image = ({
   aspectRatio,
   className,
   isEager = false,
-  sizing = defaultSizing,
+  sizing = { default: '100vw' },
   ...props
 }: ImageProps) => {
+  const { default: defaultSizing, ...breakpointSizing } = sizing;
   const dimensions: Partial<NextImageProps> = aspectRatio ?? {
     width: 0,
     height: 0,
@@ -34,10 +30,11 @@ const Image = ({
 
   return (
     <NextImage
-      sizes={sizing
-        .map(({ maxViewport, size }) => `(max-width: ${maxViewport}px) ${size}`)
-        .join(', ')
-        .concat(', 100vw')}
+      sizes={Object.entries(breakpointSizing)
+        .map(([breakpoint, size]) => [defaultTheme.screens[breakpoint], size])
+        .map(([minWidth, size]) => `(min-width: ${minWidth}) ${size}`)
+        .concat(defaultSizing)
+        .join(', ')}
       {...props}
       {...dimensions}
       loading={isEager ? 'eager' : 'lazy'}

@@ -20,7 +20,7 @@ const updateDom = (theme: Theme) => {
   document.documentElement.setAttribute('data-theme', theme);
 };
 
-const updateColorSchema = (theme: Theme) => {
+const updateColorScheme = (theme: Theme) => {
   document.documentElement.style.colorScheme = themes[theme]._type;
 };
 
@@ -32,7 +32,7 @@ const createThemeStore = (initialTheme: Theme) => {
         setTheme: (theme) => {
           set({ theme });
           updateDom(theme);
-          updateColorSchema(theme);
+          updateColorScheme(theme);
           setCookie(THEME_STORAGE_KEY, theme);
         },
       }),
@@ -41,7 +41,7 @@ const createThemeStore = (initialTheme: Theme) => {
         onRehydrateStorage: () => (state) => {
           if (!state) return;
           updateDom(state.theme);
-          updateColorSchema(state.theme);
+          updateColorScheme(state.theme);
           setCookie(THEME_STORAGE_KEY, state.theme);
         },
       },
@@ -51,11 +51,7 @@ const createThemeStore = (initialTheme: Theme) => {
 
 const useThemeStore = <T = ThemeStore>(selector?: (state: ThemeStore) => T) => {
   const context = useContext(ThemeContext);
-
-  if (!context) {
-    throw new Error('ThemeContext is missing');
-  }
-
+  if (!context) throw new Error('ThemeContext is missing');
   return useStore(context, selector ?? ((state) => state as T));
 };
 

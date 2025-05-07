@@ -1,4 +1,4 @@
-import { Image } from '@/components/basic/image';
+import { Image } from '@/components/basic/image/image';
 import { cn } from '@/utils/tailwind';
 import { useId, useState } from 'react';
 
