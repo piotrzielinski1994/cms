@@ -25,36 +25,39 @@ const Gallery = ({ images, className, ...props }: GalleryProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const activeImage = optional(activeIndex, (it) => images[it]);
   const dialogRef = useRef<HTMLDialogElement>(null);
-
-  // useEffect(() => {
-  //   const handleClick = (e: MouseEvent) => {
-  //     if (!containerRef.current?.contains(e.target as Node)) {
-  //       setActiveIndex(undefined);
-  //     }
-  //   };
-  //   document.addEventListener('click', handleClick);
-  //   return () => document.removeEventListener('click', handleClick);
-  // }, []);
+  const radiosRef = useRef<HTMLInputElement[]>([]);
 
   useEffect(() => {
     if (activeIndex !== undefined) {
       dialogRef.current?.showModal();
-      document.body.style.overflow = 'hidden'; // Prevent scrolling when image is active
+      document.body.style.overflow = 'hidden';
     } else {
       dialogRef.current?.close();
-      document.body.style.overflow = ''; // Re-enable scrolling when image is not active
+      document.body.style.overflow = '';
     }
   }, [activeIndex]);
+
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setActiveIndex(undefined);
+      }
+    };
+
+    const dialog = dialogRef.current;
+    dialog?.addEventListener('keydown', handleEsc);
+
+    return () => {
+      dialog?.removeEventListener('keydown', handleEsc);
+    };
+  }, []);
 
   return (
     <div className={cn('grid gap-4', className)} {...props}>
       <div ref={containerRef}>
-        {/* {activeImage && <ActiveGalleryItem {...activeImage} />} */}
-        {activeImage && (
-          <dialog ref={dialogRef} onClick={() => setActiveIndex(undefined)} className="p-0">
-            {activeImage && <ActiveGalleryItem {...activeImage} />}
-          </dialog>
-        )}
+        <dialog ref={dialogRef} onClick={() => setActiveIndex(undefined)} className="p-0">
+          {activeImage && <ActiveGalleryItem {...activeImage} />}
+        </dialog>
         <ul
           className="flex justify-center gap-4 flex-wrap"
           onClick={() => setActiveIndex(undefined)}
@@ -67,22 +70,21 @@ const Gallery = ({ images, className, ...props }: GalleryProps) => {
                   <input
                     type="radio"
                     name={`${id}__product_gallery`}
-                    checked={isActive}
-                    onChange={(e) => {
-                      if (e.nativeEvent instanceof KeyboardEvent) {
-                        const key = e.nativeEvent.key;
-                        if (key === 'Enter' || key === ' ') {
-                          setActiveIndex(index);
-                        }
-                      }
-                    }}
                     className="sr-only"
+                    checked={isActive}
+                    ref={(el) => {
+                      if (!el) return;
+                      radiosRef.current[index] = el;
+                    }}
+                    onChange={() => setActiveIndex(index)}
                     onKeyDown={(e) => {
-                      if (e.key === 'Enter' || e.key === ' ') {
-                        setActiveIndex(index);
-                      } else if (e.key === 'Escape') {
-                        setActiveIndex(undefined);
-                      }
+                      console.log('@@@ e.code | ', e.code);
+                      if (!e.key.startsWith('Arrow')) return;
+                      e.preventDefault();
+                      const index = radiosRef.current.indexOf(e.currentTarget);
+                      const isNext = ['ArrowRight', 'ArrowDown'].includes(e.key);
+                      const nextIndex = index + (isNext ? 1 : -1);
+                      radiosRef.current[(nextIndex + images.length) % images.length]?.focus();
                     }}
                   />
                   <Image
