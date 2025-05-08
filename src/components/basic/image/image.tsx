@@ -1,7 +1,9 @@
 import { cn } from '@/utils/tailwind';
 import NextImage, { ImageProps as NextImageProps } from 'next/image';
+import { toPairs } from 'ramda';
 import defaultTheme from 'tailwindcss/defaultTheme';
 
+type ImageSize = `${number}px` | `${number}rem` | `${number}vw`;
 type ImageProps = {
   src: string;
   alt: string;
@@ -11,7 +13,7 @@ type ImageProps = {
     width: number;
     height: number;
   };
-  sizing?: { default: string } & Partial<Record<keyof typeof defaultTheme.screens, string>>;
+  sizing?: { default: ImageSize } & Partial<Record<keyof typeof defaultTheme.screens, ImageSize>>;
 };
 
 const Image = ({
@@ -30,15 +32,16 @@ const Image = ({
 
   return (
     <NextImage
-      sizes={Object.entries(breakpointSizing)
-        .map(([breakpoint, size]) => [defaultTheme.screens[breakpoint], size])
-        .map(([minWidth, size]) => `(min-width: ${minWidth}) ${size}`)
-        .concat(defaultSizing)
-        .join(', ')}
       {...props}
       {...dimensions}
       loading={isEager ? 'eager' : 'lazy'}
       className={cn(dimensions.className, 'object-cover cms-image', className)}
+      sizes={toPairs(breakpointSizing)
+        .filter((it) => it !== undefined)
+        .map(([breakpoint, size]) => [defaultTheme.screens[breakpoint], size])
+        .map(([minWidth, size]) => `(min-width: ${minWidth}) ${size}`)
+        .concat(defaultSizing)
+        .join(', ')}
     />
   );
 };

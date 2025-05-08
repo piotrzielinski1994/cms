@@ -35,6 +35,7 @@ const ProductGallery = ({ images, className, ...props }: ProductGalleryProps) =>
                 <Image
                   src={src}
                   alt={alt}
+                  sizing={{ default: '3.5rem' }}
                   className={cn('w-14 h-14', 'group-focus-within:tw-cms-outline', {
                     'opacity-80': !isActive,
                   })}
