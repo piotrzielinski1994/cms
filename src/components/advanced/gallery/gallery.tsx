@@ -24,21 +24,37 @@ const Gallery = ({ images, className, ...props }: GalleryProps) => {
   const [activeIndex, setActiveIndex] = useState<number | undefined>(undefined);
   const containerRef = useRef<HTMLDivElement>(null);
   const activeImage = optional(activeIndex, (it) => images[it]);
+  const dialogRef = useRef<HTMLDialogElement>(null);
+
+  // useEffect(() => {
+  //   const handleClick = (e: MouseEvent) => {
+  //     if (!containerRef.current?.contains(e.target as Node)) {
+  //       setActiveIndex(undefined);
+  //     }
+  //   };
+  //   document.addEventListener('click', handleClick);
+  //   return () => document.removeEventListener('click', handleClick);
+  // }, []);
 
   useEffect(() => {
-    const handleClick = (e: MouseEvent) => {
-      if (!containerRef.current?.contains(e.target as Node)) {
-        setActiveIndex(undefined);
-      }
-    };
-    document.addEventListener('click', handleClick);
-    return () => document.removeEventListener('click', handleClick);
-  }, []);
+    if (activeIndex !== undefined) {
+      dialogRef.current?.showModal();
+      document.body.style.overflow = 'hidden'; // Prevent scrolling when image is active
+    } else {
+      dialogRef.current?.close();
+      document.body.style.overflow = ''; // Re-enable scrolling when image is not active
+    }
+  }, [activeIndex]);
 
   return (
     <div className={cn('grid gap-4', className)} {...props}>
       <div ref={containerRef}>
-        {activeImage && <ActiveGalleryItem {...activeImage} />}
+        {/* {activeImage && <ActiveGalleryItem {...activeImage} />} */}
+        {activeImage && (
+          <dialog ref={dialogRef} onClick={() => setActiveIndex(undefined)} className="p-0">
+            {activeImage && <ActiveGalleryItem {...activeImage} />}
+          </dialog>
+        )}
         <ul
           className="flex justify-center gap-4 flex-wrap"
           onClick={() => setActiveIndex(undefined)}
@@ -52,8 +68,22 @@ const Gallery = ({ images, className, ...props }: GalleryProps) => {
                     type="radio"
                     name={`${id}__product_gallery`}
                     checked={isActive}
-                    onChange={() => setActiveIndex(index)}
+                    onChange={(e) => {
+                      if (e.nativeEvent instanceof KeyboardEvent) {
+                        const key = e.nativeEvent.key;
+                        if (key === 'Enter' || key === ' ') {
+                          setActiveIndex(index);
+                        }
+                      }
+                    }}
                     className="sr-only"
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        setActiveIndex(index);
+                      } else if (e.key === 'Escape') {
+                        setActiveIndex(undefined);
+                      }
+                    }}
                   />
                   <Image
                     src={src}
