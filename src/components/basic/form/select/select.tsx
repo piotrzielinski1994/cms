@@ -30,7 +30,7 @@ const Select = ({ error, options, placeholder = '', className, ...props }: Selec
         <select
           defaultValue=""
           className={cn(
-            'appearance-none',
+            'appearance-none cursor-pointer',
             inputClassNames.input({ isValid: !error }),
             'col-start-1 row-start-1',
             className,

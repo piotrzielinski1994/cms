@@ -34,15 +34,6 @@ const ContactForm = () => {
       onSubmit={form.handleSubmit((data) => console.log('@@@ data | ', data))}
       className="grid gap-2"
     >
-      <SelectContainer
-        id={`${id}__options`}
-        name="options"
-        options={[1, 2, 3].map((it) => ({
-          value: String(it),
-          label: `Option ${it}`,
-        }))}
-        control={form.control}
-      />
       <Form.Group>
         <Form.Label htmlFor={`${id}__email`}>{t('contactForm.fields.email.label')}</Form.Label>
         <TextInputContainer
@@ -50,6 +41,18 @@ const ContactForm = () => {
           name="email"
           type="email"
           autoComplete="email"
+          control={form.control}
+        />
+      </Form.Group>
+      <Form.Group>
+        <Form.Label htmlFor={`${id}__options`}>Options</Form.Label>
+        <SelectContainer
+          id={`${id}__options`}
+          name="options"
+          options={[1, 2, 3].map((it) => ({
+            value: String(it),
+            label: `Option ${it}`,
+          }))}
           control={form.control}
         />
       </Form.Group>
