@@ -2,53 +2,61 @@
 
 exports[`Select > should match the snapshot 1`] = `
 <div>
-  <label>
-    Please choose one or more pets:
-    <select
-      multiple=""
-      name="pets"
-      size="4"
+  <div
+    class="flex flex-col gap-2"
+  >
+    <div
+      class="grid items-center"
     >
-      <optgroup
-        label="4-legged pets"
+      <select
+        class="appearance-none p-2 border border-solid border-current bg-input hover:border-foreground/90 hover:ring-foreground/90 outline-none ring-inset focus-within:ring-1 ring-current col-start-1 row-start-1"
+        id="id"
+        name="name"
       >
         <option
-          value="dog"
-        >
-          Dog
-        </option>
-        <option
-          value="cat"
-        >
-          Cat
-        </option>
-        <option
+          class="hidden"
           disabled=""
-          value="hamster"
+          selected=""
+          value=""
+        />
+        <option
+          value="1"
         >
-          Hamster
+          Option 1
         </option>
-      </optgroup>
-      <optgroup
-        label="Flying pets"
+        <option
+          value="2"
+        >
+          Option 2
+        </option>
+        <option
+          value="3"
+        >
+          Option 3
+        </option>
+      </select>
+      <svg
+        aria-hidden="true"
+        class="lucide lucide-chevron-down col-start-1 row-start-1 justify-self-end mr-1"
+        fill="none"
+        height="1rem"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        width="1rem"
+        xmlns="http://www.w3.org/2000/svg"
       >
-        <option
-          value="parrot"
-        >
-          Parrot
-        </option>
-        <option
-          value="macaw"
-        >
-          Macaw
-        </option>
-        <option
-          value="albatross"
-        >
-          Albatross
-        </option>
-      </optgroup>
-    </select>
-  </label>
+        <path
+          d="m6 9 6 6 6-6"
+        />
+      </svg>
+    </div>
+    <span
+      class="min-h-[1em] text-sm text-red-500 leading-none"
+      role="alert"
+    />
+  </div>
 </div>
 `;

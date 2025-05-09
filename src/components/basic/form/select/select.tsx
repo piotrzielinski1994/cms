@@ -1,79 +1,74 @@
 import { cn } from '@/utils/tailwind';
-import { Popover } from 'radix-ui';
-import { useState } from 'react';
+import { ChevronDown } from 'lucide-react';
+import { DetailedHTMLProps, SelectHTMLAttributes } from 'react';
+import { Control, FieldValues, Path, useController } from 'react-hook-form';
+import Form from '../root/form';
 import { inputClassNames } from '../text-input/text-input';
 
-const SelectA = () => {
-  const [selected, setSelected] = useState('');
-  const [inputValue, setInputValue] = useState('');
-  const options = ['Option 1', 'Option 2', 'Option 3'];
+type SelectProps = Omit<
+  DetailedHTMLProps<SelectHTMLAttributes<HTMLSelectElement>, HTMLSelectElement>,
+  'name'
+> & {
+  name: string;
+  error?: string;
+  placeholder?: string;
+  options: {
+    value: string;
+    label: string;
+  }[];
+};
 
+type SelectContainerProps<T extends FieldValues> = Omit<SelectProps, 'name'> & {
+  control: Control<T>;
+  name: Path<T>;
+};
+
+const Select = ({ error, options, placeholder = '', className, ...props }: SelectProps) => {
   return (
-    <Popover.Root>
-      <Popover.Trigger asChild>
-        <label
-          className={cn(inputClassNames.input({ isValid: true }))}
-          aria-label="Select option"
-          htmlFor="checkbox-toggle"
-          role="combobox"
-          aria-haspopup="listbox"
-          aria-expanded={selected !== ''}
-          aria-controls="options-list" // Link the combobox to the listbox
+    <div className="flex flex-col gap-2">
+      <div className="grid items-center">
+        <select
+          defaultValue=""
+          className={cn(
+            'appearance-none',
+            inputClassNames.input({ isValid: !error }),
+            'col-start-1 row-start-1',
+            className,
+          )}
+          {...props}
         >
-          <input
-            id="checkbox-toggle"
-            type="checkbox"
-            checked={selected !== ''}
-            onChange={() => setSelected(selected ? '' : 'Option 1')}
-            className="sr-only"
-          />
-          <span>{selected || 'Select...'}</span>
-        </label>
-      </Popover.Trigger>
-      <Popover.Portal>
-        <Popover.Content
-          className="bg-background border border-primary"
-          sideOffset={5}
-          role="listbox"
-          id="options-list" // Ensure this ID matches the aria-controls
-          aria-labelledby="checkbox-toggle"
-        >
-          <input
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-            placeholder="Filter..."
-            aria-autocomplete="list"
-            aria-controls="options-list"
-            className={cn(
-              inputClassNames.input({ isValid: true }),
-              'p-1 border-t-0 border-x-0 text-sm',
-            )}
-          />
-          <div className="grid">
-            {options
-              .filter((opt) => opt.toLowerCase().includes(inputValue.toLowerCase()))
-              .map((opt) => (
-                <label key={opt} className="focus-within:tw-cms-outline" htmlFor={opt}>
-                  <input
-                    id={opt}
-                    type="radio"
-                    name="select-options"
-                    value={opt}
-                    checked={selected === opt}
-                    onChange={() => {
-                      setSelected(opt);
-                      setInputValue('');
-                    }}
-                    className="sr-only"
-                  />
-                  <span>{opt}</span>
-                </label>
-              ))}
-          </div>
-        </Popover.Content>
-      </Popover.Portal>
-    </Popover.Root>
+          <option value="" disabled className="hidden">
+            {placeholder}
+          </option>
+          {options.map((o) => {
+            return (
+              <option key={o.value} value={o.value}>
+                {o.label}
+              </option>
+            );
+          })}
+        </select>
+        <ChevronDown size="1rem" className="col-start-1 row-start-1 justify-self-end mr-1" />
+      </div>
+      <Form.Error>{error}</Form.Error>
+    </div>
   );
 };
 
-export { SelectA };
+const SelectContainer = <T extends FieldValues>(props: SelectContainerProps<T>) => {
+  const { control, name, ...rest } = props;
+  const { field, fieldState } = useController({ control, name });
+  return (
+    <Select
+      error={fieldState.error?.message}
+      {...rest}
+      {...field}
+      onChange={(e) => {
+        const value = e.target.value === '' ? null : e.target.value;
+        field.onChange(value);
+      }}
+    />
+  );
+};
+
+export { Select, SelectContainer };

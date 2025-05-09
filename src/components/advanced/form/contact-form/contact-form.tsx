@@ -3,7 +3,7 @@
 import { Button } from '@/components/basic/button';
 import { NumberInputContainer } from '@/components/basic/form/number-input/number-input';
 import Form from '@/components/basic/form/root/form';
-import { SelectA } from '@/components/basic/form/select/select';
+import { SelectContainer } from '@/components/basic/form/select/select';
 import { TextAreaContainer } from '@/components/basic/form/text-area/text-area';
 import { TextInputContainer } from '@/components/basic/form/text-input/text-input';
 import { getZodErrorsMap } from '@/utils/zod';
@@ -23,6 +23,7 @@ const ContactForm = () => {
         email: z.string().email(),
         age: z.number().int(),
         message: z.string().min(50).max(2_000),
+        options: z.string().min(1),
       }),
       { errorMap: getZodErrorsMap(tZod) },
     ),
@@ -33,12 +34,15 @@ const ContactForm = () => {
       onSubmit={form.handleSubmit((data) => console.log('@@@ data | ', data))}
       className="grid gap-2"
     >
-      <select>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-      </select>
-      <SelectA />
+      <SelectContainer
+        id={`${id}__options`}
+        name="options"
+        options={[1, 2, 3].map((it) => ({
+          value: String(it),
+          label: `Option ${it}`,
+        }))}
+        control={form.control}
+      />
       <Form.Group>
         <Form.Label htmlFor={`${id}__email`}>{t('contactForm.fields.email.label')}</Form.Label>
         <TextInputContainer
