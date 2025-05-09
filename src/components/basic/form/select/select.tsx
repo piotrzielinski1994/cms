@@ -15,7 +15,10 @@ const SelectA = () => {
           className={cn(inputClassNames.input({ isValid: true }))}
           aria-label="Select option"
           htmlFor="checkbox-toggle"
-          role="button"
+          role="combobox"
+          aria-haspopup="listbox"
+          aria-expanded={selected !== ''}
+          aria-controls="options-list" // Link the combobox to the listbox
         >
           <input
             id="checkbox-toggle"
@@ -28,11 +31,19 @@ const SelectA = () => {
         </label>
       </Popover.Trigger>
       <Popover.Portal>
-        <Popover.Content className="bg-background border border-primary" sideOffset={5}>
+        <Popover.Content
+          className="bg-background border border-primary"
+          sideOffset={5}
+          role="listbox"
+          id="options-list" // Ensure this ID matches the aria-controls
+          aria-labelledby="checkbox-toggle"
+        >
           <input
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             placeholder="Filter..."
+            aria-autocomplete="list"
+            aria-controls="options-list"
             className={cn(
               inputClassNames.input({ isValid: true }),
               'p-1 border-t-0 border-x-0 text-sm',
