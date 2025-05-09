@@ -3,6 +3,7 @@
 import { Button } from '@/components/basic/button';
 import { NumberInputContainer } from '@/components/basic/form/number-input/number-input';
 import Form from '@/components/basic/form/root/form';
+import { SelectA } from '@/components/basic/form/select/select';
 import { TextAreaContainer } from '@/components/basic/form/text-area/text-area';
 import { TextInputContainer } from '@/components/basic/form/text-input/text-input';
 import { getZodErrorsMap } from '@/utils/zod';
@@ -32,6 +33,12 @@ const ContactForm = () => {
       onSubmit={form.handleSubmit((data) => console.log('@@@ data | ', data))}
       className="grid gap-2"
     >
+      <select>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+      </select>
+      <SelectA />
       <Form.Group>
         <Form.Label htmlFor={`${id}__email`}>{t('contactForm.fields.email.label')}</Form.Label>
         <TextInputContainer

@@ -1,23 +1,68 @@
-const Select = (_: React.SelectHTMLAttributes<HTMLSelectElement>) => {
+import { cn } from '@/utils/tailwind';
+import { Popover } from 'radix-ui';
+import { useState } from 'react';
+import { inputClassNames } from '../text-input/text-input';
+
+const SelectA = () => {
+  const [selected, setSelected] = useState('');
+  const [inputValue, setInputValue] = useState('');
+  const options = ['Option 1', 'Option 2', 'Option 3'];
+
   return (
-    <label>
-      Please choose one or more pets:
-      <select name="pets" multiple size={4}>
-        <optgroup label="4-legged pets">
-          <option value="dog">Dog</option>
-          <option value="cat">Cat</option>
-          <option value="hamster" disabled>
-            Hamster
-          </option>
-        </optgroup>
-        <optgroup label="Flying pets">
-          <option value="parrot">Parrot</option>
-          <option value="macaw">Macaw</option>
-          <option value="albatross">Albatross</option>
-        </optgroup>
-      </select>
-    </label>
+    <Popover.Root>
+      <Popover.Trigger asChild>
+        <label
+          className={cn(inputClassNames.input({ isValid: true }))}
+          aria-label="Select option"
+          htmlFor="checkbox-toggle"
+          role="button"
+        >
+          <input
+            id="checkbox-toggle"
+            type="checkbox"
+            checked={selected !== ''}
+            onChange={() => setSelected(selected ? '' : 'Option 1')}
+            className="sr-only"
+          />
+          <span>{selected || 'Select...'}</span>
+        </label>
+      </Popover.Trigger>
+      <Popover.Portal>
+        <Popover.Content className="bg-background border border-primary" sideOffset={5}>
+          <input
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            placeholder="Filter..."
+            className={cn(
+              inputClassNames.input({ isValid: true }),
+              'p-1 border-t-0 border-x-0 text-sm',
+            )}
+          />
+          <div className="grid">
+            {options
+              .filter((opt) => opt.toLowerCase().includes(inputValue.toLowerCase()))
+              .map((opt) => (
+                <label key={opt} className="focus-within:tw-cms-outline" htmlFor={opt}>
+                  <input
+                    id={opt}
+                    type="radio"
+                    name="select-options"
+                    value={opt}
+                    checked={selected === opt}
+                    onChange={() => {
+                      setSelected(opt);
+                      setInputValue('');
+                    }}
+                    className="sr-only"
+                  />
+                  <span>{opt}</span>
+                </label>
+              ))}
+          </div>
+        </Popover.Content>
+      </Popover.Portal>
+    </Popover.Root>
   );
 };
 
-export { Select };
+export { SelectA };

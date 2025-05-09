@@ -5,7 +5,7 @@ import { ChangeEvent, DetailedHTMLProps, InputHTMLAttributes } from 'react';
 import { Control, FieldValues, Path, useController } from 'react-hook-form';
 import { z } from 'zod';
 import Form from '../root/form';
-import { classNames } from '../text-input/text-input';
+import { inputClassNames } from '../text-input/text-input';
 
 type NumberInputProps = Omit<
   DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
@@ -41,7 +41,11 @@ const NumberInput = ({ error, step = 1, t, ...props }: NumberInputProps) => {
           autoComplete="off"
           {...props}
           value={props.value ?? ''}
-          className={cn(classNames.input({ isValid: !error }), 'w-full pr-6', props?.className)}
+          className={cn(
+            inputClassNames.input({ isValid: !error }),
+            'w-full pr-6',
+            props?.className,
+          )}
           onChange={(e) => {
             const { success } = z.coerce.number().safeParse(e.target.value);
             if (!success && e.target.value !== '') return;

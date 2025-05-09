@@ -2,7 +2,7 @@ import { cn } from '@/utils/tailwind';
 import { TextareaHTMLAttributes } from 'react';
 import { Control, FieldValues, Path, useController } from 'react-hook-form';
 import Form from '../root/form';
-import { classNames } from '../text-input/text-input';
+import { inputClassNames } from '../text-input/text-input';
 
 type TextAreaProps = Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'name'> & {
   name: string;
@@ -21,7 +21,7 @@ const TextArea = ({ error, className, ...props }: TextAreaProps) => {
         {...props}
         value={props.value ?? ''}
         className={cn(
-          classNames.input({ isValid: !error }),
+          inputClassNames.input({ isValid: !error }),
           'min-h-[calc(2*1px+2*0.5rem+3*1.5rem)]',
           className,
         )}
