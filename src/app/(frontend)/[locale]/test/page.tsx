@@ -9,7 +9,14 @@ const TestPage = () => {
       <Section>
         <Container>
           <Gallery
-            images={['blue.jpg', 'black.jpg', 'green.jpg', 'red.jpg', 'white.jpg'].map((it) => ({
+            images={[
+              'blue.jpg',
+              'placeholder-dark.webp',
+              'black.jpg',
+              'green.jpg',
+              'red.jpg',
+              'white.jpg',
+            ].map((it) => ({
               src: `/images/test/${it}`,
               alt: it,
             }))}
