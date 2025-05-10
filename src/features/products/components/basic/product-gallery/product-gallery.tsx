@@ -19,6 +19,7 @@ const ProductGallery = ({ images, className, ...props }: ProductGalleryProps) =>
   const activeImage = images[activeIndex];
 
   useEffect(() => {
+    if (!dialogRef.current) return;
     if (isMaximized) dialogRef.current?.showModal();
     else dialogRef.current?.close();
   }, [isMaximized]);

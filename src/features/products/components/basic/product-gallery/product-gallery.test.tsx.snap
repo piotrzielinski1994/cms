@@ -5,19 +5,38 @@ exports[`ProductGallery > should match the snapshot 1`] = `
   <div
     class="grid gap-4"
   >
-    <img
-      alt="Image 1"
-      class="w-full h-auto object-cover cms-image"
-      data-nimg="1"
-      decoding="async"
-      height="0"
-      loading="eager"
-      sizes="100vw"
-      src="/_next/image?url=%2Fimage-1.webp&w=3840&q=75"
-      srcset="/_next/image?url=%2Fimage-1.webp&w=640&q=75 640w, /_next/image?url=%2Fimage-1.webp&w=750&q=75 750w, /_next/image?url=%2Fimage-1.webp&w=828&q=75 828w, /_next/image?url=%2Fimage-1.webp&w=1080&q=75 1080w, /_next/image?url=%2Fimage-1.webp&w=1200&q=75 1200w, /_next/image?url=%2Fimage-1.webp&w=1920&q=75 1920w, /_next/image?url=%2Fimage-1.webp&w=2048&q=75 2048w, /_next/image?url=%2Fimage-1.webp&w=3840&q=75 3840w"
-      style="color: transparent;"
-      width="0"
-    />
+    <dialog>
+      <img
+        alt="Image 1"
+        class="w-full h-auto object-cover cms-image"
+        data-nimg="1"
+        decoding="async"
+        height="0"
+        loading="lazy"
+        sizes="100vw"
+        src="/_next/image?url=%2Fimage-1.webp&w=3840&q=75"
+        srcset="/_next/image?url=%2Fimage-1.webp&w=640&q=75 640w, /_next/image?url=%2Fimage-1.webp&w=750&q=75 750w, /_next/image?url=%2Fimage-1.webp&w=828&q=75 828w, /_next/image?url=%2Fimage-1.webp&w=1080&q=75 1080w, /_next/image?url=%2Fimage-1.webp&w=1200&q=75 1200w, /_next/image?url=%2Fimage-1.webp&w=1920&q=75 1920w, /_next/image?url=%2Fimage-1.webp&w=2048&q=75 2048w, /_next/image?url=%2Fimage-1.webp&w=3840&q=75 3840w"
+        style="color: transparent;"
+        width="0"
+      />
+    </dialog>
+    <button
+      type="button"
+    >
+      <img
+        alt="Image 1"
+        class="w-full h-auto object-cover cms-image"
+        data-nimg="1"
+        decoding="async"
+        height="0"
+        loading="eager"
+        sizes="100vw"
+        src="/_next/image?url=%2Fimage-1.webp&w=3840&q=75"
+        srcset="/_next/image?url=%2Fimage-1.webp&w=640&q=75 640w, /_next/image?url=%2Fimage-1.webp&w=750&q=75 750w, /_next/image?url=%2Fimage-1.webp&w=828&q=75 828w, /_next/image?url=%2Fimage-1.webp&w=1080&q=75 1080w, /_next/image?url=%2Fimage-1.webp&w=1200&q=75 1200w, /_next/image?url=%2Fimage-1.webp&w=1920&q=75 1920w, /_next/image?url=%2Fimage-1.webp&w=2048&q=75 2048w, /_next/image?url=%2Fimage-1.webp&w=3840&q=75 3840w"
+        style="color: transparent;"
+        width="0"
+      />
+    </button>
     <ul
       class="flex justify-center gap-4 flex-wrap"
     >
