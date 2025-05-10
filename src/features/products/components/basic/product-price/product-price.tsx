@@ -7,10 +7,7 @@ type ProductPriceProps = {
 };
 
 const classNames = {
-  strikethrough: cn(
-    'underline [text-underline-offset:-35%] [text-decoration-skip-ink:none]',
-    'text-foreground/60',
-  ),
+  strikethrough: cn('underline [text-underline-offset:-35%] [text-decoration-skip-ink:none]'),
 };
 
 const ProductPrice = (props: ProductPriceProps) => {
