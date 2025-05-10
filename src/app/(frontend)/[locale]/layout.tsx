@@ -46,7 +46,7 @@ const Layout = async ({ children, params }: LayoutProps) => {
           <SkipLink />
           <AdminBar adminBarProps={{ preview: isEnabled }} />
           <Header locale={locale} />
-          <main className="flex-grow my-20 grid gap-20" id="main">
+          <main className="flex-grow my-20 grid content-start gap-20" id="main">
             {children}
           </main>
           <Footer locale={locale} />
