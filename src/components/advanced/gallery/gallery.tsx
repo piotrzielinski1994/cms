@@ -66,8 +66,12 @@ const Gallery = ({ images, className, ...props }: GalleryProps) => {
                 <Image
                   src={src}
                   alt={alt}
-                  sizing={{ default: '10rem' }}
-                  className={cn('w-40 h-40', 'group-focus-within:tw-cms-outline')}
+                  sizing={{ default: '5rem', sm: '10rem' }}
+                  className={cn(
+                    'w-20 h-20',
+                    'sm:w-40 sm:h-40',
+                    'group-focus-within:tw-cms-outline',
+                  )}
                 />
               </label>
             </li>
