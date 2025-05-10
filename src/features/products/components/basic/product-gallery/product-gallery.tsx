@@ -1,6 +1,6 @@
 import { Image } from '@/components/basic/image/image';
 import { cn } from '@/utils/tailwind';
-import { useId, useState } from 'react';
+import { useEffect, useId, useRef, useState } from 'react';
 
 type ProductGalleryProps = {
   images: {
@@ -13,12 +13,31 @@ type ProductGalleryProps = {
 const ProductGallery = ({ images, className, ...props }: ProductGalleryProps) => {
   const id = useId();
   const [activeIndex, setActiveIndex] = useState(0);
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const [isMaximized, setIsMaximized] = useState(false);
 
   const activeImage = images[activeIndex];
 
+  useEffect(() => {
+    if (isMaximized) dialogRef.current?.showModal();
+    else dialogRef.current?.close();
+  }, [isMaximized]);
+
   return (
     <div className={cn('grid gap-4', className)} {...props}>
-      <Image src={activeImage.src} alt={activeImage.alt} isEager />
+      <dialog
+        ref={dialogRef}
+        onClick={() => setIsMaximized(false)}
+        onKeyDown={(e) => {
+          if (e.code !== 'Escape') return;
+          setIsMaximized(false);
+        }}
+      >
+        <Image src={activeImage.src} alt={activeImage.alt} />
+      </dialog>
+      <button type="button" onClick={() => setIsMaximized(true)}>
+        <Image src={activeImage.src} alt={activeImage.alt} isEager />
+      </button>
       <ul className="flex justify-center gap-4 flex-wrap">
         {images.map(({ src, alt }, index) => {
           const isActive = activeIndex === index;

@@ -7,6 +7,8 @@ import { Section } from '@/components/basic/section';
 import { useHeaderHeight } from '@/components/layout/header/header.hooks';
 import { ProductPrice } from '@/features/products/components/basic/product-price/product-price';
 import { ProductVariants } from '@/features/products/components/basic/product-variants/product-variants';
+import placeholderDarkWebp from '@/placeholders/placeholder-dark.webp';
+import placeholderWebp from '@/placeholders/placeholder.webp';
 import { cn } from '@/utils/tailwind';
 import { ProductGallery } from '../../basic/product-gallery/product-gallery';
 
@@ -23,10 +25,10 @@ const Product = () => {
       >
         <ProductGallery
           className="sm:col-span-2"
-          images={Array.from({ length: 3 }, (_, i) => i).map((it) => ({
-            src: `https://placehold.co/190x110/0f111a/7b83a3/?text=asdasd+${it}`,
-            alt: String(it),
-          }))}
+          images={[
+            { src: placeholderWebp.src, alt: 'Light placeholder' },
+            { src: placeholderDarkWebp.src, alt: 'Dark placeholder' },
+          ]}
         />
         <div
           className={cn(

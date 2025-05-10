@@ -2,6 +2,8 @@ import { Gallery } from '@/components/advanced/gallery/gallery';
 import { Container } from '@/components/basic/container';
 import { Section } from '@/components/basic/section';
 import { Product } from '@/features/products/components/sections/product/product';
+import placeholderDarkWebp from '@/placeholders/placeholder-dark.webp';
+import placeholderWebp from '@/placeholders/placeholder.webp';
 
 const TestPage = () => {
   return (
@@ -10,16 +12,13 @@ const TestPage = () => {
         <Container>
           <Gallery
             images={[
-              'blue.jpg',
-              'placeholder-dark.webp',
-              'black.jpg',
-              'green.jpg',
-              'red.jpg',
-              'white.jpg',
-            ].map((it) => ({
-              src: `/images/test/${it}`,
-              alt: it,
-            }))}
+              placeholderWebp.src,
+              placeholderDarkWebp.src,
+              placeholderWebp.src,
+              placeholderDarkWebp.src,
+              placeholderWebp.src,
+              placeholderDarkWebp.src,
+            ].map((it) => ({ src: it, alt: it }))}
           />
         </Container>
       </Section>
