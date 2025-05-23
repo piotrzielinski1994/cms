@@ -9,8 +9,9 @@ import {
 } from '@/config/locales.config';
 import { collections } from '@/payload/collections';
 import { defaultLexical } from '@/payload/fields/defaultLexical';
-import { Footer } from '@/payload/globals/footer/footer';
-import { Header } from '@/payload/globals/header/header';
+import { cookiesBanner } from '@/payload/globals/cookies-banner/cookies-banner';
+import { footer } from '@/payload/globals/footer/footer';
+import { header } from '@/payload/globals/header/header';
 import { plugins } from '@/payload/plugins';
 import { mongooseAdapter } from '@payloadcms/db-mongodb';
 import path from 'path';
@@ -75,7 +76,7 @@ const payloadConfig = buildConfig({
   }),
   collections: values(collections),
   cors: [clientEnv.publicUrl],
-  globals: [Header, Footer],
+  globals: [header, footer, cookiesBanner],
   plugins: values(plugins),
   secret: serverEnv.payloadSecret,
   sharp,

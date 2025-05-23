@@ -1,14 +1,17 @@
 import { revalidateTag } from 'next/cache';
 import type { GlobalAfterChangeHook } from 'payload';
+import { cookiesBanner } from './cookies-banner';
 
-const revalidateHeader: GlobalAfterChangeHook = ({ doc, req: { payload, context } }) => {
+const revalidateCookiesBanner: GlobalAfterChangeHook = ({
+  doc,
+  req: { payload, context, locale },
+}) => {
   if (!context.disableRevalidate) {
-    payload.logger.info(`Revalidating header`);
-
-    revalidateTag('global_header');
+    payload.logger.info(`Revalidating cookies banner`);
+    revalidateTag(`global__${locale}__${cookiesBanner.slug}`);
   }
 
   return doc;
 };
 
-export { revalidateHeader };
+export { revalidateCookiesBanner };

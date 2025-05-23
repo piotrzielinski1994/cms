@@ -3,15 +3,15 @@ import { link } from '@/payload/fields/link';
 import type { GlobalConfig } from 'payload';
 import { revalidateHeader } from './header.hooks';
 
-const Header: GlobalConfig = {
+const header: GlobalConfig = {
   slug: 'header',
   access: {
     read: () => true,
   },
   admin: {
     group: {
-      en: translations.en.common.layout,
-      pl: translations.pl.common.layout,
+      en: translations.en.common.component.plural,
+      pl: translations.pl.common.component.plural,
     },
   },
   label: ({ t }: { t: AdminTranslations }) => t('components:header'),
@@ -40,4 +40,4 @@ const Header: GlobalConfig = {
   },
 };
 
-export { Header };
+export { header };

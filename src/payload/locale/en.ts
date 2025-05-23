@@ -2,6 +2,10 @@ const en = {
   common: {
     content: 'Content',
     layout: 'Layout',
+    component: {
+      singular: 'Component',
+      plural: 'Components',
+    },
     section: {
       singular: 'Section',
       plural: 'Sections',
@@ -52,6 +56,9 @@ const en = {
     isReversed: 'Reversed layout',
     subpages: 'Subpages',
     seo: 'SEO',
+    acceptLabel: 'Accept label',
+    readMoreLabel: 'Read more label',
+    url: 'URL',
   },
   groups: {
     admin: 'Admin',
@@ -96,6 +103,7 @@ const en = {
   components: {
     header: 'Header',
     footer: 'Footer',
+    cookiesBanner: 'Cookies banner',
   },
   frontend: {
     submit: 'Submit',

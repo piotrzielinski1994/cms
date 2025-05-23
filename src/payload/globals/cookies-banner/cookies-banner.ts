@@ -1,43 +1,74 @@
 import { AdminTranslations, translations } from '@/config/locales.config';
-import { link } from '@/payload/fields/link';
 import type { GlobalConfig } from 'payload';
-import { revalidateHeader } from './cookies-banner.hooks';
+import { revalidateCookiesBanner } from './cookies-banner.hooks';
 
-const Header: GlobalConfig = {
-  slug: 'header',
+const cookiesBanner: GlobalConfig = {
+  slug: 'cookies-banner',
   access: {
     read: () => true,
   },
   admin: {
     group: {
-      en: translations.en.common.layout,
-      pl: translations.pl.common.layout,
+      en: translations.en.common.component.plural,
+      pl: translations.pl.common.component.plural,
     },
   },
-  label: ({ t }: { t: AdminTranslations }) => t('components:header'),
+  label: ({ t }: { t: AdminTranslations }) => t('components:cookiesBanner'),
   fields: [
     {
-      name: 'navItems',
-      type: 'array',
-      label: ({ t }: { t: AdminTranslations }) => t('fields:menu'),
-      fields: [
-        link({
-          appearances: false,
-          depth: 1,
-        }),
-      ],
-      maxRows: 6,
+      name: 'content',
+      type: 'richText',
+      required: true,
+      localized: true,
+      label: ({ t }: { t: AdminTranslations }) => t('common:content'),
+    },
+    {
+      name: 'accept',
+      type: 'text',
+      required: true,
+      localized: true,
+      label: ({ t }: { t: AdminTranslations }) => t('fields:acceptLabel'),
       admin: {
-        initCollapsed: true,
-        components: {
-          RowLabel: '@/payload/components/row-label#RowLabel',
-        },
+        width: '50%',
       },
+    },
+
+    {
+      name: 'readMore',
+      type: 'group',
+      label: ({ t }: { t: AdminTranslations }) => t('fields:readMoreLabel'),
+      fields: [
+        {
+          type: 'row',
+          fields: [
+            {
+              name: 'label',
+              type: 'text',
+              required: true,
+              localized: true,
+              label: ({ t }: { t: AdminTranslations }) => t('fields:label'),
+              admin: {
+                width: '50%',
+              },
+            },
+            {
+              name: 'url',
+              type: 'text',
+              required: true,
+              localized: true,
+              label: ({ t }: { t: AdminTranslations }) => t('fields:url'),
+              admin: {
+                width: '50%',
+              },
+            },
+          ],
+        },
+      ],
     },
   ],
   hooks: {
-    afterChange: [revalidateHeader],
+    afterChange: [revalidateCookiesBanner],
   },
 };
 
-export { Header };
+export { cookiesBanner };

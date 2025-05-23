@@ -4,6 +4,10 @@ const pl = {
   common: {
     content: 'Treść',
     layout: 'Układ',
+    component: {
+      singular: 'Komponent',
+      plural: 'Komponenty',
+    },
     section: {
       singular: 'Sekcja',
       plural: 'Sekcje',
@@ -54,6 +58,9 @@ const pl = {
     isReversed: 'Odwrócony układ',
     subpages: 'Podstrony',
     seo: 'SEO',
+    acceptLabel: 'Etykieta akceptacji',
+    readMoreLabel: 'Etykieta przeczytaj więcej',
+    url: 'URL',
   },
   groups: {
     admin: 'Administrator',
@@ -98,6 +105,7 @@ const pl = {
   components: {
     header: 'Nagłówek',
     footer: 'Stopka',
+    cookiesBanner: 'Baner z ciasteczkami',
   },
   frontend: {
     submit: 'Zatwierdź',

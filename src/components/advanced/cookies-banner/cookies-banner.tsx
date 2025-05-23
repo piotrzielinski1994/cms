@@ -7,8 +7,8 @@ type CookiesBannerProps = {
 };
 
 const CookiesBanner = async ({ locale }: CookiesBannerProps) => {
-  const cookiesBanner = await getCachedGlobal('header', locale)();
-  return <CookiesBannerClient cookiesBanner={cookiesBanner} />;
+  const cookiesBanner = await getCachedGlobal('cookies-banner', locale)();
+  return <CookiesBannerClient data={cookiesBanner} />;
 };
 
 export { CookiesBanner };

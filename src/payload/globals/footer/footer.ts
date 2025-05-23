@@ -3,15 +3,15 @@ import { link } from '@/payload/fields/link';
 import type { GlobalConfig } from 'payload';
 import { revalidateFooter } from './footer.hooks';
 
-const Footer: GlobalConfig = {
+const footer: GlobalConfig = {
   slug: 'footer',
   access: {
     read: () => true,
   },
   admin: {
     group: {
-      en: translations.en.common.layout,
-      pl: translations.pl.common.layout,
+      en: translations.en.common.component.plural,
+      pl: translations.pl.common.component.plural,
     },
   },
   label: ({ t }: { t: AdminTranslations }) => t('components:footer'),
@@ -38,4 +38,4 @@ const Footer: GlobalConfig = {
   },
 };
 
-export { Footer };
+export { footer };
