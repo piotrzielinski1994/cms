@@ -1,4 +1,5 @@
 import { AdminBar } from '@/_old/components/AdminBar';
+import { CookiesBanner } from '@/components/advanced/cookies-banner';
 import { SkipLink } from '@/components/basic/skip-link';
 import { Footer } from '@/components/layout/footer/footer';
 import { Header } from '@/components/layout/header/header';
@@ -13,7 +14,7 @@ import { GeistMono } from 'geist/font/mono';
 import { GeistSans } from 'geist/font/sans';
 import { Locale } from 'next-intl';
 import { draftMode } from 'next/headers';
-import { PropsWithChildren } from 'react';
+import { ComponentProps, PropsWithChildren } from 'react';
 import './globals.css';
 
 type LayoutProps = PropsWithChildren & {
@@ -25,14 +26,21 @@ const metadata = toPageMetadata();
 const Layout = async ({ children, params }: LayoutProps) => {
   const { isEnabled } = await draftMode();
   const { locale } = await params;
-  const { theme, fontSize } = await getPreferences();
+  const { theme, fontSize, cookiesConsent } = await getPreferences();
+  const providersProps: Omit<ComponentProps<typeof Providers>, 'children'> = {
+    locale,
+    initialTheme: theme,
+    initialFontScale: fontSize,
+    initialCookiesConsent: cookiesConsent,
+  };
 
   return (
     <html
       suppressHydrationWarning
       lang={locale}
-      data-theme={theme}
       data-scale={fontSize}
+      data-theme={theme}
+      data-color-preference={themes[theme]._type}
       style={{ colorScheme: themes[theme]?._type }}
       className={cn(GeistSans.variable, GeistMono.variable)}
     >
@@ -42,7 +50,7 @@ const Layout = async ({ children, params }: LayoutProps) => {
         {clientEnv.gtmId && <GoogleTagManager gtmId={clientEnv.gtmId} />}
       </head>
       <body className={cn('bg-background text-foreground', 'flex flex-col', 'min-h-[100vh]')}>
-        <Providers locale={locale} initialTheme={theme} initialFontScale={fontSize}>
+        <Providers {...providersProps}>
           <SkipLink />
           <AdminBar adminBarProps={{ preview: isEnabled }} />
           <Header locale={locale} />
@@ -50,6 +58,7 @@ const Layout = async ({ children, params }: LayoutProps) => {
             {children}
           </main>
           <Footer locale={locale} />
+          {!cookiesConsent && <CookiesBanner />}
         </Providers>
       </body>
     </html>

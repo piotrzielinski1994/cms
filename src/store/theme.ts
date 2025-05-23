@@ -18,6 +18,7 @@ const THEME_STORAGE_KEY = 'theme' as const;
 
 const updateDom = (theme: Theme) => {
   document.documentElement.setAttribute('data-theme', theme);
+  document.documentElement.setAttribute('data-color-preference', themes[theme]._type);
 };
 
 const updateColorScheme = (theme: Theme) => {

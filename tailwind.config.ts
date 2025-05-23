@@ -11,7 +11,7 @@ const normalizedThemes = fromPairs(
 
 const tailwindConfig = {
   content: ['./src/**/*.{ts,tsx}'],
-  darkMode: ['selector', '[data-theme="dark"]'],
+  darkMode: ['selector', '[data-color-preference="dark"]'],
   plugins: [
     require('@tailwindcss/container-queries'),
     require('tw-colors').createThemes(normalizedThemes),
@@ -47,6 +47,9 @@ const tailwindConfig = {
       },
       colors: {
         themes: normalizedThemes,
+      },
+      boxShadow: {
+        'sm-neg': '0 -1px 2px 0 rgba(0, 0, 0, 0.05)',
       },
     },
   },
