@@ -2,14 +2,18 @@
 
 import { Button, ButtonLink } from '@/components/basic/button';
 import { Container } from '@/components/basic/container';
+import Dialog from '@/components/basic/dialog/dialog';
 import { Section } from '@/components/basic/section';
 import { useCookiesConsentStore } from '@/store/cookies-consent';
 import { cn } from '@/utils/tailwind';
-import Dialog from '../basic/dialog/dialog';
+
+type CookiesBannerClientProps = {
+  cookiesBanner: any;
+};
 
 const COOKIES_BANNER_TEXT_ID = 'cookies-banner' as const;
 
-const CookiesBanner = () => {
+const CookiesBannerClient = ({ cookiesBanner }: CookiesBannerClientProps) => {
   const { isAllowed, allow } = useCookiesConsentStore();
 
   if (isAllowed) return null;
@@ -41,4 +45,4 @@ const CookiesBanner = () => {
   );
 };
 
-export { CookiesBanner };
+export { CookiesBannerClient };

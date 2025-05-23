@@ -1,5 +1,5 @@
 import { AdminBar } from '@/_old/components/AdminBar';
-import { CookiesBanner } from '@/components/advanced/cookies-banner';
+import { CookiesBanner } from '@/components/advanced/cookies-banner/cookies-banner';
 import { SkipLink } from '@/components/basic/skip-link';
 import { Footer } from '@/components/layout/footer/footer';
 import { Header } from '@/components/layout/header/header';
@@ -24,8 +24,8 @@ type LayoutProps = PropsWithChildren & {
 const metadata = toPageMetadata();
 
 const Layout = async ({ children, params }: LayoutProps) => {
-  const { isEnabled } = await draftMode();
   const { locale } = await params;
+  const { isEnabled } = await draftMode();
   const { theme, fontSize, cookiesConsent } = await getPreferences();
   const providersProps: Omit<ComponentProps<typeof Providers>, 'children'> = {
     locale,
@@ -58,7 +58,7 @@ const Layout = async ({ children, params }: LayoutProps) => {
             {children}
           </main>
           <Footer locale={locale} />
-          {!cookiesConsent && <CookiesBanner />}
+          {!cookiesConsent && <CookiesBanner locale={locale} />}
         </Providers>
       </body>
     </html>
