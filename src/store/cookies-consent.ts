@@ -5,6 +5,7 @@ import { createStore, useStore } from 'zustand';
 import { persist } from 'zustand/middleware';
 
 // Types ====================================
+
 type CookiesConsentStore = {
   isAllowed: boolean;
   allow: () => void;

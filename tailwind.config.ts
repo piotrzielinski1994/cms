@@ -44,6 +44,8 @@ const tailwindConfig = {
         header: '100',
         popover: '200',
         skipLink: '300',
+        backdrop: '1000',
+        dialog: '1100',
       },
       colors: {
         themes: normalizedThemes,

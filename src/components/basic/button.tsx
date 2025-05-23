@@ -12,7 +12,7 @@ const buttonClassNames = {
   button: cn(
     'px-6 py-3',
     'border-2 border-primary hover:border-primary/90',
-    'font-semibold',
+    'font-semibold whitespace-nowrap',
     'disabled:cursor-not-allowed box-content',
   ),
   variant: {
@@ -20,7 +20,6 @@ const buttonClassNames = {
     secondary: cn(
       ' text-primary',
       'disabled:border-primary/50 disabled:text-primary/50',
-
       'bg-transparent hover:bg-foreground/5',
     ),
   },
