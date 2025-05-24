@@ -9,17 +9,15 @@ import { Providers } from '@/providers';
 import { getPreferences } from '@/utils/headers';
 import { toPageMetadata } from '@/utils/metadata';
 import { cn } from '@/utils/tailwind';
+import { LocalizedRoute } from '@/utils/types';
 import { GoogleTagManager } from '@next/third-parties/google';
 import { GeistMono } from 'geist/font/mono';
 import { GeistSans } from 'geist/font/sans';
-import { Locale } from 'next-intl';
 import { draftMode } from 'next/headers';
 import { ComponentProps, PropsWithChildren } from 'react';
 import './globals.css';
 
-type LayoutProps = PropsWithChildren & {
-  params: Promise<{ locale: Locale }>;
-};
+type LayoutProps = PropsWithChildren & LocalizedRoute;
 
 const metadata = toPageMetadata();
 
