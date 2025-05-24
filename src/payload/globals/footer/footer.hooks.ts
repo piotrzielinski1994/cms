@@ -1,11 +1,14 @@
+import { GlobalRevalidationTag } from '@/payload/utils/globals';
+import { Locale } from 'next-intl';
 import { revalidateTag } from 'next/cache';
 import type { GlobalAfterChangeHook } from 'payload';
-import { footer } from './footer';
 
 const revalidateFooter: GlobalAfterChangeHook = ({ doc, req: { payload, context, locale } }) => {
   if (!context.disableRevalidate) {
     payload.logger.info(`Revalidating footer`);
-    revalidateTag(`global__${locale}__${footer.slug}`);
+    const typedLocale = locale as Locale;
+    const tag: GlobalRevalidationTag = `global__${typedLocale}__footer`;
+    revalidateTag(tag);
   }
 
   return doc;

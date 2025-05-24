@@ -1,6 +1,6 @@
 import { contentLocales, defaultContentLocale } from '@/config/locales.config';
 import { Config, Header, Page } from '@/payload.types';
-import { GlobalSlug, Payload } from 'payload';
+import { DataFromGlobalSlug, GlobalSlug, Payload } from 'payload';
 import { fromPairs } from 'ramda';
 import { createGlobal } from './helpers/globals';
 
@@ -44,19 +44,23 @@ const seedLayoutItems = async (payload: Payload) => {
   }: { [key: Config['locale'][number]]: Header['navItems'] } = navItemsPerLocale;
   const restNavItems = untypedRestNavItems as Record<Config['locale'], Header['navItems']>;
 
-  const layoutElements: GlobalSlug[] = ['header', 'footer'];
+  const layoutElements = ['header', 'footer'] satisfies GlobalSlug[];
   return layoutElements.map((slug) => {
-    return createGlobal(payload, { slug, data: { navItems: mainLocaleNavItems } }, (g) => ({
-      pl: {
-        slug,
-        data: {
-          navItems: (restNavItems.pl ?? []).map((navItem, idx) => ({
-            ...navItem,
-            id: g.navItems?.[idx].id,
-          })),
+    return createGlobal(
+      payload,
+      { slug, data: { navItems: mainLocaleNavItems } },
+      (g: DataFromGlobalSlug<typeof slug>) => ({
+        pl: {
+          slug,
+          data: {
+            navItems: (restNavItems.pl ?? []).map((navItem, idx) => ({
+              ...navItem,
+              id: g.navItems?.[idx].id,
+            })),
+          },
         },
-      },
-    }));
+      }),
+    );
   });
 };
 

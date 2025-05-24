@@ -1,6 +1,7 @@
+import { GlobalRevalidationTag } from '@/payload/utils/globals';
+import { Locale } from 'next-intl';
 import { revalidateTag } from 'next/cache';
 import type { GlobalAfterChangeHook } from 'payload';
-import { cookiesBanner } from './cookies-banner';
 
 const revalidateCookiesBanner: GlobalAfterChangeHook = ({
   doc,
@@ -8,7 +9,9 @@ const revalidateCookiesBanner: GlobalAfterChangeHook = ({
 }) => {
   if (!context.disableRevalidate) {
     payload.logger.info(`Revalidating cookies banner`);
-    revalidateTag(`global__${locale}__${cookiesBanner.slug}`);
+    const typedLocale = locale as Locale;
+    const tag: GlobalRevalidationTag = `global__${typedLocale}__cookies-banner`;
+    revalidateTag(tag);
   }
 
   return doc;
