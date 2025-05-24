@@ -14,6 +14,8 @@ const revalidatePage: CollectionAfterChangeHook<Page> = ({
       payload.logger.info(`Revalidating page at path: ${path}`);
 
       revalidatePath(path);
+      revalidateTag(`global__${locale}__header`);
+      revalidateTag(`global__${locale}__footer`);
       revalidateTag('pages-sitemap');
     }
 
