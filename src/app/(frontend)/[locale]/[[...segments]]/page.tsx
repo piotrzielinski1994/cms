@@ -8,6 +8,7 @@ import { getPages, queryPage } from '@/payload/collections/pages/pages.utils';
 import { Image } from '@/payload/payload.types';
 import { toPageMetadata } from '@/utils/metadata';
 import { optional } from '@/utils/optional';
+import { LocalizedRoute } from '@/utils/types';
 import { toPath } from '@/utils/url';
 import { Locale } from 'next-intl';
 import { draftMode } from 'next/headers';
@@ -15,12 +16,7 @@ import { toPairs } from 'ramda';
 import { PageClient } from './page.client';
 
 type PathPerLocale = Record<Locale, string>;
-type PageProps = {
-  params: Promise<{
-    locale: Locale;
-    segments?: string[];
-  }>;
-};
+type PageProps = LocalizedRoute<{ segments?: string[] }>;
 
 const generateStaticParams = async () => {
   const pages = await getPages();
@@ -31,8 +27,8 @@ const generateStaticParams = async () => {
     .map(({ locale, path }) => ({ locale, segments: path.split('/').filter(Boolean) }));
 };
 
-const generateMetadata = async ({ params: paramsPromise }: PageProps): Promise<Metadata> => {
-  const { segments = [], locale } = await paramsPromise;
+const generateMetadata = async ({ params }: PageProps): Promise<Metadata> => {
+  const { segments = [], locale } = await params;
   const path = toPath(segments);
   const { page } = await queryPage({ path, locale });
 

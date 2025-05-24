@@ -216,7 +216,10 @@ const Pages: CollectionConfig<'pages'> = {
 
         const pathPerLocale = fromPairs(
           toPairs((doc.breadcrumbs ?? {}) as Record<Locale, Page['breadcrumbs']>).map(
-            ([locale, breadcrumbs]) => [locale, breadcrumbs!.at(-1)?.url ?? '/'],
+            ([locale, breadcrumbs]) => [
+              locale,
+              (breadcrumbs?.at(-1)?.url ?? '/').replace(/\/$/, ''),
+            ],
           ),
         );
 
