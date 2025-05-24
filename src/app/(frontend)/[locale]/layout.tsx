@@ -47,7 +47,7 @@ const Layout = async ({ children, params }: LayoutProps) => {
       <head>
         <link href="/favicon.ico" rel="icon" sizes="32x32" />
         <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
-        {clientEnv.gtmId && <GoogleTagManager gtmId={clientEnv.gtmId} />}
+        {clientEnv.gtmId && cookiesConsent && <GoogleTagManager gtmId={clientEnv.gtmId} />}
       </head>
       <body className={cn('bg-background text-foreground', 'flex flex-col', 'min-h-[100vh]')}>
         <Providers {...providersProps}>
