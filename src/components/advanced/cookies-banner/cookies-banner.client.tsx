@@ -8,6 +8,7 @@ import { CookiesBanner as CookiesBannerType } from '@/payload/payload.types';
 import { useCookiesConsentStore } from '@/store/cookies-consent';
 import { cn } from '@/utils/tailwind';
 import { RichText } from '@payloadcms/richtext-lexical/react';
+import { useEffect, useRef } from 'react';
 
 type CookiesBannerClientProps = {
   data: CookiesBannerType;
@@ -15,6 +16,13 @@ type CookiesBannerClientProps = {
 
 const CookiesBannerClient = ({ data }: CookiesBannerClientProps) => {
   const { isAllowed, allow } = useCookiesConsentStore();
+  const ref = useRef<HTMLDialogElement>(null);
+
+  // Instead of the `open` prop, to disable focus on elements behind the dialog
+  useEffect(() => {
+    if (!ref.current) return;
+    ref.current.showModal();
+  }, []);
 
   if (isAllowed) return null;
 
@@ -22,10 +30,14 @@ const CookiesBannerClient = ({ data }: CookiesBannerClientProps) => {
     <>
       <Dialog.Backdrop />
       <Section
+        ref={ref}
         as="dialog"
-        open
         aria-modal={true}
-        className={cn('fixed bottom-0 z-dialog', 'w-full py-5', 'bg-background1 shadow-sm-neg')}
+        className={cn(
+          'fixed top-auto bottom-0 z-dialog',
+          'w-full max-w-none py-5',
+          'bg-background1 shadow-sm-neg',
+        )}
       >
         <Container className="flex flex-col gap-4 items-center sm:flex-row">
           <RichText className="flex-grow" data={data.content} />
