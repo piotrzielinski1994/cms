@@ -27,6 +27,8 @@ const en = {
     dark: 'Dark',
     question: 'Question',
     answer: 'Answer',
+    pageNotFound: 'This page could not be found.',
+    goHome: 'Go home',
   },
   fields: {
     label: 'Label',

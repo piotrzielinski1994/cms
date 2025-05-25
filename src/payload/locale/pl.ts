@@ -29,6 +29,8 @@ const pl = {
     dark: 'Ciemny',
     question: 'Pytanie',
     answer: 'Odpowiedź',
+    pageNotFound: 'Nie znaleziono strony.',
+    goHome: 'Wróć do strony głównej',
   },
   fields: {
     label: 'Etykieta',
