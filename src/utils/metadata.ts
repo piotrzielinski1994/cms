@@ -20,11 +20,12 @@ const toPageMetadata = (options?: {
       description: options?.description,
       images: [optional(options?.imageUrl, (url) => ({ url }))].filter((it) => it !== undefined),
     },
-    // TODO
-    // twitter: {
-    //   card: 'summary_large_image',
-    //   creator: 'CMS',
-    // },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description: options?.description,
+      images: [options?.imageUrl].filter((it) => it !== undefined),
+    },
   };
 };
 
