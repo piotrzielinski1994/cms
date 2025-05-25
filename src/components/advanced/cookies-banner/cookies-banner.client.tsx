@@ -7,6 +7,7 @@ import { Section } from '@/components/basic/section';
 import { CookiesBanner as CookiesBannerType } from '@/payload/payload.types';
 import { useCookiesConsentStore } from '@/store/cookies-consent';
 import { cn } from '@/utils/tailwind';
+import { sendGTMEvent } from '@next/third-parties/google';
 import { RichText } from '@payloadcms/richtext-lexical/react';
 import { useEffect, useRef } from 'react';
 
@@ -45,7 +46,14 @@ const CookiesBannerClient = ({ data }: CookiesBannerClientProps) => {
             <ButtonLink href={data.readMore.url} variant="secondary">
               {data.readMore.label}
             </ButtonLink>
-            <Button onClick={allow}>{data.accept}</Button>
+            <Button
+              onClick={() => {
+                allow();
+                sendGTMEvent({ event: 'gtm.historyChange', newUrl: window.location.href });
+              }}
+            >
+              {data.accept}
+            </Button>
           </div>
         </Container>
       </Section>
