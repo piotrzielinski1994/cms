@@ -37,7 +37,7 @@ const hero1SectionPayloadConfig = {
           name: 'reference',
           type: 'relationship',
           label: ({ t }: { t: AdminTranslations }) => t('fields:documentToLinkTo'),
-          relationTo: ['pages', 'posts'],
+          relationTo: ['pages'],
           required: true,
         },
         {

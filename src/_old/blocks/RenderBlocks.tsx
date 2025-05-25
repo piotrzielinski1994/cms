@@ -2,11 +2,6 @@ import React, { Fragment } from 'react';
 
 import type { Page } from '@/payload.types';
 
-import { ArchiveBlock } from '@/_old/blocks/ArchiveBlock/Component';
-import { CallToActionBlock } from '@/_old/blocks/CallToAction/Component';
-import { ContentBlock } from '@/_old/blocks/Content/Component';
-import { FormBlock } from '@/_old/blocks/Form/Component';
-import { MediaBlock } from '@/_old/blocks/MediaBlock/Component';
 import { ContactForm } from '@/components/advanced/form/contact-form/contact-form';
 import { contactFormBlockPayloadConfig } from '@/components/advanced/form/contact-form/contact-form.payload.config';
 import { Faq } from '@/components/sections/faq/faq';
@@ -21,11 +16,6 @@ import { ImageBlocks } from '@/components/sections/image-block/image-blocks/imag
 import { imageBlocksSectionPayloadConfig } from '@/components/sections/image-block/image-blocks/image-blocks.payload.config';
 
 const blockComponents = {
-  archive: ArchiveBlock,
-  content: ContentBlock,
-  cta: CallToActionBlock,
-  formBlock: FormBlock,
-  mediaBlock: MediaBlock,
   [contactFormBlockPayloadConfig.slug]: ContactForm,
   [hero1SectionPayloadConfig.slug]: Hero1,
   [imageBlocksSectionPayloadConfig.slug]: ImageBlocks,

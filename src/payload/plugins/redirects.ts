@@ -3,7 +3,7 @@ import { revalidateRedirects } from '@/payload/hooks/revalidateRedirects';
 import { redirectsPlugin } from '@payloadcms/plugin-redirects';
 
 const redirects = redirectsPlugin({
-  collections: ['pages', 'posts'],
+  collections: ['pages'],
   overrides: {
     admin: {
       group: {

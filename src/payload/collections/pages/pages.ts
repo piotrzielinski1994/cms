@@ -1,6 +1,3 @@
-import { Archive } from '@/_old/blocks/ArchiveBlock/config';
-import { CallToAction } from '@/_old/blocks/CallToAction/config';
-import { Content } from '@/_old/blocks/Content/config';
 import { generatePreviewPath } from '@/_old/utilities/generatePreviewPath';
 import { faqSectionPayloadConfig } from '@/components/sections/faq/faq.payload.config';
 import { contactUsSectionPayloadConfig } from '@/components/sections/form/contact-us/contact-us.payload.config';
@@ -92,9 +89,6 @@ const Pages: CollectionConfig<'pages'> = {
                 imageBlock1BlockPayloadConfig,
                 contactUsSectionPayloadConfig,
                 faqSectionPayloadConfig,
-                Archive,
-                CallToAction,
-                Content,
               ],
               required: true,
               admin: {

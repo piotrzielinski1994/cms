@@ -81,7 +81,7 @@ const link: LinkType = ({ depth = 0, appearances, disableLabel = false, override
         condition: (_, siblingData) => siblingData?.type === 'reference',
       },
       label: ({ t }: { t: AdminTranslations }) => t('fields:documentToLinkTo'),
-      relationTo: ['pages', 'posts'],
+      relationTo: ['pages'],
       required: true,
     },
     {
