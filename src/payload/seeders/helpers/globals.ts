@@ -1,19 +1,15 @@
 import { defaultContentLocale } from '@/config/locales.config';
 import { Config } from '@/payload.types';
-import { SelectFromGlobalSlug } from 'node_modules/payload/dist/globals/config/types';
 import { Options } from 'node_modules/payload/dist/globals/operations/local/update';
-import { DataFromGlobalSlug, GlobalSlug, Payload } from 'payload';
+import { DataFromGlobalSlug, GlobalSlug, Payload, SelectType } from 'payload';
 import { toPairs } from 'ramda';
-
-/* @ts-expect-error TODO: Fix */
-type GlobalToCreate<T extends GlobalSlug> = Options<T, SelectFromGlobalSlug<T>>;
 
 const createGlobal = async <T extends GlobalSlug>(
   payload: Payload,
-  mainLocaleGlobal: GlobalToCreate<T>,
+  mainLocaleGlobal: Options<T, SelectType>,
   getLocalizedGlobals: (
     global: DataFromGlobalSlug<GlobalSlug>,
-  ) => Omit<Record<Config['locale'], GlobalToCreate<T>>, typeof defaultContentLocale>,
+  ) => Omit<Record<Config['locale'], Options<T, SelectType>>, typeof defaultContentLocale>,
 ) => {
   const global = await payload.updateGlobal({
     locale: defaultContentLocale,
