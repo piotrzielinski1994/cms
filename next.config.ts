@@ -3,32 +3,20 @@ import bundleAnalyzer from '@next/bundle-analyzer';
 import { withPayload } from '@payloadcms/next/withPayload';
 import type { NextConfig } from 'next';
 import createNextIntlPlugin from 'next-intl/plugin';
-import { RemotePattern } from 'next/dist/shared/lib/image-config';
+import { z } from 'zod';
 
 const withBundleAnalyzer = bundleAnalyzer({ enabled: process.env.ANALYZE === 'true' });
-
 const withNextIntl = createNextIntlPlugin('./src/config/next.routing.config.ts');
 const nextConfig = {
+  reactStrictMode: true,
   images: {
-    remotePatterns: [clientEnv.publicUrl, 'https://placehold.co/**'].map((item) => {
+    remotePatterns: [clientEnv.publicUrl].map((item) => {
       const url = new URL(item);
       return {
         hostname: url.hostname,
-        protocol: url.protocol.replace(':', ''),
-      } as RemotePattern;
+        protocol: z.enum(['http', 'https']).parse(url.protocol.replace(':', '')),
+      };
     }),
-    dangerouslyAllowSVG: true, // TODO: Remove this line and the "placehold.co" from `remotePatterns`
-  },
-  reactStrictMode: true,
-  redirects: async () => {
-    const internetExplorerRedirect = {
-      destination: '/ie-incompatible.html',
-      has: [{ type: 'header', key: 'user-agent', value: '(.*Trident.*)' /* all ie browsers */ }],
-      permanent: false,
-      source: '/:path((?!ie-incompatible.html$).*)', // all pages except the incompatibility page
-    };
-
-    return [internetExplorerRedirect];
   },
   webpack: (config) => {
     config.module.rules.push({
