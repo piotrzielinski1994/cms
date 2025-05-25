@@ -57,10 +57,4 @@ const CookiesBannerClient = ({ data }: CookiesBannerClientProps) => {
   );
 };
 
-const Asd = () => {
-  return <div></div>;
-};
-
-export { Asd };
-
 export { CookiesBannerClient };
