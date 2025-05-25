@@ -4,10 +4,11 @@ import { Button, ButtonLink } from '@/components/basic/button';
 import { Container } from '@/components/basic/container';
 import Dialog from '@/components/basic/dialog/dialog';
 import { Section } from '@/components/basic/section';
+import { clientEnv } from '@/config/env.client.config';
 import { CookiesBanner as CookiesBannerType } from '@/payload/payload.types';
 import { useCookiesConsentStore } from '@/store/cookies-consent';
 import { cn } from '@/utils/tailwind';
-import { sendGTMEvent } from '@next/third-parties/google';
+import { GoogleTagManager } from '@next/third-parties/google';
 import { RichText } from '@payloadcms/richtext-lexical/react';
 import { useEffect, useRef } from 'react';
 
@@ -25,7 +26,9 @@ const CookiesBannerClient = ({ data }: CookiesBannerClientProps) => {
     ref.current.showModal();
   }, []);
 
-  if (isAllowed) return null;
+  if (isAllowed) {
+    return <>{clientEnv.gtmId && <GoogleTagManager gtmId={clientEnv.gtmId} />}</>;
+  }
 
   return (
     <>
@@ -46,19 +49,18 @@ const CookiesBannerClient = ({ data }: CookiesBannerClientProps) => {
             <ButtonLink href={data.readMore.url} variant="secondary">
               {data.readMore.label}
             </ButtonLink>
-            <Button
-              onClick={() => {
-                allow();
-                sendGTMEvent({ event: 'gtm.historyChange', newUrl: window.location.href });
-              }}
-            >
-              {data.accept}
-            </Button>
+            <Button onClick={allow}>{data.accept}</Button>
           </div>
         </Container>
       </Section>
     </>
   );
 };
+
+const Asd = () => {
+  return <div></div>;
+};
+
+export { Asd };
 
 export { CookiesBannerClient };
