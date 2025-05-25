@@ -1,7 +1,3 @@
-import React, { Fragment } from 'react';
-
-import type { Page } from '@/payload.types';
-
 import { ContactForm } from '@/components/advanced/form/contact-form/contact-form';
 import { contactFormBlockPayloadConfig } from '@/components/advanced/form/contact-form/contact-form.payload.config';
 import { Faq } from '@/components/sections/faq/faq';
@@ -14,6 +10,11 @@ import { ImageBlock1 } from '@/components/sections/image-block/image-block-1/ima
 import { imageBlock1BlockPayloadConfig } from '@/components/sections/image-block/image-block-1/image-block-1.payload.config';
 import { ImageBlocks } from '@/components/sections/image-block/image-blocks/image-blocks';
 import { imageBlocksSectionPayloadConfig } from '@/components/sections/image-block/image-blocks/image-blocks.payload.config';
+import type { Page } from '@/payload.types';
+
+type RenderBlocksProps = {
+  blocks: Page['sections'];
+};
 
 const blockComponents = {
   [contactFormBlockPayloadConfig.slug]: ContactForm,
@@ -24,34 +25,17 @@ const blockComponents = {
   [faqSectionPayloadConfig.slug]: Faq,
 };
 
-export const RenderBlocks: React.FC<{
-  blocks: Page['sections'][0][];
-}> = (props) => {
-  const { blocks } = props;
-
-  const hasBlocks = blocks && Array.isArray(blocks) && blocks.length > 0;
-
-  if (hasBlocks) {
-    return (
-      <Fragment>
-        {blocks.map((block, index) => {
-          const { blockType } = block;
-          if (!(blockType in blockComponents)) {
-            return null;
-          }
-
-          const Block = blockComponents[blockType];
-
-          if (!Block) {
-            return null;
-          }
-
-          /* @ts-expect-error there may be some mismatch between the expected types here */
-          return <Block key={index} {...block} disableInnerContainer />;
-        })}
-      </Fragment>
-    );
-  }
-
-  return null;
+const RenderBlocks = ({ blocks }: RenderBlocksProps) => {
+  return (
+    <>
+      {blocks.map((block, index) => {
+        const Block = blockComponents[block.blockType];
+        if (!Block) return null;
+        /* @ts-expect-error there may be some mismatch between the expected types here */
+        return <Block key={index} {...block} disableInnerContainer />;
+      })}
+    </>
+  );
 };
+
+export { RenderBlocks };

@@ -1,6 +1,6 @@
-import { RenderBlocks } from '@/_old/blocks/RenderBlocks';
 import { Container } from '@/components/basic/container';
 import { Section } from '@/components/basic/section';
+import { RenderBlocks } from '@/components/sections/block';
 import { ImageBlocksSection } from '@/payload.types';
 import { cn } from '@/utils/tailwind';
 

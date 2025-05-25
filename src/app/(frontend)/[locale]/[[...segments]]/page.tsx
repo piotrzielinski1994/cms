@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
-import { RenderBlocks } from '@/_old/blocks/RenderBlocks';
 import { LivePreviewListener } from '@/_old/components/LivePreviewListener';
 import { PayloadRedirects } from '@/_old/components/PayloadRedirects';
+import { RenderBlocks } from '@/components/sections/block';
 import { clientEnv } from '@/config/env.client.config';
 import { getPages, queryPage } from '@/payload/collections/pages/pages.utils';
 import { Image } from '@/payload/payload.types';
