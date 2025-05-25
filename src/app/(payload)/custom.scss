@@ -1,0 +1,49 @@
+// @tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// Colors: node_modules/@payloadcms/next/dist/scss/colors.scss
+
+:root {
+  --theme-elevation-0: theme('colors.background');
+  --theme-elevation-50: theme('colors.background1');
+  --theme-elevation-100: theme('colors.background');
+  --theme-elevation-150: theme('colors.foreground / 0.2');
+  --theme-elevation-200: theme('colors.foreground / 0.2');
+  --theme-elevation-250: theme('colors.foreground / 0.5');
+  --theme-elevation-300: theme('colors.foreground / 0.5');
+  --theme-elevation-400: theme('colors.foreground / 0.7');
+
+  --style-radius-s: 0;
+  --style-radius-m: 0;
+}
+
+html {
+  font-size: 12px;
+}
+
+.pill,
+.hamburger,
+.collapsible {
+  border-radius: var(--style-radius-s);
+}
+
+.nav-group {
+  &__toggle {
+    --_color: theme('colors.foreground');
+
+    &:hover {
+      --_color: var(--theme-elevation-1000);
+    }
+  }
+
+  &__label {
+    color: var(--_color);
+  }
+
+  &__indicator {
+    svg .stroke {
+      stroke: var(--_color);
+    }
+  }
+}
