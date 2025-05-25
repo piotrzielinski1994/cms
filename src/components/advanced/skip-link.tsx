@@ -1,6 +1,6 @@
+import { ButtonLink } from '@/components/basic/button';
 import { cn } from '@/utils/tailwind';
 import { useTranslations } from 'next-intl';
-import { ButtonLink } from './button';
 
 const SkipLink = () => {
   const t = useTranslations('frontend');

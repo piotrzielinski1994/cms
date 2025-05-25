@@ -18,7 +18,7 @@ const buttonClassNames = {
   variant: {
     primary: cn('bg-primary hover:bg-primary/90 text-primary-foreground', 'disabled:bg-primary/50'),
     secondary: cn(
-      ' text-primary',
+      'text-primary',
       'disabled:border-primary/50 disabled:text-primary/50',
       'bg-transparent hover:bg-foreground/5',
     ),

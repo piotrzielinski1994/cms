@@ -13,6 +13,7 @@ type ImageProps = {
     width: number;
     height: number;
   };
+  // default size + sizing per breakpoint
   sizing?: { default: ImageSize } & Partial<Record<keyof typeof defaultTheme.screens, ImageSize>>;
 };
 

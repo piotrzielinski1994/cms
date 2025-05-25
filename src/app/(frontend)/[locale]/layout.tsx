@@ -1,6 +1,6 @@
 import { AdminBar } from '@/_old/components/AdminBar';
 import { CookiesBanner } from '@/components/advanced/cookies-banner/cookies-banner';
-import { SkipLink } from '@/components/basic/skip-link';
+import { SkipLink } from '@/components/advanced/skip-link';
 import { Footer } from '@/components/layout/footer/footer';
 import { Header } from '@/components/layout/header/header';
 import { clientEnv } from '@/config/env.client.config';
