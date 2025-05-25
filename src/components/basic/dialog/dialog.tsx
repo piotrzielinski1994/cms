@@ -1,7 +1,7 @@
+import { Container } from '@/components/basic/container';
+import { Section } from '@/components/basic/section';
 import { cn } from '@/utils/tailwind';
 import { ComponentPropsWithoutRef } from 'react';
-import { Container } from '../container';
-import { Section } from '../section';
 
 type DialogProps = ComponentPropsWithoutRef<'dialog'>;
 
