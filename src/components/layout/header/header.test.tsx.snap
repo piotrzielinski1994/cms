@@ -76,7 +76,7 @@ exports[`Header > should match the snapshot 1`] = `
         [Svg @/icons/logo.svg]
       </a>
       <nav
-        class="flex-grow flex justify-end"
+        class="flex-grow flex justify-end -mr-2"
       >
         <ul
           class="contents"
