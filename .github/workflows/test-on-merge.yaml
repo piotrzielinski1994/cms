@@ -14,6 +14,4 @@ jobs:
         with:
           node-version: 22
       - run: npm ci
-      - run: npm run generate:types
-      - run: npm run generate:importmap
       - run: npm run test
