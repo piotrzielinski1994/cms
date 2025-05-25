@@ -1,7 +1,7 @@
 import { Locale } from 'next-intl';
 
-type LocalizedRoute<T = void> = {
-  params: Promise<T & { locale: Locale }>;
+type LocalizedRoute<P = void> = {
+  params: Promise<P & { locale: Locale }>;
 };
 
 export type { LocalizedRoute };
