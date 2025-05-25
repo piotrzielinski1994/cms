@@ -1,4 +1,6 @@
 import type { Page } from '@/payload.types';
+import { rebuildPath, rebuildTag } from '@/utils/next';
+import { isLocale } from '@/utils/payload';
 import { revalidatePath, revalidateTag } from 'next/cache';
 import type { CollectionAfterChangeHook, CollectionAfterDeleteHook } from 'payload';
 
@@ -8,20 +10,19 @@ const revalidatePage: CollectionAfterChangeHook<Page> = ({
   req: { payload, context, locale },
 }) => {
   if (!context.disableRevalidate) {
-    if (doc._status === 'published') {
-      // const path = doc.path ?? (doc.slug === '' ? '/' : `/${doc.slug}`);
-      const path = `/${locale}${doc.breadcrumbs!.at(-1)?.url ?? '/'}`;
+    if (doc._status === 'published' && isLocale(locale)) {
+      const path: Parameters<typeof rebuildPath>[0] =
+        `/${locale}${doc.breadcrumbs!.at(-1)?.url ?? '/'}`;
       payload.logger.info(`Revalidating page at path: ${path}`);
 
-      revalidatePath(path);
-      revalidateTag(`global__${locale}__header`);
-      revalidateTag(`global__${locale}__footer`);
-      revalidateTag('pages-sitemap');
+      rebuildPath(path);
+      rebuildTag(`global__${locale}__header`);
+      rebuildTag(`global__${locale}__footer`);
+      rebuildTag('sitemap');
     }
 
     // If the page was previously published, we need to revalidate the old path
     if (previousDoc?._status === 'published' && doc._status !== 'published') {
-      // const oldPath = previousDoc.slug === '' ? '/' : `/${previousDoc.slug}`;
       const oldPath = `/${locale}${previousDoc.breadcrumbs!.at(-1)?.url ?? '/'}`;
 
       payload.logger.info(`Revalidating old page at path: ${oldPath}`);
@@ -34,11 +35,9 @@ const revalidatePage: CollectionAfterChangeHook<Page> = ({
 };
 
 const revalidateDelete: CollectionAfterDeleteHook<Page> = ({ doc, req: { context, locale } }) => {
-  if (!context.disableRevalidate) {
-    // const path = doc?.slug === '' ? '/' : `/${doc?.slug}`;
-    const path = `/${locale}${doc.breadcrumbs!.at(-1)?.url ?? '/'}`;
-    revalidatePath(path);
-    revalidateTag('pages-sitemap');
+  if (!context.disableRevalidate && isLocale(locale)) {
+    rebuildPath(`/${locale}${doc.breadcrumbs!.at(-1)?.url ?? '/'}`);
+    rebuildTag('sitemap');
   }
 
   return doc;

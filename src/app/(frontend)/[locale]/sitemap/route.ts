@@ -5,10 +5,9 @@ import { getServerSideSitemap } from 'next-sitemap';
 import { unstable_cache } from 'next/cache';
 import { getPayload } from 'payload';
 
-const getPagesSitemap = unstable_cache(
+const getSitemap = unstable_cache(
   async (locale: Locale) => {
     const payload = await getPayload({ config });
-
     const results = await payload.find({
       collection: 'pages',
       locale,
@@ -24,19 +23,17 @@ const getPagesSitemap = unstable_cache(
       },
     });
 
-    return results.docs.map((page) => {
-      return {
-        loc: `/${locale}${page.path}`,
-        lastmod: page.updatedAt,
-      };
-    });
+    return results.docs.map((page) => ({
+      loc: `/${locale}${page.path}`,
+      lastmod: page.updatedAt,
+    }));
   },
-  ['pages-sitemap'],
-  { tags: ['pages-sitemap'] },
+  ['sitemap'],
+  { tags: ['sitemap'] },
 );
 
 export async function GET(_: Request, { params }: LocalizedRoute) {
   const { locale } = await params;
-  const sitemap = await getPagesSitemap(locale);
+  const sitemap = await getSitemap(locale);
   return getServerSideSitemap(sitemap);
 }

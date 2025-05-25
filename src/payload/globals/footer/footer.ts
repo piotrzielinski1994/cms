@@ -1,7 +1,8 @@
 import { AdminTranslations, translations } from '@/config/locales.config';
 import { link } from '@/payload/fields/link';
+import { isLocale } from '@/utils/payload';
+import { revalidateTag } from 'next/cache';
 import type { GlobalConfig } from 'payload';
-import { revalidateFooter } from './footer.hooks';
 
 const footer: GlobalConfig = {
   slug: 'footer',
@@ -34,7 +35,16 @@ const footer: GlobalConfig = {
     },
   ],
   hooks: {
-    afterChange: [revalidateFooter],
+    afterChange: [
+      ({ doc, req: { payload, context, locale } }) => {
+        if (!context.disableRevalidate && isLocale(locale)) {
+          payload.logger.info(`Revalidating footer`);
+          revalidateTag(`global__${locale}__footer`);
+        }
+
+        return doc;
+      },
+    ],
   },
 };
 

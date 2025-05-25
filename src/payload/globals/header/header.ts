@@ -1,7 +1,8 @@
 import { AdminTranslations, translations } from '@/config/locales.config';
 import { link } from '@/payload/fields/link';
+import { rebuildTag } from '@/utils/next';
+import { isLocale } from '@/utils/payload';
 import type { GlobalConfig } from 'payload';
-import { revalidateHeader } from './header.hooks';
 
 const header: GlobalConfig = {
   slug: 'header',
@@ -36,7 +37,16 @@ const header: GlobalConfig = {
     },
   ],
   hooks: {
-    afterChange: [revalidateHeader],
+    afterChange: [
+      ({ doc, req: { payload, context, locale } }) => {
+        if (!context.disableRevalidate && isLocale(locale)) {
+          payload.logger.info(`Revalidating header`);
+          rebuildTag(`global__${locale}__header`);
+        }
+
+        return doc;
+      },
+    ],
   },
 };
 

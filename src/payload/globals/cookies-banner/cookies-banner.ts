@@ -1,6 +1,7 @@
 import { AdminTranslations, translations } from '@/config/locales.config';
+import { rebuildTag } from '@/utils/next';
+import { isLocale } from '@/utils/payload';
 import type { GlobalConfig } from 'payload';
-import { revalidateCookiesBanner } from './cookies-banner.hooks';
 
 const cookiesBanner: GlobalConfig = {
   slug: 'cookies-banner',
@@ -67,7 +68,16 @@ const cookiesBanner: GlobalConfig = {
     },
   ],
   hooks: {
-    afterChange: [revalidateCookiesBanner],
+    afterChange: [
+      ({ doc, req }) => {
+        if (!req.context.disableRevalidate && isLocale(req.locale)) {
+          req.payload.logger.info(`Revalidating cookies banner`);
+          rebuildTag(`global__${req.locale}__cookies-banner`);
+        }
+
+        return doc;
+      },
+    ],
   },
 };
 
