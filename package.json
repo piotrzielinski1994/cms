@@ -20,7 +20,7 @@
     "reinstall": "cross-env NODE_OPTIONS=--no-deprecation rm -rf node_modules && rm npm-lock.yaml && npm --ignore-workspace install",
     "serve": "cross-env NODE_OPTIONS=--no-deprecation next start",
     "upgrade": "npm-check-updates -u && npm update",
-    "test": "generate:types && generate:importmap && vitest run",
+    "test": "vitest run",
     "test:watch": "vitest watch -u"
   },
   "dependencies": {
