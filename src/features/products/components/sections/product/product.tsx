@@ -10,13 +10,22 @@ import { ProductVariants } from '@/features/products/components/basic/product-va
 import placeholderDarkWebp from '@/placeholders/placeholder-dark.webp';
 import placeholderWebp from '@/placeholders/placeholder.webp';
 import { cn } from '@/utils/tailwind';
+import { useQueryParam } from '@/utils/url.hooks';
 import { ProductGallery } from '../../basic/product-gallery/product-gallery';
 
 const Product = () => {
   const headerHeight = useHeaderHeight();
+  const [asd, setAsd] = useQueryParam({ key: 'asd', defaultValue: 2 });
+  const [qwe, setQwe] = useQueryParam({ key: 'qwe', defaultValue: 2 });
 
   return (
     <Section>
+      <button type="button" onClick={() => setAsd(asd + 1)}>
+        {asd}
+      </button>
+      <button type="button" onClick={() => setQwe(qwe + 1)}>
+        {qwe}
+      </button>
       <Container
         className={cn(
           'grid grid-rows-[auto_1fr] gap-8 content-start',
