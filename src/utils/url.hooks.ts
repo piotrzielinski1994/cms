@@ -1,11 +1,11 @@
 'use client';
 
 import { useRouter, useSearchParams } from 'next/navigation';
+import { fromPairs, toPairs } from 'ramda';
 import { useMemo } from 'react';
 import z from 'zod';
 
-type UseQueryParamArgs<T = string> = {
-  key: string;
+type UseQueryParamsArgs<T> = {
   defaultValue: T;
   parse?: (v: string | undefined) => T;
   serialize?: (v: T) => string;
@@ -32,27 +32,38 @@ const takeDefaultParser =
     }
   };
 
-const useQueryParam = <T>({
-  key,
-  defaultValue,
-  parse = takeDefaultParser(defaultValue),
-  serialize = String,
-}: UseQueryParamArgs<T>): [T, (value: T) => void] => {
+const useQueryParams = <T extends Record<string, UseQueryParamsArgs<unknown>>>(
+  config: T,
+): [
+  { [K in keyof T]: T[K]['defaultValue'] },
+  (values: Partial<{ [K in keyof T]: T[K]['defaultValue'] }>) => void,
+] => {
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  const value = useMemo(() => {
-    const raw = searchParams.get(key) ?? undefined;
-    return parse(raw);
-  }, [searchParams, key, parse]);
+  const values = useMemo(() => {
+    const pairs = toPairs(config).map(([key, conf]) => {
+      const raw = searchParams.get(key as string) ?? undefined;
+      const parse = conf.parse ?? takeDefaultParser(conf.defaultValue);
+      return [key, parse(raw)] as [keyof T, T[keyof T]['defaultValue']];
+    });
+    return fromPairs(pairs);
+  }, [searchParams, config]);
 
-  const setValue = (val: T) => {
-    const params = new URLSearchParams(searchParams.toString());
-    params.set(key, serialize(val));
-    router.replace(`?${params.toString()}`, { scroll: false });
+  const setValues = (newValues: Partial<{ [K in keyof T]: T[K]['defaultValue'] }>) => {
+    const updated = toPairs(newValues).reduce(
+      (acc, [key, val]: [keyof T, T[keyof T]['defaultValue']]) => {
+        const serialize = config[key].serialize ?? String;
+        if (val != null) acc.set(key as string, serialize(val));
+        else acc.delete(key as string);
+        return acc;
+      },
+      new URLSearchParams(searchParams.toString()),
+    );
+    router.replace(`?${updated.toString()}`, { scroll: false });
   };
 
-  return [value, setValue];
+  return [values, setValues];
 };
 
-export { useQueryParam };
+export { useQueryParams };

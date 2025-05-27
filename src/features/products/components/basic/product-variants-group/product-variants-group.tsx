@@ -1,6 +1,6 @@
 import { optional } from '@/utils/optional';
 import { cn } from '@/utils/tailwind';
-import { useQueryParam } from '@/utils/url.hooks';
+import { useQueryParams } from '@/utils/url.hooks';
 
 type ProductVariantsGroupProps = {
   label: string;
@@ -13,9 +13,8 @@ type ProductVariantsGroupProps = {
 };
 
 const ProductVariantsGroup = (props: ProductVariantsGroupProps) => {
-  const [selectedVariant, setVariant] = useQueryParam<string | undefined>({
-    key: props.name,
-    defaultValue: undefined,
+  const [params, setParams] = useQueryParams({
+    [props.name]: { defaultValue: undefined as string | undefined },
   });
 
   return (
@@ -41,8 +40,8 @@ const ProductVariantsGroup = (props: ProductVariantsGroupProps) => {
               name={props.name}
               disabled={variant.value === '0'}
               className="sr-only"
-              checked={variant.value === selectedVariant}
-              onChange={(e) => setVariant(e.target.value)}
+              checked={variant.value === params[props.name]}
+              onChange={(e) => setParams({ [props.name]: e.target.value })}
             />
             <span>{variant.label}</span>
           </label>
