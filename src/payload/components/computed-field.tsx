@@ -4,7 +4,6 @@ import { Button, FieldLabel, TextInput, useField, useForm, useFormFields } from 
 import { TextFieldClientProps } from 'payload';
 import React, { useCallback, useEffect, useMemo } from 'react';
 import { slugify } from '../hooks/formatSlug';
-import './index.scss';
 
 type ComputedFieldProps = {
   fieldToUse: string;
@@ -59,11 +58,11 @@ const ComputedField: React.FC<ComputedFieldProps> = ({
   }, [targetFieldValue, readOnly, setValue, value, path, prev, formatter]);
 
   return (
-    <div className="field-type slug-field-component">
-      <div className="label-wrapper">
+    <div className="field-type">
+      <div className="flex justify-between items-center">
         <FieldLabel htmlFor={`field-${path}`} label={field.label} />
         {!!checkboxFieldPathFromProps && (
-          <Button className="lock-button" buttonStyle="none" onClick={handleLock}>
+          <Button className="m-0 pb-1" buttonStyle="none" onClick={handleLock}>
             {readOnly ? 'Unlock' : 'Lock'}
           </Button>
         )}
