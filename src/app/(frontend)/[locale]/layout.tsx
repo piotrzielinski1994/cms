@@ -15,7 +15,7 @@ import { GeistMono } from 'geist/font/mono';
 import { GeistSans } from 'geist/font/sans';
 import { draftMode } from 'next/headers';
 import { ComponentProps, PropsWithChildren } from 'react';
-import './globals.css';
+import './globals.scss';
 
 type LayoutProps = PropsWithChildren & LocalizedRoute;
 
