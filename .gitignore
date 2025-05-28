@@ -1,5 +1,6 @@
 # System
 **/.DS_Store
+**/.idea
 
 # Framework
 node_modules

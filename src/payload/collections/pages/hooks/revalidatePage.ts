@@ -1,6 +1,6 @@
 import type { Page } from '@/payload.types';
 import { rebuildPath, rebuildTag } from '@/utils/next';
-import { isLocale } from '@/utils/payload';
+import { isCollectionLocale } from '@/utils/payload';
 import type { CollectionAfterChangeHook, CollectionAfterDeleteHook } from 'payload';
 
 const revalidatePage: CollectionAfterChangeHook<Page> = ({
@@ -8,7 +8,7 @@ const revalidatePage: CollectionAfterChangeHook<Page> = ({
   previousDoc,
   req: { payload, context, locale },
 }) => {
-  if (!context.disableRevalidate && isLocale(locale)) {
+  if (!context.disableRevalidate && isCollectionLocale(locale)) {
     if (doc._status === 'published') {
       const path: Parameters<typeof rebuildPath>[0] =
         `/${locale}${doc.breadcrumbs!.at(-1)?.url ?? '/'}`;
@@ -36,7 +36,7 @@ const revalidatePage: CollectionAfterChangeHook<Page> = ({
 };
 
 const revalidateDelete: CollectionAfterDeleteHook<Page> = ({ doc, req: { context, locale } }) => {
-  if (!context.disableRevalidate && isLocale(locale)) {
+  if (!context.disableRevalidate && isCollectionLocale(locale)) {
     rebuildPath(`/${locale}${doc.breadcrumbs!.at(-1)?.url ?? '/'}`);
     rebuildTag('sitemap');
   }

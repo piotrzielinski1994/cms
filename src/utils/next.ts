@@ -2,7 +2,7 @@ import { GlobalRevalidationTag } from '@/payload/utils/globals';
 import { Locale } from 'next-intl';
 import { revalidatePath, revalidateTag } from 'next/cache';
 
-const rebuildTag = (tag: GlobalRevalidationTag | 'sitemap'): void => {
+const rebuildTag = (tag: GlobalRevalidationTag | 'sitemap' | 'redirects'): void => {
   return revalidateTag(tag);
 };
 
