@@ -3,7 +3,7 @@
 import { Button, FieldLabel, TextInput, useField, useForm, useFormFields } from '@payloadcms/ui';
 import { TextFieldClientProps } from 'payload';
 import React, { useCallback, useEffect, useMemo } from 'react';
-import { formatSlug } from '../fields/slug/slug.utils';
+import { slugify } from '../hooks/formatSlug';
 import './index.scss';
 
 type ComputedFieldProps = {
@@ -14,7 +14,7 @@ type ComputedFieldProps = {
 
 // Cannot pass functions as clientProps
 const formatters = {
-  toSlug: formatSlug,
+  toSlug: slugify,
   toPath: (sourceFieldValue: string, prevValue: string) => {
     if (prevValue.split('/').at(-1) === sourceFieldValue) return prevValue;
     return prevValue.replace(/[^/]+$/, sourceFieldValue);

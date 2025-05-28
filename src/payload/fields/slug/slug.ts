@@ -1,5 +1,5 @@
+import { formatSlugHook } from '@/payload/hooks/formatSlug';
 import type { CheckboxField, TextField } from 'payload';
-import { formatSlugHook } from './slug.utils';
 
 // Types ====================================
 

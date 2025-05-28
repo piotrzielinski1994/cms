@@ -1,22 +1,17 @@
 import type { FieldHook } from 'payload';
-import slugify from 'slugify';
+import slugifyFn from 'slugify';
 
-const format = (value: string): string => {
-  return slugify(value, { lower: true });
+const slugify = (value: string): string => {
+  return slugifyFn(value, { lower: true });
 };
 
-const formatSlug =
-  (fallback: string): FieldHook =>
+const formatSlugHook =
+  (fallbackField: string): FieldHook =>
   ({ data, operation, originalDoc, value }) => {
-    if (typeof value === 'string') return format(value);
+    if (typeof value === 'string') return slugify(value);
     if (operation !== 'create') return value;
-
-    const fallbackData = data?.[fallback] || originalDoc?.[fallback];
-    if (fallbackData && typeof fallbackData === 'string') {
-      return format(fallbackData);
-    }
-
-    return value;
+    const fallbackData = data?.[fallbackField] || originalDoc?.[fallbackField];
+    return typeof fallbackData === 'string' ? slugify(fallbackData) : value;
   };
 
-export { format, formatSlug };
+export { formatSlugHook, slugify };
