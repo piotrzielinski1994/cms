@@ -1,6 +1,6 @@
 import { optional } from '@/utils/optional';
 import { cn } from '@/utils/tailwind';
-import { useQueryParams } from '@/utils/url.hooks';
+import { useQueryParams } from '@/utils/query-params.hooks';
 
 type ProductVariantsGroupProps = {
   label: string;
