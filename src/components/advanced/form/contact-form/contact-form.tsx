@@ -21,7 +21,8 @@ const ContactForm = () => {
     resolver: zodResolver(
       z.object({
         email: z.string().email(),
-        age: z.number().int(),
+        integer: z.number().int(),
+        decimal: z.number(),
         message: z.string().min(50).max(2_000),
         options: z.string().min(1),
       }),
@@ -57,8 +58,24 @@ const ContactForm = () => {
         />
       </Form.Group>
       <Form.Group>
-        <Form.Label htmlFor={`${id}__age`}>Age</Form.Label>
-        <NumberInputContainer id={`${id}__age`} name="age" control={form.control} />
+        <Form.Label htmlFor={`${id}__integer`}>Integer</Form.Label>
+        <NumberInputContainer
+          id={`${id}__integer`}
+          maxIntLength={2}
+          name="integer"
+          control={form.control}
+        />
+      </Form.Group>
+      <Form.Group>
+        <Form.Label htmlFor={`${id}__decimal`}>Decimal</Form.Label>
+        <NumberInputContainer
+          id={`${id}__decimal`}
+          name="decimal"
+          control={form.control}
+          mode="decimal"
+          maxIntLength={5}
+          maxDecimalLength={2}
+        />
       </Form.Group>
       <Form.Group>
         <Form.Label htmlFor={`${id}__message`}>{t('contactForm.fields.message.label')}</Form.Label>

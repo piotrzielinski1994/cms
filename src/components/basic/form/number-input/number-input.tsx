@@ -1,5 +1,5 @@
 import { cn } from '@/utils/tailwind';
-import { isNumeric } from '@/utils/zod';
+import { isDecimal, isInteger } from '@/utils/zod';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { ChangeEvent, DetailedHTMLProps, InputHTMLAttributes, useState } from 'react';
@@ -7,7 +7,14 @@ import { Control, FieldValues, Path, useController } from 'react-hook-form';
 import Form from '../root/form';
 import { inputClassNames } from '../text-input/text-input';
 
-type NumberInputProps = Omit<
+// Types ====================================
+
+type NumberInputProps = IntegerInputProps | DecimalInputProps;
+type NumberInputContainerProps<T extends FieldValues> =
+  | (Omit<IntegerInputProps, 'name'> & { control: Control<T>; name: Path<T> })
+  | (Omit<DecimalInputProps, 'name'> & { control: Control<T>; name: Path<T> });
+
+type NumberInputPropsBase = Omit<
   DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
   'name'
 > & {
@@ -19,13 +26,16 @@ type NumberInputProps = Omit<
     decrement: string;
   };
 };
-
-type NumberInputContainerProps<T extends FieldValues> = Omit<NumberInputProps, 'name'> & {
-  control: Control<T>;
-  name: Path<T>;
+type IntegerInputProps = NumberInputPropsBase & { mode?: 'integer'; maxIntLength?: number };
+type DecimalInputProps = NumberInputPropsBase & {
+  mode: 'decimal';
+  maxIntLength?: number;
+  maxDecimalLength?: number;
 };
 
-const NumberInput = ({ error, step = 1, t, ...props }: NumberInputProps) => {
+// Variables ====================================
+
+const NumberInput = ({ error, step = 1, mode = 'integer', t, ...props }: NumberInputProps) => {
   const [rawValue, setRawValue] = useState<string>(props.value?.toString() ?? '');
 
   const changeValue = (delta: number) => {
@@ -43,7 +53,7 @@ const NumberInput = ({ error, step = 1, t, ...props }: NumberInputProps) => {
         <input
           type="tel"
           autoComplete="off"
-          {...props}
+          {...omitCustomProps({ ...props, mode })}
           value={rawValue}
           className={cn(
             inputClassNames.input({ isValid: !error }),
@@ -52,7 +62,9 @@ const NumberInput = ({ error, step = 1, t, ...props }: NumberInputProps) => {
           )}
           onChange={(e) => {
             const raw = e.target.value.replace(',', '.');
-            if (raw !== '' && !isNumeric.safeParse(raw).success) return;
+            const validator = getValidator({ ...props, mode });
+            if (raw !== '' && !validator.safeParse(raw).success) return;
+
             setRawValue(raw);
             props?.onChange?.(e);
           }}
@@ -106,6 +118,25 @@ const NumberInputContainer = <T extends FieldValues>(props: NumberInputContainer
       }}
     />
   );
+};
+
+const getValidator = (props: NumberInputProps) => {
+  if (props.mode === 'decimal') {
+    const { maxIntLength, maxDecimalLength } = props;
+    return isDecimal({ int: maxIntLength, frac: maxDecimalLength });
+  }
+
+  return isInteger(props.maxIntLength);
+};
+
+const omitCustomProps = (props: NumberInputProps) => {
+  if (props.mode === 'decimal') {
+    const { maxIntLength: _, maxDecimalLength: __, ...restProps } = props;
+    return restProps;
+  }
+
+  const { maxIntLength: _, ...restProps } = props;
+  return restProps;
 };
 
 export { NumberInput, NumberInputContainer };
