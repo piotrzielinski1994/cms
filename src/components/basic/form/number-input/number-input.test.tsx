@@ -51,7 +51,7 @@ describe('NumberInput', () => {
       await waitFor(() => getByLabelText(defaultProps.t.increment).click());
 
       expect(valueBefore).toBe('');
-      await waitFor(() => expect(input.value).toBe('10'));
+      expect(input.value).toBe('10');
     });
 
     it('should decrease the value by step', async () => {
@@ -62,7 +62,7 @@ describe('NumberInput', () => {
       await waitFor(() => getByLabelText(defaultProps.t.decrement).click());
 
       expect(valueBefore).toBe('');
-      await waitFor(() => expect(input.value).toBe('-5'));
+      expect(input.value).toBe('-5');
     });
   });
 
@@ -73,7 +73,7 @@ describe('NumberInput', () => {
 
       fireEvent.keyDown(input, { key: 'ArrowUp' });
 
-      await waitFor(() => expect(input.value).toBe('10'));
+      expect(input.value).toBe('10');
     });
 
     it('should decrease the value by step', async () => {
@@ -82,7 +82,77 @@ describe('NumberInput', () => {
 
       fireEvent.keyDown(input, { key: 'ArrowDown' });
 
-      await waitFor(() => expect(input.value).toBe('-5'));
+      expect(input.value).toBe('-5');
+    });
+  });
+
+  describe('Max integer/decimal parts limits', () => {
+    it('should prevent typing longer integer part than expected', async () => {
+      const { getByRole } = render(<ControlledInput {...defaultProps} maxIntLength={3} />);
+      const input = getByRole('textbox') as HTMLInputElement;
+
+      '1234'.split('').forEach((char) => {
+        fireEvent.input(input, { target: { value: input.value + char } });
+      });
+
+      expect(input.value).toBe('123');
+    });
+
+    it('should prevent typing longer decimal part than expected', async () => {
+      const { getByRole } = render(
+        <ControlledInput {...defaultProps} mode="decimal" maxDecimalLength={2} />,
+      );
+      const input = getByRole('textbox') as HTMLInputElement;
+
+      '12.345'.split('').forEach((char) => {
+        fireEvent.input(input, { target: { value: input.value + char } });
+      });
+
+      await waitFor(() => expect(input.value).toBe('12.34'));
+    });
+
+    it('should prevent going out of bounds on ArrowUp', async () => {
+      const { getByRole } = render(<ControlledInput {...defaultProps} maxIntLength={3} />);
+      const input = getByRole('textbox') as HTMLInputElement;
+
+      fireEvent.change(input, { target: { value: '999' } });
+      fireEvent.keyDown(input, { key: 'ArrowUp' });
+
+      expect(input.value).toBe('999');
+    });
+
+    it('should prevent going out of bounds on ArrowDown', async () => {
+      const { getByRole } = render(<ControlledInput {...defaultProps} maxIntLength={3} />);
+      const input = getByRole('textbox') as HTMLInputElement;
+
+      fireEvent.change(input, { target: { value: '-999' } });
+      fireEvent.keyDown(input, { key: 'ArrowDown' });
+
+      expect(input.value).toBe('-999');
+    });
+
+    it('should prevent going out of bounds on increment button click', async () => {
+      const { getByRole, getByLabelText } = render(
+        <ControlledInput {...defaultProps} maxIntLength={3} />,
+      );
+      const input = getByRole('textbox') as HTMLInputElement;
+
+      fireEvent.change(input, { target: { value: '999' } });
+      await waitFor(() => getByLabelText(defaultProps.t.increment).click());
+
+      expect(input.value).toBe('999');
+    });
+
+    it('should prevent going out of bounds on decrement button click', async () => {
+      const { getByRole, getByLabelText } = render(
+        <ControlledInput {...defaultProps} maxIntLength={3} />,
+      );
+      const input = getByRole('textbox') as HTMLInputElement;
+
+      fireEvent.change(input, { target: { value: '-999' } });
+      await waitFor(() => getByLabelText(defaultProps.t.decrement).click());
+
+      expect(input.value).toBe('-999');
     });
   });
 });
