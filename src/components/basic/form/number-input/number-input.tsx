@@ -1,9 +1,9 @@
 import { cn } from '@/utils/tailwind';
+import { isNumeric } from '@/utils/zod';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { ChangeEvent, DetailedHTMLProps, InputHTMLAttributes } from 'react';
+import { ChangeEvent, DetailedHTMLProps, InputHTMLAttributes, useState } from 'react';
 import { Control, FieldValues, Path, useController } from 'react-hook-form';
-import { z } from 'zod';
 import Form from '../root/form';
 import { inputClassNames } from '../text-input/text-input';
 
@@ -26,10 +26,14 @@ type NumberInputContainerProps<T extends FieldValues> = Omit<NumberInputProps, '
 };
 
 const NumberInput = ({ error, step = 1, t, ...props }: NumberInputProps) => {
+  const [rawValue, setRawValue] = useState<string>(props.value?.toString() ?? '');
+
   const changeValue = (delta: number) => {
     const current = Number(props.value ?? 0);
     const next = current + delta * step;
     const event = { target: { value: String(next) } } as ChangeEvent<HTMLInputElement>;
+
+    setRawValue(String(next));
     props?.onChange?.(event);
   };
 
@@ -40,15 +44,16 @@ const NumberInput = ({ error, step = 1, t, ...props }: NumberInputProps) => {
           type="tel"
           autoComplete="off"
           {...props}
-          value={props.value ?? ''}
+          value={rawValue}
           className={cn(
             inputClassNames.input({ isValid: !error }),
             'w-full pr-6',
             props?.className,
           )}
           onChange={(e) => {
-            const { success } = z.coerce.number().safeParse(e.target.value);
-            if (!success && e.target.value !== '') return;
+            const raw = e.target.value.replace(',', '.');
+            if (raw !== '' && !isNumeric.safeParse(raw).success) return;
+            setRawValue(raw);
             props?.onChange?.(e);
           }}
           onKeyDown={(e) => {
@@ -95,7 +100,8 @@ const NumberInputContainer = <T extends FieldValues>(props: NumberInputContainer
       {...rest}
       {...field}
       onChange={(e) => {
-        const value = e.target.value === '' ? null : Number(e.target.value);
+        const raw = e.target.value.replace(',', '.');
+        const value = raw === '' ? null : Number(raw);
         field.onChange(value);
       }}
     />

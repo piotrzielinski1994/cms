@@ -36,4 +36,6 @@ const getZodErrorsMap: (t: ReturnType<typeof useTranslations<'zod'>>) => z.ZodEr
     }
   };
 
-export { getZodErrorsMap };
+const isNumeric = z.string().regex(/^\d+(\.\d*)?$/);
+
+export { getZodErrorsMap, isNumeric };
