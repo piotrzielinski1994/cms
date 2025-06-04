@@ -21,6 +21,8 @@ type NumberInputPropsBase = Omit<
   name: string;
   error?: string;
   step?: number;
+  min?: number;
+  max?: number;
   t?: {
     increment: string;
     decrement: string;
@@ -39,10 +41,19 @@ const NumberInput = ({ error, step = 1, mode = 'integer', t, ...props }: NumberI
   const [rawValue, setRawValue] = useState<string>(props.value?.toString() ?? '');
 
   const changeValue = (delta: number) => {
-    const current = Number(props.value ?? 0);
-    const next = current + delta * step;
-    const event = { target: { value: String(next) } } as ChangeEvent<HTMLInputElement>;
+    const raw = rawValue.replace(',', '.') || '0';
+    const validator = getValidator({ ...props, mode });
+    if (!validator.safeParse(raw).success) return;
 
+    const next = Number(raw) + delta * step;
+    const [intPartRaw, decPart = ''] = String(next).split('.');
+    const intPart = intPartRaw.startsWith('-') ? intPartRaw.slice(1) : intPartRaw;
+
+    const { maxIntLength = Infinity, maxDecimalLength = Infinity } = props as DecimalInputProps;
+    if (intPart.length > maxIntLength) return;
+    if (decPart.length > maxDecimalLength) return;
+
+    const event = { target: { value: String(next) } } as ChangeEvent<HTMLInputElement>;
     setRawValue(String(next));
     props?.onChange?.(event);
   };
@@ -63,7 +74,8 @@ const NumberInput = ({ error, step = 1, mode = 'integer', t, ...props }: NumberI
           onChange={(e) => {
             const raw = e.target.value.replace(',', '.');
             const validator = getValidator({ ...props, mode });
-            if (raw !== '' && !validator.safeParse(raw).success) return;
+
+            if (!['', '-'].includes(raw) && !validator.safeParse(raw).success) return;
 
             setRawValue(raw);
             props?.onChange?.(e);
@@ -113,7 +125,7 @@ const NumberInputContainer = <T extends FieldValues>(props: NumberInputContainer
       {...field}
       onChange={(e) => {
         const raw = e.target.value.replace(',', '.');
-        const value = raw === '' ? null : Number(raw);
+        const value = ['', '-'].includes(raw) ? null : Number(raw);
         field.onChange(value);
       }}
     />
@@ -121,12 +133,18 @@ const NumberInputContainer = <T extends FieldValues>(props: NumberInputContainer
 };
 
 const getValidator = (props: NumberInputProps) => {
+  const isNegative = props.min === undefined || props.min < 0;
+
   if (props.mode === 'decimal') {
     const { maxIntLength, maxDecimalLength } = props;
-    return isDecimal({ int: maxIntLength, frac: maxDecimalLength });
+    return isDecimal({
+      int: maxIntLength,
+      frac: maxDecimalLength,
+      negative: isNegative,
+    });
   }
 
-  return isInteger(props.maxIntLength);
+  return isInteger(props.maxIntLength, isNegative);
 };
 
 const omitCustomProps = (props: NumberInputProps) => {
