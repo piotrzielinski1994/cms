@@ -20,8 +20,8 @@
     "reinstall": "cross-env NODE_OPTIONS=--no-deprecation rm -rf node_modules && rm npm-lock.yaml && npm --ignore-workspace install",
     "serve": "cross-env NODE_OPTIONS=--no-deprecation next start",
     "upgrade": "npm-check-updates -u && npm update",
-    "test": "vitest run",
-    "test:watch": "vitest watch -u"
+    "test": "vitest run --reporter=verbose",
+    "test:watch": "vitest watch --reporter=verbose -u"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",
