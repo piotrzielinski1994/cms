@@ -24,7 +24,7 @@ const meta: Meta<ComponentProps<typeof ControlledInput>> = {
   },
 };
 
-export const Default: StoryObj<typeof TextInput> = {
+const Default: StoryObj<typeof TextInput> = {
   render: ({ label, ...args }: Args) => (
     <>
       <Form.Group>
@@ -45,4 +45,5 @@ export const Default: StoryObj<typeof TextInput> = {
   ),
 };
 
+export { Default };
 export default meta;
