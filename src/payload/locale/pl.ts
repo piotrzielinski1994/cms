@@ -238,6 +238,22 @@ const pl = {
       },
     },
   },
+  storybook: {
+    basic: {
+      form: {
+        textInput: {
+          default: {
+            label: 'Pole Tekstowe',
+          },
+          invalid: {
+            label: 'Nieprawidłowe Pole',
+            value: 'Nieprawidłowa wartość',
+            error: 'Wiadomość błędu',
+          },
+        },
+      },
+    },
+  },
 } satisfies typeof en;
 
 export { pl };

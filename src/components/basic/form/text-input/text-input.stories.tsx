@@ -1,5 +1,6 @@
 import Form from '@/components/basic/form/root/form';
 import type { Meta, StoryObj } from '@storybook/react';
+import { useTranslations } from 'next-intl';
 import { useState, type ComponentProps } from 'react';
 import { TextInput } from './text-input';
 
@@ -24,25 +25,31 @@ const meta: Meta<ComponentProps<typeof ControlledInput>> = {
   },
 };
 
-const Default: StoryObj<typeof TextInput> = {
-  render: ({ label, ...args }: Args) => (
+const Render = ({ label, ...args }: Args) => {
+  const t = useTranslations('storybook.basic.form.textInput');
+
+  return (
     <>
       <Form.Group>
         <Form.Label htmlFor="input1">{label}</Form.Label>
         <ControlledInput {...args} id="input1" name="input1" />
       </Form.Group>
       <Form.Group>
-        <Form.Label htmlFor="input2">Invalid Input</Form.Label>
+        <Form.Label htmlFor="input2">{t('invalid.label')}</Form.Label>
         <TextInput
           {...args}
           id="input2"
           name="input2"
-          value="Invalid value"
-          error="Error message"
+          value={t('invalid.value')}
+          error={t('invalid.error')}
         />
       </Form.Group>
     </>
-  ),
+  );
+};
+
+const Default: StoryObj<typeof TextInput> = {
+  render: Render,
 };
 
 export { Default };

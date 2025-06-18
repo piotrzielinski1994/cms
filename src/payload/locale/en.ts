@@ -234,6 +234,22 @@ const en = {
       },
     },
   },
+  storybook: {
+    basic: {
+      form: {
+        textInput: {
+          default: {
+            label: 'Text Input',
+          },
+          invalid: {
+            label: 'Invalid Input',
+            value: 'Invalid value',
+            error: 'Error message',
+          },
+        },
+      },
+    },
+  },
 };
 
 export { en };

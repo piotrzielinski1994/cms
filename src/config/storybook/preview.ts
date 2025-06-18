@@ -1,9 +1,11 @@
 import '@/app/(frontend)/[locale]/globals.scss';
 import { withThemeByDataAttribute } from '@storybook/addon-themes';
 import { fromPairs, keys } from 'ramda';
-import React from 'react';
+import { ComponentType, createElement } from 'react';
 import { fontScales } from '../font-scales.config';
+import { contentLocales, defaultContentLocale } from '../locales.config';
 import { Theme, themes } from '../themes.config'; // TODO: Add support for path aliases in storybook
+import { withLocalization } from './components';
 
 const defaultTheme: Theme = 'light';
 const defaultFontScale: keyof typeof fontScales = 'base';
@@ -14,11 +16,12 @@ const decorators = [
     defaultTheme,
     attributeName: 'data-theme',
   }),
-  (Story: React.ComponentType, context) => {
-    const scale = context.globals.fontScale as keyof typeof fontScales;
+  (Story: ComponentType, context) => {
+    const scale: keyof typeof fontScales = context.globals.fontScale;
     document.documentElement.setAttribute('data-scale', scale);
-    return React.createElement(Story);
+    return createElement(Story);
   },
+  withLocalization,
 ];
 
 const globalTypes = {
@@ -29,6 +32,10 @@ const globalTypes = {
   fontScale: {
     defaultValue: defaultFontScale,
     toolbar: { title: 'Font Scale', items: keys(fontScales) },
+  },
+  locale: {
+    defaultValue: defaultContentLocale,
+    toolbar: { title: 'Locale', items: contentLocales },
   },
 };
 
