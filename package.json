@@ -11,6 +11,11 @@
     "build": "cross-env NODE_OPTIONS=--no-deprecation next build",
     "start": "cross-env NODE_OPTIONS=\"${NODE_OPTIONS} --no-deprecation\" next dev",
     "start:prod": "cross-env NODE_OPTIONS=--no-deprecation rm -rf .next && npm run build && npm start",
+    "upgrade": "npm-check-updates -u && npm update",
+    "test": "vitest run --reporter=verbose",
+    "test:watch": "vitest watch --reporter=verbose -u",
+    "storybook": "storybook dev -p 3001 -c ./src/config/storybook",
+    "storybook:build": "STORYBOOK_LOGLEVEL=debug storybook build -c ./src/config/storybook -o .storybook",
     "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
     "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
     "ii": "cross-env NODE_OPTIONS=--no-deprecation npm --ignore-workspace install",
@@ -18,10 +23,7 @@
     "lint:fix": "cross-env NODE_OPTIONS=--no-deprecation next lint --fix",
     "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
     "reinstall": "cross-env NODE_OPTIONS=--no-deprecation rm -rf node_modules && rm npm-lock.yaml && npm --ignore-workspace install",
-    "serve": "cross-env NODE_OPTIONS=--no-deprecation next start",
-    "upgrade": "npm-check-updates -u && npm update",
-    "test": "vitest run --reporter=verbose",
-    "test:watch": "vitest watch --reporter=verbose -u"
+    "serve": "cross-env NODE_OPTIONS=--no-deprecation next start"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",
@@ -72,6 +74,8 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
     "@next/bundle-analyzer": "^15.3.2",
+    "@storybook/addon-themes": "^9.0.12",
+    "@storybook/nextjs": "^9.0.12",
     "@tailwindcss/container-queries": "^0.1.1",
     "@tailwindcss/typography": "^0.5.16",
     "@testing-library/dom": "^10.4.0",
