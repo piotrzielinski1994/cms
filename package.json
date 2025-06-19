@@ -15,7 +15,7 @@
     "test": "vitest run --reporter=verbose",
     "test:watch": "vitest watch --reporter=verbose -u",
     "storybook:build": "STORYBOOK_LOGLEVEL=debug storybook build -c ./src/config/storybook -o .storybook",
-    "storybook": "storybook dev -c ./src/config/storybook",
+    "storybook": "storybook dev -c ./src/config/storybook -p 3001",
     "storybook:prod": "npx serve .storybook",
     "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
     "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",

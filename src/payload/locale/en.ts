@@ -238,8 +238,9 @@ const en = {
     basic: {
       form: {
         textInput: {
-          default: {
-            label: 'Text Input',
+          disabled: {
+            label: 'Disabled Input',
+            placeholder: 'Disabled',
           },
           invalid: {
             label: 'Invalid Input',

@@ -242,8 +242,9 @@ const pl = {
     basic: {
       form: {
         textInput: {
-          default: {
-            label: 'Pole Tekstowe',
+          disabled: {
+            label: 'Zablokowane Pole',
+            placeholder: 'Zablokowane',
           },
           invalid: {
             label: 'Nieprawidłowe Pole',

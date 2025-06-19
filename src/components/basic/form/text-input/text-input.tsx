@@ -17,11 +17,13 @@ type TextInputContainerProps<T extends FieldValues> = Omit<TextInputProps, 'name
 };
 
 const inputClassNames = {
-  input: ({ isValid }: { isValid: boolean }) => {
+  input: ({ isValid, isDisabled }: { isValid: boolean; isDisabled: boolean }) => {
     return cn(
       'p-2',
       'border border-solid border-current bg-input',
-      'hover:border-foreground/90 hover:ring-foreground/90',
+      'placeholder-foreground',
+      { 'hover:border-foreground/90 hover:ring-foreground/90': !isDisabled },
+      { 'text-foreground/50 placeholder-foreground/50': isDisabled },
       { '[&:not(:focus)]:text-red-500': !isValid },
       'outline-none ring-inset focus-within:ring-1 ring-current',
     );
@@ -35,7 +37,10 @@ const TextInput = ({ error, ...props }: TextInputProps) => {
         type="text"
         {...props}
         value={props.value ?? ''}
-        className={cn(inputClassNames.input({ isValid: !error }), props?.className)}
+        className={cn(
+          inputClassNames.input({ isValid: !error, isDisabled: !!props.disabled }),
+          props?.className,
+        )}
       />
       <Form.Error>{error}</Form.Error>
     </div>
