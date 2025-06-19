@@ -248,6 +248,15 @@ const en = {
             error: 'Error message',
           },
         },
+        checkbox: {
+          disabled: {
+            label: 'Disabled Checkbox',
+          },
+          invalid: {
+            label: 'Invalid Checkbox',
+            error: 'Error message',
+          },
+        },
       },
       button: {
         disabled: 'Disabled',

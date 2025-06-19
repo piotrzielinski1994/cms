@@ -252,6 +252,15 @@ const pl = {
             error: 'Wiadomość błędu',
           },
         },
+        checkbox: {
+          disabled: {
+            label: 'Zablokowane Pole Wyboru',
+          },
+          invalid: {
+            label: 'Nieprawidłowe Pole Wyboru',
+            error: 'Wiadomość błędu',
+          },
+        },
       },
       button: {
         disabled: 'Zablokowany',
