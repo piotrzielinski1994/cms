@@ -4,7 +4,7 @@ const config: StorybookConfig = {
   stories: ['../../../src/**/*.stories.tsx'],
   framework: '@storybook/nextjs',
   webpackFinal: async (config) => {
-    config.module.rules = config.module.rules?.filter(
+    config.module!.rules = config.module!.rules?.filter(
       (rule) =>
         !(
           rule &&
@@ -15,7 +15,7 @@ const config: StorybookConfig = {
         ),
     );
 
-    config.module.rules.push({
+    config.module!.rules!.push({
       test: /\.svg$/,
       use: [{ loader: '@svgr/webpack', options: { svgo: false } }],
     });

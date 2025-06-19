@@ -2,7 +2,7 @@ import { AdminBar } from '@/_old/components/AdminBar';
 import { CookiesBanner } from '@/components/advanced/cookies-banner/cookies-banner';
 import { SkipLink } from '@/components/advanced/skip-link/skip-link';
 import { Footer } from '@/components/layout/footer/footer.server';
-import { Header } from '@/components/layout/header/header';
+import { Header } from '@/components/layout/header/header.server';
 import { clientEnv } from '@/config/env.client.config';
 import { themes } from '@/config/themes.config';
 import { Providers } from '@/providers';
