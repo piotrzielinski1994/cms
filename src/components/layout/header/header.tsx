@@ -1,9 +1,8 @@
 import { Container } from '@/components/basic/container';
 import { Logo } from '@/components/basic/logo';
 import { Section } from '@/components/basic/section';
-import { getCachedGlobal } from '@/payload/utils/globals';
 import { cn } from '@/utils/tailwind';
-import { Locale } from 'next-intl';
+import { ComponentProps } from 'react';
 import { FontScaler } from './scaffold/font-scaler';
 import { HeaderHeightMonitor } from './scaffold/header-height-monitor';
 import { LocaleSwitcher } from './scaffold/locale-switcher';
@@ -11,11 +10,10 @@ import { HeaderNav } from './scaffold/navbar';
 import { ThemeSwitcher } from './scaffold/theme-switcher';
 
 type HeaderProps = {
-  locale: Locale;
+  items: ComponentProps<typeof HeaderNav>['items'];
 };
 
-const Header = async ({ locale }: HeaderProps) => {
-  const header = await getCachedGlobal('header', locale)();
+const Header = ({ items }: HeaderProps) => {
   return (
     <>
       <HeaderHeightMonitor />
@@ -33,7 +31,7 @@ const Header = async ({ locale }: HeaderProps) => {
       >
         <Container className={cn('flex items-center')}>
           <Logo className="text-2xl" />
-          <HeaderNav data={header} />
+          <HeaderNav items={items} />
         </Container>
       </Section>
     </>

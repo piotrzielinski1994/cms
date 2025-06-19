@@ -2,7 +2,7 @@ import { resolveServerComponent, withProviders } from '@/utils/tests';
 import { render, waitFor } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import { axe } from 'vitest-axe';
-import { Footer } from './footer';
+import { Footer } from './footer.server';
 
 vi.mock('@/payload/utils/globals', () => ({
   getCachedGlobal: vi.fn().mockReturnValue(
