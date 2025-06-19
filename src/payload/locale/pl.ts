@@ -253,6 +253,10 @@ const pl = {
           },
         },
       },
+      button: {
+        disabled: 'Zablokowany',
+        secondary: 'Drugorzędny',
+      },
     },
   },
 } satisfies typeof en;

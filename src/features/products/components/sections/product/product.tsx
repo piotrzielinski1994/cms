@@ -1,7 +1,7 @@
 'use client';
 
 import { Accordion } from '@/components/basic/accordion/accordion';
-import { Button } from '@/components/basic/button';
+import { Button } from '@/components/basic/button/button';
 import { Container } from '@/components/basic/container';
 import { Section } from '@/components/basic/section';
 import { useHeaderHeight } from '@/components/layout/header/header.hooks';

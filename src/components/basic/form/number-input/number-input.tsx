@@ -90,16 +90,18 @@ const NumberInput = ({ error, step = 1, mode = 'integer', t, ...props }: NumberI
           <button
             type="button"
             tabIndex={-1}
-            onClick={() => changeValue(1)}
+            disabled={props.disabled}
             aria-label={t?.increment}
+            onClick={() => changeValue(1)}
           >
             <ChevronUp size="1rem" />
           </button>
           <button
             type="button"
             tabIndex={-1}
-            onClick={() => changeValue(-1)}
+            disabled={props.disabled}
             aria-label={t?.decrement}
+            onClick={() => changeValue(-1)}
           >
             <ChevronDown size="1rem" />
           </button>

@@ -20,9 +20,11 @@ const TextArea = ({ error, className, ...props }: TextAreaProps) => {
       <textarea
         {...props}
         value={props.value ?? ''}
+        contentEditable={false}
         className={cn(
           inputClassNames.input({ isValid: !error }),
           'min-h-[calc(2*1px+2*0.5rem+3*1.5rem)]',
+          { 'resize-none': !!props.disabled },
           className,
         )}
       />

@@ -249,6 +249,10 @@ const en = {
           },
         },
       },
+      button: {
+        disabled: 'Disabled',
+        secondary: 'Secondary',
+      },
     },
   },
 };

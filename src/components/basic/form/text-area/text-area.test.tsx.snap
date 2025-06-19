@@ -3,7 +3,8 @@
 exports[`TextArea > should match the snapshot 1`] = `
 <div>
   <textarea
-    class="p-2 border border-solid border-current bg-input hover:border-foreground/90 hover:ring-foreground/90 outline-none ring-inset focus-within:ring-1 ring-current min-h-[calc(2*1px+2*0.5rem+3*1.5rem)]"
+    class="p-2 border border-solid border-current bg-input placeholder-foreground/50 [&:not(:disabled)]:hover:border-foreground/90 [&:not(:disabled)]:hover:ring-foreground/90 disabled:text-foreground/50 disabled:placeholder-foreground/50 outline-none ring-inset focus-within:ring-1 ring-current min-h-[calc(2*1px+2*0.5rem+3*1.5rem)]"
+    contenteditable="false"
     id="id"
     name="name"
   />

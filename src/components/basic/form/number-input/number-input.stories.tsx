@@ -2,16 +2,16 @@ import Form from '@/components/basic/form/root/form';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useTranslations } from 'next-intl';
 import { useState, type ComponentProps } from 'react';
-import { TextInput as TextInputComponent } from './text-input';
+import { NumberInput as NumberInputComponent } from './number-input';
 
-type Args = ComponentProps<typeof TextInputComponent> & {
+type Args = ComponentProps<typeof NumberInputComponent> & {
   label?: string;
 };
 
 const ControlledInput = (props: Args) => {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState<string>('');
   return (
-    <TextInputComponent
+    <NumberInputComponent
       {...props}
       onChange={(e) => setValue(e.currentTarget.value)}
       value={value}
@@ -21,17 +21,28 @@ const ControlledInput = (props: Args) => {
 
 const meta: Meta<ComponentProps<typeof ControlledInput>> = {
   component: ControlledInput,
-  title: 'Components/Basic/Form/TextInput',
+  title: 'Components/Basic/Form/NumberInput',
   argTypes: {
     label: { control: 'text' },
     placeholder: { control: 'text' },
     error: { control: 'text' },
+    maxIntLength: { control: 'number' },
+    maxDecimalLength: { control: 'number' },
     disabled: { control: 'boolean' },
+    mode: {
+      control: 'select',
+      options: ['integer', 'decimal'] satisfies Array<
+        ComponentProps<typeof NumberInputComponent>['mode']
+      >,
+    },
   },
   args: {
-    label: 'Text Input',
+    label: 'Number Input',
     placeholder: 'Type value',
+    maxIntLength: 5,
+    maxDecimalLength: 2,
     disabled: false,
+    mode: 'decimal',
   },
 };
 
@@ -46,7 +57,7 @@ const Render = ({ label, ...args }: Args) => {
       </Form.Group>
       <Form.Group>
         <Form.Label htmlFor="input2">{t('disabled.label')}</Form.Label>
-        <TextInputComponent
+        <NumberInputComponent
           id="input2"
           name="input2"
           placeholder={t('disabled.placeholder')}
@@ -55,7 +66,7 @@ const Render = ({ label, ...args }: Args) => {
       </Form.Group>
       <Form.Group>
         <Form.Label htmlFor="input3">{t('invalid.label')}</Form.Label>
-        <TextInputComponent
+        <NumberInputComponent
           {...args}
           id="input3"
           name="input3"
@@ -67,7 +78,7 @@ const Render = ({ label, ...args }: Args) => {
   );
 };
 
-const TextInput: StoryObj<typeof TextInputComponent> = { render: Render };
+const NumberInput: StoryObj<typeof NumberInputComponent> = { render: Render };
 
-export { TextInput };
+export { NumberInput };
 export default meta;

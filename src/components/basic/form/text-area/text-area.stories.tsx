@@ -2,26 +2,22 @@ import Form from '@/components/basic/form/root/form';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useTranslations } from 'next-intl';
 import { useState, type ComponentProps } from 'react';
-import { TextInput as TextInputComponent } from './text-input';
+import { TextArea as TextAreaComponent } from './text-area';
 
-type Args = ComponentProps<typeof TextInputComponent> & {
+type Args = ComponentProps<typeof TextAreaComponent> & {
   label?: string;
 };
 
 const ControlledInput = (props: Args) => {
   const [value, setValue] = useState('');
   return (
-    <TextInputComponent
-      {...props}
-      onChange={(e) => setValue(e.currentTarget.value)}
-      value={value}
-    />
+    <TextAreaComponent {...props} onChange={(e) => setValue(e.currentTarget.value)} value={value} />
   );
 };
 
 const meta: Meta<ComponentProps<typeof ControlledInput>> = {
   component: ControlledInput,
-  title: 'Components/Basic/Form/TextInput',
+  title: 'Components/Basic/Form/TextArea',
   argTypes: {
     label: { control: 'text' },
     placeholder: { control: 'text' },
@@ -29,7 +25,7 @@ const meta: Meta<ComponentProps<typeof ControlledInput>> = {
     disabled: { control: 'boolean' },
   },
   args: {
-    label: 'Text Input',
+    label: 'Text Area',
     placeholder: 'Type value',
     disabled: false,
   },
@@ -46,7 +42,7 @@ const Render = ({ label, ...args }: Args) => {
       </Form.Group>
       <Form.Group>
         <Form.Label htmlFor="input2">{t('disabled.label')}</Form.Label>
-        <TextInputComponent
+        <TextAreaComponent
           id="input2"
           name="input2"
           placeholder={t('disabled.placeholder')}
@@ -55,7 +51,7 @@ const Render = ({ label, ...args }: Args) => {
       </Form.Group>
       <Form.Group>
         <Form.Label htmlFor="input3">{t('invalid.label')}</Form.Label>
-        <TextInputComponent
+        <TextAreaComponent
           {...args}
           id="input3"
           name="input3"
@@ -67,7 +63,7 @@ const Render = ({ label, ...args }: Args) => {
   );
 };
 
-const TextInput: StoryObj<typeof TextInputComponent> = { render: Render };
+const TextArea: StoryObj<typeof TextAreaComponent> = { render: Render };
 
-export { TextInput };
+export { TextArea };
 export default meta;

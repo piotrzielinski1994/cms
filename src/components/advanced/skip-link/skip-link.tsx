@@ -1,4 +1,4 @@
-import { ButtonLink } from '@/components/basic/button';
+import { ButtonLink } from '@/components/basic/button/button';
 import { cn } from '@/utils/tailwind';
 import { useTranslations } from 'next-intl';
 
