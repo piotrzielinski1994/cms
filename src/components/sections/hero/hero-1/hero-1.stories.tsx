@@ -1,4 +1,6 @@
+import { DEFAULT_VALUE, getFallback } from '@/config/storybook/utils';
 import type { Meta, StoryObj } from '@storybook/react';
+import { useTranslations } from 'next-intl';
 import { type ComponentProps } from 'react';
 import { Hero1 as Hero1Component } from './hero-1';
 
@@ -13,17 +15,28 @@ const meta: Meta<Args> = {
     buttons: { control: 'object' },
   },
   args: {
-    heading: 'Heading',
-    subheading: 'Subheading',
+    heading: DEFAULT_VALUE,
+    subheading: DEFAULT_VALUE,
     buttons: [
-      { label: 'Button 1', href: '/path-1', variant: 'primary' },
-      { label: 'Button 2', href: '/path-2', variant: 'secondary' },
+      { label: DEFAULT_VALUE, href: '/path-1', variant: 'primary' },
+      { label: DEFAULT_VALUE, href: '/path-2', variant: 'secondary' },
     ],
   },
 };
 
-const Render = (args: Args) => {
-  return <Hero1Component {...args} />;
+const Render = ({ heading, subheading, buttons }: Args) => {
+  const t = useTranslations('fields');
+  const tButton = useTranslations('storybook.basic.button');
+  return (
+    <Hero1Component
+      heading={getFallback(heading, t('heading'))}
+      subheading={getFallback(subheading, t('subheading'))}
+      buttons={buttons?.map((it, index) => ({
+        ...it,
+        label: getFallback(it.label, `${tButton('default')} ${index + 1}`),
+      }))}
+    />
+  );
 };
 
 const Hero1: StoryObj<typeof Hero1Component> = { render: Render };
