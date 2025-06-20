@@ -1,3 +1,4 @@
+import { DEFAULT_VALUE, getFallback } from '@/config/storybook/utils';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useTranslations } from 'next-intl';
 import { useState, type ComponentProps } from 'react';
@@ -15,17 +16,17 @@ const meta: Meta<Args> = {
     name: { table: { disable: true } },
   },
   args: {
-    label: 'Radio',
+    label: DEFAULT_VALUE,
     disabled: false,
   },
 };
 
-const Render = (args) => {
+const Render = ({ label, ...args }: Args) => {
   const t = useTranslations('storybook.basic.form.radio');
   const [selected, setSelected] = useState('');
 
   const radiosProps = [
-    { ...args },
+    { ...args, label: getFallback(label, t('default.label')) },
     { label: t('disabled.label'), disabled: true },
     { label: t('invalid.label'), error: t('invalid.error') },
   ];

@@ -1,3 +1,4 @@
+import { DEFAULT_VALUE, getFallback } from '@/config/storybook/utils';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useTranslations } from 'next-intl';
 import { useState, type ComponentProps } from 'react';
@@ -25,17 +26,22 @@ const meta: Meta<ComponentProps<typeof ControlledCheckbox>> = {
     disabled: { control: 'boolean' },
   },
   args: {
-    label: 'Checkbox',
+    label: DEFAULT_VALUE,
     disabled: false,
   },
 };
 
-const Render = (args: Args) => {
+const Render = ({ label, ...args }: Args) => {
   const t = useTranslations('storybook.basic.form.checkbox');
 
   return (
     <div className="grid">
-      <ControlledCheckbox {...args} id="input1" name="input1" />
+      <ControlledCheckbox
+        {...args}
+        label={getFallback(label, t('default.label'))}
+        id="input1"
+        name="input1"
+      />
       <CheckboxComponent id="input2" name="input2" label={t('disabled.label')} disabled />
       <CheckboxComponent
         {...args}

@@ -1,3 +1,4 @@
+import { DEFAULT_VALUE, getFallback } from '@/config/storybook/utils';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useTranslations } from 'next-intl';
 import { type ComponentProps } from 'react';
@@ -21,7 +22,7 @@ const meta: Meta<Args> = {
     disabled: { control: 'boolean' },
   },
   args: {
-    label: 'Button',
+    label: DEFAULT_VALUE,
     variant: 'primary',
     disabled: false,
   },
@@ -31,7 +32,7 @@ const Render = ({ label, ...args }: Args) => {
   const t = useTranslations('storybook.basic.button');
   return (
     <div className="grid gap-4">
-      <ButtonComponent {...args}>{label}</ButtonComponent>
+      <ButtonComponent {...args}>{getFallback(label, t('default'))}</ButtonComponent>
       <ButtonComponent disabled>{t('disabled')}</ButtonComponent>
       <ButtonComponent variant="secondary">{t('secondary')}</ButtonComponent>
       <ButtonComponent variant="secondary" disabled>

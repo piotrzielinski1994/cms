@@ -1,5 +1,3 @@
-import { FontScaleProvider } from '@/providers/font-scale.provider';
-import { ThemeProvider } from '@/providers/theme.provider';
 import type { Meta, StoryObj } from '@storybook/react';
 import { type ComponentProps } from 'react';
 import { Header as HeaderComponent } from './header';
@@ -29,13 +27,7 @@ const meta: Meta<Args> = {
 };
 
 const Render = (args: Args) => {
-  return (
-    <ThemeProvider initialTheme="light">
-      <FontScaleProvider initialFontScale="base">
-        <HeaderComponent {...args} />
-      </FontScaleProvider>
-    </ThemeProvider>
-  );
+  return <HeaderComponent {...args} />;
 };
 
 const Header: StoryObj<typeof HeaderComponent> = { render: Render };

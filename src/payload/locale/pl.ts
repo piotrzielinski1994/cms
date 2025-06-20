@@ -242,6 +242,10 @@ const pl = {
     basic: {
       form: {
         textInput: {
+          default: {
+            label: 'Pole Tekstowe',
+            placeholder: 'Podaj wartość',
+          },
           disabled: {
             label: 'Zablokowane Pole',
             placeholder: 'Zablokowane',
@@ -252,7 +256,12 @@ const pl = {
             error: 'Komunikat błędu',
           },
         },
+        textArea: 'Wielowierszowe Pole Tekstowe',
+        numberInput: 'Pole Numeryczne',
         checkbox: {
+          default: {
+            label: 'Pole Wyboru',
+          },
           disabled: {
             label: 'Zablokowane Pole Wyboru',
           },
@@ -262,6 +271,9 @@ const pl = {
           },
         },
         radio: {
+          default: {
+            label: 'Pole Wyboru',
+          },
           disabled: {
             label: 'Zablokowane Pole Wyboru',
           },
@@ -270,11 +282,22 @@ const pl = {
             error: 'Komunikat błędu',
           },
         },
+        select: {
+          label: 'Pole Wyboru',
+          placeholder: 'Wybierz wartość',
+          option: 'Opcja',
+        },
       },
       button: {
+        default: 'Przycisk',
         disabled: 'Zablokowany',
         secondary: 'Drugorzędny',
       },
+      accordion: {
+        heading: 'Nagłówek',
+        content: 'Treść',
+      },
+      dialog: 'Okno Dialogowe',
     },
   },
 } satisfies typeof en;

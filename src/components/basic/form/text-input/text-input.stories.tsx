@@ -1,4 +1,5 @@
 import Form from '@/components/basic/form/root/form';
+import { DEFAULT_VALUE, getFallback } from '@/config/storybook/utils';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useTranslations } from 'next-intl';
 import { useState, type ComponentProps } from 'react';
@@ -29,20 +30,25 @@ const meta: Meta<ComponentProps<typeof ControlledInput>> = {
     disabled: { control: 'boolean' },
   },
   args: {
-    label: 'Text Input',
-    placeholder: 'Type value',
+    label: DEFAULT_VALUE,
+    placeholder: DEFAULT_VALUE,
     disabled: false,
   },
 };
 
-const Render = ({ label, ...args }: Args) => {
+const Render = ({ label, placeholder, ...args }: Args) => {
   const t = useTranslations('storybook.basic.form.textInput');
 
   return (
     <>
       <Form.Group>
-        <Form.Label htmlFor="input1">{label}</Form.Label>
-        <ControlledInput {...args} id="input1" name="input1" />
+        <Form.Label htmlFor="input1">{getFallback(label, t('default.label'))}</Form.Label>
+        <ControlledInput
+          {...args}
+          placeholder={getFallback(placeholder, t('default.placeholder'))}
+          id="input1"
+          name="input1"
+        />
       </Form.Group>
       <Form.Group>
         <Form.Label htmlFor="input2">{t('disabled.label')}</Form.Label>

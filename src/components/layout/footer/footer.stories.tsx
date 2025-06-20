@@ -21,7 +21,7 @@ const meta: Meta<Args> = {
   },
 };
 
-const Render = ({ label, ...args }: Args) => {
+const Render = (args: Args) => {
   return <FooterComponent {...args} />;
 };
 

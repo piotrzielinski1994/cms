@@ -238,6 +238,10 @@ const en = {
     basic: {
       form: {
         textInput: {
+          default: {
+            label: 'Text Input',
+            placeholder: 'Type value',
+          },
           disabled: {
             label: 'Disabled Input',
             placeholder: 'Disabled',
@@ -248,7 +252,12 @@ const en = {
             error: 'Error message',
           },
         },
+        numberInput: 'Number Input',
+        textArea: 'Text Area',
         checkbox: {
+          default: {
+            label: 'Checkbox',
+          },
           disabled: {
             label: 'Disabled Checkbox',
           },
@@ -258,6 +267,9 @@ const en = {
           },
         },
         radio: {
+          default: {
+            label: 'Radio Button',
+          },
           disabled: {
             label: 'Disabled Radio Button',
           },
@@ -266,11 +278,22 @@ const en = {
             error: 'Error message',
           },
         },
+        select: {
+          label: 'Select',
+          placeholder: 'Choose value',
+          option: 'Option',
+        },
       },
       button: {
+        default: 'Button',
         disabled: 'Disabled',
         secondary: 'Secondary',
       },
+      accordion: {
+        heading: 'Heading',
+        content: 'Content',
+      },
+      dialog: 'Dialog',
     },
   },
 };

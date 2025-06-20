@@ -1,4 +1,5 @@
 import Form from '@/components/basic/form/root/form';
+import { DEFAULT_VALUE, getFallback } from '@/config/storybook/utils';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useTranslations } from 'next-intl';
 import { useState, type ComponentProps } from 'react';
@@ -26,44 +27,57 @@ const meta: Meta<ComponentProps<typeof ControlledInput>> = {
     disabled: { control: 'boolean' },
   },
   args: {
-    label: 'Select Input',
-    placeholder: 'Choose value',
+    label: DEFAULT_VALUE,
+    placeholder: DEFAULT_VALUE,
     options: [
-      { value: 'one', label: 'One' },
-      { value: 'two', label: 'Two' },
+      { value: 'one', label: DEFAULT_VALUE },
+      { value: 'two', label: DEFAULT_VALUE },
     ],
     disabled: false,
   },
 };
 
-const Render = ({ label, ...args }: Args) => {
-  const t = useTranslations('storybook.basic.form.textInput');
+const Render = ({ label, placeholder, options, ...args }: Args) => {
+  const t = useTranslations('storybook.basic.form.select');
+  const t2 = useTranslations('storybook.basic.form.textInput');
 
   return (
     <>
       <Form.Group>
-        <Form.Label htmlFor="input1">{label}</Form.Label>
-        <ControlledInput {...args} id="input1" name="input1" />
+        <Form.Label htmlFor="input1">{getFallback(label, t('label'))}</Form.Label>
+        <ControlledInput
+          {...args}
+          options={options.map((it, index) => ({
+            value: it.value,
+            label: getFallback(it.label, `${t('option')} ${index + 1}`),
+          }))}
+          placeholder={getFallback(placeholder, t('placeholder'))}
+          id="input1"
+          name="input1"
+        />
       </Form.Group>
       <Form.Group>
-        <Form.Label htmlFor="input2">{t('disabled.label')}</Form.Label>
+        <Form.Label htmlFor="input2">{t2('disabled.label')}</Form.Label>
         <SelectComponent
           id="input2"
           name="input2"
-          placeholder={t('disabled.placeholder')}
+          placeholder={t2('disabled.placeholder')}
           disabled
           options={[]}
         />
       </Form.Group>
       <Form.Group>
-        <Form.Label htmlFor="input3">{t('invalid.label')}</Form.Label>
+        <Form.Label htmlFor="input3">{t2('invalid.label')}</Form.Label>
         <SelectComponent
           {...args}
           id="input3"
           name="input3"
-          value={t('invalid.value')}
-          error={t('invalid.error')}
-          options={args.options}
+          value={t2('invalid.value')}
+          error={t2('invalid.error')}
+          options={options.map((it, index) => ({
+            value: it.value,
+            label: `${t('option')} ${index + 1}`,
+          }))}
         />
       </Form.Group>
     </>

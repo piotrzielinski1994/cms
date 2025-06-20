@@ -1,4 +1,6 @@
+import { DEFAULT_VALUE, getFallback } from '@/config/storybook/utils';
 import type { Meta, StoryObj } from '@storybook/react';
+import { useTranslations } from 'next-intl';
 import { type ComponentProps } from 'react';
 import DialogComponent from './dialog';
 
@@ -24,15 +26,16 @@ const meta: Meta<Args> = {
     label: { control: 'text' },
   },
   args: {
-    label: 'Dialog',
+    label: DEFAULT_VALUE,
   },
 };
 
 const Render = ({ label, ...args }: Args) => {
+  const t = useTranslations('storybook.basic');
   return (
     <>
       {paragraphs}
-      <DialogComponent.Root {...args}>{label}</DialogComponent.Root>
+      <DialogComponent.Root {...args}>{getFallback(label, t('dialog'))}</DialogComponent.Root>
     </>
   );
 };

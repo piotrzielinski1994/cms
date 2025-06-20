@@ -1,20 +1,43 @@
+import { FontScaleProvider } from '@/providers/font-scale.provider';
 import { ThemeProvider } from '@/providers/theme.provider';
+import { FontScaleStore } from '@/store/font-scale';
+import { ThemeStore } from '@/store/theme';
 import { Locale, NextIntlClientProvider } from 'next-intl';
-import { ComponentType } from 'react';
+import { ComponentType, useEffect } from 'react';
 import { translations } from '../locales.config';
 
-const withProviders = (Story: ComponentType, context) => {
-  const locale: Locale = context.globals.locale;
+type StoryContext = {
+  globals: {
+    locale: Locale;
+    theme: ThemeStore['theme'];
+    fontScale: FontScaleStore['scale'];
+  };
+};
 
-  document.documentElement.setAttribute('data-locale', locale);
+const withProviders = (Story: ComponentType, context: StoryContext) => {
+  const { locale, theme, fontScale } = context.globals;
 
   return (
-    <NextIntlClientProvider locale={locale} messages={translations[locale]}>
-      <ThemeProvider initialTheme={context.globals.theme}>
-        <Story />
-      </ThemeProvider>
-    </NextIntlClientProvider>
+    <>
+      <DataAttributesSetter {...context.globals} />
+      <NextIntlClientProvider locale={locale} messages={translations[locale]}>
+        <ThemeProvider initialTheme={theme}>
+          <FontScaleProvider initialFontScale={fontScale}>
+            <Story />
+          </FontScaleProvider>
+        </ThemeProvider>
+      </NextIntlClientProvider>
+    </>
   );
+};
+
+const DataAttributesSetter = ({ locale, theme, fontScale }: StoryContext['globals']) => {
+  useEffect(() => {
+    document.documentElement.setAttribute('data-locale', locale);
+    document.documentElement.setAttribute('data-theme', theme);
+    document.documentElement.setAttribute('data-scale', fontScale);
+  }, [locale, theme, fontScale]);
+  return <></>;
 };
 
 export { withProviders };

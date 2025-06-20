@@ -1,4 +1,5 @@
 import Form from '@/components/basic/form/root/form';
+import { DEFAULT_VALUE, getFallback } from '@/config/storybook/utils';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useTranslations } from 'next-intl';
 import { useState, type ComponentProps } from 'react';
@@ -37,8 +38,8 @@ const meta: Meta<ComponentProps<typeof ControlledInput>> = {
     },
   },
   args: {
-    label: 'Number Input',
-    placeholder: 'Type value',
+    label: DEFAULT_VALUE,
+    placeholder: DEFAULT_VALUE,
     maxIntLength: 5,
     maxDecimalLength: 2,
     disabled: false,
@@ -46,32 +47,38 @@ const meta: Meta<ComponentProps<typeof ControlledInput>> = {
   },
 };
 
-const Render = ({ label, ...args }: Args) => {
-  const t = useTranslations('storybook.basic.form.textInput');
+const Render = ({ label, placeholder, ...args }: Args) => {
+  const t = useTranslations('storybook.basic.form');
+  const t2 = useTranslations('storybook.basic.form.textInput');
 
   return (
     <>
       <Form.Group>
-        <Form.Label htmlFor="input1">{label}</Form.Label>
-        <ControlledInput {...args} id="input1" name="input1" />
+        <Form.Label htmlFor="input1">{getFallback(label, t('numberInput'))}</Form.Label>
+        <ControlledInput
+          {...args}
+          placeholder={getFallback(placeholder, t2('default.placeholder'))}
+          id="input1"
+          name="input1"
+        />
       </Form.Group>
       <Form.Group>
-        <Form.Label htmlFor="input2">{t('disabled.label')}</Form.Label>
+        <Form.Label htmlFor="input2">{t2('disabled.label')}</Form.Label>
         <NumberInputComponent
           id="input2"
           name="input2"
-          placeholder={t('disabled.placeholder')}
+          placeholder={t2('disabled.placeholder')}
           disabled
         />
       </Form.Group>
       <Form.Group>
-        <Form.Label htmlFor="input3">{t('invalid.label')}</Form.Label>
+        <Form.Label htmlFor="input3">{t2('invalid.label')}</Form.Label>
         <NumberInputComponent
           {...args}
           id="input3"
           name="input3"
-          value={t('invalid.value')}
-          error={t('invalid.error')}
+          value={t2('invalid.value')}
+          error={t2('invalid.error')}
         />
       </Form.Group>
     </>

@@ -1,4 +1,6 @@
+import { DEFAULT_VALUE, getFallback } from '@/config/storybook/utils';
 import type { Meta, StoryObj } from '@storybook/react';
+import { useTranslations } from 'next-intl';
 import { type ComponentProps } from 'react';
 import { Accordion as AccordionComponent } from './accordion';
 
@@ -13,16 +15,24 @@ const meta: Meta<Args> = {
   },
   args: {
     items: [
-      { heading: 'Heading 1', content: 'Content 1' },
-      { heading: 'Heading 2', content: 'Content 2' },
-      { heading: 'Heading 3', content: 'Content 3' },
+      { heading: DEFAULT_VALUE, content: DEFAULT_VALUE },
+      { heading: DEFAULT_VALUE, content: DEFAULT_VALUE },
+      { heading: DEFAULT_VALUE, content: DEFAULT_VALUE },
     ],
     activeItemIndex: 0,
   },
 };
 
 const Render = (args: Args) => {
-  return <AccordionComponent {...args} />;
+  const t = useTranslations('storybook.basic.accordion');
+  const props = {
+    ...args,
+    items: args.items.map((item) => ({
+      heading: getFallback(item.heading, t('heading')),
+      content: getFallback(item.content, t('content')),
+    })),
+  };
+  return <AccordionComponent {...props} />;
 };
 
 const Accordion: StoryObj<typeof AccordionComponent> = { render: Render };
