@@ -24,15 +24,16 @@ const checkboxClassNames = {
   ),
   checkbox: ({ isValid }: { isValid: boolean }) => {
     return cn(
-      'w-[1lh] h-[1lh] p-[0.15lh]',
+      'w-[1lh] h-[1lh]',
       'border border-solid border-current bg-input',
       'group-hover:group-has-[input:enabled]:border-foreground/90',
       'group-hover:group-has-[input:enabled]:ring-foreground/90',
       { '[&:not(:focus)]:text-red-500': !isValid },
       'ring-inset focus-within:ring-1 ring-current',
+      'grid place-items-center',
     );
   },
-  icon: cn('hidden group-has-[:checked]:block', 'w-[0.7lh] h-[0.7lh] -ml-[0.03lh]'),
+  icon: cn('hidden group-has-[:checked]:block', 'w-[0.7lh] h-[0.7lh]'),
 };
 
 const Checkbox = ({ label, error, className, ...props }: CheckboxProps) => {
@@ -56,4 +57,4 @@ const CheckboxContainer = <T extends FieldValues>(props: CheckboxContainerProps<
   return <Checkbox error={fieldState.error?.message} {...rest} {...field} />;
 };
 
-export { Checkbox, CheckboxContainer };
+export { Checkbox, checkboxClassNames, CheckboxContainer };
