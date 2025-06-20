@@ -18,7 +18,7 @@ const meta: Meta<Args> = {
   args: {
     isReversed: false,
     image: {
-      src: placeholderWebp.src,
+      src: placeholderWebp.src, // TODO: Fix image loader for storybook
       alt: 'Light',
       width: placeholderWebp.width,
       height: placeholderWebp.height,
