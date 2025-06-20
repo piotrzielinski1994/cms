@@ -2,49 +2,58 @@
 
 import { ButtonLink } from '@/components/basic/button/button';
 import { Image as BasicImage } from '@/components/basic/image/image';
-import { themes } from '@/config/themes.config';
-import { ImageBlock1Block, Image as ImageModel, Page } from '@/payload.types';
-import { useThemeStore } from '@/store/theme';
 import { cn } from '@/utils/tailwind';
+import { StaticImageData } from 'next/image';
+import { ComponentProps } from 'react';
 
-const ImageBlock1 = ({ isReversed, image, heading, subheading, buttons }: ImageBlock1Block) => {
-  const theme = useThemeStore((store) => store.theme);
-  const { default: defaultImage, dark: darkImage } = image as {
-    default: ImageModel;
-    dark?: ImageModel;
+type ImageBlock1Props = {
+  isReversed?: boolean;
+  image: Omit<StaticImageData, 'width' | 'height'> & {
+    alt: string;
+    width?: number;
+    height?: number;
   };
-  const prefersDark = themes[theme]._type === 'dark';
-  const imageToShow = !prefersDark ? defaultImage : (darkImage ?? defaultImage);
+  heading?: string;
+  subheading?: string;
+  buttons?: Array<Pick<ComponentProps<typeof ButtonLink>, 'href' | 'variant'> & { label: string }>;
+};
 
+const ImageBlock1 = ({
+  isReversed,
+  image,
+  heading,
+  subheading,
+  buttons = [],
+}: ImageBlock1Props) => {
   return (
     <div className="grid md:grid-cols-2">
       <div
-        className={cn(
-          'grid justify-items-start content-center gap-4',
-          isReversed ? 'md:order-2' : 'md:order-1',
-        )}
+        className={cn('grid justify-items-start content-center gap-4', 'md:order-1', {
+          'md:order-2': isReversed,
+        })}
       >
         <h3 className="text-4xl font-semibold">{heading}</h3>
         {subheading && <p>{subheading}</p>}
-        {buttons?.map((button) => {
-          const path = (button?.reference?.value as Page).path;
-          return (
-            <ButtonLink
-              key={button.label}
-              href={`${path}${button.selector ? '#' + button.selector : ''}`}
-            >
-              {button.label}
-            </ButtonLink>
-          );
-        })}
+        {buttons.length > 0 && (
+          <div className="flex gap-4">
+            {buttons.map((button) => {
+              return (
+                <ButtonLink key={button.label} href={button.href} variant={button.variant}>
+                  {button.label}
+                </ButtonLink>
+              );
+            })}
+          </div>
+        )}
       </div>
-      <div className={cn(isReversed ? 'md:order-1' : 'md:order-2')}>
+      <div className={cn('md:order-2', { 'md:order-1': isReversed })}>
         <BasicImage
-          src={imageToShow.url ?? ''}
-          alt={imageToShow.alt}
+          className="bg-background1 min-h-full"
+          src={image.src}
+          alt={image.alt}
           aspectRatio={
-            Boolean(imageToShow.width && imageToShow.height)
-              ? { width: imageToShow.width!, height: imageToShow.height! }
+            Boolean(image.width && image.height)
+              ? { width: image.width!, height: image.height! }
               : undefined
           }
         />

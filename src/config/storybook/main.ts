@@ -15,10 +15,16 @@ const config: StorybookConfig = {
         ),
     );
 
-    config.module!.rules!.push({
-      test: /\.svg$/,
-      use: [{ loader: '@svgr/webpack', options: { svgo: false } }],
-    });
+    config.module!.rules!.push(
+      {
+        test: /\.svg$/,
+        use: [{ loader: '@svgr/webpack', options: { svgo: false } }],
+      },
+      {
+        test: /\.webp$/,
+        type: 'asset/resource',
+      },
+    );
 
     return config;
   },

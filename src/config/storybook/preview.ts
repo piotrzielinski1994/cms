@@ -5,7 +5,7 @@ import { ComponentType, createElement } from 'react';
 import { fontScales } from '../font-scales.config';
 import { contentLocales, defaultContentLocale } from '../locales.config';
 import { Theme, themes } from '../themes.config'; // TODO: Add support for path aliases in storybook
-import { withLocalization } from './components';
+import { withProviders } from './components';
 
 const defaultTheme: Theme = 'light';
 const defaultFontScale: keyof typeof fontScales = 'base';
@@ -21,7 +21,7 @@ const decorators = [
     document.documentElement.setAttribute('data-scale', scale);
     return createElement(Story);
   },
-  withLocalization,
+  withProviders,
 ];
 
 const globalTypes = {
