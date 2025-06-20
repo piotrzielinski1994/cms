@@ -6,20 +6,20 @@ exports[`Checkbox > should match the snapshot 1`] = `
     class="grid gap-1 content-start grid-rows-[auto_1fr]"
   >
     <label
-      class="self-end grid grid-cols-[auto_1fr] gap-2 cursor-pointer"
+      class="self-end group has-[:disabled]:text-foreground/50 grid grid-cols-[auto_1fr] gap-2 cursor-pointer has-[:disabled]:cursor-not-allowed"
     >
       <div
-        class="border border-solid border-current bg-input placeholder-foreground/50 [&:not(:disabled)]:hover:border-foreground/90 [&:not(:disabled)]:hover:ring-foreground/90 disabled:text-foreground/50 outline-none ring-inset focus-within:ring-1 ring-current w-[1lh] h-[1lh] p-[0.15lh]"
+        class="border border-solid border-current bg-input placeholder-foreground/50 [&:not(:disabled)]:hover:border-foreground/90 [&:not(:disabled)]:hover:ring-foreground/90 disabled:text-foreground/50 outline-none ring-inset focus-within:ring-1 ring-current w-[1lh] h-[1lh] p-[0.15lh] group-has-[:disabled]:hover:border-foreground/50"
       >
         <input
-          class="peer sr-only w-0 h-0"
+          class="sr-only"
           id="id"
           name="name"
           type="checkbox"
         />
         <svg
           aria-hidden="true"
-          class="lucide lucide-check hidden peer-checked:block w-[0.7lh] h-[0.7lh] -ml-[0.05lh]"
+          class="lucide lucide-check hidden group-has-[:checked]:block w-[0.7lh] h-[0.7lh] -ml-[0.05lh]"
           fill="none"
           height="24"
           stroke="currentColor"

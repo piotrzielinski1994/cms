@@ -20,19 +20,23 @@ const Checkbox = ({ label, error, className, ...props }: CheckboxProps) => {
   return (
     <Form.Group>
       <Form.Label
-        className={cn('grid grid-cols-[auto_1fr] gap-2', 'cursor-pointer', {
-          'cursor-not-allowed': !!props.disabled,
-        })}
+        className={cn(
+          'group',
+          'has-[:disabled]:text-foreground/50',
+          'grid grid-cols-[auto_1fr] gap-2',
+          'cursor-pointer has-[:disabled]:cursor-not-allowed',
+        )}
       >
         <div
           className={cn(
             inputClassNames.input({ isValid: !error }),
             'w-[1lh] h-[1lh] p-[0.15lh]',
+            'group-has-[:disabled]:hover:border-foreground/50',
             className,
           )}
         >
-          <input {...props} type="checkbox" className="peer sr-only w-0 h-0" />
-          <Check className="hidden peer-checked:block w-[0.7lh] h-[0.7lh] -ml-[0.05lh]" />
+          <input {...props} type="checkbox" className="sr-only" />
+          <Check className="hidden group-has-[:checked]:block w-[0.7lh] h-[0.7lh] -ml-[0.05lh]" />
         </div>
         <span>{label}</span>
       </Form.Label>
