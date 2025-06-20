@@ -31,7 +31,7 @@ const Select = ({ error, options, placeholder = '', className, ...props }: Selec
           defaultValue=""
           className={cn(
             'appearance-none',
-            { 'cursor-pointer': !props.disabled },
+            '[&:not(:disabled)]:cursor-pointer',
             inputClassNames.input({ isValid: !error }),
             'col-start-1 row-start-1',
             className,

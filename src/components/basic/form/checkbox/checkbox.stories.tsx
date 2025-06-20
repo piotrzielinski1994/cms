@@ -7,6 +7,7 @@ type Args = ComponentProps<typeof CheckboxComponent>;
 
 const ControlledCheckbox = (props: Args) => {
   const [isChecked, setIsChecked] = useState(false);
+  console.log('@@@ isChecked | ', isChecked);
   return (
     <CheckboxComponent
       {...props}
@@ -25,8 +26,7 @@ const meta: Meta<ComponentProps<typeof ControlledCheckbox>> = {
     disabled: { control: 'boolean' },
   },
   args: {
-    label:
-      'Checkbox Checkbox Checkbox Checkbox Checkbox Checkbox Checkbox Checkbox Checkbox Checkbox Checkbox',
+    label: 'Checkbox',
     disabled: false,
   },
 };
