@@ -25,7 +25,7 @@ const buttonClassNames = {
     secondary: cn(
       'text-primary',
       'disabled:border-primary/50 disabled:text-primary/50',
-      'bg-transparent [&:not(:disabled)]:hover:bg-foreground/5',
+      'bg-background [&:not(:disabled)]:hover:bg-foreground/5',
     ),
   },
 };
