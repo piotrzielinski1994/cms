@@ -9,7 +9,7 @@ exports[`Select > should match the snapshot 1`] = `
       class="grid items-center"
     >
       <select
-        class="appearance-none [&:not(:disabled)]:cursor-pointer p-2 border border-solid border-current bg-input placeholder-foreground/50 [&:not(:disabled)]:hover:border-foreground/90 [&:not(:disabled)]:hover:ring-foreground/90 disabled:text-foreground/50 outline-none ring-inset focus-within:ring-1 ring-current col-start-1 row-start-1"
+        class="appearance-none [&:not(:disabled)]:cursor-pointer p-2 border border-solid border-current bg-input placeholder-foreground/50 [&:enabled]:hover:border-foreground/90 [&:enabled]:hover:ring-foreground/90 disabled:text-foreground/50 outline-none ring-inset focus-within:ring-1 ring-current col-start-1 row-start-1"
         id="id"
         name="name"
       >

@@ -22,7 +22,7 @@ const inputClassNames = {
       'p-2',
       'border border-solid border-current bg-input',
       'placeholder-foreground/50',
-      '[&:not(:disabled)]:hover:border-foreground/90 [&:not(:disabled)]:hover:ring-foreground/90',
+      '[&:enabled]:hover:border-foreground/90 [&:enabled]:hover:ring-foreground/90',
       'disabled:text-foreground/50',
       { '[&:not(:focus)]:text-red-500': !isValid },
       'outline-none ring-inset focus-within:ring-1 ring-current',

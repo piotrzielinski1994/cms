@@ -3,7 +3,6 @@ import { Check } from 'lucide-react';
 import { InputHTMLAttributes } from 'react';
 import { Control, FieldValues, Path, useController } from 'react-hook-form';
 import Form from '../root/form';
-import { inputClassNames } from '../text-input/text-input';
 
 type CheckboxProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'name' | 'type'> & {
   label: string;
@@ -16,27 +15,33 @@ type CheckboxContainerProps<T extends FieldValues> = Omit<CheckboxProps, 'name'>
   name: Path<T>;
 };
 
+const checkboxClassNames = {
+  wrapper: cn(
+    'group',
+    'has-[:disabled]:text-foreground/50',
+    'grid grid-cols-[auto_1fr] gap-2',
+    'cursor-pointer has-[:disabled]:cursor-not-allowed',
+  ),
+  checkbox: ({ isValid }: { isValid: boolean }) => {
+    return cn(
+      'w-[1lh] h-[1lh] p-[0.15lh]',
+      'border border-solid border-current bg-input',
+      'group-hover:group-has-[input:enabled]:border-foreground/90',
+      'group-hover:group-has-[input:enabled]:ring-foreground/90',
+      { '[&:not(:focus)]:text-red-500': !isValid },
+      'ring-inset focus-within:ring-1 ring-current',
+    );
+  },
+  icon: cn('hidden group-has-[:checked]:block', 'w-[0.7lh] h-[0.7lh] -ml-[0.03lh]'),
+};
+
 const Checkbox = ({ label, error, className, ...props }: CheckboxProps) => {
   return (
     <Form.Group>
-      <Form.Label
-        className={cn(
-          'group',
-          'has-[:disabled]:text-foreground/50',
-          'grid grid-cols-[auto_1fr] gap-2',
-          'cursor-pointer has-[:disabled]:cursor-not-allowed',
-        )}
-      >
-        <div
-          className={cn(
-            inputClassNames.input({ isValid: !error }),
-            'w-[1lh] h-[1lh] p-[0.15lh]',
-            'group-has-[:disabled]:hover:border-foreground/50',
-            className,
-          )}
-        >
+      <Form.Label className={checkboxClassNames.wrapper}>
+        <div className={cn(checkboxClassNames.checkbox({ isValid: !error }), className)}>
           <input {...props} type="checkbox" className="sr-only" />
-          <Check className="hidden group-has-[:checked]:block w-[0.7lh] h-[0.7lh] -ml-[0.05lh]" />
+          <Check className={checkboxClassNames.icon} />
         </div>
         <span>{label}</span>
       </Form.Label>
