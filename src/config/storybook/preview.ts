@@ -9,7 +9,6 @@ const defaultTheme: Theme = 'light';
 const defaultFontScale: keyof typeof fontScales = 'base';
 
 const decorators = [withProviders];
-
 const globalTypes = {
   theme: {
     defaultValue: defaultTheme,
