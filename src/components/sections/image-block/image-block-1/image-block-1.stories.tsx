@@ -34,7 +34,7 @@ const meta: Meta<Args> = {
 
 const Render = (args: Args) => {
   return (
-    <div className="grid gap-4">
+    <div className="grid gap-16">
       <ImageBlock1Component {...args} />
       <ImageBlock1Component {...args} isReversed />
     </div>
