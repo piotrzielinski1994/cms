@@ -257,6 +257,15 @@ const en = {
             error: 'Error message',
           },
         },
+        radio: {
+          disabled: {
+            label: 'Disabled Radio Button',
+          },
+          invalid: {
+            label: 'Invalid Radio Button',
+            error: 'Error message',
+          },
+        },
       },
       button: {
         disabled: 'Disabled',

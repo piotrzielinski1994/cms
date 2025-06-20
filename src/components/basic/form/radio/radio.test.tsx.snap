@@ -1,0 +1,48 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Radio > should match the snapshot 1`] = `
+<div>
+  <div
+    class="grid gap-1 content-start grid-rows-[auto_1fr]"
+  >
+    <label
+      class="self-end group has-[:disabled]:text-foreground/50 grid grid-cols-[auto_1fr] gap-2 cursor-pointer has-[:disabled]:cursor-not-allowed"
+    >
+      <div
+        class="w-[1lh] h-[1lh] p-[0.15lh] border border-solid border-current bg-input group-hover:group-has-[input:enabled]:border-foreground/90 group-hover:group-has-[input:enabled]:ring-foreground/90 ring-inset focus-within:ring-1 ring-current"
+      >
+        <input
+          class="sr-only"
+          id="id"
+          name="name"
+          type="radio"
+        />
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-check hidden group-has-[:checked]:block w-[0.7lh] h-[0.7lh] -ml-[0.03lh]"
+          fill="none"
+          height="24"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M20 6 9 17l-5-5"
+          />
+        </svg>
+      </div>
+      <span>
+        Label
+      </span>
+    </label>
+    <span
+      class="min-h-[1em] text-sm text-red-500 leading-none"
+      role="alert"
+    />
+  </div>
+</div>
+`;

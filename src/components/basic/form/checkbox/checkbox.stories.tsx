@@ -7,7 +7,6 @@ type Args = ComponentProps<typeof CheckboxComponent>;
 
 const ControlledCheckbox = (props: Args) => {
   const [isChecked, setIsChecked] = useState(false);
-  console.log('@@@ isChecked | ', isChecked);
   return (
     <CheckboxComponent
       {...props}

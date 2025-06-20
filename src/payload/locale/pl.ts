@@ -249,7 +249,7 @@ const pl = {
           invalid: {
             label: 'Nieprawidłowe Pole',
             value: 'Nieprawidłowa wartość',
-            error: 'Wiadomość błędu',
+            error: 'Komunikat błędu',
           },
         },
         checkbox: {
@@ -258,7 +258,16 @@ const pl = {
           },
           invalid: {
             label: 'Nieprawidłowe Pole Wyboru',
-            error: 'Wiadomość błędu',
+            error: 'Komunikat błędu',
+          },
+        },
+        radio: {
+          disabled: {
+            label: 'Zablokowane Pole Wyboru',
+          },
+          invalid: {
+            label: 'Nieprawidłowe Pole Wyboru',
+            error: 'Komunikat błędu',
           },
         },
       },
