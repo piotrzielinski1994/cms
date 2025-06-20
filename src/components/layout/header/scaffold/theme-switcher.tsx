@@ -1,7 +1,7 @@
 'use client';
 
 import { themes } from '@/config/themes.config';
-import ContrastIcon from '@/icons/contrast.svg';
+import ContrastSvg from '@/icons/contrast.svg';
 import { useThemeStore } from '@/store/theme';
 import { cn } from '@/utils/tailwind';
 import * as SelectPrimitive from '@radix-ui/react-select';
@@ -21,7 +21,7 @@ const ThemeSwitcher: FC = () => {
         aria-label={t('themeSwitcher')}
       >
         <SelectPrimitive.Value>
-          <ContrastIcon />
+          <ContrastSvg />
         </SelectPrimitive.Value>
       </SelectPrimitive.Trigger>
       <SelectPrimitive.Portal>
@@ -42,7 +42,7 @@ const ThemeSwitcher: FC = () => {
                 )}
               >
                 <SelectPrimitive.ItemText>
-                  <ContrastIcon
+                  <ContrastSvg
                     className="theme-selector"
                     style={{ '--_bg': themes[it].background, '--_text': themes[it].foreground }}
                   />
