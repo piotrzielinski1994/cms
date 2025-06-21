@@ -38,31 +38,28 @@ const Render = ({ image, heading, subheading, buttons, ...args }: Args) => {
   const t = useTranslations('storybook.section.imageBlock.imageBlock1');
   const t2 = useTranslations('fields');
   const tButton = useTranslations('storybook.basic.button');
-  const props = {
-    ...args,
-    image: { ...image, alt: getFallback(image.alt, t2('image')) },
-    heading: getFallback(heading, t2('heading')),
-    subheading: getFallback(subheading, t2('subheading')),
-    buttons: buttons?.map((it, index) => ({
-      ...it,
-      label: getFallback(it.label, `${tButton('default')} ${index + 1}`),
-    })),
-  };
 
   return (
     <div className="grid gap-16">
-      <ImageBlock1Component {...props} />
       <ImageBlock1Component
-        {...{
-          image: { ...image, alt: getFallback(image.alt, t2('image')) },
-          heading: t('reversed'),
-          subheading: t2('subheading'),
-          buttons: [1, 2]?.map((it) => ({
-            label: `${tButton('default')} ${it}`,
-            href: `/path-${it}`,
-            variant: it === 1 ? 'primary' : 'secondary',
-          })),
-        }}
+        {...args}
+        image={{ ...image, alt: getFallback(image.alt, t2('image')) }}
+        heading={getFallback(heading, t2('heading'))}
+        subheading={getFallback(subheading, t2('subheading'))}
+        buttons={buttons?.map((it, index) => ({
+          ...it,
+          label: getFallback(it.label, `${tButton('default')} ${index + 1}`),
+        }))}
+      />
+      <ImageBlock1Component
+        image={{ ...image, alt: getFallback(image.alt, t2('image')) }}
+        heading={t('reversed')}
+        subheading={t2('subheading')}
+        buttons={[1, 2]?.map((it) => ({
+          label: `${tButton('default')} ${it}`,
+          href: `/path-${it}`,
+          variant: it === 1 ? 'primary' : 'secondary',
+        }))}
         isReversed
       />
     </div>
