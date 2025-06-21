@@ -1,6 +1,6 @@
-import accordionStory from '@/components/basic/accordion/accordion.stories';
-import imageBlock1Story from '@/components/sections/image-block/image-block-1/image-block-1.stories';
+import path from 'path';
 import puppeteer, { ImageFormat } from 'puppeteer';
+import { fileURLToPath } from 'url';
 import { storyToUrlPath, THUMBNAIL_ID } from './config/storybook/utils';
 
 const tsxToJpg = async <T extends ImageFormat>(url: string, outputPath: `${string}.${T}`) => {
@@ -9,13 +9,13 @@ const tsxToJpg = async <T extends ImageFormat>(url: string, outputPath: `${strin
 
   await page.goto(url, { waitUntil: 'load', timeout: 0 });
 
-  const iframe = await page.waitForSelector('iframe#storybook-preview-iframe', { timeout: 30_000 });
+  const iframe = await page.waitForSelector('iframe#storybook-preview-iframe', { timeout: 30000 });
   if (!iframe) throw new Error('Iframe not found');
 
   const iframeContent = await iframe.contentFrame();
   if (!iframeContent) throw new Error('Iframe content not available');
 
-  const element = await iframeContent.waitForSelector(`#${THUMBNAIL_ID}`, { timeout: 30_000 });
+  const element = await iframeContent.waitForSelector(`#${THUMBNAIL_ID}`, { timeout: 30000 });
   if (!element) throw new Error(`Element #${THUMBNAIL_ID} not found`);
 
   await element.screenshot({
@@ -23,23 +23,24 @@ const tsxToJpg = async <T extends ImageFormat>(url: string, outputPath: `${strin
     type: outputPath.split('.').pop() as T,
     quality: 90,
   });
+
   await browser.close();
 };
 
-const components = [
-  {
-    story: storyToUrlPath(accordionStory.title),
-    output: 'accordion.webp',
-  },
-  {
-    story: storyToUrlPath(imageBlock1Story.title),
-    output: 'image-block-1.webp',
-  },
-] satisfies Array<{
-  story: string;
-  output: Parameters<typeof tsxToJpg>[1];
-}>;
+const storyModules = [
+  '@/components/basic/accordion/accordion.stories',
+  '@/components/sections/image-block/image-block-1/image-block-1.stories',
+];
 
-components.forEach(({ story, output }) => {
-  tsxToJpg(`http://localhost:3001/?path=/story/${story}`, `./public/images/${output}`);
-});
+(async () => {
+  for (const modulePath of storyModules) {
+    const mod = await import(modulePath);
+    const moduleUrl = import.meta.resolve(modulePath);
+    const dir = path.dirname(fileURLToPath(moduleUrl));
+    const imageName = path.basename(modulePath).replace('.stories', '') + '.webp';
+    const outputPath = path.join(dir, imageName);
+
+    const story = storyToUrlPath(mod.default.title);
+    await tsxToJpg(`http://localhost:3001/?path=/story/${story}`, outputPath);
+  }
+})();
