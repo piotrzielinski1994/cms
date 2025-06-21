@@ -300,6 +300,13 @@ const pl = {
       },
       dialog: 'Okno Dialogowe',
     },
+    section: {
+      imageBlock: {
+        imageBlock1: {
+          reversed: 'Odwrócony',
+        },
+      },
+    },
   },
 } satisfies typeof en;
 
