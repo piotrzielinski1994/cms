@@ -13,6 +13,7 @@ import { ComputedField as ComputedField_7d90a622c757bd2feddaf07041ce2e18 } from 
 import { HeadingFeatureClient as HeadingFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
 import { FixedToolbarFeatureClient as FixedToolbarFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
 import { RowLabel as RowLabel_a3e9ab8aaaf665c2ea9e019cdd8575f5 } from '@/payload/components/row-label'
+import { DocsLink as DocsLink_3f2897583ef43f2e24ee62fa407bdeb6 } from '@/payload/components/docs-link'
 import { VercelBlobClientUploadHandler as VercelBlobClientUploadHandler_16c82c5e25f430251a3e3ba57219ff4e } from '@payloadcms/storage-vercel-blob/client'
 
 export const importMap = {
@@ -31,5 +32,6 @@ export const importMap = {
   "@payloadcms/richtext-lexical/client#HeadingFeatureClient": HeadingFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
   "@payloadcms/richtext-lexical/client#FixedToolbarFeatureClient": FixedToolbarFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
   "@/payload/components/row-label#RowLabel": RowLabel_a3e9ab8aaaf665c2ea9e019cdd8575f5,
+  "@/payload/components/docs-link#DocsLink": DocsLink_3f2897583ef43f2e24ee62fa407bdeb6,
   "@payloadcms/storage-vercel-blob/client#VercelBlobClientUploadHandler": VercelBlobClientUploadHandler_16c82c5e25f430251a3e3ba57219ff4e
 }

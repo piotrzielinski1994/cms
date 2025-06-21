@@ -64,6 +64,7 @@ const en = {
   },
   groups: {
     admin: 'Admin',
+    docs: 'Docs',
   },
   collections: {
     pages: {

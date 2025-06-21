@@ -34,6 +34,13 @@ const payloadConfig = buildConfig({
     defaultLocale: defaultContentLocale,
   },
   admin: {
+    components: {
+      afterNavLinks: [
+        {
+          path: '@/payload/components/docs-link#DocsLink',
+        },
+      ],
+    },
     importMap: {
       baseDir: path.resolve(dirname),
     },

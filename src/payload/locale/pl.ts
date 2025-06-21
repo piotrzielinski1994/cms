@@ -66,6 +66,7 @@ const pl = {
   },
   groups: {
     admin: 'Administrator',
+    docs: 'Dokumentacja',
   },
   collections: {
     pages: {
