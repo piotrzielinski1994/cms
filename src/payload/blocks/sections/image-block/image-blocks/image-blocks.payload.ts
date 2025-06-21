@@ -1,6 +1,6 @@
-import { imageBlock1BlockPayloadConfig } from '@/components/sections/image-block/image-block-1/image-block-1.payload.config';
 import { AdminTranslations } from '@/config/locales.config';
-import type { Block } from 'payload';
+import { Block } from 'payload';
+import { imageBlock1BlockPayloadConfig } from '../image-block-1/image-block-1.payload';
 
 const imageBlocksSectionPayloadConfig = {
   slug: 'image-blocks',

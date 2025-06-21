@@ -1,4 +1,4 @@
-import type { Block } from 'payload';
+import { Block } from 'payload';
 
 const contactUsSectionPayloadConfig = {
   slug: 'contact-us',

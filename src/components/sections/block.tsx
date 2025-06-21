@@ -1,14 +1,14 @@
-import { faqSectionPayloadConfig } from '@/components/sections/faq/faq.payload.config';
-import { contactUsSectionPayloadConfig } from '@/components/sections/form/contact-us/contact-us.payload.config';
-import { hero1SectionPayloadConfig } from '@/components/sections/hero/hero-1/hero-1.payload.config';
-import { imageBlock1BlockPayloadConfig } from '@/components/sections/image-block/image-block-1/image-block-1.payload.config';
-import { imageBlocksSectionPayloadConfig } from '@/components/sections/image-block/image-blocks/image-blocks.payload.config';
 import type { Page } from '@/payload.types';
-import { Hero1Container } from '@/payload/components/hero-1.container';
-import { ImageBlock1Container } from '@/payload/components/image-block-1.container';
-import { FaqContainer } from '@/payload/components/sections/faq.container';
-import { ContactUsContainer } from '@/payload/components/sections/form/contact-us.container';
-import { ImageBlocksContainer } from '@/payload/components/sections/image-block/image-blocks.container';
+import { FaqContainer } from '@/payload/blocks/sections/faq/faq.container';
+import { faqSectionPayloadConfig } from '@/payload/blocks/sections/faq/faq.payload';
+import { ContactUsContainer } from '@/payload/blocks/sections/form/contact-us/contact-us.container';
+import { contactUsSectionPayloadConfig } from '@/payload/blocks/sections/form/contact-us/contact-us.payload';
+import { Hero1Container } from '@/payload/blocks/sections/hero/hero-1/hero-1.container';
+import { hero1SectionPayloadConfig } from '@/payload/blocks/sections/hero/hero-1/hero-1.payload';
+import { ImageBlock1Container } from '@/payload/blocks/sections/image-block/image-block-1/image-block-1.container';
+import { imageBlock1BlockPayloadConfig } from '@/payload/blocks/sections/image-block/image-block-1/image-block-1.payload';
+import { ImageBlocksContainer } from '@/payload/blocks/sections/image-block/image-blocks/image-blocks.container';
+import { imageBlocksSectionPayloadConfig } from '@/payload/blocks/sections/image-block/image-blocks/image-blocks.payload';
 
 type RenderBlocksProps = {
   blocks: Page['sections'];

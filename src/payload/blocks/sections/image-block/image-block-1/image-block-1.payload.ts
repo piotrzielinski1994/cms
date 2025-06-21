@@ -1,10 +1,46 @@
 import { AdminTranslations } from '@/config/locales.config';
-import type { Block } from 'payload';
+import { Block } from 'payload';
 
-const hero1SectionPayloadConfig = {
-  slug: 'hero-1',
-  interfaceName: 'Hero1Block',
+const imageBlock1BlockPayloadConfig = {
+  slug: 'image-block-1',
+  interfaceName: 'ImageBlock1Block',
   fields: [
+    {
+      name: 'image',
+      type: 'group',
+      label: ({ t }: { t: AdminTranslations }) => t('fields:image'),
+      fields: [
+        {
+          type: 'row',
+          fields: [
+            {
+              name: 'default',
+              type: 'upload',
+              relationTo: 'images',
+              required: true,
+              label: ({ t }: { t: AdminTranslations }) => t('common:default'),
+              admin: {
+                width: '50%',
+              },
+            },
+            {
+              name: 'dark',
+              type: 'upload',
+              relationTo: 'images',
+              label: ({ t }: { t: AdminTranslations }) => t('common:dark'),
+              admin: {
+                width: '50%',
+              },
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: 'isReversed',
+      type: 'checkbox',
+      label: ({ t }: { t: AdminTranslations }) => t('fields:isReversed'),
+    },
     {
       name: 'heading',
       type: 'text',
@@ -50,4 +86,4 @@ const hero1SectionPayloadConfig = {
   ],
 } satisfies Block;
 
-export { hero1SectionPayloadConfig };
+export { imageBlock1BlockPayloadConfig };
