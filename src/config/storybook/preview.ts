@@ -22,7 +22,10 @@ const preview = {
       toolbar: { title: 'Locale', items: contentLocales },
     },
   },
-  parameters: { nextjs: { appDirectory: true } },
+  parameters: {
+    backgrounds: [],
+    nextjs: { appDirectory: true },
+  },
 } satisfies Preview;
 
 export default preview;
