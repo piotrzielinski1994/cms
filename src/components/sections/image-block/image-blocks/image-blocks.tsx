@@ -1,10 +1,15 @@
 import { Container } from '@/components/basic/container';
 import { Section } from '@/components/basic/section';
-import { RenderBlocks } from '@/components/sections/block';
-import { ImageBlocksSection } from '@/payload.types';
 import { cn } from '@/utils/tailwind';
+import { ReactNode } from 'react';
 
-const ImageBlocks = ({ heading, subheading, items }: ImageBlocksSection) => {
+type ImageBlocksProps = {
+  heading?: string;
+  subheading?: string;
+  items: ReactNode[];
+};
+
+const ImageBlocks = ({ heading, subheading, items }: ImageBlocksProps) => {
   const hasHeader = Boolean(heading || subheading);
   return (
     <Section>
@@ -15,7 +20,7 @@ const ImageBlocks = ({ heading, subheading, items }: ImageBlocksSection) => {
             {subheading && <p>{subheading}</p>}
           </header>
         )}
-        <RenderBlocks blocks={items} />
+        {items}
       </Container>
     </Section>
   );

@@ -13,28 +13,28 @@ import { useId } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-const ContactForm = () => {
+type ContactFormProps = {
+  onSubmit: (data: z.infer<typeof schema>) => void;
+};
+
+const schema = z.object({
+  email: z.string().email(),
+  integer: z.number().int(),
+  decimal: z.number(),
+  message: z.string().min(50).max(2_000),
+  options: z.string().min(1),
+});
+
+const ContactForm = ({ onSubmit }: ContactFormProps) => {
   const t = useTranslations('frontend');
   const tZod = useTranslations('zod');
   const id = useId();
   const form = useForm({
-    resolver: zodResolver(
-      z.object({
-        email: z.string().email(),
-        integer: z.number().int(),
-        decimal: z.number(),
-        message: z.string().min(50).max(2_000),
-        options: z.string().min(1),
-      }),
-      { errorMap: getZodErrorsMap(tZod) },
-    ),
+    resolver: zodResolver(schema, { errorMap: getZodErrorsMap(tZod) }),
   });
 
   return (
-    <Form.Root
-      onSubmit={form.handleSubmit((data) => console.log('@@@ data | ', data))}
-      className="grid gap-2"
-    >
+    <Form.Root onSubmit={form.handleSubmit(onSubmit)} className="grid gap-2">
       <Form.Group>
         <Form.Label htmlFor={`${id}__email`}>{t('contactForm.fields.email.label')}</Form.Label>
         <TextInputContainer

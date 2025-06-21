@@ -3,8 +3,8 @@ import { CookiesBanner } from '@/components/advanced/cookies-banner/cookies-bann
 import { SkipLink } from '@/components/advanced/skip-link/skip-link';
 import { clientEnv } from '@/config/env.client.config';
 import { themes } from '@/config/themes.config';
-import { FooterContainer } from '@/payload/components/footer.container';
-import { HeaderContainer } from '@/payload/components/header.container';
+import { FooterContainer } from '@/payload/components/layout/footer.container';
+import { HeaderContainer } from '@/payload/components/layout/header.container';
 import { Providers } from '@/providers';
 import { getPreferences } from '@/utils/headers';
 import { toPageMetadata } from '@/utils/metadata';

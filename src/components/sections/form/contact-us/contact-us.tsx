@@ -2,12 +2,15 @@ import { ContactForm } from '@/components/advanced/form/contact-form/contact-for
 import { Container } from '@/components/basic/container';
 import { Section } from '@/components/basic/section';
 import { cn } from '@/utils/tailwind';
+import { ComponentProps } from 'react';
 
-const ContactUs = () => {
+type ContactUsProps = ComponentProps<typeof ContactForm>;
+
+const ContactUs = (props: ContactUsProps) => {
   return (
     <Section>
       <Container className={cn('py-10', 'bg-background1')}>
-        <ContactForm />
+        <ContactForm {...props} />
       </Container>
     </Section>
   );

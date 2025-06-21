@@ -1,11 +1,20 @@
 import { Accordion } from '@/components/basic/accordion/accordion';
 import { Container } from '@/components/basic/container';
 import { Section } from '@/components/basic/section';
-import { FAQ } from '@/payload/payload.types';
 import { cn } from '@/utils/tailwind';
 import { RichText } from '@payloadcms/richtext-lexical/react';
+import { ComponentProps } from 'react';
 
-const Faq = ({ heading, subheading, items }: FAQ) => {
+type FaqProps = {
+  heading?: string;
+  subheading?: string;
+  items: {
+    question: string;
+    answer: ComponentProps<typeof RichText>['data'];
+  }[];
+};
+
+const Faq = ({ heading, subheading, items }: FaqProps) => {
   const hasHeader = Boolean(heading || subheading);
   return (
     <Section>
@@ -17,7 +26,7 @@ const Faq = ({ heading, subheading, items }: FAQ) => {
           </header>
         )}
         <Accordion
-          items={(items ?? []).map((it) => ({
+          items={items.map((it) => ({
             heading: it.question,
             content: <RichText data={it.answer} />,
           }))}
