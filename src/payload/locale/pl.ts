@@ -38,7 +38,7 @@ const pl = {
     path: 'Ścieżka',
     type: 'Typ',
     title: 'Tytuł',
-    heading: 'Naglówek',
+    heading: 'Nagłówek',
     subheading: 'Podnagłówek',
     description: 'Opis',
     image: 'Zdjęcie',
