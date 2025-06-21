@@ -37,6 +37,7 @@ const storyModules = [
     '@/components/sections/image-block/image-block-1/image-block-1.stories',
     { width: 1100, height: 1080 },
   ],
+  ['@/components/sections/faq/faq.stories', { width: 1100, height: 1080 }],
   ['@/components/sections/form/contact-us/contact-us.stories', { width: 1100, height: 1080 }],
 ] as [string, Parameters<typeof tsxToWebp>[2]][];
 

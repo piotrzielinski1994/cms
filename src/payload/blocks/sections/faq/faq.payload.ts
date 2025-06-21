@@ -1,9 +1,11 @@
 import { AdminTranslations } from '@/config/locales.config';
 import { Block } from 'payload';
+import thumbnail from './faq.webp';
 
 const faqSectionPayloadConfig = {
   slug: 'faq',
   interfaceName: 'FAQ',
+  imageURL: thumbnail.src,
   fields: [
     {
       name: 'heading',
