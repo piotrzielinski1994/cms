@@ -1,18 +1,18 @@
 import { Container } from '@/components/basic/container';
 import { Section } from '@/components/basic/section';
 import { cn } from '@/utils/tailwind';
-import { ReactNode } from 'react';
+import { HTMLAttributes, ReactNode } from 'react';
 
-type ImageBlocksProps = {
+type ImageBlocksProps = HTMLAttributes<HTMLElement> & {
   heading?: string;
   subheading?: string;
   items: ReactNode[];
 };
 
-const ImageBlocks = ({ heading, subheading, items }: ImageBlocksProps) => {
+const ImageBlocks = ({ heading, subheading, items, ...props }: ImageBlocksProps) => {
   const hasHeader = Boolean(heading || subheading);
   return (
-    <Section>
+    <Section {...props}>
       <Container className="grid gap-16">
         {hasHeader && (
           <header className="text-center">

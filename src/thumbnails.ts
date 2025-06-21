@@ -29,6 +29,10 @@ const tsxToWebp = async (
 
 const storyModules = [
   [
+    '@/components/sections/image-block/image-blocks/image-blocks.stories',
+    { width: 1100, height: 1080 },
+  ],
+  [
     '@/components/sections/image-block/image-block-1/image-block-1.stories',
     { width: 1100, height: 1080 },
   ],

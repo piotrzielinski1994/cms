@@ -296,13 +296,6 @@ const en = {
       },
       dialog: 'Dialog',
     },
-    section: {
-      imageBlock: {
-        imageBlock1: {
-          reversed: 'Reversed',
-        },
-      },
-    },
   },
 };
 

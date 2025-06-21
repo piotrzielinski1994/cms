@@ -1,10 +1,12 @@
 import { AdminTranslations } from '@/config/locales.config';
 import { Block } from 'payload';
 import { imageBlock1BlockPayloadConfig } from '../image-block-1/image-block-1.payload';
+import thumbnail from './image-blocks.webp';
 
 const imageBlocksSectionPayloadConfig = {
   slug: 'image-blocks',
   interfaceName: 'ImageBlocksSection',
+  imageURL: thumbnail.src,
   fields: [
     {
       name: 'heading',
