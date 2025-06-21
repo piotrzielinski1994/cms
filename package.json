@@ -17,7 +17,7 @@
     "storybook:build": "STORYBOOK_LOGLEVEL=debug storybook build -c ./src/config/storybook -o .storybook",
     "storybook": "storybook dev -c ./src/config/storybook -p 3001",
     "storybook:prod": "npx serve .storybook",
-    "thumbnails": "tsx ./src/thumbnails.ts",
+    "thumbnails": "tsx --env-file=.env ./src/thumbnails.ts",
     "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
     "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
     "ii": "cross-env NODE_OPTIONS=--no-deprecation npm --ignore-workspace install",
