@@ -1,4 +1,4 @@
-import { DEFAULT_VALUE, getFallback } from '@/config/storybook/utils';
+import { DEFAULT_VALUE, getFallback, THUMBNAIL_ID } from '@/config/storybook/utils';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useTranslations } from 'next-intl';
 import { type ComponentProps } from 'react';
@@ -27,6 +27,7 @@ const Render = (args: Args) => {
   const t = useTranslations('storybook.basic.accordion');
   const props = {
     ...args,
+    id: THUMBNAIL_ID,
     items: args.items.map((item, index) => ({
       heading: getFallback(item.heading, `${t('heading')} ${index + 1}`),
       content: getFallback(item.content, `${t('content')} ${index + 1}`),

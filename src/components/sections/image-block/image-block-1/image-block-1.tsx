@@ -4,9 +4,9 @@ import { ButtonLink } from '@/components/basic/button/button';
 import { Image as BasicImage } from '@/components/basic/image/image';
 import { cn } from '@/utils/tailwind';
 import { StaticImageData } from 'next/image';
-import { ComponentProps } from 'react';
+import { ComponentProps, HTMLAttributes } from 'react';
 
-type ImageBlock1Props = {
+type ImageBlock1Props = HTMLAttributes<HTMLDivElement> & {
   isReversed?: boolean;
   image: Omit<StaticImageData, 'width' | 'height'> & {
     alt: string;
@@ -24,9 +24,10 @@ const ImageBlock1 = ({
   heading,
   subheading,
   buttons = [],
+  ...props
 }: ImageBlock1Props) => {
   return (
-    <div className="grid md:grid-cols-2">
+    <div {...props} className="grid md:grid-cols-2">
       <div
         className={cn('grid justify-items-start content-center gap-4', 'order-2 md:order-1', {
           'md:order-2': isReversed,

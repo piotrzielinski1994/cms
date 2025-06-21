@@ -1,4 +1,4 @@
-import { DEFAULT_VALUE, getFallback } from '@/config/storybook/utils';
+import { DEFAULT_VALUE, getFallback, THUMBNAIL_ID } from '@/config/storybook/utils';
 import placeholderWebp from '@/placeholders/placeholder.webp';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useTranslations } from 'next-intl';
@@ -43,6 +43,7 @@ const Render = ({ image, heading, subheading, buttons, ...args }: Args) => {
     <div className="grid gap-16">
       <ImageBlock1Component
         {...args}
+        id={THUMBNAIL_ID}
         image={{ ...image, alt: getFallback(image.alt, t2('image')) }}
         heading={getFallback(heading, t2('heading'))}
         subheading={getFallback(subheading, t2('subheading'))}
