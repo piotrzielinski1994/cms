@@ -1,3 +1,5 @@
+'use client';
+
 import { ContactUs } from '@/components/sections/form/contact-us/contact-us';
 
 const ContactUsContainer = () => {
