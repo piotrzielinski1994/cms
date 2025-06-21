@@ -52,7 +52,7 @@ const Render = ({ label, placeholder, ...args }: Args) => {
   const t2 = useTranslations('storybook.basic.form.textInput');
 
   return (
-    <>
+    <div className="grid gap-2">
       <Form.Group>
         <Form.Label htmlFor="input1">{getFallback(label, t('numberInput'))}</Form.Label>
         <ControlledInput
@@ -81,7 +81,7 @@ const Render = ({ label, placeholder, ...args }: Args) => {
           error={t2('invalid.error')}
         />
       </Form.Group>
-    </>
+    </div>
   );
 };
 

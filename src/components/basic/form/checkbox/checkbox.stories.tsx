@@ -35,7 +35,7 @@ const Render = ({ label, ...args }: Args) => {
   const t = useTranslations('storybook.basic.form.checkbox');
 
   return (
-    <div className="grid">
+    <div className="grid gap-2">
       <ControlledCheckbox
         {...args}
         label={getFallback(label, t('default.label'))}

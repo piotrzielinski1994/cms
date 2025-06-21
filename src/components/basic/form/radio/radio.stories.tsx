@@ -32,7 +32,7 @@ const Render = ({ label, ...args }: Args) => {
   ];
 
   return (
-    <div role="radiogroup" aria-invalid={!!args.error}>
+    <div className="grid gap-2" role="radiogroup">
       {radiosProps.map((props, index) => {
         return (
           <RadioComponent
