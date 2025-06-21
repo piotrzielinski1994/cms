@@ -1,9 +1,9 @@
+import { Hero1 } from '@/components/sections/hero/hero-1/hero-1';
 import { Hero1Block, Page } from '@/payload/payload.types';
-import { Hero1 as Hero1Component } from './hero-1';
 
-const Hero1 = ({ heading, subheading, buttons = [] }: Hero1Block) => {
+const Hero1Container = ({ heading, subheading, buttons = [] }: Hero1Block) => {
   return (
-    <Hero1Component
+    <Hero1
       heading={heading ?? undefined}
       subheading={subheading ?? undefined}
       buttons={buttons?.map((button, index) => {
@@ -15,4 +15,4 @@ const Hero1 = ({ heading, subheading, buttons = [] }: Hero1Block) => {
   );
 };
 
-export { Hero1 };
+export { Hero1Container };

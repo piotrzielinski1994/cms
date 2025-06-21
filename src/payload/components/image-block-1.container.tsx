@@ -1,11 +1,12 @@
 'use client';
 
+import { ImageBlock1 } from '@/components/sections/image-block/image-block-1/image-block-1';
 import { themes } from '@/config/themes.config';
 import { ImageBlock1Block, Image as ImageModel, Page } from '@/payload.types';
 import { useThemeStore } from '@/store/theme';
-import { ImageBlock1 as ImageBlock1Component } from './image-block-1';
 
-const ImageBlock1 = ({ isReversed, image, heading, subheading, buttons }: ImageBlock1Block) => {
+const ImageBlock1Container = (props: ImageBlock1Block) => {
+  const { isReversed, image, heading, subheading, buttons } = props;
   const theme = useThemeStore((store) => store.theme);
   const { default: defaultImage, dark: darkImage } = image as {
     default: ImageModel;
@@ -15,7 +16,7 @@ const ImageBlock1 = ({ isReversed, image, heading, subheading, buttons }: ImageB
   const imageToShow = !prefersDark ? defaultImage : (darkImage ?? defaultImage);
 
   return (
-    <ImageBlock1Component
+    <ImageBlock1
       isReversed={isReversed ?? undefined}
       image={{
         src: imageToShow.url ?? '',
@@ -34,4 +35,4 @@ const ImageBlock1 = ({ isReversed, image, heading, subheading, buttons }: ImageB
   );
 };
 
-export { ImageBlock1 };
+export { ImageBlock1Container };

@@ -5,12 +5,12 @@ import { faqSectionPayloadConfig } from '@/components/sections/faq/faq.payload.c
 import { ContactUs } from '@/components/sections/form/contact-us/contact-us';
 import { contactUsSectionPayloadConfig } from '@/components/sections/form/contact-us/contact-us.payload.config';
 import { hero1SectionPayloadConfig } from '@/components/sections/hero/hero-1/hero-1.payload.config';
-import { Hero1 } from '@/components/sections/hero/hero-1/hero-1.server';
 import { imageBlock1BlockPayloadConfig } from '@/components/sections/image-block/image-block-1/image-block-1.payload.config';
-import { ImageBlock1 } from '@/components/sections/image-block/image-block-1/image-block-1.server';
 import { ImageBlocks } from '@/components/sections/image-block/image-blocks/image-blocks';
 import { imageBlocksSectionPayloadConfig } from '@/components/sections/image-block/image-blocks/image-blocks.payload.config';
 import type { Page } from '@/payload.types';
+import { Hero1Container } from '@/payload/components/hero-1.container';
+import { ImageBlock1Container } from '@/payload/components/image-block-1.container';
 
 type RenderBlocksProps = {
   blocks: Page['sections'];
@@ -18,9 +18,9 @@ type RenderBlocksProps = {
 
 const blockComponents = {
   [contactFormBlockPayloadConfig.slug]: ContactForm,
-  [hero1SectionPayloadConfig.slug]: Hero1,
+  [hero1SectionPayloadConfig.slug]: Hero1Container,
   [imageBlocksSectionPayloadConfig.slug]: ImageBlocks,
-  [imageBlock1BlockPayloadConfig.slug]: ImageBlock1,
+  [imageBlock1BlockPayloadConfig.slug]: ImageBlock1Container,
   [contactUsSectionPayloadConfig.slug]: ContactUs,
   [faqSectionPayloadConfig.slug]: Faq,
 };
