@@ -41,6 +41,16 @@ exports[`Footer > should match the snapshot 1`] = `
               About
             </a>
           </li>
+          <li
+            class="contents"
+          >
+            <a
+              class="p-2"
+              href="/contact"
+            >
+              Contact
+            </a>
+          </li>
         </ul>
       </nav>
     </div>

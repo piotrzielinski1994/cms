@@ -1,31 +1,27 @@
-import { resolveServerComponent, withProviders } from '@/utils/tests';
+import { withProviders } from '@/utils/tests';
 import { render, waitFor } from '@testing-library/react';
-import { describe, expect, it, vi } from 'vitest';
+import { ComponentProps } from 'react';
+import { describe, expect, it } from 'vitest';
 import { axe } from 'vitest-axe';
-import { Footer } from './footer.server';
-
-vi.mock('@/payload/utils/globals', () => ({
-  getCachedGlobal: vi.fn().mockReturnValue(
-    vi.fn().mockResolvedValue({
-      navItems: [
-        { id: '1', link: { label: 'Home', reference: { value: { path: '/' } } } },
-        { id: '2', link: { label: 'About', reference: { value: { path: '/about' } } } },
-      ],
-    }),
-  ),
-}));
+import { Footer } from './footer';
 
 describe('Footer', () => {
+  const defaultProps = {
+    items: [
+      { id: 'home', label: 'Home', href: '/' },
+      { id: 'about', label: 'About', href: '/about' },
+      { id: 'contact', label: 'Contact', href: '/contact' },
+    ],
+  } satisfies ComponentProps<typeof Footer>;
+
   it('should have no accessibility violations', async () => {
-    const ServerFooter = await resolveServerComponent(Footer, { locale: 'en' });
-    const { container } = await waitFor(() => render(withProviders(<ServerFooter />)));
+    const { container } = await waitFor(() => render(withProviders(<Footer {...defaultProps} />)));
     const results = await axe(container);
     expect(results).toHaveNoViolations();
   });
 
   it('should match the snapshot', async () => {
-    const ServerFooter = await resolveServerComponent(Footer, { locale: 'en' });
-    const { container } = render(withProviders(<ServerFooter />));
+    const { container } = render(withProviders(<Footer {...defaultProps} />));
     expect(container).toMatchSnapshot();
   });
 });

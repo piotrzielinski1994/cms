@@ -8,7 +8,7 @@ type FooterProps = {
   items: Array<{
     id: string;
     label: string;
-    path: string;
+    href: string;
   }>;
 };
 
@@ -19,10 +19,10 @@ const Footer = ({ items }: FooterProps) => {
         <Logo className="text-2xl" />
         <nav className="flex-grow flex justify-end ">
           <ul className="contents">
-            {items.map(({ id, label, path }) => {
+            {items.map(({ id, label, href }) => {
               return (
                 <li key={id} className="contents">
-                  <Link className="p-2" href={path}>
+                  <Link className="p-2" href={href}>
                     {label}
                   </Link>
                 </li>

@@ -14,9 +14,9 @@ const meta: Meta<Args> = {
   },
   args: {
     items: [
-      { id: 'nav-item-1', label: 'Link 1', path: '/' },
-      { id: 'nav-item-2', label: 'Link 2', path: '/' },
-      { id: 'nav-item-3', label: 'Link 3', path: '/' },
+      { id: 'nav-item-1', label: 'Link 1', href: '/' },
+      { id: 'nav-item-2', label: 'Link 2', href: '/' },
+      { id: 'nav-item-3', label: 'Link 3', href: '/' },
     ],
   },
 };

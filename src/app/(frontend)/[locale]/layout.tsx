@@ -1,10 +1,10 @@
 import { AdminBar } from '@/_old/components/AdminBar';
 import { CookiesBanner } from '@/components/advanced/cookies-banner/cookies-banner';
 import { SkipLink } from '@/components/advanced/skip-link/skip-link';
-import { Footer } from '@/components/layout/footer/footer.server';
-import { Header } from '@/components/layout/header/header.server';
 import { clientEnv } from '@/config/env.client.config';
 import { themes } from '@/config/themes.config';
+import { FooterContainer } from '@/payload/components/footer.container';
+import { HeaderContainer } from '@/payload/components/header.container';
 import { Providers } from '@/providers';
 import { getPreferences } from '@/utils/headers';
 import { toPageMetadata } from '@/utils/metadata';
@@ -50,11 +50,11 @@ const Layout = async ({ children, params }: LayoutProps) => {
         <Providers {...providersProps}>
           <SkipLink />
           <AdminBar adminBarProps={{ preview: isEnabled }} />
-          <Header locale={locale} />
+          <HeaderContainer locale={locale} />
           <main className="flex-grow my-20 grid content-start gap-20" id="main">
             {children}
           </main>
-          <Footer locale={locale} />
+          <FooterContainer locale={locale} />
           {!cookiesConsent && <CookiesBanner locale={locale} />}
         </Providers>
       </body>
