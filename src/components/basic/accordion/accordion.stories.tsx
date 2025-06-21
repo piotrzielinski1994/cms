@@ -32,7 +32,7 @@ const Render = (args: Args) => {
       content: getFallback(item.content, `${t('content')} ${index + 1}`),
     })),
   };
-  return <AccordionComponent {...props} />;
+  return <AccordionComponent key={args.activeItemIndex} {...props} />;
 };
 
 const Accordion: StoryObj<typeof AccordionComponent> = { render: Render };
