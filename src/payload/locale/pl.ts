@@ -284,7 +284,7 @@ const pl = {
           },
         },
         select: {
-          label: 'Pole Wyboru',
+          label: 'Lista Rozwijana',
           placeholder: 'Wybierz wartość',
           option: 'Opcja',
         },
