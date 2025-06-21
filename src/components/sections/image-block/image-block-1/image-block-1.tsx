@@ -28,7 +28,7 @@ const ImageBlock1 = ({
   return (
     <div className="grid md:grid-cols-2">
       <div
-        className={cn('grid justify-items-start content-center gap-4', 'md:order-1', {
+        className={cn('grid justify-items-start content-center gap-4', 'order-2 md:order-1', {
           'md:order-2': isReversed,
         })}
       >
@@ -46,7 +46,7 @@ const ImageBlock1 = ({
           </div>
         )}
       </div>
-      <div className={cn('md:order-2', { 'md:order-1': isReversed })}>
+      <div className={cn('order-1 md:order-2', { 'md:order-1': isReversed })}>
         <BasicImage
           className="bg-background1 min-h-full"
           src={image.src}
