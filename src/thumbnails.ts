@@ -28,6 +28,7 @@ const tsxToWebp = async (
 };
 
 const storyModules = [
+  ['@/components/sections/hero/hero-1/hero-1.stories', { width: 1100, height: 1080 }],
   [
     '@/components/sections/image-block/image-blocks/image-blocks.stories',
     { width: 1100, height: 1080 },
@@ -36,7 +37,7 @@ const storyModules = [
     '@/components/sections/image-block/image-block-1/image-block-1.stories',
     { width: 1100, height: 1080 },
   ],
-  ['@/components/sections/hero/hero-1/hero-1.stories', { width: 1100, height: 1080 }],
+  ['@/components/sections/form/contact-us/contact-us.stories', { width: 1100, height: 1080 }],
 ] as [string, Parameters<typeof tsxToWebp>[2]][];
 
 (async () => {

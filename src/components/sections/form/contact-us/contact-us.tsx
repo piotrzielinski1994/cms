@@ -6,9 +6,9 @@ import { ComponentProps } from 'react';
 
 type ContactUsProps = ComponentProps<typeof ContactForm>;
 
-const ContactUs = (props: ContactUsProps) => {
+const ContactUs = ({ id, ...props }: ContactUsProps) => {
   return (
-    <Section>
+    <Section id={id}>
       <Container className={cn('py-10', 'bg-background1')}>
         <ContactForm {...props} />
       </Container>
