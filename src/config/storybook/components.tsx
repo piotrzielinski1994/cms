@@ -1,25 +1,25 @@
 import { FontScaleProvider } from '@/providers/font-scale.provider';
 import { ThemeProvider } from '@/providers/theme.provider';
-import { FontScaleStore } from '@/store/font-scale';
-import { ThemeStore } from '@/store/theme';
-import { Locale, NextIntlClientProvider } from 'next-intl';
-import { ComponentType, useEffect } from 'react';
+import { ReactRenderer } from '@storybook/nextjs';
+import { NextIntlClientProvider } from 'next-intl';
+import { useEffect } from 'react';
+import { DecoratorFunction } from 'storybook/internal/csf';
 import { translations } from '../locales.config';
+import preview from './preview';
 
+type GlobalTypes = typeof preview.globalTypes;
 type StoryContext = {
   globals: {
-    locale: Locale;
-    theme: ThemeStore['theme'];
-    fontScale: FontScaleStore['scale'];
+    [K in keyof GlobalTypes]: GlobalTypes[K]['toolbar']['items'][number];
   };
 };
 
-const withProviders = (Story: ComponentType, context: StoryContext) => {
-  const { locale, theme, fontScale } = context.globals;
-
+const withProviders: DecoratorFunction<ReactRenderer> = (Story, context) => {
+  const globals = context.globals as StoryContext['globals'];
+  const { locale, theme, fontScale } = globals;
   return (
     <>
-      <DataAttributesSetter {...context.globals} />
+      <DataAttributesSetter {...globals} />
       <NextIntlClientProvider locale={locale} messages={translations[locale]}>
         <ThemeProvider initialTheme={theme}>
           <FontScaleProvider initialFontScale={fontScale}>

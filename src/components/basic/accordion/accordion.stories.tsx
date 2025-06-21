@@ -27,9 +27,9 @@ const Render = (args: Args) => {
   const t = useTranslations('storybook.basic.accordion');
   const props = {
     ...args,
-    items: args.items.map((item) => ({
-      heading: getFallback(item.heading, t('heading')),
-      content: getFallback(item.content, t('content')),
+    items: args.items.map((item, index) => ({
+      heading: getFallback(item.heading, `${t('heading')} ${index + 1}`),
+      content: getFallback(item.content, `${t('content')} ${index + 1}`),
     })),
   };
   return <AccordionComponent {...props} />;

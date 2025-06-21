@@ -19,11 +19,6 @@ const meta: Meta<Args> = {
       { id: 'nav-item-3', label: 'Link 3', path: '/' },
     ],
   },
-  parameters: {
-    nextjs: {
-      appDirectory: true,
-    },
-  },
 };
 
 const Render = (args: Args) => {
