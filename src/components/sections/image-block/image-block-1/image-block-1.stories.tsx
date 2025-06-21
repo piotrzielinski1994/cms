@@ -1,5 +1,4 @@
 import { DEFAULT_VALUE, getFallback, THUMBNAIL_ID } from '@/config/storybook/utils';
-import placeholderWebp from '@/placeholders/placeholder.webp';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useTranslations } from 'next-intl';
 import { type ComponentProps } from 'react';
@@ -7,7 +6,7 @@ import { ImageBlock1 as ImageBlock1Component } from './image-block-1';
 
 type Args = ComponentProps<typeof ImageBlock1Component>;
 
-const meta: Meta<Args> = {
+const meta = {
   component: ImageBlock1Component,
   title: 'Components/Sections/ImageBlock/ImageBlock1',
   argTypes: {
@@ -20,10 +19,10 @@ const meta: Meta<Args> = {
   args: {
     isReversed: false,
     image: {
-      src: placeholderWebp.src, // TODO: Fix image loader for storybook
+      src: '', // TODO: Fix image loader for storybook
       alt: DEFAULT_VALUE,
-      width: placeholderWebp.width,
-      height: placeholderWebp.height,
+      width: undefined,
+      height: undefined,
     },
     heading: DEFAULT_VALUE,
     subheading: DEFAULT_VALUE,
@@ -32,7 +31,7 @@ const meta: Meta<Args> = {
       { label: DEFAULT_VALUE, href: '/path-2', variant: 'secondary' },
     ],
   },
-};
+} satisfies Meta<Args>;
 
 const Render = ({ image, heading, subheading, buttons, ...args }: Args) => {
   const t = useTranslations('storybook.section.imageBlock.imageBlock1');

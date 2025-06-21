@@ -6,7 +6,7 @@ import { Accordion as AccordionComponent } from './accordion';
 
 type Args = ComponentProps<typeof AccordionComponent>;
 
-const meta: Meta<Args> = {
+const meta = {
   component: AccordionComponent,
   title: 'Components/Basic/Accordion',
   argTypes: {
@@ -21,7 +21,7 @@ const meta: Meta<Args> = {
     ],
     activeItemIndex: 0,
   },
-};
+} satisfies Meta<Args>;
 
 const Render = (args: Args) => {
   const t = useTranslations('storybook.basic.accordion');
