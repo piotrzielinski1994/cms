@@ -1,9 +1,11 @@
 import { AdminTranslations } from '@/config/locales.config';
 import { Block } from 'payload';
+import thumbnail from './hero-1.webp';
 
 const hero1SectionPayloadConfig = {
   slug: 'hero-1',
   interfaceName: 'Hero1Block',
+  imageURL: thumbnail.src,
   fields: [
     {
       name: 'heading',
