@@ -2,17 +2,17 @@ import { ButtonLink } from '@/components/basic/button/button';
 import { Container } from '@/components/basic/container';
 import { Section } from '@/components/basic/section';
 import { cn } from '@/utils/tailwind';
-import { ComponentProps } from 'react';
+import { ComponentProps, HTMLAttributes } from 'react';
 
-type Hero1Props = {
+type Hero1Props = HTMLAttributes<HTMLElement> & {
   heading?: string;
   subheading?: string;
   buttons?: Array<Pick<ComponentProps<typeof ButtonLink>, 'href' | 'variant'> & { label: string }>;
 };
 
-const Hero1 = ({ heading, subheading, buttons = [] }: Hero1Props) => {
+const Hero1 = ({ heading, subheading, buttons = [], ...props }: Hero1Props) => {
   return (
-    <Section>
+    <Section {...props}>
       <Container
         className={cn('py-10', 'justify-items-start content-center gap-4', 'bg-background1')}
       >

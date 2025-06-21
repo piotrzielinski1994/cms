@@ -1,4 +1,4 @@
-import { DEFAULT_VALUE, getFallback } from '@/config/storybook/utils';
+import { DEFAULT_VALUE, getFallback, THUMBNAIL_ID } from '@/config/storybook/utils';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useTranslations } from 'next-intl';
 import { type ComponentProps } from 'react';
@@ -29,6 +29,7 @@ const Render = ({ heading, subheading, buttons }: Args) => {
   const tButton = useTranslations('storybook.basic.button');
   return (
     <Hero1Component
+      id={THUMBNAIL_ID}
       heading={getFallback(heading, t('heading'))}
       subheading={getFallback(subheading, t('subheading'))}
       buttons={buttons?.map((it, index) => ({
