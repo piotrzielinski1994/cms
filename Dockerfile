@@ -6,7 +6,7 @@ WORKDIR /home/node/app
 COPY package*.json ./
 
 COPY . .
-RUN npm install
+RUN npm ci
 RUN npm run build
 
 FROM base as runtime
@@ -16,7 +16,7 @@ ENV NODE_ENV=production
 WORKDIR /home/node/app
 COPY package*.json  ./
 
-RUN npm install --omit=dev
+RUN npm ci --omit=dev
 
 EXPOSE 3000
 
