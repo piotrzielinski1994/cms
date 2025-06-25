@@ -232,7 +232,7 @@ describe('NumberInput', () => {
 
   describe('Formatter', () => {
     it.each([
-      // { locale: 'pl', typed: '1234567,89', expected: '1\u00A0234\u00A0567,89' },
+      { locale: 'pl', typed: '1234567,89', expected: '1\u00A0234\u00A0567,89' },
       { locale: 'en', typed: '1234567.89', expected: '1,234,567.89' },
     ] satisfies { locale: Locale; typed: string; expected: string }[])(
       'should format $typed to $expected for $locale',

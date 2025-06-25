@@ -11,7 +11,8 @@ const createNumberFormatter = (locale: Locale) => (rawValue: string) => {
   const formatted = intl.format(number);
   const decimal = intl.formatToParts(1.1).find((p) => p.type === 'decimal')?.value ?? '.';
 
-  return rawValue.endsWith(decimal) ? formatted + decimal : formatted;
+  const endsWithDecimal = rawValue.endsWith(decimal) || rawValue.endsWith('.');
+  return endsWithDecimal ? formatted + decimal : formatted;
 };
 
 const createNumberUnformatter = (locale: Locale) => (formattedValue: string) => {
