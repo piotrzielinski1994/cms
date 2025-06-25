@@ -47,11 +47,11 @@ describe('NumberInput', () => {
 
   describe('Buttons', () => {
     it.each([
-      [10, undefined, '10'],
-      [1, 0, '1'],
-      [1.2, 3.4, '4.6'],
-      [1.2, -1, '0.2'],
-    ])('should increase the value by %s', async (step, initial, expected) => {
+      { step: 10, initial: undefined, expected: '10' },
+      { step: 1, initial: 0, expected: '1' },
+      { step: 1.2, initial: 3.4, expected: '4.6' },
+      { step: 1.2, initial: -1, expected: '0.2' },
+    ])('should increase $initial by $step to $expected', async ({ step, initial, expected }) => {
       const { getByLabelText, getByRole } = render(
         withProviders(
           <ControlledInput
@@ -71,13 +71,13 @@ describe('NumberInput', () => {
       expect(valueBefore).toBe(initial?.toString() ?? '');
       expect(input.value).toBe(expected);
     });
-    return;
+
     it.each([
-      [10, undefined, '-10'],
-      [1, 0, '-1'],
-      [1.2, 3.4, '2.2'],
-      [1.2, 1, '-0.2'],
-    ])('should decrease the value by %s', async (step, initial, expected) => {
+      { step: 10, initial: undefined, expected: '-10' },
+      { step: 1, initial: 0, expected: '-1' },
+      { step: 1.2, initial: 3.4, expected: '2.2' },
+      { step: 1.2, initial: 1, expected: '-0.2' },
+    ])('should decrease $initial by $step to $expected', async ({ step, initial, expected }) => {
       const { getByLabelText, getByRole } = render(
         withProviders(
           <ControlledInput

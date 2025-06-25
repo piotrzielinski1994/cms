@@ -50,14 +50,16 @@ const NumberInput = ({ error, step = 1, mode = 'integer', t, ...props }: NumberI
     const raw = rawValue.replace(',', '.') || '0';
 
     const validator = getValidator({ ...props, mode });
-    console.log('@@@ mode | ', mode);
-    console.log('@@@ raw | ', raw, JSON.stringify(validator.safeParse(raw)));
     if (!validator.safeParse(raw).success) return;
-    const next = Number(raw) + delta * step;
-    const [intPartRaw, decPart = ''] = String(next).split('.');
-    const intPart = intPartRaw.startsWith('-') ? intPartRaw.slice(1) : intPartRaw;
 
     const { maxIntLength = Infinity, maxDecimalLength = Infinity } = props as DecimalInputProps;
+    const next = Number(raw) + delta * step;
+
+    const [intPartRaw, decPart = ''] = Number.isFinite(maxDecimalLength)
+      ? next.toFixed(maxDecimalLength).split('.')
+      : next.toString().split('.');
+    const intPart = intPartRaw.startsWith('-') ? intPartRaw.slice(1) : intPartRaw;
+
     if (intPart.length > maxIntLength) return;
     if (decPart.length > maxDecimalLength) return;
 
@@ -80,7 +82,6 @@ const NumberInput = ({ error, step = 1, mode = 'integer', t, ...props }: NumberI
             props?.className,
           )}
           onChange={(e) => {
-            console.log('@@@ onChange | ', e.target.value);
             const raw = unformat(e.target.value);
             const validator = getValidator({ ...props, mode });
 
