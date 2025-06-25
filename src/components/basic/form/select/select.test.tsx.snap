@@ -14,8 +14,6 @@ exports[`Select > should match the snapshot 1`] = `
         name="name"
       >
         <option
-          class="hidden"
-          disabled=""
           selected=""
           value=""
         />
