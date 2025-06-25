@@ -10,12 +10,15 @@ type Args = ComponentProps<typeof NumberInputComponent> & {
 };
 
 const ControlledInput = (props: Args) => {
-  const [value, setValue] = useState<string>(props.value?.toString() ?? '');
+  const [value, setValue] = useState<number | undefined>(props.value);
   return (
     <NumberInputComponent
       {...props}
-      onChange={(e) => setValue(e.currentTarget.value)}
       value={value}
+      onChange={(e) => {
+        const value = parseFloat(e.target.value);
+        setValue(isNaN(value) ? undefined : value);
+      }}
     />
   );
 };
@@ -62,7 +65,7 @@ const Render = ({ label, placeholder, ...args }: Args) => {
           name="input1"
         />
       </Form.Group>
-      {/* <Form.Group>
+      <Form.Group>
         <Form.Label htmlFor="input2">{t2('disabled.label')}</Form.Label>
         <NumberInputComponent
           id="input2"
@@ -77,10 +80,10 @@ const Render = ({ label, placeholder, ...args }: Args) => {
           {...args}
           id="input3"
           name="input3"
-          value={t2('invalid.value')}
+          value={t2('invalid.value') as unknown as number}
           error={t2('invalid.error')}
         />
-      </Form.Group> */}
+      </Form.Group>
     </div>
   );
 };

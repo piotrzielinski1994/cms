@@ -99,25 +99,59 @@ describe('NumberInput', () => {
     });
   });
 
-  // describe('Keyboard', () => {
-  //   it('should increase the value by step', async () => {
-  //     const { getByRole } = render(<ControlledInput {...defaultProps} step={10} />);
-  //     const input = getByRole('textbox') as HTMLInputElement;
+  describe('Keyboard', () => {
+    it.each([
+      { step: 10, initial: undefined, expected: '10' },
+      { step: 1, initial: 0, expected: '1' },
+      { step: 1.2, initial: 3.4, expected: '4.6' },
+      { step: 1.2, initial: -1, expected: '0.2' },
+    ])('should increase $initial by $step to $expected', async ({ step, initial, expected }) => {
+      const { getByRole } = render(
+        withProviders(
+          <ControlledInput
+            {...defaultProps}
+            step={step}
+            value={initial}
+            mode="decimal"
+            maxDecimalLength={2}
+          />,
+        ),
+      );
+      const input = getByRole('textbox') as HTMLInputElement;
+      const valueBefore = input.value;
 
-  //     fireEvent.keyDown(input, { key: 'ArrowUp' });
+      fireEvent.keyDown(input, { key: 'ArrowUp' });
 
-  //     expect(input.value).toBe('10');
-  //   });
+      expect(valueBefore).toBe(initial?.toString() ?? '');
+      expect(input.value).toBe(expected);
+    });
 
-  //   it('should decrease the value by step', async () => {
-  //     const { getByRole } = render(<ControlledInput {...defaultProps} step={5} />);
-  //     const input = getByRole('textbox') as HTMLInputElement;
+    it.each([
+      { step: 10, initial: undefined, expected: '-10' },
+      { step: 1, initial: 0, expected: '-1' },
+      { step: 1.2, initial: 3.4, expected: '2.2' },
+      { step: 1.2, initial: 1, expected: '-0.2' },
+    ])('should decrease $initial by $step to $expected', async ({ step, initial, expected }) => {
+      const { getByRole } = render(
+        withProviders(
+          <ControlledInput
+            {...defaultProps}
+            step={step}
+            value={initial}
+            mode="decimal"
+            maxDecimalLength={2}
+          />,
+        ),
+      );
+      const input = getByRole('textbox') as HTMLInputElement;
+      const valueBefore = input.value;
 
-  //     fireEvent.keyDown(input, { key: 'ArrowDown' });
+      fireEvent.keyDown(input, { key: 'ArrowDown' });
 
-  //     expect(input.value).toBe('-5');
-  //   });
-  // });
+      expect(valueBefore).toBe(initial?.toString() ?? '');
+      expect(input.value).toBe(expected);
+    });
+  });
 
   describe('Max integer/decimal parts limits', () => {
     it('should prevent typing longer integer part than expected', async () => {
