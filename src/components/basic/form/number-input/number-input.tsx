@@ -1,11 +1,12 @@
+import { useLocaleStore } from '@/store/locale';
 import { cn } from '@/utils/tailwind';
-import { isDecimal, isInteger } from '@/utils/zod';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { ChangeEvent, DetailedHTMLProps, InputHTMLAttributes, useState } from 'react';
 import { Control, FieldValues, Path, useController } from 'react-hook-form';
 import Form from '../root/form';
 import { inputClassNames } from '../text-input/text-input';
+import { createNumberFormatter, createNumberUnformatter, getValidator } from './number-input.utils';
 
 // Types ====================================
 
@@ -38,7 +39,11 @@ type DecimalInputProps = NumberInputPropsBase & {
 // Variables ====================================
 
 const NumberInput = ({ error, step = 1, mode = 'integer', t, ...props }: NumberInputProps) => {
+  const locale = useLocaleStore();
   const [rawValue, setRawValue] = useState<string>(props.value?.toString() ?? '');
+
+  const format = createNumberFormatter(locale);
+  const unformat = createNumberUnformatter(locale);
 
   const changeValue = (delta: number) => {
     const raw = rawValue.replace(',', '.') || '0';
@@ -65,14 +70,14 @@ const NumberInput = ({ error, step = 1, mode = 'integer', t, ...props }: NumberI
           type="tel"
           autoComplete="off"
           {...omitCustomProps({ ...props, mode })}
-          value={rawValue}
+          value={format(rawValue)}
           className={cn(
             inputClassNames.input({ isValid: !error }),
             'w-full pr-6',
             props?.className,
           )}
           onChange={(e) => {
-            const raw = e.target.value.replace(',', '.');
+            const raw = unformat(e.target.value);
             const validator = getValidator({ ...props, mode });
 
             if (!['', '-'].includes(raw) && !validator.safeParse(raw).success) return;
@@ -132,21 +137,6 @@ const NumberInputContainer = <T extends FieldValues>(props: NumberInputContainer
       }}
     />
   );
-};
-
-const getValidator = (props: NumberInputProps) => {
-  const isNegative = props.min === undefined || props.min < 0;
-
-  if (props.mode === 'decimal') {
-    const { maxIntLength, maxDecimalLength } = props;
-    return isDecimal({
-      int: maxIntLength,
-      frac: maxDecimalLength,
-      negative: isNegative,
-    });
-  }
-
-  return isInteger(props.maxIntLength, isNegative);
 };
 
 const omitCustomProps = (props: NumberInputProps) => {
