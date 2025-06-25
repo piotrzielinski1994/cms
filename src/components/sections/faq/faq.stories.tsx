@@ -35,8 +35,8 @@ const Render = ({ heading, subheading, items, ...args }: Args) => {
       heading={getFallback(heading, t2('heading'))}
       subheading={getFallback(subheading, t2('subheading'))}
       items={items.map((it, index) => ({
-        question: `${getFallback(it.question, t('question'))} ${index}`,
-        answer: `${getFallback(it.answer, t('answer'))} ${index}`,
+        question: `${getFallback(it.question, t('question'))} ${index + 1}`,
+        answer: `${getFallback(it.answer, t('answer'))} ${index + 1}`,
       }))}
     />
   );
