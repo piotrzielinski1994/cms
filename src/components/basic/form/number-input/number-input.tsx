@@ -21,6 +21,7 @@ type NumberInputPropsBase = Omit<
 > & {
   name: string;
   error?: string;
+  value?: number;
   step?: number;
   min?: number;
   max?: number;
@@ -47,9 +48,11 @@ const NumberInput = ({ error, step = 1, mode = 'integer', t, ...props }: NumberI
 
   const changeValue = (delta: number) => {
     const raw = rawValue.replace(',', '.') || '0';
-    const validator = getValidator({ ...props, mode });
-    if (!validator.safeParse(raw).success) return;
 
+    const validator = getValidator({ ...props, mode });
+    console.log('@@@ mode | ', mode);
+    console.log('@@@ raw | ', raw, JSON.stringify(validator.safeParse(raw)));
+    if (!validator.safeParse(raw).success) return;
     const next = Number(raw) + delta * step;
     const [intPartRaw, decPart = ''] = String(next).split('.');
     const intPart = intPartRaw.startsWith('-') ? intPartRaw.slice(1) : intPartRaw;
@@ -77,6 +80,7 @@ const NumberInput = ({ error, step = 1, mode = 'integer', t, ...props }: NumberI
             props?.className,
           )}
           onChange={(e) => {
+            console.log('@@@ onChange | ', e.target.value);
             const raw = unformat(e.target.value);
             const validator = getValidator({ ...props, mode });
 

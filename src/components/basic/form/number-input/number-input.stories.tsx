@@ -10,7 +10,7 @@ type Args = ComponentProps<typeof NumberInputComponent> & {
 };
 
 const ControlledInput = (props: Args) => {
-  const [value, setValue] = useState<string>('');
+  const [value, setValue] = useState<string>(props.value?.toString() ?? '');
   return (
     <NumberInputComponent
       {...props}
@@ -62,7 +62,7 @@ const Render = ({ label, placeholder, ...args }: Args) => {
           name="input1"
         />
       </Form.Group>
-      <Form.Group>
+      {/* <Form.Group>
         <Form.Label htmlFor="input2">{t2('disabled.label')}</Form.Label>
         <NumberInputComponent
           id="input2"
@@ -80,7 +80,7 @@ const Render = ({ label, placeholder, ...args }: Args) => {
           value={t2('invalid.value')}
           error={t2('invalid.error')}
         />
-      </Form.Group>
+      </Form.Group> */}
     </div>
   );
 };
