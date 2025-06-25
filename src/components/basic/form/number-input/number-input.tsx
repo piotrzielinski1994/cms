@@ -91,8 +91,10 @@ const NumberInput = ({ error, step = 1, mode = 'integer', t, ...props }: NumberI
             props?.onChange?.(e);
           }}
           onKeyDown={(e) => {
-            if (e.key === 'ArrowUp') changeValue(1);
-            if (e.key === 'ArrowDown') changeValue(-1);
+            console.log('@@@ 0 | ', 0);
+            if (e.key === 'ArrowUp') return changeValue(1);
+            if (e.key === 'ArrowDown') return changeValue(-1);
+            console.log('@@@ 1 | ', 1, e.key);
             props?.onKeyDown?.(e);
           }}
         />

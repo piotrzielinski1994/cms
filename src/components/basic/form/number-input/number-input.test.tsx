@@ -1,5 +1,6 @@
 import { withProviders } from '@/utils/tests';
 import { fireEvent, render, waitFor } from '@testing-library/react';
+import { Locale } from 'next-intl';
 import { ComponentProps, useState } from 'react';
 import { describe, expect, it } from 'vitest';
 import { axe } from 'vitest-axe';
@@ -29,7 +30,7 @@ describe('NumberInput', () => {
 
   it('should have no accessibility violations', async () => {
     const { container } = render(
-      withProviders(
+      withProviders()(
         <Form.Group>
           <Form.Label htmlFor={defaultProps.id}>Label</Form.Label>
           <NumberInput {...defaultProps} />
@@ -41,7 +42,7 @@ describe('NumberInput', () => {
   });
 
   it('should match the snapshot', async () => {
-    const { container } = render(withProviders(<NumberInput {...defaultProps} />));
+    const { container } = render(withProviders()(<NumberInput {...defaultProps} />));
     expect(container).toMatchSnapshot();
   });
 
@@ -53,7 +54,7 @@ describe('NumberInput', () => {
       { step: 1.2, initial: -1, expected: '0.2' },
     ])('should increase $initial by $step to $expected', async ({ step, initial, expected }) => {
       const { getByLabelText, getByRole } = render(
-        withProviders(
+        withProviders()(
           <ControlledInput
             {...defaultProps}
             step={step}
@@ -79,7 +80,7 @@ describe('NumberInput', () => {
       { step: 1.2, initial: 1, expected: '-0.2' },
     ])('should decrease $initial by $step to $expected', async ({ step, initial, expected }) => {
       const { getByLabelText, getByRole } = render(
-        withProviders(
+        withProviders()(
           <ControlledInput
             {...defaultProps}
             step={step}
@@ -107,7 +108,7 @@ describe('NumberInput', () => {
       { step: 1.2, initial: -1, expected: '0.2' },
     ])('should increase $initial by $step to $expected', async ({ step, initial, expected }) => {
       const { getByRole } = render(
-        withProviders(
+        withProviders()(
           <ControlledInput
             {...defaultProps}
             step={step}
@@ -133,7 +134,7 @@ describe('NumberInput', () => {
       { step: 1.2, initial: 1, expected: '-0.2' },
     ])('should decrease $initial by $step to $expected', async ({ step, initial, expected }) => {
       const { getByRole } = render(
-        withProviders(
+        withProviders()(
           <ControlledInput
             {...defaultProps}
             step={step}
@@ -156,7 +157,7 @@ describe('NumberInput', () => {
   describe('Max integer/decimal parts limits', () => {
     it('should prevent typing longer integer part than expected', async () => {
       const { getByRole } = render(
-        withProviders(<ControlledInput {...defaultProps} maxIntLength={3} />),
+        withProviders()(<ControlledInput {...defaultProps} maxIntLength={3} />),
       );
       const input = getByRole('textbox') as HTMLInputElement;
 
@@ -169,7 +170,7 @@ describe('NumberInput', () => {
 
     it('should prevent typing longer decimal part than expected', async () => {
       const { getByRole } = render(
-        withProviders(<ControlledInput {...defaultProps} mode="decimal" maxDecimalLength={2} />),
+        withProviders()(<ControlledInput {...defaultProps} mode="decimal" maxDecimalLength={2} />),
       );
       const input = getByRole('textbox') as HTMLInputElement;
 
@@ -182,7 +183,7 @@ describe('NumberInput', () => {
 
     it('should prevent going out of bounds on ArrowUp', async () => {
       const { getByRole } = render(
-        withProviders(<ControlledInput {...defaultProps} maxIntLength={3} />),
+        withProviders()(<ControlledInput {...defaultProps} maxIntLength={3} />),
       );
       const input = getByRole('textbox') as HTMLInputElement;
 
@@ -194,7 +195,7 @@ describe('NumberInput', () => {
 
     it('should prevent going out of bounds on ArrowDown', async () => {
       const { getByRole } = render(
-        withProviders(<ControlledInput {...defaultProps} maxIntLength={3} />),
+        withProviders()(<ControlledInput {...defaultProps} maxIntLength={3} />),
       );
       const input = getByRole('textbox') as HTMLInputElement;
 
@@ -206,7 +207,7 @@ describe('NumberInput', () => {
 
     it('should prevent going out of bounds on increment button click', async () => {
       const { getByRole, getByLabelText } = render(
-        withProviders(<ControlledInput {...defaultProps} maxIntLength={3} />),
+        withProviders()(<ControlledInput {...defaultProps} maxIntLength={3} />),
       );
       const input = getByRole('textbox') as HTMLInputElement;
 
@@ -218,7 +219,7 @@ describe('NumberInput', () => {
 
     it('should prevent going out of bounds on decrement button click', async () => {
       const { getByRole, getByLabelText } = render(
-        withProviders(<ControlledInput {...defaultProps} maxIntLength={3} />),
+        withProviders()(<ControlledInput {...defaultProps} maxIntLength={3} />),
       );
       const input = getByRole('textbox') as HTMLInputElement;
 
@@ -227,5 +228,28 @@ describe('NumberInput', () => {
 
       expect(input.value).toBe('-999');
     });
+  });
+
+  describe('Formatter', () => {
+    it.each([
+      // { locale: 'pl', typed: '1234567,89', expected: '1\u00A0234\u00A0567,89' },
+      { locale: 'en', typed: '1234567.89', expected: '1,234,567.89' },
+    ] satisfies { locale: Locale; typed: string; expected: string }[])(
+      'should format $typed to $expected for $locale',
+      async ({ locale, typed, expected }) => {
+        const { getByRole } = render(
+          withProviders({ locale })(
+            <ControlledInput {...defaultProps} mode="decimal" maxDecimalLength={2} />,
+          ),
+        );
+        const input = getByRole('textbox') as HTMLInputElement;
+
+        typed.split('').forEach((char) => {
+          fireEvent.input(input, { target: { value: input.value + char } });
+        });
+
+        expect(input.value).toBe(expected);
+      },
+    );
   });
 });

@@ -1,8 +1,5 @@
-import { en } from '@/payload/locale/en';
-import { FontScaleProvider } from '@/providers/font-scale.provider';
-import { ThemeProvider } from '@/providers/theme.provider';
-import { NextIntlClientProvider } from 'next-intl';
-import { ReactNode } from 'react';
+import { Providers } from '@/providers';
+import { ComponentProps, ReactNode } from 'react';
 
 const resolveServerComponent = async <T extends (props: unknown) => Promise<ReactNode>>(
   Component: T,
@@ -12,14 +9,17 @@ const resolveServerComponent = async <T extends (props: unknown) => Promise<Reac
   return () => ComponentResolved;
 };
 
-const withProviders = (children: ReactNode) => {
-  return (
-    <NextIntlClientProvider locale="en" messages={en}>
-      <ThemeProvider initialTheme="light">
-        <FontScaleProvider initialFontScale="base">{children}</FontScaleProvider>
-      </ThemeProvider>
-    </NextIntlClientProvider>
-  );
-};
+const withProviders = (props: Partial<Omit<ComponentProps<typeof Providers>, 'children'>> = {}) =>
+  function WithProviders(children: ReactNode) {
+    const overwrittenProps: ComponentProps<typeof Providers> = {
+      locale: 'en',
+      initialTheme: 'light',
+      initialFontScale: 'base',
+      initialCookiesConsent: true,
+      ...props,
+      children,
+    };
+    return <Providers {...overwrittenProps} />;
+  };
 
 export { resolveServerComponent, withProviders };
