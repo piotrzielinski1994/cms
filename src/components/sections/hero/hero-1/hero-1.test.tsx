@@ -1,5 +1,5 @@
 import { withProviders } from '@/utils/tests';
-import { render } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import { ComponentProps } from 'react';
 import { describe, expect, it } from 'vitest';
 import { axe } from 'vitest-axe';
@@ -16,7 +16,7 @@ describe('Hero1', () => {
   } satisfies ComponentProps<typeof Hero1>;
 
   it('should have no accessibility violations', async () => {
-    const { container } = render(withProviders()(<Hero1 {...defaultProps} />));
+    const { container } = await waitFor(() => render(withProviders()(<Hero1 {...defaultProps} />)));
     const results = await axe(container);
     expect(results).toHaveNoViolations();
   });
