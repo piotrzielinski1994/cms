@@ -294,6 +294,12 @@ const pl = {
         disabled: 'Zablokowany',
         secondary: 'Drugorzędny',
       },
+      alert: {
+        info: 'Informacja',
+        success: 'Sukces',
+        warn: 'Ostrzeżenie',
+        error: 'Błąd',
+      },
       accordion: {
         heading: 'Nagłówek',
         content: 'Treść',

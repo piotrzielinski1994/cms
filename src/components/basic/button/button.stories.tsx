@@ -15,9 +15,7 @@ const meta: Meta<Args> = {
     label: { control: 'text' },
     variant: {
       control: 'select',
-      options: ['primary', 'secondary'] satisfies Array<
-        ComponentProps<typeof ButtonComponent>['variant']
-      >,
+      options: ['primary', 'secondary'] satisfies Array<Args['variant']>,
     },
     disabled: { control: 'boolean' },
   },

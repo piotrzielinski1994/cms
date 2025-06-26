@@ -290,6 +290,12 @@ const en = {
         disabled: 'Disabled',
         secondary: 'Secondary',
       },
+      alert: {
+        info: 'Information',
+        success: 'Success',
+        warn: 'Warning',
+        error: 'Error',
+      },
       accordion: {
         heading: 'Heading',
         content: 'Content',
