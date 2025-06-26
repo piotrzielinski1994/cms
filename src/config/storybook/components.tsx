@@ -40,4 +40,4 @@ const DataAttributesSetter = ({ locale, theme, fontScale }: StoryContext['global
   return <></>;
 };
 
-export { withProviders };
+export { withProviders, type StoryContext };

@@ -296,6 +296,7 @@ const en = {
         warn: 'Warning',
         error: 'Error',
       },
+      badge: 'Badge',
       accordion: {
         heading: 'Heading',
         content: 'Content',

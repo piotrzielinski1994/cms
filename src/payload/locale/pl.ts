@@ -300,6 +300,7 @@ const pl = {
         warn: 'Ostrzeżenie',
         error: 'Błąd',
       },
+      badge: 'Etykieta',
       accordion: {
         heading: 'Nagłówek',
         content: 'Treść',

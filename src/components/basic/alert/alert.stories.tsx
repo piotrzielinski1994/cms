@@ -27,9 +27,7 @@ const Render = ({ children, ...args }: Args) => {
   return (
     <div className="grid gap-4">
       <AlertComponent {...args}>{getFallback(children, t('info'))}</AlertComponent>
-      <AlertComponent type="success">
-        {t('success')}asdasd asd asd asd asd <aside> asd asd asd asdasd</aside>
-      </AlertComponent>
+      <AlertComponent type="success">{t('success')}</AlertComponent>
       <AlertComponent type="warn">{t('warn')}</AlertComponent>
       <AlertComponent type="error">{t('error')}</AlertComponent>
     </div>
