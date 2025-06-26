@@ -6,7 +6,6 @@ import { axe } from 'vitest-axe';
 import { Accordion } from './accordion';
 
 describe('Accordion', () => {
-  const user = userEvent.setup();
   const defaultItems = [
     { heading: 'Heading 1', content: 'Content 1' },
     { heading: 'Heading 2', content: 'Content 2' },
@@ -28,11 +27,11 @@ describe('Accordion', () => {
       const { getByRole, getByText } = render(<Accordion items={defaultItems} />);
       const button1 = getByRole('button', { name: 'Heading 1' });
 
-      await user.click(button1);
+      await userEvent.click(button1);
       expect(button1).toHaveAttribute('aria-expanded', 'true');
       expect(getByText('Content 1')).toHaveAttribute('aria-hidden', 'false');
 
-      await user.click(button1);
+      await userEvent.click(button1);
       expect(button1).toHaveAttribute('aria-expanded', 'false');
       expect(getByText('Content 1')).toHaveAttribute('aria-hidden', 'true');
     });
@@ -54,7 +53,7 @@ describe('Accordion', () => {
       const button1 = getByRole('button', { name: 'Heading 1' });
       const button2 = getByRole('button', { name: 'Heading 2' });
 
-      await user.click(getByText('Heading 2'));
+      await userEvent.click(getByText('Heading 2'));
 
       expect(button1).toHaveAttribute('aria-expanded', 'false');
       expect(getByText('Content 1')).toHaveAttribute('aria-hidden', 'true');

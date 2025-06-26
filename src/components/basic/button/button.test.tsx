@@ -6,8 +6,6 @@ import { axe } from 'vitest-axe';
 import { Button, ButtonLink } from './button';
 
 describe('Button', () => {
-  const user = userEvent.setup();
-
   it('should have no accessibility violations', async () => {
     const { container } = render(<Button>Button</Button>);
     const results = await axe(container);
@@ -23,15 +21,13 @@ describe('Button', () => {
     const onClick = vi.fn();
     const { getByRole } = render(<Button onClick={onClick}>Button</Button>);
 
-    await user.click(getByRole('button', { name: 'Button' }));
+    await userEvent.click(getByRole('button', { name: 'Button' }));
 
     expect(onClick).toHaveBeenCalled();
   });
 });
 
 describe('ButtonLink', () => {
-  const user = userEvent.setup();
-
   it('renders with default primary variant classes', () => {
     const { getByRole } = render(withProviders()(<ButtonLink href="/test">ButtonLink</ButtonLink>));
     const link = getByRole('link');
@@ -59,7 +55,7 @@ describe('ButtonLink', () => {
       ),
     );
 
-    await user.click(getByRole('link', { name: 'ButtonLink' }));
+    await userEvent.click(getByRole('link', { name: 'ButtonLink' }));
 
     expect(onClick).toHaveBeenCalled();
   });

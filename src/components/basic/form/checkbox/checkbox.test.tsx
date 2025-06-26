@@ -6,7 +6,6 @@ import { axe } from 'vitest-axe';
 import { Checkbox } from './checkbox';
 
 describe('Checkbox', () => {
-  const user = userEvent.setup();
   const defaultProps = {
     name: 'name',
     id: 'id',
@@ -47,7 +46,7 @@ describe('Checkbox', () => {
       );
       const checkbox = getByRole('checkbox', { name: defaultProps.label }) as HTMLInputElement;
 
-      await user.click(checkbox);
+      await userEvent.click(checkbox);
 
       expect(onChange).toHaveBeenCalledTimes(1);
       expect(checkbox.checked).toBe(true);
@@ -57,7 +56,7 @@ describe('Checkbox', () => {
       const onChange = vi.fn();
       const { getByRole } = render(<Checkbox {...defaultProps} onChange={onChange} disabled />);
 
-      await user.click(getByRole('checkbox', { name: defaultProps.label }));
+      await userEvent.click(getByRole('checkbox', { name: defaultProps.label }));
 
       expect(onChange).not.toHaveBeenCalled();
     });
