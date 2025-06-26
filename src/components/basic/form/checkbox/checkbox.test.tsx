@@ -1,11 +1,12 @@
 import { render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { ComponentProps, useState } from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { axe } from 'vitest-axe';
-import Form from '../root/form';
 import { Checkbox } from './checkbox';
 
 describe('Checkbox', () => {
+  const user = userEvent.setup();
   const defaultProps = {
     name: 'name',
     id: 'id',
@@ -16,14 +17,14 @@ describe('Checkbox', () => {
   const ControlledComponent = (props: ComponentProps<typeof Checkbox>) => {
     const [isChecked, setIsChecked] = useState<boolean>(props.checked ?? false);
     return (
-      <Form.Group>
-        <Form.Label htmlFor={props.id}>Label</Form.Label>
-        <Checkbox
-          {...props}
-          checked={isChecked}
-          onChange={(e) => setIsChecked(e.currentTarget.checked)}
-        />
-      </Form.Group>
+      <Checkbox
+        {...props}
+        checked={isChecked}
+        onChange={(e) => {
+          setIsChecked(e.currentTarget.checked);
+          props.onChange?.(e);
+        }}
+      />
     );
   };
 
@@ -34,7 +35,31 @@ describe('Checkbox', () => {
   });
 
   it('should match the snapshot', async () => {
-    const { container } = render(<ControlledComponent {...defaultProps} />);
+    const { container } = render(<Checkbox {...defaultProps} />);
     expect(container).toMatchSnapshot();
+  });
+
+  describe('Interactivity', () => {
+    it('should call onChange when clicked', async () => {
+      const onChange = vi.fn();
+      const { getByRole } = render(
+        <ControlledComponent {...defaultProps} checked={false} onChange={onChange} />,
+      );
+      const checkbox = getByRole('checkbox', { name: defaultProps.label }) as HTMLInputElement;
+
+      await user.click(checkbox);
+
+      expect(onChange).toHaveBeenCalledTimes(1);
+      expect(checkbox.checked).toBe(true);
+    });
+
+    it('should be disabled when disabled prop is set', async () => {
+      const onChange = vi.fn();
+      const { getByRole } = render(<Checkbox {...defaultProps} onChange={onChange} disabled />);
+
+      await user.click(getByRole('checkbox', { name: defaultProps.label }));
+
+      expect(onChange).not.toHaveBeenCalled();
+    });
   });
 });

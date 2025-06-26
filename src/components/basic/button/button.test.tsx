@@ -1,10 +1,13 @@
 import { withProviders } from '@/utils/tests';
-import { fireEvent, render } from '@testing-library/react';
+import { render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
 import { axe } from 'vitest-axe';
 import { Button, ButtonLink } from './button';
 
 describe('Button', () => {
+  const user = userEvent.setup();
+
   it('should have no accessibility violations', async () => {
     const { container } = render(<Button>Button</Button>);
     const results = await axe(container);
@@ -16,17 +19,19 @@ describe('Button', () => {
     expect(container).toMatchSnapshot();
   });
 
-  it('calls onClick handler', () => {
+  it('calls onClick handler', async () => {
     const onClick = vi.fn();
     const { getByRole } = render(<Button onClick={onClick}>Button</Button>);
 
-    fireEvent.click(getByRole('button', { name: 'Button' }));
+    await user.click(getByRole('button', { name: 'Button' }));
 
     expect(onClick).toHaveBeenCalled();
   });
 });
 
 describe('ButtonLink', () => {
+  const user = userEvent.setup();
+
   it('renders with default primary variant classes', () => {
     const { getByRole } = render(withProviders()(<ButtonLink href="/test">ButtonLink</ButtonLink>));
     const link = getByRole('link');
@@ -44,7 +49,7 @@ describe('ButtonLink', () => {
     expect(container).toMatchSnapshot();
   });
 
-  it('calls onClick handler', () => {
+  it('calls onClick handler', async () => {
     const onClick = vi.fn();
     const { getByRole } = render(
       withProviders()(
@@ -54,7 +59,7 @@ describe('ButtonLink', () => {
       ),
     );
 
-    fireEvent.click(getByRole('link', { name: 'ButtonLink' }));
+    await user.click(getByRole('link', { name: 'ButtonLink' }));
 
     expect(onClick).toHaveBeenCalled();
   });
