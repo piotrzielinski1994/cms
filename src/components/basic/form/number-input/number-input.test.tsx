@@ -1,5 +1,6 @@
 import { withProviders } from '@/utils/tests';
-import { fireEvent, render, waitFor } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { Locale } from 'next-intl';
 import { ComponentProps, useState } from 'react';
 import { describe, expect, it } from 'vitest';
@@ -67,7 +68,7 @@ describe('NumberInput', () => {
       const input = getByRole('textbox') as HTMLInputElement;
       const valueBefore = input.value;
 
-      await waitFor(() => getByLabelText(defaultProps.t.increment).click());
+      await userEvent.click(getByLabelText(defaultProps.t.increment));
 
       expect(valueBefore).toBe(initial?.toString() ?? '');
       expect(input.value).toBe(expected);
@@ -93,7 +94,7 @@ describe('NumberInput', () => {
       const input = getByRole('textbox') as HTMLInputElement;
       const valueBefore = input.value;
 
-      await waitFor(() => getByLabelText(defaultProps.t.decrement).click());
+      await userEvent.click(getByLabelText(defaultProps.t.decrement));
 
       expect(valueBefore).toBe(initial?.toString() ?? '');
       expect(input.value).toBe(expected);
@@ -121,7 +122,7 @@ describe('NumberInput', () => {
       const input = getByRole('textbox') as HTMLInputElement;
       const valueBefore = input.value;
 
-      fireEvent.keyDown(input, { key: 'ArrowUp' });
+      await userEvent.type(input, '{arrowup}');
 
       expect(valueBefore).toBe(initial?.toString() ?? '');
       expect(input.value).toBe(expected);
@@ -147,7 +148,7 @@ describe('NumberInput', () => {
       const input = getByRole('textbox') as HTMLInputElement;
       const valueBefore = input.value;
 
-      fireEvent.keyDown(input, { key: 'ArrowDown' });
+      await userEvent.type(input, '{arrowdown}');
 
       expect(valueBefore).toBe(initial?.toString() ?? '');
       expect(input.value).toBe(expected);
@@ -161,9 +162,9 @@ describe('NumberInput', () => {
       );
       const input = getByRole('textbox') as HTMLInputElement;
 
-      '1234'.split('').forEach((char) => {
-        fireEvent.input(input, { target: { value: input.value + char } });
-      });
+      for (const char of '1234') {
+        await userEvent.type(input, char);
+      }
 
       expect(input.value).toBe('123');
     });
@@ -176,9 +177,9 @@ describe('NumberInput', () => {
       );
       const input = getByRole('textbox') as HTMLInputElement;
 
-      '12.345'.split('').forEach((char) => {
-        fireEvent.input(input, { target: { value: input.value + char } });
-      });
+      for (const char of '12.345') {
+        await userEvent.type(input, char);
+      }
 
       await waitFor(() => expect(input.value).toBe('12.34'));
     });
@@ -189,8 +190,8 @@ describe('NumberInput', () => {
       );
       const input = getByRole('textbox') as HTMLInputElement;
 
-      fireEvent.change(input, { target: { value: '999' } });
-      fireEvent.keyDown(input, { key: 'ArrowUp' });
+      await userEvent.type(input, '999');
+      await userEvent.type(input, '{arrowup}');
 
       expect(input.value).toBe('999');
     });
@@ -201,8 +202,8 @@ describe('NumberInput', () => {
       );
       const input = getByRole('textbox') as HTMLInputElement;
 
-      fireEvent.change(input, { target: { value: '-999' } });
-      fireEvent.keyDown(input, { key: 'ArrowDown' });
+      await userEvent.type(input, '-999');
+      await userEvent.type(input, '{arrowdown}');
 
       expect(input.value).toBe('-999');
     });
@@ -213,8 +214,8 @@ describe('NumberInput', () => {
       );
       const input = getByRole('textbox') as HTMLInputElement;
 
-      fireEvent.change(input, { target: { value: '999' } });
-      await waitFor(() => getByLabelText(defaultProps.t.increment).click());
+      await userEvent.type(input, '999');
+      await userEvent.click(getByLabelText(defaultProps.t.increment));
 
       expect(input.value).toBe('999');
     });
@@ -225,8 +226,8 @@ describe('NumberInput', () => {
       );
       const input = getByRole('textbox') as HTMLInputElement;
 
-      fireEvent.change(input, { target: { value: '-999' } });
-      await waitFor(() => getByLabelText(defaultProps.t.decrement).click());
+      await userEvent.type(input, '-999');
+      await userEvent.click(getByLabelText(defaultProps.t.decrement));
 
       expect(input.value).toBe('-999');
     });
@@ -246,9 +247,9 @@ describe('NumberInput', () => {
         );
         const input = getByRole('textbox') as HTMLInputElement;
 
-        typed.split('').forEach((char) => {
-          fireEvent.input(input, { target: { value: input.value + char } });
-        });
+        for (const char of typed) {
+          await userEvent.type(input, char);
+        }
 
         expect(input.value).toBe(expected);
       },
