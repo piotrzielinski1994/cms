@@ -3,7 +3,7 @@
 exports[`Image > should match the snapshot 1`] = `
 <div>
   <img
-    alt=""
+    alt="Label"
     class="w-full h-auto object-cover cms-image"
     data-nimg="1"
     decoding="async"
