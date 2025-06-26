@@ -58,7 +58,14 @@ const Accordion = ({ items, activeItemIndex, className, ...props }: AccordionPro
                 contentRefs.current[index] = el;
               }}
             >
-              <div className="px-4 py-2">{content}</div>
+              <div
+                className="px-4 py-2"
+                role="region"
+                aria-labelledby={`${id}__${index}__button`}
+                aria-hidden={!isActive}
+              >
+                {content}
+              </div>
             </div>
           </div>
         );

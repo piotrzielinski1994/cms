@@ -44,7 +44,10 @@ exports[`Accordion > should match the snapshot 1`] = `
         style="max-height: 0;"
       >
         <div
+          aria-hidden="true"
+          aria-labelledby="«r1»__0__button"
           class="px-4 py-2"
+          role="region"
         >
           Content 1
         </div>
@@ -89,7 +92,10 @@ exports[`Accordion > should match the snapshot 1`] = `
         style="max-height: 0;"
       >
         <div
+          aria-hidden="true"
+          aria-labelledby="«r1»__1__button"
           class="px-4 py-2"
+          role="region"
         >
           Content 2
         </div>

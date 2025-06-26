@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import { ComponentProps } from 'react';
 import { describe, expect, it } from 'vitest';
 import { axe } from 'vitest-axe';
@@ -16,8 +16,48 @@ describe('Accordion', () => {
     expect(results).toHaveNoViolations();
   });
 
-  it('should match the snapshot', async () => {
+  it('should match the snapshot', () => {
     const { container } = render(<Accordion items={defaultItems} />);
     expect(container).toMatchSnapshot();
+  });
+
+  describe('Interaction', () => {
+    it('should toggle item on click', () => {
+      const { getByRole, getByText } = render(<Accordion items={defaultItems} />);
+      const button1 = getByRole('button', { name: 'Heading 1' });
+
+      fireEvent.click(button1);
+      expect(button1).toHaveAttribute('aria-expanded', 'true');
+      expect(getByText('Content 1')).toHaveAttribute('aria-hidden', 'false');
+
+      fireEvent.click(button1);
+      expect(button1).toHaveAttribute('aria-expanded', 'false');
+      expect(getByText('Content 1')).toHaveAttribute('aria-hidden', 'true');
+    });
+
+    it('should open the item specified by activeItemIndex initially', () => {
+      const { getByRole, getByText } = render(
+        <Accordion items={defaultItems} activeItemIndex={1} />,
+      );
+      const button2 = getByRole('button', { name: 'Heading 2' });
+
+      expect(button2).toHaveAttribute('aria-expanded', 'true');
+      expect(getByText('Content 2')).toHaveAttribute('aria-hidden', 'false');
+    });
+
+    it('should close previously opened item when another is clicked', () => {
+      const { getByRole, getByText } = render(
+        <Accordion items={defaultItems} activeItemIndex={0} />,
+      );
+      const button1 = getByRole('button', { name: 'Heading 1' });
+      const button2 = getByRole('button', { name: 'Heading 2' });
+
+      fireEvent.click(getByText('Heading 2'));
+
+      expect(button1).toHaveAttribute('aria-expanded', 'false');
+      expect(getByText('Content 1')).toHaveAttribute('aria-hidden', 'true');
+      expect(button2).toHaveAttribute('aria-expanded', 'true');
+      expect(getByText('Content 2')).toHaveAttribute('aria-hidden', 'false');
+    });
   });
 });
