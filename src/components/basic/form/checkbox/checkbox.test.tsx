@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import { ComponentProps } from 'react';
+import { ComponentProps, useState } from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { axe } from 'vitest-axe';
 import Form from '../root/form';
@@ -13,19 +13,28 @@ describe('Checkbox', () => {
     onChange: vi.fn(),
   } satisfies ComponentProps<typeof Checkbox>;
 
-  it('should have no accessibility violations', async () => {
-    const { container } = render(
+  const ControlledComponent = (props: ComponentProps<typeof Checkbox>) => {
+    const [isChecked, setIsChecked] = useState<boolean>(props.checked ?? false);
+    return (
       <Form.Group>
-        <Form.Label htmlFor={defaultProps.id}>Label</Form.Label>
-        <Checkbox {...defaultProps} />
-      </Form.Group>,
+        <Form.Label htmlFor={props.id}>Label</Form.Label>
+        <Checkbox
+          {...props}
+          checked={isChecked}
+          onChange={(e) => setIsChecked(e.currentTarget.checked)}
+        />
+      </Form.Group>
     );
+  };
+
+  it('should have no accessibility violations', async () => {
+    const { container } = render(<ControlledComponent {...defaultProps} />);
     const results = await axe(container);
     expect(results).toHaveNoViolations();
   });
 
   it('should match the snapshot', async () => {
-    const { container } = render(<Checkbox {...defaultProps} />);
+    const { container } = render(<ControlledComponent {...defaultProps} />);
     expect(container).toMatchSnapshot();
   });
 });

@@ -14,7 +14,7 @@ describe('NumberInput', () => {
     t: { increment: 'Increment', decrement: 'Decrement' },
   } satisfies ComponentProps<typeof NumberInput>;
 
-  const ControlledInput = (props: ComponentProps<typeof NumberInput>) => {
+  const ControlledComponent = (props: ComponentProps<typeof NumberInput>) => {
     const [value, setValue] = useState<number | undefined>(props.value);
     return (
       <NumberInput
@@ -55,7 +55,7 @@ describe('NumberInput', () => {
     ])('should increase $initial by $step to $expected', async ({ step, initial, expected }) => {
       const { getByLabelText, getByRole } = render(
         withProviders()(
-          <ControlledInput
+          <ControlledComponent
             {...defaultProps}
             step={step}
             value={initial}
@@ -81,7 +81,7 @@ describe('NumberInput', () => {
     ])('should decrease $initial by $step to $expected', async ({ step, initial, expected }) => {
       const { getByLabelText, getByRole } = render(
         withProviders()(
-          <ControlledInput
+          <ControlledComponent
             {...defaultProps}
             step={step}
             value={initial}
@@ -109,7 +109,7 @@ describe('NumberInput', () => {
     ])('should increase $initial by $step to $expected', async ({ step, initial, expected }) => {
       const { getByRole } = render(
         withProviders()(
-          <ControlledInput
+          <ControlledComponent
             {...defaultProps}
             step={step}
             value={initial}
@@ -135,7 +135,7 @@ describe('NumberInput', () => {
     ])('should decrease $initial by $step to $expected', async ({ step, initial, expected }) => {
       const { getByRole } = render(
         withProviders()(
-          <ControlledInput
+          <ControlledComponent
             {...defaultProps}
             step={step}
             value={initial}
@@ -157,7 +157,7 @@ describe('NumberInput', () => {
   describe('Max integer/decimal parts limits', () => {
     it('should prevent typing longer integer part than expected', async () => {
       const { getByRole } = render(
-        withProviders()(<ControlledInput {...defaultProps} maxIntLength={3} />),
+        withProviders()(<ControlledComponent {...defaultProps} maxIntLength={3} />),
       );
       const input = getByRole('textbox') as HTMLInputElement;
 
@@ -170,7 +170,9 @@ describe('NumberInput', () => {
 
     it('should prevent typing longer decimal part than expected', async () => {
       const { getByRole } = render(
-        withProviders()(<ControlledInput {...defaultProps} mode="decimal" maxDecimalLength={2} />),
+        withProviders()(
+          <ControlledComponent {...defaultProps} mode="decimal" maxDecimalLength={2} />,
+        ),
       );
       const input = getByRole('textbox') as HTMLInputElement;
 
@@ -183,7 +185,7 @@ describe('NumberInput', () => {
 
     it('should prevent going out of bounds on ArrowUp', async () => {
       const { getByRole } = render(
-        withProviders()(<ControlledInput {...defaultProps} maxIntLength={3} />),
+        withProviders()(<ControlledComponent {...defaultProps} maxIntLength={3} />),
       );
       const input = getByRole('textbox') as HTMLInputElement;
 
@@ -195,7 +197,7 @@ describe('NumberInput', () => {
 
     it('should prevent going out of bounds on ArrowDown', async () => {
       const { getByRole } = render(
-        withProviders()(<ControlledInput {...defaultProps} maxIntLength={3} />),
+        withProviders()(<ControlledComponent {...defaultProps} maxIntLength={3} />),
       );
       const input = getByRole('textbox') as HTMLInputElement;
 
@@ -207,7 +209,7 @@ describe('NumberInput', () => {
 
     it('should prevent going out of bounds on increment button click', async () => {
       const { getByRole, getByLabelText } = render(
-        withProviders()(<ControlledInput {...defaultProps} maxIntLength={3} />),
+        withProviders()(<ControlledComponent {...defaultProps} maxIntLength={3} />),
       );
       const input = getByRole('textbox') as HTMLInputElement;
 
@@ -219,7 +221,7 @@ describe('NumberInput', () => {
 
     it('should prevent going out of bounds on decrement button click', async () => {
       const { getByRole, getByLabelText } = render(
-        withProviders()(<ControlledInput {...defaultProps} maxIntLength={3} />),
+        withProviders()(<ControlledComponent {...defaultProps} maxIntLength={3} />),
       );
       const input = getByRole('textbox') as HTMLInputElement;
 
@@ -239,7 +241,7 @@ describe('NumberInput', () => {
       async ({ locale, typed, expected }) => {
         const { getByRole } = render(
           withProviders({ locale })(
-            <ControlledInput {...defaultProps} mode="decimal" maxDecimalLength={2} />,
+            <ControlledComponent {...defaultProps} mode="decimal" maxDecimalLength={2} />,
           ),
         );
         const input = getByRole('textbox') as HTMLInputElement;
