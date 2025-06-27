@@ -1,8 +1,8 @@
+import { clientEnv } from '@/config/env.client.config';
+import { storyToUrlPath, THUMBNAIL_ID } from '@/config/storybook/utils';
 import path from 'path';
 import puppeteer from 'puppeteer';
 import { fileURLToPath } from 'url';
-import { clientEnv } from './config/env.client.config';
-import { storyToUrlPath, THUMBNAIL_ID } from './config/storybook/utils';
 
 const tsxToWebp = async (
   url: string,

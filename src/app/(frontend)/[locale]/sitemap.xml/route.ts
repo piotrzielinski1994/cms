@@ -1,5 +1,5 @@
 import config from '@/payload/payload.config';
-import { LocalizedRoute } from '@/utils/types';
+import { LocalizedRoute } from '@/utils/nextjs/types';
 import { Locale } from 'next-intl';
 import { getServerSideSitemap } from 'next-sitemap';
 import { unstable_cache } from 'next/cache';

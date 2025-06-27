@@ -1,5 +1,5 @@
 import type { Page } from '@/payload.types';
-import { rebuildPath, rebuildTag } from '@/utils/next';
+import { rebuildPath, rebuildTag } from '@/utils/nextjs/rebuild';
 import { isCollectionLocale } from '@/utils/payload';
 import type { CollectionAfterChangeHook, CollectionAfterDeleteHook } from 'payload';
 

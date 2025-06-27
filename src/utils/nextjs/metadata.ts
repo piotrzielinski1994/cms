@@ -1,6 +1,6 @@
 import { clientEnv } from '@/config/env.client.config';
 import { Metadata } from 'next';
-import { optional } from './optional';
+import { optional } from '../optional';
 
 const toPageMetadata = (options?: {
   url?: string;
