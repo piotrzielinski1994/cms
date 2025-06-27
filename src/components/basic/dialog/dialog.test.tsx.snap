@@ -1,0 +1,78 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Dialog > should match the snapshot 1`] = `
+<div>
+  <div
+    class="fixed inset-0 z-backdrop backdrop-blur-sm bg-foreground/50 dark:bg-foreground/10"
+  />
+  <div
+    class="px-4 sm:px-6 grid cms-section fixed inset-0 z-dialog py-4 sm:py-6"
+  >
+    <dialog
+      class="w-full max-w-screen-2xl mx-auto grid cms-container relative bg-background text-foreground"
+      open=""
+    >
+      <header
+        class="flex"
+      >
+        <p
+          class="flex-grow p-2"
+        >
+          Header
+        </p>
+        <div
+          class="flex-grow p-2"
+        />
+        <button
+          aria-label="Close"
+          class="p-2 border-solid"
+        >
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-x"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M18 6 6 18"
+            />
+            <path
+              d="m6 6 12 12"
+            />
+          </svg>
+        </button>
+      </header>
+      <div
+        class="p-2"
+      />
+      <footer
+        class="p-2"
+      >
+        <div
+          class="flex justify-end gap-2 flex-wrap"
+        >
+          <button
+            class="px-6 py-3 border-2 border-primary hover:border-primary/90 font-semibold whitespace-nowrap disabled:cursor-not-allowed text-primary disabled:border-primary/50 disabled:text-primary/50 bg-background [&:not(:disabled)]:hover:bg-foreground/5"
+            type="button"
+          >
+            Cancel
+          </button>
+          <button
+            class="px-6 py-3 border-2 border-primary hover:border-primary/90 font-semibold whitespace-nowrap disabled:cursor-not-allowed bg-primary hover:bg-primary/90 text-primary-foreground disabled:border-primary/0 disabled:bg-primary/50"
+            type="button"
+          >
+            Submit
+          </button>
+        </div>
+      </footer>
+    </dialog>
+  </div>
+</div>
+`;

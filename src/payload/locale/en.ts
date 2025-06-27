@@ -116,6 +116,7 @@ const en = {
     fontScaleSwitcher: 'Font scale switcher',
     increment: 'Increment',
     decrement: 'Decrement',
+    close: 'Close',
     component: {
       skipLink: 'Go to the main content',
     },
@@ -301,7 +302,13 @@ const en = {
         heading: 'Heading',
         content: 'Content',
       },
-      dialog: 'Dialog',
+      dialog: {
+        button: 'Show Dialog',
+        header: 'Header',
+        content: 'Content',
+        submit: 'Submit',
+        cancel: 'Cancel',
+      },
     },
   },
 };

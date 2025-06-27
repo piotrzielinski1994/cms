@@ -118,6 +118,7 @@ const pl = {
     fontScaleSwitcher: 'Przełącznik skalowania czcionki',
     increment: 'Zwiększ',
     decrement: 'Zmniejsz',
+    close: 'Zamknij',
     component: {
       skipLink: 'Przejdź do głównej zawartości',
     },
@@ -305,7 +306,13 @@ const pl = {
         heading: 'Nagłówek',
         content: 'Treść',
       },
-      dialog: 'Okno Dialogowe',
+      dialog: {
+        button: 'Pokaż okno dialogowe',
+        header: 'Nagłówek',
+        content: 'Treść',
+        submit: 'Zatwierdź',
+        cancel: 'Anuluj',
+      },
     },
   },
 } satisfies typeof en;

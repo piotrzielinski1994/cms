@@ -16,8 +16,8 @@ const storyToUrlPath = (title: string) => {
   return `${titlePart}--${storyPart}`;
 };
 
-const getFallback = <T extends ReactNode>(value: T, translation: string): T => {
-  return value === DEFAULT_VALUE ? (translation as T) : value;
+const getFallback = <T extends ReactNode>(value: T, fallback: T): T => {
+  return value === DEFAULT_VALUE ? (fallback as T) : value;
 };
 
 const imagesPerColorPref = {
