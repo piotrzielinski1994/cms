@@ -14,7 +14,7 @@ exports[`Tooltip > should match the snapshot 1`] = `
       </span>
     </button>
     <div
-      class="absolute top-full left-1/2 -translate-x-1/2 pt-2"
+      class="absolute top-full pt-2 left-1/2 -translate-x-1/2"
     >
       <div
         class="py-1 px-2 text-xs bg-foreground text-background"

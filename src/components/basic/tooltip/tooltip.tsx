@@ -1,19 +1,49 @@
 import { cn } from '@/utils/tailwind';
-import { ComponentPropsWithoutRef, useId, useState } from 'react';
+import { ComponentPropsWithoutRef, useEffect, useId, useMemo, useRef, useState } from 'react';
 
 type TooltipProps = ComponentPropsWithoutRef<'button'> & {
   content: string;
 };
 
 const Tooltip = ({ content, children, ...props }: TooltipProps) => {
-  const [isVisible, setIsVisible] = useState(false);
   const id = useId();
+  const [isVisible, setIsVisible] = useState(false);
+  const [position, setPosition] = useState<'center' | 'left' | 'right'>('center');
+  const tooltipRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!isVisible || !tooltipRef.current || !containerRef.current) return;
+
+    const tooltipRect = tooltipRef.current.getBoundingClientRect();
+    const containerRect = containerRef.current.getBoundingClientRect();
+
+    if (containerRect.left + tooltipRect.width / 2 > window.innerWidth) {
+      setPosition('right');
+    } else if (containerRect.left - tooltipRect.width / 2 < 0) {
+      setPosition('left');
+    } else {
+      setPosition('center');
+    }
+  }, [isVisible]);
+
+  const positionClasses = useMemo(() => {
+    switch (position) {
+      case 'left':
+        return 'left-0 -translate-x-0';
+      case 'right':
+        return 'right-0 translate-x-0';
+      default:
+        return 'left-1/2 -translate-x-1/2';
+    }
+  }, [position]);
 
   return (
     <div
       className="relative inline-flex"
       onMouseEnter={() => setIsVisible(true)}
       onMouseLeave={() => setIsVisible(false)}
+      ref={containerRef}
     >
       <button
         {...props}
@@ -26,7 +56,7 @@ const Tooltip = ({ content, children, ...props }: TooltipProps) => {
       </button>
 
       {isVisible && (
-        <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2">
+        <div className={cn('absolute top-full pt-2', positionClasses)} ref={tooltipRef}>
           <div
             id={id}
             role="tooltip"
