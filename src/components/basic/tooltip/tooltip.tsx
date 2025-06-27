@@ -6,19 +6,28 @@ type TooltipProps = ComponentPropsWithoutRef<'button'> & {
 };
 
 const Tooltip = ({ content, children, ...props }: TooltipProps) => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const id = useId();
+
+  const isVisible = isFocused || isHovered;
 
   return (
     <button
       {...props}
       type="button"
       aria-describedby={isVisible ? id : undefined}
-      onMouseEnter={() => setIsVisible(true)}
-      onMouseLeave={() => setIsVisible(false)}
-      onFocus={() => setIsVisible(true)}
-      onBlur={() => setIsVisible(false)}
-      onClick={() => setIsVisible((prev) => !prev)}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onFocus={() => setIsFocused(true)}
+      onBlur={() => {
+        setIsFocused(false);
+        setIsHovered(false);
+      }}
+      onClick={() => {
+        setIsFocused(!isVisible);
+        setIsHovered(!isVisible);
+      }}
       className="relative inline-block focus:outline-none"
     >
       {children}
