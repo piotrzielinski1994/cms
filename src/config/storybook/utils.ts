@@ -1,4 +1,6 @@
+import { placeholderDarkWebp, placeholderWebp } from '@/placeholders';
 import { ReactNode } from 'react';
+import { ThemeConfig } from '../themes.config';
 
 const DEFAULT_VALUE = '__default__' as const;
 const THUMBNAIL_ID = 'thumbnail';
@@ -18,4 +20,9 @@ const getFallback = <T extends ReactNode>(value: T, translation: string): T => {
   return value === DEFAULT_VALUE ? (translation as T) : value;
 };
 
-export { DEFAULT_VALUE, getFallback, storyToUrlPath, THUMBNAIL_ID };
+const imagesPerColorPref = {
+  light: placeholderWebp as unknown as string,
+  dark: placeholderDarkWebp as unknown as string,
+} satisfies Partial<Record<ThemeConfig['_type'], string>>;
+
+export { DEFAULT_VALUE, getFallback, imagesPerColorPref, storyToUrlPath, THUMBNAIL_ID };

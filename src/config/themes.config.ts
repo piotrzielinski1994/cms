@@ -89,4 +89,4 @@ const themes = {
   },
 } satisfies Record<string, ThemeConfig>;
 
-export { themes, type Theme };
+export { themes, type Theme, type ThemeConfig };

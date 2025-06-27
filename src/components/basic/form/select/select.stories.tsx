@@ -72,12 +72,20 @@ const Render = ({ label, placeholder, options, ...args }: Args) => {
           {...args}
           id="input3"
           name="input3"
-          value={t2('invalid.value')}
+          value={'3'}
           error={t2('invalid.error')}
-          options={options.map((it, index) => ({
-            value: it.value,
-            label: `${t('option')} ${index + 1}`,
-          }))}
+          placeholder={getFallback(placeholder, t('placeholder'))}
+          options={[1, 2]
+            .map((it) => ({
+              value: String(it),
+              label: `${t('option')} ${it}`,
+            }))
+            .concat([
+              {
+                value: '3',
+                label: t2('invalid.value'),
+              },
+            ])}
         />
       </Form.Group>
     </div>

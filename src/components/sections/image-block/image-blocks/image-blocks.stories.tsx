@@ -1,5 +1,11 @@
-import { DEFAULT_VALUE, getFallback, THUMBNAIL_ID } from '@/config/storybook/utils';
-import type { Meta, StoryObj } from '@storybook/react';
+import {
+  DEFAULT_VALUE,
+  getFallback,
+  imagesPerColorPref,
+  THUMBNAIL_ID,
+} from '@/config/storybook/utils';
+import { themes } from '@/config/themes.config';
+import type { Meta, StoryContext, StoryObj } from '@storybook/react';
 import { useTranslations } from 'next-intl';
 import { type ComponentProps } from 'react';
 import { ImageBlock1 } from '../image-block-1/image-block-1';
@@ -20,7 +26,8 @@ const meta = {
   },
 } satisfies Meta<Args>;
 
-const Render = ({ heading, subheading }: Args) => {
+const Render = ({ heading, subheading }: Args, context) => {
+  const { theme } = context.globals as StoryContext['globals'];
   const t2 = useTranslations('fields');
   const tButton = useTranslations('storybook.basic.button');
 
@@ -34,7 +41,10 @@ const Render = ({ heading, subheading }: Args) => {
           <ImageBlock1
             key={it}
             isReversed={it % 2 === 0}
-            image={{ src: '', alt: t2('image') }}
+            image={{
+              src: imagesPerColorPref[themes[theme]._type],
+              alt: t2('image'),
+            }}
             heading={t2('heading')}
             subheading={t2('subheading')}
             buttons={[1, 2]?.map((it) => ({
