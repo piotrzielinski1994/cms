@@ -295,6 +295,7 @@ const pl = {
         disabled: 'Zablokowany',
         secondary: 'Drugorzędny',
       },
+      tooltip: 'Podpowiedź',
       alert: {
         info: 'Informacja',
         success: 'Sukces',

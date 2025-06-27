@@ -1,0 +1,22 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Tooltip > should match the snapshot 1`] = `
+<div>
+  <button
+    aria-describedby="«r1»"
+    class="relative inline-block focus:outline-none"
+    type="button"
+  >
+    <span>
+      Trigger
+    </span>
+    <div
+      class="absolute z-10 mt-2 py-1 px-2 rounded text-xs whitespace-nowrap left-1/2 -translate-x-1/2 bg-black text-white"
+      id="«r1»"
+      role="tooltip"
+    >
+      Tooltip text
+    </div>
+  </button>
+</div>
+`;

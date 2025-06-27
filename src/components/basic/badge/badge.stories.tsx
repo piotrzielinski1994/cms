@@ -18,8 +18,6 @@ const meta = {
   },
   args: {
     label: DEFAULT_VALUE,
-    // bgColor: '#000',
-    // textColor: '#fff',
     bgColor: DEFAULT_VALUE,
     textColor: DEFAULT_VALUE,
   },
