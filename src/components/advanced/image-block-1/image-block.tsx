@@ -6,7 +6,7 @@ import { cn } from '@/utils/tailwind';
 import { StaticImageData } from 'next/image';
 import { ComponentProps, HTMLAttributes } from 'react';
 
-type ImageBlock1Props = HTMLAttributes<HTMLDivElement> & {
+type ImageBlockProps = HTMLAttributes<HTMLDivElement> & {
   isReversed?: boolean;
   image: Omit<StaticImageData, 'width' | 'height'> & {
     alt: string;
@@ -18,14 +18,14 @@ type ImageBlock1Props = HTMLAttributes<HTMLDivElement> & {
   buttons?: Array<Pick<ComponentProps<typeof ButtonLink>, 'href' | 'variant'> & { label: string }>;
 };
 
-const ImageBlock1 = ({
+const ImageBlock = ({
   isReversed,
   image,
   heading,
   subheading,
   buttons = [],
   ...props
-}: ImageBlock1Props) => {
+}: ImageBlockProps) => {
   return (
     <div {...props} className="grid md:grid-cols-2">
       <div
@@ -63,4 +63,4 @@ const ImageBlock1 = ({
   );
 };
 
-export { ImageBlock1 };
+export { ImageBlock };

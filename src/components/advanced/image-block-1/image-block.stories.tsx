@@ -8,13 +8,13 @@ import { themes } from '@/config/themes.config';
 import type { Meta, StoryContext, StoryObj } from '@storybook/react';
 import { useTranslations } from 'next-intl';
 import { type ComponentProps } from 'react';
-import { ImageBlock1 as ImageBlock1Component } from './image-block-1';
+import { ImageBlock as ImageBlockComponent } from './image-block';
 
-type Args = ComponentProps<typeof ImageBlock1Component>;
+type Args = ComponentProps<typeof ImageBlockComponent>;
 
 const meta = {
-  component: ImageBlock1Component,
-  title: 'Components/Sections/ImageBlock/ImageBlock1',
+  component: ImageBlockComponent,
+  title: 'Components/Advanced/ImageBlock',
   argTypes: {
     isReversed: { control: 'boolean' },
     image: { control: 'object' },
@@ -45,7 +45,7 @@ const Render = ({ image, heading, subheading, buttons, ...args }: Args, context)
   const tButton = useTranslations('storybook.basic.button');
 
   return (
-    <ImageBlock1Component
+    <ImageBlockComponent
       {...args}
       id={THUMBNAIL_ID}
       image={{
@@ -63,7 +63,7 @@ const Render = ({ image, heading, subheading, buttons, ...args }: Args, context)
   );
 };
 
-const ImageBlock1: StoryObj<typeof ImageBlock1Component> = { render: Render };
+const ImageBlock: StoryObj<typeof ImageBlockComponent> = { render: Render };
 
-export { ImageBlock1 };
+export { ImageBlock };
 export default meta;

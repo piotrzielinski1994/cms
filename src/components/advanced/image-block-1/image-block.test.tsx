@@ -4,9 +4,9 @@ import { render, waitFor } from '@testing-library/react';
 import { ComponentProps } from 'react';
 import { describe, expect, it } from 'vitest';
 import { axe } from 'vitest-axe';
-import { ImageBlock1 } from './image-block-1';
+import { ImageBlock } from './image-block';
 
-describe('ImageBlock1', () => {
+describe('ImageBlock', () => {
   const defaultProps = {
     heading: 'Heading',
     subheading: 'Subheading',
@@ -27,18 +27,18 @@ describe('ImageBlock1', () => {
       width: placeholderWebp.width,
       height: placeholderWebp.height,
     },
-  } satisfies ComponentProps<typeof ImageBlock1>;
+  } satisfies ComponentProps<typeof ImageBlock>;
 
   it('should have no accessibility violations', async () => {
     const { container } = await waitFor(() =>
-      render(withProviders()(<ImageBlock1 {...defaultProps} />)),
+      render(withProviders()(<ImageBlock {...defaultProps} />)),
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
   });
 
   it('should match the snapshot', async () => {
-    const { container } = render(withProviders()(<ImageBlock1 {...defaultProps} />));
+    const { container } = render(withProviders()(<ImageBlock {...defaultProps} />));
     expect(container).toMatchSnapshot();
   });
 });

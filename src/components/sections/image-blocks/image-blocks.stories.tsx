@@ -1,3 +1,4 @@
+import { ImageBlock } from '@/components/advanced/image-block-1/image-block';
 import {
   DEFAULT_VALUE,
   getFallback,
@@ -8,7 +9,6 @@ import { themes } from '@/config/themes.config';
 import type { Meta, StoryContext, StoryObj } from '@storybook/react';
 import { useTranslations } from 'next-intl';
 import { type ComponentProps } from 'react';
-import { ImageBlock1 } from '../../../advanced/image-block/image-block-1/image-block-1';
 import { ImageBlocks as ImageBlocksComponent } from './image-blocks';
 
 type Args = ComponentProps<typeof ImageBlocksComponent>;
@@ -38,7 +38,7 @@ const Render = ({ heading, subheading }: Args, context) => {
       subheading={getFallback(subheading, t2('subheading'))}
       items={[1, 2].map((it) => {
         return (
-          <ImageBlock1
+          <ImageBlock
             key={it}
             isReversed={it % 2 === 0}
             image={{

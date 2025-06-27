@@ -89,7 +89,9 @@ export interface Config {
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
-    'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
+    'payload-locked-documents':
+      | PayloadLockedDocumentsSelect<false>
+      | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
   };
@@ -140,7 +142,7 @@ export interface UserAuthOperations {
 export interface Page {
   id: string;
   title: string;
-  sections: (Hero1Block | ImageBlocksSection | ImageBlock1Block | ContactUsSection | FAQ)[];
+  sections: (Hero1Block | ImageBlocksSection | ImageBlockBlock | ContactUsSection | FAQ)[];
   seo?: {
     title?: string | null;
     description?: string | null;
@@ -203,16 +205,16 @@ export interface Hero1Block {
 export interface ImageBlocksSection {
   heading?: string | null;
   subheading?: string | null;
-  items: ImageBlock1Block[];
+  items: ImageBlockBlock[];
   id?: string | null;
   blockName?: string | null;
   blockType: 'image-blocks';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ImageBlock1Block".
+ * via the `definition` "ImageBlockBlock".
  */
-export interface ImageBlock1Block {
+export interface ImageBlockBlock {
   image: {
     default: string | Image;
     dark?: (string | null) | Image;
@@ -608,7 +610,7 @@ export interface PagesSelect<T extends boolean = true> {
     | {
         'hero-1'?: T | Hero1BlockSelect<T>;
         'image-blocks'?: T | ImageBlocksSectionSelect<T>;
-        'image-block-1'?: T | ImageBlock1BlockSelect<T>;
+        'image-block-1'?: T | ImageBlockBlockSelect<T>;
         'contact-us'?: T | ContactUsSectionSelect<T>;
         faq?: T | FAQSelect<T>;
       };
@@ -670,16 +672,16 @@ export interface ImageBlocksSectionSelect<T extends boolean = true> {
   items?:
     | T
     | {
-        'image-block-1'?: T | ImageBlock1BlockSelect<T>;
+        'image-block-1'?: T | ImageBlockBlockSelect<T>;
       };
   id?: T;
   blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ImageBlock1Block_select".
+ * via the `definition` "ImageBlockBlock_select".
  */
-export interface ImageBlock1BlockSelect<T extends boolean = true> {
+export interface ImageBlockBlockSelect<T extends boolean = true> {
   image?:
     | T
     | {
@@ -1131,7 +1133,6 @@ export interface CookiesBannerSelect<T extends boolean = true> {
 export interface Auth {
   [k: string]: unknown;
 }
-
 
 declare module 'payload' {
   export interface GeneratedTypes extends Config {}

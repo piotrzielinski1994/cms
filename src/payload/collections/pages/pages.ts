@@ -1,11 +1,11 @@
 import { generatePreviewPath } from '@/_old/utilities/generatePreviewPath';
 import { AdminTranslations, translations } from '@/config/locales.config';
 import { Page } from '@/payload.types';
+import { imageBlock1BlockPayloadConfig } from '@/payload/blocks/advanced/image-block/image-block.payload';
 import { faqSectionPayloadConfig } from '@/payload/blocks/sections/faq/faq.payload';
 import { contactUsSectionPayloadConfig } from '@/payload/blocks/sections/form/contact-us/contact-us.payload';
 import { hero1SectionPayloadConfig } from '@/payload/blocks/sections/hero/hero-1/hero-1.payload';
-import { imageBlock1BlockPayloadConfig } from '@/payload/blocks/sections/image-block/image-block-1/image-block-1.payload';
-import { imageBlocksSectionPayloadConfig } from '@/payload/blocks/sections/image-block/image-blocks/image-blocks.payload';
+import { imageBlocksSectionPayloadConfig } from '@/payload/blocks/sections/image-blocks/image-blocks.payload';
 import { createSlugField } from '@/payload/fields/slug/slug';
 import { populatePublishedAt } from '@/payload/hooks/populatePublishedAt';
 import { authenticated, authenticatedOrPublished } from '@/payload/utils/access';

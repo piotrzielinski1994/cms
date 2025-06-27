@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`ImageBlock1 > should match the snapshot 1`] = `
+exports[`ImageBlock > should match the snapshot 1`] = `
 <div>
   <div
     class="grid md:grid-cols-2"
