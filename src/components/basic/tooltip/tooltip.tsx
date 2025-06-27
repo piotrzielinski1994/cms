@@ -1,5 +1,5 @@
 import { cn } from '@/utils/tailwind';
-import { ComponentPropsWithoutRef, useEffect, useId, useMemo, useRef, useState } from 'react';
+import { ComponentPropsWithoutRef, useId, useLayoutEffect, useMemo, useRef, useState } from 'react';
 
 type TooltipProps = ComponentPropsWithoutRef<'button'> & {
   content: string;
@@ -12,13 +12,16 @@ const Tooltip = ({ content, children, ...props }: TooltipProps) => {
   const tooltipRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (!isVisible || !tooltipRef.current || !containerRef.current) return;
+  useLayoutEffect(() => {
+    if (!isVisible) return;
+    if (!tooltipRef.current || !containerRef.current) return;
 
     const containerRect = containerRef.current.getBoundingClientRect();
     const tooltipRect = tooltipRef.current.getBoundingClientRect();
 
-    if (containerRect.left + tooltipRect.width / 2 > window.innerWidth) {
+    if (containerRect.width >= tooltipRect.width) {
+      setPosition('center');
+    } else if (containerRect.right + tooltipRect.width / 2 > window.innerWidth) {
       setPosition('right');
     } else if (containerRect.left - tooltipRect.width / 2 < 0) {
       setPosition('left');
