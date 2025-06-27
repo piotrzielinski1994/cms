@@ -6,44 +6,37 @@ type TooltipProps = ComponentPropsWithoutRef<'button'> & {
 };
 
 const Tooltip = ({ content, children, ...props }: TooltipProps) => {
-  const [isFocused, setIsFocused] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const id = useId();
 
-  const isVisible = isFocused || isHovered;
-
   return (
-    <button
-      {...props}
-      type="button"
-      aria-describedby={isVisible ? id : undefined}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      onFocus={() => setIsFocused(true)}
-      onBlur={() => {
-        setIsFocused(false);
-        setIsHovered(false);
-      }}
-      onClick={() => {
-        setIsFocused(!isVisible);
-        setIsHovered(!isVisible);
-      }}
-      className="relative inline-block focus:outline-none"
+    <div
+      className="relative inline-flex"
+      onMouseEnter={() => setIsVisible(true)}
+      onMouseLeave={() => setIsVisible(false)}
     >
-      {children}
+      <button
+        {...props}
+        type="button"
+        aria-describedby={isVisible ? id : undefined}
+        onClick={() => setIsVisible((prev) => !prev)}
+        onBlur={() => setIsVisible(false)}
+      >
+        {children}
+      </button>
+
       {isVisible && (
-        <div
-          id={id}
-          role="tooltip"
-          className={cn(
-            'absolute z-10 mt-2 py-1 px-2 rounded text-xs whitespace-nowrap',
-            'left-1/2 -translate-x-1/2 bg-black text-white',
-          )}
-        >
-          {content}
+        <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2">
+          <div
+            id={id}
+            role="tooltip"
+            className={cn('py-1 px-2 text-xs bg-foreground text-background')}
+          >
+            {content}
+          </div>
         </div>
       )}
-    </button>
+    </div>
   );
 };
 

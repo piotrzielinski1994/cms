@@ -2,21 +2,28 @@
 
 exports[`Tooltip > should match the snapshot 1`] = `
 <div>
-  <button
-    aria-describedby="«r1»"
-    class="relative inline-block focus:outline-none"
-    type="button"
+  <div
+    class="relative inline-flex"
   >
-    <span>
-      Trigger
-    </span>
-    <div
-      class="absolute z-10 mt-2 py-1 px-2 rounded text-xs whitespace-nowrap left-1/2 -translate-x-1/2 bg-black text-white"
-      id="«r1»"
-      role="tooltip"
+    <button
+      aria-describedby="«r1»"
+      type="button"
     >
-      Tooltip text
+      <span>
+        Trigger
+      </span>
+    </button>
+    <div
+      class="absolute top-full left-1/2 -translate-x-1/2 pt-2"
+    >
+      <div
+        class="py-1 px-2 text-xs bg-foreground text-background"
+        id="«r1»"
+        role="tooltip"
+      >
+        Tooltip text
+      </div>
     </div>
-  </button>
+  </div>
 </div>
 `;
