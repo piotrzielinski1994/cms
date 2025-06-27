@@ -291,7 +291,7 @@ const en = {
         disabled: 'Disabled',
         secondary: 'Secondary',
       },
-      tooltip: 'Tooltipasda sd aasdasdasd',
+      tooltip: 'Tooltip',
       alert: {
         info: 'Information',
         success: 'Success',
