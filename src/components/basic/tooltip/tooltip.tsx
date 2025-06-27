@@ -15,8 +15,8 @@ const Tooltip = ({ content, children, ...props }: TooltipProps) => {
   useEffect(() => {
     if (!isVisible || !tooltipRef.current || !containerRef.current) return;
 
-    const tooltipRect = tooltipRef.current.getBoundingClientRect();
     const containerRect = containerRef.current.getBoundingClientRect();
+    const tooltipRect = tooltipRef.current.getBoundingClientRect();
 
     if (containerRect.left + tooltipRect.width / 2 > window.innerWidth) {
       setPosition('right');
