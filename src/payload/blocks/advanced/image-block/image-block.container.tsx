@@ -1,6 +1,6 @@
 'use client';
 
-import { ImageBlock } from '@/components/advanced/image-block-1/image-block';
+import { ImageBlock } from '@/components/advanced/image-block/image-block';
 import { themes } from '@/config/themes.config';
 import { ImageBlockBlock, Image as ImageModel, Page } from '@/payload.types';
 import { useThemeStore } from '@/store/theme';

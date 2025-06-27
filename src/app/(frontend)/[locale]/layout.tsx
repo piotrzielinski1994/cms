@@ -1,8 +1,8 @@
-import { AdminBar } from '@/_old/components/AdminBar';
 import { CookiesBanner } from '@/components/advanced/cookies-banner/cookies-banner';
 import { SkipLink } from '@/components/advanced/skip-link/skip-link';
 import { clientEnv } from '@/config/env.client.config';
 import { themes } from '@/config/themes.config';
+import { AdminBar } from '@/payload/_old/components/AdminBar';
 import { FooterContainer } from '@/payload/blocks/layout/footer.container';
 import { HeaderContainer } from '@/payload/blocks/layout/header.container';
 import { Providers } from '@/providers';

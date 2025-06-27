@@ -1,4 +1,4 @@
-import deepMerge from '@/_old/utilities/deepMerge';
+import deepMerge from '@/payload/_old/utilities/deepMerge';
 import type { ArrayField, Field } from 'payload';
 import type { LinkAppearances } from './link';
 import { link } from './link';

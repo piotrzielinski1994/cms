@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 
-import { LivePreviewListener } from '@/_old/components/LivePreviewListener';
-import { PayloadRedirects } from '@/_old/components/PayloadRedirects';
 import { RenderBlocks } from '@/components/sections/block';
 import { clientEnv } from '@/config/env.client.config';
+import { LivePreviewListener } from '@/payload/_old/components/LivePreviewListener';
+import { PayloadRedirects } from '@/payload/_old/components/PayloadRedirects';
 import { getPages, queryPage } from '@/payload/collections/pages/pages.utils';
 import { Image } from '@/payload/payload.types';
 import { toPageMetadata } from '@/utils/nextjs/metadata';

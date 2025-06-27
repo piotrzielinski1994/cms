@@ -1,6 +1,6 @@
-import type { ButtonProps } from '@/_old/components/ui/button';
+import type { ButtonProps } from '@/payload/_old/components/ui/button';
 
-import { buttonVariants } from '@/_old/components/ui/button';
+import { buttonVariants } from '@/payload/_old/components/ui/button';
 import { cn } from '@/utils/tailwind';
 import { ChevronLeft, ChevronRight, MoreHorizontal } from 'lucide-react';
 import * as React from 'react';

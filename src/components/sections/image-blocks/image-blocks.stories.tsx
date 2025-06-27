@@ -1,4 +1,4 @@
-import { ImageBlock } from '@/components/advanced/image-block-1/image-block';
+import { ImageBlock } from '@/components/advanced/image-block/image-block';
 import {
   DEFAULT_VALUE,
   getFallback,

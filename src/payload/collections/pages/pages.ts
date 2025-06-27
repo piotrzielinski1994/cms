@@ -1,6 +1,6 @@
-import { generatePreviewPath } from '@/_old/utilities/generatePreviewPath';
 import { AdminTranslations, translations } from '@/config/locales.config';
 import { Page } from '@/payload.types';
+import { generatePreviewPath } from '@/payload/_old/utilities/generatePreviewPath';
 import { imageBlock1BlockPayloadConfig } from '@/payload/blocks/advanced/image-block/image-block.payload';
 import { faqSectionPayloadConfig } from '@/payload/blocks/sections/faq/faq.payload';
 import { contactUsSectionPayloadConfig } from '@/payload/blocks/sections/form/contact-us/contact-us.payload';
