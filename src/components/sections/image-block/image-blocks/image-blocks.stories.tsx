@@ -8,7 +8,7 @@ import { themes } from '@/config/themes.config';
 import type { Meta, StoryContext, StoryObj } from '@storybook/react';
 import { useTranslations } from 'next-intl';
 import { type ComponentProps } from 'react';
-import { ImageBlock1 } from '../image-block-1/image-block-1';
+import { ImageBlock1 } from '../../../advanced/image-block/image-block-1/image-block-1';
 import { ImageBlocks as ImageBlocksComponent } from './image-blocks';
 
 type Args = ComponentProps<typeof ImageBlocksComponent>;
