@@ -6,8 +6,12 @@ const useDialog = (initialIsOpen = false) => {
 
   useEffect(() => {
     if (!dialogRef.current) return;
-    if (isOpen) dialogRef.current.showModal();
-    else dialogRef.current.close();
+    if (isOpen) {
+      dialogRef.current.showModal();
+      dialogRef.current.focus();
+    } else {
+      dialogRef.current.close();
+    }
   }, [isOpen]);
 
   return { isOpen, setIsOpen, dialogRef };

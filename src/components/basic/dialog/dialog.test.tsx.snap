@@ -9,7 +9,7 @@ exports[`Dialog > should match the snapshot 1`] = `
       class="fixed inset-0 z-backdrop backdrop-blur-sm bg-foreground/50 dark:bg-foreground/10"
     />
     <dialog
-      class="w-full max-w-screen-2xl mx-auto grid cms-container relative bg-background text-foreground"
+      class="w-full max-w-screen-2xl mx-auto grid cms-container relative focus:tw-cms-dialog-outline bg-background text-foreground"
       open=""
     >
       <header

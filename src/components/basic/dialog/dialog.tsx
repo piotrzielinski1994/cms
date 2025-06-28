@@ -43,13 +43,22 @@ const Root = forwardRef<HTMLDialogElement, DialogProps>(
             {...rest}
             as="dialog"
             ref={ref}
-            className={cn('relative', 'bg-background text-foreground', className)}
+            className={cn(
+              'relative focus:tw-cms-dialog-outline',
+              'bg-background text-foreground',
+              className,
+            )}
           >
             {Boolean(header || onClose) && (
               <header className="flex">
                 {header !== undefined && <Header>{header}</Header>}
                 {onClose !== undefined && (
-                  <button className="p-2 border-solid" onClick={onClose} aria-label={t('close')}>
+                  <button
+                    className="p-2 border-solid"
+                    onClick={onClose}
+                    aria-label={t('close')}
+                    autoFocus={false}
+                  >
                     <X />
                   </button>
                 )}

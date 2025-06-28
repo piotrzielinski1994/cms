@@ -35,6 +35,22 @@ const tailwindConfig = {
           ].join(', '),
           zIndex: 99,
         },
+        '.tw-cms-dialog-outline': {
+          outline: 'none',
+          boxShadow: [
+            '0 0 0 4px hsl(var(--twc-background) / 0.5)',
+            '0 0 0 7px hsl(var(--twc-foreground))',
+            '0 0 1.5px 7px hsl(var(--twc-background) / 0.5)',
+          ].join(', '),
+        },
+        '[data-color-preference="dark"] .tw-cms-dialog-outline': {
+          outline: 'none',
+          boxShadow: [
+            '0 0 0 4px hsl(var(--twc-background) / 0.9)',
+            '0 0 0 7px hsl(var(--twc-foreground))',
+            '0 0 1.5px 7px hsl(var(--twc-background) / 0.9)',
+          ].join(', '),
+        },
       });
     },
   ],
