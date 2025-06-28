@@ -5,17 +5,6 @@ import { useState, type ComponentProps } from 'react';
 import { Button } from '../button/button';
 import DialogComponent from './dialog';
 
-const paragraphs = Array.from({ length: 5 }, (_, i) => i).map((i) => {
-  return (
-    <p key={i}>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent dictum dapibus ultricies.
-      Donec eget ligula consequat, vulputate justo vel, vestibulum ligula. Fusce nec erat ac turpis
-      vulputate mollis. Nulla auctor volutpat velit. Integer id lacus at nisl volutpat varius id ac
-      massa.
-    </p>
-  );
-});
-
 type Args = ComponentProps<typeof DialogComponent.Root> & {
   submit: string;
   cancel: string;
@@ -47,7 +36,6 @@ const Render = ({ header, children, submit, cancel, ...args }: Args) => {
   return (
     <>
       <Button onClick={() => setIsOpen(true)}>{t('button')}</Button>
-      {paragraphs}
       {isOpen && (
         <DialogComponent.Root
           {...args}
