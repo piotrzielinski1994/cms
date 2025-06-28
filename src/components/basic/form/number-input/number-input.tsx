@@ -75,6 +75,7 @@ const NumberInput = ({ error, step = 1, mode = 'integer', t, ...props }: NumberI
           type="text"
           inputMode="numeric"
           autoComplete="off"
+          lang={locale}
           {...omitCustomProps({ ...props, mode })}
           value={format(rawValue)}
           className={cn(
