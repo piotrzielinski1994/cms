@@ -1,7 +1,7 @@
 import type { StorybookConfig } from '@storybook/nextjs';
 
 const config: StorybookConfig = {
-  stories: ['../../../src/**/*.stories.tsx'],
+  stories: ['../../**/*.stories.tsx'],
   framework: '@storybook/nextjs',
   webpackFinal: async (config) => {
     config.module!.rules = config.module!.rules?.filter(
@@ -22,7 +22,15 @@ const config: StorybookConfig = {
       },
       {
         test: /\.webp$/,
-        type: 'asset/resource',
+        use: [
+          {
+            loader: 'responsive-loader',
+            options: {
+              adapter: require('responsive-loader/sharp'),
+              format: 'webp',
+            },
+          },
+        ],
       },
     );
 

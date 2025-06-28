@@ -1,3 +1,4 @@
+import { StoryContext } from '@/config/storybook/components';
 import {
   DEFAULT_VALUE,
   getFallback,
@@ -5,7 +6,7 @@ import {
   THUMBNAIL_ID,
 } from '@/config/storybook/utils';
 import { themes } from '@/config/themes.config';
-import type { Meta, StoryContext, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import { useTranslations } from 'next-intl';
 import { type ComponentProps } from 'react';
 import { ImageBlock as ImageBlockComponent } from './image-block';
@@ -43,6 +44,7 @@ const Render = ({ image, heading, subheading, buttons, ...args }: Args, context)
   const { theme } = context.globals as StoryContext['globals'];
   const t2 = useTranslations('fields');
   const tButton = useTranslations('storybook.basic.button');
+  const themedImage = imagesPerColorPref[themes[theme]._type];
 
   return (
     <ImageBlockComponent
@@ -50,7 +52,7 @@ const Render = ({ image, heading, subheading, buttons, ...args }: Args, context)
       id={THUMBNAIL_ID}
       image={{
         ...image,
-        src: getFallback(image.src, imagesPerColorPref[themes[theme]._type]),
+        src: getFallback(image.src, themedImage.src),
         alt: getFallback(image.alt, t2('image')),
       }}
       heading={getFallback(heading, t2('heading'))}

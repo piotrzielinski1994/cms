@@ -1,4 +1,5 @@
 import { ImageBlock } from '@/components/advanced/image-block/image-block';
+import { StoryContext } from '@/config/storybook/components';
 import {
   DEFAULT_VALUE,
   getFallback,
@@ -6,7 +7,7 @@ import {
   THUMBNAIL_ID,
 } from '@/config/storybook/utils';
 import { themes } from '@/config/themes.config';
-import type { Meta, StoryContext, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import { useTranslations } from 'next-intl';
 import { type ComponentProps } from 'react';
 import { ImageBlocks as ImageBlocksComponent } from './image-blocks';
@@ -30,6 +31,7 @@ const Render = ({ heading, subheading }: Args, context) => {
   const { theme } = context.globals as StoryContext['globals'];
   const t2 = useTranslations('fields');
   const tButton = useTranslations('storybook.basic.button');
+  const themedImage = imagesPerColorPref[themes[theme]._type];
 
   return (
     <ImageBlocksComponent
@@ -42,12 +44,12 @@ const Render = ({ heading, subheading }: Args, context) => {
             key={it}
             isReversed={it % 2 === 0}
             image={{
-              src: imagesPerColorPref[themes[theme]._type],
+              src: themedImage.src,
               alt: t2('image'),
             }}
             heading={t2('heading')}
             subheading={t2('subheading')}
-            buttons={[1, 2]?.map((it) => ({
+            buttons={[1, 2].map((it) => ({
               label: `${tButton('default')} ${it}`,
               href: `/path-${it}`,
               variant: it === 1 ? 'primary' : 'secondary',

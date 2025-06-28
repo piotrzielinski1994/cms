@@ -1,4 +1,5 @@
 import { placeholderDarkWebp, placeholderWebp } from '@/placeholders';
+import { StaticImageData } from 'next/image';
 import { ReactNode } from 'react';
 import { ThemeConfig } from '../themes.config';
 
@@ -21,8 +22,8 @@ const getFallback = <T extends ReactNode>(value: T, fallback: T): T => {
 };
 
 const imagesPerColorPref = {
-  light: placeholderWebp as unknown as string,
-  dark: placeholderDarkWebp as unknown as string,
-} satisfies Partial<Record<ThemeConfig['_type'], string>>;
+  light: placeholderWebp,
+  dark: placeholderDarkWebp,
+} satisfies Partial<Record<ThemeConfig['_type'], StaticImageData>>;
 
 export { DEFAULT_VALUE, getFallback, imagesPerColorPref, storyToUrlPath, THUMBNAIL_ID };

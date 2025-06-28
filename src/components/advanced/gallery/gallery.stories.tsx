@@ -28,12 +28,13 @@ const Render = ({ images, ...args }: Args, context) => {
   const { theme } = context.globals as StoryContext['globals'];
   const t = useTranslations('fields');
   const updatedImages = images.map((it) => {
+    const themedImage = imagesPerColorPref[themes[theme]._type];
     return {
       ...it,
-      src: getFallback(it.src, imagesPerColorPref[themes[theme]._type]),
+      src: getFallback(it.src, themedImage.src),
       alt: getFallback(it.alt, t('image')),
     };
-  });
+  }) satisfies Args['images'];
 
   return <GalleryComponent {...args} images={updatedImages} />;
 };
