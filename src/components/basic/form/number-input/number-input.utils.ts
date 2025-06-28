@@ -18,7 +18,11 @@ const createNumberFormatter = (locale: Locale) => (rawValue: string) => {
 const createNumberUnformatter = (locale: Locale) => (formattedValue: string) => {
   const parts = new Intl.NumberFormat(locale).formatToParts(1234.8);
   const decimal = parts.find((p) => p.type === 'decimal')?.value ?? '.';
-  return formattedValue.replace(new RegExp(`[^\\d${decimal}-]`, 'g'), '').replace(decimal, '.');
+  const endsWithDecimal = formattedValue.endsWith(',') || formattedValue.endsWith('.');
+  const normalized = formattedValue
+    .replace(new RegExp(`[^\\d${decimal}-]`, 'g'), '')
+    .replace(decimal, '.');
+  return normalized.endsWith('.') ? normalized : normalized.concat(endsWithDecimal ? '.' : '');
 };
 
 const getValidator = (props: ComponentProps<typeof NumberInput>) => {
