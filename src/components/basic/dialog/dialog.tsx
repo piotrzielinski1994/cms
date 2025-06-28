@@ -41,11 +41,7 @@ const Root = forwardRef<HTMLDialogElement, DialogProps>(
             'pointer-events-none': type === 'dialog',
           })}
         >
-          <Backdrop
-            className={cn({
-              'backdrop-blur-none': true,
-            })}
-          />
+          <Backdrop className={cn({ 'backdrop-blur-none': type === 'dialog' })} />
           <Container
             data-dialog
             {...rest}
