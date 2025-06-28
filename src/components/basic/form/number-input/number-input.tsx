@@ -73,6 +73,7 @@ const NumberInput = ({ error, step = 1, mode = 'integer', t, ...props }: NumberI
       <div className="relative">
         <input
           type="tel"
+          inputMode="numeric"
           autoComplete="off"
           {...omitCustomProps({ ...props, mode })}
           value={format(rawValue)}
