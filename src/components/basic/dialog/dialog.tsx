@@ -48,6 +48,12 @@ const Root = forwardRef<HTMLDialogElement, DialogProps>(
               'bg-background text-foreground',
               className,
             )}
+            onKeyDown={(e) => {
+              if (e.key === 'Escape' && onClose) {
+                e.preventDefault();
+                onClose();
+              }
+            }}
           >
             {Boolean(header || onClose) && (
               <header className="flex">
