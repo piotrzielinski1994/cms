@@ -44,8 +44,9 @@ const Root = forwardRef<HTMLDialogElement, DialogProps>(
             as="dialog"
             ref={ref}
             className={cn(
-              'relative focus:tw-cms-dialog-outline',
+              'relative overflow-visible',
               'bg-background text-foreground',
+              'focus:tw-cms-dialog-outline',
               className,
             )}
             onKeyDown={(e) => {
