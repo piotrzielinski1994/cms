@@ -73,7 +73,7 @@ const NumberInput = ({ error, step = 1, mode = 'integer', t, ...props }: NumberI
       <div className="relative">
         <input
           type="text"
-          inputMode="numeric"
+          inputMode="decimal"
           autoComplete="off"
           lang={locale}
           {...omitCustomProps({ ...props, mode })}
