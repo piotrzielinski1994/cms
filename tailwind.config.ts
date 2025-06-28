@@ -33,7 +33,7 @@ const tailwindConfig = {
             '0 0 0 4px hsl(var(--twc-foreground))',
             '0 0 1.5px 4px hsl(var(--twc-background))',
           ].join(', '),
-          zIndex: 999_999,
+          zIndex: 99,
         },
       });
     },

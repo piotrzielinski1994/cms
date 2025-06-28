@@ -29,6 +29,7 @@ const en = {
     answer: 'Answer',
     pageNotFound: 'This page could not be found.',
     goHome: 'Go home',
+    link: 'Link',
   },
   fields: {
     label: 'Label',
@@ -310,6 +311,9 @@ const en = {
         submit: 'Submit',
         cancel: 'Cancel',
       },
+    },
+    icons: {
+      annotation: 'Website also uses icons from <a>lucide</a> library.',
     },
   },
 };

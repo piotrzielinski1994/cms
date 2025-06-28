@@ -6,6 +6,7 @@ type TooltipProps = ComponentPropsWithoutRef<'button'> & {
 };
 
 const Tooltip = ({ content, children, ...props }: TooltipProps) => {
+  console.log('@@@ props.className | ', props.className);
   const id = useId();
   const [isVisible, setIsVisible] = useState(false);
   const [position, setPosition] = useState<'center' | 'left' | 'right'>('center');
@@ -59,7 +60,7 @@ const Tooltip = ({ content, children, ...props }: TooltipProps) => {
       </button>
 
       {isVisible && (
-        <div className={cn('absolute top-full pt-2', positionClasses)} ref={tooltipRef}>
+        <div className={cn('absolute top-full z-popover pt-2', positionClasses)} ref={tooltipRef}>
           <div
             id={id}
             role="tooltip"

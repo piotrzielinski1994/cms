@@ -31,6 +31,7 @@ const pl = {
     answer: 'Odpowiedź',
     pageNotFound: 'Nie znaleziono strony.',
     goHome: 'Wróć do strony głównej',
+    link: 'Link',
   },
   fields: {
     label: 'Etykieta',
@@ -314,6 +315,9 @@ const pl = {
         submit: 'Zatwierdź',
         cancel: 'Anuluj',
       },
+    },
+    icons: {
+      annotation: 'Dodatkowo, strona używa ikon z biblioteki <a>lucide</a>.',
     },
   },
 } satisfies typeof en;
