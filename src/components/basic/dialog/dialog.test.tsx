@@ -17,6 +17,7 @@ describe('Dialog', () => {
     header: 'Header',
     footer: <Dialog.Footer {...footerProps} />,
     onClose: vi.fn(),
+    open: true,
   } satisfies ComponentProps<typeof Dialog.Root>;
 
   it('should have no accessibility violations', async () => {

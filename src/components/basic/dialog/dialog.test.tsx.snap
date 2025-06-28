@@ -3,11 +3,11 @@
 exports[`Dialog > should match the snapshot 1`] = `
 <div>
   <div
-    class="fixed inset-0 z-backdrop backdrop-blur-sm bg-foreground/50 dark:bg-foreground/10"
-  />
-  <div
-    class="px-4 sm:px-6 grid cms-section fixed inset-0 z-dialog py-4 sm:py-6"
+    class="px-4 sm:px-6 cms-section fixed inset-0 z-dialog py-4 sm:py-6 hidden has-[:open]:grid"
   >
+    <div
+      class="fixed inset-0 z-backdrop backdrop-blur-sm bg-foreground/50 dark:bg-foreground/10"
+    />
     <dialog
       class="w-full max-w-screen-2xl mx-auto grid cms-container relative bg-background text-foreground"
       open=""
@@ -20,9 +20,6 @@ exports[`Dialog > should match the snapshot 1`] = `
         >
           Header
         </p>
-        <div
-          class="flex-grow p-2"
-        />
         <button
           aria-label="Close"
           class="p-2 border-solid"

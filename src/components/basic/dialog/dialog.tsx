@@ -1,10 +1,16 @@
 import { Container } from '@/components/basic/container';
-import { Section } from '@/components/basic/section';
 import { cn } from '@/utils/tailwind';
 import { X } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { ComponentPropsWithoutRef, PropsWithChildren, ReactNode } from 'react';
+import {
+  ComponentPropsWithoutRef,
+  forwardRef,
+  HTMLAttributes,
+  PropsWithChildren,
+  ReactNode,
+} from 'react';
 import { Button } from '../button/button';
+import { Section } from '../section';
 
 type DialogProps = ComponentPropsWithoutRef<'dialog'> & {
   header?: ReactNode;
@@ -22,44 +28,50 @@ type FooterProps = ComponentPropsWithoutRef<'div'> & {
   };
 };
 
-const Root = ({ children, header, footer, onClose, className, ...rest }: DialogProps) => {
-  const t = useTranslations('frontend');
+const Root = forwardRef<HTMLDialogElement, DialogProps>(
+  ({ children, header, footer, onClose, className, ...rest }, ref) => {
+    const t = useTranslations('frontend');
 
-  return (
-    <>
-      <Backdrop />
-      <Section as="div" className={cn('fixed inset-0 z-dialog', 'py-4 sm:py-6')}>
-        <Container
-          {...rest}
-          as="dialog"
-          open
-          className={cn('relative', 'bg-background text-foreground', className)}
+    return (
+      <>
+        <Section
+          as="div"
+          className={cn('fixed inset-0 z-dialog', 'py-4 sm:py-6', 'hidden has-[:open]:grid')}
         >
-          {(header !== undefined || onClose !== undefined) && (
-            <header className="flex">
-              {header !== undefined && <Header>{header}</Header>}
-              <div className="flex-grow p-2"></div>
-              {onClose !== undefined && (
-                <button className="p-2 border-solid" onClick={onClose} aria-label={t('close')}>
-                  <X />
-                </button>
-              )}
-            </header>
-          )}
-          <div className="p-2">{children}</div>
-          {footer !== undefined && <footer className="p-2">{footer}</footer>}
-        </Container>
-      </Section>
-    </>
-  );
-};
+          <Backdrop />
+          <Container
+            {...rest}
+            as="dialog"
+            ref={ref}
+            className={cn('relative', 'bg-background text-foreground', className)}
+          >
+            {Boolean(header || onClose) && (
+              <header className="flex">
+                {header !== undefined && <Header>{header}</Header>}
+                {onClose !== undefined && (
+                  <button className="p-2 border-solid" onClick={onClose} aria-label={t('close')}>
+                    <X />
+                  </button>
+                )}
+              </header>
+            )}
+            <div className="p-2">{children}</div>
+            {footer !== undefined && <footer className="p-2">{footer}</footer>}
+          </Container>
+        </Section>
+      </>
+    );
+  },
+);
 
-const Backdrop = () => {
+const Backdrop = ({ className, ...props }: HTMLAttributes<HTMLDivElement>) => {
   return (
     <div
+      {...props}
       className={cn(
         'fixed inset-0 z-backdrop backdrop-blur-sm',
         'bg-foreground/50 dark:bg-foreground/10',
+        className,
       )}
     />
   );
@@ -82,6 +94,8 @@ const Footer = ({ className, submitBtn, cancelBtn, ...props }: FooterProps) => {
     </div>
   );
 };
+
+Root.displayName = 'Dialog.Root';
 
 const Dialog = { Root, Backdrop, Footer };
 export default Dialog;
