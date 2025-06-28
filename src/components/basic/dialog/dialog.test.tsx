@@ -55,5 +55,14 @@ describe('Dialog', () => {
 
       expect(footerProps.cancelBtn.onClick).toHaveBeenCalled();
     });
+
+    it('should trigger closing when Escape key is pressed', async () => {
+      const { getByRole } = render(withProviders()(<Dialog.Root {...defaultProps} />));
+      const dialog = getByRole('dialog');
+
+      await userEvent.type(dialog, '{Escape}');
+
+      expect(defaultProps.onClose).toHaveBeenCalled();
+    });
   });
 });
