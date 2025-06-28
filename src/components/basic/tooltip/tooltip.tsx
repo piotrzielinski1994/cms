@@ -6,7 +6,6 @@ type TooltipProps = ComponentPropsWithoutRef<'button'> & {
 };
 
 const Tooltip = ({ content, children, ...props }: TooltipProps) => {
-  console.log('@@@ props.className | ', props.className);
   const id = useId();
   const [isVisible, setIsVisible] = useState(false);
   const [position, setPosition] = useState<'center' | 'left' | 'right'>('center');
