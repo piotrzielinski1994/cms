@@ -13,6 +13,7 @@ import { Button } from '../button/button';
 import { Section } from '../section';
 
 type DialogProps = ComponentPropsWithoutRef<'dialog'> & {
+  type?: 'dialog' | 'modal';
   header?: ReactNode;
   footer?: ReactNode;
   onClose?: () => void;
@@ -29,28 +30,35 @@ type FooterProps = ComponentPropsWithoutRef<'div'> & {
 };
 
 const Root = forwardRef<HTMLDialogElement, DialogProps>(
-  ({ children, header, footer, onClose, className, ...rest }, ref) => {
+  ({ children, type = 'dialog', header, footer, onClose, className, ...rest }, ref) => {
     const t = useTranslations('frontend');
 
     return (
       <>
         <Section
           as="div"
-          className={cn('fixed inset-0 z-dialog', 'py-4 sm:py-6', 'hidden has-[:open]:grid')}
+          className={cn('fixed inset-0 z-dialog', 'py-4 sm:py-6', 'hidden has-[:open]:grid', {
+            'pointer-events-none': type === 'dialog',
+          })}
         >
-          <Backdrop />
+          <Backdrop
+            className={cn({
+              'backdrop-blur-none': true,
+            })}
+          />
           <Container
+            data-dialog
             {...rest}
             as="dialog"
             ref={ref}
             className={cn(
-              'relative overflow-visible',
+              'relative z-dialog overflow-visible pointer-events-auto',
               'bg-background text-foreground',
               'focus:tw-cms-dialog-outline',
               className,
             )}
             onKeyDown={(e) => {
-              if (e.key === 'Escape' && onClose) {
+              if (type === 'modal' && e.key === 'Escape' && onClose) {
                 e.preventDefault();
                 onClose();
               }
@@ -61,7 +69,7 @@ const Root = forwardRef<HTMLDialogElement, DialogProps>(
                 {header !== undefined && <Header>{header}</Header>}
                 {onClose !== undefined && (
                   <button
-                    className="p-2 border-solid"
+                    className="p-2 focus:tw-cms-outline"
                     onClick={onClose}
                     aria-label={t('close')}
                     autoFocus={false}

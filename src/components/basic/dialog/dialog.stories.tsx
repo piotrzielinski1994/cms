@@ -1,7 +1,7 @@
 import { DEFAULT_VALUE, getFallback } from '@/config/storybook/utils';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useTranslations } from 'next-intl';
-import { type ComponentProps } from 'react';
+import { useEffect, type ComponentProps } from 'react';
 import { Button } from '../button/button';
 import DialogComponent from './dialog';
 import { useDialog } from './dialog.hooks';
@@ -15,6 +15,10 @@ const meta: Meta<Args> = {
   component: DialogComponent.Root,
   title: 'Components/Basic/Dialog',
   argTypes: {
+    type: {
+      control: 'select',
+      options: ['dialog', 'modal'] satisfies Array<Args['type']>,
+    },
     header: { control: 'text' },
     children: { control: 'text' },
     className: { control: 'text' },
@@ -22,6 +26,7 @@ const meta: Meta<Args> = {
     cancel: { control: 'text' },
   },
   args: {
+    type: 'dialog',
     header: DEFAULT_VALUE,
     children: DEFAULT_VALUE,
     className: 'max-w-lg',
@@ -30,32 +35,37 @@ const meta: Meta<Args> = {
   },
 };
 
-const Render = ({ header, children, submit, cancel, ...args }: Args) => {
+const Render = ({ type, ...args }: Args) => {
   const t = useTranslations('storybook.basic.dialog');
-  const { setIsOpen, dialogRef } = useDialog(true);
+  const { setIsOpen, dialogRef } = useDialog({ initialIsOpen: false, type });
+
+  useEffect(() => () => dialogRef.current?.close(), [type, dialogRef]);
 
   return (
     <>
-      <Button onClick={() => setIsOpen(true)}>{t('button')}</Button>
+      <Button onClick={() => setIsOpen((prev) => !prev)}>
+        {type === 'dialog' ? t('showDialog') : t('showModal')}
+      </Button>
       <DialogComponent.Root
         {...args}
         ref={dialogRef}
-        header={getFallback(header, t('header'))}
+        type={type}
+        header={getFallback(args.header, t('header'))}
         footer={
           <DialogComponent.Footer
             submitBtn={{
-              label: getFallback(submit, t('submit')),
+              label: getFallback(args.submit, t('submit')),
               onClick: () => setIsOpen(false),
             }}
             cancelBtn={{
-              label: getFallback(cancel, t('cancel')),
+              label: getFallback(args.cancel, t('cancel')),
               onClick: () => setIsOpen(false),
             }}
           />
         }
         onClose={() => setIsOpen(false)}
       >
-        {getFallback(children, t('content'))}
+        {getFallback(args.children, t('content'))}
       </DialogComponent.Root>
     </>
   );

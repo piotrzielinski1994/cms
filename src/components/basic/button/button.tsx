@@ -16,6 +16,7 @@ const buttonClassNames = {
     'border-2 border-primary hover:border-primary/90',
     'font-semibold whitespace-nowrap',
     'disabled:cursor-not-allowed',
+    'focus:tw-cms-outline',
   ),
   variant: {
     primary: cn(

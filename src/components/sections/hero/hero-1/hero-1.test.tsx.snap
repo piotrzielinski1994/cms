@@ -20,13 +20,13 @@ exports[`Hero1 > should match the snapshot 1`] = `
         class="flex gap-4"
       >
         <a
-          class="px-6 py-3 border-2 border-primary hover:border-primary/90 font-semibold whitespace-nowrap disabled:cursor-not-allowed bg-primary hover:bg-primary/90 text-primary-foreground disabled:border-primary/0 disabled:bg-primary/50"
+          class="px-6 py-3 border-2 border-primary hover:border-primary/90 font-semibold whitespace-nowrap disabled:cursor-not-allowed focus:tw-cms-outline bg-primary hover:bg-primary/90 text-primary-foreground disabled:border-primary/0 disabled:bg-primary/50"
           href="/path-1"
         >
           Button 1
         </a>
         <a
-          class="px-6 py-3 border-2 border-primary hover:border-primary/90 font-semibold whitespace-nowrap disabled:cursor-not-allowed text-primary disabled:border-primary/50 disabled:text-primary/50 bg-background [&:not(:disabled)]:hover:bg-foreground/5"
+          class="px-6 py-3 border-2 border-primary hover:border-primary/90 font-semibold whitespace-nowrap disabled:cursor-not-allowed focus:tw-cms-outline text-primary disabled:border-primary/50 disabled:text-primary/50 bg-background [&:not(:disabled)]:hover:bg-foreground/5"
           href="/path-2"
         >
           Button 2

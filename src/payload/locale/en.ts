@@ -305,7 +305,8 @@ const en = {
         content: 'Content',
       },
       dialog: {
-        button: 'Show Dialog',
+        showDialog: 'Show Dialog',
+        showModal: 'Show Modal',
         header: 'Header',
         content: 'Content',
         submit: 'Submit',

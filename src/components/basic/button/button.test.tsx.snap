@@ -3,7 +3,7 @@
 exports[`Button > should match the snapshot 1`] = `
 <div>
   <button
-    class="px-6 py-3 border-2 border-primary hover:border-primary/90 font-semibold whitespace-nowrap disabled:cursor-not-allowed bg-primary hover:bg-primary/90 text-primary-foreground disabled:border-primary/0 disabled:bg-primary/50"
+    class="px-6 py-3 border-2 border-primary hover:border-primary/90 font-semibold whitespace-nowrap disabled:cursor-not-allowed focus:tw-cms-outline bg-primary hover:bg-primary/90 text-primary-foreground disabled:border-primary/0 disabled:bg-primary/50"
     disabled=""
     type="button"
   >
@@ -15,7 +15,7 @@ exports[`Button > should match the snapshot 1`] = `
 exports[`ButtonLink > should match the snapshot 1`] = `
 <div>
   <a
-    class="px-6 py-3 border-2 border-primary hover:border-primary/90 font-semibold whitespace-nowrap disabled:cursor-not-allowed bg-primary hover:bg-primary/90 text-primary-foreground disabled:border-primary/0 disabled:bg-primary/50"
+    class="px-6 py-3 border-2 border-primary hover:border-primary/90 font-semibold whitespace-nowrap disabled:cursor-not-allowed focus:tw-cms-outline bg-primary hover:bg-primary/90 text-primary-foreground disabled:border-primary/0 disabled:bg-primary/50"
     href="/test"
   >
     ButtonLink

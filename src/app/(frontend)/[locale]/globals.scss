@@ -5,11 +5,3 @@
 html {
   scroll-behavior: smooth;
 }
-
-body:has(dialog[open]) {
-  overflow: hidden;
-}
-
-:is(a, button):focus {
-  @apply tw-cms-outline;
-}

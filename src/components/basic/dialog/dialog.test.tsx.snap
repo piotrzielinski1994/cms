@@ -3,13 +3,14 @@
 exports[`Dialog > should match the snapshot 1`] = `
 <div>
   <div
-    class="px-4 sm:px-6 cms-section fixed inset-0 z-dialog py-4 sm:py-6 hidden has-[:open]:grid"
+    class="px-4 sm:px-6 cms-section fixed inset-0 z-dialog py-4 sm:py-6 hidden has-[:open]:grid pointer-events-none"
   >
     <div
-      class="fixed inset-0 z-backdrop backdrop-blur-sm bg-foreground/50 dark:bg-foreground/10"
+      class="fixed inset-0 z-backdrop bg-foreground/50 dark:bg-foreground/10 backdrop-blur-none"
     />
     <dialog
-      class="w-full max-w-screen-2xl mx-auto grid cms-container relative overflow-visible bg-background text-foreground focus:tw-cms-dialog-outline"
+      class="w-full max-w-screen-2xl mx-auto grid cms-container relative z-dialog overflow-visible pointer-events-auto bg-background text-foreground focus:tw-cms-dialog-outline"
+      data-dialog="true"
       open=""
     >
       <header
@@ -22,7 +23,7 @@ exports[`Dialog > should match the snapshot 1`] = `
         </p>
         <button
           aria-label="Close"
-          class="p-2 border-solid"
+          class="p-2 focus:tw-cms-outline"
         >
           <svg
             aria-hidden="true"
@@ -56,13 +57,13 @@ exports[`Dialog > should match the snapshot 1`] = `
           class="flex justify-end gap-2 flex-wrap"
         >
           <button
-            class="px-6 py-3 border-2 border-primary hover:border-primary/90 font-semibold whitespace-nowrap disabled:cursor-not-allowed text-primary disabled:border-primary/50 disabled:text-primary/50 bg-background [&:not(:disabled)]:hover:bg-foreground/5"
+            class="px-6 py-3 border-2 border-primary hover:border-primary/90 font-semibold whitespace-nowrap disabled:cursor-not-allowed focus:tw-cms-outline text-primary disabled:border-primary/50 disabled:text-primary/50 bg-background [&:not(:disabled)]:hover:bg-foreground/5"
             type="button"
           >
             Cancel
           </button>
           <button
-            class="px-6 py-3 border-2 border-primary hover:border-primary/90 font-semibold whitespace-nowrap disabled:cursor-not-allowed bg-primary hover:bg-primary/90 text-primary-foreground disabled:border-primary/0 disabled:bg-primary/50"
+            class="px-6 py-3 border-2 border-primary hover:border-primary/90 font-semibold whitespace-nowrap disabled:cursor-not-allowed focus:tw-cms-outline bg-primary hover:bg-primary/90 text-primary-foreground disabled:border-primary/0 disabled:bg-primary/50"
             type="button"
           >
             Submit

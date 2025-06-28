@@ -309,7 +309,8 @@ const pl = {
         content: 'Treść',
       },
       dialog: {
-        button: 'Pokaż okno dialogowe',
+        showDialog: 'Pokaż okno dialogowe',
+        showModal: 'Pokaż okno modalne',
         header: 'Nagłówek',
         content: 'Treść',
         submit: 'Zatwierdź',
