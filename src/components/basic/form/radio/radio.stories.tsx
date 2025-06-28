@@ -32,7 +32,7 @@ const Render = ({ label, ...args }: Args) => {
   ];
 
   return (
-    <div className="grid gap-2" role="radiogroup">
+    <div className="grid justify-items-start gap-2" role="radiogroup">
       {radiosProps.map((props, index) => {
         return (
           <RadioComponent
