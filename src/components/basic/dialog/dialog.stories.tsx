@@ -1,9 +1,10 @@
 import { DEFAULT_VALUE, getFallback } from '@/config/storybook/utils';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useTranslations } from 'next-intl';
-import { useEffect, useRef, useState, type ComponentProps } from 'react';
+import { type ComponentProps } from 'react';
 import { Button } from '../button/button';
 import DialogComponent from './dialog';
+import { useDialog } from './dialog.hooks';
 
 type Args = ComponentProps<typeof DialogComponent.Root> & {
   submit: string;
@@ -31,14 +32,7 @@ const meta: Meta<Args> = {
 
 const Render = ({ header, children, submit, cancel, ...args }: Args) => {
   const t = useTranslations('storybook.basic.dialog');
-  const [isOpen, setIsOpen] = useState(true);
-  const dialogRef = useRef<HTMLDialogElement>(null);
-
-  useEffect(() => {
-    if (!dialogRef.current) return;
-    if (isOpen) dialogRef.current.showModal();
-    else dialogRef.current.close();
-  }, [isOpen]);
+  const { setIsOpen, dialogRef } = useDialog(true);
 
   return (
     <>
