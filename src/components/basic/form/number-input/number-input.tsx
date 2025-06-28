@@ -72,7 +72,7 @@ const NumberInput = ({ error, step = 1, mode = 'integer', t, ...props }: NumberI
     <div className="flex flex-col gap-2">
       <div className="relative">
         <input
-          type="tel"
+          type="text"
           inputMode="numeric"
           autoComplete="off"
           {...omitCustomProps({ ...props, mode })}

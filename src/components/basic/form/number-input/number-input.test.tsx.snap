@@ -15,7 +15,7 @@ exports[`NumberInput > should match the snapshot 1`] = `
         inputmode="numeric"
         mode="integer"
         name="name"
-        type="tel"
+        type="text"
         value=""
       />
       <div
