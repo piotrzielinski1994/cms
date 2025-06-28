@@ -12,6 +12,10 @@ describe('Link', () => {
     children: 'Link',
   } satisfies ComponentProps<typeof Link>;
 
+  beforeEach(() => {
+    vi.resetAllMocks();
+  });
+
   it('should have no accessibility violations', async () => {
     const { container } = render(withProviders(<Link {...defaultProps} />));
     const results = await axe(container);

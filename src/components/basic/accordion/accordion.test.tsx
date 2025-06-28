@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ComponentProps } from 'react';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { axe } from 'vitest-axe';
 import { Accordion } from './accordion';
 
@@ -10,6 +10,10 @@ describe('Accordion', () => {
     { heading: 'Heading 1', content: 'Content 1' },
     { heading: 'Heading 2', content: 'Content 2' },
   ] satisfies ComponentProps<typeof Accordion>['items'];
+
+  beforeEach(() => {
+    vi.resetAllMocks();
+  });
 
   it('should have no accessibility violations', async () => {
     const { container } = render(<Accordion items={defaultItems} />);

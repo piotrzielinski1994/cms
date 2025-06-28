@@ -1,7 +1,7 @@
 import { render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ComponentProps } from 'react';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { axe } from 'vitest-axe';
 import { Tooltip } from './tooltip';
 
@@ -10,6 +10,10 @@ describe('Tooltip', () => {
     content: 'Tooltip text',
     children: <span>Trigger</span>,
   } satisfies ComponentProps<typeof Tooltip>;
+
+  beforeEach(() => {
+    vi.resetAllMocks();
+  });
 
   it('should have no accessibility violations', async () => {
     const { container, getByRole } = render(<Tooltip {...defaultProps} />);

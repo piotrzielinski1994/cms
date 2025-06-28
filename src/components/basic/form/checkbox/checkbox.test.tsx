@@ -27,6 +27,10 @@ describe('Checkbox', () => {
     );
   };
 
+  beforeEach(() => {
+    vi.resetAllMocks();
+  });
+
   it('should have no accessibility violations', async () => {
     const { container } = render(<ControlledComponent {...defaultProps} />);
     const results = await axe(container);

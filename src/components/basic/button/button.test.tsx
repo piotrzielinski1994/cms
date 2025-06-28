@@ -12,6 +12,10 @@ describe('Button', () => {
     children: 'Button',
   } satisfies ComponentProps<typeof Button>;
 
+  beforeEach(() => {
+    vi.resetAllMocks();
+  });
+
   it('should have no accessibility violations', async () => {
     const { container } = render(<Button {...defaultProps} />);
     const results = await axe(container);
@@ -37,6 +41,10 @@ describe('ButtonLink', () => {
     href: '/test',
     children: 'ButtonLink',
   } satisfies ComponentProps<typeof ButtonLink>;
+
+  beforeEach(() => {
+    vi.resetAllMocks();
+  });
 
   it('renders with default primary variant classes', () => {
     const { getByRole } = render(withProviders(<ButtonLink {...defaultProps} />));
