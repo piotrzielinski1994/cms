@@ -39,27 +39,25 @@ describe('ButtonLink', () => {
   } satisfies ComponentProps<typeof ButtonLink>;
 
   it('renders with default primary variant classes', () => {
-    const { getByRole } = render(withProviders()(<ButtonLink {...defaultProps} />));
+    const { getByRole } = render(withProviders(<ButtonLink {...defaultProps} />));
     const link = getByRole('link');
     expect(link.className).toContain('bg-primary');
   });
 
   it('should have no accessibility violations', async () => {
-    const { container } = render(withProviders()(<ButtonLink {...defaultProps} />));
+    const { container } = render(withProviders(<ButtonLink {...defaultProps} />));
     const results = await axe(container);
     expect(results).toHaveNoViolations();
   });
 
   it('should match the snapshot', () => {
-    const { container } = render(withProviders()(<ButtonLink {...defaultProps} />));
+    const { container } = render(withProviders(<ButtonLink {...defaultProps} />));
     expect(container).toMatchSnapshot();
   });
 
   it('calls onClick handler', async () => {
     const onClick = vi.fn();
-    const { getByRole } = render(
-      withProviders()(<ButtonLink {...defaultProps} onClick={onClick} />),
-    );
+    const { getByRole } = render(withProviders(<ButtonLink {...defaultProps} onClick={onClick} />));
 
     await userEvent.click(getByRole('link', { name: defaultProps.children }));
 

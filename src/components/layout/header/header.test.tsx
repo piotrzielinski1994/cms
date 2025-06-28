@@ -15,15 +15,13 @@ describe('Header', () => {
   } satisfies ComponentProps<typeof Header>;
 
   it('should have no accessibility violations', async () => {
-    const { container } = await waitFor(() =>
-      render(withProviders()(<Header {...defaultProps} />)),
-    );
+    const { container } = await waitFor(() => render(withProviders(<Header {...defaultProps} />)));
     const results = await axe(container);
     expect(results).toHaveNoViolations();
   });
 
   it('should match the snapshot', async () => {
-    const { container } = render(withProviders()(<Header {...defaultProps} />));
+    const { container } = render(withProviders(<Header {...defaultProps} />));
     expect(container).toMatchSnapshot();
   });
 });

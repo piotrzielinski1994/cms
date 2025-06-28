@@ -9,17 +9,19 @@ const resolveServerComponent = async <T extends (props: unknown) => Promise<Reac
   return () => ComponentResolved;
 };
 
-const withProviders = (props: Partial<Omit<ComponentProps<typeof Providers>, 'children'>> = {}) =>
-  function WithProviders(children: ReactNode) {
-    const overwrittenProps: ComponentProps<typeof Providers> = {
-      locale: 'en',
-      initialTheme: 'light',
-      initialFontScale: 'base',
-      initialCookiesConsent: true,
-      ...props,
-      children,
-    };
-    return <Providers {...overwrittenProps} />;
+const withProviders = (
+  children: ReactNode,
+  props: Partial<Omit<ComponentProps<typeof Providers>, 'children'>> = {},
+) => {
+  const overwrittenProps: ComponentProps<typeof Providers> = {
+    locale: 'en',
+    initialTheme: 'light',
+    initialFontScale: 'base',
+    initialCookiesConsent: true,
+    ...props,
+    children,
   };
+  return <Providers {...overwrittenProps} />;
+};
 
 export { resolveServerComponent, withProviders };

@@ -31,14 +31,14 @@ describe('ImageBlock', () => {
 
   it('should have no accessibility violations', async () => {
     const { container } = await waitFor(() =>
-      render(withProviders()(<ImageBlock {...defaultProps} />)),
+      render(withProviders(<ImageBlock {...defaultProps} />)),
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
   });
 
   it('should match the snapshot', async () => {
-    const { container } = render(withProviders()(<ImageBlock {...defaultProps} />));
+    const { container } = render(withProviders(<ImageBlock {...defaultProps} />));
     expect(container).toMatchSnapshot();
   });
 });

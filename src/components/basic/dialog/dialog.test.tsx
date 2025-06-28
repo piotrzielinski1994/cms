@@ -21,19 +21,19 @@ describe('Dialog', () => {
   } satisfies ComponentProps<typeof Dialog.Root>;
 
   it('should have no accessibility violations', async () => {
-    const { container } = render(withProviders()(<Dialog.Root {...defaultProps} />));
+    const { container } = render(withProviders(<Dialog.Root {...defaultProps} />));
     const results = await axe(container);
     expect(results).toHaveNoViolations();
   });
 
   it('should match the snapshot', async () => {
-    const { container } = render(withProviders()(<Dialog.Root {...defaultProps} />));
+    const { container } = render(withProviders(<Dialog.Root {...defaultProps} />));
     expect(container).toMatchSnapshot();
   });
 
   describe('Interactions', () => {
     it('should trigger closing when close button is clicked', async () => {
-      const { getByRole } = render(withProviders()(<Dialog.Root {...defaultProps} />));
+      const { getByRole } = render(withProviders(<Dialog.Root {...defaultProps} />));
 
       await userEvent.click(getByRole('button', { name: t.frontend.close }));
 
@@ -41,7 +41,7 @@ describe('Dialog', () => {
     });
 
     it('should trigger submission when submit button is clicked', async () => {
-      const { getByRole } = render(withProviders()(<Dialog.Root {...defaultProps} />));
+      const { getByRole } = render(withProviders(<Dialog.Root {...defaultProps} />));
 
       await userEvent.click(getByRole('button', { name: footerProps.submitBtn.label }));
 
@@ -49,7 +49,7 @@ describe('Dialog', () => {
     });
 
     it('should trigger cancel event when cancel button is clicked', async () => {
-      const { getByRole } = render(withProviders()(<Dialog.Root {...defaultProps} />));
+      const { getByRole } = render(withProviders(<Dialog.Root {...defaultProps} />));
 
       await userEvent.click(getByRole('button', { name: footerProps.cancelBtn.label }));
 
@@ -57,7 +57,7 @@ describe('Dialog', () => {
     });
 
     it('should trigger closing when Escape key is pressed', async () => {
-      const { getByRole } = render(withProviders()(<Dialog.Root {...defaultProps} />));
+      const { getByRole } = render(withProviders(<Dialog.Root {...defaultProps} />));
       const dialog = getByRole('dialog');
 
       await userEvent.type(dialog, '{Escape}');
