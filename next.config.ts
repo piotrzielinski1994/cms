@@ -27,6 +27,9 @@ const nextConfig = {
     });
     return config;
   },
+  sentry: {
+    disableServerWebpackPlugin: true,
+  },
 } satisfies NextConfig;
 
 export default withSentryConfig(withBundleAnalyzer(withNextIntl(withPayload(nextConfig))), {
