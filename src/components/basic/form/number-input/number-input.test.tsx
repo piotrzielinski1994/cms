@@ -65,7 +65,7 @@ describe('NumberInput', () => {
           />,
         ),
       );
-      const input = getByRole('textbox') as HTMLInputElement;
+      const input = getByRole('spinbutton') as HTMLInputElement;
       const valueBefore = input.value;
 
       await userEvent.click(getByLabelText(defaultProps.t.increment));
@@ -91,7 +91,7 @@ describe('NumberInput', () => {
           />,
         ),
       );
-      const input = getByRole('textbox') as HTMLInputElement;
+      const input = getByRole('spinbutton') as HTMLInputElement;
       const valueBefore = input.value;
 
       await userEvent.click(getByLabelText(defaultProps.t.decrement));
@@ -119,7 +119,7 @@ describe('NumberInput', () => {
           />,
         ),
       );
-      const input = getByRole('textbox') as HTMLInputElement;
+      const input = getByRole('spinbutton') as HTMLInputElement;
       const valueBefore = input.value;
 
       await userEvent.type(input, '{arrowup}');
@@ -145,7 +145,7 @@ describe('NumberInput', () => {
           />,
         ),
       );
-      const input = getByRole('textbox') as HTMLInputElement;
+      const input = getByRole('spinbutton') as HTMLInputElement;
       const valueBefore = input.value;
 
       await userEvent.type(input, '{arrowdown}');
@@ -160,7 +160,7 @@ describe('NumberInput', () => {
       const { getByRole } = render(
         withProviders(<ControlledComponent {...defaultProps} maxIntLength={3} />),
       );
-      const input = getByRole('textbox') as HTMLInputElement;
+      const input = getByRole('spinbutton') as HTMLInputElement;
 
       for (const char of '1234') {
         await userEvent.type(input, char);
@@ -175,7 +175,7 @@ describe('NumberInput', () => {
           <ControlledComponent {...defaultProps} mode="decimal" maxDecimalLength={2} />,
         ),
       );
-      const input = getByRole('textbox') as HTMLInputElement;
+      const input = getByRole('spinbutton') as HTMLInputElement;
 
       for (const char of '12.345') {
         await userEvent.type(input, char);
@@ -188,7 +188,7 @@ describe('NumberInput', () => {
       const { getByRole } = render(
         withProviders(<ControlledComponent {...defaultProps} maxIntLength={3} />),
       );
-      const input = getByRole('textbox') as HTMLInputElement;
+      const input = getByRole('spinbutton') as HTMLInputElement;
 
       await userEvent.type(input, '999');
       await userEvent.type(input, '{arrowup}');
@@ -200,7 +200,7 @@ describe('NumberInput', () => {
       const { getByRole } = render(
         withProviders(<ControlledComponent {...defaultProps} maxIntLength={3} />),
       );
-      const input = getByRole('textbox') as HTMLInputElement;
+      const input = getByRole('spinbutton') as HTMLInputElement;
 
       await userEvent.type(input, '-999');
       await userEvent.type(input, '{arrowdown}');
@@ -212,7 +212,7 @@ describe('NumberInput', () => {
       const { getByRole, getByLabelText } = render(
         withProviders(<ControlledComponent {...defaultProps} maxIntLength={3} />),
       );
-      const input = getByRole('textbox') as HTMLInputElement;
+      const input = getByRole('spinbutton') as HTMLInputElement;
 
       await userEvent.type(input, '999');
       await userEvent.click(getByLabelText(defaultProps.t.increment));
@@ -224,7 +224,7 @@ describe('NumberInput', () => {
       const { getByRole, getByLabelText } = render(
         withProviders(<ControlledComponent {...defaultProps} maxIntLength={3} />),
       );
-      const input = getByRole('textbox') as HTMLInputElement;
+      const input = getByRole('spinbutton') as HTMLInputElement;
 
       await userEvent.type(input, '-999');
       await userEvent.click(getByLabelText(defaultProps.t.decrement));
@@ -248,7 +248,7 @@ describe('NumberInput', () => {
             { locale },
           ),
         );
-        const input = getByRole('textbox') as HTMLInputElement;
+        const input = getByRole('spinbutton') as HTMLInputElement;
 
         for (const char of typed) {
           await userEvent.type(input, char);
