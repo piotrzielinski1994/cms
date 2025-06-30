@@ -1,6 +1,8 @@
 import { clientEnv } from '@/config/env.client.config';
+import { serverEnv } from '@/config/env.server.config';
 import bundleAnalyzer from '@next/bundle-analyzer';
 import { withPayload } from '@payloadcms/next/withPayload';
+import { withSentryConfig } from '@sentry/nextjs';
 import type { NextConfig } from 'next';
 import createNextIntlPlugin from 'next-intl/plugin';
 import { z } from 'zod';
@@ -27,4 +29,10 @@ const nextConfig = {
   },
 } satisfies NextConfig;
 
-export default withBundleAnalyzer(withNextIntl(withPayload(nextConfig)));
+export default withSentryConfig(withBundleAnalyzer(withNextIntl(withPayload(nextConfig))), {
+  org: serverEnv.sentry.org,
+  project: serverEnv.sentry.project,
+  widenClientFileUpload: true,
+  disableLogger: true,
+  automaticVercelMonitors: true,
+});
