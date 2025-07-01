@@ -11,8 +11,6 @@ import { toPageMetadata } from '@/utils/nextjs/metadata';
 import { LocalizedRoute } from '@/utils/nextjs/types';
 import { cn } from '@/utils/tailwind';
 import { GoogleTagManager } from '@next/third-parties/google';
-import { GeistMono } from 'geist/font/mono';
-import { GeistSans } from 'geist/font/sans';
 import { draftMode } from 'next/headers';
 import { ComponentProps, PropsWithChildren } from 'react';
 import './globals.scss';
@@ -40,7 +38,6 @@ const Layout = async ({ children, params }: LayoutProps) => {
       data-theme={theme}
       data-color-preference={themes[theme]._type}
       style={{ colorScheme: themes[theme]?._type }}
-      className={cn(GeistSans.variable, GeistMono.variable)}
     >
       <head>
         {clientEnv.gtmId && cookiesConsent && <GoogleTagManager gtmId={clientEnv.gtmId} />}

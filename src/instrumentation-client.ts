@@ -1,15 +1,17 @@
-import * as Sentry from '@sentry/nextjs';
+import { captureRouterTransitionStart, init, replayIntegration } from '@sentry/nextjs';
 import { clientEnv } from './config/env.client.config';
 
-Sentry.init({
-  dsn: clientEnv.sentryDsn,
-  integrations: [Sentry.replayIntegration()],
-  tracesSampleRate: 1,
-  replaysSessionSampleRate: 0.1,
-  replaysOnErrorSampleRate: 1.0,
-  debug: false,
-});
+if (!!clientEnv.sentryDsn) {
+  init({
+    dsn: clientEnv.sentryDsn,
+    integrations: [replayIntegration()],
+    tracesSampleRate: 1,
+    replaysSessionSampleRate: 0.1,
+    replaysOnErrorSampleRate: 1.0,
+    debug: clientEnv.internal.nodeEnv === 'development',
+  });
+}
 
-const onRouterTransitionStart = Sentry.captureRouterTransitionStart;
+const onRouterTransitionStart = captureRouterTransitionStart;
 
 export { onRouterTransitionStart };

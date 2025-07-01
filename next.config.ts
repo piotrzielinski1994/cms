@@ -35,7 +35,9 @@ export default withSentryConfig(withBundleAnalyzer(withNextIntl(withPayload(next
   widenClientFileUpload: true,
   disableLogger: true,
   automaticVercelMonitors: true,
-  sourcemaps: {
-    disable: true,
+  silent: !clientEnv.sentryDsn,
+  reactComponentAnnotation: {
+    enabled: true,
   },
+  telemetry: false,
 });

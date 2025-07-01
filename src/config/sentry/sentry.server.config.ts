@@ -1,9 +1,11 @@
 import { clientEnv } from '@/config/env.client.config';
-import * as Sentry from '@sentry/nextjs';
+import { init } from '@sentry/nextjs';
 
-Sentry.init({
-  dsn: clientEnv.sentryDsn,
-  tracesSampleRate: 1,
-  sendDefaultPii: true,
-  debug: false,
-});
+if (!!clientEnv.sentryDsn) {
+  init({
+    dsn: clientEnv.sentryDsn,
+    tracesSampleRate: 1,
+    sendDefaultPii: true,
+    debug: clientEnv.internal.nodeEnv === 'development',
+  });
+}
