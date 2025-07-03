@@ -36,8 +36,7 @@ export default withSentryConfig(withBundleAnalyzer(withNextIntl(withPayload(next
   disableLogger: true,
   automaticVercelMonitors: true,
   silent: !clientEnv.sentryDsn,
-  reactComponentAnnotation: {
-    enabled: true,
-  },
+  sourcemaps: { disable: true }, // Vercel heap limits
+  reactComponentAnnotation: { enabled: true },
   telemetry: false,
 });
