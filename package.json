@@ -12,7 +12,7 @@
     "start": "cross-env NODE_OPTIONS=\"${NODE_OPTIONS} --no-deprecation\" next dev",
     "start:prod": "cross-env NODE_OPTIONS=--no-deprecation rm -rf .next && npm run build && next start",
     "upgrade": "npm-check-updates -u && npm update",
-    "upgrade:not:tailwind": "npm-check-updates -u -x tailwindcss",
+    "upgrade:not:tailwind": "npm-check-updates -u -x tailwindcss && npm update",
     "test": "vitest run --reporter=verbose",
     "test:watch": "vitest watch --reporter=verbose -u",
     "storybook:build": "STORYBOOK_LOGLEVEL=debug storybook build -c ./src/config/storybook -o .storybook",
