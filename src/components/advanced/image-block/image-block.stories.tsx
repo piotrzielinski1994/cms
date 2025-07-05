@@ -44,7 +44,7 @@ const Render = ({ image, heading, subheading, buttons, ...args }: Args, context)
   const { theme } = context.globals as StoryContext['globals'];
   const t2 = useTranslations('fields');
   const tButton = useTranslations('storybook.basic.button');
-  const themedImage = imagesPerColorPref[themes[theme]._type];
+  const themedImage = imagesPerColorPref[themes[theme].colorPreference];
 
   return (
     <ImageBlockComponent

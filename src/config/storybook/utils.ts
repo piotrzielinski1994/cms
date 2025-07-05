@@ -24,6 +24,6 @@ const getFallback = <T extends ReactNode>(value: T, fallback: T): T => {
 const imagesPerColorPref = {
   light: placeholderWebp,
   dark: placeholderDarkWebp,
-} satisfies Partial<Record<ThemeConfig['_type'], StaticImageData>>;
+} satisfies Partial<Record<ThemeConfig['colorPreference'], StaticImageData>>;
 
 export { DEFAULT_VALUE, getFallback, imagesPerColorPref, storyToUrlPath, THUMBNAIL_ID };

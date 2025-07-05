@@ -7,11 +7,11 @@ const getZodErrorsMap: (t: ReturnType<typeof useTranslations<'zod'>>) => z.ZodEr
   (issue): { message: string } => {
     const path = issue.path?.join('.') || '';
     switch (issue.code) {
-      case z.ZodIssueCode.invalid_type:
+      case z.ZodIssueCode.invalidcolorPreference:
         return {
           message: ['undefined', 'null'].includes(issue.received)
-            ? t('invalid_type_received_undefined', { path })
-            : t('invalid_type', { expected: issue.expected, received: issue.received }),
+            ? t('invalidcolorPreference_received_undefined', { path })
+            : t('invalidcolorPreference', { expected: issue.expected, received: issue.received }),
         };
       case z.ZodIssueCode.too_small:
         return {

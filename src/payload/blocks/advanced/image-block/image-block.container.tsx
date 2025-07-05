@@ -12,7 +12,7 @@ const ImageBlock1Container = (props: ImageBlockBlock) => {
     default: ImageModel;
     dark?: ImageModel;
   };
-  const prefersDark = themes[theme]._type === 'dark';
+  const prefersDark = themes[theme].colorPreference === 'dark';
   const imageToShow = !prefersDark ? defaultImage : (darkImage ?? defaultImage);
 
   return (

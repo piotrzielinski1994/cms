@@ -1,27 +1,56 @@
 'use client';
 
-import { themes } from '@/config/themes.config';
-import ContrastSvg from '@/icons/contrast.svg';
+import { ThemeConfig, themes } from '@/config/themes.config';
 import { useThemeStore } from '@/store/theme';
 import { cn } from '@/utils/tailwind';
 import * as SelectPrimitive from '@radix-ui/react-select';
+import { Laptop, Moon, Sun } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { keys } from 'ramda';
-import { FC } from 'react';
-import './theme-switcher.scss';
+import { FC, useEffect, useState } from 'react';
+
+type ThemeSwitcherOption = keyof typeof themes | 'system';
+type SunOrMoonProps = { colorPreference: ThemeConfig['colorPreference'] };
 
 const ThemeSwitcher: FC = () => {
   const { theme, setTheme } = useThemeStore();
   const t = useTranslations('frontend');
+  const [selectedOption, setOption] = useState<ThemeSwitcherOption>(theme);
+  const [systemTheme, setSystemTheme] = useState<keyof typeof themes>(getColorPreference());
+  const systemThemeConfig = themes[systemTheme];
+
+  useEffect(() => {
+    const media = window.matchMedia('(prefers-color-scheme:dark)');
+    const listener = (e: MediaQueryListEvent) => {
+      setSystemTheme(e.matches ? 'dark' : 'light');
+    };
+
+    media.addEventListener('change', listener);
+    return () => media.removeEventListener('change', listener);
+  }, []);
+
+  useEffect(() => {
+    if (selectedOption !== 'system') return;
+    setTheme(systemTheme);
+  }, [selectedOption, systemTheme, setTheme]);
 
   return (
-    <SelectPrimitive.Root onValueChange={setTheme} value={theme}>
+    <SelectPrimitive.Root
+      value={selectedOption}
+      onValueChange={(value: ThemeSwitcherOption) => {
+        setOption(value);
+        if (value !== 'system') return setTheme(value as keyof typeof themes);
+        const systemTheme = getColorPreference();
+        setSystemTheme(systemTheme);
+        setTheme(systemTheme);
+      }}
+    >
       <SelectPrimitive.Trigger
         className={cn('py-1.5 px-2', 'text-sm text-white')}
         aria-label={t('themeSwitcher')}
       >
         <SelectPrimitive.Value>
-          <ContrastSvg />
+          <SunOrMoon colorPreference={themes[theme].colorPreference} />
         </SelectPrimitive.Value>
       </SelectPrimitive.Trigger>
       <SelectPrimitive.Portal>
@@ -30,31 +59,56 @@ const ThemeSwitcher: FC = () => {
           className={cn('bg-background1 text-foreground', 'relative z-popover overflow-hidden')}
         >
           <SelectPrimitive.Viewport>
-            {keys(themes).map((it) => (
-              <SelectPrimitive.Item
-                key={it}
-                value={it}
-                className={cn(
-                  'p-2',
-                  'focus:bg-accent focus:text-accent-foreground',
-                  'text-sm',
-                  'cursor-pointer outline-none ',
-                )}
-              >
-                <SelectPrimitive.ItemText>
-                  <ContrastSvg
-                    className="theme-selector"
-                    style={{ '--_bg': themes[it].background, '--_text': themes[it].foreground }}
-                  />
-                </SelectPrimitive.ItemText>
-              </SelectPrimitive.Item>
-            ))}
+            <SelectPrimitive.Item
+              value="system"
+              className={cn(
+                'px-2 py-1',
+                'focus:bg-accent focus:text-accent-foreground',
+                'text-sm',
+                'cursor-pointer outline-none ',
+              )}
+              style={{ backgroundColor: systemThemeConfig.background1 }}
+            >
+              <SelectPrimitive.ItemText>
+                <Laptop className="h-4 w-4" style={{ color: systemThemeConfig.foreground }} />
+              </SelectPrimitive.ItemText>
+            </SelectPrimitive.Item>
+            {keys(themes).map((it) => {
+              const Icon = themes[it].colorPreference === 'light' ? Sun : Moon;
+              return (
+                <SelectPrimitive.Item
+                  key={it}
+                  value={it}
+                  className={cn(
+                    'px-2 py-1',
+                    'focus:bg-accent focus:text-accent-foreground',
+                    'text-sm',
+                    'cursor-pointer outline-none ',
+                  )}
+                  style={{ backgroundColor: themes[it].background1 }}
+                >
+                  <SelectPrimitive.ItemText>
+                    <Icon className="h-4 w-4" style={{ color: themes[it].foreground }} />
+                  </SelectPrimitive.ItemText>
+                </SelectPrimitive.Item>
+              );
+            })}
           </SelectPrimitive.Viewport>
           <SelectPrimitive.Arrow />
         </SelectPrimitive.Content>
       </SelectPrimitive.Portal>
     </SelectPrimitive.Root>
   );
+};
+
+const SunOrMoon = ({ colorPreference }: SunOrMoonProps) => {
+  const Icon = colorPreference === 'light' ? Sun : Moon;
+  return <Icon className="h-4 w-4" />;
+};
+
+const getColorPreference = (): ThemeConfig['colorPreference'] => {
+  if (typeof window === 'undefined') return 'light';
+  return window.matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light';
 };
 
 export { ThemeSwitcher };

@@ -28,7 +28,7 @@ const Render = ({ images, ...args }: Args, context) => {
   const { theme } = context.globals as StoryContext['globals'];
   const t = useTranslations('fields');
   const updatedImages = images.map((it) => {
-    const themedImage = imagesPerColorPref[themes[theme]._type];
+    const themedImage = imagesPerColorPref[themes[theme].colorPreference];
     return {
       ...it,
       src: getFallback(it.src, themedImage.src),

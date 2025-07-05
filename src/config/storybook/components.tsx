@@ -37,8 +37,8 @@ const DataAttributesSetter = ({ locale, theme, fontScale }: StoryContext['global
     document.documentElement.setAttribute('data-locale', locale);
     document.documentElement.setAttribute('data-scale', fontScale);
     document.documentElement.setAttribute('data-theme', theme);
-    document.documentElement.dataset.colorPreference = themes[theme]._type;
-    document.documentElement.style.colorScheme = themes[theme]?._type;
+    document.documentElement.dataset.colorPreference = themes[theme].colorPreference;
+    document.documentElement.style.colorScheme = themes[theme]?.colorPreference;
   }, [locale, theme, fontScale]);
   return <></>;
 };

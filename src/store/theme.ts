@@ -18,11 +18,11 @@ const THEME_STORAGE_KEY = 'theme' as const;
 
 const updateDom = (theme: Theme) => {
   document.documentElement.setAttribute('data-theme', theme);
-  document.documentElement.setAttribute('data-color-preference', themes[theme]._type);
+  document.documentElement.setAttribute('data-color-preference', themes[theme].colorPreference);
 };
 
 const updateColorScheme = (theme: Theme) => {
-  document.documentElement.style.colorScheme = themes[theme]._type;
+  document.documentElement.style.colorScheme = themes[theme].colorPreference;
 };
 
 const createThemeStore = (initialTheme: Theme) => {

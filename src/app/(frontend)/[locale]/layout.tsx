@@ -29,15 +29,15 @@ const Layout = async ({ children, params }: LayoutProps) => {
     initialFontScale: fontSize,
     initialCookiesConsent: cookiesConsent,
   };
-
+  console.log('@@@ theme | ', { theme, cookiesConsent });
   return (
     <html
       suppressHydrationWarning
       lang={locale}
       data-scale={fontSize}
       data-theme={theme}
-      data-color-preference={themes[theme]._type}
-      style={{ colorScheme: themes[theme]?._type }}
+      data-color-preference={themes[theme].colorPreference}
+      style={{ colorScheme: themes[theme]?.colorPreference }}
     >
       <head>
         {clientEnv.gtmId && cookiesConsent && <GoogleTagManager gtmId={clientEnv.gtmId} />}

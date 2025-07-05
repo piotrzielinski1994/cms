@@ -135,9 +135,10 @@ const pl = {
     },
   },
   zod: {
-    invalid_type: 'Oczekiwano {expected}, otrzymano {received}',
-    invalid_type_with_path: '{path} powinno być typu {expected}, ale jest typu {received}',
-    invalid_type_received_undefined: 'Wymagane',
+    invalidcolorPreference: 'Oczekiwano {expected}, otrzymano {received}',
+    invalidcolorPreference_with_path:
+      '{path} powinno być typu {expected}, ale jest typu {received}',
+    invalidcolorPreference_received_undefined: 'Wymagane',
     invalid_literal: 'Nieprawidłowa wartość literalna, oczekiwano {expected}',
     unrecognized_keys: 'Nierozpoznane klucze w obiekcie: {- keys}',
     unrecognized_keys_one: 'Nierozpoznany klucz w obiekcie: {- keys}',
@@ -148,10 +149,10 @@ const pl = {
     invalid_enum_value:
       'Nieprawidłowa wartość enum. Oczekiwano jednej z: {- options}, otrzymano {received}',
     invalid_arguments: 'Nieprawidłowe argumenty funkcji',
-    invalid_return_type: 'Nieprawidłowy typ zwracany przez funkcję',
+    invalid_returncolorPreference: 'Nieprawidłowy typ zwracany przez funkcję',
     invalid_date: 'Nieprawidłowa data',
     custom: 'Nieprawidłowe dane',
-    invalid_intersection_types: 'Nie można połączyć wyników przecięcia',
+    invalid_intersectioncolorPreferences: 'Nie można połączyć wyników przecięcia',
     not_multiple_of: 'Liczba musi być wielokrotnością {multipleOf}',
     not_finite: 'Liczba musi być skończona',
     invalid_string: {
