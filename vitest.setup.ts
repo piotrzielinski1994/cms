@@ -5,7 +5,6 @@ import * as matchers from 'vitest-axe/matchers';
 expect.extend(matchers);
 
 HTMLCanvasElement.prototype.getContext = vi.fn();
-
 HTMLDialogElement.prototype.show = vi.fn();
 HTMLDialogElement.prototype.showModal = vi.fn();
 HTMLDialogElement.prototype.close = vi.fn();
@@ -17,3 +16,11 @@ vi.mock('next/navigation', () => ({
   usePathname: vi.fn(),
   useParams: vi.fn(),
 }));
+
+Object.defineProperty(window, 'matchMedia', {
+  value: () => ({
+    matches: false,
+    addEventListener: () => {},
+    removeEventListener: () => {},
+  }),
+});
