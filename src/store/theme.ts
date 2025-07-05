@@ -58,8 +58,8 @@ const useThemeStore = <T = ThemeStore>(selector?: (state: ThemeStore) => T) => {
 
   useEffect(() => {
     const media = window.matchMedia('(prefers-color-scheme: dark)');
-    const handleChange = (e: MediaQueryListEvent) => {
-      const colorPreference: ThemeConfig['colorPreference'] = e.matches ? 'dark' : 'light';
+    const syncColorPreference = (value: boolean) => {
+      const colorPreference: ThemeConfig['colorPreference'] = value ? 'dark' : 'light';
       context.setState((state) => {
         if (state.theme !== 'system') return { colorPreference };
         updateColorScheme(colorPreference);
@@ -67,9 +67,11 @@ const useThemeStore = <T = ThemeStore>(selector?: (state: ThemeStore) => T) => {
         return { colorPreference };
       });
     };
+    const onColorPreferenceChange = (e: MediaQueryListEvent) => syncColorPreference(e.matches);
 
-    media.addEventListener('change', handleChange);
-    return () => media.removeEventListener('change', handleChange);
+    syncColorPreference(media.matches);
+    media.addEventListener('change', onColorPreferenceChange);
+    return () => media.removeEventListener('change', onColorPreferenceChange);
   }, [context]);
 
   return useStore(context, selector ?? ((state) => state as T));
