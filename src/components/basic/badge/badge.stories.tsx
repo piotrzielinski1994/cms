@@ -1,6 +1,6 @@
 import { StoryContext } from '@/config/storybook/components';
 import { DEFAULT_VALUE, getFallback } from '@/config/storybook/utils';
-import { themes } from '@/config/themes.config';
+import { getThemeConfig } from '@/config/themes.config';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useTranslations } from 'next-intl';
 import { type ComponentProps } from 'react';
@@ -32,8 +32,8 @@ const Render = ({ label, bgColor, textColor, ...args }: Args, context) => {
       <BadgeComponent
         {...args}
         label={getFallback(label, t('badge'))}
-        bgColor={getFallback(bgColor, themes[theme].foreground)}
-        textColor={getFallback(textColor, themes[theme].background)}
+        bgColor={getFallback(bgColor, getThemeConfig(theme).foreground)}
+        textColor={getFallback(textColor, getThemeConfig(theme).background)}
       />
     </div>
   );

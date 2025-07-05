@@ -5,7 +5,7 @@ import {
   imagesPerColorPref,
   THUMBNAIL_ID,
 } from '@/config/storybook/utils';
-import { themes } from '@/config/themes.config';
+import { getThemeConfig } from '@/config/themes.config';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useTranslations } from 'next-intl';
 import { type ComponentProps } from 'react';
@@ -44,7 +44,7 @@ const Render = ({ image, heading, subheading, buttons, ...args }: Args, context)
   const { theme } = context.globals as StoryContext['globals'];
   const t2 = useTranslations('fields');
   const tButton = useTranslations('storybook.basic.button');
-  const themedImage = imagesPerColorPref[themes[theme].colorPreference];
+  const themedImage = imagesPerColorPref[getThemeConfig(theme).colorPreference];
 
   return (
     <ImageBlockComponent

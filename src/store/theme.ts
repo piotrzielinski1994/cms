@@ -1,6 +1,8 @@
-import { Theme, themes } from '@/config/themes.config';
+'use client';
+
+import { getThemeConfig, Theme, ThemeConfig } from '@/config/themes.config';
 import { ThemeContext } from '@/providers/theme.provider';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { setCookie } from 'typescript-cookie';
 import { createStore, useStore } from 'zustand';
 import { persist } from 'zustand/middleware';
@@ -9,6 +11,7 @@ import { persist } from 'zustand/middleware';
 
 type ThemeStore = {
   theme: Theme;
+  colorPreference: ThemeConfig['colorPreference'];
   setTheme: (theme: Theme) => void;
 };
 
@@ -18,31 +21,45 @@ const THEME_STORAGE_KEY = 'theme' as const;
 
 const updateDom = (theme: Theme) => {
   document.documentElement.setAttribute('data-theme', theme);
-  document.documentElement.setAttribute('data-color-preference', themes[theme].colorPreference);
+  document.documentElement.setAttribute(
+    'data-color-preference',
+    getThemeConfig(theme).colorPreference,
+  );
 };
 
 const updateColorScheme = (theme: Theme) => {
-  document.documentElement.style.colorScheme = themes[theme].colorPreference;
+  document.documentElement.style.colorScheme = getThemeConfig(theme).colorPreference;
+};
+
+const getColorPreference = (): ThemeConfig['colorPreference'] => {
+  if (typeof window === 'undefined') return 'light';
+  return window.matchMedia('(prefers-color-scheme:dark)') ? 'dark' : 'light';
 };
 
 const createThemeStore = (initialTheme: Theme) => {
   return createStore<ThemeStore>()(
     persist(
-      (set) => ({
-        theme: initialTheme,
-        setTheme: (theme) => {
-          set({ theme });
-          updateDom(theme);
-          updateColorScheme(theme);
-          setCookie(THEME_STORAGE_KEY, theme);
-        },
-      }),
+      (set) => {
+        const colorPreference = getColorPreference();
+        return {
+          theme: initialTheme,
+          colorPreference,
+          setTheme: (theme) => {
+            set({ theme });
+            const themeToSet = theme !== 'system' ? theme : colorPreference;
+            updateDom(themeToSet);
+            updateColorScheme(theme);
+            setCookie(THEME_STORAGE_KEY, theme);
+          },
+        };
+      },
       {
         name: THEME_STORAGE_KEY,
         onRehydrateStorage: () => (state) => {
           if (!state) return;
-          updateDom(state.theme);
-          updateColorScheme(state.theme);
+          const themeToSet = state.theme !== 'system' ? state.theme : state.colorPreference;
+          updateDom(themeToSet);
+          updateColorScheme(state.colorPreference);
           setCookie(THEME_STORAGE_KEY, state.theme);
         },
       },
@@ -53,6 +70,23 @@ const createThemeStore = (initialTheme: Theme) => {
 const useThemeStore = <T = ThemeStore>(selector?: (state: ThemeStore) => T) => {
   const context = useContext(ThemeContext);
   if (!context) throw new Error('ThemeContext is missing');
+
+  useEffect(() => {
+    const media = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleChange = (e: MediaQueryListEvent) => {
+      const colorPreference = e.matches ? 'dark' : 'light';
+      context.setState((state) => {
+        if (state.theme !== 'system') return { colorPreference };
+        updateColorScheme(colorPreference);
+        updateDom(colorPreference);
+        return { colorPreference };
+      });
+    };
+
+    media.addEventListener('change', handleChange);
+    return () => media.removeEventListener('change', handleChange);
+  }, [context]);
+
   return useStore(context, selector ?? ((state) => state as T));
 };
 

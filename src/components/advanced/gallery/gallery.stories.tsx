@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { type ComponentProps } from 'react';
 
 import { StoryContext } from '@/config/storybook/components';
-import { themes } from '@/config/themes.config';
+import { getThemeConfig } from '@/config/themes.config';
 import { useTranslations } from 'next-intl';
 import { Gallery as GalleryComponent } from './gallery';
 
@@ -28,7 +28,7 @@ const Render = ({ images, ...args }: Args, context) => {
   const { theme } = context.globals as StoryContext['globals'];
   const t = useTranslations('fields');
   const updatedImages = images.map((it) => {
-    const themedImage = imagesPerColorPref[themes[theme].colorPreference];
+    const themedImage = imagesPerColorPref[getThemeConfig(theme).colorPreference];
     return {
       ...it,
       src: getFallback(it.src, themedImage.src),

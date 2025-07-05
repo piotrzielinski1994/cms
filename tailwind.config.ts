@@ -6,7 +6,7 @@ import { fontScales } from './src/config/font-scales.config';
 import { themes } from './src/config/themes.config';
 
 const normalizedThemes = fromPairs(
-  toPairs(themes).map(([key, { colorPreference, ...value }]) => [key, value]),
+  toPairs(themes).map(([key, { colorPreference: _, ...value }]) => [key, value]),
 );
 
 const tailwindConfig = {

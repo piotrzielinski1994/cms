@@ -1,4 +1,4 @@
-import { Theme } from '@/config/themes.config';
+import { Theme, ThemeConfig } from '@/config/themes.config';
 import { COOKIES_CONSENT_STORAGE_KEY, CookiesConsentStore } from '@/store/cookies-consent';
 import { FONT_SCALE_STORAGE_KEY, FontScaleStore } from '@/store/font-scale';
 import { THEME_STORAGE_KEY } from '@/store/theme';
@@ -9,17 +9,21 @@ import { cookies, headers } from 'next/headers';
 const getPreferences = async () => {
   const [cookieStore, headersStore] = await Promise.all([cookies(), headers()]);
   return {
+    colorPreference: getColorPreference(headersStore),
     theme: getTheme(cookieStore, headersStore),
     fontSize: getFontSize(cookieStore),
     cookiesConsent: getCookiesConsent(cookieStore),
   };
 };
 
-const getTheme = (cookies: ReadonlyRequestCookies, headers: ReadonlyHeaders): Theme => {
-  const theme = cookies.get(THEME_STORAGE_KEY)?.value as Theme | undefined;
-  if (theme) return theme;
+const getColorPreference = (headers: ReadonlyHeaders): ThemeConfig['colorPreference'] => {
   const prefersDark = headers.get('sec-ch-prefers-color-scheme') === 'dark';
   return prefersDark ? 'dark' : 'light';
+};
+
+const getTheme = (cookies: ReadonlyRequestCookies, headers: ReadonlyHeaders): Theme => {
+  const theme = cookies.get(THEME_STORAGE_KEY)?.value as Theme | undefined;
+  return theme ?? 'system';
 };
 
 const getFontSize = (cookies: ReadonlyRequestCookies): FontScaleStore['scale'] => {

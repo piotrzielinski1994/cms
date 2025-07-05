@@ -1,5 +1,4 @@
-type Theme = keyof typeof themes;
-
+type Theme = keyof typeof themes | 'system';
 type ThemeConfig = {
   colorPreference: 'light' | 'dark';
   background: string;
@@ -89,4 +88,12 @@ const themes = {
   },
 } satisfies Record<string, ThemeConfig>;
 
-export { themes, type Theme, type ThemeConfig };
+const getThemeConfig = (theme: Theme): ThemeConfig => {
+  if (theme !== 'system') return themes[theme];
+  if (typeof window === 'undefined') return themes.light;
+  const media = window.matchMedia('(prefers-color-scheme:dark)');
+  const colorPreference: ThemeConfig['colorPreference'] = media.matches ? 'dark' : 'light';
+  return themes[colorPreference];
+};
+
+export { getThemeConfig, themes, type Theme, type ThemeConfig };

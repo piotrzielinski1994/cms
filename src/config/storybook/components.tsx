@@ -5,7 +5,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { useEffect } from 'react';
 import { DecoratorFunction } from 'storybook/internal/csf';
 import { translations } from '../locales.config';
-import { themes } from '../themes.config';
+import { getThemeConfig } from '../themes.config';
 import preview from './preview';
 
 type GlobalTypes = typeof preview.globalTypes;
@@ -37,8 +37,8 @@ const DataAttributesSetter = ({ locale, theme, fontScale }: StoryContext['global
     document.documentElement.setAttribute('data-locale', locale);
     document.documentElement.setAttribute('data-scale', fontScale);
     document.documentElement.setAttribute('data-theme', theme);
-    document.documentElement.dataset.colorPreference = themes[theme].colorPreference;
-    document.documentElement.style.colorScheme = themes[theme]?.colorPreference;
+    document.documentElement.dataset.colorPreference = getThemeConfig(theme).colorPreference;
+    document.documentElement.style.colorScheme = getThemeConfig(theme)?.colorPreference;
   }, [locale, theme, fontScale]);
   return <></>;
 };

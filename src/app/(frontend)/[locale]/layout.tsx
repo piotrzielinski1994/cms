@@ -1,7 +1,7 @@
 import { CookiesBanner } from '@/components/advanced/cookies-banner/cookies-banner';
 import { SkipLink } from '@/components/advanced/skip-link/skip-link';
 import { clientEnv } from '@/config/env.client.config';
-import { themes } from '@/config/themes.config';
+import { getThemeConfig } from '@/config/themes.config';
 import { AdminBar } from '@/payload/_old/components/AdminBar';
 import { FooterContainer } from '@/payload/blocks/layout/footer.container';
 import { HeaderContainer } from '@/payload/blocks/layout/header.container';
@@ -22,22 +22,22 @@ const metadata = toPageMetadata();
 const Layout = async ({ children, params }: LayoutProps) => {
   const { locale } = await params;
   const { isEnabled } = await draftMode();
-  const { theme, fontSize, cookiesConsent } = await getPreferences();
+  const { colorPreference, theme, fontSize, cookiesConsent } = await getPreferences();
   const providersProps: Omit<ComponentProps<typeof Providers>, 'children'> = {
     locale,
     initialTheme: theme,
     initialFontScale: fontSize,
     initialCookiesConsent: cookiesConsent,
   };
-  console.log('@@@ theme | ', { theme, cookiesConsent });
+
   return (
     <html
       suppressHydrationWarning
       lang={locale}
       data-scale={fontSize}
-      data-theme={theme}
-      data-color-preference={themes[theme].colorPreference}
-      style={{ colorScheme: themes[theme]?.colorPreference }}
+      data-theme={theme !== 'system' ? theme : colorPreference}
+      data-color-preference={colorPreference}
+      style={{ colorScheme: getThemeConfig(theme).colorPreference }}
     >
       <head>
         {clientEnv.gtmId && cookiesConsent && <GoogleTagManager gtmId={clientEnv.gtmId} />}
