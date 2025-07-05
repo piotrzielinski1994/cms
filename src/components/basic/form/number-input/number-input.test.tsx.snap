@@ -1,0 +1,80 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`NumberInput > should match the snapshot 1`] = `
+<div>
+  <div
+    class="flex flex-col gap-2"
+  >
+    <div
+      class="relative"
+    >
+      <input
+        autocomplete="off"
+        class="p-2 border border-solid border-current bg-input placeholder-foreground/50 [&:enabled]:hover:border-foreground/90 [&:enabled]:hover:ring-foreground/90 disabled:text-foreground/50 outline-none ring-inset focus-within:ring-1 ring-current w-full pr-6"
+        id="id"
+        inputmode="decimal"
+        lang="en"
+        mode="integer"
+        name="name"
+        role="spinbutton"
+        type="text"
+        value=""
+      />
+      <div
+        class="absolute inset-y-0 right-1 flex flex-col justify-center"
+      >
+        <button
+          aria-label="Increment"
+          tabindex="-1"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-chevron-up"
+            fill="none"
+            height="1rem"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="1rem"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="m18 15-6-6-6 6"
+            />
+          </svg>
+        </button>
+        <button
+          aria-label="Decrement"
+          tabindex="-1"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-chevron-down"
+            fill="none"
+            height="1rem"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="1rem"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="m6 9 6 6 6-6"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <span
+      class="min-h-[1em] text-sm text-red-500 leading-none"
+      role="alert"
+    />
+  </div>
+</div>
+`;

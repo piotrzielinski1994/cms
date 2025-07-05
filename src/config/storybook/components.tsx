@@ -22,7 +22,7 @@ const withProviders: DecoratorFunction<ReactRenderer> = (Story, context) => {
     <>
       <DataAttributesSetter {...globals} />
       <NextIntlClientProvider locale={locale} messages={translations[locale]}>
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={theme} colorPreference={getThemeConfig(theme).colorPreference}>
           <FontScaleProvider fontScale={fontScale}>
             <Story />
           </FontScaleProvider>
