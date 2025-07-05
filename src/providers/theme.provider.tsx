@@ -7,12 +7,13 @@ import { StoreApi } from 'zustand';
 type ThemeProviderProps = {
   children: React.ReactNode;
   initialTheme: ThemeStore['theme'];
+  initialColorPreference: ThemeStore['colorPreference'];
 };
 
 const ThemeContext = createContext<StoreApi<ThemeStore> | undefined>(undefined);
 
-const ThemeProvider = ({ children, initialTheme }: ThemeProviderProps) => {
-  const [store] = useState(() => createThemeStore(initialTheme));
+const ThemeProvider = ({ children, initialTheme, initialColorPreference }: ThemeProviderProps) => {
+  const [store] = useState(() => createThemeStore({ initialTheme, initialColorPreference }));
   return <ThemeContext.Provider value={store}>{children}</ThemeContext.Provider>;
 };
 

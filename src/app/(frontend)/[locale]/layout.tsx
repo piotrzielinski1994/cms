@@ -26,6 +26,7 @@ const Layout = async ({ children, params }: LayoutProps) => {
   const providersProps: Omit<ComponentProps<typeof Providers>, 'children'> = {
     locale,
     initialTheme: theme,
+    initialColorPreference: colorPreference,
     initialFontScale: fontSize,
     initialCookiesConsent: cookiesConsent,
   };

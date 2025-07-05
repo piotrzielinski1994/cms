@@ -12,7 +12,7 @@ import { FC } from 'react';
 type SunOrMoonProps = { colorPreference: ThemeConfig['colorPreference'] };
 
 const ThemeSwitcher: FC = () => {
-  const { theme, colorPreference, setTheme } = useThemeStore();
+  const { theme, colorPreference, themeConfig, setTheme } = useThemeStore();
   const t = useTranslations('frontend');
   const systemThemeConfig = themes[colorPreference];
 
@@ -23,7 +23,7 @@ const ThemeSwitcher: FC = () => {
         aria-label={t('themeSwitcher')}
       >
         <SelectPrimitive.Value>
-          <SunOrMoon colorPreference={getThemeConfig(theme).colorPreference} />
+          <SunOrMoon colorPreference={themeConfig.colorPreference} />
         </SelectPrimitive.Value>
       </SelectPrimitive.Trigger>
       <SelectPrimitive.Portal>
@@ -33,8 +33,8 @@ const ThemeSwitcher: FC = () => {
         >
           <SelectPrimitive.Viewport>
             {keys(themes).map((it) => {
-              const themeConfig = getThemeConfig(it);
-              const Icon = themeConfig.colorPreference === 'light' ? Sun : Moon;
+              const thisThemeConfig = getThemeConfig(it);
+              const Icon = thisThemeConfig.colorPreference === 'light' ? Sun : Moon;
               return (
                 <SelectPrimitive.Item
                   key={it}
@@ -45,10 +45,10 @@ const ThemeSwitcher: FC = () => {
                     'text-sm',
                     'cursor-pointer outline-none ',
                   )}
-                  style={{ backgroundColor: themeConfig.background1 }}
+                  style={{ backgroundColor: thisThemeConfig.background1 }}
                 >
                   <SelectPrimitive.ItemText>
-                    <Icon className="h-4 w-4" style={{ color: themeConfig.foreground }} />
+                    <Icon className="h-4 w-4" style={{ color: thisThemeConfig.foreground }} />
                   </SelectPrimitive.ItemText>
                 </SelectPrimitive.Item>
               );

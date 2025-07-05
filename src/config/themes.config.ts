@@ -1,5 +1,6 @@
 type Theme = keyof typeof themes | 'system';
 type ThemeConfig = {
+  name: string;
   colorPreference: 'light' | 'dark';
   background: string;
   background1: string;
@@ -19,6 +20,7 @@ type ThemeConfig = {
 
 const themes = {
   light: {
+    name: 'light',
     colorPreference: 'light',
     background: '#fff',
     background1: '#f3f4f6',
@@ -36,6 +38,7 @@ const themes = {
     },
   },
   dark: {
+    name: 'dark',
     colorPreference: 'dark',
     background: '#090b10',
     background1: '#0f111a',
@@ -53,6 +56,7 @@ const themes = {
     },
   },
   custom1: {
+    name: 'custom1',
     colorPreference: 'light',
     background: '#ff0',
     background1: '#ff0',
@@ -70,6 +74,7 @@ const themes = {
     },
   },
   custom2: {
+    name: 'custom2',
     colorPreference: 'dark',
     background: '#000',
     background1: '#000',
