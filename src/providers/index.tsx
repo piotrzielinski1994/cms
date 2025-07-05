@@ -1,33 +1,32 @@
 import { translations } from '@/config/locales.config';
 import { Theme, ThemeConfig } from '@/config/themes.config';
 import { Locale, NextIntlClientProvider } from 'next-intl';
-import { ComponentProps, ReactNode } from 'react';
+import { ComponentProps, PropsWithChildren } from 'react';
 import { CookiesConsentProvider } from './cookies-consent.provider';
 import { FontScaleProvider } from './font-scale.provider';
 import { ThemeProvider } from './theme.provider';
 
-type ProvidersProps = {
-  children: ReactNode;
+type ProvidersProps = PropsWithChildren & {
   locale: Locale;
-  initialTheme: Theme;
-  initialColorPreference: ThemeConfig['colorPreference'];
-  initialFontScale: ComponentProps<typeof FontScaleProvider>['initialFontScale'];
-  initialCookiesConsent: ComponentProps<typeof CookiesConsentProvider>['initialCookiesConsent'];
+  theme: Theme;
+  colorPreference: ThemeConfig['colorPreference'];
+  fontScale: ComponentProps<typeof FontScaleProvider>['fontScale'];
+  cookiesConsent: ComponentProps<typeof CookiesConsentProvider>['cookiesConsent'];
 };
 
 const Providers = ({
   children,
   locale,
-  initialTheme,
-  initialColorPreference,
-  initialFontScale,
-  initialCookiesConsent,
+  theme,
+  colorPreference,
+  fontScale,
+  cookiesConsent,
 }: ProvidersProps) => {
   return (
     <NextIntlClientProvider locale={locale} messages={translations[locale]}>
-      <ThemeProvider initialTheme={initialTheme} initialColorPreference={initialColorPreference}>
-        <FontScaleProvider initialFontScale={initialFontScale}>
-          <CookiesConsentProvider initialCookiesConsent={initialCookiesConsent}>
+      <ThemeProvider theme={theme} colorPreference={colorPreference}>
+        <FontScaleProvider fontScale={fontScale}>
+          <CookiesConsentProvider cookiesConsent={cookiesConsent}>
             {children}
           </CookiesConsentProvider>
         </FontScaleProvider>

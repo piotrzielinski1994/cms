@@ -15,9 +15,9 @@ const withProviders = (
 ) => {
   const overwrittenProps: ComponentProps<typeof Providers> = {
     locale: 'en',
-    initialTheme: 'light',
-    initialFontScale: 'base',
-    initialCookiesConsent: true,
+    theme: 'light',
+    fontScale: 'base',
+    cookiesConsent: true,
     ...props,
     children,
   };

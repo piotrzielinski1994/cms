@@ -22,20 +22,20 @@ const metadata = toPageMetadata();
 const Layout = async ({ children, params }: LayoutProps) => {
   const { locale } = await params;
   const { isEnabled } = await draftMode();
-  const { colorPreference, theme, fontSize, cookiesConsent } = await getPreferences();
+  const { colorPreference, theme, fontScale, cookiesConsent } = await getPreferences();
   const providersProps: Omit<ComponentProps<typeof Providers>, 'children'> = {
     locale,
-    initialTheme: theme,
-    initialColorPreference: colorPreference,
-    initialFontScale: fontSize,
-    initialCookiesConsent: cookiesConsent,
+    theme,
+    colorPreference,
+    fontScale,
+    cookiesConsent,
   };
 
   return (
     <html
       suppressHydrationWarning
       lang={locale}
-      data-scale={fontSize}
+      data-scale={fontScale}
       data-theme={theme !== 'system' ? theme : colorPreference}
       data-color-preference={colorPreference}
       style={{ colorScheme: getThemeConfig(theme).colorPreference }}

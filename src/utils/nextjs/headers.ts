@@ -10,8 +10,8 @@ const getPreferences = async () => {
   const [cookieStore, headersStore] = await Promise.all([cookies(), headers()]);
   return {
     colorPreference: getColorPreference(headersStore),
-    theme: getTheme(cookieStore, headersStore),
-    fontSize: getFontSize(cookieStore),
+    theme: getTheme(cookieStore),
+    fontScale: getFontScale(cookieStore),
     cookiesConsent: getCookiesConsent(cookieStore),
   };
 };
@@ -21,16 +21,16 @@ const getColorPreference = (headers: ReadonlyHeaders): ThemeConfig['colorPrefere
   return prefersDark ? 'dark' : 'light';
 };
 
-const getTheme = (cookies: ReadonlyRequestCookies, headers: ReadonlyHeaders): Theme => {
+const getTheme = (cookies: ReadonlyRequestCookies): Theme => {
   const theme = cookies.get(THEME_STORAGE_KEY)?.value as Theme | undefined;
   return theme ?? 'system';
 };
 
-const getFontSize = (cookies: ReadonlyRequestCookies): FontScaleStore['scale'] => {
-  const fontSize = cookies.get(FONT_SCALE_STORAGE_KEY)?.value as
+const getFontScale = (cookies: ReadonlyRequestCookies): FontScaleStore['scale'] => {
+  const fontScale = cookies.get(FONT_SCALE_STORAGE_KEY)?.value as
     | FontScaleStore['scale']
     | undefined;
-  return fontSize ?? 'base';
+  return fontScale ?? 'base';
 };
 
 const getCookiesConsent = (cookies: ReadonlyRequestCookies): CookiesConsentStore['isAllowed'] => {

@@ -12,7 +12,7 @@ import { FC } from 'react';
 type SunOrMoonProps = { colorPreference: ThemeConfig['colorPreference'] };
 
 const ThemeSwitcher: FC = () => {
-  const { theme, colorPreference, themeConfig, setTheme } = useThemeStore();
+  const { theme, colorPreference, setTheme } = useThemeStore();
   const t = useTranslations('frontend');
   const systemThemeConfig = themes[colorPreference];
 
@@ -23,7 +23,7 @@ const ThemeSwitcher: FC = () => {
         aria-label={t('themeSwitcher')}
       >
         <SelectPrimitive.Value>
-          <SunOrMoon colorPreference={themeConfig.colorPreference} />
+          <SunOrMoon colorPreference={getThemeConfig(theme).colorPreference} />
         </SelectPrimitive.Value>
       </SelectPrimitive.Trigger>
       <SelectPrimitive.Portal>

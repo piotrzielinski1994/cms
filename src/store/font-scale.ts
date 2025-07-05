@@ -19,11 +19,11 @@ const updateDom = (scale: FontScaleStore['scale']) => {
   document.documentElement.setAttribute('data-scale', scale);
 };
 
-const createFontScaleStore = (initialFontScale: FontScaleStore['scale']) => {
+const createFontScaleStore = (fontScale: FontScaleStore['scale']) => {
   return createStore<FontScaleStore>()(
     persist(
       (set) => ({
-        scale: initialFontScale,
+        scale: fontScale,
         setScale: (scale) => {
           updateDom(scale);
           setCookie(FONT_SCALE_STORAGE_KEY, scale);

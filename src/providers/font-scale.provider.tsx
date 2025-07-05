@@ -8,15 +8,15 @@ import { StoreApi } from 'zustand';
 
 type FontScaleProviderProps = {
   children: React.ReactNode;
-  initialFontScale: FontScaleStore['scale'];
+  fontScale: FontScaleStore['scale'];
 };
 
 // Variables ====================================
 
 const FontScaleContext = createContext<StoreApi<FontScaleStore> | undefined>(undefined);
 
-const FontScaleProvider = ({ children, initialFontScale }: FontScaleProviderProps) => {
-  const [store] = useState(() => createFontScaleStore(initialFontScale));
+const FontScaleProvider = ({ children, fontScale }: FontScaleProviderProps) => {
+  const [store] = useState(() => createFontScaleStore(fontScale));
   return <FontScaleContext.Provider value={store}>{children}</FontScaleContext.Provider>;
 };
 

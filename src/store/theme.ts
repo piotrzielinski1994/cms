@@ -1,19 +1,17 @@
 'use client';
 
-import { getThemeConfig, Theme, ThemeConfig, themes } from '@/config/themes.config';
+import { getThemeConfig, Theme, ThemeConfig } from '@/config/themes.config';
 import { ThemeContext } from '@/providers/theme.provider';
 import { useContext, useEffect } from 'react';
 import { setCookie } from 'typescript-cookie';
 import { createStore, useStore } from 'zustand';
-import { computed } from 'zustand-middleware-computed-state';
-import { persist } from 'zustand/middleware';
 
 // Types ====================================
 
 type ThemeStore = {
   theme: Theme;
   colorPreference: ThemeConfig['colorPreference'];
-  themeConfig: ThemeConfig;
+  // themeConfig: ThemeConfig;
   setTheme: (theme: Theme) => void;
 };
 
@@ -34,46 +32,26 @@ const updateColorScheme = (theme: Theme) => {
 };
 
 const createThemeStore = ({
-  initialTheme,
-  initialColorPreference,
+  theme,
+  colorPreference,
 }: {
-  initialTheme: Theme;
-  initialColorPreference: ThemeConfig['colorPreference'];
+  theme: Theme;
+  colorPreference: ThemeConfig['colorPreference'];
 }) => {
-  return createStore()(
-    persist(
-      computed<Omit<ThemeStore, 'themeConfig'>, { themeConfig: ThemeConfig }>(
-        (set, get) => {
-          return {
-            theme: initialTheme,
-            colorPreference: initialColorPreference,
-            setTheme: (theme) => {
-              set({ theme });
-              const themeToSet = theme !== 'system' ? theme : get().colorPreference;
-              updateDom(themeToSet);
-              updateColorScheme(theme);
-              setCookie(THEME_STORAGE_KEY, theme);
-            },
-          };
-        },
-        ({ theme, colorPreference }) => {
-          return {
-            themeConfig: theme === 'system' ? themes[colorPreference] : themes[theme],
-          };
-        },
-      ),
-      {
-        name: THEME_STORAGE_KEY,
-        onRehydrateStorage: () => (state) => {
-          if (!state) return;
-          const themeToSet = state.theme !== 'system' ? state.theme : state.colorPreference;
-          updateDom(themeToSet);
-          updateColorScheme(state.colorPreference);
-          setCookie(THEME_STORAGE_KEY, state.theme);
-        },
+  return createStore<ThemeStore>()((set, get) => {
+    return {
+      theme,
+      colorPreference,
+      // themeConfig: {} as any,
+      setTheme: (theme) => {
+        set({ theme });
+        const themeToSet = theme !== 'system' ? theme : get().colorPreference;
+        updateDom(themeToSet);
+        updateColorScheme(theme);
+        setCookie(THEME_STORAGE_KEY, theme);
       },
-    ),
-  );
+    };
+  });
 };
 
 const useThemeStore = <T = ThemeStore>(selector?: (state: ThemeStore) => T) => {

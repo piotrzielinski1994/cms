@@ -7,18 +7,15 @@ import { StoreApi } from 'zustand';
 // Types ====================================
 
 type CookiesConsentProviderProps = PropsWithChildren & {
-  initialCookiesConsent: CookiesConsentStore['isAllowed'];
+  cookiesConsent: CookiesConsentStore['isAllowed'];
 };
 
 // Variables ====================================
 
 const CookiesConsentContext = createContext<StoreApi<CookiesConsentStore> | undefined>(undefined);
 
-const CookiesConsentProvider = ({
-  children,
-  initialCookiesConsent,
-}: CookiesConsentProviderProps) => {
-  const [store] = useState(() => createCookiesConsentStore(initialCookiesConsent));
+const CookiesConsentProvider = ({ children, cookiesConsent }: CookiesConsentProviderProps) => {
+  const [store] = useState(() => createCookiesConsentStore(cookiesConsent));
   return <CookiesConsentContext.Provider value={store}>{children}</CookiesConsentContext.Provider>;
 };
 

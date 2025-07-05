@@ -15,11 +15,11 @@ type CookiesConsentStore = {
 
 const COOKIES_CONSENT_STORAGE_KEY = 'cookies-consent' as const;
 
-const createCookiesConsentStore = (initialCookiesConsent: CookiesConsentStore['isAllowed']) => {
+const createCookiesConsentStore = (cookiesConsent: CookiesConsentStore['isAllowed']) => {
   return createStore<CookiesConsentStore>()(
     persist(
       (set) => ({
-        isAllowed: initialCookiesConsent,
+        isAllowed: cookiesConsent,
         allow: () => {
           setCookie(COOKIES_CONSENT_STORAGE_KEY, true);
           set({ isAllowed: true });
