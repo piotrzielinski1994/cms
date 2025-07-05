@@ -1,8 +1,6 @@
-'use client';
-
 import { getThemeConfig, Theme, ThemeConfig, themes } from '@/config/themes.config';
 import { ThemeContext } from '@/providers/theme.provider';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { setCookie } from 'typescript-cookie';
 import { createStore, useStore } from 'zustand';
 import { computed } from 'zustand-middleware-computed-state';
@@ -55,25 +53,6 @@ const createThemeStore = (params: Pick<ThemeStore, 'theme' | 'colorPreference'>)
 const useThemeStore = <T = ThemeStore>(selector?: (state: ThemeStore) => T) => {
   const context = useContext(ThemeContext);
   if (!context) throw new Error('ThemeContext is missing');
-
-  useEffect(() => {
-    const media = window.matchMedia('(prefers-color-scheme: dark)');
-    const syncColorPreference = (value: boolean) => {
-      const colorPreference: ThemeConfig['colorPreference'] = value ? 'dark' : 'light';
-      context.setState((state) => {
-        if (state.theme !== 'system') return { colorPreference };
-        updateColorScheme(colorPreference);
-        updateDom(colorPreference);
-        return { colorPreference };
-      });
-    };
-    const onColorPreferenceChange = (e: MediaQueryListEvent) => syncColorPreference(e.matches);
-
-    syncColorPreference(media.matches);
-    media.addEventListener('change', onColorPreferenceChange);
-    return () => media.removeEventListener('change', onColorPreferenceChange);
-  }, [context]);
-
   return useStore(context, selector ?? ((state) => state as T));
 };
 
@@ -89,4 +68,11 @@ const updateColorScheme = (theme: Theme) => {
   document.documentElement.style.colorScheme = getThemeConfig(theme).colorPreference;
 };
 
-export { createThemeStore, THEME_STORAGE_KEY, useThemeStore, type ThemeStore };
+export {
+  createThemeStore,
+  THEME_STORAGE_KEY,
+  updateColorScheme,
+  updateDom,
+  useThemeStore,
+  type ThemeStore,
+};
