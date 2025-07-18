@@ -14,7 +14,7 @@ const Testimonial = (props: TestimonialProps) => {
       <blockquote className="col-span-2 italic">
         <p>{props.quote}</p>
       </blockquote>
-      <Image src={props.image} alt={props.name} className="rounded-full w-14 h-14" />
+      <Image src={props.image} alt={props.name} className="w-14 h-14 rounded-full" />
       <figcaption className="grid content-center">
         <span className="font-semibold">{props.name}</span>
         {props.annotation && <span className="">{props.annotation}</span>}
