@@ -122,6 +122,7 @@ const pl = {
     close: 'Zamknij',
     component: {
       skipLink: 'Przejdź do głównej zawartości',
+      tabs: 'Zakładki',
     },
     contactForm: {
       fields: {
@@ -324,6 +325,10 @@ const pl = {
         `,
         name: 'Jan Kowalski',
         annotation: 'Szef',
+      },
+      tabs: {
+        tab: 'Zakładka',
+        content: 'Treść',
       },
     },
     icons: {

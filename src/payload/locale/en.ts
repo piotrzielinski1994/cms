@@ -120,6 +120,7 @@ const en = {
     close: 'Close',
     component: {
       skipLink: 'Go to the main content',
+      tabs: 'Tabs',
     },
     contactForm: {
       fields: {
@@ -319,6 +320,10 @@ const en = {
         `,
         name: 'John Doe',
         annotation: 'CEO',
+      },
+      tabs: {
+        tab: 'Tab',
+        content: 'Content',
       },
     },
     icons: {

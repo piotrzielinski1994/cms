@@ -11,6 +11,7 @@ describe('Testimonial', () => {
     name: 'Name',
     annotation: 'Annotation',
   } satisfies ComponentProps<typeof Testimonial>;
+
   it('should have no accessibility violations', async () => {
     const { container } = render(<Testimonial {...defaultProps} />);
     const results = await axe(container);
