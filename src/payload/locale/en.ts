@@ -312,6 +312,14 @@ const en = {
         submit: 'Submit',
         cancel: 'Cancel',
       },
+      testimonial: {
+        quote: `
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Aenean quis diam in leo suscipit scelerisque a sed leo.
+        `,
+        name: 'John Doe',
+        annotation: 'CEO',
+      },
     },
     icons: {
       annotation: 'Website also uses icons from <a>lucide</a> library.',
