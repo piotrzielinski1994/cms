@@ -1,0 +1,40 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Tabs > should match the snapshot 1`] = `
+<div>
+  <div>
+    <div
+      aria-label="Tabs"
+      class="flex gap-2"
+      role="tablist"
+    >
+      <label
+        class="has-[:checked]:border-b border-foreground [&:has(input:focus-visible)]:tw-cms-outline px-2 cursor-pointer"
+      >
+        <input
+          checked=""
+          class="peer sr-only"
+          name="tabs-«r1»"
+          type="radio"
+        />
+        Tab 1
+      </label>
+      <label
+        class="has-[:checked]:border-b border-foreground [&:has(input:focus-visible)]:tw-cms-outline px-2 cursor-pointer"
+      >
+        <input
+          class="peer sr-only"
+          name="tabs-«r1»"
+          type="radio"
+        />
+        Tab 2
+      </label>
+    </div>
+    <div
+      class=""
+    >
+      Content 1
+    </div>
+  </div>
+</div>
+`;

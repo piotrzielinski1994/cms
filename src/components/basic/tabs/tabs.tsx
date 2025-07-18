@@ -16,9 +16,17 @@ const Tabs = ({ tabs }: TabsProps) => {
 
   return (
     <div>
-      <div role="tablist" aria-label={t('tabs')} className="flex gap-4">
+      <div role="tablist" aria-label={t('tabs')} className="flex gap-2">
         {tabs.map((tab, index) => (
-          <label key={index} className={cn('has-[:checked]:border-b', 'cursor-pointer')}>
+          <label
+            key={index}
+            className={cn(
+              'has-[:checked]:border-b border-foreground',
+              '[&:has(input:focus-visible)]:tw-cms-outline',
+              'px-2',
+              'cursor-pointer',
+            )}
+          >
             <input
               type="radio"
               name={`tabs-${id}`}
@@ -30,7 +38,7 @@ const Tabs = ({ tabs }: TabsProps) => {
           </label>
         ))}
       </div>
-      <div className="">{tabs[activeIndex]?.content}</div>
+      <div className="">{tabs[activeIndex].content}</div>
     </div>
   );
 };
