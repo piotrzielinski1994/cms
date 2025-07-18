@@ -34,13 +34,13 @@ describe('Tabs', () => {
   it('should show content of the first tab initially', () => {
     const { queryByText } = render(withProviders(<Tabs {...defaultProps} />));
     expect(queryByText('Content 1')).toBeVisible();
-    expect(queryByText('Content 2')).toBeNull();
+    expect(queryByText('Content 2')).not.toBeVisible();
   });
 
   it('should switch content when tab is clicked', async () => {
     const { getByText, queryByText } = render(withProviders(<Tabs {...defaultProps} />));
     await userEvent.click(getByText('Tab 2'));
     expect(queryByText('Content 2')).toBeVisible();
-    expect(queryByText('Content 1')).toBeNull();
+    expect(queryByText('Content 1')).not.toBeVisible();
   });
 });

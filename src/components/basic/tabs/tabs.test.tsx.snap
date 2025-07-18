@@ -2,14 +2,17 @@
 
 exports[`Tabs > should match the snapshot 1`] = `
 <div>
-  <div>
+  <div
+    class="grid gap-2"
+  >
     <div
       aria-label="Tabs"
       class="flex gap-2"
-      role="tablist"
     >
       <label
+        aria-controls="tabs__«r1»__0"
         class="has-[:checked]:border-b border-foreground [&:has(input:focus-visible)]:tw-cms-outline px-2 cursor-pointer"
+        id="tabs__«r1»__0"
       >
         <input
           checked=""
@@ -20,7 +23,9 @@ exports[`Tabs > should match the snapshot 1`] = `
         Tab 1
       </label>
       <label
+        aria-controls="tabs__«r1»__1"
         class="has-[:checked]:border-b border-foreground [&:has(input:focus-visible)]:tw-cms-outline px-2 cursor-pointer"
+        id="tabs__«r1»__1"
       >
         <input
           class="peer sr-only"
@@ -31,9 +36,19 @@ exports[`Tabs > should match the snapshot 1`] = `
       </label>
     </div>
     <div
-      class=""
+      aria-labelledby="tabs__«r1»__0"
+      id="tabs__«r1»__0"
+      role="tabpanel"
     >
       Content 1
+    </div>
+    <div
+      aria-labelledby="tabs__«r1»__1"
+      hidden=""
+      id="tabs__«r1»__1"
+      role="tabpanel"
+    >
+      Content 2
     </div>
   </div>
 </div>

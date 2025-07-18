@@ -15,11 +15,13 @@ const Tabs = ({ tabs }: TabsProps) => {
   const id = useId();
 
   return (
-    <div>
-      <div role="tablist" aria-label={t('tabs')} className="flex gap-2">
+    <div className="grid gap-2">
+      <div aria-label={t('tabs')} className="flex gap-2">
         {tabs.map((tab, index) => (
           <label
             key={index}
+            id={tabId(id, index)}
+            aria-controls={panelId(id, index)}
             className={cn(
               'has-[:checked]:border-b border-foreground',
               '[&:has(input:focus-visible)]:tw-cms-outline',
@@ -31,16 +33,29 @@ const Tabs = ({ tabs }: TabsProps) => {
               type="radio"
               name={`tabs-${id}`}
               className="peer sr-only"
-              checked={activeIndex === index}
+              checked={index === activeIndex}
               onChange={() => setActiveIndex(index)}
             />
             {tab.heading}
           </label>
         ))}
       </div>
-      <div className="">{tabs[activeIndex].content}</div>
+      {tabs.map((tab, index) => (
+        <div
+          key={index}
+          role="tabpanel"
+          id={panelId(id, index)}
+          aria-labelledby={tabId(id, index)}
+          hidden={index !== activeIndex}
+        >
+          {tab.content}
+        </div>
+      ))}
     </div>
   );
 };
+
+const tabId = (id: string, index: number) => `tabs__${id}__${index}`;
+const panelId = (id: string, index: number) => `tabs__${id}__${index}`;
 
 export { Tabs };
