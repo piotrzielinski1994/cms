@@ -1,6 +1,7 @@
 import { optional } from '@/utils/optional';
 import { useQueryParams } from '@/utils/query-params.hooks';
 import { cn } from '@/utils/tailwind';
+import { useMemo } from 'react';
 
 type ProductVariantsGroupProps = {
   label: string;
@@ -13,9 +14,11 @@ type ProductVariantsGroupProps = {
 };
 
 const ProductVariantsGroup = (props: ProductVariantsGroupProps) => {
-  const [params, setParams] = useQueryParams({
-    [props.name]: { defaultValue: undefined as string | undefined },
-  });
+  const queryParamConfig = useMemo(
+    () => ({ [props.name]: { defaultValue: undefined as string | undefined } }),
+    [props.name],
+  );
+  const [params, setParams] = useQueryParams(queryParamConfig);
 
   return (
     <div className="grid gap-2">

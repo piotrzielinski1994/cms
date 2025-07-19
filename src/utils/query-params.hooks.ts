@@ -2,7 +2,7 @@
 
 import { useRouter, useSearchParams } from 'next/navigation';
 import { fromPairs, toPairs } from 'ramda';
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import z from 'zod';
 
 type UseQueryParamsArgs<T> = {
@@ -40,31 +40,37 @@ const useQueryParams = <T extends Record<string, UseQueryParamsArgs<unknown>>>(
 ] => {
   const searchParams = useSearchParams();
   const router = useRouter();
+  const [optimisticState, setOptimisticState] = useState<{ [K in keyof T]: T[K]['defaultValue'] }>(
+    () => {
+      const pairs = toPairs(config).map(([key, conf]) => {
+        const raw = searchParams.get(key as string) ?? undefined;
+        const parse = conf.parse ?? takeDefaultParser(conf.defaultValue);
+        return [key, parse(raw)] as [keyof T, T[keyof T]['defaultValue']];
+      });
+      return fromPairs(pairs);
+    },
+  );
+  const stringifiedParams = useMemo(() => searchParams.toString(), [searchParams]);
 
-  const values = useMemo(() => {
-    const pairs = toPairs(config).map(([key, conf]) => {
-      const raw = searchParams.get(key as string) ?? undefined;
-      const parse = conf.parse ?? takeDefaultParser(conf.defaultValue);
-      return [key, parse(raw)] as [keyof T, T[keyof T]['defaultValue']];
-    });
-    return fromPairs(pairs);
-  }, [searchParams, config]);
-
-  const setValues = (newValues: Partial<{ [K in keyof T]: T[K]['defaultValue'] }>) => {
-    const updated = toPairs(newValues).reduce(
+  useEffect(() => {
+    const updated = toPairs(optimisticState).reduce(
       (acc, [key, val]: [keyof T, T[keyof T]['defaultValue']]) => {
         const serialize = config[key].serialize ?? String;
         if (val != null) acc.set(key as string, serialize(val));
         else acc.delete(key as string);
         return acc;
       },
-      new URLSearchParams(searchParams.toString()),
+      new URLSearchParams(stringifiedParams),
     );
 
-    router.push(`?${updated.toString()}${window.location.hash}`);
+    router.replace(`?${updated.toString()}${window.location.hash}`);
+  }, [optimisticState, config, router, stringifiedParams]);
+
+  const setValues = (newValues: Partial<{ [K in keyof T]: T[K]['defaultValue'] }>) => {
+    setOptimisticState((prev) => ({ ...prev, ...newValues }));
   };
 
-  return [values, setValues];
+  return [optimisticState, setValues];
 };
 
 export { useQueryParams };
