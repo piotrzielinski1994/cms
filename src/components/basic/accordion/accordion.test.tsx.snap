@@ -4,19 +4,23 @@ exports[`Accordion > should match the snapshot 1`] = `
 <div>
   <div
     class="grid gap-2 cms-accordion"
+    role="radiogroup"
   >
     <div
-      aria-labelledby="«r1»__0__button"
-      class="bg-components-accordion text-components-accordion-foreground"
-      role="group"
+      class="bg-components-accordion text-components-accordion-foreground group"
     >
-      <button
-        aria-controls="«r1»__0__content"
-        aria-expanded="false"
-        class="w-full px-4 py-2 flex justify-between items-center gap-2 text-lg"
-        id="«r1»__0__button"
-        type="button"
+      <label
+        class="w-full px-4 py-2 flex justify-between items-center gap-2 text-lg cursor-pointer select-none focus-within:tw-cms-outline"
+        for="«r1»__0__input"
+        id="«r1»__0__label"
       >
+        <input
+          aria-checked="false"
+          class="sr-only"
+          id="«r1»__0__input"
+          name="«r1»-accordion"
+          type="radio"
+        />
         <span>
           Heading 1
         </span>
@@ -37,7 +41,7 @@ exports[`Accordion > should match the snapshot 1`] = `
             d="m6 9 6 6 6-6"
           />
         </svg>
-      </button>
+      </label>
       <div
         class="overflow-hidden transition-[max-height] duration-300 ease-in-out"
         id="«r1»__0__content"
@@ -45,7 +49,7 @@ exports[`Accordion > should match the snapshot 1`] = `
       >
         <div
           aria-hidden="true"
-          aria-labelledby="«r1»__0__button"
+          aria-labelledby="«r1»__0__label"
           class="px-4 py-2"
           role="region"
         >
@@ -54,17 +58,20 @@ exports[`Accordion > should match the snapshot 1`] = `
       </div>
     </div>
     <div
-      aria-labelledby="«r1»__1__button"
-      class="bg-components-accordion text-components-accordion-foreground"
-      role="group"
+      class="bg-components-accordion text-components-accordion-foreground group"
     >
-      <button
-        aria-controls="«r1»__1__content"
-        aria-expanded="false"
-        class="w-full px-4 py-2 flex justify-between items-center gap-2 text-lg"
-        id="«r1»__1__button"
-        type="button"
+      <label
+        class="w-full px-4 py-2 flex justify-between items-center gap-2 text-lg cursor-pointer select-none focus-within:tw-cms-outline"
+        for="«r1»__1__input"
+        id="«r1»__1__label"
       >
+        <input
+          aria-checked="false"
+          class="sr-only"
+          id="«r1»__1__input"
+          name="«r1»-accordion"
+          type="radio"
+        />
         <span>
           Heading 2
         </span>
@@ -85,7 +92,7 @@ exports[`Accordion > should match the snapshot 1`] = `
             d="m6 9 6 6 6-6"
           />
         </svg>
-      </button>
+      </label>
       <div
         class="overflow-hidden transition-[max-height] duration-300 ease-in-out"
         id="«r1»__1__content"
@@ -93,7 +100,7 @@ exports[`Accordion > should match the snapshot 1`] = `
       >
         <div
           aria-hidden="true"
-          aria-labelledby="«r1»__1__button"
+          aria-labelledby="«r1»__1__label"
           class="px-4 py-2"
           role="region"
         >

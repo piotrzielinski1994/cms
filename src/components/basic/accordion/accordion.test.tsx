@@ -29,14 +29,14 @@ describe('Accordion', () => {
   describe('Interaction', () => {
     it('should toggle item on click', async () => {
       const { getByRole, getByText } = render(<Accordion items={defaultItems} />);
-      const button1 = getByRole('button', { name: 'Heading 1' });
+      const radio1 = getByRole('radio', { name: 'Heading 1' });
 
-      await userEvent.click(button1);
-      expect(button1).toHaveAttribute('aria-expanded', 'true');
+      await userEvent.click(radio1);
+      expect(radio1).toBeChecked();
       expect(getByText('Content 1')).toHaveAttribute('aria-hidden', 'false');
 
-      await userEvent.click(button1);
-      expect(button1).toHaveAttribute('aria-expanded', 'false');
+      await userEvent.click(radio1);
+      expect(radio1).not.toBeChecked();
       expect(getByText('Content 1')).toHaveAttribute('aria-hidden', 'true');
     });
 
@@ -44,9 +44,9 @@ describe('Accordion', () => {
       const { getByRole, getByText } = render(
         <Accordion items={defaultItems} activeItemIndex={1} />,
       );
-      const button2 = getByRole('button', { name: 'Heading 2' });
+      const radio2 = getByRole('radio', { name: 'Heading 2' });
 
-      expect(button2).toHaveAttribute('aria-expanded', 'true');
+      expect(radio2).toBeChecked();
       expect(getByText('Content 2')).toHaveAttribute('aria-hidden', 'false');
     });
 
@@ -54,14 +54,14 @@ describe('Accordion', () => {
       const { getByRole, getByText } = render(
         <Accordion items={defaultItems} activeItemIndex={0} />,
       );
-      const button1 = getByRole('button', { name: 'Heading 1' });
-      const button2 = getByRole('button', { name: 'Heading 2' });
+      const radio1 = getByRole('radio', { name: 'Heading 1' });
+      const radio2 = getByRole('radio', { name: 'Heading 2' });
 
       await userEvent.click(getByText('Heading 2'));
 
-      expect(button1).toHaveAttribute('aria-expanded', 'false');
+      expect(radio1).not.toBeChecked();
       expect(getByText('Content 1')).toHaveAttribute('aria-hidden', 'true');
-      expect(button2).toHaveAttribute('aria-expanded', 'true');
+      expect(radio2).toBeChecked();
       expect(getByText('Content 2')).toHaveAttribute('aria-hidden', 'false');
     });
   });
