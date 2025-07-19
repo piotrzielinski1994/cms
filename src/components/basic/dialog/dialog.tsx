@@ -50,7 +50,7 @@ const Root = forwardRef<HTMLDialogElement, DialogProps>(
             className={cn(
               'relative z-dialog overflow-visible pointer-events-auto',
               'bg-background text-foreground',
-              'focus:tw-cms-dialog-outline',
+              'focus-visible:tw-cms-dialog-outline',
               className,
             )}
             onKeyDown={(e) => {
@@ -65,7 +65,7 @@ const Root = forwardRef<HTMLDialogElement, DialogProps>(
                 {header !== undefined && <Header>{header}</Header>}
                 {onClose !== undefined && (
                   <button
-                    className="p-2 focus:tw-cms-outline"
+                    className="p-2 focus-visible:tw-cms-outline"
                     onClick={onClose}
                     aria-label={t('close')}
                     autoFocus={false}

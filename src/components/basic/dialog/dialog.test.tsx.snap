@@ -9,7 +9,7 @@ exports[`Dialog > should match the snapshot 1`] = `
       class="fixed inset-0 z-backdrop bg-foreground/50 dark:bg-foreground/10 backdrop-blur-none"
     />
     <dialog
-      class="w-full max-w-screen-2xl mx-auto grid cms-container relative z-dialog overflow-visible pointer-events-auto bg-background text-foreground focus:tw-cms-dialog-outline"
+      class="w-full max-w-screen-2xl mx-auto grid cms-container relative z-dialog overflow-visible pointer-events-auto bg-background text-foreground focus-visible:tw-cms-dialog-outline"
       data-dialog="true"
       open=""
     >
@@ -23,7 +23,7 @@ exports[`Dialog > should match the snapshot 1`] = `
         </p>
         <button
           aria-label="Close"
-          class="p-2 focus:tw-cms-outline"
+          class="p-2 focus-visible:tw-cms-outline"
         >
           <svg
             aria-hidden="true"
