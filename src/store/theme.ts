@@ -17,6 +17,7 @@ type ThemeStore = {
 // Variables ====================================
 
 const THEME_STORAGE_KEY = 'theme' as const;
+const COLOR_PREFERENCE_STORAGE_KEY = 'color-preference' as const;
 
 const createThemeStore = (params: Pick<ThemeStore, 'theme' | 'colorPreference'>) => {
   const { theme, colorPreference } = params;
@@ -34,11 +35,13 @@ const createThemeStore = (params: Pick<ThemeStore, 'theme' | 'colorPreference'>)
           colorPreference,
           themeConfig,
           setTheme: (theme) => {
+            const colorPreference: ThemeConfig['colorPreference'] = get().colorPreference;
             set({ theme });
-            const themeToSet = theme !== 'system' ? theme : get().colorPreference;
+            const themeToSet: Theme = theme !== 'system' ? theme : colorPreference;
             updateDom(themeToSet);
             updateColorScheme(theme);
             setCookie(THEME_STORAGE_KEY, theme);
+            setCookie(COLOR_PREFERENCE_STORAGE_KEY, colorPreference);
           },
         };
       },
@@ -68,9 +71,15 @@ const updateColorScheme = (theme: Theme) => {
   document.documentElement.style.colorScheme = getThemeConfig(theme).colorPreference;
 };
 
+const updateColorPreferenceCookie = (colorPreference: ThemeConfig['colorPreference']) => {
+  setCookie(COLOR_PREFERENCE_STORAGE_KEY, colorPreference);
+};
+
 export {
+  COLOR_PREFERENCE_STORAGE_KEY,
   createThemeStore,
   THEME_STORAGE_KEY,
+  updateColorPreferenceCookie,
   updateColorScheme,
   updateDom,
   useThemeStore,

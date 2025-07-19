@@ -1,7 +1,13 @@
 'use client';
 
 import { ThemeConfig } from '@/config/themes.config';
-import { createThemeStore, ThemeStore, updateColorScheme, updateDom } from '@/store/theme';
+import {
+  createThemeStore,
+  ThemeStore,
+  updateColorPreferenceCookie,
+  updateColorScheme,
+  updateDom,
+} from '@/store/theme';
 import { createContext, PropsWithChildren, useEffect, useRef } from 'react';
 import { StoreApi } from 'zustand';
 
@@ -23,6 +29,7 @@ const ThemeProvider = ({ children, theme, colorPreference }: ThemeProviderProps)
         if (state.theme !== 'system') return { colorPreference };
         updateColorScheme(colorPreference);
         updateDom(colorPreference);
+        updateColorPreferenceCookie(colorPreference);
         return { colorPreference };
       });
     };
