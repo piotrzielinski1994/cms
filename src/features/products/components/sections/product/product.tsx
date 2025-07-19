@@ -37,7 +37,7 @@ const Product = () => {
             'sm:col-span-1 sm:row-span-2',
             `sm:sticky`,
           )}
-          style={{ top: `${headerHeight}px` }} // TODO: Check why the `sm:top-[${headerHeight}px]` doesn't work
+          style={{ top: `${headerHeight}px` }}
         >
           <header>
             <h1 className="text-2xl font-semibold leading-none">PRODUCT</h1>
