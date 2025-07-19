@@ -301,6 +301,8 @@ const en = {
         error: 'Error',
       },
       badge: 'Badge',
+    },
+    advanced: {
       accordion: {
         heading: 'Heading',
         content: 'Content',
@@ -325,8 +327,6 @@ const en = {
         tab: 'Tab',
         content: 'Content',
       },
-    },
-    advanced: {
       skipLink: {
         navbar: 'Navbar to be skipped',
         link: 'Link',

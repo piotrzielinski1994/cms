@@ -306,6 +306,8 @@ const pl = {
         error: 'Błąd',
       },
       badge: 'Etykieta',
+    },
+    advanced: {
       accordion: {
         heading: 'Nagłówek',
         content: 'Treść',
@@ -330,8 +332,6 @@ const pl = {
         tab: 'Zakładka',
         content: 'Treść',
       },
-    },
-    advanced: {
       skipLink: {
         navbar: 'Pasek nawigacyjny do pominięcia',
         link: 'Link',
