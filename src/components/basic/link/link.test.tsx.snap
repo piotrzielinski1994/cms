@@ -3,7 +3,7 @@
 exports[`Link > should match the snapshot 1`] = `
 <div>
   <a
-    class="text-primary underline focus:tw-cms-outline"
+    class="text-primary underline focus-visible:tw-cms-outline"
     href="/test"
   >
     Link

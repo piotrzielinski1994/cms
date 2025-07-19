@@ -6,7 +6,7 @@ const Link = ({ className, ...rest }: ComponentProps<typeof LocalizedLink>) => {
   return (
     <LocalizedLink
       {...rest}
-      className={cn('text-primary underline', 'focus:tw-cms-outline', className)}
+      className={cn('text-primary underline', 'focus-visible:tw-cms-outline', className)}
     />
   );
 };
