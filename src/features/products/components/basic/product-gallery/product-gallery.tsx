@@ -36,7 +36,11 @@ const ProductGallery = ({ images, className, ...props }: ProductGalleryProps) =>
       >
         <Image src={activeImage.src} alt={activeImage.alt} />
       </dialog>
-      <button type="button" onClick={() => setIsMaximized(true)}>
+      <button
+        type="button"
+        onClick={() => setIsMaximized(true)}
+        className="focus-visible:tw-cms-outline"
+      >
         <Image src={activeImage.src} alt={activeImage.alt} isEager />
       </button>
       <ul className="flex justify-center gap-4 flex-wrap">
@@ -56,7 +60,7 @@ const ProductGallery = ({ images, className, ...props }: ProductGalleryProps) =>
                   src={src}
                   alt={alt}
                   sizing={{ default: '3.5rem' }}
-                  className={cn('w-14 h-14', 'group-focus-within:tw-cms-outline', {
+                  className={cn('w-14 h-14', 'group-has-[:focus-visible]:tw-cms-outline', {
                     'opacity-80': !isActive,
                   })}
                 />
