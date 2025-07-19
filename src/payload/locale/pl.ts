@@ -306,6 +306,9 @@ const pl = {
         error: 'Błąd',
       },
       badge: 'Etykieta',
+      icons: {
+        annotation: 'Dodatkowo, strona używa ikon z biblioteki <a>lucide</a>.',
+      },
     },
     advanced: {
       accordion: {
@@ -338,10 +341,6 @@ const pl = {
         main: 'Główna treść',
         inputPlaceholder: 'Wpisz tutaj',
       },
-    },
-
-    icons: {
-      annotation: 'Dodatkowo, strona używa ikon z biblioteki <a>lucide</a>.',
     },
   },
 } satisfies typeof en;

@@ -301,6 +301,9 @@ const en = {
         error: 'Error',
       },
       badge: 'Badge',
+      icons: {
+        annotation: 'Website also uses icons from <a>lucide</a> library.',
+      },
     },
     advanced: {
       accordion: {
@@ -333,9 +336,6 @@ const en = {
         main: 'Main content',
         inputPlaceholder: 'Placeholder',
       },
-    },
-    icons: {
-      annotation: 'Website also uses icons from <a>lucide</a> library.',
     },
   },
 };
