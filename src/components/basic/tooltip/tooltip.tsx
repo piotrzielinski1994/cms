@@ -43,14 +43,15 @@ const Tooltip = ({ content, children, ...props }: TooltipProps) => {
 
   return (
     <div
+      ref={containerRef}
       className="relative inline-flex"
       onMouseEnter={() => setIsVisible(true)}
       onMouseLeave={() => setIsVisible(false)}
-      ref={containerRef}
     >
       <button
         {...props}
         type="button"
+        className="focus-visible:tw-cms-outline"
         aria-describedby={isVisible ? id : undefined}
         onClick={() => setIsVisible((prev) => !prev)}
         onBlur={() => setIsVisible(false)}

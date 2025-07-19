@@ -7,6 +7,7 @@ exports[`Tooltip > should match the snapshot 1`] = `
   >
     <button
       aria-describedby="«r1»"
+      class="focus-visible:tw-cms-outline"
       type="button"
     >
       <span>
