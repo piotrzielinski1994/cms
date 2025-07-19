@@ -3,11 +3,13 @@
 import { ButtonLink } from '@/components/basic/button/button';
 import { cn } from '@/utils/tailwind';
 import { useTranslations } from 'next-intl';
+import { forwardRef } from 'react';
 
-const SkipLink = () => {
+const SkipLink = forwardRef<HTMLAnchorElement>((_, ref) => {
   const t = useTranslations('frontend');
   return (
     <ButtonLink
+      ref={ref}
       href="#main"
       aria-hidden={true}
       onFocus={(e) => e.currentTarget.setAttribute('aria-hidden', 'false')}
@@ -21,6 +23,8 @@ const SkipLink = () => {
       {t('component.skipLink')}
     </ButtonLink>
   );
-};
+});
+
+SkipLink.displayName = 'SkipLink';
 
 export { SkipLink };

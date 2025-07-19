@@ -331,6 +331,15 @@ const pl = {
         content: 'Treść',
       },
     },
+    advanced: {
+      skipLink: {
+        navbar: 'Pasek nawigacyjny do pominięcia',
+        link: 'Link',
+        main: 'Główna treść',
+        inputPlaceholder: 'Wpisz tutaj',
+      },
+    },
+
     icons: {
       annotation: 'Dodatkowo, strona używa ikon z biblioteki <a>lucide</a>.',
     },

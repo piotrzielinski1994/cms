@@ -1,6 +1,6 @@
 import { Link } from '@/config/next.routing.config';
 import { cn } from '@/utils/tailwind';
-import { ButtonHTMLAttributes, ComponentProps } from 'react';
+import { ButtonHTMLAttributes, ComponentProps, forwardRef } from 'react';
 
 type NativeButtonProps = BaseButtonProps & ButtonHTMLAttributes<HTMLButtonElement>;
 type LinkButtonProps = BaseButtonProps &
@@ -41,13 +41,18 @@ const Button = ({ className, variant = 'primary', ...rest }: NativeButtonProps) 
   );
 };
 
-const ButtonLink = ({ className, variant = 'primary', ...rest }: LinkButtonProps) => {
-  return (
-    <Link
-      className={cn(buttonClassNames.button, buttonClassNames.variant[variant], className)}
-      {...rest}
-    />
-  );
-};
+const ButtonLink = forwardRef<HTMLAnchorElement, LinkButtonProps>(
+  ({ className, variant = 'primary', ...rest }: LinkButtonProps, ref) => {
+    return (
+      <Link
+        ref={ref}
+        className={cn(buttonClassNames.button, buttonClassNames.variant[variant], className)}
+        {...rest}
+      />
+    );
+  },
+);
+
+ButtonLink.displayName = 'ButtonLink';
 
 export { Button, buttonClassNames, ButtonLink };

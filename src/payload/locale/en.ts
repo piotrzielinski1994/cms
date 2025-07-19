@@ -326,6 +326,14 @@ const en = {
         content: 'Content',
       },
     },
+    advanced: {
+      skipLink: {
+        navbar: 'Navbar to be skipped',
+        link: 'Link',
+        main: 'Main content',
+        inputPlaceholder: 'Placeholder',
+      },
+    },
     icons: {
       annotation: 'Website also uses icons from <a>lucide</a> library.',
     },
