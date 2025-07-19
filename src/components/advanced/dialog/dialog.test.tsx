@@ -10,8 +10,8 @@ import Dialog from './dialog';
 describe('Dialog', () => {
   const t = translations.en;
   const footerProps = {
-    submitBtn: { label: t.storybook.basic.dialog.submit, onClick: vi.fn() },
-    cancelBtn: { label: t.storybook.basic.dialog.cancel, onClick: vi.fn() },
+    submitBtn: { label: t.storybook.advanced.dialog.submit, onClick: vi.fn() },
+    cancelBtn: { label: t.storybook.advanced.dialog.cancel, onClick: vi.fn() },
   } satisfies ComponentProps<typeof Dialog.Footer>;
   const defaultProps = {
     header: 'Header',
