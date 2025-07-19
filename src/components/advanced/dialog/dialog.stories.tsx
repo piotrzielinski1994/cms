@@ -1,8 +1,8 @@
+import { Button } from '@/components/basic/button/button';
 import { DEFAULT_VALUE, getFallback } from '@/config/storybook/utils';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useTranslations } from 'next-intl';
 import { useEffect, type ComponentProps } from 'react';
-import { Button } from '../button/button';
 import DialogComponent from './dialog';
 import { useDialog } from './dialog.hooks';
 
@@ -13,7 +13,7 @@ type Args = ComponentProps<typeof DialogComponent.Root> & {
 
 const meta: Meta<Args> = {
   component: DialogComponent.Root,
-  title: 'Components/Basic/Dialog',
+  title: 'Components/Advanced/Dialog',
   argTypes: {
     type: {
       control: 'select',

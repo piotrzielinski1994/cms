@@ -1,8 +1,8 @@
 'use client';
 
+import Dialog from '@/components/advanced/dialog/dialog';
 import { Button, ButtonLink } from '@/components/basic/button/button';
 import { Container } from '@/components/basic/container';
-import Dialog from '@/components/basic/dialog/dialog';
 import { Section } from '@/components/basic/section';
 import { clientEnv } from '@/config/env.client.config';
 import { CookiesBanner as CookiesBannerType } from '@/payload/payload.types';
