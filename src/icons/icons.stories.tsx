@@ -17,7 +17,7 @@ const icons = toPairs(restSvgs).map(([componentName, Svg], i) => (
 ));
 
 const Render = () => {
-  const t = useTranslations('storybook.icons');
+  const t = useTranslations('storybook.basic.icons');
   return (
     <div className="grid justify-items-start gap-4 text-2xl">
       <Tooltip content="LogoSvg">

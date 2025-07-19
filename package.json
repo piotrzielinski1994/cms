@@ -13,7 +13,7 @@
     "start:prod": "cross-env NODE_OPTIONS=--no-deprecation rm -rf .next && npm run build && next start",
     "upgrade": "npm-check-updates -u && npm update",
     "upgrade:except": "npm-check-updates -u -x tailwindcss -x @hookform/resolvers -x zod && npm update",
-    "test": "vitest run --reporter=verbose --coverage",
+    "test": "npx tsc --noEmit && vitest run --reporter=verbose --coverage",
     "test:watch": "vitest watch --reporter=verbose -u",
     "storybook:build": "STORYBOOK_LOGLEVEL=debug storybook build -c ./src/config/storybook -o .storybook",
     "storybook": "storybook dev -c ./src/config/storybook -p 3001",

@@ -26,7 +26,7 @@ const meta = {
 } satisfies Meta<Args>;
 
 const Render = ({ image, quote, name, annotation }: Args, context) => {
-  const t = useTranslations('storybook.basic.testimonial');
+  const t = useTranslations('storybook.advanced.testimonial');
   const { theme } = context.globals as StoryContext['globals'];
   const colorPref = getThemeConfig(theme).colorPreference;
   const themedImage = imagesPerColorPref[colorPref === 'dark' ? 'light' : 'dark'];

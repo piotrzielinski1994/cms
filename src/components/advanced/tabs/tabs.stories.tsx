@@ -27,7 +27,7 @@ const meta = {
 } satisfies Meta<Args>;
 
 const Render = ({ tabs }: Args) => {
-  const t = useTranslations('storybook.basic.tabs');
+  const t = useTranslations('storybook.advanced.tabs');
   const props = {
     tabs: tabs.map((tab, index) => ({
       heading: getFallback(tab.heading, `${t('tab')} ${index + 1}`),
