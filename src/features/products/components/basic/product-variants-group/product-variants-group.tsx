@@ -1,6 +1,6 @@
 import { optional } from '@/utils/optional';
-import { cn } from '@/utils/tailwind';
 import { useQueryParams } from '@/utils/query-params.hooks';
+import { cn } from '@/utils/tailwind';
 
 type ProductVariantsGroupProps = {
   label: string;
@@ -28,7 +28,7 @@ const ProductVariantsGroup = (props: ProductVariantsGroupProps) => {
               'px-2 py-0.5 cursor-pointer',
               'border border-foreground',
               'has-[:disabled]:border-foreground/50  has-[:disabled]:text-foreground/50 has-[:disabled]:cursor-not-allowed',
-              'focus-within:tw-cms-outline',
+              'tw-has-focus:tw-cms-outline',
               'has-[:checked]:bg-foreground has-[:checked]:text-background',
               'hover:border-foreground/90 hover:has-[:checked]:bg-foreground/90',
             )}
