@@ -74,7 +74,7 @@ const Accordion = ({ items, activeItemIndex, className, ...props }: AccordionPro
               }}
             >
               <div
-                className="px-4 py-2"
+                className="px-4 pb-2"
                 role="region"
                 aria-labelledby={`${id}__${index}__label`}
                 aria-hidden={!isActive}

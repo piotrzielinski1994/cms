@@ -50,7 +50,7 @@ exports[`Accordion > should match the snapshot 1`] = `
         <div
           aria-hidden="true"
           aria-labelledby="«r1»__0__label"
-          class="px-4 py-2"
+          class="px-4 pb-2"
           role="region"
         >
           Content 1
@@ -101,7 +101,7 @@ exports[`Accordion > should match the snapshot 1`] = `
         <div
           aria-hidden="true"
           aria-labelledby="«r1»__1__label"
-          class="px-4 py-2"
+          class="px-4 pb-2"
           role="region"
         >
           Content 2
