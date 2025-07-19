@@ -1,5 +1,5 @@
 import { withProviders } from '@/utils/tests';
-import { render } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ComponentProps } from 'react';
 import { describe, expect, it, vi } from 'vitest';
@@ -18,7 +18,7 @@ describe('Link', () => {
 
   it('should have no accessibility violations', async () => {
     const { container } = render(withProviders(<Link {...defaultProps} />));
-    const results = await axe(container);
+    const results = await waitFor(() => axe(container));
     expect(results).toHaveNoViolations();
   });
 
@@ -28,7 +28,7 @@ describe('Link', () => {
   });
 
   it('calls onClick handler', async () => {
-    const onClick = vi.fn();
+    const onClick = vi.fn((e) => e.preventDefault());
     const { getByRole } = render(withProviders(<Link {...defaultProps} onClick={onClick} />));
 
     await userEvent.click(getByRole('link', { name: defaultProps.children }));
