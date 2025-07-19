@@ -50,7 +50,11 @@ const Layout = async ({ children, params }: LayoutProps) => {
           <SkipLink />
           <AdminBar adminBarProps={{ preview: isEnabled }} />
           <HeaderContainer locale={locale} />
-          <main className="flex-grow my-20 grid content-start gap-20" id="main">
+          <main
+            className={cn('flex-grow my-20 grid content-start gap-20', 'outline-none')}
+            id="main"
+            tabIndex={-1} // skip link
+          >
             {children}
           </main>
           <FooterContainer locale={locale} />
