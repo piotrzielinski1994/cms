@@ -47,6 +47,8 @@ const Accordion = ({ items, activeItemIndex, className, ...props }: AccordionPro
                 name={`${id}-accordion`}
                 id={`${id}__${index}__input`}
                 checked={isActive}
+                className="sr-only"
+                aria-checked={isActive}
                 onChange={() => setActiveIndex(isActive ? undefined : index)}
                 onClick={() => setActiveIndex(isActive ? undefined : index)}
                 onKeyDown={(e) => {
@@ -54,8 +56,6 @@ const Accordion = ({ items, activeItemIndex, className, ...props }: AccordionPro
                   e.preventDefault();
                   setActiveIndex(activeIndex === index ? undefined : index);
                 }}
-                className="sr-only"
-                aria-checked={isActive}
               />
               <span>{heading}</span>
               <ChevronDown
