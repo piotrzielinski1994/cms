@@ -60,7 +60,8 @@ const useQueryParams = <T extends Record<string, UseQueryParamsArgs<unknown>>>(
       },
       new URLSearchParams(searchParams.toString()),
     );
-    router.replace(`?${updated.toString()}`, { scroll: false });
+
+    router.push(`?${updated.toString()}${window.location.hash}`);
   };
 
   return [values, setValues];
