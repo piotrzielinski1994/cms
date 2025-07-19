@@ -39,7 +39,7 @@ const Accordion = ({ items, activeItemIndex, className, ...props }: AccordionPro
               className={cn(
                 'w-full px-4 py-2 flex justify-between items-center gap-2 text-lg cursor-pointer select-none',
                 { 'outline outline-2 outline-offset-2 outline-blue-500': isActive },
-                'focus-within:tw-cms-outline',
+                'tw-has-focus:tw-cms-outline',
               )}
             >
               <input

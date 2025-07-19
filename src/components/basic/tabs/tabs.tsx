@@ -1,6 +1,7 @@
+import { useHtmlId } from '@/hooks/html.hooks';
 import { cn } from '@/utils/tailwind';
 import { useTranslations } from 'next-intl';
-import { ReactNode, useId, useState } from 'react';
+import { ReactNode, useState } from 'react';
 
 type TabsProps = {
   tabs: Array<{
@@ -12,40 +13,42 @@ type TabsProps = {
 const Tabs = ({ tabs }: TabsProps) => {
   const t = useTranslations('frontend.component');
   const [activeIndex, setActiveIndex] = useState(0);
-  const id = useId();
+  const { id, getId } = useHtmlId('tabs');
 
   return (
     <div className="grid gap-2">
       <div aria-label={t('tabs')} className="flex gap-2">
-        {tabs.map((tab, index) => (
-          <label
-            key={index}
-            id={tabId(id, index)}
-            aria-controls={panelId(id, index)}
-            className={cn(
-              'has-[:checked]:border-b border-foreground',
-              '[&:has(input:focus-visible)]:tw-cms-outline',
-              'px-2',
-              'cursor-pointer',
-            )}
-          >
-            <input
-              type="radio"
-              name={`tabs-${id}`}
-              className="peer sr-only"
-              checked={index === activeIndex}
-              onChange={() => setActiveIndex(index)}
-            />
-            {tab.heading}
-          </label>
-        ))}
+        {tabs.map((tab, index) => {
+          return (
+            <label
+              key={index}
+              id={getId('tab', index)}
+              aria-controls={getId('panel', index)}
+              className={cn(
+                'has-[:checked]:border-b border-foreground',
+                'tw-has-focus:tw-cms-outline',
+                'px-2',
+                'cursor-pointer',
+              )}
+            >
+              <input
+                type="radio"
+                name={`tabs-${id}`}
+                className="peer sr-only"
+                checked={index === activeIndex}
+                onChange={() => setActiveIndex(index)}
+              />
+              {tab.heading}
+            </label>
+          );
+        })}
       </div>
       {tabs.map((tab, index) => (
         <div
           key={index}
           role="tabpanel"
-          id={panelId(id, index)}
-          aria-labelledby={tabId(id, index)}
+          id={getId('panel', index)}
+          aria-labelledby={getId('tab', index)}
           hidden={index !== activeIndex}
         >
           {tab.content}
@@ -54,8 +57,5 @@ const Tabs = ({ tabs }: TabsProps) => {
     </div>
   );
 };
-
-const tabId = (id: string, index: number) => `tabs__${id}__${index}`;
-const panelId = (id: string, index: number) => `tabs__${id}__${index}`;
 
 export { Tabs };

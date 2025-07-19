@@ -24,7 +24,8 @@ const tailwindConfig = {
         });
       addBase(fromPairs(entries));
     },
-    ({ addComponents }) => {
+    ({ addComponents, addVariant }) => {
+      addVariant('tw-has-focus', ['&:has(input:focus-visible)']);
       addComponents({
         '.tw-cms-outline': {
           outline: 'none',
