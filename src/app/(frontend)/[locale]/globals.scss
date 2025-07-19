@@ -5,3 +5,10 @@
 html {
   scroll-behavior: smooth;
 }
+
+a,
+button {
+  &:focus-visible {
+    @apply tw-cms-outline;
+  }
+}

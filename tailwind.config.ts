@@ -34,7 +34,7 @@ const tailwindConfig = {
             '0 0 0 4px hsl(var(--twc-foreground))',
             '0 0 1.5px 4px hsl(var(--twc-background))',
           ].join(', '),
-          zIndex: 99,
+          zIndex: 999_999,
         },
         '.tw-cms-dialog-outline': {
           outline: 'none',
