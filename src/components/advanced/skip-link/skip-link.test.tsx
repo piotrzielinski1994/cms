@@ -1,6 +1,6 @@
 import { en } from '@/payload/locale/en';
 import { withProviders } from '@/utils/tests';
-import { render } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it } from 'vitest';
 import { axe } from 'vitest-axe';
@@ -11,7 +11,7 @@ const t = en.frontend.component;
 describe('SkipLink', () => {
   it('should have no accessibility violations', async () => {
     const { container } = render(withProviders(<SkipLink />));
-    const results = await axe(container);
+    const results = await waitFor(() => axe(container));
     expect(results).toHaveNoViolations();
   });
 
