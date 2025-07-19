@@ -35,7 +35,7 @@ describe('ImageBlock', () => {
     const results = await axe(container);
     expect(results).toHaveNoViolations();
   });
-  return;
+
   it('should match the snapshot', async () => {
     const { container } = render(withProviders(<ImageBlock {...defaultProps} />));
     expect(container).toMatchSnapshot();

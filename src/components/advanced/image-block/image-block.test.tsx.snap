@@ -1,0 +1,55 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ImageBlock > should match the snapshot 1`] = `
+<div>
+  <div
+    class="grid md:grid-cols-2"
+  >
+    <div
+      class="grid justify-items-start content-center gap-4 order-2 md:order-1"
+    >
+      <h3
+        class="text-4xl font-semibold"
+      >
+        Heading
+      </h3>
+      <p>
+        Subheading
+      </p>
+      <div
+        class="flex gap-4"
+      >
+        <a
+          class="px-6 py-3 border-2 border-primary hover:border-primary/90 font-semibold whitespace-nowrap disabled:cursor-not-allowed focus-visible:tw-cms-outline bg-primary hover:bg-primary/90 text-primary-foreground disabled:border-primary/0 disabled:bg-primary/50"
+          href="/primary"
+        >
+          Primary Button
+        </a>
+        <a
+          class="px-6 py-3 border-2 border-primary hover:border-primary/90 font-semibold whitespace-nowrap disabled:cursor-not-allowed focus-visible:tw-cms-outline text-primary disabled:border-primary/50 disabled:text-primary/50 bg-background [&:not(:disabled)]:hover:bg-foreground/5"
+          href="/secondary"
+        >
+          Secondary Button
+        </a>
+      </div>
+    </div>
+    <div
+      class="order-1 md:order-2"
+    >
+      <img
+        alt="Image"
+        class="object-cover cms-image bg-background1 min-h-full"
+        data-nimg="1"
+        decoding="async"
+        height="1080"
+        loading="lazy"
+        sizes="100vw"
+        src="/_next/image?url=%2Fimages%2Fplaceholder.webp&w=3840&q=75"
+        srcset="/_next/image?url=%2Fimages%2Fplaceholder.webp&w=640&q=75 640w, /_next/image?url=%2Fimages%2Fplaceholder.webp&w=750&q=75 750w, /_next/image?url=%2Fimages%2Fplaceholder.webp&w=828&q=75 828w, /_next/image?url=%2Fimages%2Fplaceholder.webp&w=1080&q=75 1080w, /_next/image?url=%2Fimages%2Fplaceholder.webp&w=1200&q=75 1200w, /_next/image?url=%2Fimages%2Fplaceholder.webp&w=1920&q=75 1920w, /_next/image?url=%2Fimages%2Fplaceholder.webp&w=2048&q=75 2048w, /_next/image?url=%2Fimages%2Fplaceholder.webp&w=3840&q=75 3840w"
+        style="color: transparent;"
+        width="1920"
+      />
+    </div>
+  </div>
+</div>
+`;
