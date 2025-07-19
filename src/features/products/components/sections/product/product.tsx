@@ -1,6 +1,6 @@
 'use client';
 
-import { Accordion } from '@/components/basic/accordion/accordion';
+import { Accordion } from '@/components/advanced/accordion/accordion';
 import { Button } from '@/components/basic/button/button';
 import { Container } from '@/components/basic/container';
 import { Section } from '@/components/basic/section';
