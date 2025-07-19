@@ -9,7 +9,7 @@ exports[`Checkbox > should match the snapshot 1`] = `
       class="self-end group has-[:disabled]:text-foreground/50 grid grid-cols-[auto_1fr] gap-2 cursor-pointer has-[:disabled]:cursor-not-allowed"
     >
       <div
-        class="w-[1lh] h-[1lh] border border-solid border-current bg-input group-hover:group-has-[input:enabled]:border-foreground/90 group-hover:group-has-[input:enabled]:ring-foreground/90 ring-inset focus-within:ring-1 ring-current grid place-items-center"
+        class="w-[1lh] h-[1lh] border border-solid border-current bg-input group-hover:group-has-[input:enabled]:border-foreground/90 group-hover:group-has-[input:enabled]:ring-foreground/90 ring-inset tw-has-focus:ring-1 ring-current grid place-items-center"
       >
         <input
           class="sr-only"

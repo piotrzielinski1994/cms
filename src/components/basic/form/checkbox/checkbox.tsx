@@ -29,7 +29,7 @@ const checkboxClassNames = {
       'group-hover:group-has-[input:enabled]:border-foreground/90',
       'group-hover:group-has-[input:enabled]:ring-foreground/90',
       { '[&:not(:focus)]:text-red-500': !isValid },
-      'ring-inset focus-within:ring-1 ring-current',
+      'ring-inset tw-has-focus:ring-1 ring-current',
       'grid place-items-center',
     );
   },
