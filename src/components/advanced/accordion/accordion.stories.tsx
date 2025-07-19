@@ -24,7 +24,7 @@ const meta = {
 } satisfies Meta<Args>;
 
 const Render = (args: Args) => {
-  const t = useTranslations('storybook.basic.accordion');
+  const t = useTranslations('storybook.advanced.accordion');
   const props = {
     ...args,
     id: THUMBNAIL_ID,
