@@ -19,7 +19,7 @@ const meta = {
       { heading: DEFAULT_VALUE, content: DEFAULT_VALUE },
       { heading: DEFAULT_VALUE, content: DEFAULT_VALUE },
     ],
-    activeItemIndex: undefined,
+    activeItemIndex: 0,
   },
 } satisfies Meta<Args>;
 
