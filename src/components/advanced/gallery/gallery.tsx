@@ -70,7 +70,7 @@ const Gallery = ({ images, className, ...props }: GalleryProps) => {
                   className={cn(
                     'w-20 h-20',
                     'sm:w-40 sm:h-40',
-                    'group-focus-within:tw-cms-outline',
+                    'group-has-[:focus-visible]:tw-cms-outline',
                   )}
                 />
               </label>
