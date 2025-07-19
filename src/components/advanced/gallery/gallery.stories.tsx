@@ -11,7 +11,7 @@ type Args = ComponentProps<typeof GalleryComponent>;
 
 const meta = {
   component: GalleryComponent,
-  title: 'Components/Advanced/Gallery',
+  title: 'Advanced/Gallery',
   argTypes: {
     images: { control: 'object' },
   },

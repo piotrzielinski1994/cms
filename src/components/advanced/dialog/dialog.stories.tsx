@@ -13,7 +13,7 @@ type Args = ComponentProps<typeof DialogComponent.Root> & {
 
 const meta: Meta<Args> = {
   component: DialogComponent.Root,
-  title: 'Components/Advanced/Dialog',
+  title: 'Advanced/Dialog',
   argTypes: {
     type: {
       control: 'select',

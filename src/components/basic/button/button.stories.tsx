@@ -10,7 +10,7 @@ type Args = ComponentProps<typeof ButtonComponent> & {
 
 const meta: Meta<Args> = {
   component: ButtonComponent,
-  title: 'Components/Basic/Button',
+  title: 'Basic/Button',
   argTypes: {
     label: { control: 'text' },
     variant: {

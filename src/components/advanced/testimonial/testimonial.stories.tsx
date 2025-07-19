@@ -10,7 +10,7 @@ type Args = ComponentProps<typeof TestimonialComponent>;
 
 const meta = {
   component: TestimonialComponent,
-  title: 'Components/Advanced/Testimonial',
+  title: 'Advanced/Testimonial',
   argTypes: {
     image: { control: 'text' },
     quote: { control: 'text' },

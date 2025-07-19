@@ -7,7 +7,7 @@ type Args = ComponentProps<typeof ContactUsComponent>;
 
 const meta: Meta<Args> = {
   component: ContactUsComponent,
-  title: 'Components/Sections/Form/ContactUs',
+  title: 'Sections/Form/ContactUs',
   argTypes: {},
   args: {},
 };

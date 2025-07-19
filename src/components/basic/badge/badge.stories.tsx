@@ -10,7 +10,7 @@ type Args = ComponentProps<typeof BadgeComponent>;
 
 const meta = {
   component: BadgeComponent,
-  title: 'Components/Basic/Badge',
+  title: 'Basic/Badge',
   argTypes: {
     label: { control: 'text' },
     bgColor: { control: 'text' },

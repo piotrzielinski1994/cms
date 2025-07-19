@@ -8,7 +8,7 @@ type Args = ComponentProps<typeof FaqComponent>;
 
 const meta: Meta<Args> = {
   component: FaqComponent,
-  title: 'Components/Sections/Faq',
+  title: 'Sections/Faq',
   argTypes: {
     heading: { control: 'text' },
     subheading: { control: 'text' },

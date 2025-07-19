@@ -1,4 +1,6 @@
+import { Button } from '@/components/basic/button/button';
 import { Container } from '@/components/basic/container';
+import { Section } from '@/components/basic/section';
 import { cn } from '@/utils/tailwind';
 import { X } from 'lucide-react';
 import { useTranslations } from 'next-intl';
@@ -9,8 +11,6 @@ import {
   PropsWithChildren,
   ReactNode,
 } from 'react';
-import { Button } from '../button/button';
-import { Section } from '../section';
 
 type DialogProps = ComponentPropsWithoutRef<'dialog'> & {
   type?: 'dialog' | 'modal';

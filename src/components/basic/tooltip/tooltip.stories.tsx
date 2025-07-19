@@ -12,7 +12,7 @@ type Args = ComponentProps<typeof TooltipComponent> & {
 
 const meta = {
   component: TooltipComponent,
-  title: 'Components/Basic/Tooltip',
+  title: 'Basic/Tooltip',
   argTypes: {
     content: { control: 'text' },
     children: { control: 'text' },

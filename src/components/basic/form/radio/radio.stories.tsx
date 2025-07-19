@@ -8,7 +8,7 @@ type Args = ComponentProps<typeof RadioComponent>;
 
 const meta: Meta<Args> = {
   component: RadioComponent,
-  title: 'Components/Basic/Form/Radio',
+  title: 'Basic/Form/Radio',
   argTypes: {
     label: { control: 'text' },
     error: { control: 'text' },

@@ -15,7 +15,7 @@ type Args = ComponentProps<typeof ImageBlockComponent>;
 
 const meta = {
   component: ImageBlockComponent,
-  title: 'Components/Advanced/ImageBlock',
+  title: 'Advanced/ImageBlock',
   argTypes: {
     isReversed: { control: 'boolean' },
     image: { control: 'object' },

@@ -8,7 +8,7 @@ type Args = ComponentProps<typeof LinkComponent>;
 
 const meta = {
   component: LinkComponent,
-  title: 'Components/Basic/Link',
+  title: 'Basic/Link',
   argTypes: {
     href: { control: 'text' },
     children: { control: 'text' },

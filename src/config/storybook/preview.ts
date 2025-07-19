@@ -25,6 +25,11 @@ const preview = {
   parameters: {
     backgrounds: [],
     nextjs: { appDirectory: true },
+    options: {
+      storySort: {
+        order: ['Basic', 'Advanced', 'Sections', 'Layout'],
+      },
+    },
   },
 } satisfies Preview;
 

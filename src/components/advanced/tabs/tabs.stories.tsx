@@ -8,7 +8,7 @@ type Args = ComponentProps<typeof TabsComponent>;
 
 const meta = {
   component: TabsComponent,
-  title: 'Components/Advanced/Tabs',
+  title: 'Advanced/Tabs',
   argTypes: {
     tabs: { control: 'object' },
   },

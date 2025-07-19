@@ -8,7 +8,7 @@ type Args = ComponentProps<typeof HeaderComponent> & {
 
 const meta: Meta<Args> = {
   component: HeaderComponent,
-  title: 'Components/Layout/Header',
+  title: 'Layout/Header',
   argTypes: {
     items: { control: 'object' },
   },

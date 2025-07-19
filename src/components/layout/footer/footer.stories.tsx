@@ -8,7 +8,7 @@ type Args = ComponentProps<typeof FooterComponent> & {
 
 const meta: Meta<Args> = {
   component: FooterComponent,
-  title: 'Components/Layout/Footer',
+  title: 'Layout/Footer',
   argTypes: {
     items: { control: 'object' },
   },

@@ -8,7 +8,7 @@ type Args = ComponentProps<typeof AlertComponent>;
 
 const meta = {
   component: AlertComponent,
-  title: 'Components/Basic/Alert',
+  title: 'Basic/Alert',
   argTypes: {
     type: {
       control: 'select',

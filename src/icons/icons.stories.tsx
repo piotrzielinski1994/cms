@@ -6,7 +6,7 @@ import { useTranslations } from 'next-intl';
 import { toPairs } from 'ramda';
 
 const meta: Meta = {
-  title: 'Components/Icons',
+  title: 'Basic/Icons',
 };
 const { LogoSvg, ...restSvgs } = svgs;
 

@@ -16,7 +16,7 @@ type Args = ComponentProps<typeof ImageBlocksComponent>;
 
 const meta = {
   component: ImageBlocksComponent,
-  title: 'Components/Sections/ImageBlock/ImageBlocks',
+  title: 'Sections/ImageBlock/ImageBlocks',
   argTypes: {
     heading: { control: 'text' },
     subheading: { control: 'text' },

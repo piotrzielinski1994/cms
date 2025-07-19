@@ -19,7 +19,7 @@ const ControlledCheckbox = (props: Args) => {
 
 const meta: Meta<ComponentProps<typeof ControlledCheckbox>> = {
   component: ControlledCheckbox,
-  title: 'Components/Basic/Form/Checkbox',
+  title: 'Basic/Form/Checkbox',
   argTypes: {
     label: { control: 'text' },
     error: { control: 'text' },

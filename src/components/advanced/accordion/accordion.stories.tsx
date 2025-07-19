@@ -8,7 +8,7 @@ type Args = ComponentProps<typeof AccordionComponent>;
 
 const meta = {
   component: AccordionComponent,
-  title: 'Components/Advanced/Accordion',
+  title: 'Advanced/Accordion',
   argTypes: {
     items: { control: 'object' },
     activeItemIndex: { control: 'number' },

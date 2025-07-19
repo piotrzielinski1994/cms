@@ -8,7 +8,7 @@ type Args = ComponentProps<typeof Hero1Component>;
 
 const meta: Meta<Args> = {
   component: Hero1Component,
-  title: 'Components/Sections/Hero/Hero1',
+  title: 'Sections/Hero/Hero1',
   argTypes: {
     heading: { control: 'text' },
     subheading: { control: 'text' },

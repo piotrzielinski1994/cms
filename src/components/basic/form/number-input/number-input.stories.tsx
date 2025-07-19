@@ -25,7 +25,7 @@ const ControlledInput = (props: Args) => {
 
 const meta: Meta<ComponentProps<typeof ControlledInput>> = {
   component: ControlledInput,
-  title: 'Components/Basic/Form/NumberInput',
+  title: 'Basic/Form/NumberInput',
   argTypes: {
     label: { control: 'text' },
     placeholder: { control: 'text' },
