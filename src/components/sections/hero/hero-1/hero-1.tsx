@@ -14,7 +14,11 @@ const Hero1 = ({ heading, subheading, buttons = [], ...props }: Hero1Props) => {
   return (
     <Section {...props}>
       <Container
-        className={cn('py-10', 'justify-items-start content-center gap-4', 'bg-background1')}
+        className={cn(
+          'px-4 py-10 md:px-6',
+          'justify-items-start content-center gap-4',
+          'bg-background1',
+        )}
       >
         <h1 className={cn('text-6xl font-semibold')}>{heading}</h1>
         {subheading && <p>{subheading}</p>}

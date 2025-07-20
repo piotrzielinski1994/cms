@@ -32,6 +32,7 @@ const Product = () => {
         />
         <div
           className={cn(
+            'p-4 md:p-6',
             'bg-background1',
             'grid gap-4 justify-items-start',
             'sm:col-span-1 sm:row-span-2',

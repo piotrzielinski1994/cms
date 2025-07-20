@@ -20,15 +20,15 @@ const ProductCard = ({ product, layout = 'grid', className, ...props }: ProductC
       {...props}
       className={cn(
         {
-          'grid gap-2 justify-items-start': layout === 'grid',
-          'flex items-center gap-4': layout === 'list',
+          'grid justify-items-start': layout === 'grid',
+          'flex items-center': layout === 'list',
         },
         'bg-background1',
         className,
       )}
     >
       <Image src={placeholderDarkWebp.src} alt="product" />
-      <div className="grid gap-2">
+      <div className={cn('p-4 md:p-6', 'grid gap-2')}>
         <div className="">
           <h2 className="">{product.name}</h2>
           <span className="">{product.price}</span>

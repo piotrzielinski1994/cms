@@ -31,7 +31,7 @@ const Products = () => {
         </div>
         <ul
           className={cn('grid gap-4', {
-            'grid-cols-[repeat(auto-fill,minmax(10rem,1fr))]': layout === 'grid',
+            'grid-cols-[repeat(auto-fill,minmax(16rem,1fr))]': layout === 'grid',
             'grid-cols-1': layout === 'list',
           })}
         >

@@ -37,7 +37,8 @@ const Accordion = ({ items, activeItemIndex, className, ...props }: AccordionPro
               htmlFor={`${id}__${index}__input`}
               id={`${id}__${index}__label`}
               className={cn(
-                'w-full px-4 py-2 flex justify-between items-center gap-2 text-lg cursor-pointer select-none',
+                'w-full px-4 py-2 md:px-6 md:py-4',
+                'flex justify-between items-center gap-2 text-lg cursor-pointer select-none',
                 { 'outline outline-2 outline-offset-2 outline-blue-500': isActive },
                 'tw-has-focus:tw-cms-outline',
               )}
@@ -74,7 +75,7 @@ const Accordion = ({ items, activeItemIndex, className, ...props }: AccordionPro
               }}
             >
               <div
-                className="px-4 pb-2"
+                className="px-4 pb-4 md:px-6"
                 role="region"
                 aria-labelledby={`${id}__${index}__label`}
                 aria-hidden={!isActive}
