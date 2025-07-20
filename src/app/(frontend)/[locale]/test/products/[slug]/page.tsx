@@ -1,7 +1,7 @@
 import { Product } from '@/features/products/components/sections/product/product';
 
-const TestPage = () => {
+const ProductPage = () => {
   return <Product />;
 };
 
-export default TestPage;
+export default ProductPage;
