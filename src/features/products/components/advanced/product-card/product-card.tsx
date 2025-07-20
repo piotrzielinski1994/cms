@@ -5,6 +5,7 @@ import { cn } from '@/utils/tailwind';
 import { HTMLAttributes } from 'react';
 
 type ProductCardProps = HTMLAttributes<HTMLDivElement> & {
+  layout?: 'grid' | 'list';
   product: {
     id: number;
     slug: string;
@@ -13,15 +14,27 @@ type ProductCardProps = HTMLAttributes<HTMLDivElement> & {
   };
 };
 
-const ProductCard = ({ product, className, ...props }: ProductCardProps) => {
+const ProductCard = ({ product, layout = 'grid', className, ...props }: ProductCardProps) => {
   return (
-    <div {...props} className={cn('grid gap-2 justify-items-start', 'bg-background1', className)}>
+    <div
+      {...props}
+      className={cn(
+        {
+          'grid gap-2 justify-items-start': layout === 'grid',
+          'flex items-center gap-4': layout === 'list',
+        },
+        'bg-background1',
+        className,
+      )}
+    >
       <Image src={placeholderDarkWebp.src} alt="product" />
-      <div className="grid">
-        <h2 className="">{product.name}</h2>
-        <span className="">{product.price}</span>
+      <div className="grid gap-2">
+        <div className="">
+          <h2 className="">{product.name}</h2>
+          <span className="">{product.price}</span>
+        </div>
+        <ButtonLink href={`/test/products/${product.slug}`}>Buy Now</ButtonLink>
       </div>
-      <ButtonLink href={`/test/products/${product.slug}`}>Buy Now</ButtonLink>
     </div>
   );
 };
