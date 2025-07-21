@@ -123,6 +123,13 @@ const pl = {
     component: {
       skipLink: 'Przejdź do głównej zawartości',
       tabs: 'Zakładki',
+      uploadInput: {
+        clickToUpload: 'Kliknij, aby przesłać',
+        orDragAndDrop: 'lub przeciągnij i upuść',
+        extensions: {
+          image: 'JPG, PNG lub WEBP',
+        },
+      },
     },
     contactForm: {
       fields: {

@@ -12,3 +12,8 @@ button {
     @apply tw-cms-outline;
   }
 }
+
+strong,
+b {
+  @apply font-semibold;
+}

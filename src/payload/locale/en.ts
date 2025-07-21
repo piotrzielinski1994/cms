@@ -121,6 +121,13 @@ const en = {
     component: {
       skipLink: 'Go to the main content',
       tabs: 'Tabs',
+      uploadInput: {
+        clickToUpload: 'Click to upload',
+        orDragAndDrop: 'or drag and drop',
+        extensions: {
+          image: 'JPG, PNG or WEBP',
+        },
+      },
     },
     contactForm: {
       fields: {
