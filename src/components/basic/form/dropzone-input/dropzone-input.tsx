@@ -5,14 +5,14 @@ import { Upload, X } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { ChangeEvent, InputHTMLAttributes, useState } from 'react';
 
-type UploadInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> & {
+type DropzoneInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> & {
   accept?: string;
   multiple?: boolean;
   fileNames: string[];
   onFileRemove?: (fileName: string) => void;
 };
 
-const UploadInput = ({ fileNames, onFileRemove, ...props }: UploadInputProps) => {
+const DropzoneInput = ({ fileNames, onFileRemove, ...props }: DropzoneInputProps) => {
   const t = useTranslations('frontend.component.uploadInput');
   const [isDragging, setIsDragging] = useState(false);
   console.log('@@@ fileNames | ', fileNames);
@@ -53,28 +53,41 @@ const UploadInput = ({ fileNames, onFileRemove, ...props }: UploadInputProps) =>
           <input {...props} type="file" className={cn('sr-only', props.className)} />
         </div>
         {fileNames.length > 0 && (
-          <ul className="grid gap-1">
-            {fileNames.map((fileName, index) => {
-              return (
-                <li key={index}>
-                  <button
-                    type="button"
-                    onClick={() => onFileRemove?.(fileName)}
-                    className={cn(
-                      'w-full p-2',
-                      'grid grid-cols-[1fr_auto] gap-2',
-                      'border border-foreground',
-                      'bg-background text-foreground',
-                      'text-xs text-left',
-                      'hover:bg-foreground/5',
-                    )}
-                  >
-                    <span>{fileName}</span>
-                    <X height="1lh" width="auto" />
-                  </button>
-                </li>
-              );
-            })}
+          <ul
+            role="group"
+            className="grid gap-1"
+            onKeyDown={(e) => {
+              const arrowKeys = ['ArrowDown', 'ArrowRight', 'ArrowUp', 'ArrowLeft'];
+              if (!arrowKeys.includes(e.key)) return;
+              e.preventDefault();
+
+              const buttons = Array.from(e.currentTarget.querySelectorAll('button'));
+              const index = buttons.indexOf(document.activeElement as HTMLButtonElement);
+              const offset = ['ArrowDown', 'ArrowRight'].includes(e.key) ? 1 : -1;
+
+              buttons[(index + offset + buttons.length) % buttons.length]?.focus();
+            }}
+          >
+            {fileNames.map((fileName, index) => (
+              <li key={index}>
+                <button
+                  type="button"
+                  tabIndex={index === 0 ? 0 : -1}
+                  onClick={() => onFileRemove?.(fileName)}
+                  className={cn(
+                    'w-full p-2',
+                    'grid grid-cols-[1fr_auto] gap-2',
+                    'border border-foreground',
+                    'bg-background text-foreground',
+                    'text-xs text-left',
+                    'hover:bg-foreground/5',
+                  )}
+                >
+                  <span>{fileName}</span>
+                  <X height="1lh" width="auto" />
+                </button>
+              </li>
+            ))}
           </ul>
         )}
       </label>
@@ -82,4 +95,4 @@ const UploadInput = ({ fileNames, onFileRemove, ...props }: UploadInputProps) =>
   );
 };
 
-export { UploadInput };
+export { DropzoneInput };

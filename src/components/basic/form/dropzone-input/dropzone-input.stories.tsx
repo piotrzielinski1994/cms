@@ -1,20 +1,20 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState, type ComponentProps } from 'react';
-import { UploadInput as UploadInputComponent } from './upload-input';
+import { DropzoneInput as DropzoneInputComponent } from './dropzone-input';
 
-type Args = ComponentProps<typeof UploadInputComponent> & {
+type Args = ComponentProps<typeof DropzoneInputComponent> & {
   label?: string;
 };
 
 const meta: Meta<Args> = {
-  component: UploadInputComponent,
-  title: 'Basic/Form/UploadInput',
+  component: DropzoneInputComponent,
+  title: 'Basic/Form/DropzoneInput',
 };
 
 const Render = ({ label, ...args }: Args) => {
   const [fileNames, setFileNames] = useState<string[]>(['123.webp', '456.webp']);
   return (
-    <UploadInputComponent
+    <DropzoneInputComponent
       fileNames={fileNames}
       multiple
       onChange={(e) => {
@@ -29,7 +29,7 @@ const Render = ({ label, ...args }: Args) => {
   );
 };
 
-const UploadInput: StoryObj<typeof UploadInputComponent> = { render: Render };
+const DropzoneInput: StoryObj<typeof DropzoneInputComponent> = { render: Render };
 
-export { UploadInput };
+export { DropzoneInput };
 export default meta;
