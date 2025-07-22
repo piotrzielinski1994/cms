@@ -12,7 +12,7 @@ const meta: Meta<Args> = {
 };
 
 const Render = ({ label, ...args }: Args) => {
-  const [fileNames, setFileNames] = useState<string[]>([]);
+  const [fileNames, setFileNames] = useState<string[]>(['123.webp', '456.webp']);
   return (
     <UploadInputComponent
       fileNames={fileNames}
