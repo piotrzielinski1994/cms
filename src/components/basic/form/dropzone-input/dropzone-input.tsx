@@ -54,7 +54,6 @@ const DropzoneInput = ({ fileNames, onFileRemove, ...props }: DropzoneInputProps
         </div>
         {fileNames.length > 0 && (
           <ul
-            role="group"
             className="grid gap-1"
             onKeyDown={(e) => {
               const arrowKeys = ['ArrowDown', 'ArrowRight', 'ArrowUp', 'ArrowLeft'];

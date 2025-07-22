@@ -24,3 +24,27 @@ Object.defineProperty(window, 'matchMedia', {
     removeEventListener: () => {},
   }),
 });
+
+class DataTransferItemList {
+  items: File[] = [];
+  add(file: File) {
+    this.items.push(file);
+  }
+}
+
+class DataTransfer {
+  items = new DataTransferItemList();
+  constructor() {}
+}
+
+global.DataTransfer = DataTransfer;
+
+class DragEvent extends Event {
+  dataTransfer: DataTransfer;
+  constructor(type: string, eventInitDict: any = {}) {
+    super(type, eventInitDict);
+    this.dataTransfer = eventInitDict.dataTransfer || new DataTransfer();
+  }
+}
+
+global.DragEvent = DragEvent;
