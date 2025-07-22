@@ -15,7 +15,7 @@ type DropzoneInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> & 
 const DropzoneInput = ({ fileNames, onFileRemove, ...props }: DropzoneInputProps) => {
   const t = useTranslations('frontend.component.uploadInput');
   const [isDragging, setIsDragging] = useState(false);
-  console.log('@@@ fileNames | ', fileNames);
+
   return (
     <>
       <label
