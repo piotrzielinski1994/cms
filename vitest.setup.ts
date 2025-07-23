@@ -25,26 +25,17 @@ Object.defineProperty(window, 'matchMedia', {
   }),
 });
 
-class DataTransferItemList {
-  items: File[] = [];
-  add(file: File) {
-    this.items.push(file);
-  }
-}
+Object.defineProperty(window, 'DataTransfer', {
+  value: function () {
+    this.items = [];
+    this.items.add = (file: File) => this.items.push(file);
+  },
+});
 
-class DataTransfer {
-  items = new DataTransferItemList();
-  constructor() {}
-}
-
-global.DataTransfer = DataTransfer;
-
-class DragEvent extends Event {
-  dataTransfer: DataTransfer;
-  constructor(type: string, eventInitDict: any = {}) {
-    super(type, eventInitDict);
-    this.dataTransfer = eventInitDict.dataTransfer || new DataTransfer();
-  }
-}
-
-global.DragEvent = DragEvent;
+Object.defineProperty(window, 'DragEvent', {
+  value: (type: string, eventInitDict: EventInit & { dataTransfer?: DataTransfer }) => {
+    const event = new Event(type, eventInitDict) as Event & { dataTransfer: DataTransfer };
+    event.dataTransfer = eventInitDict?.dataTransfer ?? new window.DataTransfer();
+    return event;
+  },
+});
