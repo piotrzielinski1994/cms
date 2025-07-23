@@ -10,6 +10,7 @@ type ThemeConfig = {
   };
   input: string;
   components: {
+    skeleton: string;
     accordion: {
       DEFAULT: string;
       foreground: string;
@@ -29,6 +30,7 @@ const themes = {
     },
     input: '#fff',
     components: {
+      skeleton: '#f3f4f6',
       accordion: {
         DEFAULT: '#f3f4f6',
         foreground: '#000',
@@ -46,6 +48,7 @@ const themes = {
     },
     input: '#0f111a',
     components: {
+      skeleton: '#0f111a',
       accordion: {
         DEFAULT: '#0f111a',
         foreground: '#7b83a3',
@@ -63,6 +66,7 @@ const themes = {
     },
     input: '#ff0',
     components: {
+      skeleton: '#000',
       accordion: {
         DEFAULT: '#000',
         foreground: '#ff0',
@@ -80,6 +84,7 @@ const themes = {
     },
     input: '#000',
     components: {
+      skeleton: '#ff0',
       accordion: {
         DEFAULT: '#ff0',
         foreground: '#000',

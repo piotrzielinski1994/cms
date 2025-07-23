@@ -1,0 +1,11 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Skeleton > should match the snapshot 1`] = `
+<div>
+  <div
+    aria-busy="true"
+    class="h-[1lh] bg-components-skeleton animate-pulse"
+    role="status"
+  />
+</div>
+`;
