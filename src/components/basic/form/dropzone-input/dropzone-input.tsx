@@ -28,6 +28,7 @@ const DropzoneInput = ({ fileNames, onFileRemove, ...props }: DropzoneInputProps
           { 'bg-foreground/5': isDragging },
           'grid gap-4',
           'cursor-pointer',
+          'has-[:disabled]:cursor-not-allowed has-[:disabled]:border-foreground/50',
         )}
         onDragLeave={() => setIsDragging(false)}
         onDragOver={(e) => {
@@ -73,13 +74,15 @@ const DropzoneInput = ({ fileNames, onFileRemove, ...props }: DropzoneInputProps
                   type="button"
                   tabIndex={index === 0 ? 0 : -1}
                   onClick={() => onFileRemove?.(fileName)}
+                  disabled={props.disabled}
                   className={cn(
                     'w-full p-2',
                     'grid grid-cols-[1fr_auto] gap-2',
-                    'border border-foreground',
+                    'border border-current',
                     'bg-background text-foreground',
                     'text-xs text-left',
-                    'hover:bg-foreground/5',
+                    'enabled:hover:bg-foreground/5',
+                    'disabled:cursor-not-allowed disabled:text-foreground/50',
                   )}
                 >
                   <span>{fileName}</span>

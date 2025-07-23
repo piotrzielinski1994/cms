@@ -9,9 +9,13 @@ const meta: Meta<Args> = {
   title: 'Basic/Form/DropzoneInput',
   argTypes: {
     multiple: { control: 'boolean' },
+    disabled: { control: 'boolean' },
+    fileNames: { table: { disable: true } },
+    onFileRemove: { table: { disable: true } },
   },
   args: {
     multiple: true,
+    disabled: false,
   },
 };
 
