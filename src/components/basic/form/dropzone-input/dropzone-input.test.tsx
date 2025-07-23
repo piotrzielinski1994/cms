@@ -11,6 +11,7 @@ const t = en.frontend.component.uploadInput;
 
 describe('DropzoneInput', () => {
   const defaultProps = {
+    name: 'dropzone-input',
     fileNames: ['file-1.webp', 'file-2.webp'],
     onFileRemove: vi.fn(),
     onChange: vi.fn(),
