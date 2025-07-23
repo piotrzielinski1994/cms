@@ -52,6 +52,7 @@ exports[`DropzoneInput > should match the snapshot 1`] = `
         </p>
         <input
           class="sr-only"
+          name="dropzone-input"
           type="file"
         />
       </div>
