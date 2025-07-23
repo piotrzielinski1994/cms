@@ -1,23 +1,26 @@
 'use client';
 
+import Form from '@/components/basic/form/root/form';
 import { cn } from '@/utils/tailwind';
 import { Upload, X } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { ChangeEvent, InputHTMLAttributes, useState } from 'react';
 
 type DropzoneInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> & {
+  name: string;
   accept?: string;
   multiple?: boolean;
   fileNames: string[];
   onFileRemove?: (fileName: string) => void;
+  error?: string;
 };
 
-const DropzoneInput = ({ fileNames, onFileRemove, ...props }: DropzoneInputProps) => {
+const DropzoneInput = ({ fileNames, onFileRemove, error, ...props }: DropzoneInputProps) => {
   const t = useTranslations('frontend.component.uploadInput');
   const [isDragging, setIsDragging] = useState(false);
 
   return (
-    <>
+    <div className="flex flex-col gap-2">
       <label
         className={cn(
           'p-4 bg-red-500',
@@ -26,6 +29,7 @@ const DropzoneInput = ({ fileNames, onFileRemove, ...props }: DropzoneInputProps
           'has-[:enabled]:hover:border-foreground/90',
           'tw-has-focus:tw-cms-outline',
           { 'bg-foreground/5': isDragging },
+          { '[&:not(:focus)]:border-red-500': !!error },
           'grid gap-4',
           'cursor-pointer',
           'has-[:disabled]:cursor-not-allowed has-[:disabled]:border-foreground/50',
@@ -93,7 +97,8 @@ const DropzoneInput = ({ fileNames, onFileRemove, ...props }: DropzoneInputProps
           </ul>
         )}
       </label>
-    </>
+      <Form.Error>{error}</Form.Error>
+    </div>
   );
 };
 

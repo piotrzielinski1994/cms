@@ -2,122 +2,130 @@
 
 exports[`DropzoneInput > should match the snapshot 1`] = `
 <div>
-  <label
-    class="p-4 border border-solid border-foreground bg-input text-foreground/50 has-[:enabled]:hover:border-foreground/90 tw-has-focus:tw-cms-outline grid gap-4 cursor-pointer has-[:disabled]:cursor-not-allowed has-[:disabled]:border-foreground/50"
+  <div
+    class="flex flex-col gap-2"
   >
-    <div
-      class="grid justify-items-center"
+    <label
+      class="p-4 border border-solid border-foreground bg-input text-foreground/50 has-[:enabled]:hover:border-foreground/90 tw-has-focus:tw-cms-outline grid gap-4 cursor-pointer has-[:disabled]:cursor-not-allowed has-[:disabled]:border-foreground/50"
     >
-      <svg
-        aria-hidden="true"
-        class="lucide lucide-upload"
-        fill="none"
-        height="24"
-        stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        viewBox="0 0 24 24"
-        width="24"
-        xmlns="http://www.w3.org/2000/svg"
+      <div
+        class="grid justify-items-center"
       >
-        <path
-          d="M12 3v12"
-        />
-        <path
-          d="m17 8-5-5-5 5"
-        />
-        <path
-          d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
-        />
-      </svg>
-      <p
-        class=""
-      >
-        <strong>
-          Click to upload
-        </strong>
-         
-        <span>
-          or drag and drop
-        </span>
-      </p>
-      <p
-        class=""
-      >
-        JPG, PNG or WEBP
-      </p>
-      <input
-        class="sr-only"
-        type="file"
-      />
-    </div>
-    <ul
-      class="grid gap-1"
-    >
-      <li>
-        <button
-          class="w-full p-2 grid grid-cols-[1fr_auto] gap-2 border border-current bg-background text-foreground text-xs text-left enabled:hover:bg-foreground/5 disabled:cursor-not-allowed disabled:text-foreground/50"
-          tabindex="0"
-          type="button"
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-upload"
+          fill="none"
+          height="24"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          <span>
-            file-1.webp
-          </span>
-          <svg
-            aria-hidden="true"
-            class="lucide lucide-x"
-            fill="none"
-            height="1lh"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-            width="auto"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M18 6 6 18"
-            />
-            <path
-              d="m6 6 12 12"
-            />
-          </svg>
-        </button>
-      </li>
-      <li>
-        <button
-          class="w-full p-2 grid grid-cols-[1fr_auto] gap-2 border border-current bg-background text-foreground text-xs text-left enabled:hover:bg-foreground/5 disabled:cursor-not-allowed disabled:text-foreground/50"
-          tabindex="-1"
-          type="button"
+          <path
+            d="M12 3v12"
+          />
+          <path
+            d="m17 8-5-5-5 5"
+          />
+          <path
+            d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+          />
+        </svg>
+        <p
+          class=""
         >
+          <strong>
+            Click to upload
+          </strong>
+           
           <span>
-            file-2.webp
+            or drag and drop
           </span>
-          <svg
-            aria-hidden="true"
-            class="lucide lucide-x"
-            fill="none"
-            height="1lh"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-            width="auto"
-            xmlns="http://www.w3.org/2000/svg"
+        </p>
+        <p
+          class=""
+        >
+          JPG, PNG or WEBP
+        </p>
+        <input
+          class="sr-only"
+          type="file"
+        />
+      </div>
+      <ul
+        class="grid gap-1"
+      >
+        <li>
+          <button
+            class="w-full p-2 grid grid-cols-[1fr_auto] gap-2 border border-current bg-background text-foreground text-xs text-left enabled:hover:bg-foreground/5 disabled:cursor-not-allowed disabled:text-foreground/50"
+            tabindex="0"
+            type="button"
           >
-            <path
-              d="M18 6 6 18"
-            />
-            <path
-              d="m6 6 12 12"
-            />
-          </svg>
-        </button>
-      </li>
-    </ul>
-  </label>
+            <span>
+              file-1.webp
+            </span>
+            <svg
+              aria-hidden="true"
+              class="lucide lucide-x"
+              fill="none"
+              height="1lh"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="auto"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M18 6 6 18"
+              />
+              <path
+                d="m6 6 12 12"
+              />
+            </svg>
+          </button>
+        </li>
+        <li>
+          <button
+            class="w-full p-2 grid grid-cols-[1fr_auto] gap-2 border border-current bg-background text-foreground text-xs text-left enabled:hover:bg-foreground/5 disabled:cursor-not-allowed disabled:text-foreground/50"
+            tabindex="-1"
+            type="button"
+          >
+            <span>
+              file-2.webp
+            </span>
+            <svg
+              aria-hidden="true"
+              class="lucide lucide-x"
+              fill="none"
+              height="1lh"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="auto"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M18 6 6 18"
+              />
+              <path
+                d="m6 6 12 12"
+              />
+            </svg>
+          </button>
+        </li>
+      </ul>
+    </label>
+    <span
+      class="min-h-[1em] text-sm text-red-500 leading-none"
+      role="alert"
+    />
+  </div>
 </div>
 `;

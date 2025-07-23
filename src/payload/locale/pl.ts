@@ -299,6 +299,7 @@ const pl = {
           placeholder: 'Wybierz wartość',
           option: 'Opcja',
         },
+        dropzoneInput: 'Pole Wyboru Pliku',
       },
       button: {
         default: 'Przycisk',

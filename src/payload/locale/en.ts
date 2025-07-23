@@ -294,6 +294,7 @@ const en = {
           placeholder: 'Choose value',
           option: 'Option',
         },
+        dropzoneInput: 'Dropzone Input',
       },
       button: {
         default: 'Button',
