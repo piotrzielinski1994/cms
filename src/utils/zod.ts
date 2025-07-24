@@ -36,21 +36,4 @@ const getZodErrorsMap: (t: ReturnType<typeof useTranslations<'zod'>>) => z.ZodEr
     }
   };
 
-const isInteger = (int?: number, negative = false) => {
-  const signPart = negative ? '-?' : '';
-  const intPart = int ? `{1,${int}}` : '+';
-  return z.string().regex(new RegExp(`^${signPart}\\d${intPart}$`));
-};
-
-const isDecimal = ({
-  int,
-  frac,
-  negative = true,
-}: { int?: number; frac?: number; negative?: boolean } = {}) => {
-  const signPart = negative ? '-?' : '';
-  const intPart = int ? `{1,${int}}` : '+';
-  const fracPart = frac !== undefined ? `{0,${frac}}` : '*';
-  return z.string().regex(new RegExp(`^${signPart}\\d${intPart}(\\.\\d${fracPart})?$`));
-};
-
-export { getZodErrorsMap, isDecimal, isInteger };
+export { getZodErrorsMap };

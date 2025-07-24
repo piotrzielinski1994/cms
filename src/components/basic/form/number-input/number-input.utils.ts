@@ -1,6 +1,6 @@
-import { isDecimal, isInteger } from '@/utils/zod';
 import { Locale } from 'next-intl';
 import { ComponentProps } from 'react';
+import z from 'zod';
 import { NumberInput } from './number-input';
 
 const createNumberFormatter = (locale: Locale) => (rawValue: string) => {
@@ -25,19 +25,27 @@ const createNumberUnformatter = (locale: Locale) => (formattedValue: string) => 
   return normalized.endsWith('.') ? normalized : normalized.concat(endsWithDecimal ? '.' : '');
 };
 
-const getValidator = (props: ComponentProps<typeof NumberInput>) => {
-  const isNegative = props.min === undefined || props.min < 0;
-
-  if (props.mode === 'decimal') {
-    const { maxIntLength, maxDecimalLength } = props;
-    return isDecimal({
-      int: maxIntLength,
-      frac: maxDecimalLength,
-      negative: isNegative,
-    });
-  }
-
-  return isInteger(props.maxIntLength, isNegative);
+const getValidator = (
+  props: Pick<ComponentProps<typeof NumberInput>, 'maxIntLength' | 'maxDecimalLength' | 'min'>,
+) => {
+  const { maxIntLength, maxDecimalLength, min } = props;
+  const isNegative = min === undefined || min < 0;
+  return isNumber({
+    int: maxIntLength,
+    frac: maxDecimalLength,
+    negative: isNegative,
+  });
 };
 
-export { createNumberFormatter, createNumberUnformatter, getValidator };
+const isNumber = ({
+  int,
+  frac = 0,
+  negative = false,
+}: { int?: number; frac?: number; negative?: boolean } = {}) => {
+  const signPart = negative ? '-?' : '';
+  const intPart = int ? `\\d{1,${int}}` : '\\d+';
+  const fracPart = frac > 0 ? `(\\.\\d{0,${frac}})?` : '';
+  return z.string().regex(new RegExp(`^${signPart}${intPart}${fracPart}$`));
+};
+
+export { createNumberFormatter, createNumberUnformatter, getValidator, isNumber };

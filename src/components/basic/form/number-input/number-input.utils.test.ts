@@ -1,6 +1,6 @@
 import { Locale } from 'next-intl';
 import { describe, expect } from 'vitest';
-import { createNumberFormatter, createNumberUnformatter } from './number-input.utils';
+import { createNumberFormatter, createNumberUnformatter, isNumber } from './number-input.utils';
 
 describe('format', () => {
   it.each([
@@ -28,6 +28,97 @@ describe('unformat', () => {
     async ({ locale, input, output }) => {
       const unformat = createNumberUnformatter(locale);
       expect(unformat(input)).toBe(output);
+    },
+  );
+});
+
+describe('isNumber', () => {
+  it.each([
+    // int
+    {
+      config: undefined,
+      input: '1',
+      output: true,
+    },
+    {
+      config: { int: 3 },
+      input: '123',
+      output: true,
+    },
+    {
+      config: { int: 3 },
+      input: '1234',
+      output: false,
+    },
+    // frac
+    {
+      config: undefined,
+      input: '1.',
+      output: false,
+    },
+    {
+      config: undefined,
+      input: '1.1',
+      output: false,
+    },
+    {
+      config: { frac: 2 },
+      input: '1.',
+      output: true,
+    },
+    {
+      config: { frac: 2 },
+      input: '1.12',
+      output: true,
+    },
+    {
+      config: { frac: 2 },
+      input: '1.123',
+      output: false,
+    },
+    // negative
+    {
+      config: undefined,
+      input: '-1',
+      output: false,
+    },
+    {
+      config: { negative: true },
+      input: '-1',
+      output: true,
+    },
+    // all
+    {
+      config: { int: 5, frac: 2, negative: true },
+      input: '-12345.12',
+      output: true,
+    },
+    {
+      config: { int: 5, frac: 2, negative: true },
+      input: '-123456.12',
+      output: false,
+    },
+    {
+      config: { int: 5, frac: 2, negative: true },
+      input: '-12345.',
+      output: true,
+    },
+    {
+      config: { int: 5, frac: 2, negative: true },
+      input: '-12345.123',
+      output: false,
+    },
+    {
+      config: { int: 5, frac: 2, negative: false },
+      input: '-12345.12',
+      output: false,
+    },
+  ] satisfies Array<{ config: Parameters<typeof isNumber>[0]; input: string; output: boolean }>)(
+    'should confirm the $input to be $output for $config',
+    async ({ config, input, output }) => {
+      const validator = isNumber(config);
+      const result = validator.safeParse(input);
+      expect(result.success).toBe(output);
     },
   );
 });

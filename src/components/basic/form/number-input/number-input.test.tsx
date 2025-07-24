@@ -60,7 +60,6 @@ describe('NumberInput', () => {
             {...defaultProps}
             step={step}
             value={initial}
-            mode="decimal"
             maxDecimalLength={2}
           />,
         ),
@@ -86,7 +85,6 @@ describe('NumberInput', () => {
             {...defaultProps}
             step={step}
             value={initial}
-            mode="decimal"
             maxDecimalLength={2}
           />,
         ),
@@ -114,7 +112,6 @@ describe('NumberInput', () => {
             {...defaultProps}
             step={step}
             value={initial}
-            mode="decimal"
             maxDecimalLength={2}
           />,
         ),
@@ -140,7 +137,6 @@ describe('NumberInput', () => {
             {...defaultProps}
             step={step}
             value={initial}
-            mode="decimal"
             maxDecimalLength={2}
           />,
         ),
@@ -171,9 +167,7 @@ describe('NumberInput', () => {
 
     it('should prevent typing longer decimal part than expected', async () => {
       const { getByRole } = render(
-        withProviders(
-          <ControlledComponent {...defaultProps} mode="decimal" maxDecimalLength={2} />,
-        ),
+        withProviders(<ControlledComponent {...defaultProps} maxDecimalLength={2} />),
       );
       const input = getByRole('spinbutton') as HTMLInputElement;
 
@@ -243,10 +237,7 @@ describe('NumberInput', () => {
       'should format $typed to $expected for $locale',
       async ({ locale, typed, expected }) => {
         const { getByRole } = render(
-          withProviders(
-            <ControlledComponent {...defaultProps} mode="decimal" maxDecimalLength={2} />,
-            { locale },
-          ),
+          withProviders(<ControlledComponent {...defaultProps} maxDecimalLength={2} />, { locale }),
         );
         const input = getByRole('spinbutton') as HTMLInputElement;
 

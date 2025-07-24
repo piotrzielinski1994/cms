@@ -30,23 +30,20 @@ const meta: Meta<ComponentProps<typeof ControlledInput>> = {
     label: { control: 'text' },
     placeholder: { control: 'text' },
     error: { control: 'text' },
+    min: { control: 'number' },
+    max: { control: 'number' },
     maxIntLength: { control: 'number' },
     maxDecimalLength: { control: 'number' },
     disabled: { control: 'boolean' },
-    mode: {
-      control: 'select',
-      options: ['integer', 'decimal'] satisfies Array<
-        ComponentProps<typeof NumberInputComponent>['mode']
-      >,
-    },
   },
   args: {
     label: DEFAULT_VALUE,
     placeholder: DEFAULT_VALUE,
+    min: 0,
+    max: 99_999,
     maxIntLength: 5,
     maxDecimalLength: 2,
     disabled: false,
-    mode: 'decimal',
   },
 };
 
@@ -80,7 +77,7 @@ const Render = ({ label, placeholder, ...args }: Args) => {
           {...args}
           id="input3"
           name="input3"
-          value={t2('invalid.value') as unknown as number}
+          value={12345.67}
           error={t2('invalid.error')}
         />
       </Form.Group>

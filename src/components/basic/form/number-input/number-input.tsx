@@ -6,16 +6,16 @@ import { ChangeEvent, DetailedHTMLProps, InputHTMLAttributes, useState } from 'r
 import { Control, FieldValues, Path, useController } from 'react-hook-form';
 import Form from '../root/form';
 import { inputClassNames } from '../text-input/text-input';
-import { createNumberFormatter, createNumberUnformatter, getValidator } from './number-input.utils';
+import { createNumberFormatter, createNumberUnformatter, isNumber } from './number-input.utils';
 
 // Types ====================================
 
-type NumberInputProps = IntegerInputProps | DecimalInputProps;
-type NumberInputContainerProps<T extends FieldValues> =
-  | (Omit<IntegerInputProps, 'name'> & { control: Control<T>; name: Path<T> })
-  | (Omit<DecimalInputProps, 'name'> & { control: Control<T>; name: Path<T> });
+type NumberInputContainerProps<T extends FieldValues> = Omit<NumberInputProps, 'name'> & {
+  control: Control<T>;
+  name: Path<T>;
+};
 
-type NumberInputPropsBase = Omit<
+type NumberInputProps = Omit<
   DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
   'name'
 > & {
@@ -25,34 +25,40 @@ type NumberInputPropsBase = Omit<
   step?: number;
   min?: number;
   max?: number;
+  maxIntLength?: number;
+  maxDecimalLength?: number;
   t?: {
     increment: string;
     decrement: string;
   };
 };
-type IntegerInputProps = NumberInputPropsBase & { mode?: 'integer'; maxIntLength?: number };
-type DecimalInputProps = NumberInputPropsBase & {
-  mode: 'decimal';
-  maxIntLength?: number;
-  maxDecimalLength?: number;
-};
 
 // Variables ====================================
 
-const NumberInput = ({ error, step = 1, mode = 'integer', t, ...props }: NumberInputProps) => {
+const NumberInput = ({
+  error,
+  step = 1,
+  maxIntLength,
+  maxDecimalLength,
+  t,
+  ...props
+}: NumberInputProps) => {
   const locale = useLocaleStore();
   const [rawValue, setRawValue] = useState<string>(props.value?.toString() ?? '');
 
   const format = createNumberFormatter(locale);
   const unformat = createNumberUnformatter(locale);
+  const canBeNegative = props.min === undefined || props.min < 0;
+  const validator = isNumber({
+    int: maxIntLength,
+    frac: maxDecimalLength,
+    negative: canBeNegative,
+  });
 
   const changeValue = (delta: number) => {
     const raw = rawValue.replace(',', '.') || '0';
-
-    const validator = getValidator({ ...props, mode });
     if (!validator.safeParse(raw).success) return;
 
-    const { maxIntLength = Infinity, maxDecimalLength = Infinity } = props as DecimalInputProps;
     const next = Number(raw) + delta * step;
 
     const [intPartRaw, decPart = ''] = Number.isFinite(maxDecimalLength)
@@ -60,8 +66,8 @@ const NumberInput = ({ error, step = 1, mode = 'integer', t, ...props }: NumberI
       : next.toString().split('.');
     const intPart = intPartRaw.startsWith('-') ? intPartRaw.slice(1) : intPartRaw;
 
-    if (intPart.length > maxIntLength) return;
-    if (decPart.length > maxDecimalLength) return;
+    if (maxIntLength !== undefined && intPart.length > maxIntLength) return;
+    if (maxDecimalLength !== undefined && decPart.length > maxDecimalLength) return;
 
     const event = { target: { value: String(next) } } as ChangeEvent<HTMLInputElement>;
     setRawValue(String(next));
@@ -74,10 +80,10 @@ const NumberInput = ({ error, step = 1, mode = 'integer', t, ...props }: NumberI
         <input
           type="text"
           role="spinbutton"
-          inputMode="decimal"
+          inputMode={!!maxDecimalLength ? 'decimal' : 'numeric'}
           autoComplete="off"
           lang={locale}
-          {...omitCustomProps({ ...props, mode })}
+          {...props}
           value={format(rawValue)}
           className={cn(
             inputClassNames.input({ isValid: !error }),
@@ -86,9 +92,11 @@ const NumberInput = ({ error, step = 1, mode = 'integer', t, ...props }: NumberI
           )}
           onChange={(e) => {
             const raw = unformat(e.target.value);
-            const validator = getValidator({ ...props, mode });
 
-            if (!['', '-'].includes(raw) && !validator.safeParse(raw).success) return;
+            const allowedNonNumericSymbols = canBeNegative ? ['', '-'] : [''];
+            if (!allowedNonNumericSymbols.includes(raw) && !validator.safeParse(raw).success) {
+              return;
+            }
 
             setRawValue(raw);
             props?.onChange?.(e);
@@ -131,13 +139,10 @@ const NumberInputContainer = <T extends FieldValues>(props: NumberInputContainer
   const { field, fieldState } = useController({ control, name });
   return (
     <NumberInput
-      error={fieldState.error?.message}
-      t={{
-        increment: t('increment'),
-        decrement: t('decrement'),
-      }}
       {...rest}
       {...field}
+      error={fieldState.error?.message}
+      t={{ increment: t('increment'), decrement: t('decrement') }}
       onChange={(e) => {
         const raw = e.target.value.replace(',', '.');
         const value = ['', '-'].includes(raw) ? null : Number(raw);
@@ -145,16 +150,6 @@ const NumberInputContainer = <T extends FieldValues>(props: NumberInputContainer
       }}
     />
   );
-};
-
-const omitCustomProps = (props: NumberInputProps) => {
-  if (props.mode === 'decimal') {
-    const { maxIntLength: _, maxDecimalLength: __, ...restProps } = props;
-    return restProps;
-  }
-
-  const { maxIntLength: _, ...restProps } = props;
-  return restProps;
 };
 
 export { NumberInput, NumberInputContainer };
