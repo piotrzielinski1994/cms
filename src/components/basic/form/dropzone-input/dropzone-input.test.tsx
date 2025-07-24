@@ -59,12 +59,12 @@ describe('DropzoneInput', () => {
     });
 
     it('should call onFileRemove when a button is clicked', async () => {
-      const { getAllByRole } = render(withProviders(<DropzoneInput {...defaultProps} />));
-      const buttons = getAllByRole('button');
+      const { getByRole } = render(withProviders(<DropzoneInput {...defaultProps} />));
+      const button = getByRole('button', { name: defaultProps.fileNames[1] });
 
-      await userEvent.click(buttons[0]);
+      await userEvent.click(button);
 
-      expect(defaultProps.onFileRemove).toHaveBeenCalledWith(defaultProps.fileNames[0]);
+      expect(defaultProps.onFileRemove).toHaveBeenCalledWith(defaultProps.fileNames[1], 1);
     });
   });
 
