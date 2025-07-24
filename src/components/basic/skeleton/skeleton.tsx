@@ -10,7 +10,7 @@ const Skeleton = ({ className, ...props }: SkeletonProps) => {
       aria-busy={true}
       {...props}
       className={cn(
-        'h-[4lh] bg-components-skeleton relative overflow-hidden',
+        'h-[1lh] bg-components-skeleton relative overflow-hidden',
         'before:absolute before:inset-0 before:-translate-x-full',
         'before:bg-gradient-to-r before:from-transparent before:via-background/40 before:to-transfrom-transparent',
         'before:animate-skeleton',
