@@ -9,7 +9,7 @@ const Skeleton = ({ className, ...props }: SkeletonProps) => {
       role="status"
       aria-busy={true}
       {...props}
-      className={cn('h-[1lh] bg-components-skeleton animate-pulse', className)}
+      className={cn('h-[1lh] bg-foreground/40 animate-pulse', className)}
     />
   );
 };
