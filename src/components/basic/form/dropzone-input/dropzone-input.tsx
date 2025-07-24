@@ -76,9 +76,8 @@ const DropzoneInput = ({ fileNames, onFileRemove, error, ...props }: DropzoneInp
               <li key={index}>
                 <button
                   type="button"
-                  tabIndex={index === 0 ? 0 : -1}
-                  onClick={() => onFileRemove?.(fileName)}
                   disabled={props.disabled}
+                  tabIndex={index === 0 ? 0 : -1}
                   className={cn(
                     'w-full p-2',
                     'grid grid-cols-[1fr_auto] gap-2',
@@ -88,6 +87,10 @@ const DropzoneInput = ({ fileNames, onFileRemove, error, ...props }: DropzoneInp
                     'enabled:hover:bg-foreground/5',
                     'disabled:cursor-not-allowed disabled:text-foreground/50',
                   )}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onFileRemove?.(fileName);
+                  }}
                 >
                   <span>{fileName}</span>
                   <X height="1lh" width="auto" />
