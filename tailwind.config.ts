@@ -70,6 +70,15 @@ const tailwindConfig = {
       boxShadow: {
         'sm-neg': '0 -1px 2px 0 rgba(0, 0, 0, 0.05)',
       },
+      animation: {
+        skeleton: 'skeleton 1.5s ease-in-out infinite',
+      },
+      keyframes: {
+        skeleton: {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(100%)' },
+        },
+      },
     },
   },
 } satisfies Config;

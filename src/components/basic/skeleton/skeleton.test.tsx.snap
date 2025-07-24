@@ -4,7 +4,7 @@ exports[`Skeleton > should match the snapshot 1`] = `
 <div>
   <div
     aria-busy="true"
-    class="h-[1lh] bg-components-skeleton animate-pulse"
+    class="h-[4lh] bg-components-skeleton relative overflow-hidden before:absolute before:inset-0 before:-translate-x-full before:bg-gradient-to-r before:from-transparent before:via-background/40 before:to-transfrom-transparent before:animate-skeleton"
     role="status"
   />
 </div>
