@@ -11,7 +11,7 @@ type DropzoneInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> & 
   accept?: string;
   multiple?: boolean;
   fileNames: string[];
-  onFileRemove?: (fileName: string) => void;
+  onFileRemove?: (fileName: string, index: number) => void;
   error?: string;
 };
 
@@ -89,7 +89,7 @@ const DropzoneInput = ({ fileNames, onFileRemove, error, ...props }: DropzoneInp
                   )}
                   onClick={(e) => {
                     e.preventDefault();
-                    onFileRemove?.(fileName);
+                    onFileRemove?.(fileName, index);
                   }}
                 >
                   <span>{fileName}</span>

@@ -42,7 +42,7 @@ const Render = ({ label, ...args }: Args) => {
           onChange={(e) => {
             const { files } = e.target;
             if (!files) return;
-            setFileNames([...files].map((file) => file.name));
+            setFileNames((prev) => [...prev, ...[...files].map((file) => file.name)]);
           }}
           onFileRemove={(fileName) => {
             setFileNames((prev) => prev.filter((name) => name !== fileName));
