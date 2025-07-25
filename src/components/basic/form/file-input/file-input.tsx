@@ -47,9 +47,7 @@ const FileInput = ({ fileNames, onClear, error, ...props }: FileInputProps) => {
         }}
       >
         <input type="file" {...props} className={cn('sr-only', props.className)} />
-        <div>
-          <Upload />
-        </div>
+        <Upload />
         {fileNames.length > 0 ? (
           <>
             <ul className="flex-grow grid gap-1">
