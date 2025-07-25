@@ -21,4 +21,4 @@ npm run storybook
 - languages: en, pl (en)
 - css prefix (cms-)
 - configurable enabling/disabling features
-- breadcrumbs, drawer, upload
+- breadcrumbs, drawer
