@@ -17,13 +17,13 @@ exports[`Dialog > should match the snapshot 1`] = `
         class="flex"
       >
         <p
-          class="flex-grow p-2"
+          class="p-4 md:p-6 flex-grow"
         >
           Header
         </p>
         <button
           aria-label="Close"
-          class="p-2 focus-visible:tw-cms-outline"
+          class="p-4 md:p-6 focus-visible:tw-cms-outline"
         >
           <svg
             aria-hidden="true"
@@ -48,13 +48,13 @@ exports[`Dialog > should match the snapshot 1`] = `
         </button>
       </header>
       <div
-        class="p-2"
+        class="p-4 pt-0 md:p-6 md:pt-0"
       />
       <footer
-        class="p-2"
+        class="p-4 pt-0 md:p-6 md:pt-0"
       >
         <div
-          class="flex justify-end gap-2 flex-wrap"
+          class="flex justify-end gap-2 md:gap-4 flex-wrap"
         >
           <button
             class="px-6 py-3 border-2 border-primary hover:border-primary/90 font-semibold whitespace-nowrap disabled:cursor-not-allowed focus-visible:tw-cms-outline text-primary disabled:border-primary/50 disabled:text-primary/50 bg-background [&:not(:disabled)]:hover:bg-foreground/5"

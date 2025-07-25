@@ -65,7 +65,7 @@ const Root = forwardRef<HTMLDialogElement, DialogProps>(
                 {header !== undefined && <Header>{header}</Header>}
                 {onClose !== undefined && (
                   <button
-                    className="p-2 focus-visible:tw-cms-outline"
+                    className="p-4 md:p-6 focus-visible:tw-cms-outline"
                     onClick={onClose}
                     aria-label={t('close')}
                     autoFocus={false}
@@ -75,8 +75,8 @@ const Root = forwardRef<HTMLDialogElement, DialogProps>(
                 )}
               </header>
             )}
-            <div className="p-2">{children}</div>
-            {footer !== undefined && <footer className="p-2">{footer}</footer>}
+            <div className="p-4 pt-0 md:p-6 md:pt-0">{children}</div>
+            {footer !== undefined && <footer className="p-4 pt-0 md:p-6 md:pt-0">{footer}</footer>}
           </Container>
         </Section>
       </>
@@ -99,12 +99,12 @@ const Backdrop = ({ className, ...props }: HTMLAttributes<HTMLDivElement>) => {
 
 const Header = ({ children }: PropsWithChildren) => {
   const Component = typeof children === 'string' ? 'p' : 'div';
-  return <Component className="flex-grow p-2">{children}</Component>;
+  return <Component className={cn('p-4 md:p-6', 'flex-grow')}>{children}</Component>;
 };
 
 const Footer = ({ className, submitBtn, cancelBtn, ...props }: FooterProps) => {
   return (
-    <div {...props} className={cn('flex justify-end gap-2 flex-wrap', className)}>
+    <div {...props} className={cn('flex justify-end gap-2 md:gap-4 flex-wrap', className)}>
       {cancelBtn && (
         <Button variant="secondary" onClick={cancelBtn.onClick}>
           {cancelBtn.label}

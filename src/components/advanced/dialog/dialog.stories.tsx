@@ -37,7 +37,7 @@ const meta: Meta<Args> = {
 
 const Render = ({ type, ...args }: Args) => {
   const t = useTranslations('storybook.advanced.dialog');
-  const { setIsOpen, dialogRef } = useDialog({ initialIsOpen: false, type });
+  const { setIsOpen, dialogRef } = useDialog({ initialIsOpen: true, type });
 
   useEffect(() => () => dialogRef.current?.close(), [type, dialogRef]);
 
