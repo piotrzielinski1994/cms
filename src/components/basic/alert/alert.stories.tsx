@@ -30,6 +30,9 @@ const Render = ({ children, ...args }: Args) => {
       <AlertComponent type="success">{t('success')}</AlertComponent>
       <AlertComponent type="warn">{t('warn')}</AlertComponent>
       <AlertComponent type="error">{t('error')}</AlertComponent>
+      <AlertComponent type="info" onClose={() => undefined}>
+        {t('closeButton')}
+      </AlertComponent>
     </div>
   );
 };

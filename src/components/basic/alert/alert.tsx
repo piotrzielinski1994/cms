@@ -1,17 +1,25 @@
 import { cn } from '@/utils/tailwind';
-import { AlertTriangle, CheckCircle, Info, XCircle } from 'lucide-react';
+import { AlertTriangle, CheckCircle, Info, X, XCircle } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { JSX, PropsWithChildren } from 'react';
 
 type AlertType = 'success' | 'info' | 'warn' | 'error';
 type AlertProps = PropsWithChildren & {
   type?: AlertType;
+  onClose?: () => void;
 };
 
-const Alert = ({ type = 'info', children }: AlertProps) => {
+const Alert = ({ type = 'info', onClose, children }: AlertProps) => {
+  const t = useTranslations('frontend');
   return (
     <div role="alert" className={cn('p-2', 'flex gap-2 flex-wrap', colorMap[type])}>
       {iconMap[type]}
-      <div>{children}</div>
+      <div className="flex-grow">{children}</div>
+      {onClose && (
+        <button type="button" className="w-[1lh] h-[1lh]" aria-label={t('close')} onClick={onClose}>
+          <X />
+        </button>
+      )}
     </div>
   );
 };

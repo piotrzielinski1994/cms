@@ -312,6 +312,7 @@ const pl = {
         success: 'Sukces',
         warn: 'Ostrzeżenie',
         error: 'Błąd',
+        closeButton: 'Z przyciskiem "zamknij"',
       },
       badge: 'Etykieta',
       icons: {

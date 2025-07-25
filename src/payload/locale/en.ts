@@ -307,6 +307,7 @@ const en = {
         success: 'Success',
         warn: 'Warning',
         error: 'Error',
+        closeButton: 'With "close" button',
       },
       badge: 'Badge',
       icons: {
