@@ -310,6 +310,11 @@ const pl = {
         disabled: 'Zablokowany',
         secondary: 'Drugorzędny',
       },
+      table: {
+        header: 'Nagłówek',
+        footer: 'Stopka',
+        cell: 'Komórka',
+      },
       tooltip: 'Podpowiedź',
       alert: {
         info: 'Informacja',

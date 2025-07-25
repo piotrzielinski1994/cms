@@ -305,6 +305,11 @@ const en = {
         disabled: 'Disabled',
         secondary: 'Secondary',
       },
+      table: {
+        header: 'Header',
+        footer: 'Footer',
+        cell: 'Cell',
+      },
       tooltip: 'Tooltip',
       alert: {
         info: 'Information',
