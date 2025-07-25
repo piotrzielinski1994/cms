@@ -295,6 +295,10 @@ const en = {
           option: 'Option',
         },
         dropzoneInput: 'Dropzone Input',
+        fileInput: {
+          label: 'File Input',
+          placeholder: 'Add a file',
+        },
       },
       button: {
         default: 'Button',

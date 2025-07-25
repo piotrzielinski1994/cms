@@ -300,6 +300,10 @@ const pl = {
           option: 'Opcja',
         },
         dropzoneInput: 'Pole Wyboru Pliku',
+        fileInput: {
+          label: 'Pole Pliku',
+          placeholder: 'Dodaj plik',
+        },
       },
       button: {
         default: 'Przycisk',
