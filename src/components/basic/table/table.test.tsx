@@ -27,4 +27,66 @@ describe('Table', () => {
     const { container } = render(<Table {...defaultProps} />);
     expect(container).toMatchSnapshot();
   });
+
+  describe('Inconsistent columns length handling', () => {
+    it('should limit footer columns to header count', () => {
+      const redundantFooterColumn = 'Redundant footer column';
+      const { getAllByRole, queryByText } = render(
+        <Table {...defaultProps} footer={[...defaultProps.footer, redundantFooterColumn]} />,
+      );
+
+      const rows = getAllByRole('row');
+
+      rows.forEach((row) => {
+        expect(row.querySelectorAll('td').length).toBe(defaultProps.header.length);
+      });
+
+      expect(queryByText(redundantFooterColumn)).toBeNull();
+    });
+
+    it('should fill missing footer columns to match header count', () => {
+      const { getAllByRole } = render(
+        <Table {...defaultProps} footer={[defaultProps.footer[0]]} />,
+      );
+
+      const rows = getAllByRole('row');
+
+      rows.forEach((row) => {
+        expect(row.querySelectorAll('td').length).toBe(defaultProps.header.length);
+      });
+    });
+
+    it('should limit body columns to header count', () => {
+      const redundantBodyColumn = 'Redundant body column';
+      const { getAllByRole, queryByText } = render(
+        <Table
+          {...defaultProps}
+          body={defaultProps.body.map((columns) => [...columns, redundantBodyColumn])}
+        />,
+      );
+
+      const rows = getAllByRole('row');
+
+      rows.forEach((row) => {
+        expect(row.querySelectorAll('td').length).toBe(defaultProps.header.length);
+      });
+
+      expect(queryByText(redundantBodyColumn)).toBeNull();
+    });
+
+    it('should fill missing body columns to match header count', () => {
+      const { getAllByRole } = render(
+        <Table
+          {...defaultProps}
+          body={defaultProps.body.map(([_firstCol, ...restColumns]) => restColumns)}
+        />,
+      );
+
+      const rows = getAllByRole('row');
+
+      rows.forEach((row) => {
+        expect(row.querySelectorAll('td').length).toBe(defaultProps.header.length);
+      });
+    });
+  });
 });

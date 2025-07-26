@@ -7,6 +7,8 @@ type TableProps = HTMLAttributes<HTMLTableElement> & {
   footer?: ReactNode[];
 };
 
+// We always map through header columns in case body or footer are of different length
+// Static tuple declarations won't work as we always .map before passing props -> loosing tuple
 const Table = ({ header, body, footer = [], ...props }: TableProps) => {
   const hasEvenElements = body.length % 2 === 0;
   return (
@@ -25,7 +27,8 @@ const Table = ({ header, body, footer = [], ...props }: TableProps) => {
       <tbody>
         {body.map((row, index) => {
           const isEven = index % 2 === 0;
-          const cells = row.map((cell, index) => {
+          const cells = header.map((_, index) => {
+            const cell = row[index];
             return (
               <td key={index} className="px-4 py-2 md:px-6 md:py-4">
                 {cell}
@@ -53,7 +56,8 @@ const Table = ({ header, body, footer = [], ...props }: TableProps) => {
               'bg-background1': !hasEvenElements,
             })}
           >
-            {footer.map((cell, index) => {
+            {header.map((_, index) => {
+              const cell = footer[index];
               return (
                 <td key={index} className="px-4 py-2 md:px-6 md:py-4">
                   {cell}
