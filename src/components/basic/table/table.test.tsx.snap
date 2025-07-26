@@ -2,152 +2,156 @@
 
 exports[`Table > should match the snapshot 1`] = `
 <div>
-  <table
-    class="w-full"
+  <div
+    class="w-full overflow-x-auto"
   >
-    <thead
-      class="font-semibold"
+    <table
+      class="w-full"
     >
-      <tr
-        class="bg-primary text-primary-foreground"
+      <thead
+        class="font-semibold"
       >
-        <td
-          class="px-4 py-2 md:px-6 md:py-4"
+        <tr
+          class="bg-primary text-primary-foreground"
         >
-          Header 1
-        </td>
-        <td
-          class="px-4 py-2 md:px-6 md:py-4"
+          <td
+            class="px-4 py-2 md:px-6 md:py-4"
+          >
+            Header 1
+          </td>
+          <td
+            class="px-4 py-2 md:px-6 md:py-4"
+          >
+            Header 2
+          </td>
+          <td
+            class="px-4 py-2 md:px-6 md:py-4"
+          >
+            Header 3
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          class="bg-background"
         >
-          Header 2
-        </td>
-        <td
-          class="px-4 py-2 md:px-6 md:py-4"
+          <td
+            class="px-4 py-2 md:px-6 md:py-4"
+          >
+            Cell 1
+          </td>
+          <td
+            class="px-4 py-2 md:px-6 md:py-4"
+          >
+            Cell 2
+          </td>
+          <td
+            class="px-4 py-2 md:px-6 md:py-4"
+          >
+            Cell 3
+          </td>
+        </tr>
+        <tr
+          class="bg-background1"
         >
-          Header 3
-        </td>
-      </tr>
-    </thead>
-    <tbody>
-      <tr
-        class="bg-background"
+          <td
+            class="px-4 py-2 md:px-6 md:py-4"
+          >
+            Cell 4
+          </td>
+          <td
+            class="px-4 py-2 md:px-6 md:py-4"
+          >
+            Cell 5
+          </td>
+          <td
+            class="px-4 py-2 md:px-6 md:py-4"
+          >
+            Cell 6
+          </td>
+        </tr>
+        <tr
+          class="bg-background"
+        >
+          <td
+            class="px-4 py-2 md:px-6 md:py-4"
+          >
+            Cell 7
+          </td>
+          <td
+            class="px-4 py-2 md:px-6 md:py-4"
+          >
+            Cell 8
+          </td>
+          <td
+            class="px-4 py-2 md:px-6 md:py-4"
+          >
+            Cell 9
+          </td>
+        </tr>
+        <tr
+          class="bg-background1"
+        >
+          <td
+            class="px-4 py-2 md:px-6 md:py-4"
+          >
+            Cell 10
+          </td>
+          <td
+            class="px-4 py-2 md:px-6 md:py-4"
+          >
+            Cell 11
+          </td>
+          <td
+            class="px-4 py-2 md:px-6 md:py-4"
+          >
+            Cell 12
+          </td>
+        </tr>
+        <tr
+          class="bg-background"
+        >
+          <td
+            class="px-4 py-2 md:px-6 md:py-4"
+          >
+            Cell 13
+          </td>
+          <td
+            class="px-4 py-2 md:px-6 md:py-4"
+          >
+            Cell 14
+          </td>
+          <td
+            class="px-4 py-2 md:px-6 md:py-4"
+          >
+            Cell 15
+          </td>
+        </tr>
+      </tbody>
+      <tfoot
+        class="font-semibold"
       >
-        <td
-          class="px-4 py-2 md:px-6 md:py-4"
+        <tr
+          class="bg-background1"
         >
-          Cell 1
-        </td>
-        <td
-          class="px-4 py-2 md:px-6 md:py-4"
-        >
-          Cell 2
-        </td>
-        <td
-          class="px-4 py-2 md:px-6 md:py-4"
-        >
-          Cell 3
-        </td>
-      </tr>
-      <tr
-        class="bg-background1"
-      >
-        <td
-          class="px-4 py-2 md:px-6 md:py-4"
-        >
-          Cell 4
-        </td>
-        <td
-          class="px-4 py-2 md:px-6 md:py-4"
-        >
-          Cell 5
-        </td>
-        <td
-          class="px-4 py-2 md:px-6 md:py-4"
-        >
-          Cell 6
-        </td>
-      </tr>
-      <tr
-        class="bg-background"
-      >
-        <td
-          class="px-4 py-2 md:px-6 md:py-4"
-        >
-          Cell 7
-        </td>
-        <td
-          class="px-4 py-2 md:px-6 md:py-4"
-        >
-          Cell 8
-        </td>
-        <td
-          class="px-4 py-2 md:px-6 md:py-4"
-        >
-          Cell 9
-        </td>
-      </tr>
-      <tr
-        class="bg-background1"
-      >
-        <td
-          class="px-4 py-2 md:px-6 md:py-4"
-        >
-          Cell 10
-        </td>
-        <td
-          class="px-4 py-2 md:px-6 md:py-4"
-        >
-          Cell 11
-        </td>
-        <td
-          class="px-4 py-2 md:px-6 md:py-4"
-        >
-          Cell 12
-        </td>
-      </tr>
-      <tr
-        class="bg-background"
-      >
-        <td
-          class="px-4 py-2 md:px-6 md:py-4"
-        >
-          Cell 13
-        </td>
-        <td
-          class="px-4 py-2 md:px-6 md:py-4"
-        >
-          Cell 14
-        </td>
-        <td
-          class="px-4 py-2 md:px-6 md:py-4"
-        >
-          Cell 15
-        </td>
-      </tr>
-    </tbody>
-    <tfoot
-      class="font-semibold"
-    >
-      <tr
-        class="bg-background1"
-      >
-        <td
-          class="px-4 py-2 md:px-6 md:py-4"
-        >
-          Footer 1
-        </td>
-        <td
-          class="px-4 py-2 md:px-6 md:py-4"
-        >
-          Footer 2
-        </td>
-        <td
-          class="px-4 py-2 md:px-6 md:py-4"
-        >
-          Footer 3
-        </td>
-      </tr>
-    </tfoot>
-  </table>
+          <td
+            class="px-4 py-2 md:px-6 md:py-4"
+          >
+            Footer 1
+          </td>
+          <td
+            class="px-4 py-2 md:px-6 md:py-4"
+          >
+            Footer 2
+          </td>
+          <td
+            class="px-4 py-2 md:px-6 md:py-4"
+          >
+            Footer 3
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
 </div>
 `;
