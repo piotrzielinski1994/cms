@@ -3,7 +3,7 @@
 exports[`Testimonial > should match the snapshot 1`] = `
 <div>
   <figure
-    class="grid grid-cols-[auto_1fr] gap-4 bg-background1"
+    class="p-4 md:p-6 grid grid-cols-[auto_1fr] gap-4 bg-background1"
   >
     <blockquote
       class="col-span-2 italic"

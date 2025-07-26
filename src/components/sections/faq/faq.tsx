@@ -18,7 +18,7 @@ const Faq = ({ heading, subheading, items, ...props }: FaqProps) => {
 
   return (
     <Section {...props}>
-      <Container className="grid gap-16">
+      <Container className="grid gap-8">
         {hasHeader && (
           <header className="text-center">
             {heading && <h2 className={cn('text-4xl font-semibold')}>{heading}</h2>}

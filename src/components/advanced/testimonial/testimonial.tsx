@@ -10,7 +10,7 @@ type TestimonialProps = {
 
 const Testimonial = (props: TestimonialProps) => {
   return (
-    <figure className={cn('grid grid-cols-[auto_1fr] gap-4', 'bg-background1')}>
+    <figure className={cn('p-4 md:p-6', 'grid grid-cols-[auto_1fr] gap-4', 'bg-background1')}>
       <blockquote className="col-span-2 italic">
         <p>{props.quote}</p>
       </blockquote>
