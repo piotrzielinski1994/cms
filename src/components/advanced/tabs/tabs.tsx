@@ -16,7 +16,7 @@ const Tabs = ({ tabs }: TabsProps) => {
   const { id, getId } = useHtmlId('tabs');
 
   return (
-    <div className="grid gap-2">
+    <div className="grid">
       <div aria-label={t('tabs')} className="flex gap-2">
         {tabs.map((tab, index) => {
           return (
@@ -27,7 +27,7 @@ const Tabs = ({ tabs }: TabsProps) => {
               className={cn(
                 'has-[:checked]:border-b border-foreground',
                 'tw-has-focus:tw-cms-outline',
-                'px-2',
+                'px-4 py-2 md:px-6',
                 'cursor-pointer',
               )}
             >
@@ -50,6 +50,7 @@ const Tabs = ({ tabs }: TabsProps) => {
           id={getId('panel', index)}
           aria-labelledby={getId('tab', index)}
           hidden={index !== activeIndex}
+          className="p-4 md:px-6"
         >
           {tab.content}
         </div>
