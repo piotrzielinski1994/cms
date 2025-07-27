@@ -28,12 +28,15 @@ const meta: Meta<Args> = {
 
 const Render = ({ label, ...args }: Args) => {
   const t = useTranslations('storybook.basic.form');
-  const [fileNames, setFileNames] = useState<string[]>(['file-1.webp', 'file-2.webp']);
+  const [fileNames, setFileNames] = useState<string[]>([
+    t('dropzoneInput.file', { index: 1 }),
+    t('dropzoneInput.file', { index: 2 }),
+  ]);
 
   return (
     <div className="grid gap-2">
       <Form.Group>
-        <Form.Label htmlFor="inpu1">{getFallback(label, t('dropzoneInput'))}</Form.Label>
+        <Form.Label htmlFor="inpu1">{getFallback(label, t('dropzoneInput.label'))}</Form.Label>
         <DropzoneInputComponent
           {...args}
           id="inpu1"

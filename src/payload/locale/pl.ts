@@ -299,7 +299,10 @@ const pl = {
           placeholder: 'Wybierz wartość',
           option: 'Opcja',
         },
-        dropzoneInput: 'Pole Wyboru Pliku',
+        dropzoneInput: {
+          label: 'Pole Wyboru Pliku',
+          file: `plik-{index}.webp`,
+        },
         fileInput: {
           label: 'Pole Pliku',
           placeholder: 'Dodaj plik',

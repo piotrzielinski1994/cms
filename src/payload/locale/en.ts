@@ -294,7 +294,10 @@ const en = {
           placeholder: 'Choose value',
           option: 'Option',
         },
-        dropzoneInput: 'Dropzone Input',
+        dropzoneInput: {
+          label: 'Dropzone Input',
+          file: `file-{index}.webp`,
+        },
         fileInput: {
           label: 'File Input',
           placeholder: 'Add a file',
