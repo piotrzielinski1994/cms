@@ -9,6 +9,7 @@ build
 .vercel
 .storybook
 coverage
+tsconfig.tsbuildinfo
 
 # Environment
 .env
