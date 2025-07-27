@@ -1,8 +1,8 @@
-import { CookiesBanner } from '@/components/advanced/cookies-banner/cookies-banner';
 import { SkipLink } from '@/components/advanced/skip-link/skip-link';
 import { clientEnv } from '@/config/env.client.config';
 import { themes } from '@/config/themes.config';
 import { AdminBar } from '@/payload/_old/components/AdminBar';
+import { CookiesBannerContainer } from '@/payload/blocks/advanced/cookies-banner/cookies-banner.container';
 import { FooterContainer } from '@/payload/blocks/layout/footer.container';
 import { HeaderContainer } from '@/payload/blocks/layout/header.container';
 import { Providers } from '@/providers';
@@ -58,7 +58,7 @@ const Layout = async ({ children, params }: LayoutProps) => {
             {children}
           </main>
           <FooterContainer locale={locale} />
-          {!cookiesConsent && <CookiesBanner locale={locale} />}
+          {!cookiesConsent && <CookiesBannerContainer locale={locale} />}
         </Providers>
       </body>
     </html>
