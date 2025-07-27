@@ -357,6 +357,14 @@ const en = {
         main: 'Main content',
         inputPlaceholder: 'Placeholder',
       },
+      cookiesBanner: {
+        content: `
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Aenean quis diam in leo suscipit scelerisque a sed leo.
+        `,
+        readMore: 'Read More',
+        accept: 'Accept',
+      },
     },
   },
 };

@@ -1,3 +1,4 @@
+import { CookiesConsentProvider } from '@/providers/cookies-consent.provider';
 import { FontScaleProvider } from '@/providers/font-scale.provider';
 import { ThemeProvider } from '@/providers/theme.provider';
 import { ReactRenderer } from '@storybook/nextjs';
@@ -24,7 +25,9 @@ const withProviders: DecoratorFunction<ReactRenderer> = (Story, context) => {
       <NextIntlClientProvider locale={locale} messages={translations[locale]}>
         <ThemeProvider theme={theme} colorPreference={getThemeConfig(theme).colorPreference}>
           <FontScaleProvider fontScale={fontScale}>
-            <Story />
+            <CookiesConsentProvider cookiesConsent={false}>
+              <Story />
+            </CookiesConsentProvider>
           </FontScaleProvider>
         </ThemeProvider>
       </NextIntlClientProvider>
