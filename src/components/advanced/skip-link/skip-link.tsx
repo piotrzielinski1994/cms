@@ -11,7 +11,6 @@ const SkipLink = forwardRef<HTMLAnchorElement>((_, ref) => {
     <ButtonLink
       ref={ref}
       href="#main"
-      aria-hidden={true}
       onFocus={(e) => e.currentTarget.setAttribute('aria-hidden', 'false')}
       onBlur={(e) => e.currentTarget.setAttribute('aria-hidden', 'true')}
       className={cn(
