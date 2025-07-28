@@ -3,7 +3,6 @@
 exports[`SkipLink > should match the snapshot 1`] = `
 <div>
   <a
-    aria-hidden="true"
     class="px-6 py-3 border-2 border-primary hover:border-primary/90 font-semibold whitespace-nowrap disabled:cursor-not-allowed focus-visible:tw-cms-outline bg-primary hover:bg-primary/90 text-primary-foreground disabled:border-primary/0 disabled:bg-primary/50 fixed left-4 z-skipLink -translate-y-full focus:translate-y-4 transition-transform w-fit"
     href="#main"
   >
