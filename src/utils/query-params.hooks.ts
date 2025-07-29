@@ -66,7 +66,7 @@ const useQueryParams = <T extends Record<string, UseQueryParamsArgs<unknown>>>(
     const newSearchParams = updated.toString();
     if (newSearchParams === stringifiedParams) return;
 
-    router.replace(`?${newSearchParams}${window.location.hash}`);
+    router.replace(`?${newSearchParams}${window.location.hash}`, { scroll: false });
   }, [optimisticState, config, router, stringifiedParams]);
 
   const setValues = (newValues: Partial<{ [K in keyof T]: T[K]['defaultValue'] }>) => {
