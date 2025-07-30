@@ -3,6 +3,7 @@
 import { Image } from '@/components/basic/image/image';
 import { optional } from '@/utils/optional';
 import { cn } from '@/utils/tailwind';
+import { X } from 'lucide-react';
 import { useEffect, useId, useRef, useState } from 'react';
 
 type GalleryProps = {
@@ -35,8 +36,24 @@ const Gallery = ({ images, className, ...props }: GalleryProps) => {
           if (e.code !== 'Escape') return;
           setActiveIndex(undefined);
         }}
+        className={cn('fixed inset-0', 'w-full h-full max-w-none max-h-none p-4')}
       >
-        {activeImage && <Image src={activeImage.src} alt={activeImage.alt} />}
+        {activeImage && (
+          <>
+            <button
+              type="button"
+              className="absolute top-2 right-2 p-2 cursor-pointer"
+              onClick={() => setActiveIndex(undefined)}
+            >
+              <X />
+            </button>
+            <Image
+              src={activeImage.src}
+              alt={activeImage.alt}
+              className={cn('h-full w-full', 'object-contain')}
+            />
+          </>
+        )}
       </dialog>
       <ul className="flex justify-center gap-4 flex-wrap">
         {images.map(({ src, alt }, index) => {

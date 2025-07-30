@@ -1,3 +1,4 @@
+import { cn } from '@/utils/tailwind';
 import { HTMLAttributes, useEffect, useRef } from 'react';
 
 type DrawerProps = HTMLAttributes<HTMLDivElement> & {
@@ -12,22 +13,23 @@ const Drawer = ({ isOpen, onClose, children, ...props }: DrawerProps) => {
     if (isOpen) ref.current?.focus();
   }, [isOpen]);
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    if (e.key === 'Escape') {
-      onClose();
-      e.stopPropagation();
-    }
-  };
-
   return (
     <div
       {...props}
       ref={ref}
       tabIndex={-1}
-      onKeyDown={handleKeyDown}
-      className={`fixed inset-y-0 right-0 w-64 bg-white shadow-lg z-50 p-4 transition-transform transform outline-none ${
-        isOpen ? 'translate-x-0' : 'translate-x-full'
-      }`}
+      onKeyDown={(e) => {
+        if (e.key !== 'Escape') return;
+        e.stopPropagation();
+        onClose();
+      }}
+      className={cn(
+        'fixed right-0 inset-y-0 z-50',
+        'w-64 p-4',
+        'bg-foreground text-background shadow-lg',
+        `transform translate-x-full transition-transform`,
+        { 'translate-x-0': isOpen },
+      )}
     >
       {children}
     </div>
