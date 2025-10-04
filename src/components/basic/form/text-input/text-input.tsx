@@ -20,16 +20,15 @@ const inputClassNames = {
 type TextInputProps = React.ComponentProps<typeof TextInputBase.Input> & {
   label?: React.ReactNode;
   error?: string;
-  isValid?: boolean;
 };
 
 const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
-  ({ label, error, isValid, className, ...props }, ref) => (
+  ({ label, error, className, ...props }, ref) => (
     <TextInputBase className={inputClassNames.root}>
       {label && <label>{label}</label>}
       <TextInputBase.Input
         ref={ref}
-        className={cn(inputClassNames.input({ isValid: isValid ?? !error }), className)}
+        className={cn(inputClassNames.input({ isValid: !error }), className)}
         {...props}
       />
       <TextInputBase.Error className={inputClassNames.error}>{error}</TextInputBase.Error>
@@ -46,9 +45,7 @@ type TextInputContainerProps<T extends FieldValues> = Omit<TextInputProps, 'name
 const TextInputContainer = <T extends FieldValues>(props: TextInputContainerProps<T>) => {
   const { control, name, ...rest } = props;
   const { field, fieldState } = useController({ control, name });
-  return (
-    <TextInput {...rest} {...field} error={fieldState.error?.message} isValid={!fieldState.error} />
-  );
+  return <TextInput {...rest} {...field} error={fieldState.error?.message} />;
 };
 
 export { inputClassNames, TextInput, TextInputContainer };
