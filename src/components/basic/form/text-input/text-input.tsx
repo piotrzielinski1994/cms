@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Control, FieldValues, Path, useController } from 'react-hook-form';
 import { TextInputBase } from './text-input.base';
 
-export const inputClassNames = {
+const inputClassNames = {
   input: ({ isValid }: { isValid: boolean }) =>
     cn(
       'p-2 border border-solid border-current bg-input',
@@ -11,9 +11,7 @@ export const inputClassNames = {
       '[&:enabled]:hover:border-foreground/90 [&:enabled]:hover:ring-foreground/90',
       'disabled:cursor-not-allowed disabled:text-foreground/50',
       'outline-none ring-inset focus-within:ring-1 ring-current',
-      {
-        '[&:not(:focus)]:text-red-500': !isValid,
-      },
+      { '[&:not(:focus)]:text-red-500': !isValid },
     ),
   root: cn('flex flex-col gap-2'),
   error: cn('min-h-[1em] text-sm text-red-500 leading-none'),
@@ -25,7 +23,7 @@ type TextInputProps = React.ComponentProps<typeof TextInputBase.Input> & {
   isValid?: boolean;
 };
 
-export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
+const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
   ({ label, error, isValid, className, ...props }, ref) => (
     <TextInputBase className={inputClassNames.root}>
       {label && <label>{label}</label>}
@@ -45,13 +43,12 @@ type TextInputContainerProps<T extends FieldValues> = Omit<TextInputProps, 'name
   name: Path<T>;
 };
 
-export function TextInputContainer<T extends FieldValues>({
-  control,
-  name,
-  ...rest
-}: TextInputContainerProps<T>) {
+const TextInputContainer = <T extends FieldValues>(props: TextInputContainerProps<T>) => {
+  const { control, name, ...rest } = props;
   const { field, fieldState } = useController({ control, name });
   return (
     <TextInput {...rest} {...field} error={fieldState.error?.message} isValid={!fieldState.error} />
   );
-}
+};
+
+export { inputClassNames, TextInput, TextInputContainer };
