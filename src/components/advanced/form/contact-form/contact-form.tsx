@@ -12,7 +12,7 @@ import { ComponentProps, useId } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-type ContactFormProps = ComponentProps<typeof Form.Root> & {
+type ContactFormProps = ComponentProps<typeof Form> & {
   onSubmit: (data: z.infer<typeof schema>) => void;
 };
 
@@ -30,7 +30,7 @@ const ContactForm = ({ onSubmit, className, ...props }: ContactFormProps) => {
   });
 
   return (
-    <Form.Root
+    <Form
       {...props}
       onSubmit={form.handleSubmit(onSubmit)}
       className={cn('grid gap-2', className)}
@@ -51,7 +51,7 @@ const ContactForm = ({ onSubmit, className, ...props }: ContactFormProps) => {
         <TextAreaContainer id={`${id}__message`} name="message" control={form.control} />
       </Form.Group>
       <Button type="submit">{t('submit')}</Button>
-    </Form.Root>
+    </Form>
   );
 };
 
