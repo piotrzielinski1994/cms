@@ -1,7 +1,7 @@
 import { getThemeConfig, Theme, ThemeConfig, themes } from '@/config/themes.config';
 import { ThemeContext } from '@/providers/theme.provider';
+import cookies from '@/utils/cookies';
 import { useContext } from 'react';
-import { setCookie } from 'typescript-cookie';
 import { createStore, useStore } from 'zustand';
 import { computed } from 'zustand-middleware-computed-state';
 
@@ -27,7 +27,7 @@ const createThemeStore = (params: Pick<ThemeStore, 'theme' | 'colorPreference'>)
         const themeConfig = theme === 'system' ? themes[colorPreference] : themes[theme];
 
         if (typeof window !== 'undefined') {
-          setCookie(THEME_STORAGE_KEY, theme);
+          cookies.setPermament(THEME_STORAGE_KEY, theme);
         }
 
         return {
@@ -40,8 +40,8 @@ const createThemeStore = (params: Pick<ThemeStore, 'theme' | 'colorPreference'>)
             const themeToSet: Theme = theme !== 'system' ? theme : colorPreference;
             updateDom(themeToSet);
             updateColorScheme(theme);
-            setCookie(THEME_STORAGE_KEY, theme);
-            setCookie(COLOR_PREFERENCE_STORAGE_KEY, colorPreference);
+            cookies.setPermament(THEME_STORAGE_KEY, theme);
+            cookies.setPermament(COLOR_PREFERENCE_STORAGE_KEY, colorPreference);
           },
         };
       },
@@ -72,7 +72,7 @@ const updateColorScheme = (theme: Theme) => {
 };
 
 const updateColorPreferenceCookie = (colorPreference: ThemeConfig['colorPreference']) => {
-  setCookie(COLOR_PREFERENCE_STORAGE_KEY, colorPreference);
+  cookies.setPermament(COLOR_PREFERENCE_STORAGE_KEY, colorPreference);
 };
 
 export {

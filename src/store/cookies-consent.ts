@@ -1,6 +1,6 @@
 import { CookiesConsentContext } from '@/providers/cookies-consent.provider';
+import cookies from '@/utils/cookies';
 import { useContext } from 'react';
-import { setCookie } from 'typescript-cookie';
 import { createStore, useStore } from 'zustand';
 import { persist } from 'zustand/middleware';
 
@@ -21,7 +21,7 @@ const createCookiesConsentStore = (cookiesConsent: CookiesConsentStore['isAllowe
       (set) => ({
         isAllowed: cookiesConsent,
         allow: () => {
-          setCookie(COOKIES_CONSENT_STORAGE_KEY, true);
+          cookies.setPermament(COOKIES_CONSENT_STORAGE_KEY, true);
           set({ isAllowed: true });
         },
       }),
@@ -29,7 +29,7 @@ const createCookiesConsentStore = (cookiesConsent: CookiesConsentStore['isAllowe
         name: COOKIES_CONSENT_STORAGE_KEY,
         onRehydrateStorage: () => (state) => {
           if (!state) return;
-          setCookie(COOKIES_CONSENT_STORAGE_KEY, state.isAllowed);
+          cookies.setPermament(COOKIES_CONSENT_STORAGE_KEY, state.isAllowed);
         },
       },
     ),

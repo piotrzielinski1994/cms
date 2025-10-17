@@ -1,7 +1,7 @@
 import { fontScales } from '@/config/font-scales.config';
 import { FontScaleContext } from '@/providers/font-scale.provider';
+import cookies from '@/utils/cookies';
 import { useContext } from 'react';
-import { setCookie } from 'typescript-cookie';
 import { createStore, useStore } from 'zustand';
 import { persist } from 'zustand/middleware';
 
@@ -26,7 +26,7 @@ const createFontScaleStore = (fontScale: FontScaleStore['scale']) => {
         scale: fontScale,
         setScale: (scale) => {
           updateDom(scale);
-          setCookie(FONT_SCALE_STORAGE_KEY, scale);
+          cookies.setPermament(FONT_SCALE_STORAGE_KEY, scale);
           set({ scale });
         },
       }),
@@ -35,7 +35,7 @@ const createFontScaleStore = (fontScale: FontScaleStore['scale']) => {
         onRehydrateStorage: () => (state) => {
           if (!state) return;
           updateDom(state.scale);
-          setCookie(FONT_SCALE_STORAGE_KEY, state.scale);
+          cookies.setPermament(FONT_SCALE_STORAGE_KEY, state.scale);
         },
       },
     ),
