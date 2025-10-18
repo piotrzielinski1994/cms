@@ -1,6 +1,6 @@
 'use client';
 
-import { fontScales } from '@/config/font-scales.config';
+import { fontScales } from '@/config/store/font-scales.config';
 import FontScalerSvg from '@/icons/font-scaler.svg';
 import { useFontScaleStore } from '@/store/font-scale';
 import { cn } from '@/utils/tailwind';

@@ -1,4 +1,4 @@
-import { defaultContentLocale } from '@/config/locales.config';
+import { defaultContentLocale } from '@/config/store/locales.config';
 import { Config, Page } from '@/payload.types';
 import { Payload } from 'payload';
 import { toPairs } from 'ramda';

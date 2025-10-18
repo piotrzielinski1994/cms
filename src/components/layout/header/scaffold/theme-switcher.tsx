@@ -1,6 +1,6 @@
 'use client';
 
-import { getThemeConfig, ThemeConfig, themes } from '@/config/themes.config';
+import { getThemeConfig, ThemeConfig, themes } from '@/config/store/themes.config';
 import { useThemeStore } from '@/store/theme';
 import { cn } from '@/utils/tailwind';
 import * as SelectPrimitive from '@radix-ui/react-select';

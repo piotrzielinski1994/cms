@@ -1,4 +1,4 @@
-import { AdminTranslations, translations } from '@/config/locales.config';
+import { AdminTranslations, translations } from '@/config/store/locales.config';
 import { link } from '@/payload/fields/link';
 import { isCollectionLocale } from '@/utils/payload';
 import { revalidateTag } from 'next/cache';

@@ -1,4 +1,4 @@
-import { defaultContentLocale } from '@/config/locales.config';
+import { defaultContentLocale } from '@/config/store/locales.config';
 import { Config } from '@/payload.types';
 import { Options } from 'node_modules/payload/dist/globals/operations/local/update';
 import { DataFromGlobalSlug, GlobalSlug, Payload, SelectType } from 'payload';

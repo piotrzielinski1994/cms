@@ -1,4 +1,4 @@
-import { useHtmlId } from '@/hooks/html.hooks';
+import { useHtmlId } from '@/utils/html/html.hooks';
 import { cn } from '@/utils/tailwind';
 import { useTranslations } from 'next-intl';
 import { ReactNode, useState } from 'react';

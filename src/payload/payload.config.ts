@@ -6,7 +6,7 @@ import {
   defaultAdminLocale,
   defaultContentLocale,
   translations,
-} from '@/config/locales.config';
+} from '@/config/store/locales.config';
 import { collections } from '@/payload/collections';
 import { defaultLexical } from '@/payload/fields/defaultLexical';
 import { cookiesBanner } from '@/payload/globals/cookies-banner/cookies-banner';

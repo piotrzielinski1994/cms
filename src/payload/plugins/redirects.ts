@@ -1,4 +1,4 @@
-import { AdminTranslations, translations } from '@/config/locales.config';
+import { AdminTranslations, translations } from '@/config/store/locales.config';
 import { revalidateRedirects } from '@/payload/hooks/revalidateRedirects';
 import { redirectsPlugin } from '@payloadcms/plugin-redirects';
 

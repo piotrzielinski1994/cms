@@ -1,6 +1,6 @@
 import type { CollectionConfig } from 'payload';
 
-import { AdminTranslations } from '@/config/locales.config';
+import { AdminTranslations } from '@/config/store/locales.config';
 import { admin, adminOrSelf } from '@/payload/utils/access';
 
 const Users: CollectionConfig = {

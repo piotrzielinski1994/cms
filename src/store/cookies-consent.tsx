@@ -1,6 +1,6 @@
 'use client';
 
-import { CookiesConsentConstants } from '@/config/cookies-consent.config';
+import { CookiesConsentConstants } from '@/config/store/cookies-consent.config';
 import cookies from '@/utils/cookies';
 import { createStore } from '@/utils/store';
 import { PropsWithChildren, useEffect } from 'react';

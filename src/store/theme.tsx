@@ -1,6 +1,6 @@
 'use client';
 
-import { getThemeConfig, Theme, ThemeConfig, ThemeConstants } from '@/config/themes.config';
+import { getThemeConfig, Theme, ThemeConfig, ThemeConstants } from '@/config/store/themes.config';
 import cookies from '@/utils/cookies';
 import { createStore } from '@/utils/store';
 import { PropsWithChildren, useEffect } from 'react';

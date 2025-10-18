@@ -1,6 +1,6 @@
-import { CookiesConsentConstants } from '@/config/cookies-consent.config';
-import { FontScale, FontScaleConstants } from '@/config/font-scales.config';
-import { Theme, ThemeConfig, ThemeConstants } from '@/config/themes.config';
+import { CookiesConsentConstants } from '@/config/store/cookies-consent.config';
+import { FontScale, FontScaleConstants } from '@/config/store/font-scales.config';
+import { Theme, ThemeConfig, ThemeConstants } from '@/config/store/themes.config';
 import { ReadonlyHeaders } from 'next/dist/server/web/spec-extension/adapters/headers';
 import { ReadonlyRequestCookies } from 'next/dist/server/web/spec-extension/adapters/request-cookies';
 import { cookies, headers } from 'next/headers';

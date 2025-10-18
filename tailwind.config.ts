@@ -2,8 +2,8 @@ import { fromPairs, toPairs } from 'ramda';
 import type { Config } from 'tailwindcss';
 import resolveConfig from 'tailwindcss/resolveConfig';
 import { CSSRuleObject } from 'tailwindcss/types/config';
-import { fontScales } from './src/config/font-scales.config';
-import { themes } from './src/config/themes.config';
+import { fontScales } from './src/config/store/font-scales.config';
+import { themes } from './src/config/store/themes.config';
 
 const normalizedThemes = fromPairs(
   toPairs(themes).map(([key, { colorPreference: _, ...value }]) => [key, value]),

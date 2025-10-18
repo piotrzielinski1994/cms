@@ -1,3 +1,4 @@
+import { getThemeConfig } from '@/config/store/themes.config';
 import { StoryContext } from '@/config/storybook/components';
 import {
   DEFAULT_VALUE,
@@ -5,7 +6,6 @@ import {
   imagesPerColorPref,
   THUMBNAIL_ID,
 } from '@/config/storybook/utils';
-import { getThemeConfig } from '@/config/themes.config';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useTranslations } from 'next-intl';
 import { type ComponentProps } from 'react';

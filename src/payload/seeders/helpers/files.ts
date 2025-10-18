@@ -1,5 +1,5 @@
 import { clientEnv } from '@/config/env.client.config';
-import { defaultContentLocale } from '@/config/locales.config';
+import { defaultContentLocale } from '@/config/store/locales.config';
 import { Config, Image } from '@/payload.types';
 import configPromise from '@payload-config';
 import { StaticImageData } from 'next/image';

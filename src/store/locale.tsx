@@ -1,4 +1,4 @@
-import { contentLocales, defaultContentLocale, translations } from '@/config/locales.config';
+import { contentLocales, defaultContentLocale, translations } from '@/config/store/locales.config';
 import { Locale, NextIntlClientProvider, useLocale } from 'next-intl';
 import { PropsWithChildren } from 'react';
 

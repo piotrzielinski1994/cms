@@ -1,12 +1,10 @@
-import { CookiesConsentProvider } from '@/store/cookies-consent';
-import { FontScaleProvider } from '@/store/font-scale';
-import { LocaleProvider } from '@/store/locale';
-import { ThemeProvider } from '@/store/theme';
+import { FontScaleConstants } from '@/config/store/font-scales.config';
+import { LocalesConstants } from '@/config/store/locales.config';
+import { getThemeConfig, ThemeConstants } from '@/config/store/themes.config';
+import { Providers } from '@/providers';
 import { ReactRenderer } from '@storybook/nextjs';
-import { useEffect } from 'react';
+import { ComponentProps, useEffect } from 'react';
 import { DecoratorFunction } from 'storybook/internal/csf';
-import { FontScaleConstants } from '../font-scales.config';
-import { getThemeConfig, ThemeConstants } from '../themes.config';
 import preview from './preview';
 
 type GlobalTypes = typeof preview.globalTypes;
@@ -19,18 +17,20 @@ type StoryContext = {
 const withProviders: DecoratorFunction<ReactRenderer> = (Story, context) => {
   const globals = context.globals as StoryContext['globals'];
   const { locale, theme, scale } = globals;
+  const providersProps: Omit<ComponentProps<typeof Providers>, 'children'> = {
+    locale,
+    scale,
+    theme,
+    colorPreference: getThemeConfig(theme).colorPreference,
+    isAllowed: false,
+  };
+
   return (
     <>
       <DataAttributesSetter {...globals} />
-      <LocaleProvider locale={locale}>
-        <ThemeProvider theme={theme} colorPreference={getThemeConfig(theme).colorPreference}>
-          <FontScaleProvider scale={scale}>
-            <CookiesConsentProvider isAllowed={false}>
-              <Story />
-            </CookiesConsentProvider>
-          </FontScaleProvider>
-        </ThemeProvider>
-      </LocaleProvider>
+      <Providers {...providersProps}>
+        <Story />
+      </Providers>
     </>
   );
 };
@@ -38,7 +38,7 @@ const withProviders: DecoratorFunction<ReactRenderer> = (Story, context) => {
 const DataAttributesSetter = ({ locale, theme, scale }: StoryContext['globals']) => {
   useEffect(() => {
     const themeConfig = getThemeConfig(theme);
-    document.documentElement.setAttribute('data-locale', locale);
+    document.documentElement.setAttribute(LocalesConstants.DOM_KEY, locale);
     document.documentElement.setAttribute(FontScaleConstants.DOM_KEY, scale);
     document.documentElement.setAttribute(ThemeConstants.DOM_KEY, theme);
     document.documentElement.setAttribute(

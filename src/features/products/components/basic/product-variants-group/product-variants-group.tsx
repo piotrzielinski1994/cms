@@ -1,5 +1,5 @@
 import { optional } from '@/utils/optional';
-import { useQueryParams } from '@/utils/query-params.hooks';
+import { useQueryParams } from '@/utils/query-params/query-params.hooks';
 import { cn } from '@/utils/tailwind';
 import { useMemo } from 'react';
 

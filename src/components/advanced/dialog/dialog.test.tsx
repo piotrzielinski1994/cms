@@ -1,4 +1,4 @@
-import { translations } from '@/config/locales.config';
+import { translations } from '@/config/store/locales.config';
 import { withProviders } from '@/utils/tests';
 import { fireEvent, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';

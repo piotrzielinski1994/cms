@@ -1,7 +1,8 @@
 import { SkipLink } from '@/components/advanced/skip-link/skip-link';
 import { clientEnv } from '@/config/env.client.config';
-import { FontScaleConstants } from '@/config/font-scales.config';
-import { ThemeConstants, themes } from '@/config/themes.config';
+import { FontScaleConstants } from '@/config/store/font-scales.config';
+import { LocalesConstants } from '@/config/store/locales.config';
+import { getThemeConfig, ThemeConstants } from '@/config/store/themes.config';
 import { AdminBar } from '@/payload/_old/components/AdminBar';
 import { CookiesBannerContainer } from '@/payload/blocks/advanced/cookies-banner/cookies-banner.container';
 import { FooterContainer } from '@/payload/blocks/layout/footer.container';
@@ -24,10 +25,11 @@ const Layout = async ({ children, params }: LayoutProps) => {
   const { locale } = await params;
   const { isEnabled } = await draftMode();
   const { colorPreference, theme, scale, cookiesConsent } = await getPreferences();
-  const themeColorPreference = theme !== 'system' ? themes[theme].colorPreference : colorPreference;
+  const themeColorPreference = getThemeConfig(theme, colorPreference).colorPreference;
   const htmlProps = {
     suppressHydrationWarning: true,
     lang: locale,
+    [LocalesConstants.DOM_KEY]: locale,
     [FontScaleConstants.DOM_KEY]: scale,
     [ThemeConstants.DOM_KEY]: theme !== 'system' ? theme : colorPreference,
     [ThemeConstants.COLOR_PREFERENCE_DOM_KEY]: themeColorPreference,

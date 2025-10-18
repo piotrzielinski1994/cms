@@ -1,4 +1,4 @@
-import { AdminTranslations } from '@/config/locales.config';
+import { AdminTranslations } from '@/config/store/locales.config';
 import { Block } from 'payload';
 import thumbnail from './faq.webp';
 

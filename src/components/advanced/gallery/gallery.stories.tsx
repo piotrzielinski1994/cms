@@ -2,8 +2,8 @@ import { DEFAULT_VALUE, getFallback, imagesPerColorPref } from '@/config/storybo
 import type { Meta, StoryObj } from '@storybook/react';
 import { type ComponentProps } from 'react';
 
+import { getThemeConfig } from '@/config/store/themes.config';
 import { StoryContext } from '@/config/storybook/components';
-import { getThemeConfig } from '@/config/themes.config';
 import { useTranslations } from 'next-intl';
 import { Gallery as GalleryComponent } from './gallery';
 

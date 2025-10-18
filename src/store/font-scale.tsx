@@ -1,6 +1,6 @@
 'use client';
 
-import { FontScaleConstants, fontScales } from '@/config/font-scales.config';
+import { FontScaleConstants, fontScales } from '@/config/store/font-scales.config';
 import cookies from '@/utils/cookies';
 import { createStore } from '@/utils/store';
 import { PropsWithChildren, useEffect } from 'react';

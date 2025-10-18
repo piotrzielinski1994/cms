@@ -11,11 +11,11 @@ import { pl } from '@payloadcms/translations/languages/pl';
 import { Locale } from 'next-intl';
 import { pick } from 'ramda';
 
-// Types ====================================
-
 type AdminTranslations = TFunction<NestedKeysStripped<typeof customEn> | DefaultTranslationKeys>;
 
-// Variables ====================================
+const LocalesConstants = {
+  DOM_KEY: 'data-locale',
+} as const;
 
 const contentLocales = ['en', 'pl'] satisfies (keyof SupportedLanguages)[];
 const defaultContentLocale = 'en' satisfies Locale;
@@ -33,6 +33,7 @@ export {
   contentLocales,
   defaultAdminLocale,
   defaultContentLocale,
+  LocalesConstants,
   translations,
   type AdminTranslations,
 };

@@ -1,4 +1,4 @@
-import { AdminTranslations, translations } from '@/config/locales.config';
+import { AdminTranslations, translations } from '@/config/store/locales.config';
 import { link } from '@/payload/fields/link';
 import { rebuildTag } from '@/utils/nextjs/rebuild';
 import { isCollectionLocale } from '@/utils/payload';

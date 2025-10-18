@@ -1,4 +1,4 @@
-import { AdminTranslations, translations } from '@/config/locales.config';
+import { AdminTranslations, translations } from '@/config/store/locales.config';
 import { rebuildTag } from '@/utils/nextjs/rebuild';
 import { isCollectionLocale } from '@/utils/payload';
 import type { GlobalConfig } from 'payload';

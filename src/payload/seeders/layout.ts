@@ -1,4 +1,4 @@
-import { contentLocales, defaultContentLocale } from '@/config/locales.config';
+import { contentLocales, defaultContentLocale } from '@/config/store/locales.config';
 import { Config, Header, Page } from '@/payload.types';
 import { DataFromGlobalSlug, GlobalSlug, Payload } from 'payload';
 import { fromPairs } from 'ramda';

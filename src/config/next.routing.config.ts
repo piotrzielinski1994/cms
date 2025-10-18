@@ -1,4 +1,4 @@
-import { contentLocales, defaultContentLocale, translations } from '@/config/locales.config';
+import { contentLocales, defaultContentLocale, translations } from '@/config/store/locales.config';
 import { createNavigation } from 'next-intl/navigation';
 import { defineRouting } from 'next-intl/routing';
 import { getRequestConfig } from 'next-intl/server';
