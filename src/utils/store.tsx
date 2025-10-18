@@ -1,6 +1,7 @@
 import { createContext, PropsWithChildren, useContext } from 'react';
 import type { StoreApi, UseBoundStore } from 'zustand';
 
+// To add support for server-side store initialization
 const createStore = <T, U extends UseBoundStore<StoreApi<unknown>>>(
   getStore: (initial: T) => U,
 ) => {
@@ -23,6 +24,7 @@ const createStore = <T, U extends UseBoundStore<StoreApi<unknown>>>(
     return store(selector);
   }) as U;
 
+  // To keep support for accessing `useStore.getState()` "outside" of components
   Object.assign(useStore, {
     getInitialState: () => getStoreRef().getInitialState(),
     getState: () => getStoreRef().getState(),
