@@ -19,6 +19,7 @@ exports[`TextInput > should match the snapshot 1`] = `
       value="value"
     />
     <span
+      aria-hidden="true"
       class="min-h-[1em] text-sm text-red-500 leading-none"
       role="alert"
     />

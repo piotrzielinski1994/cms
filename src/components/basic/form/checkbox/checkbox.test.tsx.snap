@@ -40,6 +40,7 @@ exports[`Checkbox > should match the snapshot 1`] = `
       </span>
     </label>
     <span
+      aria-hidden="true"
       class="min-h-[1em] text-sm text-red-500 leading-none"
       role="alert"
     />

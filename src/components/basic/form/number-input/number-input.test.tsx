@@ -5,18 +5,19 @@ import { Locale } from 'next-intl';
 import { ComponentProps, useState } from 'react';
 import { describe, expect, it } from 'vitest';
 import { axe } from 'vitest-axe';
-import Form from '../root/form';
 import { NumberInput } from './number-input';
 
 describe('NumberInput', () => {
   const defaultProps = {
     name: 'name',
     id: 'id',
+    label: 'Label',
+    value: 123,
     t: { increment: 'Increment', decrement: 'Decrement' },
   } satisfies ComponentProps<typeof NumberInput>;
 
   const ControlledComponent = (props: ComponentProps<typeof NumberInput>) => {
-    const [value, setValue] = useState<number | undefined>(props.value);
+    const [value, setValue] = useState(props.value);
     return (
       <NumberInput
         {...props}
@@ -30,14 +31,7 @@ describe('NumberInput', () => {
   };
 
   it('should have no accessibility violations', async () => {
-    const { container } = render(
-      withProviders(
-        <Form.Group>
-          <Form.Label htmlFor={defaultProps.id}>Label</Form.Label>
-          <NumberInput {...defaultProps} />
-        </Form.Group>,
-      ),
-    );
+    const { container } = render(withProviders(<NumberInput {...defaultProps} />));
     const results = await axe(container);
     expect(results).toHaveNoViolations();
   });

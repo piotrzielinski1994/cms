@@ -1,30 +1,14 @@
 import { useLocaleStore } from '@/store/locale';
 import { cn } from '@/utils/tailwind';
 import { ChevronDown, ChevronUp } from 'lucide-react';
-import { useTranslations } from 'next-intl';
-import { ChangeEvent, DetailedHTMLProps, InputHTMLAttributes, useState } from 'react';
-import { Control, FieldValues, Path, useController } from 'react-hook-form';
-import Form from '../root/form';
+import { ChangeEvent, ComponentProps, forwardRef, ReactNode, useState } from 'react';
 import { inputClassNames } from '../text-input/text-input';
+import NumberInputBase from './number-input.base';
 import { createNumberFormatter, createNumberUnformatter, isNumber } from './number-input.utils';
 
-// Types ====================================
-
-type NumberInputContainerProps<T extends FieldValues> = Omit<NumberInputProps, 'name'> & {
-  control: Control<T>;
-  name: Path<T>;
-};
-
-type NumberInputProps = Omit<
-  DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
-  'name'
-> & {
-  name: string;
+type NumberInputProps = ComponentProps<typeof NumberInputBase.Input> & {
+  label?: ReactNode;
   error?: string;
-  value?: number;
-  step?: number;
-  min?: number;
-  max?: number;
   maxIntLength?: number;
   maxDecimalLength?: number;
   t?: {
@@ -33,22 +17,14 @@ type NumberInputProps = Omit<
   };
 };
 
-// Variables ====================================
-
-const NumberInput = ({
-  error,
-  step = 1,
-  maxIntLength,
-  maxDecimalLength,
-  t,
-  ...props
-}: NumberInputProps) => {
+const Component = forwardRef<HTMLInputElement, NumberInputProps>((props, ref) => {
+  const { label, error, step = 1, maxIntLength, maxDecimalLength, t, ...rest } = props;
   const locale = useLocaleStore();
-  const [rawValue, setRawValue] = useState<string>(props.value?.toString() ?? '');
+  const [rawValue, setRawValue] = useState<string>(rest.value?.toString() ?? '');
 
   const format = createNumberFormatter(locale);
   const unformat = createNumberUnformatter(locale);
-  const canBeNegative = props.min === undefined || props.min < 0;
+  const canBeNegative = rest.min === undefined || rest.min < 0;
   const validator = isNumber({
     int: maxIntLength,
     frac: maxDecimalLength,
@@ -71,25 +47,20 @@ const NumberInput = ({
 
     const event = { target: { value: String(next) } } as ChangeEvent<HTMLInputElement>;
     setRawValue(String(next));
-    props?.onChange?.(event);
+    rest.onChange?.(event);
   };
 
   return (
-    <div className="flex flex-col gap-2">
-      <div className="relative">
-        <input
-          type="text"
-          role="spinbutton"
+    <Root>
+      {label && <Label htmlFor={rest.id}>{label}</Label>}
+      <InputWrapper className="relative">
+        <Input
+          ref={ref}
+          error={error}
           inputMode={!!maxDecimalLength ? 'decimal' : 'numeric'}
-          autoComplete="off"
           lang={locale}
-          {...props}
+          {...rest}
           value={format(rawValue)}
-          className={cn(
-            inputClassNames.input({ isValid: !error }),
-            'w-full pr-6',
-            props?.className,
-          )}
           onChange={(e) => {
             const raw = unformat(e.target.value);
 
@@ -108,48 +79,38 @@ const NumberInput = ({
           }}
         />
         <div className="absolute inset-y-0 right-1 flex flex-col justify-center">
-          <button
-            type="button"
-            tabIndex={-1}
-            disabled={props.disabled}
-            aria-label={t?.increment}
-            onClick={() => changeValue(1)}
-          >
+          <Button disabled={rest.disabled} aria-label={t?.increment} onClick={() => changeValue(1)}>
             <ChevronUp size="1rem" />
-          </button>
-          <button
-            type="button"
-            tabIndex={-1}
-            disabled={props.disabled}
+          </Button>
+          <Button
+            disabled={rest.disabled}
             aria-label={t?.decrement}
             onClick={() => changeValue(-1)}
           >
             <ChevronDown size="1rem" />
-          </button>
+          </Button>
         </div>
-      </div>
-      <Form.Error>{error}</Form.Error>
-    </div>
+      </InputWrapper>
+      <Error>{error}</Error>
+    </Root>
   );
-};
+});
 
-const NumberInputContainer = <T extends FieldValues>(props: NumberInputContainerProps<T>) => {
-  const { control, name, ...rest } = props;
-  const t = useTranslations('frontend');
-  const { field, fieldState } = useController({ control, name });
-  return (
-    <NumberInput
-      {...rest}
-      {...field}
-      error={fieldState.error?.message}
-      t={{ increment: t('increment'), decrement: t('decrement') }}
-      onChange={(e) => {
-        const raw = e.target.value.replace(',', '.');
-        const value = ['', '-'].includes(raw) ? null : Number(raw);
-        field.onChange(value);
-      }}
-    />
-  );
-};
+const Input = forwardRef<HTMLInputElement, Omit<NumberInputProps, 'label'>>((props, ref) => {
+  const { error, className, ...rest } = props;
+  const classNames = cn(inputClassNames.input({ isValid: !error }), 'w-full pr-6', className);
+  return <NumberInputBase.Input ref={ref} {...rest} className={classNames} />;
+});
 
-export { NumberInput, NumberInputContainer };
+Component.displayName = 'NumberInput';
+Input.displayName = 'NumberInput.Input';
+
+const Root = NumberInputBase.Root;
+const Label = NumberInputBase.Label;
+const InputWrapper = NumberInputBase.InputWrapper;
+const Button = NumberInputBase.Button;
+const Error = NumberInputBase.Error;
+
+const NumberInput = Object.assign(Component, { Root, Label, Input, Error });
+
+export { NumberInput };

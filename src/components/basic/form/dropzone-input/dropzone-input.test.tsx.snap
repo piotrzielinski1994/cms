@@ -124,6 +124,7 @@ exports[`DropzoneInput > should match the snapshot 1`] = `
       </ul>
     </label>
     <span
+      aria-hidden="true"
       class="min-h-[1em] text-sm text-red-500 leading-none"
       role="alert"
     />

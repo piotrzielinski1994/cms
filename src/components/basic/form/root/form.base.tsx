@@ -12,7 +12,7 @@ const Label = <T extends HTMLProps<HTMLLabelElement>>(props: T & { as?: ElementT
 };
 
 const Error = (props: HTMLAttributes<HTMLSpanElement>) => {
-  return <span role="alert" {...props} />;
+  return <span role="alert" aria-hidden={!props.children} {...props} />;
 };
 
 const FormBase = {

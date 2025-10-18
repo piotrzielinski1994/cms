@@ -15,7 +15,7 @@ Input.displayName = 'TextInputBase.Input';
 const TextInputBase = {
   Root: Form.Group,
   Label: Form.Label,
-  Input: Input,
+  Input,
   Error: Form.Error,
 };
 

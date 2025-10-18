@@ -20,6 +20,7 @@ exports[`TextArea > should match the snapshot 1`] = `
       value
     </textarea>
     <span
+      aria-hidden="true"
       class="min-h-[1em] text-sm text-red-500 leading-none"
       role="alert"
     />
