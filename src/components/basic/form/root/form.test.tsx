@@ -5,13 +5,13 @@ import Form from './form';
 
 describe('Form', () => {
   const component = (
-    <Form>
+    <Form.Root>
       <Form.Group>
         <Form.Label htmlFor="id">Label</Form.Label>
         <input id="id" />
         <Form.Error>Error</Form.Error>
       </Form.Group>
-    </Form>
+    </Form.Root>
   );
 
   it('should have no accessibility violations', async () => {

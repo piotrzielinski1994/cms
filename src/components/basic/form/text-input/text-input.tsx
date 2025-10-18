@@ -1,7 +1,11 @@
 import { cn } from '@/utils/tailwind';
-import * as React from 'react';
-import { Control, FieldValues, Path, useController } from 'react-hook-form';
-import { TextInputBase } from './text-input.base';
+import { ComponentProps, forwardRef, ReactNode } from 'react';
+import TextInputBase from './text-input.base';
+
+type TextInputProps = ComponentProps<typeof TextInputBase.Input> & {
+  label?: ReactNode;
+  error?: string;
+};
 
 const inputClassNames = {
   input: ({ isValid }: { isValid: boolean }) =>
@@ -17,35 +21,36 @@ const inputClassNames = {
   error: cn('min-h-[1em] text-sm text-red-500 leading-none'),
 };
 
-type TextInputProps = React.ComponentProps<typeof TextInputBase.Input> & {
-  label?: React.ReactNode;
-  error?: string;
+const Component = forwardRef<HTMLInputElement, TextInputProps>((props, ref) => {
+  const { label, error, ...rest } = props;
+  return (
+    <Root>
+      {label && <Label htmlFor={rest.id}>{label}</Label>}
+      <Input ref={ref} error={error} {...rest} />
+      <Error>{error}</Error>
+    </Root>
+  );
+});
+
+const Root = ({ className, ...props }: ComponentProps<typeof TextInputBase.Root>) => {
+  return <TextInputBase.Root className={cn(inputClassNames.root, className)} {...props} />;
 };
 
-const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
-  ({ label, error, className, ...props }, ref) => (
-    <TextInputBase className={inputClassNames.root}>
-      {label && <label>{label}</label>}
-      <TextInputBase.Input
-        ref={ref}
-        className={cn(inputClassNames.input({ isValid: !error }), className)}
-        {...props}
-      />
-      <TextInputBase.Error className={inputClassNames.error}>{error}</TextInputBase.Error>
-    </TextInputBase>
-  ),
-);
-TextInput.displayName = 'TextInput';
+const Label = TextInputBase.Label;
 
-type TextInputContainerProps<T extends FieldValues> = Omit<TextInputProps, 'name' | 'isValid'> & {
-  control: Control<T>;
-  name: Path<T>;
+const Input = forwardRef<HTMLInputElement, Omit<TextInputProps, 'label'>>((props, ref) => {
+  const { error, className, ...rest } = props;
+  const classNames = cn(inputClassNames.input({ isValid: !error }), className);
+  return <TextInputBase.Input ref={ref} className={classNames} {...rest} />;
+});
+
+const Error = ({ className, ...props }: ComponentProps<typeof TextInputBase.Error>) => {
+  return <TextInputBase.Error className={cn(inputClassNames.error, className)} {...props} />;
 };
 
-const TextInputContainer = <T extends FieldValues>(props: TextInputContainerProps<T>) => {
-  const { control, name, ...rest } = props;
-  const { field, fieldState } = useController({ control, name });
-  return <TextInput {...rest} {...field} error={fieldState.error?.message} />;
-};
+Component.displayName = 'TextInput';
+Input.displayName = 'TextInput.Input';
 
-export { inputClassNames, TextInput, TextInputContainer };
+const TextInput = Object.assign(Component, { Root, Label, Input, Error });
+
+export { inputClassNames, TextInput };

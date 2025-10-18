@@ -1,16 +1,21 @@
-import { forwardRef, HTMLAttributes, InputHTMLAttributes } from 'react';
+import { forwardRef, InputHTMLAttributes } from 'react';
 import Form from '../root/form';
 
-const Input = forwardRef<HTMLInputElement, InputHTMLAttributes<HTMLInputElement>>((props, ref) => {
+type InputProps = InputHTMLAttributes<HTMLInputElement> & {
+  value?: string;
+};
+
+const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   return <input ref={ref} type="text" {...props} value={props.value ?? ''} />;
 });
 
-const TextInputBase = (props: HTMLAttributes<HTMLDivElement>) => {
-  return <div {...props} />;
+Input.displayName = 'TextInputBase.Input';
+
+const TextInputBase = {
+  Root: Form.Group,
+  Label: Form.Label,
+  Input: Input,
+  Error: Form.Error,
 };
 
-Input.displayName = 'TextInputBase.Input';
-TextInputBase.Input = Input;
-TextInputBase.Error = Form.Error;
-
-export { TextInputBase };
+export default TextInputBase;

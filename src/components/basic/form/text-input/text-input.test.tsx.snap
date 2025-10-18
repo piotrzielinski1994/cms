@@ -3,14 +3,20 @@
 exports[`TextInput > should match the snapshot 1`] = `
 <div>
   <div
-    class="flex flex-col gap-2"
+    class="content-start grid-rows-[auto_1fr] flex flex-col gap-2"
   >
+    <label
+      class="self-end"
+      for="id"
+    >
+      Label
+    </label>
     <input
       class="p-2 border border-solid border-current bg-input placeholder-foreground/50 [&:enabled]:hover:border-foreground/90 [&:enabled]:hover:ring-foreground/90 disabled:cursor-not-allowed disabled:text-foreground/50 outline-none ring-inset focus-within:ring-1 ring-current"
       id="id"
       name="name"
       type="text"
-      value=""
+      value="value"
     />
     <span
       class="min-h-[1em] text-sm text-red-500 leading-none"

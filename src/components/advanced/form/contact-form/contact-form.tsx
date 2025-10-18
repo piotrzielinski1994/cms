@@ -3,7 +3,7 @@
 import { Button } from '@/components/basic/button/button';
 import Form from '@/components/basic/form/root/form';
 import { TextAreaContainer } from '@/components/basic/form/text-area/text-area';
-import { TextInputContainer } from '@/components/basic/form/text-input/text-input';
+import { TextInputContainer } from '@/components/basic/form/text-input/text-input.container';
 import { cn } from '@/utils/tailwind';
 import { getZodErrorsMap } from '@/utils/zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -12,7 +12,7 @@ import { ComponentProps, useId } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-type ContactFormProps = ComponentProps<typeof Form> & {
+type ContactFormProps = ComponentProps<typeof Form.Root> & {
   onSubmit: (data: z.infer<typeof schema>) => void;
 };
 
@@ -30,7 +30,7 @@ const ContactForm = ({ onSubmit, className, ...props }: ContactFormProps) => {
   });
 
   return (
-    <Form
+    <Form.Root
       {...props}
       onSubmit={form.handleSubmit(onSubmit)}
       className={cn('grid gap-2', className)}
@@ -51,7 +51,7 @@ const ContactForm = ({ onSubmit, className, ...props }: ContactFormProps) => {
         <TextAreaContainer id={`${id}__message`} name="message" control={form.control} />
       </Form.Group>
       <Button type="submit">{t('submit')}</Button>
-    </Form>
+    </Form.Root>
   );
 };
 
