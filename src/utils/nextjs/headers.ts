@@ -1,7 +1,6 @@
-import { Theme, ThemeConfig } from '@/config/themes.config';
-import { COOKIES_CONSENT_STORAGE_KEY, CookiesConsentStore } from '@/store/cookies-consent';
-import { FONT_SCALE_STORAGE_KEY, FontScaleStore } from '@/store/font-scale';
-import { COLOR_PREFERENCE_STORAGE_KEY, THEME_STORAGE_KEY } from '@/store/theme';
+import { CookiesConsentConstants } from '@/config/cookies-consent.config';
+import { FontScale, FontScaleConstants } from '@/config/font-scales.config';
+import { Theme, ThemeConfig, ThemeConstants } from '@/config/themes.config';
 import { ReadonlyHeaders } from 'next/dist/server/web/spec-extension/adapters/headers';
 import { ReadonlyRequestCookies } from 'next/dist/server/web/spec-extension/adapters/request-cookies';
 import { cookies, headers } from 'next/headers';
@@ -11,7 +10,7 @@ const getPreferences = async () => {
   return {
     colorPreference: getColorPreference(headersStore, cookieStore),
     theme: getTheme(cookieStore),
-    fontScale: getFontScale(cookieStore),
+    scale: getFontScale(cookieStore),
     cookiesConsent: getCookiesConsent(cookieStore),
   };
 };
@@ -21,25 +20,23 @@ const getColorPreference = (
   cookies: ReadonlyRequestCookies,
 ): ThemeConfig['colorPreference'] => {
   const valueFromHeaders = headers.get('sec-ch-prefers-color-scheme');
-  const valueFromCookies = cookies.get(COLOR_PREFERENCE_STORAGE_KEY)?.value;
+  const valueFromCookies = cookies.get(ThemeConstants.COLOR_PREFERENCE_STORAGE_KEY)?.value;
   const prefersDark = (valueFromHeaders ?? valueFromCookies) === 'dark';
   return prefersDark ? 'dark' : 'light';
 };
 
 const getTheme = (cookies: ReadonlyRequestCookies): Theme => {
-  const theme = cookies.get(THEME_STORAGE_KEY)?.value as Theme | undefined;
+  const theme = cookies.get(ThemeConstants.STORAGE_KEY)?.value as Theme | undefined;
   return theme ?? 'system';
 };
 
-const getFontScale = (cookies: ReadonlyRequestCookies): FontScaleStore['scale'] => {
-  const fontScale = cookies.get(FONT_SCALE_STORAGE_KEY)?.value as
-    | FontScaleStore['scale']
-    | undefined;
+const getFontScale = (cookies: ReadonlyRequestCookies): FontScale => {
+  const fontScale = cookies.get(FontScaleConstants.STORAGE_KEY)?.value as FontScale | undefined;
   return fontScale ?? 'base';
 };
 
-const getCookiesConsent = (cookies: ReadonlyRequestCookies): CookiesConsentStore['isAllowed'] => {
-  const cookiesConsent = cookies.get(COOKIES_CONSENT_STORAGE_KEY)?.value;
+const getCookiesConsent = (cookies: ReadonlyRequestCookies): boolean => {
+  const cookiesConsent = cookies.get(CookiesConsentConstants.STORAGE_KEY)?.value;
   return cookiesConsent === 'true';
 };
 

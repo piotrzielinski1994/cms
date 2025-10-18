@@ -19,7 +19,7 @@ const Render = ({ ...args }: Args) => {
     <div className="flex gap-1">
       <Button onClick={() => setIsOpen((prev) => !prev)}>Open</Button>
       <DrawerComponent {...args} isOpen={isOpen} onClose={() => setIsOpen(false)}>
-        @@@
+        Drawer content
       </DrawerComponent>
     </div>
   );

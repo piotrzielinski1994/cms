@@ -1,11 +1,10 @@
-import { CookiesConsentProvider } from '@/providers/cookies-consent.provider';
-import { FontScaleProvider } from '@/providers/font-scale.provider';
-import { ThemeProvider } from '@/providers/theme.provider';
+import { CookiesConsentProvider } from '@/store/cookies-consent';
+import { FontScaleProvider } from '@/store/font-scale';
+import { LocaleProvider } from '@/store/locale';
+import { ThemeProvider } from '@/store/theme';
 import { ReactRenderer } from '@storybook/nextjs';
-import { NextIntlClientProvider } from 'next-intl';
 import { useEffect } from 'react';
 import { DecoratorFunction } from 'storybook/internal/csf';
-import { translations } from '../locales.config';
 import { getThemeConfig } from '../themes.config';
 import preview from './preview';
 
@@ -22,15 +21,15 @@ const withProviders: DecoratorFunction<ReactRenderer> = (Story, context) => {
   return (
     <>
       <DataAttributesSetter {...globals} />
-      <NextIntlClientProvider locale={locale} messages={translations[locale]}>
+      <LocaleProvider locale={locale}>
         <ThemeProvider theme={theme} colorPreference={getThemeConfig(theme).colorPreference}>
-          <FontScaleProvider fontScale={fontScale}>
-            <CookiesConsentProvider cookiesConsent={false}>
+          <FontScaleProvider scale={fontScale}>
+            <CookiesConsentProvider isAllowed={false}>
               <Story />
             </CookiesConsentProvider>
           </FontScaleProvider>
         </ThemeProvider>
-      </NextIntlClientProvider>
+      </LocaleProvider>
     </>
   );
 };

@@ -22,7 +22,7 @@ type CookiesBannerProps = {
 const CookiesBanner = ({ content, readMore, accept }: CookiesBannerProps) => {
   const { isAllowed, allow } = useCookiesConsentStore();
   const ref = useRef<HTMLDialogElement>(null);
-  console.log('@@@ isAllowed | ', isAllowed);
+
   // Instead of the `open` prop, to disable focus on elements behind the dialog
   useEffect(() => {
     if (!ref.current) return;

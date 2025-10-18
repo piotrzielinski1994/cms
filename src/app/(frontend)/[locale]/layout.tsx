@@ -1,6 +1,7 @@
 import { SkipLink } from '@/components/advanced/skip-link/skip-link';
 import { clientEnv } from '@/config/env.client.config';
-import { themes } from '@/config/themes.config';
+import { FontScaleConstants } from '@/config/font-scales.config';
+import { ThemeConstants, themes } from '@/config/themes.config';
 import { AdminBar } from '@/payload/_old/components/AdminBar';
 import { CookiesBannerContainer } from '@/payload/blocks/advanced/cookies-banner/cookies-banner.container';
 import { FooterContainer } from '@/payload/blocks/layout/footer.container';
@@ -22,25 +23,26 @@ const metadata = toPageMetadata();
 const Layout = async ({ children, params }: LayoutProps) => {
   const { locale } = await params;
   const { isEnabled } = await draftMode();
-  const { colorPreference, theme, fontScale, cookiesConsent } = await getPreferences();
+  const { colorPreference, theme, scale, cookiesConsent } = await getPreferences();
   const themeColorPreference = theme !== 'system' ? themes[theme].colorPreference : colorPreference;
+  const htmlProps = {
+    suppressHydrationWarning: true,
+    lang: locale,
+    [FontScaleConstants.DOM_KEY]: scale,
+    [ThemeConstants.DOM_KEY]: theme !== 'system' ? theme : colorPreference,
+    [ThemeConstants.COLOR_PREFERENCE_DOM_KEY]: themeColorPreference,
+    style: { colorScheme: themeColorPreference },
+  };
   const providersProps: Omit<ComponentProps<typeof Providers>, 'children'> = {
     locale,
     theme,
     colorPreference,
-    fontScale,
-    cookiesConsent,
+    scale,
+    isAllowed: cookiesConsent,
   };
 
   return (
-    <html
-      suppressHydrationWarning
-      lang={locale}
-      data-scale={fontScale}
-      data-theme={theme !== 'system' ? theme : colorPreference}
-      data-color-preference={themeColorPreference}
-      style={{ colorScheme: themeColorPreference }}
-    >
+    <html {...htmlProps}>
       <head>
         {clientEnv.gtmId && cookiesConsent && <GoogleTagManager gtmId={clientEnv.gtmId} />}
         <link href="/favicon.svg" rel="icon" type="image/svg+xml" />

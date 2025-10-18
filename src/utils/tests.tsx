@@ -17,8 +17,8 @@ const withProviders = (
     locale: 'en',
     theme: 'light',
     colorPreference: 'light',
-    fontScale: 'base',
-    cookiesConsent: true,
+    scale: 'base',
+    isAllowed: true,
     ...props,
     children,
   };

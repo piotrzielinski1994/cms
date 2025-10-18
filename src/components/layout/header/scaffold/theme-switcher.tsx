@@ -12,9 +12,8 @@ import { FC } from 'react';
 type SunOrMoonProps = { colorPreference: ThemeConfig['colorPreference'] };
 
 const ThemeSwitcher: FC = () => {
-  const { theme, colorPreference, themeConfig, setTheme } = useThemeStore();
+  const { theme, themeConfig, setTheme } = useThemeStore();
   const t = useTranslations('frontend');
-  const systemThemeConfig = themes[colorPreference];
 
   return (
     <SelectPrimitive.Root value={theme} onValueChange={setTheme}>
@@ -61,10 +60,10 @@ const ThemeSwitcher: FC = () => {
                 'text-sm',
                 'cursor-pointer outline-none ',
               )}
-              style={{ backgroundColor: systemThemeConfig.background1 }}
+              style={{ backgroundColor: themeConfig.background1 }}
             >
               <SelectPrimitive.ItemText>
-                <Laptop className="h-4 w-4" style={{ color: systemThemeConfig.foreground }} />
+                <Laptop className="h-4 w-4" style={{ color: themeConfig.foreground }} />
               </SelectPrimitive.ItemText>
             </SelectPrimitive.Item>
           </SelectPrimitive.Viewport>

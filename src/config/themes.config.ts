@@ -18,6 +18,13 @@ type ThemeConfig = {
   };
 };
 
+const ThemeConstants = {
+  STORAGE_KEY: 'theme',
+  DOM_KEY: 'data-theme',
+  COLOR_PREFERENCE_STORAGE_KEY: 'color-preference',
+  COLOR_PREFERENCE_DOM_KEY: 'data-color-preference',
+} as const;
+
 const themes = {
   light: {
     colorPreference: 'light',
@@ -93,12 +100,16 @@ const themes = {
   },
 } satisfies Record<string, ThemeConfig>;
 
-const getThemeConfig = (theme: Theme): ThemeConfig => {
+const getThemeConfig = (
+  theme: Theme,
+  colorPreference?: ThemeConfig['colorPreference'],
+): ThemeConfig => {
   if (theme !== 'system') return themes[theme];
+  if (colorPreference !== undefined) return themes[colorPreference];
   if (typeof window === 'undefined') return themes.light;
   const media = window.matchMedia('(prefers-color-scheme:dark)');
-  const colorPreference: ThemeConfig['colorPreference'] = media.matches ? 'dark' : 'light';
-  return themes[colorPreference];
+  const browserColorPreference: ThemeConfig['colorPreference'] = media.matches ? 'dark' : 'light';
+  return themes[browserColorPreference];
 };
 
-export { getThemeConfig, themes, type Theme, type ThemeConfig };
+export { getThemeConfig, ThemeConstants, themes, type Theme, type ThemeConfig };
