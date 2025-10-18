@@ -17,8 +17,6 @@ const inputClassNames = {
       'outline-none ring-inset focus-within:ring-1 ring-current',
       { '[&:not(:focus)]:text-red-500': !isValid },
     ),
-  root: cn('flex flex-col gap-2'),
-  error: cn('min-h-[1em] text-sm text-red-500 leading-none'),
 };
 
 const Component = forwardRef<HTMLInputElement, TextInputProps>((props, ref) => {
@@ -32,21 +30,15 @@ const Component = forwardRef<HTMLInputElement, TextInputProps>((props, ref) => {
   );
 });
 
-const Root = ({ className, ...props }: ComponentProps<typeof TextInputBase.Root>) => {
-  return <TextInputBase.Root className={cn(inputClassNames.root, className)} {...props} />;
-};
-
-const Label = TextInputBase.Label;
-
 const Input = forwardRef<HTMLInputElement, Omit<TextInputProps, 'label'>>((props, ref) => {
   const { error, className, ...rest } = props;
   const classNames = cn(inputClassNames.input({ isValid: !error }), className);
   return <TextInputBase.Input ref={ref} className={classNames} {...rest} />;
 });
 
-const Error = ({ className, ...props }: ComponentProps<typeof TextInputBase.Error>) => {
-  return <TextInputBase.Error className={cn(inputClassNames.error, className)} {...props} />;
-};
+const Root = TextInputBase.Root;
+const Label = TextInputBase.Label;
+const Error = TextInputBase.Error;
 
 Component.displayName = 'TextInput';
 Input.displayName = 'TextInput.Input';

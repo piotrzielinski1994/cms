@@ -2,7 +2,7 @@
 
 import { Button } from '@/components/basic/button/button';
 import Form from '@/components/basic/form/root/form';
-import { TextAreaContainer } from '@/components/basic/form/text-area/text-area';
+import { TextAreaContainer } from '@/components/basic/form/text-area/text-area.container';
 import { TextInputContainer } from '@/components/basic/form/text-input/text-input.container';
 import { cn } from '@/utils/tailwind';
 import { getZodErrorsMap } from '@/utils/zod';
@@ -36,20 +36,20 @@ const ContactForm = ({ onSubmit, className, ...props }: ContactFormProps) => {
       className={cn('grid gap-2', className)}
       noValidate
     >
-      <Form.Group>
-        <Form.Label htmlFor={`${id}__email`}>{t('contactForm.fields.email.label')}</Form.Label>
-        <TextInputContainer
-          id={`${id}__email`}
-          name="email"
-          type="email"
-          autoComplete="email"
-          control={form.control}
-        />
-      </Form.Group>
-      <Form.Group>
-        <Form.Label htmlFor={`${id}__message`}>{t('contactForm.fields.message.label')}</Form.Label>
-        <TextAreaContainer id={`${id}__message`} name="message" control={form.control} />
-      </Form.Group>
+      <TextInputContainer
+        id={`${id}__email`}
+        name="email"
+        type="email"
+        autoComplete="email"
+        label={t('contactForm.fields.email.label')}
+        control={form.control}
+      />
+      <TextAreaContainer
+        id={`${id}__message`}
+        name="message"
+        label={t('contactForm.fields.message.label')}
+        control={form.control}
+      />
       <Button type="submit">{t('submit')}</Button>
     </Form.Root>
   );

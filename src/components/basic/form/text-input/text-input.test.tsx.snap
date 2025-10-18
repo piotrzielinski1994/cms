@@ -3,7 +3,7 @@
 exports[`TextInput > should match the snapshot 1`] = `
 <div>
   <div
-    class="content-start grid-rows-[auto_1fr] flex flex-col gap-2"
+    class="grid gap-1 content-start grid-rows-[auto_1fr]"
   >
     <label
       class="self-end"

@@ -1,42 +1,43 @@
 import { cn } from '@/utils/tailwind';
-import { TextareaHTMLAttributes } from 'react';
-import { Control, FieldValues, Path, useController } from 'react-hook-form';
-import Form from '../root/form';
+import { ComponentProps, forwardRef, ReactNode } from 'react';
 import { inputClassNames } from '../text-input/text-input';
+import TextAreaBase from './text-area.base';
 
-type TextAreaProps = Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'name'> & {
-  name: string;
+type TextAreaProps = ComponentProps<typeof TextAreaBase.Input> & {
+  label?: ReactNode;
   error?: string;
 };
 
-type TextAreaContainerProps<T extends FieldValues> = Omit<TextAreaProps, 'name'> & {
-  control: Control<T>;
-  name: Path<T>;
-};
-
-const TextArea = ({ error, className, ...props }: TextAreaProps) => {
+const Component = forwardRef<HTMLTextAreaElement, TextAreaProps>((props, ref) => {
+  const { label, error, ...rest } = props;
   return (
-    <>
-      <textarea
-        {...props}
-        value={props.value ?? ''}
-        contentEditable={false}
-        className={cn(
-          inputClassNames.input({ isValid: !error }),
-          'min-h-[calc(2*1px+2*0.5rem+3*1.5rem)]',
-          { 'resize-none': !!props.disabled },
-          className,
-        )}
-      />
-      <Form.Error>{error}</Form.Error>
-    </>
+    <Root>
+      {label && <Label htmlFor={rest.id}>{label}</Label>}
+      <Input ref={ref} error={error} {...rest} />
+      <Error>{error}</Error>
+    </Root>
   );
-};
+});
 
-const TextAreaContainer = <T extends FieldValues>(props: TextAreaContainerProps<T>) => {
-  const { control, name, ...rest } = props;
-  const { field, fieldState } = useController({ control, name });
-  return <TextArea error={fieldState.error?.message} {...rest} {...field} />;
-};
+const Input = forwardRef<HTMLTextAreaElement, Omit<TextAreaProps, 'label'>>((props, ref) => {
+  const { error, className, ...rest } = props;
+  const classNames = cn(
+    inputClassNames.input({ isValid: !error }),
+    'min-h-[calc(2*1px+2*0.5rem+3*1.5rem)]',
+    { 'resize-none': !!props.disabled },
+    className,
+  );
 
-export { TextArea, TextAreaContainer };
+  return <TextAreaBase.Input ref={ref} className={classNames} {...rest} />;
+});
+
+const Root = TextAreaBase.Root;
+const Label = TextAreaBase.Label;
+const Error = TextAreaBase.Error;
+
+Component.displayName = 'TextArea';
+Input.displayName = 'TextInput.Input';
+
+const TextArea = Object.assign(Component, { Root, Label, Input, Error });
+
+export { TextArea };

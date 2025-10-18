@@ -2,15 +2,27 @@
 
 exports[`TextArea > should match the snapshot 1`] = `
 <div>
-  <textarea
-    class="p-2 border border-solid border-current bg-input placeholder-foreground/50 [&:enabled]:hover:border-foreground/90 [&:enabled]:hover:ring-foreground/90 disabled:cursor-not-allowed disabled:text-foreground/50 outline-none ring-inset focus-within:ring-1 ring-current min-h-[calc(2*1px+2*0.5rem+3*1.5rem)]"
-    contenteditable="false"
-    id="id"
-    name="name"
-  />
-  <span
-    class="min-h-[1em] text-sm text-red-500 leading-none"
-    role="alert"
-  />
+  <div
+    class="grid gap-1 content-start grid-rows-[auto_1fr]"
+  >
+    <label
+      class="self-end"
+      for="id"
+    >
+      Label
+    </label>
+    <textarea
+      class="p-2 border border-solid border-current bg-input placeholder-foreground/50 [&:enabled]:hover:border-foreground/90 [&:enabled]:hover:ring-foreground/90 disabled:cursor-not-allowed disabled:text-foreground/50 outline-none ring-inset focus-within:ring-1 ring-current min-h-[calc(2*1px+2*0.5rem+3*1.5rem)]"
+      contenteditable="false"
+      id="id"
+      name="name"
+    >
+      value
+    </textarea>
+    <span
+      class="min-h-[1em] text-sm text-red-500 leading-none"
+      role="alert"
+    />
+  </div>
 </div>
 `;

@@ -5,7 +5,7 @@ import { TextInput } from './text-input';
 type TextInputContainerProps<T extends FieldValues> = {
   control: Control<T>;
   name: Path<T>;
-} & Omit<ComponentProps<typeof TextInput>, 'name' | 'isValid'>;
+} & Omit<ComponentProps<typeof TextInput>, 'name'>;
 
 const TextInputContainer = <T extends FieldValues>(props: TextInputContainerProps<T>) => {
   const { control, name, ...rest } = props;

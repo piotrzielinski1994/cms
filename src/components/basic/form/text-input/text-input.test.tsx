@@ -9,8 +9,8 @@ describe('TextInput', () => {
     name: 'name',
     id: 'id',
     label: 'Label',
-    onChange: vi.fn(),
     value: 'value',
+    onChange: vi.fn(),
   } satisfies ComponentProps<typeof TextInput>;
 
   it('should have no accessibility violations', async () => {
