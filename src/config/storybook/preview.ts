@@ -1,5 +1,5 @@
 import '@/app/(frontend)/[locale]/globals.scss';
-import { fontScales } from '@/config/font-scales.config';
+import { FontScale, fontScales } from '@/config/font-scales.config';
 import { contentLocales, defaultContentLocale } from '@/config/locales.config';
 import { Theme, themes } from '@/config/themes.config';
 import { Preview } from '@storybook/nextjs';
@@ -13,8 +13,8 @@ const preview = {
       defaultValue: 'light' satisfies Theme,
       toolbar: { title: 'Theme', items: keys(themes) },
     },
-    fontScale: {
-      defaultValue: 'base' satisfies keyof typeof fontScales,
+    scale: {
+      defaultValue: 'base' satisfies FontScale,
       toolbar: { title: 'Font Scale', items: keys(fontScales) },
     },
     locale: {

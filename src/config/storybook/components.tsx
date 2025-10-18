@@ -5,7 +5,8 @@ import { ThemeProvider } from '@/store/theme';
 import { ReactRenderer } from '@storybook/nextjs';
 import { useEffect } from 'react';
 import { DecoratorFunction } from 'storybook/internal/csf';
-import { getThemeConfig } from '../themes.config';
+import { FontScaleConstants } from '../font-scales.config';
+import { getThemeConfig, ThemeConstants } from '../themes.config';
 import preview from './preview';
 
 type GlobalTypes = typeof preview.globalTypes;
@@ -17,13 +18,13 @@ type StoryContext = {
 
 const withProviders: DecoratorFunction<ReactRenderer> = (Story, context) => {
   const globals = context.globals as StoryContext['globals'];
-  const { locale, theme, fontScale } = globals;
+  const { locale, theme, scale } = globals;
   return (
     <>
       <DataAttributesSetter {...globals} />
       <LocaleProvider locale={locale}>
         <ThemeProvider theme={theme} colorPreference={getThemeConfig(theme).colorPreference}>
-          <FontScaleProvider scale={fontScale}>
+          <FontScaleProvider scale={scale}>
             <CookiesConsentProvider isAllowed={false}>
               <Story />
             </CookiesConsentProvider>
@@ -34,14 +35,20 @@ const withProviders: DecoratorFunction<ReactRenderer> = (Story, context) => {
   );
 };
 
-const DataAttributesSetter = ({ locale, theme, fontScale }: StoryContext['globals']) => {
+const DataAttributesSetter = ({ locale, theme, scale }: StoryContext['globals']) => {
   useEffect(() => {
+    const themeConfig = getThemeConfig(theme);
     document.documentElement.setAttribute('data-locale', locale);
-    document.documentElement.setAttribute('data-scale', fontScale);
-    document.documentElement.setAttribute('data-theme', theme);
-    document.documentElement.dataset.colorPreference = getThemeConfig(theme).colorPreference;
-    document.documentElement.style.colorScheme = getThemeConfig(theme)?.colorPreference;
-  }, [locale, theme, fontScale]);
+    document.documentElement.setAttribute(FontScaleConstants.DOM_KEY, scale);
+    document.documentElement.setAttribute(ThemeConstants.DOM_KEY, theme);
+    document.documentElement.setAttribute(
+      ThemeConstants.COLOR_PREFERENCE_DOM_KEY,
+      themeConfig.colorPreference,
+    );
+    document.documentElement.dataset.colorPreference = themeConfig.colorPreference;
+    document.documentElement.style.colorScheme = themeConfig.colorPreference;
+  }, [locale, theme, scale]);
+
   return <></>;
 };
 
