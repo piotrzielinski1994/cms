@@ -12,7 +12,6 @@ describe('NumberInput', () => {
     name: 'name',
     id: 'id',
     label: 'Label',
-    value: 123,
     t: { increment: 'Increment', decrement: 'Decrement' },
   } satisfies ComponentProps<typeof NumberInput>;
 
@@ -31,13 +30,13 @@ describe('NumberInput', () => {
   };
 
   it('should have no accessibility violations', async () => {
-    const { container } = render(withProviders(<NumberInput {...defaultProps} />));
+    const { container } = render(withProviders(<NumberInput {...defaultProps} value={123} />));
     const results = await axe(container);
     expect(results).toHaveNoViolations();
   });
 
   it('should match the snapshot', async () => {
-    const { container } = render(withProviders(<NumberInput {...defaultProps} />));
+    const { container } = render(withProviders(<NumberInput {...defaultProps} value={123} />));
     expect(container).toMatchSnapshot();
   });
 
