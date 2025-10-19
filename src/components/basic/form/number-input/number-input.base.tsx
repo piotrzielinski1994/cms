@@ -8,7 +8,6 @@ import {
   HTMLAttributes,
   InputHTMLAttributes,
   RefObject,
-  useCallback,
   useContext,
   useRef,
   useState,
@@ -47,7 +46,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   const defaultProps = { type: 'text', role: 'spinbutton', autoComplete: 'off' };
 
   const [rawValue, setRawValue] = useState(props.value?.toString() ?? '');
-  const context = useContext(InputContext);
+  const inputContext = useContext(InputContext);
 
   const format = createNumberFormatter(locale);
   const unformat = createNumberUnformatter(locale);
@@ -58,35 +57,32 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     negative: canBeNegative,
   });
 
-  const changeValue = useCallback(
-    (delta: number) => {
-      const raw = rawValue.replace(',', '.') || '0';
-      if (!validator.safeParse(raw).success) return;
+  const changeValue = (delta: number) => {
+    const raw = rawValue.replace(',', '.') || '0';
+    if (!validator.safeParse(raw).success) return;
 
-      const nextRaw = (Number(raw) + delta * step).toFixed(maxDecimalLength);
-      const parsed = validator.safeParse(String(nextRaw));
-      const next = parsed.success ? Number(parsed.data) : Number(raw);
+    const nextRaw = (Number(raw) + delta * step).toFixed(maxDecimalLength);
+    const parsed = validator.safeParse(String(nextRaw));
+    const next = parsed.success ? Number(parsed.data) : Number(raw);
 
-      const [intPartRaw, decPart = ''] = Number.isFinite(maxDecimalLength)
-        ? next.toFixed(maxDecimalLength).split('.')
-        : next.toString().split('.');
-      const intPart = intPartRaw.startsWith('-') ? intPartRaw.slice(1) : intPartRaw;
+    const [intPartRaw, decPart = ''] = Number.isFinite(maxDecimalLength)
+      ? next.toFixed(maxDecimalLength).split('.')
+      : next.toString().split('.');
+    const intPart = intPartRaw.startsWith('-') ? intPartRaw.slice(1) : intPartRaw;
 
-      if (maxIntLength !== undefined && intPart.length > maxIntLength) return;
-      if (maxDecimalLength !== undefined && decPart.length > maxDecimalLength) return;
+    if (maxIntLength !== undefined && intPart.length > maxIntLength) return;
+    if (maxDecimalLength !== undefined && decPart.length > maxDecimalLength) return;
 
-      const event = { target: { value: String(next) } } as ChangeEvent<HTMLInputElement>;
-      setRawValue(String(next));
-      rest.onChange?.(event);
-    },
-    [maxDecimalLength, maxIntLength, rawValue, rest, step, validator],
-  );
+    const event = { target: { value: String(next) } } as ChangeEvent<HTMLInputElement>;
+    setRawValue(String(next));
+    rest.onChange?.(event);
+  };
 
   const setRef = (element: HTMLInputElement | null) => {
     if (typeof ref === 'function') ref(element);
     else if (ref) ref.current = element;
     const enhancedElement = element ? Object.assign(element, { changeValue }) : undefined;
-    context.current = enhancedElement;
+    inputContext.current = enhancedElement;
   };
 
   return (
@@ -120,7 +116,7 @@ const Button = (
   props: ButtonHTMLAttributes<HTMLButtonElement> & { mode: 'increment' | 'decrement' },
 ) => {
   const { mode, ...rest } = props;
-  const context = useContext(InputContext);
+  const inputContext = useContext(InputContext);
 
   // Use up/down arrows instead of focusing buttons
   return (
@@ -129,7 +125,7 @@ const Button = (
       tabIndex={-1}
       {...rest}
       onClick={(e) => {
-        context.current?.changeValue(mode === 'increment' ? 1 : -1);
+        inputContext.current?.changeValue(mode === 'increment' ? 1 : -1);
         rest.onClick?.(e);
       }}
     />
