@@ -10,7 +10,7 @@ type Args = ComponentProps<typeof NumberInputComponent> & {
 };
 
 const ControlledInput = (props: Args) => {
-  const [value, setValue] = useState<number | undefined>(props.value);
+  const [value, setValue] = useState(props.value);
   return (
     <NumberInputComponent
       {...props}

@@ -30,14 +30,14 @@ const getValidator = (
 ) => {
   const { maxIntLength, maxDecimalLength, min } = props;
   const isNegative = min === undefined || min < 0;
-  return isNumber({
+  return isNumeric({
     int: maxIntLength,
     frac: maxDecimalLength,
     negative: isNegative,
   });
 };
 
-const isNumber = ({
+const isNumeric = ({
   int,
   frac = 0,
   negative = false,
@@ -48,4 +48,4 @@ const isNumber = ({
   return z.string().regex(new RegExp(`^${signPart}${intPart}${fracPart}$`));
 };
 
-export { createNumberFormatter, createNumberUnformatter, getValidator, isNumber };
+export { createNumberFormatter, createNumberUnformatter, getValidator, isNumeric };

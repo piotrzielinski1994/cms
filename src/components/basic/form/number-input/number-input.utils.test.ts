@@ -1,6 +1,6 @@
 import { Locale } from 'next-intl';
 import { describe, expect } from 'vitest';
-import { createNumberFormatter, createNumberUnformatter, isNumber } from './number-input.utils';
+import { createNumberFormatter, createNumberUnformatter, isNumeric } from './number-input.utils';
 
 describe('format', () => {
   it.each([
@@ -113,10 +113,10 @@ describe('isNumber', () => {
       input: '-12345.12',
       output: false,
     },
-  ] satisfies Array<{ config: Parameters<typeof isNumber>[0]; input: string; output: boolean }>)(
+  ] satisfies Array<{ config: Parameters<typeof isNumeric>[0]; input: string; output: boolean }>)(
     'should confirm the $input to be $output for $config',
     async ({ config, input, output }) => {
-      const validator = isNumber(config);
+      const validator = isNumeric(config);
       const result = validator.safeParse(input);
       expect(result.success).toBe(output);
     },
