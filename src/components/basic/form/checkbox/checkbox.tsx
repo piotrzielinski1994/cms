@@ -1,18 +1,11 @@
 import { cn } from '@/utils/tailwind';
 import { Check } from 'lucide-react';
-import { InputHTMLAttributes } from 'react';
-import { Control, FieldValues, Path, useController } from 'react-hook-form';
-import Form from '../root/form';
+import { ComponentProps, forwardRef } from 'react';
+import CheckboxBase from './checkbox.base';
 
-type CheckboxProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'name' | 'type'> & {
+type CheckboxProps = ComponentProps<typeof CheckboxBase.Input> & {
   label: string;
-  name: string;
   error?: string;
-};
-
-type CheckboxContainerProps<T extends FieldValues> = Omit<CheckboxProps, 'name'> & {
-  control: Control<T>;
-  name: Path<T>;
 };
 
 const checkboxClassNames = {
@@ -36,25 +29,36 @@ const checkboxClassNames = {
   icon: cn('hidden group-has-[:checked]:block', 'w-[0.7lh] h-[0.7lh]'),
 };
 
-const Checkbox = ({ label, error, className, ...props }: CheckboxProps) => {
+const Component = forwardRef<HTMLInputElement, CheckboxProps>((props, ref) => {
+  const { label, error, ...rest } = props;
   return (
-    <Form.Group>
-      <Form.Label className={checkboxClassNames.wrapper}>
-        <div className={cn(checkboxClassNames.checkbox({ isValid: !error }), className)}>
-          <input {...props} type="checkbox" className="sr-only" />
-          <Check className={checkboxClassNames.icon} />
-        </div>
+    <Root>
+      <Label className={checkboxClassNames.wrapper}>
+        <Input ref={ref} error={error} {...rest} />
         <span>{label}</span>
-      </Form.Label>
-      <Form.Error>{error}</Form.Error>
-    </Form.Group>
+      </Label>
+      <Error>{error}</Error>
+    </Root>
   );
-};
+});
 
-const CheckboxContainer = <T extends FieldValues>(props: CheckboxContainerProps<T>) => {
-  const { control, name, ...rest } = props;
-  const { field, fieldState } = useController({ control, name });
-  return <Checkbox error={fieldState.error?.message} {...rest} {...field} />;
-};
+const Input = forwardRef<HTMLInputElement, Omit<CheckboxProps, 'label'>>((props, ref) => {
+  const { error, className, ...rest } = props;
+  return (
+    <div className={cn(checkboxClassNames.checkbox({ isValid: !error }), className)}>
+      <CheckboxBase.Input ref={ref} className="sr-only" {...rest} />
+      <Check className={checkboxClassNames.icon} />
+    </div>
+  );
+});
 
-export { Checkbox, checkboxClassNames, CheckboxContainer };
+const Root = CheckboxBase.Root;
+const Label = CheckboxBase.Label;
+const Error = CheckboxBase.Error;
+
+Component.displayName = 'Checkbox';
+Input.displayName = 'Checkbox.Input';
+
+const Checkbox = Object.assign(Component, { Root, Label, Input, Error });
+
+export { Checkbox, checkboxClassNames };
