@@ -1,46 +1,49 @@
 import { cn } from '@/utils/tailwind';
 import { Circle } from 'lucide-react';
-import { InputHTMLAttributes } from 'react';
-import { Control, FieldValues, Path, useController } from 'react-hook-form';
+import { ComponentProps, forwardRef } from 'react';
 import { checkboxClassNames } from '../checkbox/checkbox';
-import Form from '../root/form';
+import RadioBase from './radio.base';
 
-type RadioProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'name' | 'type'> & {
+type RadioProps = ComponentProps<typeof RadioBase.Input> & {
   label: string;
-  name: string;
   error?: string;
 };
 
-type RadioContainerProps<T extends FieldValues> = Omit<RadioProps, 'name'> & {
-  control: Control<T>;
-  name: Path<T>;
-};
-
-const Radio = ({ label, error, className, ...props }: RadioProps) => {
+const Component = forwardRef<HTMLInputElement, RadioProps>((props, ref) => {
+  const { label, error, ...rest } = props;
   return (
-    <Form.Group>
-      <Form.Label className={checkboxClassNames.wrapper}>
-        <div
-          className={cn(
-            checkboxClassNames.checkbox({ isValid: !error }),
-            'rounded-full',
-            className,
-          )}
-        >
-          <input {...props} type="radio" className="sr-only" />
-          <Circle className={cn(checkboxClassNames.icon, 'w-[0.4lh] h-[0.4lh]', 'fill-current')} />
-        </div>
+    <Root>
+      <Label className={checkboxClassNames.wrapper}>
+        <Input ref={ref} error={error} {...rest} />
         <span>{label}</span>
-      </Form.Label>
-      <Form.Error>{error}</Form.Error>
-    </Form.Group>
+      </Label>
+      <Error>{error}</Error>
+    </Root>
   );
-};
+});
 
-const RadioContainer = <T extends FieldValues>(props: RadioContainerProps<T>) => {
-  const { control, name, ...rest } = props;
-  const { field, fieldState } = useController({ control, name });
-  return <Radio error={fieldState.error?.message} {...rest} {...field} />;
-};
+const Input = forwardRef<HTMLInputElement, Omit<RadioProps, 'label'>>((props, ref) => {
+  const { error, className, ...rest } = props;
+  const classNames = {
+    wrapper: cn(checkboxClassNames.checkbox({ isValid: !error }), 'rounded-full', className),
+    icon: cn(checkboxClassNames.icon, 'w-[0.4lh] h-[0.4lh]', 'fill-current'),
+  };
 
-export { Radio, RadioContainer };
+  return (
+    <div className={classNames.wrapper}>
+      <RadioBase.Input ref={ref} className="sr-only" {...rest} />
+      <Circle className={classNames.icon} />
+    </div>
+  );
+});
+
+const Root = RadioBase.Root;
+const Label = RadioBase.Label;
+const Error = RadioBase.Error;
+
+Component.displayName = 'Radio';
+Input.displayName = 'Radio.Input';
+
+const Radio = Object.assign(Component, { Root, Label, Input, Error });
+
+export { Radio };
