@@ -30,7 +30,6 @@ const Component = forwardRef<HTMLInputElement, NumberInputProps>((props, ref) =>
           <Button mode="decrement" disabled={rest.disabled} aria-label={t?.decrement}>
             <ChevronDown size="1rem" />
           </Button>
-          <button onClick={() => console.log('@@@ ref', ref)}>ASD</button>
         </div>
       </InputWrapper>
       <Error>{error}</Error>
