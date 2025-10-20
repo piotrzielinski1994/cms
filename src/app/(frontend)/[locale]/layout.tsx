@@ -27,7 +27,6 @@ const Layout = async ({ children, params }: LayoutProps) => {
   const { colorPreference, theme, scale, cookiesConsent } = await getPreferences();
   const themeColorPreference = getThemeConfig(theme, colorPreference).colorPreference;
   const htmlProps = {
-    suppressHydrationWarning: true,
     lang: locale,
     [LocalesConstants.DOM_KEY]: locale,
     [FontScaleConstants.DOM_KEY]: scale,

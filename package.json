@@ -11,6 +11,7 @@
     "build": "cross-env NODE_OPTIONS=--no-deprecation next build",
     "build:analyze": "ANALYZE=true cross-env NODE_OPTIONS=--no-deprecation next build",
     "start": "cross-env NODE_OPTIONS=\"${NODE_OPTIONS} --no-deprecation\" next dev",
+    "start:db": "docker compose up -d",
     "start:prod": "cross-env NODE_OPTIONS=--no-deprecation rm -rf .next && npm run build && next start",
     "upgrade": "npm-check-updates -u && npm update",
     "upgrade:except": "npm-check-updates -u -x tailwindcss -x @hookform/resolvers -x zod && npm update",

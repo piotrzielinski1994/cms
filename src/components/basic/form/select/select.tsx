@@ -1,78 +1,86 @@
 import { cn } from '@/utils/tailwind';
 import { ChevronDown } from 'lucide-react';
-import { DetailedHTMLProps, SelectHTMLAttributes } from 'react';
-import { Control, FieldValues, Path, useController } from 'react-hook-form';
-import Form from '../root/form';
+import { ComponentProps, forwardRef, ReactNode } from 'react';
 import { inputClassNames } from '../text-input/text-input';
+import SelectBase from './select.base';
 
-type SelectProps = Omit<
-  DetailedHTMLProps<SelectHTMLAttributes<HTMLSelectElement>, HTMLSelectElement>,
-  'name'
-> & {
-  name: string;
+type SelectProps = {
+  label?: ReactNode;
   error?: string;
-  placeholder?: string;
   options: {
     value: string;
     label: string;
   }[];
+  placeholder?: string;
+} & Omit<ComponentProps<typeof SelectBase.Native>, 'children'>;
+
+const selectClassNames = {
+  select: ({ isEmpty, isValid }: { isEmpty: boolean; isValid: boolean }) =>
+    cn(
+      'appearance-none',
+      '[&:not(:disabled)]:cursor-pointer',
+      inputClassNames.input({ isValid }),
+      'border-foreground',
+      { '[&:not(:focus)]:border-red-500': !isValid },
+      'col-start-1 row-start-1',
+      { 'text-foreground': !isEmpty, 'text-foreground/50': isEmpty },
+    ),
+  option: 'text-foreground',
+  icon: 'col-start-1 row-start-1 justify-self-end mr-1',
 };
 
-type SelectContainerProps<T extends FieldValues> = Omit<SelectProps, 'name'> & {
-  control: Control<T>;
-  name: Path<T>;
-};
-
-const Select = ({ error, options, placeholder = '', className, ...props }: SelectProps) => {
+const Component = forwardRef<HTMLSelectElement, SelectProps>((props, ref) => {
+  const { label, error, options, placeholder = '', ...rest } = props;
   return (
-    <div className="flex flex-col gap-2">
-      <div className="grid items-center">
-        <select
-          {...props}
-          defaultValue=""
-          className={cn(
-            'appearance-none',
-            '[&:not(:disabled)]:cursor-pointer',
-            inputClassNames.input({ isValid: !error }),
-            'border-foreground',
-            { '[&:not(:focus)]:border-red-500': !!error },
-            'col-start-1 row-start-1',
-            { 'text-foreground': props.value !== '', 'text-foreground/50': props.value === '' },
-            className,
-          )}
-        >
-          <option value="" className="text-foreground/50">
+    <Root>
+      {label && <Label htmlFor={rest.id}>{label}</Label>}
+      <Wrapper className="grid items-center">
+        <Native ref={ref} {...rest}>
+          <Option value="" className="text-foreground/50">
             {placeholder}
-          </option>
+          </Option>
           {options.map((o) => {
             return (
-              <option key={o.value} value={o.value} className="text-foreground">
+              <Option key={o.value} value={o.value}>
                 {o.label}
-              </option>
+              </Option>
             );
           })}
-        </select>
-        <ChevronDown size="1rem" className="col-start-1 row-start-1 justify-self-end mr-1" />
-      </div>
-      <Form.Error>{error}</Form.Error>
-    </div>
+        </Native>
+        <ChevronDown size="1rem" className={selectClassNames.icon} />
+      </Wrapper>
+      <Error>{error}</Error>
+    </Root>
   );
-};
+});
 
-const SelectContainer = <T extends FieldValues>(props: SelectContainerProps<T>) => {
-  const { control, name, ...rest } = props;
-  const { field, fieldState } = useController({ control, name });
-  return (
-    <Select
-      error={fieldState.error?.message}
-      {...rest}
-      {...field}
-      onChange={(e) => {
-        const value = e.target.value === '' ? null : e.target.value;
-        field.onChange(value);
-      }}
-    />
+const Native = forwardRef<
+  HTMLSelectElement,
+  ComponentProps<typeof SelectBase.Native> & Pick<SelectProps, 'error'>
+>(({ error, className, ...rest }, ref) => {
+  const classNames = cn(
+    selectClassNames.select({ isEmpty: rest.value !== '', isValid: !error }),
+    className,
   );
-};
+  return <SelectBase.Native ref={ref} className={classNames} {...rest} />;
+});
 
-export { Select, SelectContainer };
+const Option = forwardRef<HTMLOptionElement, ComponentProps<typeof SelectBase.Option>>(
+  ({ className, ...rest }, ref) => {
+    const classNames = cn(selectClassNames.option, className);
+    return <SelectBase.Option ref={ref} className={classNames} {...rest} />;
+  },
+);
+
+const Root = SelectBase.Root;
+const Label = SelectBase.Label;
+const Wrapper = SelectBase.Wrapper;
+const Error = SelectBase.Error;
+
+Component.displayName = 'Select';
+Native.displayName = 'Select.Native';
+Option.displayName = 'Select.Option';
+
+const Select = Object.assign(Component, { Root, Label, Native, Error });
+
+export { Select };

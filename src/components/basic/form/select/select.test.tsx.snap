@@ -3,19 +3,18 @@
 exports[`Select > should match the snapshot 1`] = `
 <div>
   <div
-    class="flex flex-col gap-2"
+    class="grid gap-1 content-start grid-rows-[auto_1fr]"
   >
     <div
       class="grid items-center"
     >
       <select
-        class="appearance-none [&:not(:disabled)]:cursor-pointer p-2 border border-solid bg-input placeholder-foreground/50 [&:enabled]:hover:border-foreground/90 [&:enabled]:hover:ring-foreground/90 disabled:cursor-not-allowed disabled:text-foreground/50 outline-none ring-inset focus-within:ring-1 ring-current border-foreground col-start-1 row-start-1 text-foreground"
+        class="appearance-none [&:not(:disabled)]:cursor-pointer p-2 border border-solid bg-input placeholder-foreground/50 [&:enabled]:hover:border-foreground/90 [&:enabled]:hover:ring-foreground/90 disabled:cursor-not-allowed disabled:text-foreground/50 outline-none ring-inset focus-within:ring-1 ring-current border-foreground col-start-1 row-start-1 text-foreground/50"
         id="id"
         name="name"
       >
         <option
           class="text-foreground/50"
-          selected=""
           value=""
         />
         <option
