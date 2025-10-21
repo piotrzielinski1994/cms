@@ -1,40 +1,54 @@
 'use client';
 
 import Form from '@/components/basic/form/root/form';
-import { HtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
 import { Upload, X } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, ComponentProps, forwardRef, ReactNode, useState } from 'react';
+import DropzoneInputBase from './dropzone-input.base';
 
-type DropzoneInputProps = Omit<HtmlProps['input'], 'type'> & {
-  name: string;
-  accept?: string;
-  multiple?: boolean;
+type DropzoneInputProps = ComponentProps<typeof DropzoneInputBase.Input> & {
+  label?: ReactNode;
+  error?: string;
   fileNames: string[];
   onFileRemove?: (fileName: string, index: number) => void;
-  error?: string;
 };
 
-const DropzoneInput = ({ fileNames, onFileRemove, error, ...props }: DropzoneInputProps) => {
+const classNames = {
+  wrapper: ({ isValid, isDragging }: { isValid: boolean; isDragging: boolean }) =>
+    cn(
+      'p-4 bg-red-500',
+      'border border-solid border-foreground',
+      'bg-input text-foreground/50',
+      'has-[:enabled]:hover:border-foreground/90',
+      'tw-has-focus:tw-cms-outline',
+      { 'bg-foreground/5': isDragging },
+      { '[&:not(:focus)]:border-red-500': !isValid },
+      'grid gap-4',
+      'cursor-pointer',
+      'has-[:disabled]:cursor-not-allowed has-[:disabled]:border-foreground/50',
+    ),
+  itemButton: cn(
+    'w-full p-2',
+    'grid grid-cols-[1fr_auto] gap-2',
+    'border border-current',
+    'bg-background text-foreground',
+    'text-xs text-left',
+    'enabled:hover:bg-foreground/5',
+    'disabled:cursor-not-allowed disabled:text-foreground/50',
+  ),
+};
+
+const Component = ({ fileNames, onFileRemove, label, error, ...rest }: DropzoneInputProps) => {
   const t = useTranslations('frontend.component.uploadInput');
   const [isDragging, setIsDragging] = useState(false);
 
   return (
-    <div className="flex flex-col gap-2">
-      <label
-        className={cn(
-          'p-4 bg-red-500',
-          'border border-solid border-foreground',
-          'bg-input text-foreground/50',
-          'has-[:enabled]:hover:border-foreground/90',
-          'tw-has-focus:tw-cms-outline',
-          { 'bg-foreground/5': isDragging },
-          { '[&:not(:focus)]:border-red-500': !!error },
-          'grid gap-4',
-          'cursor-pointer',
-          'has-[:disabled]:cursor-not-allowed has-[:disabled]:border-foreground/50',
-        )}
+    <Root>
+      {label && <Label htmlFor={rest.id}>{label}</Label>}
+      <Wrapper
+        isDragging={isDragging}
+        error={error}
         onDragLeave={() => setIsDragging(false)}
         onDragOver={(e) => {
           e.preventDefault();
@@ -47,20 +61,19 @@ const DropzoneInput = ({ fileNames, onFileRemove, error, ...props }: DropzoneInp
           const target = Object.assign(e.target, { files });
           const currentTarget = Object.assign(e.currentTarget, { files });
           const newEvent = Object.assign({}, e, { target, currentTarget });
-          props.onChange?.(newEvent as unknown as ChangeEvent<HTMLInputElement>);
+          rest.onChange?.(newEvent as unknown as ChangeEvent<HTMLInputElement>);
         }}
       >
         <div className="grid justify-items-center">
           <Upload />
-          <p className="">
+          <p>
             <strong>{t('clickToUpload')}</strong> <span>{t('orDragAndDrop')}</span>
           </p>
-          <p className="">{t('extensions.image')}</p>
-          <input {...props} type="file" className={cn('sr-only', props.className)} />
+          <p>{t('extensions.image')}</p>
+          <Input {...rest} />
         </div>
         {fileNames.length > 0 && (
-          <ul
-            className="grid gap-1"
+          <Items
             onKeyDown={(e) => {
               const arrowKeys = ['ArrowDown', 'ArrowRight', 'ArrowUp', 'ArrowLeft'];
               if (!arrowKeys.includes(e.key)) return;
@@ -74,20 +87,10 @@ const DropzoneInput = ({ fileNames, onFileRemove, error, ...props }: DropzoneInp
             }}
           >
             {fileNames.map((fileName, index) => (
-              <li key={index}>
-                <button
-                  type="button"
-                  disabled={props.disabled}
+              <Item key={index}>
+                <ItemButton
+                  disabled={rest.disabled}
                   tabIndex={index === 0 ? 0 : -1}
-                  className={cn(
-                    'w-full p-2',
-                    'grid grid-cols-[1fr_auto] gap-2',
-                    'border border-current',
-                    'bg-background text-foreground',
-                    'text-xs text-left',
-                    'enabled:hover:bg-foreground/5',
-                    'disabled:cursor-not-allowed disabled:text-foreground/50',
-                  )}
                   onClick={(e) => {
                     e.preventDefault();
                     onFileRemove?.(fileName, index);
@@ -95,15 +98,66 @@ const DropzoneInput = ({ fileNames, onFileRemove, error, ...props }: DropzoneInp
                 >
                   <span>{fileName}</span>
                   <X height="1lh" width="auto" />
-                </button>
-              </li>
+                </ItemButton>
+              </Item>
             ))}
-          </ul>
+          </Items>
         )}
-      </label>
+      </Wrapper>
       <Form.Error>{error}</Form.Error>
-    </div>
+    </Root>
   );
 };
+
+const Wrapper = (
+  props: ComponentProps<typeof DropzoneInputBase.Wrapper> &
+    Pick<DropzoneInputProps, 'error'> & { isDragging: boolean },
+) => {
+  const { isDragging, error, className, ...rest } = props;
+  const defaultClassNames = cn(classNames.wrapper({ isValid: !error, isDragging }), className);
+  return <DropzoneInputBase.Wrapper className={defaultClassNames} {...rest} />;
+};
+
+const Input = forwardRef<HTMLInputElement, ComponentProps<typeof DropzoneInputBase.Input>>(
+  ({ className, ...rest }, ref) => {
+    return <DropzoneInputBase.Input ref={ref} className={cn('sr-only', className)} {...rest} />;
+  },
+);
+
+const Items = ({ className, ...rest }: ComponentProps<typeof DropzoneInputBase.Items>) => {
+  const defaultClassNames = cn('grid gap-1', className);
+  return <DropzoneInputBase.Items className={defaultClassNames} {...rest} />;
+};
+
+const ItemButton = (props: ComponentProps<typeof DropzoneInputBase.ItemButton>) => {
+  const { className, ...rest } = props;
+  const defaultClassNames = cn(classNames.itemButton, className);
+  return <DropzoneInputBase.ItemButton className={defaultClassNames} {...rest} />;
+};
+
+const Placeholder = (props: ComponentProps<typeof DropzoneInputBase.Placeholder>) => {
+  const { className, ...rest } = props;
+  const defaultClassNames = cn('flex-grow text-foreground/50', className);
+  return <DropzoneInputBase.Placeholder className={defaultClassNames} {...rest} />;
+};
+
+const Root = DropzoneInputBase.Root;
+const Label = DropzoneInputBase.Label;
+const Item = DropzoneInputBase.Item;
+const Error = DropzoneInputBase.Error;
+
+Component.displayName = 'DropzoneInputBase';
+Input.displayName = 'DropzoneInputBase.Input';
+
+const DropzoneInput = Object.assign(Component, {
+  Root,
+  Label,
+  Input,
+  Items,
+  Item,
+  ItemButton,
+  Placeholder,
+  Error,
+});
 
 export { DropzoneInput };

@@ -3,7 +3,7 @@
 exports[`DropzoneInput > should match the snapshot 1`] = `
 <div>
   <div
-    class="flex flex-col gap-2"
+    class="grid gap-1 content-start grid-rows-[auto_1fr]"
   >
     <label
       class="p-4 border border-solid border-foreground bg-input text-foreground/50 has-[:enabled]:hover:border-foreground/90 tw-has-focus:tw-cms-outline grid gap-4 cursor-pointer has-[:disabled]:cursor-not-allowed has-[:disabled]:border-foreground/50"
@@ -34,9 +34,7 @@ exports[`DropzoneInput > should match the snapshot 1`] = `
             d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
           />
         </svg>
-        <p
-          class=""
-        >
+        <p>
           <strong>
             Click to upload
           </strong>
@@ -45,9 +43,7 @@ exports[`DropzoneInput > should match the snapshot 1`] = `
             or drag and drop
           </span>
         </p>
-        <p
-          class=""
-        >
+        <p>
           JPG, PNG or WEBP
         </p>
         <input

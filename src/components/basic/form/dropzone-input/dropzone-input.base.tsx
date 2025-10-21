@@ -25,17 +25,17 @@ const Item = (props: HtmlProps['li']) => {
   return <li {...props} />;
 };
 
+const ItemButton = (props: HtmlProps['button']) => {
+  return <button type="button" {...props} />;
+};
+
 const Placeholder = (props: HtmlProps['li']) => {
   return <span {...props} />;
 };
 
-const CloseAllButton = (props: HtmlProps['button']) => {
-  return <button type="button" {...props} />;
-};
+Input.displayName = 'DropzoneInputBase.Input';
 
-Input.displayName = 'FileInputBase.Input';
-
-const FileInputBase = {
+const DropzoneInputBase = {
   Root: Form.Group,
   Label: Form.Label,
   Wrapper,
@@ -43,8 +43,8 @@ const FileInputBase = {
   Items,
   Item,
   Placeholder,
-  CloseAllButton,
+  ItemButton,
   Error: Form.Error,
 };
 
-export default FileInputBase;
+export default DropzoneInputBase;
