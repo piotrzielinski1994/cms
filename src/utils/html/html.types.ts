@@ -2,18 +2,21 @@ import {
   AnchorHTMLAttributes,
   ButtonHTMLAttributes,
   DetailedHTMLProps,
+  FormHTMLAttributes,
   HTMLAttributes,
   ImgHTMLAttributes,
   InputHTMLAttributes,
+  JSX,
   LiHTMLAttributes,
   OptionHTMLAttributes,
   SelectHTMLAttributes,
 } from 'react';
 
-type HtmlProps = {
+type HtmlPropsMap = {
   a: AnchorHTMLAttributes<HTMLAnchorElement>;
   button: ButtonHTMLAttributes<HTMLButtonElement>;
   div: HTMLAttributes<HTMLDivElement>;
+  form: FormHTMLAttributes<HTMLFormElement>;
   img: ImgHTMLAttributes<HTMLImageElement>;
   input: InputHTMLAttributes<HTMLInputElement>;
   label: HTMLAttributes<HTMLLabelElement>;
@@ -23,6 +26,11 @@ type HtmlProps = {
   select: DetailedHTMLProps<SelectHTMLAttributes<HTMLSelectElement>, HTMLSelectElement>;
   span: HTMLAttributes<HTMLSpanElement>;
   ul: HTMLAttributes<HTMLUListElement>;
+};
+
+// Makes sure the key is correct HTML tag
+type HtmlProps = {
+  [K in keyof HtmlPropsMap & keyof JSX.IntrinsicElements]: HtmlPropsMap[K];
 };
 
 // Overwrite native types and/or add custom props
