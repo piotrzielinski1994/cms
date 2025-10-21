@@ -1,10 +1,5 @@
-import {
-  DetailedHTMLProps,
-  forwardRef,
-  HTMLAttributes,
-  OptionHTMLAttributes,
-  SelectHTMLAttributes,
-} from 'react';
+import { HtmlProps } from '@/utils/html/html.types';
+import { DetailedHTMLProps, forwardRef, OptionHTMLAttributes, SelectHTMLAttributes } from 'react';
 import Form from '../root/form';
 
 type NativeSelectProps = DetailedHTMLProps<
@@ -18,7 +13,7 @@ type SelectProps = Omit<NativeSelectProps, 'name' | 'value'> & {
 
 type OptionProps = DetailedHTMLProps<OptionHTMLAttributes<HTMLOptionElement>, HTMLOptionElement>;
 
-const Wrapper = (props: HTMLAttributes<HTMLDivElement>) => {
+const Wrapper = (props: HtmlProps['div']) => {
   return <div {...props} />;
 };
 

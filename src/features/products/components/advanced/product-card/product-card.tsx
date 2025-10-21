@@ -1,10 +1,10 @@
 import { ButtonLink } from '@/components/basic/button/button';
 import { Image } from '@/components/basic/image/image';
 import { placeholderDarkWebp } from '@/placeholders';
+import { HtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
-import { HTMLAttributes } from 'react';
 
-type ProductCardProps = HTMLAttributes<HTMLDivElement> & {
+type ProductCardProps = HtmlProps['div'] & {
   layout?: 'grid' | 'list';
   product: {
     id: number;

@@ -1,7 +1,8 @@
+import { HtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
-import { HTMLAttributes, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
-type DrawerProps = HTMLAttributes<HTMLDivElement> & {
+type DrawerProps = HtmlProps['div'] & {
   isOpen: boolean;
   onClose: () => void;
 };

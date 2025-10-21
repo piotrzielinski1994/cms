@@ -2,11 +2,12 @@
 
 import { ButtonLink } from '@/components/basic/button/button';
 import { Image as BasicImage } from '@/components/basic/image/image';
+import { HtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
 import { StaticImageData } from 'next/image';
-import { ComponentProps, HTMLAttributes } from 'react';
+import { ComponentProps } from 'react';
 
-type ImageBlockProps = HTMLAttributes<HTMLDivElement> & {
+type ImageBlockProps = HtmlProps['div'] & {
   isReversed?: boolean;
   image: Omit<StaticImageData, 'width' | 'height'> & {
     alt: string;

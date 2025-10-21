@@ -1,8 +1,9 @@
 import { Link } from '@/config/next.routing.config';
+import { HtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
-import { ButtonHTMLAttributes, ComponentProps, forwardRef } from 'react';
+import { ComponentProps, forwardRef } from 'react';
 
-type NativeButtonProps = BaseButtonProps & ButtonHTMLAttributes<HTMLButtonElement>;
+type NativeButtonProps = BaseButtonProps & HtmlProps['button'];
 type LinkButtonProps = BaseButtonProps &
   ComponentProps<typeof Link> &
   Pick<NativeButtonProps, 'disabled'>;

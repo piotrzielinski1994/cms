@@ -1,12 +1,9 @@
+import { HtmlProps } from '@/utils/html/html.types';
 import { Locale } from 'next-intl';
 import {
-  ButtonHTMLAttributes,
   ChangeEvent,
   createContext,
-  DetailedHTMLProps,
   forwardRef,
-  HTMLAttributes,
-  InputHTMLAttributes,
   RefObject,
   useContext,
   useRef,
@@ -24,14 +21,14 @@ type InputProps = {
   maxIntLength?: number;
   maxDecimalLength?: number;
   locale?: Locale;
-} & Omit<DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>, 'value'>;
+} & Omit<HtmlProps['input'], 'value'>;
 
 type InputRef = HTMLInputElement & { changeValue: (delta: number) => void };
 
 const InputContext = createContext<RefObject<InputRef | undefined>>({ current: undefined });
 
 // To hold input along with buttons
-const InputWrapper = (props: HTMLAttributes<HTMLDivElement>) => {
+const Wrapper = (props: HtmlProps['div']) => {
   const inputContext = useRef<InputRef>(undefined);
   return (
     <InputContext.Provider value={inputContext}>
@@ -112,9 +109,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   );
 });
 
-const Button = (
-  props: ButtonHTMLAttributes<HTMLButtonElement> & { mode: 'increment' | 'decrement' },
-) => {
+const Button = (props: HtmlProps['button'] & { mode: 'increment' | 'decrement' }) => {
   const { mode, ...rest } = props;
   const inputContext = useContext(InputContext);
 
@@ -137,7 +132,7 @@ Input.displayName = 'NumberInputBase.Input';
 const NumberInputBase = {
   Root: Form.Group,
   Label: Form.Label,
-  InputWrapper,
+  Wrapper,
   Input,
   Button,
   Error: Form.Error,

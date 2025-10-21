@@ -1,10 +1,11 @@
 'use client';
 
+import { HtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
 import { ChevronDown } from 'lucide-react';
-import React, { HTMLAttributes, useEffect, useId, useRef, useState } from 'react';
+import React, { useEffect, useId, useRef, useState } from 'react';
 
-type AccordionProps = HTMLAttributes<HTMLDivElement> & {
+type AccordionProps = HtmlProps['div'] & {
   items: {
     heading: React.ReactNode;
     content: React.ReactNode;

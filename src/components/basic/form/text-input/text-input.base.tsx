@@ -1,7 +1,8 @@
-import { forwardRef, InputHTMLAttributes } from 'react';
+import { HtmlProps } from '@/utils/html/html.types';
+import { forwardRef } from 'react';
 import Form from '../root/form';
 
-type InputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value'> & {
+type InputProps = Omit<HtmlProps['input'], 'value'> & {
   name: string;
   value?: string;
 };

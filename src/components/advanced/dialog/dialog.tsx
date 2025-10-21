@@ -1,16 +1,11 @@
 import { Button } from '@/components/basic/button/button';
 import { Container } from '@/components/basic/container';
 import { Section } from '@/components/basic/section';
+import { HtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
 import { X } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import {
-  ComponentPropsWithoutRef,
-  forwardRef,
-  HTMLAttributes,
-  PropsWithChildren,
-  ReactNode,
-} from 'react';
+import { ComponentPropsWithoutRef, forwardRef, PropsWithChildren, ReactNode } from 'react';
 
 type DialogProps = ComponentPropsWithoutRef<'dialog'> & {
   type?: 'dialog' | 'modal';
@@ -84,7 +79,7 @@ const Root = forwardRef<HTMLDialogElement, DialogProps>(
   },
 );
 
-const Backdrop = ({ className, ...props }: HTMLAttributes<HTMLDivElement>) => {
+const Backdrop = ({ className, ...props }: HtmlProps['div']) => {
   return (
     <div
       {...props}

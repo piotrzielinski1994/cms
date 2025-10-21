@@ -1,12 +1,13 @@
 'use client';
 
 import Form from '@/components/basic/form/root/form';
+import { HtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
 import { Upload, X } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { ChangeEvent, InputHTMLAttributes, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 
-type DropzoneInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> & {
+type DropzoneInputProps = Omit<HtmlProps['input'], 'type'> & {
   name: string;
   accept?: string;
   multiple?: boolean;

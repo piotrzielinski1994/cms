@@ -1,17 +1,18 @@
-import { ElementType, FormHTMLAttributes, HTMLAttributes, HTMLProps } from 'react';
+import { HtmlProps } from '@/utils/html/html.types';
+import { ElementType, FormHTMLAttributes, HTMLProps } from 'react';
 
 const Root = (props: FormHTMLAttributes<HTMLFormElement>) => {
   return <form {...props} />;
 };
 
-const Group = (props: HTMLAttributes<HTMLDivElement>) => <div {...props} />;
+const Group = (props: HtmlProps['div']) => <div {...props} />;
 
 const Label = <T extends HTMLProps<HTMLLabelElement>>(props: T & { as?: ElementType }) => {
   const { as: Cmp = 'label', ...rest } = props;
   return <Cmp {...rest} />;
 };
 
-const Error = (props: HTMLAttributes<HTMLSpanElement>) => {
+const Error = (props: HtmlProps['span']) => {
   return <span role="alert" aria-hidden={!props.children} {...props} />;
 };
 

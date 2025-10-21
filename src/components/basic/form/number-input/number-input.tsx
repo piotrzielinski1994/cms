@@ -21,7 +21,7 @@ const Component = forwardRef<HTMLInputElement, NumberInputProps>((props, ref) =>
   return (
     <Root>
       {label && <Label htmlFor={rest.id}>{label}</Label>}
-      <InputWrapper className="relative">
+      <Wrapper className="relative">
         <Input ref={ref} error={error} locale={locale} {...rest} />
         <div className="absolute inset-y-0 right-1 flex flex-col justify-center">
           <Button mode="increment" disabled={rest.disabled} aria-label={t?.increment}>
@@ -31,7 +31,7 @@ const Component = forwardRef<HTMLInputElement, NumberInputProps>((props, ref) =>
             <ChevronDown size="1rem" />
           </Button>
         </div>
-      </InputWrapper>
+      </Wrapper>
       <Error>{error}</Error>
     </Root>
   );
@@ -48,7 +48,7 @@ Input.displayName = 'NumberInput.Input';
 
 const Root = NumberInputBase.Root;
 const Label = NumberInputBase.Label;
-const InputWrapper = NumberInputBase.InputWrapper;
+const Wrapper = NumberInputBase.Wrapper;
 const Button = NumberInputBase.Button;
 const Error = NumberInputBase.Error;
 
