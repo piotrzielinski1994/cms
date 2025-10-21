@@ -1,17 +1,12 @@
-import { HtmlProps } from '@/utils/html/html.types';
-import { DetailedHTMLProps, forwardRef, OptionHTMLAttributes, SelectHTMLAttributes } from 'react';
+import { EnhancedHtmlProps, HtmlProps } from '@/utils/html/html.types';
+import { forwardRef } from 'react';
 import Form from '../root/form';
 
-type NativeSelectProps = DetailedHTMLProps<
-  SelectHTMLAttributes<HTMLSelectElement>,
-  HTMLSelectElement
->;
-type SelectProps = Omit<NativeSelectProps, 'name' | 'value'> & {
+// prettier-ignore
+type SelectProps = EnhancedHtmlProps<'select', {
   name: string;
   value?: string;
-};
-
-type OptionProps = DetailedHTMLProps<OptionHTMLAttributes<HTMLOptionElement>, HTMLOptionElement>;
+}>;
 
 const Wrapper = (props: HtmlProps['div']) => {
   return <div {...props} />;
@@ -21,7 +16,7 @@ const Native = forwardRef<HTMLSelectElement, Omit<SelectProps, 'placeholder'>>((
   return <select ref={ref} {...props} />;
 });
 
-const Option = forwardRef<HTMLOptionElement, OptionProps>((props, ref) => {
+const Option = forwardRef<HTMLOptionElement, HtmlProps['option']>((props, ref) => {
   return <option ref={ref} {...props} />;
 });
 

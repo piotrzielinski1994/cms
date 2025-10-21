@@ -34,8 +34,9 @@ const Component = forwardRef<HTMLInputElement, FileInputProps>((props, ref) => {
     <Root>
       {label && <Label htmlFor={rest.id}>{label}</Label>}
       <Wrapper
+        isDragging={isDragging}
+        error={error}
         aria-label={t('component.uploadInput.clickToUpload')}
-        className={classNames.wrapper({ isValid: !error, isDragging })}
         onDragLeave={() => setIsDragging(false)}
         onDragOver={(e) => {
           e.preventDefault();
@@ -55,17 +56,15 @@ const Component = forwardRef<HTMLInputElement, FileInputProps>((props, ref) => {
         <Upload />
         {fileNames.length > 0 ? (
           <>
-            <ul className="flex-grow grid gap-1">
+            <Items>
               {fileNames.map((fileName, index) => (
-                <li key={index}>
-                  <span>{fileName}</span>
-                </li>
+                <Item key={index}>{fileName}</Item>
               ))}
-            </ul>
+            </Items>
             <CloseAllButton onClick={onClear} aria-label={t('close')} />
           </>
         ) : (
-          <span className="flex-grow text-foreground/50">{props.placeholder}</span>
+          <Placeholder>{props.placeholder}</Placeholder>
         )}
       </Wrapper>
       <Error>{error}</Error>
@@ -73,11 +72,25 @@ const Component = forwardRef<HTMLInputElement, FileInputProps>((props, ref) => {
   );
 });
 
+const Wrapper = (
+  props: ComponentProps<typeof FileInputBase.Wrapper> &
+    Pick<FileInputProps, 'error'> & { isDragging: boolean },
+) => {
+  const { isDragging, error, className, ...rest } = props;
+  const defaultClassNames = cn(classNames.wrapper({ isValid: !error, isDragging }), className);
+  return <FileInputBase.Wrapper className={defaultClassNames} {...rest} />;
+};
+
 const Input = forwardRef<HTMLInputElement, ComponentProps<typeof FileInputBase.Input>>(
   ({ className, ...rest }, ref) => {
     return <FileInputBase.Input ref={ref} className={cn('sr-only', className)} {...rest} />;
   },
 );
+
+const Items = ({ className, ...rest }: ComponentProps<typeof FileInputBase.Items>) => {
+  const defaultClassNames = cn('flex-grow grid gap-1', className);
+  return <FileInputBase.Items className={defaultClassNames} {...rest} />;
+};
 
 const CloseAllButton = (props: ComponentProps<typeof FileInputBase.CloseAllButton>) => {
   return (
@@ -87,14 +100,28 @@ const CloseAllButton = (props: ComponentProps<typeof FileInputBase.CloseAllButto
   );
 };
 
+const Placeholder = ({ className, ...rest }: ComponentProps<typeof FileInputBase.Placeholder>) => {
+  const defaultClassNames = cn('flex-grow text-foreground/50', className);
+  return <FileInputBase.Placeholder className={defaultClassNames} {...rest} />;
+};
+
 const Root = FileInputBase.Root;
 const Label = FileInputBase.Label;
-const Wrapper = FileInputBase.Wrapper;
+const Item = FileInputBase.Item;
 const Error = FileInputBase.Error;
 
 Component.displayName = 'FileInputBase';
 Input.displayName = 'FileInputBase.Input';
 
-const FileInput = Object.assign(Component, { Root, Label, Input, CloseAllButton, Error });
+const FileInput = Object.assign(Component, {
+  Root,
+  Label,
+  Input,
+  Items,
+  Item,
+  CloseAllButton,
+  Placeholder,
+  Error,
+});
 
 export { FileInput };

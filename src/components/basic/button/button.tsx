@@ -1,15 +1,14 @@
 import { Link } from '@/config/next.routing.config';
-import { HtmlProps } from '@/utils/html/html.types';
+import { EnhancedHtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
 import { ComponentProps, forwardRef } from 'react';
 
-type NativeButtonProps = BaseButtonProps & HtmlProps['button'];
-type LinkButtonProps = BaseButtonProps &
-  ComponentProps<typeof Link> &
-  Pick<NativeButtonProps, 'disabled'>;
-type BaseButtonProps = {
+// prettier-ignore
+type ButtonProps = EnhancedHtmlProps<'button', {
   variant?: keyof (typeof buttonClassNames)['variant'];
-};
+}>;
+
+type LinkButtonProps = ComponentProps<typeof Link> & Pick<ButtonProps, 'disabled' | 'variant'>;
 
 const buttonClassNames = {
   button: cn(
@@ -32,7 +31,7 @@ const buttonClassNames = {
   },
 };
 
-const Button = ({ className, variant = 'primary', ...rest }: NativeButtonProps) => {
+const Button = ({ variant = 'primary', className, ...rest }: ButtonProps) => {
   return (
     <button
       type="button"

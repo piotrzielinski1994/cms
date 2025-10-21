@@ -41,14 +41,10 @@ exports[`FileInput > should match the snapshot 1`] = `
         class="flex-grow grid gap-1"
       >
         <li>
-          <span>
-            file-1.webp
-          </span>
+          file-1.webp
         </li>
         <li>
-          <span>
-            file-2.webp
-          </span>
+          file-2.webp
         </li>
       </ul>
       <button

@@ -1,4 +1,4 @@
-import { HtmlProps } from '@/utils/html/html.types';
+import { EnhancedHtmlProps, HtmlProps } from '@/utils/html/html.types';
 import { Locale } from 'next-intl';
 import {
   ChangeEvent,
@@ -12,7 +12,8 @@ import {
 import Form from '../root/form';
 import { createNumberFormatter, createNumberUnformatter, isNumeric } from './number-input.utils';
 
-type InputProps = {
+// prettier-ignore
+type InputProps = EnhancedHtmlProps<'input', {
   name: string;
   value?: number | string; // To support formatted values
   min?: number;
@@ -21,7 +22,7 @@ type InputProps = {
   maxIntLength?: number;
   maxDecimalLength?: number;
   locale?: Locale;
-} & Omit<HtmlProps['input'], 'value'>;
+}>;
 
 type InputRef = HTMLInputElement & { changeValue: (delta: number) => void };
 

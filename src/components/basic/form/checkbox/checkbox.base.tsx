@@ -1,11 +1,12 @@
-import { HtmlProps } from '@/utils/html/html.types';
+import { EnhancedHtmlProps } from '@/utils/html/html.types';
 import { forwardRef } from 'react';
 import Form from '../root/form';
 
-type InputProps = Omit<HtmlProps['input'], 'value' | 'type'> & {
+// prettier-ignore
+type InputProps = EnhancedHtmlProps<'input', {
   name: string;
   value?: string;
-};
+}>;
 
 const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   return <input ref={ref} type="checkbox" {...props} />;

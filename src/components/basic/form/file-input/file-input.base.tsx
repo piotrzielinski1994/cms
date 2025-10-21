@@ -1,13 +1,14 @@
-import { HtmlProps } from '@/utils/html/html.types';
+import { EnhancedHtmlProps, HtmlProps } from '@/utils/html/html.types';
 import { forwardRef } from 'react';
 import Form from '../root/form';
 
-type InputProps = {
+// prettier-ignore
+type InputProps = EnhancedHtmlProps<'input', {
   name: string;
   value?: string;
   accept?: string;
   multiple?: boolean;
-} & Omit<HtmlProps['input'], 'type' | 'value' | 'accept' | 'multiple'>;
+}>;
 
 const Wrapper = (props: HtmlProps['label']) => {
   return <label {...props} />;
@@ -25,6 +26,10 @@ const Item = (props: HtmlProps['li']) => {
   return <li {...props} />;
 };
 
+const Placeholder = (props: HtmlProps['li']) => {
+  return <span {...props} />;
+};
+
 const CloseAllButton = (props: HtmlProps['button']) => {
   return <button type="button" {...props} />;
 };
@@ -38,6 +43,7 @@ const FileInputBase = {
   Input,
   Items,
   Item,
+  Placeholder,
   CloseAllButton,
   Error: Form.Error,
 };
