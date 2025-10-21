@@ -76,7 +76,7 @@ const ThemeSwitcher: FC = () => {
 
 const SunOrMoon = ({ colorPreference }: SunOrMoonProps) => {
   const Icon = colorPreference === 'light' ? Sun : Moon;
-  return <Icon className="h-4 w-4" />;
+  return <Icon suppressHydrationWarning className="h-4 w-4" />;
 };
 
 export { ThemeSwitcher };
