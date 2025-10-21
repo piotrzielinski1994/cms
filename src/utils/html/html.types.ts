@@ -7,6 +7,7 @@ import {
   ImgHTMLAttributes,
   InputHTMLAttributes,
   JSX,
+  LabelHTMLAttributes,
   LiHTMLAttributes,
   OptionHTMLAttributes,
   SelectHTMLAttributes,
@@ -19,7 +20,7 @@ type HtmlPropsMap = {
   form: FormHTMLAttributes<HTMLFormElement>;
   img: ImgHTMLAttributes<HTMLImageElement>;
   input: InputHTMLAttributes<HTMLInputElement>;
-  label: HTMLAttributes<HTMLLabelElement>;
+  label: LabelHTMLAttributes<HTMLLabelElement>;
   li: LiHTMLAttributes<HTMLLIElement>;
   option: DetailedHTMLProps<OptionHTMLAttributes<HTMLOptionElement>, HTMLOptionElement>;
   p: HTMLAttributes<HTMLParagraphElement>;
