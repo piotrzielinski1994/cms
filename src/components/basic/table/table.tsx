@@ -1,7 +1,8 @@
 import { cn } from '@/utils/tailwind';
-import { HTMLAttributes, ReactNode } from 'react';
+import { ComponentProps, forwardRef, ReactNode } from 'react';
+import TableBase from './table.base';
 
-type TableProps = HTMLAttributes<HTMLTableElement> & {
+type TableProps = ComponentProps<typeof TableBase.Native> & {
   header: ReactNode[];
   body: ReactNode[][];
   footer?: ReactNode[];
@@ -9,35 +10,28 @@ type TableProps = HTMLAttributes<HTMLTableElement> & {
 
 // We always map through header columns in case body or footer are of different length
 // Static tuple declarations won't work as we always .map before passing props -> loosing tuple
-const Table = ({ header, body, footer = [], ...props }: TableProps) => {
+const Component = forwardRef<HTMLTableElement, TableProps>((props, ref) => {
+  const { header, body, footer = [], ...rest } = props;
   const hasEvenElements = body.length % 2 === 0;
   return (
-    <div className="w-full overflow-x-auto">
-      <table {...props} className={cn('w-full', props.className)}>
-        <thead className="font-semibold">
-          <tr className="bg-primary text-primary-foreground">
+    <Root>
+      <Native ref={ref} {...rest}>
+        <Header>
+          <Row className="bg-primary text-primary-foreground">
             {header.map((cell, index) => {
-              return (
-                <td key={index} className={cn('px-4 py-2 md:px-6 md:py-4')}>
-                  {cell}
-                </td>
-              );
+              return <Column key={index}>{cell}</Column>;
             })}
-          </tr>
-        </thead>
-        <tbody>
+          </Row>
+        </Header>
+        <Body>
           {body.map((row, index) => {
             const isEven = index % 2 === 0;
             const cells = header.map((_, index) => {
               const cell = row[index];
-              return (
-                <td key={index} className="px-4 py-2 md:px-6 md:py-4">
-                  {cell}
-                </td>
-              );
+              return <Column key={index}>{cell}</Column>;
             });
             return (
-              <tr
+              <Row
                 key={index}
                 className={cn({
                   'bg-background': isEven,
@@ -45,13 +39,13 @@ const Table = ({ header, body, footer = [], ...props }: TableProps) => {
                 })}
               >
                 {cells}
-              </tr>
+              </Row>
             );
           })}
-        </tbody>
+        </Body>
         {footer.length > 0 && (
-          <tfoot className="font-semibold">
-            <tr
+          <Footer>
+            <Row
               className={cn({
                 'bg-background': hasEvenElements,
                 'bg-background1': !hasEvenElements,
@@ -59,18 +53,57 @@ const Table = ({ header, body, footer = [], ...props }: TableProps) => {
             >
               {header.map((_, index) => {
                 const cell = footer[index];
-                return (
-                  <td key={index} className="px-4 py-2 md:px-6 md:py-4">
-                    {cell}
-                  </td>
-                );
+                return <Column key={index}>{cell}</Column>;
               })}
-            </tr>
-          </tfoot>
+            </Row>
+          </Footer>
         )}
-      </table>
-    </div>
+      </Native>
+    </Root>
   );
+});
+
+const Root = ({ className, ...rest }: ComponentProps<typeof TableBase.Root>) => {
+  const defaultClassNames = cn('w-full overflow-x-auto', className);
+  return <TableBase.Root className={defaultClassNames} {...rest} />;
 };
+
+const Native = forwardRef<HTMLTableElement, ComponentProps<typeof TableBase.Native>>(
+  ({ className, ...rest }) => {
+    return <TableBase.Native className={cn('w-full', className)} {...rest} />;
+  },
+);
+
+const Header = ({ className, ...rest }: ComponentProps<typeof TableBase.Header>) => {
+  const defaultClassNames = cn('font-semibold', className);
+  return <TableBase.Header className={defaultClassNames} {...rest} />;
+};
+
+const Body = TableBase.Body;
+
+const Footer = ({ className, ...rest }: ComponentProps<typeof TableBase.Footer>) => {
+  const defaultClassNames = cn('font-semibold', className);
+  return <TableBase.Footer className={defaultClassNames} {...rest} />;
+};
+
+const Row = TableBase.Row;
+
+const Column = ({ className, ...rest }: ComponentProps<typeof TableBase.Column>) => {
+  const defaultClassNames = cn('px-4 py-2 md:px-6 md:py-4', className);
+  return <TableBase.Column className={defaultClassNames} {...rest} />;
+};
+
+Component.displayName = 'Table';
+Native.displayName = 'Table.Native';
+
+const Table = Object.assign(Component, {
+  Root,
+  Native,
+  Header,
+  Body,
+  Footer,
+  Row,
+  Column,
+});
 
 export { Table };

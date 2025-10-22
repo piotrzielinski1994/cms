@@ -11,6 +11,7 @@ import {
   LiHTMLAttributes,
   OptionHTMLAttributes,
   SelectHTMLAttributes,
+  TdHTMLAttributes,
 } from 'react';
 
 type HtmlPropsMap = {
@@ -26,6 +27,12 @@ type HtmlPropsMap = {
   p: HTMLAttributes<HTMLParagraphElement>;
   select: DetailedHTMLProps<SelectHTMLAttributes<HTMLSelectElement>, HTMLSelectElement>;
   span: HTMLAttributes<HTMLSpanElement>;
+  table: HTMLAttributes<HTMLTableElement>;
+  tbody: HTMLAttributes<HTMLTableSectionElement>;
+  td: TdHTMLAttributes<HTMLTableDataCellElement>;
+  tfoot: HTMLAttributes<HTMLTableSectionElement>;
+  thead: HTMLAttributes<HTMLTableSectionElement>;
+  tr: HTMLAttributes<HTMLTableRowElement>;
   ul: HTMLAttributes<HTMLUListElement>;
 };
 
