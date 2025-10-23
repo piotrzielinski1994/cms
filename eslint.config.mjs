@@ -11,6 +11,7 @@ const eslintConfig = [
   {
     rules: {
       'import/no-anonymous-default-export': 'off',
+      'no-dupe-keys': 'off',
       'react/display-name': 'off',
       '@typescript-eslint/ban-ts-comment': 'warn',
       '@typescript-eslint/no-empty-object-type': 'warn',

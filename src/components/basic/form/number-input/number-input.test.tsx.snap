@@ -2,9 +2,7 @@
 
 exports[`NumberInput > should match the snapshot 1`] = `
 <div>
-  <div
-    class="grid gap-1 content-start grid-rows-[auto_1fr]"
-  >
+  <form>
     <label
       class="self-end"
       for="id"
@@ -15,14 +13,13 @@ exports[`NumberInput > should match the snapshot 1`] = `
       class="relative"
     >
       <input
+        aria-invalid="false"
         autocomplete="off"
         class="p-2 border border-solid border-current bg-input placeholder-foreground/50 [&:enabled]:hover:border-foreground/90 [&:enabled]:hover:ring-foreground/90 disabled:cursor-not-allowed disabled:text-foreground/50 outline-none ring-inset focus-within:ring-1 ring-current w-full pr-6"
         id="id"
         inputmode="numeric"
-        lang="en"
         name="name"
         role="spinbutton"
-        type="text"
         value="123"
       />
       <div
@@ -81,6 +78,6 @@ exports[`NumberInput > should match the snapshot 1`] = `
       class="min-h-[1em] text-sm text-red-500 leading-none"
       role="alert"
     />
-  </div>
+  </form>
 </div>
 `;

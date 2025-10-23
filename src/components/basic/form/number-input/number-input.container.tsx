@@ -1,4 +1,5 @@
 import { useLocaleStore } from '@/store/locale';
+import { Optional } from '@/utils/types';
 import { useTranslations } from 'next-intl';
 import { ComponentProps } from 'react';
 import { Control, FieldValues, Path, useController } from 'react-hook-form';
@@ -7,7 +8,7 @@ import { NumberInput } from './number-input';
 type NumberInputContainerProps<T extends FieldValues> = {
   control: Control<T>;
   name: Path<T>;
-} & Omit<ComponentProps<typeof NumberInput>, 'name'>;
+} & Omit<Optional<ComponentProps<typeof NumberInput>, 't'>, 'name'>;
 
 const NumberInputContainer = <T extends FieldValues>(props: NumberInputContainerProps<T>) => {
   const { control, name, ...rest } = props;
@@ -16,8 +17,8 @@ const NumberInputContainer = <T extends FieldValues>(props: NumberInputContainer
   const { field, fieldState } = useController({ control, name });
   return (
     <NumberInput
-      t={{ increment: t('increment'), decrement: t('decrement') }}
       lang={locale}
+      t={{ increment: t('increment'), decrement: t('decrement') }}
       {...rest}
       {...field}
       error={fieldState.error?.message}

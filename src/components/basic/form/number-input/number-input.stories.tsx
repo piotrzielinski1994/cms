@@ -48,37 +48,41 @@ const meta: Meta<ComponentProps<typeof ControlledInput>> = {
 };
 
 const Render = ({ label, placeholder, ...args }: Args) => {
-  const t = useTranslations('storybook.basic.form');
-  const t2 = useTranslations('storybook.basic.form.textInput');
+  const t = useTranslations('frontend');
+  const t2 = useTranslations('storybook.basic.form');
+  const t3 = useTranslations('storybook.basic.form.textInput');
 
   return (
     <div className="grid gap-2">
       <Form.Group>
-        <Form.Label htmlFor="input1">{getFallback(label, t('numberInput'))}</Form.Label>
+        <Form.Label htmlFor="input1">{getFallback(label, t2('numberInput'))}</Form.Label>
         <ControlledInput
           {...args}
-          placeholder={getFallback(placeholder, t2('default.placeholder'))}
+          placeholder={getFallback(placeholder, t3('default.placeholder'))}
           id="input1"
           name="input1"
+          t={{ increment: t('increment'), decrement: t('decrement') }}
         />
       </Form.Group>
       <Form.Group>
-        <Form.Label htmlFor="input2">{t2('disabled.label')}</Form.Label>
+        <Form.Label htmlFor="input2">{t3('disabled.label')}</Form.Label>
         <NumberInputComponent
           id="input2"
           name="input2"
-          placeholder={t2('disabled.placeholder')}
+          placeholder={t3('disabled.placeholder')}
           disabled
+          t={{ increment: t('increment'), decrement: t('decrement') }}
         />
       </Form.Group>
       <Form.Group>
-        <Form.Label htmlFor="input3">{t2('invalid.label')}</Form.Label>
+        <Form.Label htmlFor="input3">{t3('invalid.label')}</Form.Label>
         <NumberInputComponent
           {...args}
           id="input3"
           name="input3"
           value={12345.67}
-          error={t2('invalid.error')}
+          error={t3('invalid.error')}
+          t={{ increment: t('increment'), decrement: t('decrement') }}
         />
       </Form.Group>
     </div>
