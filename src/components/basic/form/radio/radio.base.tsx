@@ -12,8 +12,6 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   return <input ref={ref} type="radio" {...props} />;
 });
 
-Input.displayName = 'RadioBase.Input';
-
 const RadioBase = {
   Root: Form.Group,
   Label: Form.Label,

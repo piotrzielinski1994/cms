@@ -93,9 +93,6 @@ const Column = ({ className, ...rest }: ComponentProps<typeof TableBase.Column>)
   return <TableBase.Column className={defaultClassNames} {...rest} />;
 };
 
-Component.displayName = 'Table';
-Native.displayName = 'Table.Native';
-
 const Table = Object.assign(Component, {
   Root,
   Native,

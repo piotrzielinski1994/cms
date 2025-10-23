@@ -33,8 +33,6 @@ const Placeholder = (props: HtmlProps['li']) => {
   return <span {...props} />;
 };
 
-Input.displayName = 'DropzoneInputBase.Input';
-
 const DropzoneInputBase = {
   Root: Form.Group,
   Label: Form.Label,

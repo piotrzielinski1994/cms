@@ -20,9 +20,6 @@ const Option = forwardRef<HTMLOptionElement, HtmlProps['option']>((props, ref) =
   return <option ref={ref} {...props} />;
 });
 
-Native.displayName = 'SelectBase.Native';
-Option.displayName = 'SelectBase.Option';
-
 const SelectBase = {
   Root: Form.Group,
   Label: Form.Label,

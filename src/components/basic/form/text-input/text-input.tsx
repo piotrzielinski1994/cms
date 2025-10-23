@@ -40,9 +40,6 @@ const Root = TextInputBase.Root;
 const Label = TextInputBase.Label;
 const Error = TextInputBase.Error;
 
-Component.displayName = 'TextInput';
-Input.displayName = 'TextInput.Input';
-
 const TextInput = Object.assign(Component, { Root, Label, Input, Error });
 
 export { inputClassNames, TextInput };

@@ -24,6 +24,4 @@ const Container = forwardRef(
   },
 );
 
-Container.displayName = 'Container';
-
 export { Container };

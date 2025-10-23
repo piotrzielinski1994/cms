@@ -35,9 +35,6 @@ const Root = TextAreaBase.Root;
 const Label = TextAreaBase.Label;
 const Error = TextAreaBase.Error;
 
-Component.displayName = 'TextArea';
-Input.displayName = 'TextInput.Input';
-
 const TextArea = Object.assign(Component, { Root, Label, Input, Error });
 
 export { TextArea };

@@ -128,8 +128,6 @@ const Button = (props: HtmlProps['button'] & { mode: 'increment' | 'decrement' }
   );
 };
 
-Input.displayName = 'NumberInputBase.Input';
-
 const NumberInputBase = {
   Root: Form.Group,
   Label: Form.Label,

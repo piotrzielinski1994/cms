@@ -12,8 +12,6 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   return <input ref={ref} type="text" {...props} value={props.value ?? ''} />;
 });
 
-Input.displayName = 'TextInputBase.Input';
-
 const TextInputBase = {
   Root: Form.Group,
   Label: Form.Label,

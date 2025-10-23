@@ -13,8 +13,6 @@ const Footer = (props: HtmlProps['tfoot']) => <tfoot {...props} />;
 const Row = (props: HtmlProps['tr']) => <tr {...props} />;
 const Column = (props: HtmlProps['td']) => <td {...props} />;
 
-Native.displayName = 'TableBase.Native';
-
 const TableBase = {
   Root,
   Native,

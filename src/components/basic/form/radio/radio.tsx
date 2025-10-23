@@ -41,9 +41,6 @@ const Root = RadioBase.Root;
 const Label = RadioBase.Label;
 const Error = RadioBase.Error;
 
-Component.displayName = 'Radio';
-Input.displayName = 'Radio.Input';
-
 const Radio = Object.assign(Component, { Root, Label, Input, Error });
 
 export { Radio };

@@ -53,6 +53,4 @@ const ButtonLink = forwardRef<HTMLAnchorElement, LinkButtonProps>(
   },
 );
 
-ButtonLink.displayName = 'ButtonLink';
-
 export { Button, buttonClassNames, ButtonLink };

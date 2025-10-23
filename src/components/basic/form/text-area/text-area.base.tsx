@@ -10,8 +10,6 @@ const Input = forwardRef<HTMLTextAreaElement, InputProps>((props, ref) => {
   return <textarea ref={ref} contentEditable={false} {...props} value={props.value ?? ''} />;
 });
 
-Input.displayName = 'TextAreaBase.Input';
-
 const TextAreaBase = {
   Root: Form.Group,
   Label: Form.Label,

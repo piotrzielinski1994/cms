@@ -110,7 +110,5 @@ const Footer = ({ className, submitBtn, cancelBtn, ...props }: FooterProps) => {
   );
 };
 
-Root.displayName = 'Dialog.Root';
-
 const Dialog = { Root, Backdrop, Footer };
 export default Dialog;

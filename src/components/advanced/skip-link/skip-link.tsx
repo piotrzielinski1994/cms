@@ -24,6 +24,4 @@ const SkipLink = forwardRef<HTMLAnchorElement>((_, ref) => {
   );
 });
 
-SkipLink.displayName = 'SkipLink';
-
 export { SkipLink };

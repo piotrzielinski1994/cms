@@ -110,9 +110,6 @@ const Label = FileInputBase.Label;
 const Item = FileInputBase.Item;
 const Error = FileInputBase.Error;
 
-Component.displayName = 'FileInputBase';
-Input.displayName = 'FileInputBase.Input';
-
 const FileInput = Object.assign(Component, {
   Root,
   Label,

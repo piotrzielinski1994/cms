@@ -16,6 +16,4 @@ const Section = forwardRef(
   },
 );
 
-Section.displayName = 'Section';
-
 export { Section };

@@ -146,9 +146,6 @@ const Label = DropzoneInputBase.Label;
 const Item = DropzoneInputBase.Item;
 const Error = DropzoneInputBase.Error;
 
-Component.displayName = 'DropzoneInputBase';
-Input.displayName = 'DropzoneInputBase.Input';
-
 const DropzoneInput = Object.assign(Component, {
   Root,
   Label,

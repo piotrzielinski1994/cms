@@ -77,10 +77,6 @@ const Label = SelectBase.Label;
 const Wrapper = SelectBase.Wrapper;
 const Error = SelectBase.Error;
 
-Component.displayName = 'Select';
-Native.displayName = 'Select.Native';
-Option.displayName = 'Select.Option';
-
 const Select = Object.assign(Component, { Root, Label, Native, Error });
 
 export { Select };

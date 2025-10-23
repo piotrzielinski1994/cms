@@ -43,9 +43,6 @@ const Input = forwardRef<HTMLInputElement, Omit<NumberInputProps, 'label'>>((pro
   return <NumberInputBase.Input ref={ref} {...rest} className={classNames} />;
 });
 
-Component.displayName = 'NumberInput';
-Input.displayName = 'NumberInput.Input';
-
 const Root = NumberInputBase.Root;
 const Label = NumberInputBase.Label;
 const Wrapper = NumberInputBase.Wrapper;

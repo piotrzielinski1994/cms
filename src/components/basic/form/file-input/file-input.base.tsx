@@ -33,8 +33,6 @@ const CloseAllButton = (props: HtmlProps['button']) => {
   return <button type="button" {...props} />;
 };
 
-Input.displayName = 'FileInputBase.Input';
-
 const FileInputBase = {
   Root: Form.Group,
   Label: Form.Label,

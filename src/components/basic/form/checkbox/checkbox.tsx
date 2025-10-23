@@ -56,9 +56,6 @@ const Root = CheckboxBase.Root;
 const Label = CheckboxBase.Label;
 const Error = CheckboxBase.Error;
 
-Component.displayName = 'Checkbox';
-Input.displayName = 'Checkbox.Input';
-
 const Checkbox = Object.assign(Component, { Root, Label, Input, Error });
 
 export { Checkbox, checkboxClassNames };
