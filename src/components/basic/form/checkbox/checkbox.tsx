@@ -1,12 +1,19 @@
+import { EnhancedHtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
 import { Check } from 'lucide-react';
-import { ComponentProps, forwardRef } from 'react';
-import CheckboxBase from './checkbox.base';
+import { forwardRef } from 'react';
+import Form from '../root/form';
 
-type CheckboxProps = ComponentProps<typeof CheckboxBase.Input> & {
+type CheckboxProps = NativeProps & {
   label: string;
   error?: string;
 };
+
+// prettier-ignore
+type NativeProps = EnhancedHtmlProps<'input', {
+  name: string;
+  value?: string;
+}>;
 
 const checkboxClassNames = {
   wrapper: cn(
@@ -34,7 +41,7 @@ const Component = forwardRef<HTMLInputElement, CheckboxProps>((props, ref) => {
   return (
     <Root>
       <Label className={checkboxClassNames.wrapper}>
-        <Input ref={ref} error={error} {...rest} />
+        <Input ref={ref} aria-invalid={!!error} {...rest} />
         <span>{label}</span>
       </Label>
       <Error>{error}</Error>
@@ -42,19 +49,20 @@ const Component = forwardRef<HTMLInputElement, CheckboxProps>((props, ref) => {
   );
 });
 
-const Input = forwardRef<HTMLInputElement, Omit<CheckboxProps, 'label'>>((props, ref) => {
-  const { error, className, ...rest } = props;
+const Input = forwardRef<HTMLInputElement, NativeProps>((props, ref) => {
+  const { className, ...rest } = props;
+  const base = checkboxClassNames.checkbox({ isValid: !props['aria-invalid'] });
   return (
-    <div className={cn(checkboxClassNames.checkbox({ isValid: !error }), className)}>
-      <CheckboxBase.Input ref={ref} className="sr-only" {...rest} />
+    <div className={cn(base, className)}>
+      <input ref={ref} type="checkbox" className="sr-only" {...rest} />
       <Check className={checkboxClassNames.icon} />
     </div>
   );
 });
 
-const Root = CheckboxBase.Root;
-const Label = CheckboxBase.Label;
-const Error = CheckboxBase.Error;
+const Root = Form.Group;
+const Label = Form.Label;
+const Error = Form.Error;
 
 const Checkbox = Object.assign(Component, { Root, Label, Input, Error });
 

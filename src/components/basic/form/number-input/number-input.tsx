@@ -4,6 +4,7 @@ import { ChevronDown, ChevronUp } from 'lucide-react';
 import { Locale } from 'next-intl';
 import {
   ChangeEvent,
+  ComponentProps,
   createContext,
   forwardRef,
   ReactNode,
@@ -47,24 +48,23 @@ const Component = forwardRef<HTMLInputElement, NumberInputProps>((props, ref) =>
   return (
     <Root>
       {label && <Label htmlFor={rest.id}>{label}</Label>}
-      <Wrapper>
-        <Native ref={ref} aria-invalid={!!error} aria-errormessage={error} {...rest} />
+      <div className="relative">
+        <Native ref={ref} aria-invalid={!!error} {...rest} />
         <div className="absolute inset-y-0 right-1 flex flex-col justify-center">
           <Button mode="increment" disabled={rest.disabled} aria-label={t.increment} />
           <Button mode="decrement" disabled={rest.disabled} aria-label={t.decrement} />
         </div>
-      </Wrapper>
+      </div>
       <Error>{error}</Error>
     </Root>
   );
 });
 
-// To hold input along with buttons
-const Wrapper = (props: HtmlProps['div']) => {
+const Root = (props: ComponentProps<typeof Form.Root>) => {
   const inputContext = useRef<InputRef>(undefined);
   return (
     <InputContext.Provider value={inputContext}>
-      <div {...props} className={cn('relative', props.className)} />
+      <Form.Root {...props} />
     </InputContext.Provider>
   );
 };
@@ -166,10 +166,9 @@ const Button = (props: HtmlProps['button'] & { mode: 'increment' | 'decrement' }
   );
 };
 
-const Root = Form.Root;
 const Label = Form.Label;
 const Error = Form.Error;
 
-const NumberInput = Object.assign(Component, { Root, Wrapper, Label, Native, Button, Error });
+const NumberInput = Object.assign(Component, { Root, Label, Native, Button, Error });
 
 export { NumberInput };

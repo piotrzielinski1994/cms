@@ -1,12 +1,12 @@
 'use client';
 
 import Form from '@/components/basic/form/root/form';
+import { EnhancedHtmlProps, HtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
 import { Upload, X } from 'lucide-react';
-import { ChangeEvent, ComponentProps, forwardRef, ReactNode, useState } from 'react';
-import DropzoneInputBase from './dropzone-input.base';
+import { ChangeEvent, forwardRef, ReactNode, useState } from 'react';
 
-type DropzoneInputProps = ComponentProps<typeof DropzoneInputBase.Input> & {
+type DropzoneInputProps = NativeProps & {
   label?: ReactNode;
   error?: string;
   fileNames: string[];
@@ -17,6 +17,13 @@ type DropzoneInputProps = ComponentProps<typeof DropzoneInputBase.Input> & {
     fileExtensions: ReactNode;
   };
 };
+
+// prettier-ignore
+type NativeProps = EnhancedHtmlProps<'input', {
+  name: string;
+  accept?: string;
+  multiple?: boolean;
+}>;
 
 const classNames = {
   wrapper: ({ isValid, isDragging }: { isValid: boolean; isDragging: boolean }) =>
@@ -50,7 +57,7 @@ const Component = ({ fileNames, onFileRemove, label, error, t, ...rest }: Dropzo
       {label && <Label htmlFor={rest.id}>{label}</Label>}
       <Wrapper
         isDragging={isDragging}
-        error={error}
+        aria-invalid={!!error}
         onDragLeave={() => setIsDragging(false)}
         onDragOver={(e) => {
           e.preventDefault();
@@ -72,7 +79,7 @@ const Component = ({ fileNames, onFileRemove, label, error, t, ...rest }: Dropzo
             <strong>{t.clickToUpload}</strong> <span>{t.orDragAndDrop}</span>
           </p>
           <p>{t.fileExtensions}</p>
-          <Input {...rest} />
+          <Input aria-invalid={!!error} {...rest} />
         </div>
         {fileNames.length > 0 && (
           <Items
@@ -111,42 +118,37 @@ const Component = ({ fileNames, onFileRemove, label, error, t, ...rest }: Dropzo
   );
 };
 
-const Wrapper = (
-  props: ComponentProps<typeof DropzoneInputBase.Wrapper> &
-    Pick<DropzoneInputProps, 'error'> & { isDragging: boolean },
-) => {
-  const { isDragging, error, className, ...rest } = props;
-  const defaultClassNames = cn(classNames.wrapper({ isValid: !error, isDragging }), className);
-  return <DropzoneInputBase.Wrapper className={defaultClassNames} {...rest} />;
+const Wrapper = (props: EnhancedHtmlProps<'label', { isDragging: boolean }>) => {
+  const { isDragging, className, ...rest } = props;
+  const base = classNames.wrapper({ isValid: !rest['aria-invalid'], isDragging });
+  return <label className={cn(base, className)} {...rest} />;
 };
 
-const Input = forwardRef<HTMLInputElement, ComponentProps<typeof DropzoneInputBase.Input>>(
-  ({ className, ...rest }, ref) => {
-    return <DropzoneInputBase.Input ref={ref} className={cn('sr-only', className)} {...rest} />;
-  },
-);
+const Input = forwardRef<HTMLInputElement, NativeProps>(({ className, ...rest }, ref) => {
+  return <input ref={ref} type="file" className={cn('sr-only', className)} {...rest} />;
+});
 
-const Items = ({ className, ...rest }: ComponentProps<typeof DropzoneInputBase.Items>) => {
-  const defaultClassNames = cn('grid gap-1', className);
-  return <DropzoneInputBase.Items className={defaultClassNames} {...rest} />;
+const Items = ({ className, ...rest }: HtmlProps['ul']) => {
+  return <ul className={cn('grid gap-1', className)} {...rest} />;
 };
 
-const ItemButton = (props: ComponentProps<typeof DropzoneInputBase.ItemButton>) => {
+const Item = (props: HtmlProps['li']) => {
+  return <li {...props} />;
+};
+
+const ItemButton = (props: HtmlProps['button']) => {
   const { className, ...rest } = props;
-  const defaultClassNames = cn(classNames.itemButton, className);
-  return <DropzoneInputBase.ItemButton className={defaultClassNames} {...rest} />;
+  return <button type="button" className={cn(classNames.itemButton, className)} {...rest} />;
 };
 
-const Placeholder = (props: ComponentProps<typeof DropzoneInputBase.Placeholder>) => {
+const Placeholder = (props: HtmlProps['span']) => {
   const { className, ...rest } = props;
   const defaultClassNames = cn('flex-grow text-foreground/50', className);
-  return <DropzoneInputBase.Placeholder className={defaultClassNames} {...rest} />;
+  return <span className={defaultClassNames} {...rest} />;
 };
 
-const Root = DropzoneInputBase.Root;
-const Label = DropzoneInputBase.Label;
-const Item = DropzoneInputBase.Item;
-const Error = DropzoneInputBase.Error;
+const Root = Form.Group;
+const Label = Form.Label;
 
 const DropzoneInput = Object.assign(Component, {
   Root,

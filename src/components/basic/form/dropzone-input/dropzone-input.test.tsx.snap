@@ -6,6 +6,7 @@ exports[`DropzoneInput > should match the snapshot 1`] = `
     class="grid gap-1 content-start grid-rows-[auto_1fr]"
   >
     <label
+      aria-invalid="false"
       class="p-4 border border-solid border-foreground bg-input text-foreground/50 has-[:enabled]:hover:border-foreground/90 tw-has-focus:tw-cms-outline grid gap-4 cursor-pointer has-[:disabled]:cursor-not-allowed has-[:disabled]:border-foreground/50"
     >
       <div
@@ -47,6 +48,7 @@ exports[`DropzoneInput > should match the snapshot 1`] = `
           JPG, PNG or WEBP
         </p>
         <input
+          aria-invalid="false"
           class="sr-only"
           name="dropzone-input"
           type="file"

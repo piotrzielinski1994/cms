@@ -1,22 +1,30 @@
+import { HtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
-import FormBase from './form.base';
+import { ElementType } from 'react';
 
-const Group = ({ className, ...props }: React.ComponentProps<typeof FormBase.Group>) => {
+const Root = (props: HtmlProps['form']) => {
+  return <form {...props} />;
+};
+
+const Group = ({ className, ...props }: HtmlProps['div']) => {
   const base = 'grid gap-1 content-start grid-rows-[auto_1fr]';
-  return <FormBase.Group className={cn(base, className)} {...props} />;
+  return <div className={cn(base, className)} {...props} />;
 };
 
-const Label = ({ className, ...props }: React.ComponentProps<typeof FormBase.Label>) => {
-  return <FormBase.Label className={cn('self-end', className)} {...props} />;
+const Label = <T extends HtmlProps['label']>(props: T & { as?: ElementType }) => {
+  const { as: Cmp = 'label', className, ...rest } = props;
+  return <Cmp {...rest} className={cn('self-end', className)} />;
 };
 
-const Error = ({ className, ...props }: React.ComponentProps<typeof FormBase.Error>) => {
+const Error = ({ className, ...rest }: HtmlProps['span']) => {
   const base = 'min-h-[1em] text-sm text-red-500 leading-none';
-  return <FormBase.Error suppressHydrationWarning className={cn(base, className)} {...props} />;
+  return (
+    <span role="alert" aria-hidden={!rest.children} {...rest} className={cn(base, className)} />
+  );
 };
 
 const Form = {
-  Root: FormBase.Root,
+  Root,
   Group,
   Label,
   Error,
