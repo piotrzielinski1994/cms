@@ -301,6 +301,7 @@ const en = {
         fileInput: {
           label: 'File Input',
           placeholder: 'Add a file',
+          file: `file-{index}.webp`,
         },
       },
       button: {

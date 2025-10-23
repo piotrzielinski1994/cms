@@ -306,6 +306,7 @@ const pl = {
         fileInput: {
           label: 'Pole Pliku',
           placeholder: 'Dodaj plik',
+          file: `plik-{index}.webp`,
         },
       },
       button: {

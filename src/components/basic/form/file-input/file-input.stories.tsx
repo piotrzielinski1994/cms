@@ -30,7 +30,10 @@ const meta: Meta<Args> = {
 
 const Render = ({ label, placeholder, ...args }: Args) => {
   const t = useTranslations('storybook.basic.form');
-  const [fileNames, setFileNames] = useState<string[]>([]);
+  const [fileNames, setFileNames] = useState<string[]>([
+    t('fileInput.file', { index: 1 }),
+    t('fileInput.file', { index: 2 }),
+  ]);
 
   return (
     <div className="grid gap-2">

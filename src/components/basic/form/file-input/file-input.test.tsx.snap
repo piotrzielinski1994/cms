@@ -6,8 +6,9 @@ exports[`FileInput > should match the snapshot 1`] = `
     class="grid gap-1 content-start grid-rows-[auto_1fr]"
   >
     <label
+      aria-invalid="false"
       aria-label="Click to upload"
-      class="p-2 border border-solid border-current bg-input placeholder-foreground/50 [&:enabled]:hover:border-foreground/90 [&:enabled]:hover:ring-foreground/90 disabled:cursor-not-allowed disabled:text-foreground/50 outline-none ring-inset focus-within:ring-1 ring-current has-[:enabled]:hover:border-foreground/90 has-[:enabled]:hover:ring-foreground/90 flex items-start gap-2 cursor-pointer has-[:disabled]:cursor-not-allowed"
+      class="p-2 border border-solid border-current bg-input placeholder-foreground/50 [&:enabled]:hover:border-foreground/90 [&:enabled]:hover:ring-foreground/90 disabled:cursor-not-allowed disabled:text-foreground/50 outline-none ring-inset focus-within:ring-1 ring-current has-[:enabled]:hover:border-foreground/90 has-[:enabled]:hover:ring-foreground/90 has-[:disabled]:text-foreground/50 flex items-start gap-2 cursor-pointer has-[:disabled]:cursor-not-allowed"
     >
       <input
         class="sr-only"

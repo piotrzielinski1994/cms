@@ -1,4 +1,3 @@
-import Form from '@/components/basic/form/root/form';
 import { DEFAULT_VALUE, getFallback } from '@/config/storybook/utils';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useTranslations } from 'next-intl';
@@ -28,43 +27,51 @@ const meta: Meta<Args> = {
 
 const Render = ({ label, ...args }: Args) => {
   const t = useTranslations('storybook.basic.form');
+  const t2 = useTranslations('frontend.component.uploadInput');
   const [fileNames, setFileNames] = useState<string[]>([
     t('dropzoneInput.file', { index: 1 }),
     t('dropzoneInput.file', { index: 2 }),
   ]);
+  const defaultTranslations: Args['t'] = {
+    clickToUpload: t2('clickToUpload'),
+    orDragAndDrop: t2('orDragAndDrop'),
+    fileExtensions: t2('extensions.image'),
+  };
 
   return (
     <div className="grid gap-2">
-      <Form.Group>
-        <Form.Label htmlFor="inpu1">{getFallback(label, t('dropzoneInput.label'))}</Form.Label>
-        <DropzoneInputComponent
-          {...args}
-          id="inpu1"
-          name="inpu1"
-          fileNames={fileNames}
-          onChange={(e) => {
-            const { files } = e.target;
-            if (!files) return;
-            setFileNames((prev) => [...prev, ...[...files].map((file) => file.name)]);
-          }}
-          onFileRemove={(fileName) => {
-            setFileNames((prev) => prev.filter((name) => name !== fileName));
-          }}
-        />
-      </Form.Group>
-      <Form.Group>
-        <Form.Label htmlFor="input2">{t('textInput.disabled.label')}</Form.Label>
-        <DropzoneInputComponent id="inpu2" name="inpu2" fileNames={[]} disabled />
-      </Form.Group>
-      <Form.Group>
-        <Form.Label htmlFor="input3">{t('textInput.invalid.label')}</Form.Label>
-        <DropzoneInputComponent
-          id="inpu3"
-          name="inpu3"
-          fileNames={[]}
-          error={t('textInput.invalid.error')}
-        />
-      </Form.Group>
+      <DropzoneInputComponent
+        {...args}
+        id="inpu1"
+        name="inpu1"
+        fileNames={fileNames}
+        t={defaultTranslations}
+        label={getFallback(label, t('dropzoneInput.label'))}
+        onChange={(e) => {
+          const { files } = e.target;
+          if (!files) return;
+          setFileNames((prev) => [...prev, ...[...files].map((file) => file.name)]);
+        }}
+        onFileRemove={(fileName) => {
+          setFileNames((prev) => prev.filter((name) => name !== fileName));
+        }}
+      />
+      <DropzoneInputComponent
+        id="inpu2"
+        name="inpu2"
+        fileNames={[]}
+        t={defaultTranslations}
+        label={t('textInput.disabled.label')}
+        disabled
+      />
+      <DropzoneInputComponent
+        id="inpu3"
+        name="inpu3"
+        fileNames={[]}
+        t={defaultTranslations}
+        label={t('textInput.invalid.label')}
+        error={t('textInput.invalid.error')}
+      />
     </div>
   );
 };

@@ -19,6 +19,7 @@ const classNames = {
     cn(
       inputClassNames.input({ isValid }),
       'has-[:enabled]:hover:border-foreground/90 has-[:enabled]:hover:ring-foreground/90',
+      'has-[:disabled]:text-foreground/50',
       { 'has-[:enabled]:ring-1': isDragging },
       'flex items-start gap-2',
       'cursor-pointer has-[:disabled]:cursor-not-allowed',
@@ -35,7 +36,7 @@ const Component = forwardRef<HTMLInputElement, FileInputProps>((props, ref) => {
       {label && <Label htmlFor={rest.id}>{label}</Label>}
       <Wrapper
         isDragging={isDragging}
-        error={error}
+        aria-invalid={!!error}
         aria-label={t('component.uploadInput.clickToUpload')}
         onDragLeave={() => setIsDragging(false)}
         onDragOver={(e) => {
@@ -76,9 +77,9 @@ const Wrapper = (
   props: ComponentProps<typeof FileInputBase.Wrapper> &
     Pick<FileInputProps, 'error'> & { isDragging: boolean },
 ) => {
-  const { isDragging, error, className, ...rest } = props;
-  const defaultClassNames = cn(classNames.wrapper({ isValid: !error, isDragging }), className);
-  return <FileInputBase.Wrapper className={defaultClassNames} {...rest} />;
+  const { isDragging, className, ...rest } = props;
+  const base = classNames.wrapper({ isValid: !props['aria-invalid'], isDragging });
+  return <FileInputBase.Wrapper {...rest} className={cn(base, className)} />;
 };
 
 const Input = forwardRef<HTMLInputElement, ComponentProps<typeof FileInputBase.Input>>(

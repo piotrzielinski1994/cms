@@ -4,7 +4,7 @@ import Form from '@/components/basic/form/root/form';
 import { EnhancedHtmlProps, HtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
 import { Upload, X } from 'lucide-react';
-import { ChangeEvent, forwardRef, ReactNode, useState } from 'react';
+import { ChangeEvent, forwardRef, KeyboardEvent, ReactNode, useState } from 'react';
 
 type DropzoneInputProps = NativeProps & {
   label?: ReactNode;
@@ -52,6 +52,7 @@ const classNames = {
 
 const Component = ({ fileNames, onFileRemove, label, error, t, ...rest }: DropzoneInputProps) => {
   const [isDragging, setIsDragging] = useState(false);
+
   return (
     <Root>
       {label && <Label htmlFor={rest.id}>{label}</Label>}
@@ -82,19 +83,7 @@ const Component = ({ fileNames, onFileRemove, label, error, t, ...rest }: Dropzo
           <Input aria-invalid={!!error} {...rest} />
         </div>
         {fileNames.length > 0 && (
-          <Items
-            onKeyDown={(e) => {
-              const arrowKeys = ['ArrowDown', 'ArrowRight', 'ArrowUp', 'ArrowLeft'];
-              if (!arrowKeys.includes(e.key)) return;
-              e.preventDefault();
-
-              const buttons = Array.from(e.currentTarget.querySelectorAll('button'));
-              const index = buttons.indexOf(document.activeElement as HTMLButtonElement);
-              const offset = ['ArrowDown', 'ArrowRight'].includes(e.key) ? 1 : -1;
-
-              buttons[(index + offset + buttons.length) % buttons.length]?.focus();
-            }}
-          >
+          <Items onKeyDown={focusFileItem}>
             {fileNames.map((fileName, index) => (
               <Item key={index}>
                 <ItemButton
@@ -145,6 +134,18 @@ const Placeholder = (props: HtmlProps['span']) => {
   const { className, ...rest } = props;
   const defaultClassNames = cn('flex-grow text-foreground/50', className);
   return <span className={defaultClassNames} {...rest} />;
+};
+
+const focusFileItem = (e: KeyboardEvent<HTMLUListElement>) => {
+  const arrowKeys = ['ArrowDown', 'ArrowRight', 'ArrowUp', 'ArrowLeft'];
+  if (!arrowKeys.includes(e.key)) return;
+  e.preventDefault();
+
+  const buttons = Array.from(e.currentTarget.querySelectorAll('button'));
+  const index = buttons.indexOf(document.activeElement as HTMLButtonElement);
+  const offset = ['ArrowDown', 'ArrowRight'].includes(e.key) ? 1 : -1;
+
+  buttons[(index + offset + buttons.length) % buttons.length]?.focus();
 };
 
 const Root = Form.Group;
