@@ -15,6 +15,11 @@ describe('DropzoneInput', () => {
     fileNames: ['file-1.webp', 'file-2.webp'],
     onFileRemove: vi.fn(),
     onChange: vi.fn(),
+    t: {
+      clickToUpload: t.clickToUpload,
+      orDragAndDrop: t.orDragAndDrop,
+      fileExtensions: t.extensions.image,
+    },
   } satisfies ComponentProps<typeof DropzoneInput>;
 
   it('should have no accessibility violations', async () => {

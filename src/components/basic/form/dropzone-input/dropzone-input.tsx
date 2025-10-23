@@ -3,7 +3,6 @@
 import Form from '@/components/basic/form/root/form';
 import { cn } from '@/utils/tailwind';
 import { Upload, X } from 'lucide-react';
-import { useTranslations } from 'next-intl';
 import { ChangeEvent, ComponentProps, forwardRef, ReactNode, useState } from 'react';
 import DropzoneInputBase from './dropzone-input.base';
 
@@ -12,6 +11,11 @@ type DropzoneInputProps = ComponentProps<typeof DropzoneInputBase.Input> & {
   error?: string;
   fileNames: string[];
   onFileRemove?: (fileName: string, index: number) => void;
+  t: {
+    clickToUpload: ReactNode;
+    orDragAndDrop: ReactNode;
+    fileExtensions: ReactNode;
+  };
 };
 
 const classNames = {
@@ -39,10 +43,8 @@ const classNames = {
   ),
 };
 
-const Component = ({ fileNames, onFileRemove, label, error, ...rest }: DropzoneInputProps) => {
-  const t = useTranslations('frontend.component.uploadInput');
+const Component = ({ fileNames, onFileRemove, label, error, t, ...rest }: DropzoneInputProps) => {
   const [isDragging, setIsDragging] = useState(false);
-
   return (
     <Root>
       {label && <Label htmlFor={rest.id}>{label}</Label>}
@@ -67,9 +69,9 @@ const Component = ({ fileNames, onFileRemove, label, error, ...rest }: DropzoneI
         <div className="grid justify-items-center">
           <Upload />
           <p>
-            <strong>{t('clickToUpload')}</strong> <span>{t('orDragAndDrop')}</span>
+            <strong>{t.clickToUpload}</strong> <span>{t.orDragAndDrop}</span>
           </p>
-          <p>{t('extensions.image')}</p>
+          <p>{t.fileExtensions}</p>
           <Input {...rest} />
         </div>
         {fileNames.length > 0 && (

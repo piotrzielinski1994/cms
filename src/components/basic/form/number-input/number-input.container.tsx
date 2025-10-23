@@ -1,3 +1,4 @@
+import { useLocaleStore } from '@/store/locale';
 import { useTranslations } from 'next-intl';
 import { ComponentProps } from 'react';
 import { Control, FieldValues, Path, useController } from 'react-hook-form';
@@ -10,14 +11,16 @@ type NumberInputContainerProps<T extends FieldValues> = {
 
 const NumberInputContainer = <T extends FieldValues>(props: NumberInputContainerProps<T>) => {
   const { control, name, ...rest } = props;
+  const locale = useLocaleStore();
   const t = useTranslations('frontend');
   const { field, fieldState } = useController({ control, name });
   return (
     <NumberInput
+      t={{ increment: t('increment'), decrement: t('decrement') }}
+      lang={locale}
       {...rest}
       {...field}
       error={fieldState.error?.message}
-      t={{ increment: t('increment'), decrement: t('decrement') }}
       onChange={(e) => {
         const raw = e.target.value.replace(',', '.');
         const value = ['', '-'].includes(raw) ? null : Number(raw);

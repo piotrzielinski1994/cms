@@ -1,4 +1,3 @@
-import { useLocaleStore } from '@/store/locale';
 import { cn } from '@/utils/tailwind';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { ComponentProps, forwardRef, ReactNode } from 'react';
@@ -16,13 +15,11 @@ type NumberInputProps = ComponentProps<typeof NumberInputBase.Input> & {
 
 const Component = forwardRef<HTMLInputElement, NumberInputProps>((props, ref) => {
   const { label, error, t, ...rest } = props;
-  const locale = useLocaleStore();
-
   return (
     <Root>
       {label && <Label htmlFor={rest.id}>{label}</Label>}
       <Wrapper className="relative">
-        <Input ref={ref} error={error} locale={locale} {...rest} />
+        <Input ref={ref} error={error} {...rest} />
         <div className="absolute inset-y-0 right-1 flex flex-col justify-center">
           <Button mode="increment" disabled={rest.disabled} aria-label={t?.increment}>
             <ChevronUp size="1rem" />

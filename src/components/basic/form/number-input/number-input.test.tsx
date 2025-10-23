@@ -1,4 +1,3 @@
-import { withProviders } from '@/utils/tests';
 import { render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Locale } from 'next-intl';
@@ -30,13 +29,13 @@ describe('NumberInput', () => {
   };
 
   it('should have no accessibility violations', async () => {
-    const { container } = render(withProviders(<NumberInput {...defaultProps} value={123} />));
+    const { container } = render(<NumberInput {...defaultProps} value={123} />);
     const results = await axe(container);
     expect(results).toHaveNoViolations();
   });
 
   it('should match the snapshot', async () => {
-    const { container } = render(withProviders(<NumberInput {...defaultProps} value={123} />));
+    const { container } = render(<NumberInput {...defaultProps} value={123} />);
     expect(container).toMatchSnapshot();
   });
 
@@ -48,14 +47,7 @@ describe('NumberInput', () => {
       { step: 1.2, initial: -1, expected: '0.2' },
     ])('should increase $initial by $step to $expected', async ({ step, initial, expected }) => {
       const { getByLabelText, getByRole } = render(
-        withProviders(
-          <ControlledComponent
-            {...defaultProps}
-            step={step}
-            value={initial}
-            maxDecimalLength={2}
-          />,
-        ),
+        <ControlledComponent {...defaultProps} step={step} value={initial} maxDecimalLength={2} />,
       );
       const input = getByRole('spinbutton') as HTMLInputElement;
       const valueBefore = input.value;
@@ -73,14 +65,7 @@ describe('NumberInput', () => {
       { step: 1.2, initial: 1, expected: '-0.2' },
     ])('should decrease $initial by $step to $expected', async ({ step, initial, expected }) => {
       const { getByLabelText, getByRole } = render(
-        withProviders(
-          <ControlledComponent
-            {...defaultProps}
-            step={step}
-            value={initial}
-            maxDecimalLength={2}
-          />,
-        ),
+        <ControlledComponent {...defaultProps} step={step} value={initial} maxDecimalLength={2} />,
       );
       const input = getByRole('spinbutton') as HTMLInputElement;
       const valueBefore = input.value;
@@ -100,14 +85,7 @@ describe('NumberInput', () => {
       { step: 1.2, initial: -1, expected: '0.2' },
     ])('should increase $initial by $step to $expected', async ({ step, initial, expected }) => {
       const { getByRole } = render(
-        withProviders(
-          <ControlledComponent
-            {...defaultProps}
-            step={step}
-            value={initial}
-            maxDecimalLength={2}
-          />,
-        ),
+        <ControlledComponent {...defaultProps} step={step} value={initial} maxDecimalLength={2} />,
       );
       const input = getByRole('spinbutton') as HTMLInputElement;
       const valueBefore = input.value;
@@ -125,14 +103,7 @@ describe('NumberInput', () => {
       { step: 1.2, initial: 1, expected: '-0.2' },
     ])('should decrease $initial by $step to $expected', async ({ step, initial, expected }) => {
       const { getByRole } = render(
-        withProviders(
-          <ControlledComponent
-            {...defaultProps}
-            step={step}
-            value={initial}
-            maxDecimalLength={2}
-          />,
-        ),
+        <ControlledComponent {...defaultProps} step={step} value={initial} maxDecimalLength={2} />,
       );
       const input = getByRole('spinbutton') as HTMLInputElement;
       const valueBefore = input.value;
@@ -146,9 +117,7 @@ describe('NumberInput', () => {
 
   describe('Max integer/decimal parts limits', () => {
     it('should prevent typing longer integer part than expected', async () => {
-      const { getByRole } = render(
-        withProviders(<ControlledComponent {...defaultProps} maxIntLength={3} />),
-      );
+      const { getByRole } = render(<ControlledComponent {...defaultProps} maxIntLength={3} />);
       const input = getByRole('spinbutton') as HTMLInputElement;
 
       for (const char of '1234') {
@@ -159,9 +128,7 @@ describe('NumberInput', () => {
     });
 
     it('should prevent typing longer decimal part than expected', async () => {
-      const { getByRole } = render(
-        withProviders(<ControlledComponent {...defaultProps} maxDecimalLength={2} />),
-      );
+      const { getByRole } = render(<ControlledComponent {...defaultProps} maxDecimalLength={2} />);
       const input = getByRole('spinbutton') as HTMLInputElement;
 
       for (const char of '12.345') {
@@ -172,9 +139,7 @@ describe('NumberInput', () => {
     });
 
     it('should prevent going out of bounds on ArrowUp', async () => {
-      const { getByRole } = render(
-        withProviders(<ControlledComponent {...defaultProps} maxIntLength={3} />),
-      );
+      const { getByRole } = render(<ControlledComponent {...defaultProps} maxIntLength={3} />);
       const input = getByRole('spinbutton') as HTMLInputElement;
 
       await userEvent.type(input, '999');
@@ -184,9 +149,7 @@ describe('NumberInput', () => {
     });
 
     it('should prevent going out of bounds on ArrowDown', async () => {
-      const { getByRole } = render(
-        withProviders(<ControlledComponent {...defaultProps} maxIntLength={3} />),
-      );
+      const { getByRole } = render(<ControlledComponent {...defaultProps} maxIntLength={3} />);
       const input = getByRole('spinbutton') as HTMLInputElement;
 
       await userEvent.type(input, '-999');
@@ -197,7 +160,7 @@ describe('NumberInput', () => {
 
     it('should prevent going out of bounds on increment button click', async () => {
       const { getByRole, getByLabelText } = render(
-        withProviders(<ControlledComponent {...defaultProps} maxIntLength={3} />),
+        <ControlledComponent {...defaultProps} maxIntLength={3} />,
       );
       const input = getByRole('spinbutton') as HTMLInputElement;
 
@@ -209,7 +172,7 @@ describe('NumberInput', () => {
 
     it('should prevent going out of bounds on decrement button click', async () => {
       const { getByRole, getByLabelText } = render(
-        withProviders(<ControlledComponent {...defaultProps} maxIntLength={3} />),
+        <ControlledComponent {...defaultProps} maxIntLength={3} />,
       );
       const input = getByRole('spinbutton') as HTMLInputElement;
 
@@ -230,7 +193,7 @@ describe('NumberInput', () => {
       'should format $typed to $expected for $locale',
       async ({ locale, typed, expected }) => {
         const { getByRole } = render(
-          withProviders(<ControlledComponent {...defaultProps} maxDecimalLength={2} />, { locale }),
+          <ControlledComponent {...defaultProps} lang={locale} maxDecimalLength={2} />,
         );
         const input = getByRole('spinbutton') as HTMLInputElement;
 

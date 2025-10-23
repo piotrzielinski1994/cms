@@ -21,7 +21,7 @@ type InputProps = EnhancedHtmlProps<'input', {
   step?: number;
   maxIntLength?: number;
   maxDecimalLength?: number;
-  locale?: Locale;
+  lang?: Locale;
 }>;
 
 type InputRef = HTMLInputElement & { changeValue: (delta: number) => void };
@@ -40,14 +40,14 @@ const Wrapper = (props: HtmlProps['div']) => {
 
 const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   // To support formatted values
-  const { step = 1, maxIntLength, maxDecimalLength, locale = 'en', ...rest } = props;
+  const { step = 1, maxIntLength, maxDecimalLength, lang = 'en', ...rest } = props;
   const defaultProps = { type: 'text', role: 'spinbutton', autoComplete: 'off' };
 
   const [rawValue, setRawValue] = useState(props.value?.toString() ?? '');
   const inputContext = useContext(InputContext);
 
-  const format = createNumberFormatter(locale);
-  const unformat = createNumberUnformatter(locale);
+  const format = createNumberFormatter(lang);
+  const unformat = createNumberUnformatter(lang);
   const canBeNegative = rest.min === undefined || rest.min < 0;
   const validator = isNumeric({
     int: maxIntLength,
@@ -85,8 +85,8 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
 
   return (
     <input
-      lang={locale}
       inputMode={!!maxDecimalLength ? 'decimal' : 'numeric'}
+      lang={lang}
       {...defaultProps}
       {...rest}
       ref={setRef}
