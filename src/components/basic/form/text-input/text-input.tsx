@@ -14,8 +14,8 @@ type NativeProps = EnhancedHtmlProps<'input', {
   value?: string;
 }>;
 
-const inputClassNames = {
-  input: ({ isValid }: { isValid: boolean }) =>
+const styles = {
+  native: ({ isValid }: { isValid: boolean }) =>
     cn(
       'p-2 border border-solid border-current bg-input',
       'placeholder-foreground/50',
@@ -27,26 +27,26 @@ const inputClassNames = {
 };
 
 const Component = forwardRef<HTMLInputElement, TextInputProps>((props, ref) => {
-  const { label, error, ...rest } = props;
+  const { label, error, className, ...rest } = props;
   return (
-    <Root>
+    <Root className={className}>
       {label && <Label htmlFor={rest.id}>{label}</Label>}
-      <Input ref={ref} aria-invalid={!!error} {...rest} />
+      <Native ref={ref} aria-invalid={!!error} {...rest} />
       <Error>{error}</Error>
     </Root>
   );
 });
 
-const Input = forwardRef<HTMLInputElement, NativeProps>((props, ref) => {
+const Native = forwardRef<HTMLInputElement, NativeProps>((props, ref) => {
   const { value = '', className, ...rest } = props;
-  const base = inputClassNames.input({ isValid: !!rest['aria-invalid'] });
-  return <input ref={ref} className={cn(base, className)} value={value} {...rest} />;
+  const base = styles.native({ isValid: !!rest['aria-invalid'] });
+  return <input ref={ref} {...rest} className={cn(base, className)} value={value} />;
 });
 
 const Root = Form.Group;
 const Label = Form.Label;
 const Error = Form.Error;
 
-const TextInput = Object.assign(Component, { Root, Label, Input, Error });
+const TextInput = Object.assign(Component, { Root, Label, Native, Error });
 
-export { inputClassNames, TextInput };
+export { styles, TextInput };

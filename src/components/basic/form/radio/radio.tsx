@@ -2,7 +2,7 @@ import { EnhancedHtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
 import { Circle } from 'lucide-react';
 import { forwardRef } from 'react';
-import { checkboxClassNames } from '../checkbox/checkbox';
+import { styles as checkboxStyles } from '../checkbox/checkbox';
 import Form from '../root/form';
 
 type RadioProps = NativeProps & {
@@ -16,18 +16,20 @@ type NativeProps = Omit<EnhancedHtmlProps<'input', {
   value?: string;
 }>, 'type'>;
 
-const classNames = {
-  wrapper: ({ isValid }: { isValid: boolean }) =>
-    cn(checkboxClassNames.checkbox({ isValid }), 'rounded-full'),
-  icon: cn(checkboxClassNames.icon, 'w-[0.4lh] h-[0.4lh]', 'fill-current'),
+const styles = {
+  wrapper: checkboxStyles.wrapper,
+  nativeWrapper: ({ isValid }: { isValid: boolean }) =>
+    cn(checkboxStyles.native({ isValid }), 'rounded-full'),
+  native: 'sr-only',
+  icon: cn(checkboxStyles.icon, 'w-[0.4lh] h-[0.4lh]', 'fill-current'),
 };
 
 const Component = forwardRef<HTMLInputElement, RadioProps>((props, ref) => {
   const { label, error, className, ...rest } = props;
   return (
     <Root className={className}>
-      <Label className={checkboxClassNames.wrapper}>
-        <Input ref={ref} aria-invalid={!!error} {...rest} />
+      <Label className={styles.wrapper}>
+        <Native ref={ref} aria-invalid={!!error} {...rest} />
         <span>{label}</span>
       </Label>
       <Error>{error}</Error>
@@ -35,13 +37,13 @@ const Component = forwardRef<HTMLInputElement, RadioProps>((props, ref) => {
   );
 });
 
-const Input = forwardRef<HTMLInputElement, NativeProps>((props, ref) => {
+const Native = forwardRef<HTMLInputElement, NativeProps>((props, ref) => {
   const { className, ...rest } = props;
-  const base = classNames.wrapper({ isValid: !props['aria-invalid'] });
+  const base = styles.nativeWrapper({ isValid: !props['aria-invalid'] });
   return (
     <div className={cn(base, className)}>
-      <input ref={ref} type="radio" className="sr-only" {...rest} />
-      <Circle className={classNames.icon} />
+      <input ref={ref} type="radio" className={styles.native} {...rest} />
+      <Circle className={styles.icon} />
     </div>
   );
 });
@@ -50,6 +52,6 @@ const Root = Form.Group;
 const Label = Form.Label;
 const Error = Form.Error;
 
-const Radio = Object.assign(Component, { Root, Label, Input, Error, classNames });
+const Radio = Object.assign(Component, { Root, Label, Native, Error, styles });
 
 export { Radio };

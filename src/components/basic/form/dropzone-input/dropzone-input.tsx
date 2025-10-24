@@ -3,6 +3,7 @@
 import Form from '@/components/basic/form/root/form';
 import { EnhancedHtmlProps, HtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
+import { BoolMap } from '@/utils/types';
 import { Upload, X } from 'lucide-react';
 import { ChangeEvent, forwardRef, KeyboardEvent, ReactNode, useState } from 'react';
 
@@ -25,8 +26,8 @@ type NativeProps = EnhancedHtmlProps<'input', {
   multiple?: boolean;
 }>;
 
-const classNames = {
-  wrapper: ({ isValid, isDragging }: { isValid: boolean; isDragging: boolean }) =>
+const styles = {
+  wrapper: ({ isValid, isDragging }: BoolMap<'isValid' | 'isDragging'>) =>
     cn(
       'p-4 bg-red-500',
       'border border-solid border-foreground',
@@ -39,6 +40,9 @@ const classNames = {
       'cursor-pointer',
       'has-[:disabled]:cursor-not-allowed has-[:disabled]:border-foreground/50',
     ),
+  innerWrapper: 'grid justify-items-center',
+  native: 'sr-only',
+  items: 'grid gap-1',
   itemButton: cn(
     'w-full p-2',
     'grid grid-cols-[1fr_auto] gap-2',
@@ -48,6 +52,7 @@ const classNames = {
     'enabled:hover:bg-foreground/5',
     'disabled:cursor-not-allowed disabled:text-foreground/50',
   ),
+  placeholder: 'flex-grow text-foreground/50',
 };
 
 const Component = ({ fileNames, onFileRemove, label, error, t, ...rest }: DropzoneInputProps) => {
@@ -74,13 +79,13 @@ const Component = ({ fileNames, onFileRemove, label, error, t, ...rest }: Dropzo
           rest.onChange?.(newEvent as unknown as ChangeEvent<HTMLInputElement>);
         }}
       >
-        <div className="grid justify-items-center">
+        <div className={styles.innerWrapper}>
           <Upload />
           <p>
             <strong>{t.clickToUpload}</strong> <span>{t.orDragAndDrop}</span>
           </p>
           <p>{t.fileExtensions}</p>
-          <Input aria-invalid={!!error} {...rest} />
+          <Native aria-invalid={!!error} {...rest} />
         </div>
         {fileNames.length > 0 && (
           <Items onKeyDown={focusFileItem}>
@@ -109,16 +114,16 @@ const Component = ({ fileNames, onFileRemove, label, error, t, ...rest }: Dropzo
 
 const Wrapper = (props: EnhancedHtmlProps<'label', { isDragging: boolean }>) => {
   const { isDragging, className, ...rest } = props;
-  const base = classNames.wrapper({ isValid: !rest['aria-invalid'], isDragging });
+  const base = styles.wrapper({ isValid: !rest['aria-invalid'], isDragging });
   return <label className={cn(base, className)} {...rest} />;
 };
 
-const Input = forwardRef<HTMLInputElement, NativeProps>(({ className, ...rest }, ref) => {
-  return <input ref={ref} type="file" className={cn('sr-only', className)} {...rest} />;
+const Native = forwardRef<HTMLInputElement, NativeProps>(({ className, ...rest }, ref) => {
+  return <input ref={ref} type="file" className={cn(styles.native, className)} {...rest} />;
 });
 
 const Items = ({ className, ...rest }: HtmlProps['ul']) => {
-  return <ul className={cn('grid gap-1', className)} {...rest} />;
+  return <ul className={cn(styles.items, className)} {...rest} />;
 };
 
 const Item = (props: HtmlProps['li']) => {
@@ -127,13 +132,12 @@ const Item = (props: HtmlProps['li']) => {
 
 const ItemButton = (props: HtmlProps['button']) => {
   const { className, ...rest } = props;
-  return <button type="button" className={cn(classNames.itemButton, className)} {...rest} />;
+  return <button type="button" className={cn(styles.itemButton, className)} {...rest} />;
 };
 
 const Placeholder = (props: HtmlProps['span']) => {
   const { className, ...rest } = props;
-  const defaultClassNames = cn('flex-grow text-foreground/50', className);
-  return <span className={defaultClassNames} {...rest} />;
+  return <span className={cn(styles.placeholder, className)} {...rest} />;
 };
 
 const focusFileItem = (e: KeyboardEvent<HTMLUListElement>) => {
@@ -154,7 +158,7 @@ const Label = Form.Label;
 const DropzoneInput = Object.assign(Component, {
   Root,
   Label,
-  Input,
+  Native,
   Items,
   Item,
   ItemButton,

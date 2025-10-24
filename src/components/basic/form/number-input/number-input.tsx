@@ -1,5 +1,6 @@
 import { EnhancedHtmlProps, HtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
+import { BoolMap } from '@/utils/types';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { Locale } from 'next-intl';
 import {
@@ -15,7 +16,7 @@ import {
   useState,
 } from 'react';
 import Form from '../root/form';
-import { inputClassNames } from '../text-input/text-input';
+import { styles as textInputStyles } from '../text-input/text-input';
 import { createNumberFormatter, createNumberUnformatter, isNumeric } from './number-input.utils';
 
 type NumberInputProps = NativeProps & {
@@ -39,18 +40,25 @@ type NativeProps = EnhancedHtmlProps<'input', {
   lang?: Locale;
 }>;
 
+const styles = {
+  wrapper: 'relative',
+  native: ({ isValid }: BoolMap<'isValid'>) =>
+    cn(textInputStyles.native({ isValid }), 'w-full pr-6'),
+  buttons: 'absolute inset-y-0 right-1 flex flex-col justify-center',
+};
+
 type InputRef = HTMLInputElement & { changeValue: (delta: number) => void };
 
 const InputContext = createContext<RefObject<InputRef | undefined>>({ current: undefined });
 
 const Component = forwardRef<HTMLInputElement, NumberInputProps>((props, ref) => {
-  const { label, error, t, ...rest } = props;
+  const { label, error, t, className, ...rest } = props;
   return (
-    <Root>
+    <Root className={className}>
       {label && <Label htmlFor={rest.id}>{label}</Label>}
-      <div className="relative">
+      <div className={styles.wrapper}>
         <Native ref={ref} aria-invalid={!!error} {...rest} />
-        <div className="absolute inset-y-0 right-1 flex flex-col justify-center">
+        <div className={styles.buttons}>
           <Button mode="increment" disabled={rest.disabled} aria-label={t.increment} />
           <Button mode="decrement" disabled={rest.disabled} aria-label={t.decrement} />
         </div>
@@ -118,11 +126,7 @@ const Native = forwardRef<HTMLInputElement, NativeProps>((props, ref) => {
       role="spinbutton"
       autoComplete="off"
       {...rest}
-      className={cn(
-        inputClassNames.input({ isValid: !props['aria-invalid'] }),
-        'w-full pr-6',
-        props.className,
-      )}
+      className={cn(styles.native({ isValid: !rest['aria-invalid'] }), rest.className)}
       value={format(rawValue)}
       onKeyDown={(e) => {
         if (e.key === 'ArrowUp') return changeValue(1);

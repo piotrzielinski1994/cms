@@ -15,14 +15,14 @@ type NativeProps = EnhancedHtmlProps<'input', {
   value?: string;
 }>;
 
-const checkboxClassNames = {
+const styles = {
   wrapper: cn(
     'group',
     'has-[:disabled]:text-foreground/50',
     'grid grid-cols-[auto_1fr] gap-2',
     'cursor-pointer has-[:disabled]:cursor-not-allowed',
   ),
-  checkbox: ({ isValid }: { isValid: boolean }) => {
+  native: ({ isValid }: { isValid: boolean }) => {
     return cn(
       'w-[1lh] h-[1lh]',
       'border border-solid border-current bg-input',
@@ -40,7 +40,7 @@ const Component = forwardRef<HTMLInputElement, CheckboxProps>((props, ref) => {
   const { label, error, ...rest } = props;
   return (
     <Root>
-      <Label className={checkboxClassNames.wrapper}>
+      <Label className={styles.wrapper}>
         <Input ref={ref} aria-invalid={!!error} {...rest} />
         <span>{label}</span>
       </Label>
@@ -51,11 +51,11 @@ const Component = forwardRef<HTMLInputElement, CheckboxProps>((props, ref) => {
 
 const Input = forwardRef<HTMLInputElement, NativeProps>((props, ref) => {
   const { className, ...rest } = props;
-  const base = checkboxClassNames.checkbox({ isValid: !props['aria-invalid'] });
+  const base = styles.native({ isValid: !props['aria-invalid'] });
   return (
     <div className={cn(base, className)}>
       <input ref={ref} type="checkbox" className="sr-only" {...rest} />
-      <Check className={checkboxClassNames.icon} />
+      <Check className={styles.icon} />
     </div>
   );
 });
@@ -66,4 +66,4 @@ const Error = Form.Error;
 
 const Checkbox = Object.assign(Component, { Root, Label, Input, Error });
 
-export { Checkbox, checkboxClassNames };
+export { Checkbox, styles };

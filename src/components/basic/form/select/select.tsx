@@ -1,9 +1,10 @@
 import { EnhancedHtmlProps, HtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
+import { BoolMap } from '@/utils/types';
 import { ChevronDown } from 'lucide-react';
 import { forwardRef, ReactNode } from 'react';
 import Form from '../root/form';
-import { inputClassNames } from '../text-input/text-input';
+import { styles as textInputStyles } from '../text-input/text-input';
 
 type SelectProps = Omit<NativeProps, 'children'> & {
   label?: ReactNode;
@@ -21,18 +22,20 @@ type NativeProps = EnhancedHtmlProps<'select', {
   value?: string;
 }>;
 
-const classNames = {
-  select: ({ isEmpty, isValid }: { isEmpty: boolean; isValid: boolean }) =>
+const styles = {
+  wrapper: 'grid items-center',
+  select: ({ isEmpty, isValid }: BoolMap<'isEmpty' | 'isValid'>) =>
     cn(
       'appearance-none',
       '[&:not(:disabled)]:cursor-pointer',
-      inputClassNames.input({ isValid }),
+      textInputStyles.native({ isValid }),
       'border-foreground',
       { '[&:not(:focus)]:border-red-500': !isValid },
       'col-start-1 row-start-1',
       { 'text-foreground': !isEmpty, 'text-foreground/50': isEmpty },
     ),
   option: 'text-foreground',
+  placeholder: 'text-foreground/50',
   icon: 'col-start-1 row-start-1 justify-self-end mr-1',
 };
 
@@ -41,20 +44,17 @@ const Component = forwardRef<HTMLSelectElement, SelectProps>((props, ref) => {
   return (
     <Root>
       {label && <Label htmlFor={rest.id}>{label}</Label>}
-      <Wrapper className="grid items-center">
+      <Wrapper className={styles.wrapper}>
         <Native ref={ref} {...rest}>
-          <Option value="" className="text-foreground/50">
+          <Option value="" className={styles.placeholder}>
             {placeholder}
           </Option>
           {options.map((o) => {
-            return (
-              <Option key={o.value} value={o.value}>
-                {o.label}
-              </Option>
-            );
+            // prettier-ignore
+            return <Option key={o.value} value={o.value}>{o.label}</Option>;
           })}
         </Native>
-        <ChevronDown size="1rem" className={classNames.icon} />
+        <ChevronDown size="1rem" className={styles.icon} />
       </Wrapper>
       <Error>{error}</Error>
     </Root>
@@ -67,7 +67,7 @@ const Wrapper = (props: HtmlProps['div']) => {
 
 const Native = forwardRef<HTMLSelectElement, NativeProps>((props, ref) => {
   const { className, ...rest } = props;
-  const base = classNames.select({
+  const base = styles.select({
     isEmpty: rest.value !== '',
     isValid: !rest['aria-invalid'],
   });
@@ -76,7 +76,7 @@ const Native = forwardRef<HTMLSelectElement, NativeProps>((props, ref) => {
 
 const Option = forwardRef<HTMLOptionElement, HtmlProps['option']>((props, ref) => {
   const { className, ...rest } = props;
-  return <option ref={ref} className={cn(classNames.option, className)} {...rest} />;
+  return <option ref={ref} className={cn(styles.option, className)} {...rest} />;
 });
 
 const Root = Form.Group;

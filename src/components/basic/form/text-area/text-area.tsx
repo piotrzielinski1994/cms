@@ -1,8 +1,9 @@
 import { EnhancedHtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
+import { BoolMap } from '@/utils/types';
 import { forwardRef, ReactNode } from 'react';
 import Form from '../root/form';
-import { inputClassNames } from '../text-input/text-input';
+import { styles as textInputStyles } from '../text-input/text-input';
 
 type TextAreaProps = NativeProps & {
   label?: ReactNode;
@@ -15,17 +16,17 @@ type NativeProps = EnhancedHtmlProps<'textarea', {
   value?: string;
 }>;
 
-const classNames = {
-  native: ({ isValid, isDisabled }: { isValid: boolean; isDisabled: boolean }) =>
-    cn(inputClassNames.input({ isValid }), 'min-h-[calc(2*1px+2*0.5rem+3*1.5rem)]', {
+const styles = {
+  native: ({ isValid, isDisabled }: BoolMap<'isValid' | 'isDisabled'>) =>
+    cn(textInputStyles.native({ isValid }), 'min-h-[calc(2*1px+2*0.5rem+3*1.5rem)]', {
       'resize-none': isDisabled,
     }),
 };
 
 const Component = forwardRef<HTMLTextAreaElement, TextAreaProps>((props, ref) => {
-  const { label, error, ...rest } = props;
+  const { label, error, className, ...rest } = props;
   return (
-    <Root>
+    <Root className={className}>
       {label && <Label htmlFor={rest.id}>{label}</Label>}
       <Input ref={ref} aria-invalid={!!error} {...rest} />
       <Error>{error}</Error>
@@ -35,7 +36,7 @@ const Component = forwardRef<HTMLTextAreaElement, TextAreaProps>((props, ref) =>
 
 const Input = forwardRef<HTMLTextAreaElement, NativeProps>((props, ref) => {
   const { value = '', className, ...rest } = props;
-  const base = classNames.native({
+  const base = styles.native({
     isValid: !rest['aria-invalid'],
     isDisabled: !!props.disabled,
   });
@@ -44,9 +45,9 @@ const Input = forwardRef<HTMLTextAreaElement, NativeProps>((props, ref) => {
     <textarea
       ref={ref}
       contentEditable={false}
+      {...rest}
       className={cn(base, className)}
       value={value}
-      {...rest}
     />
   );
 });

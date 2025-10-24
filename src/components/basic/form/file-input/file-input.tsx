@@ -6,7 +6,7 @@ import { Upload, X } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { ChangeEvent, forwardRef, ReactNode, useState } from 'react';
 import Form from '../root/form';
-import { inputClassNames } from '../text-input/text-input';
+import { styles as testInputStyles } from '../text-input/text-input';
 
 type FileInputProps = NativeProps & {
   label?: ReactNode;
@@ -25,7 +25,7 @@ type NativeProps = Omit<EnhancedHtmlProps<'input', {
 const styles = {
   wrapper: ({ isValid, isDragging }: { isValid: boolean; isDragging: boolean }) =>
     cn(
-      inputClassNames.input({ isValid }),
+      testInputStyles.native({ isValid }),
       'has-[:enabled]:hover:border-foreground/90 has-[:enabled]:hover:ring-foreground/90',
       'has-[:disabled]:text-foreground/50',
       { 'has-[:enabled]:ring-1': isDragging },
