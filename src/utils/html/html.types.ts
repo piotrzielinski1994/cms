@@ -30,6 +30,7 @@ type HtmlPropsMap = {
   table: HTMLAttributes<HTMLTableElement>;
   tbody: HTMLAttributes<HTMLTableSectionElement>;
   td: TdHTMLAttributes<HTMLTableDataCellElement>;
+  textarea: InputHTMLAttributes<HTMLTextAreaElement>;
   tfoot: HTMLAttributes<HTMLTableSectionElement>;
   thead: HTMLAttributes<HTMLTableSectionElement>;
   tr: HTMLAttributes<HTMLTableRowElement>;

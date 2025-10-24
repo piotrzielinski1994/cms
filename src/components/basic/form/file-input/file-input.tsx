@@ -1,20 +1,28 @@
 'use client';
 
+import { EnhancedHtmlProps, HtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
 import { Upload, X } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { ChangeEvent, ComponentProps, forwardRef, ReactNode, useState } from 'react';
+import { ChangeEvent, forwardRef, ReactNode, useState } from 'react';
+import Form from '../root/form';
 import { inputClassNames } from '../text-input/text-input';
-import FileInputBase from './file-input.base';
 
-type FileInputProps = ComponentProps<typeof FileInputBase.Input> & {
+type FileInputProps = NativeProps & {
   label?: ReactNode;
   error?: string;
   fileNames: string[];
   onClear?: () => void;
 };
 
-const classNames = {
+// prettier-ignore
+type NativeProps = Omit<EnhancedHtmlProps<'input', {
+  name: string;
+  accept?: string;
+  multiple?: boolean;
+}>, 'type'>;
+
+const styles = {
   wrapper: ({ isValid, isDragging }: { isValid: boolean; isDragging: boolean }) =>
     cn(
       inputClassNames.input({ isValid }),
@@ -24,15 +32,18 @@ const classNames = {
       'flex items-start gap-2',
       'cursor-pointer has-[:disabled]:cursor-not-allowed',
     ),
+  native: 'sr-only',
+  items: 'flex-grow grid gap-1',
+  placeholder: 'flex-grow text-foreground/50',
 };
 
 const Component = forwardRef<HTMLInputElement, FileInputProps>((props, ref) => {
-  const { fileNames, onClear, label, error, ...rest } = props;
+  const { fileNames, onClear, label, error, className, ...rest } = props;
   const t = useTranslations('frontend');
   const [isDragging, setIsDragging] = useState(false);
 
   return (
-    <Root>
+    <Root className={className}>
       {label && <Label htmlFor={rest.id}>{label}</Label>}
       <Wrapper
         isDragging={isDragging}
@@ -53,14 +64,14 @@ const Component = forwardRef<HTMLInputElement, FileInputProps>((props, ref) => {
           props.onChange?.(newEvent as unknown as ChangeEvent<HTMLInputElement>);
         }}
       >
-        <Input ref={ref} {...rest} />
+        <Native ref={ref} {...rest} />
         <Upload />
         {fileNames.length > 0 ? (
           <>
             <Items>
-              {fileNames.map((fileName, index) => (
-                <Item key={index}>{fileName}</Item>
-              ))}
+              {fileNames.map((fileName, index) => {
+                return <Item key={index}>{fileName}</Item>;
+              })}
             </Items>
             <CloseAllButton onClick={onClear} aria-label={t('close')} />
           </>
@@ -73,48 +84,44 @@ const Component = forwardRef<HTMLInputElement, FileInputProps>((props, ref) => {
   );
 });
 
-const Wrapper = (
-  props: ComponentProps<typeof FileInputBase.Wrapper> &
-    Pick<FileInputProps, 'error'> & { isDragging: boolean },
-) => {
+const Wrapper = (props: HtmlProps['label'] & { isDragging: boolean }) => {
   const { isDragging, className, ...rest } = props;
-  const base = classNames.wrapper({ isValid: !props['aria-invalid'], isDragging });
-  return <FileInputBase.Wrapper {...rest} className={cn(base, className)} />;
+  const base = styles.wrapper({ isValid: !rest['aria-invalid'], isDragging });
+  return <label {...rest} className={cn(base, className)} />;
 };
 
-const Input = forwardRef<HTMLInputElement, ComponentProps<typeof FileInputBase.Input>>(
-  ({ className, ...rest }, ref) => {
-    return <FileInputBase.Input ref={ref} className={cn('sr-only', className)} {...rest} />;
-  },
-);
+const Native = forwardRef<HTMLInputElement, NativeProps>(({ className, ...rest }, ref) => {
+  return <input ref={ref} type="file" className={cn(styles.native, className)} {...rest} />;
+});
 
-const Items = ({ className, ...rest }: ComponentProps<typeof FileInputBase.Items>) => {
-  const defaultClassNames = cn('flex-grow grid gap-1', className);
-  return <FileInputBase.Items className={defaultClassNames} {...rest} />;
+const Items = ({ className, ...rest }: HtmlProps['ul']) => {
+  return <ul className={cn(styles.items, className)} {...rest} />;
 };
 
-const CloseAllButton = (props: ComponentProps<typeof FileInputBase.CloseAllButton>) => {
+const Item = (props: HtmlProps['li']) => {
+  return <li {...props} />;
+};
+
+const CloseAllButton = ({ children, ...rest }: HtmlProps['button']) => {
   return (
-    <FileInputBase.CloseAllButton {...props}>
-      <X height="1lh" width="auto" />
-    </FileInputBase.CloseAllButton>
+    <button type="button" {...rest}>
+      {children ?? <X height="1lh" width="auto" />}
+    </button>
   );
 };
 
-const Placeholder = ({ className, ...rest }: ComponentProps<typeof FileInputBase.Placeholder>) => {
-  const defaultClassNames = cn('flex-grow text-foreground/50', className);
-  return <FileInputBase.Placeholder className={defaultClassNames} {...rest} />;
+const Placeholder = ({ className, ...rest }: HtmlProps['span']) => {
+  return <span className={cn(styles.placeholder, className)} {...rest} />;
 };
 
-const Root = FileInputBase.Root;
-const Label = FileInputBase.Label;
-const Item = FileInputBase.Item;
-const Error = FileInputBase.Error;
+const Root = Form.Group;
+const Label = Form.Label;
+const Error = Form.Error;
 
 const FileInput = Object.assign(Component, {
   Root,
   Label,
-  Input,
+  Native,
   Items,
   Item,
   CloseAllButton,
@@ -122,4 +129,4 @@ const FileInput = Object.assign(Component, {
   Error,
 });
 
-export { FileInput };
+export { FileInput, styles };

@@ -1,11 +1,18 @@
+import { EnhancedHtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
-import { ComponentProps, forwardRef, ReactNode } from 'react';
-import TextInputBase from './text-input.base';
+import { forwardRef, ReactNode } from 'react';
+import Form from '../root/form';
 
-type TextInputProps = ComponentProps<typeof TextInputBase.Input> & {
+type TextInputProps = NativeProps & {
   label?: ReactNode;
   error?: string;
 };
+
+// prettier-ignore
+type NativeProps = EnhancedHtmlProps<'input', {
+  name: string;
+  value?: string;
+}>;
 
 const inputClassNames = {
   input: ({ isValid }: { isValid: boolean }) =>
@@ -24,21 +31,21 @@ const Component = forwardRef<HTMLInputElement, TextInputProps>((props, ref) => {
   return (
     <Root>
       {label && <Label htmlFor={rest.id}>{label}</Label>}
-      <Input ref={ref} error={error} {...rest} />
+      <Input ref={ref} aria-invalid={!!error} {...rest} />
       <Error>{error}</Error>
     </Root>
   );
 });
 
-const Input = forwardRef<HTMLInputElement, Omit<TextInputProps, 'label'>>((props, ref) => {
-  const { error, className, ...rest } = props;
-  const classNames = cn(inputClassNames.input({ isValid: !error }), className);
-  return <TextInputBase.Input ref={ref} className={classNames} {...rest} />;
+const Input = forwardRef<HTMLInputElement, NativeProps>((props, ref) => {
+  const { value = '', className, ...rest } = props;
+  const base = inputClassNames.input({ isValid: !!rest['aria-invalid'] });
+  return <input ref={ref} className={cn(base, className)} value={value} {...rest} />;
 });
 
-const Root = TextInputBase.Root;
-const Label = TextInputBase.Label;
-const Error = TextInputBase.Error;
+const Root = Form.Group;
+const Label = Form.Label;
+const Error = Form.Error;
 
 const TextInput = Object.assign(Component, { Root, Label, Input, Error });
 

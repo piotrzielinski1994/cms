@@ -12,6 +12,7 @@ exports[`Radio > should match the snapshot 1`] = `
         class="w-[1lh] h-[1lh] border border-solid border-current bg-input group-hover:group-has-[input:enabled]:border-foreground/90 group-hover:group-has-[input:enabled]:ring-foreground/90 ring-inset tw-has-focus:ring-1 ring-current grid place-items-center rounded-full"
       >
         <input
+          aria-invalid="false"
           class="sr-only"
           id="id"
           name="name"

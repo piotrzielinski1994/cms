@@ -1,10 +1,11 @@
+import { EnhancedHtmlProps, HtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
 import { ChevronDown } from 'lucide-react';
-import { ComponentProps, forwardRef, ReactNode } from 'react';
+import { forwardRef, ReactNode } from 'react';
+import Form from '../root/form';
 import { inputClassNames } from '../text-input/text-input';
-import SelectBase from './select.base';
 
-type SelectProps = {
+type SelectProps = Omit<NativeProps, 'children'> & {
   label?: ReactNode;
   error?: string;
   options: {
@@ -12,9 +13,15 @@ type SelectProps = {
     label: string;
   }[];
   placeholder?: string;
-} & Omit<ComponentProps<typeof SelectBase.Native>, 'children'>;
+};
 
-const selectClassNames = {
+// prettier-ignore
+type NativeProps = EnhancedHtmlProps<'select', {
+  name: string;
+  value?: string;
+}>;
+
+const classNames = {
   select: ({ isEmpty, isValid }: { isEmpty: boolean; isValid: boolean }) =>
     cn(
       'appearance-none',
@@ -47,35 +54,34 @@ const Component = forwardRef<HTMLSelectElement, SelectProps>((props, ref) => {
             );
           })}
         </Native>
-        <ChevronDown size="1rem" className={selectClassNames.icon} />
+        <ChevronDown size="1rem" className={classNames.icon} />
       </Wrapper>
       <Error>{error}</Error>
     </Root>
   );
 });
 
-const Native = forwardRef<
-  HTMLSelectElement,
-  ComponentProps<typeof SelectBase.Native> & Pick<SelectProps, 'error'>
->(({ error, className, ...rest }, ref) => {
-  const classNames = cn(
-    selectClassNames.select({ isEmpty: rest.value !== '', isValid: !error }),
-    className,
-  );
-  return <SelectBase.Native ref={ref} className={classNames} {...rest} />;
+const Wrapper = (props: HtmlProps['div']) => {
+  return <div {...props} />;
+};
+
+const Native = forwardRef<HTMLSelectElement, NativeProps>((props, ref) => {
+  const { className, ...rest } = props;
+  const base = classNames.select({
+    isEmpty: rest.value !== '',
+    isValid: !rest['aria-invalid'],
+  });
+  return <select ref={ref} className={cn(base, className)} {...rest} />;
 });
 
-const Option = forwardRef<HTMLOptionElement, ComponentProps<typeof SelectBase.Option>>(
-  ({ className, ...rest }, ref) => {
-    const classNames = cn(selectClassNames.option, className);
-    return <SelectBase.Option ref={ref} className={classNames} {...rest} />;
-  },
-);
+const Option = forwardRef<HTMLOptionElement, HtmlProps['option']>((props, ref) => {
+  const { className, ...rest } = props;
+  return <option ref={ref} className={cn(classNames.option, className)} {...rest} />;
+});
 
-const Root = SelectBase.Root;
-const Label = SelectBase.Label;
-const Wrapper = SelectBase.Wrapper;
-const Error = SelectBase.Error;
+const Root = Form.Group;
+const Label = Form.Label;
+const Error = Form.Error;
 
 const Select = Object.assign(Component, { Root, Label, Native, Error });
 

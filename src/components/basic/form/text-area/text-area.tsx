@@ -1,11 +1,25 @@
+import { EnhancedHtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
-import { ComponentProps, forwardRef, ReactNode } from 'react';
+import { forwardRef, ReactNode } from 'react';
+import Form from '../root/form';
 import { inputClassNames } from '../text-input/text-input';
-import TextAreaBase from './text-area.base';
 
-type TextAreaProps = ComponentProps<typeof TextAreaBase.Input> & {
+type TextAreaProps = NativeProps & {
   label?: ReactNode;
   error?: string;
+};
+
+// prettier-ignore
+type NativeProps = EnhancedHtmlProps<'textarea', {
+  name: string;
+  value?: string;
+}>;
+
+const classNames = {
+  native: ({ isValid, isDisabled }: { isValid: boolean; isDisabled: boolean }) =>
+    cn(inputClassNames.input({ isValid }), 'min-h-[calc(2*1px+2*0.5rem+3*1.5rem)]', {
+      'resize-none': isDisabled,
+    }),
 };
 
 const Component = forwardRef<HTMLTextAreaElement, TextAreaProps>((props, ref) => {
@@ -13,27 +27,33 @@ const Component = forwardRef<HTMLTextAreaElement, TextAreaProps>((props, ref) =>
   return (
     <Root>
       {label && <Label htmlFor={rest.id}>{label}</Label>}
-      <Input ref={ref} error={error} {...rest} />
+      <Input ref={ref} aria-invalid={!!error} {...rest} />
       <Error>{error}</Error>
     </Root>
   );
 });
 
-const Input = forwardRef<HTMLTextAreaElement, Omit<TextAreaProps, 'label'>>((props, ref) => {
-  const { error, className, ...rest } = props;
-  const classNames = cn(
-    inputClassNames.input({ isValid: !error }),
-    'min-h-[calc(2*1px+2*0.5rem+3*1.5rem)]',
-    { 'resize-none': !!props.disabled },
-    className,
-  );
+const Input = forwardRef<HTMLTextAreaElement, NativeProps>((props, ref) => {
+  const { value = '', className, ...rest } = props;
+  const base = classNames.native({
+    isValid: !rest['aria-invalid'],
+    isDisabled: !!props.disabled,
+  });
 
-  return <TextAreaBase.Input ref={ref} className={classNames} {...rest} />;
+  return (
+    <textarea
+      ref={ref}
+      contentEditable={false}
+      className={cn(base, className)}
+      value={value}
+      {...rest}
+    />
+  );
 });
 
-const Root = TextAreaBase.Root;
-const Label = TextAreaBase.Label;
-const Error = TextAreaBase.Error;
+const Root = Form.Group;
+const Label = Form.Label;
+const Error = Form.Error;
 
 const TextArea = Object.assign(Component, { Root, Label, Input, Error });
 

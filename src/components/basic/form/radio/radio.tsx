@@ -1,20 +1,33 @@
+import { EnhancedHtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
 import { Circle } from 'lucide-react';
-import { ComponentProps, forwardRef } from 'react';
+import { forwardRef } from 'react';
 import { checkboxClassNames } from '../checkbox/checkbox';
-import RadioBase from './radio.base';
+import Form from '../root/form';
 
-type RadioProps = ComponentProps<typeof RadioBase.Input> & {
+type RadioProps = NativeProps & {
   label: string;
   error?: string;
 };
 
+// prettier-ignore
+type NativeProps = Omit<EnhancedHtmlProps<'input', {
+  name: string;
+  value?: string;
+}>, 'type'>;
+
+const classNames = {
+  wrapper: ({ isValid }: { isValid: boolean }) =>
+    cn(checkboxClassNames.checkbox({ isValid }), 'rounded-full'),
+  icon: cn(checkboxClassNames.icon, 'w-[0.4lh] h-[0.4lh]', 'fill-current'),
+};
+
 const Component = forwardRef<HTMLInputElement, RadioProps>((props, ref) => {
-  const { label, error, ...rest } = props;
+  const { label, error, className, ...rest } = props;
   return (
-    <Root>
+    <Root className={className}>
       <Label className={checkboxClassNames.wrapper}>
-        <Input ref={ref} error={error} {...rest} />
+        <Input ref={ref} aria-invalid={!!error} {...rest} />
         <span>{label}</span>
       </Label>
       <Error>{error}</Error>
@@ -22,25 +35,21 @@ const Component = forwardRef<HTMLInputElement, RadioProps>((props, ref) => {
   );
 });
 
-const Input = forwardRef<HTMLInputElement, Omit<RadioProps, 'label'>>((props, ref) => {
-  const { error, className, ...rest } = props;
-  const classNames = {
-    wrapper: cn(checkboxClassNames.checkbox({ isValid: !error }), 'rounded-full', className),
-    icon: cn(checkboxClassNames.icon, 'w-[0.4lh] h-[0.4lh]', 'fill-current'),
-  };
-
+const Input = forwardRef<HTMLInputElement, NativeProps>((props, ref) => {
+  const { className, ...rest } = props;
+  const base = classNames.wrapper({ isValid: !props['aria-invalid'] });
   return (
-    <div className={classNames.wrapper}>
-      <RadioBase.Input ref={ref} className="sr-only" {...rest} />
+    <div className={cn(base, className)}>
+      <input ref={ref} type="radio" className="sr-only" {...rest} />
       <Circle className={classNames.icon} />
     </div>
   );
 });
 
-const Root = RadioBase.Root;
-const Label = RadioBase.Label;
-const Error = RadioBase.Error;
+const Root = Form.Group;
+const Label = Form.Label;
+const Error = Form.Error;
 
-const Radio = Object.assign(Component, { Root, Label, Input, Error });
+const Radio = Object.assign(Component, { Root, Label, Input, Error, classNames });
 
 export { Radio };
