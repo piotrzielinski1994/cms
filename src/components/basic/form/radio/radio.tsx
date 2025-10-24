@@ -39,7 +39,7 @@ const Component = forwardRef<HTMLInputElement, RadioProps>((props, ref) => {
 
 const Native = forwardRef<HTMLInputElement, NativeProps>((props, ref) => {
   const { className, ...rest } = props;
-  const base = styles.nativeWrapper({ isValid: !props['aria-invalid'] });
+  const base = styles.nativeWrapper({ isValid: !rest['aria-invalid'] });
   return (
     <div className={cn(base, className)}>
       <input ref={ref} type="radio" className={styles.native} {...rest} />

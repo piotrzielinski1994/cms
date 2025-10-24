@@ -51,7 +51,7 @@ const Component = forwardRef<HTMLInputElement, CheckboxProps>((props, ref) => {
 
 const Input = forwardRef<HTMLInputElement, NativeProps>((props, ref) => {
   const { className, ...rest } = props;
-  const base = styles.native({ isValid: !props['aria-invalid'] });
+  const base = styles.native({ isValid: !rest['aria-invalid'] });
   return (
     <div className={cn(base, className)}>
       <input ref={ref} type="checkbox" className="sr-only" {...rest} />

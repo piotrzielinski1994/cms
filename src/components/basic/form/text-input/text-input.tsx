@@ -39,7 +39,7 @@ const Component = forwardRef<HTMLInputElement, TextInputProps>((props, ref) => {
 
 const Native = forwardRef<HTMLInputElement, NativeProps>((props, ref) => {
   const { value = '', className, ...rest } = props;
-  const base = styles.native({ isValid: !!rest['aria-invalid'] });
+  const base = styles.native({ isValid: !rest['aria-invalid'] });
   return <input ref={ref} {...rest} className={cn(base, className)} value={value} />;
 });
 
