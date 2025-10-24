@@ -2,7 +2,7 @@ import { HtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
 import { useEffect, useRef } from 'react';
 
-type DrawerProps = HtmlProps['div'] & {
+type DrawerProps = HtmlProps<'div'> & {
   isOpen: boolean;
   onClose: () => void;
 };

@@ -4,7 +4,7 @@ import { placeholderDarkWebp } from '@/placeholders';
 import { HtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
 
-type ProductCardProps = HtmlProps['div'] & {
+type ProductCardProps = HtmlProps<'div'> & {
   layout?: 'grid' | 'list';
   product: {
     id: number;

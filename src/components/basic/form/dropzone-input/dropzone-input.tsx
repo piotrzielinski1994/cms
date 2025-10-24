@@ -122,20 +122,20 @@ const Native = forwardRef<HTMLInputElement, NativeProps>(({ className, ...rest }
   return <input ref={ref} type="file" className={cn(styles.native, className)} {...rest} />;
 });
 
-const Items = ({ className, ...rest }: HtmlProps['ul']) => {
+const Items = ({ className, ...rest }: HtmlProps<'ul'>) => {
   return <ul className={cn(styles.items, className)} {...rest} />;
 };
 
-const Item = (props: HtmlProps['li']) => {
+const Item = (props: HtmlProps<'li'>) => {
   return <li {...props} />;
 };
 
-const ItemButton = (props: HtmlProps['button']) => {
+const ItemButton = (props: HtmlProps<'button'>) => {
   const { className, ...rest } = props;
   return <button type="button" className={cn(styles.itemButton, className)} {...rest} />;
 };
 
-const Placeholder = (props: HtmlProps['span']) => {
+const Placeholder = (props: HtmlProps<'span'>) => {
   const { className, ...rest } = props;
   return <span className={cn(styles.placeholder, className)} {...rest} />;
 };

@@ -147,7 +147,7 @@ const Native = forwardRef<HTMLInputElement, NativeProps>((props, ref) => {
   );
 });
 
-const Button = (props: HtmlProps['button'] & { mode: 'increment' | 'decrement' }) => {
+const Button = (props: HtmlProps<'button'> & { mode: 'increment' | 'decrement' }) => {
   const { mode, children, ...rest } = props;
   const inputContext = useContext(InputContext);
   const renderZone = useMemo(() => {

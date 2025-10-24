@@ -61,7 +61,7 @@ const Component = forwardRef<HTMLSelectElement, SelectProps>((props, ref) => {
   );
 });
 
-const Wrapper = (props: HtmlProps['div']) => {
+const Wrapper = (props: HtmlProps<'div'>) => {
   return <div {...props} />;
 };
 
@@ -74,7 +74,7 @@ const Native = forwardRef<HTMLSelectElement, NativeProps>((props, ref) => {
   return <select ref={ref} className={cn(base, className)} {...rest} />;
 });
 
-const Option = forwardRef<HTMLOptionElement, HtmlProps['option']>((props, ref) => {
+const Option = forwardRef<HTMLOptionElement, HtmlProps<'option'>>((props, ref) => {
   const { className, ...rest } = props;
   return <option ref={ref} className={cn(styles.option, className)} {...rest} />;
 });

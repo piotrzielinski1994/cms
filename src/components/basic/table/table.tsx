@@ -3,7 +3,7 @@ import { cn } from '@/utils/tailwind';
 import { BoolMap } from '@/utils/types';
 import { forwardRef, ReactNode } from 'react';
 
-type TableProps = HtmlProps['table'] & {
+type TableProps = HtmlProps<'table'> & {
   header: ReactNode[];
   body: ReactNode[][];
   footer?: ReactNode[];
@@ -61,27 +61,27 @@ const Component = forwardRef<HTMLTableElement, TableProps>((props, ref) => {
   );
 });
 
-const Root = ({ className, ...rest }: HtmlProps['div']) => {
+const Root = ({ className, ...rest }: HtmlProps<'div'>) => {
   return <div className={cn(styles.root, className)} {...rest} />;
 };
 
-const Native = forwardRef<HTMLTableElement, HtmlProps['table']>(({ className, ...rest }) => {
+const Native = forwardRef<HTMLTableElement, HtmlProps<'table'>>(({ className, ...rest }) => {
   return <table className={cn(styles.native, className)} {...rest} />;
 });
 
-const Header = ({ className, ...rest }: HtmlProps['thead']) => {
+const Header = ({ className, ...rest }: HtmlProps<'thead'>) => {
   return <thead className={cn(styles.header, className)} {...rest} />;
 };
 
-const Body = (props: HtmlProps['tbody']) => <tbody {...props} />;
+const Body = (props: HtmlProps<'tbody'>) => <tbody {...props} />;
 
-const Footer = ({ className, ...rest }: HtmlProps['tfoot']) => {
+const Footer = ({ className, ...rest }: HtmlProps<'tfoot'>) => {
   return <tfoot className={cn(styles.footer, className)} {...rest} />;
 };
 
-const Row = (props: HtmlProps['tr']) => <tr {...props} />;
+const Row = (props: HtmlProps<'tr'>) => <tr {...props} />;
 
-const Column = ({ className, ...rest }: HtmlProps['td']) => {
+const Column = ({ className, ...rest }: HtmlProps<'td'>) => {
   return <td className={cn(styles.column, className)} {...rest} />;
 };
 

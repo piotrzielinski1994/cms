@@ -8,20 +8,20 @@ const styles = {
   error: 'min-h-[1em] text-sm text-red-500 leading-none',
 };
 
-const Root = (props: HtmlProps['form']) => {
+const Root = (props: HtmlProps<'form'>) => {
   return <form {...props} />;
 };
 
-const Group = ({ className, ...props }: HtmlProps['div']) => {
+const Group = ({ className, ...props }: HtmlProps<'div'>) => {
   return <div className={cn(styles.group, className)} {...props} />;
 };
 
-const Label = <T extends HtmlProps['label']>(props: T & { as?: ElementType }) => {
+const Label = <T extends HtmlProps<'label'>>(props: T & { as?: ElementType }) => {
   const { as: Cmp = 'label', className, ...rest } = props;
   return <Cmp {...rest} className={cn(styles.label, className)} />;
 };
 
-const Error = ({ className, ...rest }: HtmlProps['span']) => {
+const Error = ({ className, ...rest }: HtmlProps<'span'>) => {
   const classNames = cn(styles.error, className);
   return <span role="alert" aria-hidden={!rest.children} {...rest} className={classNames} />;
 };

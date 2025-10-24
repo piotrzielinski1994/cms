@@ -79,7 +79,7 @@ const Root = forwardRef<HTMLDialogElement, DialogProps>(
   },
 );
 
-const Backdrop = ({ className, ...props }: HtmlProps['div']) => {
+const Backdrop = ({ className, ...props }: HtmlProps<'div'>) => {
   return (
     <div
       {...props}

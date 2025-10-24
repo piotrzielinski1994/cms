@@ -4,7 +4,7 @@ import { EnhancedHtmlProps, HtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
 import { Upload, X } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { ChangeEvent, forwardRef, ReactNode, useState } from 'react';
+import { ChangeEvent, ComponentPropsWithoutRef, forwardRef, ReactNode, useState } from 'react';
 import Form from '../root/form';
 import { styles as testInputStyles } from '../text-input/text-input';
 
@@ -84,7 +84,7 @@ const Component = forwardRef<HTMLInputElement, FileInputProps>((props, ref) => {
   );
 });
 
-const Wrapper = (props: HtmlProps['label'] & { isDragging: boolean }) => {
+const Wrapper = (props: ComponentPropsWithoutRef<'label'> & { isDragging: boolean }) => {
   const { isDragging, className, ...rest } = props;
   const base = styles.wrapper({ isValid: !rest['aria-invalid'], isDragging });
   return <label {...rest} className={cn(base, className)} />;
@@ -94,15 +94,15 @@ const Native = forwardRef<HTMLInputElement, NativeProps>(({ className, ...rest }
   return <input ref={ref} type="file" className={cn(styles.native, className)} {...rest} />;
 });
 
-const Items = ({ className, ...rest }: HtmlProps['ul']) => {
+const Items = ({ className, ...rest }: HtmlProps<'ul'>) => {
   return <ul className={cn(styles.items, className)} {...rest} />;
 };
 
-const Item = (props: HtmlProps['li']) => {
+const Item = (props: HtmlProps<'li'>) => {
   return <li {...props} />;
 };
 
-const CloseAllButton = ({ children, ...rest }: HtmlProps['button']) => {
+const CloseAllButton = ({ children, ...rest }: HtmlProps<'button'>) => {
   return (
     <button type="button" {...rest}>
       {children ?? <X height="1lh" width="auto" />}
@@ -110,7 +110,7 @@ const CloseAllButton = ({ children, ...rest }: HtmlProps['button']) => {
   );
 };
 
-const Placeholder = ({ className, ...rest }: HtmlProps['span']) => {
+const Placeholder = ({ className, ...rest }: HtmlProps<'span'>) => {
   return <span className={cn(styles.placeholder, className)} {...rest} />;
 };
 

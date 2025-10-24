@@ -1,7 +1,7 @@
 import { HtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
 
-type SkeletonProps = Omit<HtmlProps['div'], 'children'>;
+type SkeletonProps = Omit<HtmlProps<'div'>, 'children'>;
 
 const Skeleton = ({ className, ...props }: SkeletonProps) => {
   return (

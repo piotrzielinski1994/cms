@@ -5,7 +5,7 @@ import { cn } from '@/utils/tailwind';
 import { ChevronDown } from 'lucide-react';
 import React, { useEffect, useId, useRef, useState } from 'react';
 
-type AccordionProps = HtmlProps['div'] & {
+type AccordionProps = HtmlProps<'div'> & {
   items: {
     heading: React.ReactNode;
     content: React.ReactNode;

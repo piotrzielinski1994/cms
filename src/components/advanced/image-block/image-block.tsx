@@ -7,7 +7,7 @@ import { cn } from '@/utils/tailwind';
 import { StaticImageData } from 'next/image';
 import { ComponentProps } from 'react';
 
-type ImageBlockProps = HtmlProps['div'] & {
+type ImageBlockProps = HtmlProps<'div'> & {
   isReversed?: boolean;
   image: Omit<StaticImageData, 'width' | 'height'> & {
     alt: string;
