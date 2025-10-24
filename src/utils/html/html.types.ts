@@ -1,7 +1,9 @@
 import {
   AnchorHTMLAttributes,
   ButtonHTMLAttributes,
+  ComponentPropsWithoutRef,
   DetailedHTMLProps,
+  ElementType,
   FormHTMLAttributes,
   HTMLAttributes,
   ImgHTMLAttributes,
@@ -10,6 +12,7 @@ import {
   LabelHTMLAttributes,
   LiHTMLAttributes,
   OptionHTMLAttributes,
+  ReactNode,
   SelectHTMLAttributes,
   TdHTMLAttributes,
 } from 'react';
@@ -17,6 +20,7 @@ import {
 type HtmlPropsMap = {
   a: AnchorHTMLAttributes<HTMLAnchorElement>;
   button: ButtonHTMLAttributes<HTMLButtonElement>;
+  dialog: HTMLAttributes<HTMLDialogElement>;
   div: HTMLAttributes<HTMLDivElement>;
   form: FormHTMLAttributes<HTMLFormElement>;
   img: ImgHTMLAttributes<HTMLImageElement>;
@@ -49,4 +53,41 @@ type EnhancedHtmlProps<
   T extends Partial<HtmlProps[HtmlTag]> & Record<string, unknown>
 > = T & Omit<HtmlProps[HtmlTag], keyof T>;
 
-export type { EnhancedHtmlProps, HtmlProps };
+type HtmlElement = {
+  a: HTMLAnchorElement;
+  button: HTMLButtonElement;
+  dialog: HTMLDialogElement;
+  div: HTMLDivElement;
+  form: HTMLFormElement;
+  img: HTMLImageElement;
+  input: HTMLInputElement;
+  label: HTMLLabelElement;
+  li: HTMLLIElement;
+  option: HTMLOptionElement;
+  p: HTMLParagraphElement;
+  select: HTMLSelectElement;
+  span: HTMLSpanElement;
+  table: HTMLTableElement;
+  tbody: HTMLTableSectionElement;
+  td: HTMLTableDataCellElement;
+  textarea: HTMLTextAreaElement;
+  tfoot: HTMLTableSectionElement;
+  thead: HTMLTableSectionElement;
+  tr: HTMLTableRowElement;
+  ul: HTMLUListElement;
+};
+
+type PolymorphicRef<T extends ElementType> = ComponentPropsWithoutRef<T>['ref'];
+type PolymorphicProps<T extends ElementType> = { as?: T } & Omit<ComponentPropsWithoutRef<T>, 'as'>;
+type PolymorphicComponent = <T extends ElementType = 'div'>(
+  props: PolymorphicProps<T> & { ref?: PolymorphicRef<T> },
+) => ReactNode;
+
+export type {
+  EnhancedHtmlProps,
+  HtmlElement,
+  HtmlProps,
+  PolymorphicComponent,
+  PolymorphicProps,
+  PolymorphicRef,
+};

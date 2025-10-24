@@ -1,26 +1,15 @@
+import { PolymorphicComponent, PolymorphicProps, PolymorphicRef } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
-import { ComponentPropsWithoutRef, ElementType, forwardRef, Ref } from 'react';
+import { ElementType, forwardRef } from 'react';
 
-type ElementMap = {
-  div: HTMLDivElement;
-  dialog: HTMLDialogElement;
+const styles = {
+  root: cn('w-full max-w-screen-2xl', 'mx-auto', 'grid', 'cms-container'),
 };
 
-type ContainerProps<T extends keyof ElementMap = 'div'> = {
-  as?: T;
-} & ComponentPropsWithoutRef<T>;
-
-const Container = forwardRef(
-  <T extends keyof ElementMap = 'div'>(props: ContainerProps<T>, ref: Ref<ElementMap[T]>) => {
-    const { as: elementTag = 'div', className, ...rest } = props;
-    const HtmlTag = elementTag as unknown as ElementType;
-    return (
-      <HtmlTag
-        ref={ref}
-        {...rest}
-        className={cn('w-full max-w-screen-2xl', 'mx-auto', 'grid', 'cms-container', className)}
-      />
-    );
+const Container: PolymorphicComponent = forwardRef(
+  <T extends ElementType = 'div'>(props: PolymorphicProps<T>, ref: PolymorphicRef<T>) => {
+    const { as: Component = 'div', className, ...rest } = props;
+    return <Component ref={ref} {...rest} className={cn(styles.root, className)} />;
   },
 );
 
