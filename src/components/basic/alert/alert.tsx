@@ -1,27 +1,47 @@
+import { EnhancedHtmlProps, HtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
 import { AlertTriangle, CheckCircle, Info, X, XCircle } from 'lucide-react';
-import { useTranslations } from 'next-intl';
-import { JSX, PropsWithChildren } from 'react';
+import { ReactNode } from 'react';
 
 type AlertType = 'success' | 'info' | 'warn' | 'error';
-type AlertProps = PropsWithChildren & {
-  type?: AlertType;
+type RootProps = EnhancedHtmlProps<'div', { type?: AlertType }>;
+type AlertProps = RootProps & {
   onClose?: () => void;
+  t?: {
+    close: string;
+  };
 };
 
-const Alert = ({ type = 'info', onClose, children }: AlertProps) => {
-  const t = useTranslations('frontend');
+const styles = {
+  root: cn('p-2', 'flex gap-2 flex-wrap'),
+  wrapper: 'flex-grow',
+  closeButton: 'w-[1lh] h-[1lh]',
+};
+
+const Component = ({ type = 'info', onClose, t, children, ...rest }: AlertProps) => {
   return (
-    <div role="alert" className={cn('p-2', 'flex gap-2 flex-wrap', colorMap[type])}>
+    <Root type={type} {...rest}>
       {iconMap[type]}
-      <div className="flex-grow">{children}</div>
+      <Wrapper>{children}</Wrapper>
       {onClose && (
-        <button type="button" className="w-[1lh] h-[1lh]" aria-label={t('close')} onClick={onClose}>
+        <CloseButton className={styles.closeButton} aria-label={t?.close} onClick={onClose}>
           <X />
-        </button>
+        </CloseButton>
       )}
-    </div>
+    </Root>
   );
+};
+
+const Root = ({ type = 'info', className, ...rest }: RootProps) => {
+  return <div role="alert" {...rest} className={cn(styles.root, colorMap[type], className)} />;
+};
+
+const Wrapper = ({ className, ...rest }: HtmlProps<'div'>) => {
+  return <div {...rest} className={cn(styles.wrapper, className)} />;
+};
+
+const CloseButton = ({ className, ...rest }: HtmlProps<'button'>) => {
+  return <button type="button" {...rest} className={cn(styles.closeButton, className)} />;
 };
 
 const iconMap = {
@@ -29,7 +49,7 @@ const iconMap = {
   info: <Info className="w-[1lh] h-[1lh]" />,
   warn: <AlertTriangle className="w-[1lh] h-[1lh]" />,
   error: <XCircle className="w-[1lh] h-[1lh]" />,
-} satisfies Record<AlertType, JSX.Element>;
+} satisfies Record<AlertType, ReactNode>;
 
 const colorMap = {
   success: 'bg-green-500 text-green-950',
@@ -38,4 +58,6 @@ const colorMap = {
   error: 'bg-red-500 text-red-950',
 } satisfies Record<AlertType, string>;
 
-export { Alert };
+const Alert = Object.assign(Component, { Root, Wrapper, CloseButton });
+
+export { Alert, styles };
