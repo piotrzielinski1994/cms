@@ -1,18 +1,15 @@
+import { PolymorphicComponent, PolymorphicProps, PolymorphicRef } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
-import { ComponentPropsWithoutRef, ElementType, forwardRef } from 'react';
+import { ElementType, forwardRef } from 'react';
 
-type SectionProps<T extends ElementType> = ComponentPropsWithoutRef<T> & {
-  as?: T;
+const styles = {
+  root: cn('px-4 sm:px-6', 'grid', 'cms-section'),
 };
 
-const Section = forwardRef(
-  <T extends ElementType = 'section'>(props: SectionProps<T>, ref: React.Ref<HTMLElement>) => {
-    const { as: HtmlTag = 'section', className, children, ...rest } = props;
-    return (
-      <HtmlTag ref={ref} {...rest} className={cn('px-4 sm:px-6', 'grid', 'cms-section', className)}>
-        {children}
-      </HtmlTag>
-    );
+const Section: PolymorphicComponent = forwardRef(
+  <T extends ElementType = 'section'>(props: PolymorphicProps<T>, ref: PolymorphicRef<T>) => {
+    const { as: Component = 'section', className, ...rest } = props;
+    return <Component ref={ref} {...rest} className={cn(styles.root, className)} />;
   },
 );
 

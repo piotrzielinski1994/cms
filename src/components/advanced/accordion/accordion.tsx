@@ -2,18 +2,36 @@
 
 import { HtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
+import { BoolMap } from '@/utils/types';
 import { ChevronDown } from 'lucide-react';
-import React, { useEffect, useId, useRef, useState } from 'react';
+import { forwardRef, ReactNode, useEffect, useId, useRef, useState } from 'react';
 
 type AccordionProps = HtmlProps<'div'> & {
   items: {
-    heading: React.ReactNode;
-    content: React.ReactNode;
+    heading: ReactNode;
+    content: ReactNode;
   }[];
   activeItemIndex?: number;
 };
 
-const Accordion = ({ items, activeItemIndex, className, ...props }: AccordionProps) => {
+const styles = {
+  root: cn('grid gap-2', 'cms-accordion'),
+  item: cn('bg-components-accordion text-components-accordion-foreground', 'group'),
+  itemHeader: ({ isActive }: BoolMap<'isActive'>) =>
+    cn(
+      'w-full px-4 py-2 md:px-6 md:py-4',
+      'flex justify-between items-center gap-2 text-lg cursor-pointer select-none',
+      { 'outline outline-2 outline-offset-2 outline-blue-500': isActive },
+      'tw-has-focus:tw-cms-outline',
+    ),
+  icon: ({ isActive }: BoolMap<'isActive'>) =>
+    cn('h-[1em] w-[1em] transition-transform', { 'rotate-180': isActive }),
+  radio: 'sr-only',
+  contentWrapper: 'overflow-hidden transition-[max-height] duration-300 ease-in-out',
+  content: 'px-4 pb-4 md:px-6',
+};
+
+const Component = ({ items, activeItemIndex, ...rest }: AccordionProps) => {
   const [activeIndex, setActiveIndex] = useState(activeItemIndex);
   const contentRefs = useRef<HTMLDivElement[]>([]);
   const id = useId();
@@ -26,31 +44,20 @@ const Accordion = ({ items, activeItemIndex, className, ...props }: AccordionPro
   }, [activeIndex]);
 
   return (
-    <div {...props} className={cn('grid gap-2', 'cms-accordion', className)} role="radiogroup">
+    <Root {...rest}>
       {items.map(({ heading, content }, index) => {
         const isActive = activeIndex === index;
         return (
-          <div
-            key={String(heading)}
-            className={cn('bg-components-accordion text-components-accordion-foreground', 'group')}
-          >
-            <label
+          <Item key={String(heading)}>
+            <ItemHeader
+              isActive={isActive}
               htmlFor={`${id}__${index}__input`}
               id={`${id}__${index}__label`}
-              className={cn(
-                'w-full px-4 py-2 md:px-6 md:py-4',
-                'flex justify-between items-center gap-2 text-lg cursor-pointer select-none',
-                { 'outline outline-2 outline-offset-2 outline-blue-500': isActive },
-                'tw-has-focus:tw-cms-outline',
-              )}
             >
-              <input
-                type="radio"
+              <Radio
                 name={`${id}-accordion`}
                 id={`${id}__${index}__input`}
                 checked={isActive}
-                className="sr-only"
-                aria-checked={isActive}
                 onChange={() => setActiveIndex(isActive ? undefined : index)}
                 onClick={() => setActiveIndex(isActive ? undefined : index)}
                 onKeyDown={(e) => {
@@ -60,13 +67,10 @@ const Accordion = ({ items, activeItemIndex, className, ...props }: AccordionPro
                 }}
               />
               <span>{heading}</span>
-              <ChevronDown
-                className={cn('h-[1em] w-[1em] transition-transform', { 'rotate-180': isActive })}
-              />
-            </label>
-            <div
+              <Icon isActive={isActive} />
+            </ItemHeader>
+            <ContentWrapper
               id={`${id}__${index}__content`}
-              className="overflow-hidden transition-[max-height] duration-300 ease-in-out"
               style={{
                 maxHeight: isActive ? contentRefs.current[index]?.scrollHeight + 'px' : '0',
               }}
@@ -75,20 +79,54 @@ const Accordion = ({ items, activeItemIndex, className, ...props }: AccordionPro
                 contentRefs.current[index] = el;
               }}
             >
-              <div
-                className="px-4 pb-4 md:px-6"
-                role="region"
-                aria-labelledby={`${id}__${index}__label`}
-                aria-hidden={!isActive}
-              >
+              <Content aria-labelledby={`${id}__${index}__label`} aria-hidden={!isActive}>
                 {content}
-              </div>
-            </div>
-          </div>
+              </Content>
+            </ContentWrapper>
+          </Item>
         );
       })}
-    </div>
+    </Root>
   );
 };
 
-export { Accordion };
+const Root = ({ className, ...rest }: HtmlProps<'div'>) => {
+  return <div role="radiogroup" {...rest} className={cn(styles.root, className)}></div>;
+};
+
+const Item = ({ className, ...rest }: HtmlProps<'div'>) => {
+  return <div {...rest} className={cn(styles.item, className)}></div>;
+};
+
+const ItemHeader = ({ isActive, className, ...rest }: HtmlProps<'label'> & BoolMap<'isActive'>) => {
+  return <label {...rest} className={cn(styles.itemHeader({ isActive }), className)}></label>;
+};
+
+const Radio = ({ className, ...rest }: HtmlProps<'input'>) => {
+  return <input type="radio" {...rest} className={cn(styles.radio, className)} />;
+};
+
+const Icon = ({ isActive, className, ...rest }: HtmlProps<'svg'> & BoolMap<'isActive'>) => {
+  return <ChevronDown {...rest} className={cn(styles.icon({ isActive }), className)} />;
+};
+
+const ContentWrapper = forwardRef<HTMLDivElement, HtmlProps<'div'>>((props, ref) => {
+  const { className, ...rest } = props;
+  return <div ref={ref} {...rest} className={cn(styles.contentWrapper, className)}></div>;
+});
+
+const Content = ({ className, ...rest }: HtmlProps<'div'>) => {
+  return <div role="region" {...rest} className={cn(styles.content, className)}></div>;
+};
+
+const Accordion = Object.assign(Component, {
+  Root,
+  Item,
+  ItemHeader,
+  Radio,
+  Icon,
+  ContentWrapper,
+  Content,
+});
+
+export { Accordion, styles };

@@ -6,7 +6,8 @@ type HtmlProps<T extends ElementType> = ComponentPropsWithoutRef<T>;
 // prettier-ignore
 type EnhancedHtmlProps<
   T extends ElementType,
-  U extends Partial<HtmlProps<T>> & Record<string, unknown>
+  // U extends Partial<HtmlProps<T>> & Record<string, unknown>
+  U extends { [key in keyof HtmlProps<T>]: unknown } & Record<string, unknown>
 > = U & Omit<HtmlProps<T>, keyof U>;
 
 type HtmlElement<T extends ElementType> = T extends keyof HTMLElementTagNameMap

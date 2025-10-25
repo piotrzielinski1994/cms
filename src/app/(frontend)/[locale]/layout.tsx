@@ -12,7 +12,6 @@ import { getPreferences } from '@/utils/nextjs/headers';
 import { toPageMetadata } from '@/utils/nextjs/metadata';
 import { LocalizedRoute } from '@/utils/nextjs/types';
 import { cn } from '@/utils/tailwind';
-import { GoogleTagManager } from '@next/third-parties/google';
 import { draftMode } from 'next/headers';
 import { ComponentProps, PropsWithChildren } from 'react';
 import './globals.scss';
@@ -45,7 +44,6 @@ const Layout = async ({ children, params }: LayoutProps) => {
   return (
     <html {...htmlProps}>
       <head>
-        {clientEnv.gtmId && cookiesConsent && <GoogleTagManager gtmId={clientEnv.gtmId} />}
         <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
       </head>
       <body className={cn('bg-background text-foreground', 'flex flex-col', 'min-h-[100vh]')}>
@@ -61,7 +59,7 @@ const Layout = async ({ children, params }: LayoutProps) => {
             {children}
           </main>
           <FooterContainer locale={locale} />
-          {!cookiesConsent && <CookiesBannerContainer locale={locale} />}
+          {clientEnv.gtmId && !cookiesConsent && <CookiesBannerContainer locale={locale} />}
         </Providers>
       </body>
     </html>

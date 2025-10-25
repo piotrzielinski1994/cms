@@ -9,7 +9,10 @@ const envSchema = z.object({
   NEXT_PUBLIC_STORYBOOK_URL: z.string().url(),
   // Other
   NEXT_PUBLIC_SENTRY_DSN: z.string().url().optional(),
-  NEXT_PUBLIC_GTM_ID: z.string().optional(),
+  NEXT_PUBLIC_GTM_ID: z
+    .string()
+    .regex(/^GTM-[A-Z0-9]+$/)
+    .optional(),
 });
 
 const parsedEnv = envSchema.parse({
