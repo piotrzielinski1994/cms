@@ -1,24 +1,36 @@
 'use client';
 
 import { Image } from '@/components/basic/image/image';
+import { EnhancedHtmlProps, HtmlProps } from '@/utils/html/html.types';
 import { optional } from '@/utils/optional';
 import { cn } from '@/utils/tailwind';
 import { X } from 'lucide-react';
-import { useEffect, useId, useRef, useState } from 'react';
+import { ComponentProps, forwardRef, useEffect, useId, useRef, useState } from 'react';
 
-type GalleryProps = {
+// prettier-ignore
+type GalleryProps = EnhancedHtmlProps<'div', {
   images: {
     src: string;
     alt: string;
   }[];
-  className?: string;
+}>;
+
+const styles = {
+  root: 'grid gap-4',
+  activeItem: cn('fixed inset-0', 'w-full h-full max-w-none max-h-none p-4'),
+  activeItemImage: cn('h-full w-full', 'object-contain'),
+  closeButton: 'absolute top-2 right-2 p-2 cursor-pointer',
+  items: 'flex justify-center gap-4 flex-wrap',
+  item: 'group cursor-pointer',
+  itemImage: cn('w-20 h-20', 'sm:w-40 sm:h-40', 'group-has-[:focus-visible]:tw-cms-outline'),
+  radio: 'sr-only',
 };
 
-const Gallery = ({ images, className, ...props }: GalleryProps) => {
-  const id = useId();
+const Component = ({ images, ...rest }: GalleryProps) => {
   const [activeIndex, setActiveIndex] = useState<number | undefined>(undefined);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const radiosRef = useRef<HTMLInputElement[]>([]);
+  const id = useId();
 
   const activeImage = optional(activeIndex, (it) => images[it]);
 
@@ -28,43 +40,30 @@ const Gallery = ({ images, className, ...props }: GalleryProps) => {
   }, [activeIndex]);
 
   return (
-    <div className={cn('grid gap-4', className)} {...props}>
-      <dialog
+    <Root {...rest}>
+      <ActiveItem
         ref={dialogRef}
         onClick={() => setActiveIndex(undefined)}
         onKeyDown={(e) => {
           if (e.code !== 'Escape') return;
           setActiveIndex(undefined);
         }}
-        className={cn('fixed inset-0', 'w-full h-full max-w-none max-h-none p-4')}
       >
         {activeImage && (
           <>
-            <button
-              type="button"
-              className="absolute top-2 right-2 p-2 cursor-pointer"
-              onClick={() => setActiveIndex(undefined)}
-            >
-              <X />
-            </button>
-            <Image
-              src={activeImage.src}
-              alt={activeImage.alt}
-              className={cn('h-full w-full', 'object-contain')}
-            />
+            <CloseButton onClick={() => setActiveIndex(undefined)} />
+            <ActiveItemImage src={activeImage.src} alt={activeImage.alt} />
           </>
         )}
-      </dialog>
-      <ul className="flex justify-center gap-4 flex-wrap">
-        {images.map(({ src, alt }, index) => {
+      </ActiveItem>
+      <ul className={styles.items}>
+        {images.map((image, index) => {
           const isActive = activeIndex === index;
           return (
             <li key={index}>
-              <label className="group cursor-pointer">
-                <input
-                  type="radio"
+              <label className={styles.item}>
+                <Radio
                   name={`${id}__product_gallery`}
-                  className="sr-only"
                   checked={isActive}
                   ref={(el) => {
                     if (!el) return;
@@ -80,23 +79,54 @@ const Gallery = ({ images, className, ...props }: GalleryProps) => {
                     radiosRef.current[(nextIndex + images.length) % images.length]?.focus();
                   }}
                 />
-                <Image
-                  src={src}
-                  alt={alt}
-                  sizing={{ default: '5rem', sm: '10rem' }}
-                  className={cn(
-                    'w-20 h-20',
-                    'sm:w-40 sm:h-40',
-                    'group-has-[:focus-visible]:tw-cms-outline',
-                  )}
-                />
+                <ItemImage {...image} />
               </label>
             </li>
           );
         })}
       </ul>
-    </div>
+    </Root>
   );
 };
 
-export { Gallery };
+const Root = ({ className, ...rest }: HtmlProps<'div'>) => {
+  return <div className={cn(styles.root, className)} {...rest} />;
+};
+
+const ActiveItem = forwardRef<HTMLDialogElement, HtmlProps<'dialog'>>((props, ref) => {
+  const { className, ...rest } = props;
+  return <dialog ref={ref} {...rest} className={cn(styles.activeItem, className)} />;
+});
+
+const ActiveItemImage = ({ src, alt, className, ...rest }: ComponentProps<typeof Image>) => {
+  return <Image {...rest} src={src} alt={alt} className={cn(styles.activeItemImage, className)} />;
+};
+
+const CloseButton = ({ children, className, ...rest }: HtmlProps<'button'>) => {
+  return (
+    <button type="button" {...rest} className={cn(styles.closeButton, className)}>
+      {children ?? <X />}
+    </button>
+  );
+};
+
+const ItemImage = ({ src, alt, className, ...rest }: ComponentProps<typeof Image>) => {
+  const classNames = cn(styles.itemImage, className);
+  const defaultSizing = { default: '5rem', sm: '10rem' } satisfies (typeof rest)['sizing'];
+  return <Image sizing={defaultSizing} {...rest} src={src} alt={alt} className={classNames} />;
+};
+
+const Radio = forwardRef<HTMLInputElement, HtmlProps<'input'>>(({ className, ...rest }, ref) => {
+  return <input ref={ref} type="radio" {...rest} className={cn(styles.radio, className)} />;
+});
+
+const Gallery = Object.assign(Component, {
+  Root,
+  ActiveItem,
+  ActiveItemImage,
+  CloseButton,
+  ItemImage,
+  Radio,
+});
+
+export { Gallery, styles };
