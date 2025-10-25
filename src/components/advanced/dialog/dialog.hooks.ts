@@ -1,5 +1,5 @@
 import { ComponentProps, useEffect, useRef, useState } from 'react';
-import Dialog from './dialog';
+import { Dialog } from './dialog';
 
 type UseDialogParams = {
   initialIsOpen?: boolean;

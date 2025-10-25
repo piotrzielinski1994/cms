@@ -3,16 +3,16 @@ import { DEFAULT_VALUE, getFallback } from '@/config/storybook/utils';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useTranslations } from 'next-intl';
 import { useEffect, type ComponentProps } from 'react';
-import DialogComponent from './dialog';
+import { Dialog as DialogComponent } from './dialog';
 import { useDialog } from './dialog.hooks';
 
-type Args = ComponentProps<typeof DialogComponent.Root> & {
+type Args = ComponentProps<typeof DialogComponent> & {
   submit: string;
   cancel: string;
 };
 
 const meta: Meta<Args> = {
-  component: DialogComponent.Root,
+  component: DialogComponent,
   title: 'Advanced/Dialog',
   argTypes: {
     type: {
@@ -37,6 +37,7 @@ const meta: Meta<Args> = {
 
 const Render = ({ type, ...args }: Args) => {
   const t = useTranslations('storybook.advanced.dialog');
+  const t2 = useTranslations('frontend');
   const { setIsOpen, dialogRef } = useDialog({ initialIsOpen: true, type });
 
   useEffect(() => () => dialogRef.current?.close(), [type, dialogRef]);
@@ -46,7 +47,7 @@ const Render = ({ type, ...args }: Args) => {
       <Button onClick={() => setIsOpen((prev) => !prev)}>
         {type === 'dialog' ? t('showDialog') : t('showModal')}
       </Button>
-      <DialogComponent.Root
+      <DialogComponent
         {...args}
         ref={dialogRef}
         type={type}
@@ -64,14 +65,15 @@ const Render = ({ type, ...args }: Args) => {
           />
         }
         onClose={() => setIsOpen(false)}
+        t={{ close: t2('close') }}
       >
         {getFallback(args.children, t('content'))}
-      </DialogComponent.Root>
+      </DialogComponent>
     </>
   );
 };
 
-const Dialog: StoryObj<typeof DialogComponent.Root> = { render: Render };
+const Dialog: StoryObj<typeof DialogComponent> = { render: Render };
 
 export { Dialog };
 export default meta;
