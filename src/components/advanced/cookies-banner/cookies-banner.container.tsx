@@ -1,3 +1,5 @@
+'use client';
+
 import { clientEnv } from '@/config/env.client.config';
 import { useCookiesConsentStore } from '@/store/cookies-consent';
 import { GoogleTagManager } from '@next/third-parties/google';

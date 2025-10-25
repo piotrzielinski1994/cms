@@ -1,5 +1,3 @@
-'use client';
-
 import Dialog from '@/components/advanced/dialog/dialog';
 import { Button, ButtonLink } from '@/components/basic/button/button';
 import { Container } from '@/components/basic/container';
