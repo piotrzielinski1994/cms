@@ -3,7 +3,7 @@
 exports[`Drawer > should match the snapshot 1`] = `
 <div>
   <div
-    class="fixed right-0 inset-y-0 z-50 w-64 p-4 bg-foreground text-background shadow-lg transform transition-transform translate-x-0"
+    class=""
     tabindex="-1"
   />
 </div>

@@ -48,8 +48,8 @@ const styles = {
   header: cn('p-4 md:p-6', 'flex-grow'),
   closeButton: 'p-4 md:p-6 focus-visible:tw-cms-outline',
   content: 'p-4 pt-0 md:p-6 md:pt-0',
-  footer: 'flex justify-end gap-2 md:gap-4 flex-wrap',
-  footerEnhanced: 'p-4 pt-0 md:p-6 md:pt-0',
+  footerContent: 'flex justify-end gap-2 md:gap-4 flex-wrap',
+  footer: 'p-4 pt-0 md:p-6 md:pt-0',
 };
 
 const DialogContext = createContext<Pick<DialogProps, 'type' | 'onClose'>>({
@@ -68,21 +68,11 @@ const Component = forwardRef<HTMLDialogElement, DialogProps>((props, ref) => {
           {Boolean(header || onClose) && (
             <header className="flex">
               {header !== undefined && <Header>{header}</Header>}
-              {onClose !== undefined && (
-                <button
-                  type="button"
-                  className={styles.closeButton}
-                  onClick={onClose}
-                  aria-label={t?.close}
-                  autoFocus={false}
-                >
-                  <X />
-                </button>
-              )}
+              {onClose !== undefined && <CloseButton onClick={onClose} aria-label={t?.close} />}
             </header>
           )}
           <div className={styles.content}>{children}</div>
-          {footer !== undefined && <footer className={styles.footerEnhanced}>{footer}</footer>}
+          {footer !== undefined && <footer className={styles.footer}>{footer}</footer>}
         </Wrapper>
       </Section>
     </Root>
@@ -123,9 +113,18 @@ const Header = ({ className, ...rest }: HtmlProps<'div'>) => {
   return <Component {...rest} className={cn(styles.header, className)} />;
 };
 
-const Footer = ({ className, submitBtn, cancelBtn, ...rest }: FooterProps) => {
+const CloseButton = ({ children, className, ...rest }: HtmlProps<'button'>) => {
   return (
-    <div {...rest} className={cn(styles.footer, className)}>
+    <button type="button" autoFocus={false} {...rest} className={cn(styles.closeButton, className)}>
+      {children ?? <X />}
+    </button>
+  );
+};
+
+const Footer = ({ submitBtn, cancelBtn, children, className, ...rest }: FooterProps) => {
+  return (
+    <div {...rest} className={cn(styles.footerContent, className)}>
+      {children}
       {cancelBtn && (
         <Button variant="secondary" onClick={cancelBtn.onClick}>
           {cancelBtn.label}
@@ -136,6 +135,6 @@ const Footer = ({ className, submitBtn, cancelBtn, ...rest }: FooterProps) => {
   );
 };
 
-const Dialog = Object.assign(Component, { Root, Backdrop, Footer });
+const Dialog = Object.assign(Component, { Root, Backdrop, Wrapper, Header, Footer, CloseButton });
 
 export { Dialog, styles };
