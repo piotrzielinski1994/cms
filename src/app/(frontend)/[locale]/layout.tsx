@@ -1,4 +1,4 @@
-import { SkipLink } from '@/components/advanced/skip-link/skip-link';
+import { SkipLinkContainer } from '@/components/advanced/skip-link/skip-link.container';
 import { clientEnv } from '@/config/env.client.config';
 import { FontScaleConstants } from '@/config/store/font-scales.config';
 import { LocalesConstants } from '@/config/store/locales.config';
@@ -48,7 +48,7 @@ const Layout = async ({ children, params }: LayoutProps) => {
       </head>
       <body className={cn('bg-background text-foreground', 'flex flex-col', 'min-h-[100vh]')}>
         <Providers {...providersProps}>
-          <SkipLink />
+          <SkipLinkContainer />
           <AdminBar adminBarProps={{ preview: isEnabled }} />
           <HeaderContainer locale={locale} />
           <main

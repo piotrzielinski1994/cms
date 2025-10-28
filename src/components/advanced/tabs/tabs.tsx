@@ -1,6 +1,5 @@
 import { useHtmlId } from '@/utils/html/html.hooks';
 import { cn } from '@/utils/tailwind';
-import { useTranslations } from 'next-intl';
 import { ReactNode, useState } from 'react';
 
 type TabsProps = {
@@ -10,31 +9,38 @@ type TabsProps = {
   }>;
 };
 
+const styles = {
+  root: 'grid',
+  header: 'flex gap-2',
+  tab: cn(
+    'has-[:checked]:border-b border-foreground',
+    'tw-has-focus:tw-cms-outline',
+    'px-4 py-2 md:px-6',
+    'cursor-pointer',
+  ),
+  content: 'p-4 md:px-6',
+  radio: 'peer sr-only',
+};
+
 const Tabs = ({ tabs }: TabsProps) => {
-  const t = useTranslations('frontend.component');
   const [activeIndex, setActiveIndex] = useState(0);
   const { id, getId } = useHtmlId('tabs');
 
   return (
-    <div className="grid">
-      <div aria-label={t('tabs')} className="flex gap-2">
+    <div className={styles.root}>
+      <div className={styles.header}>
         {tabs.map((tab, index) => {
           return (
             <label
               key={index}
               id={getId('tab', index)}
               aria-controls={getId('panel', index)}
-              className={cn(
-                'has-[:checked]:border-b border-foreground',
-                'tw-has-focus:tw-cms-outline',
-                'px-4 py-2 md:px-6',
-                'cursor-pointer',
-              )}
+              className={styles.tab}
             >
               <input
                 type="radio"
                 name={`tabs-${id}`}
-                className="peer sr-only"
+                className={styles.radio}
                 checked={index === activeIndex}
                 onChange={() => setActiveIndex(index)}
               />
@@ -50,7 +56,7 @@ const Tabs = ({ tabs }: TabsProps) => {
           id={getId('panel', index)}
           aria-labelledby={getId('tab', index)}
           hidden={index !== activeIndex}
-          className="p-4 md:px-6"
+          className={styles.content}
         >
           {tab.content}
         </div>

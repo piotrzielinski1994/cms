@@ -5,12 +5,12 @@ import { ComponentProps, forwardRef } from 'react';
 
 // prettier-ignore
 type ButtonProps = EnhancedHtmlProps<'button', {
-  variant?: keyof (typeof buttonClassNames)['variant'];
+  variant?: keyof (typeof styles)['variant'];
 }>;
 
 type LinkButtonProps = ComponentProps<typeof Link> & Pick<ButtonProps, 'disabled' | 'variant'>;
 
-const buttonClassNames = {
+const styles = {
   button: cn(
     'px-6 py-3',
     'border-2 border-primary hover:border-primary/90',
@@ -32,25 +32,14 @@ const buttonClassNames = {
 };
 
 const Button = ({ variant = 'primary', className, ...rest }: ButtonProps) => {
-  return (
-    <button
-      type="button"
-      className={cn(buttonClassNames.button, buttonClassNames.variant[variant], className)}
-      {...rest}
-    />
-  );
+  const classNames = cn(styles.button, styles.variant[variant], className);
+  return <button type="button" className={classNames} {...rest} />;
 };
 
-const ButtonLink = forwardRef<HTMLAnchorElement, LinkButtonProps>(
-  ({ className, variant = 'primary', ...rest }: LinkButtonProps, ref) => {
-    return (
-      <Link
-        ref={ref}
-        className={cn(buttonClassNames.button, buttonClassNames.variant[variant], className)}
-        {...rest}
-      />
-    );
-  },
-);
+const ButtonLink = forwardRef<HTMLAnchorElement, LinkButtonProps>((props, ref) => {
+  const { className, variant = 'primary', ...rest } = props;
+  const classNames = cn(styles.button, styles.variant[variant], className);
+  return <Link ref={ref} className={classNames} {...rest} />;
+});
 
-export { Button, buttonClassNames, ButtonLink };
+export { Button, ButtonLink, styles };

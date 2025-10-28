@@ -11,6 +11,7 @@ const eslintConfig = [
   {
     rules: {
       'import/no-anonymous-default-export': 'off',
+      'jsx-a11y/alt-text': ['error', { elements: ['img', 'area', 'input[type="image"]'] }],
       'no-dupe-keys': 'off',
       'react/display-name': 'off',
       '@typescript-eslint/ban-ts-comment': 'warn',

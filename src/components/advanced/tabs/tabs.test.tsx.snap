@@ -6,7 +6,6 @@ exports[`Tabs > should match the snapshot 1`] = `
     class="grid"
   >
     <div
-      aria-label="Tabs"
       class="flex gap-2"
     >
       <label

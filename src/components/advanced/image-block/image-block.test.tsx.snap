@@ -25,11 +25,11 @@ exports[`ImageBlock > should match the snapshot 1`] = `
     <div
       class="grid justify-items-start content-center gap-4 order-2 md:order-1"
     >
-      <h3
+      <div
         class="text-4xl font-semibold"
       >
         Heading
-      </h3>
+      </div>
       <p>
         Subheading
       </p>
@@ -39,12 +39,14 @@ exports[`ImageBlock > should match the snapshot 1`] = `
         <a
           class="px-6 py-3 border-2 border-primary hover:border-primary/90 font-semibold whitespace-nowrap disabled:cursor-not-allowed focus-visible:tw-cms-outline bg-primary hover:bg-primary/90 text-primary-foreground disabled:border-primary/0 disabled:bg-primary/50"
           href="/primary"
+          label="Primary Button"
         >
           Primary Button
         </a>
         <a
           class="px-6 py-3 border-2 border-primary hover:border-primary/90 font-semibold whitespace-nowrap disabled:cursor-not-allowed focus-visible:tw-cms-outline text-primary disabled:border-primary/50 disabled:text-primary/50 bg-background [&:not(:disabled)]:hover:bg-foreground/5"
           href="/secondary"
+          label="Secondary Button"
         >
           Secondary Button
         </a>

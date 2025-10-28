@@ -18,6 +18,7 @@ const meta: Meta<Args> = {
 
 const Render = () => {
   const t = useTranslations('storybook.advanced.skipLink');
+  const t2 = useTranslations('frontend');
   const skipLinkRef = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
@@ -38,7 +39,7 @@ const Render = () => {
     <>
       {/* Compensate storybook's padding on body */}
       <div className="-mt-4">
-        <SkipLinkComponent ref={skipLinkRef} />
+        <SkipLinkComponent ref={skipLinkRef} t={{ label: t2('component.skipLink') }} />
       </div>
 
       <nav className={cn('flex justify-between gap-x-4 flex-wrap', 'p-2 bg-background1')}>
