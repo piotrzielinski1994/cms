@@ -1,4 +1,5 @@
 import type { StorybookConfig } from '@storybook/nextjs';
+import sharp from 'responsive-loader/sharp.js';
 
 const config: StorybookConfig = {
   stories: ['../../**/*.stories.tsx'],
@@ -26,7 +27,7 @@ const config: StorybookConfig = {
           {
             loader: 'responsive-loader',
             options: {
-              adapter: require('responsive-loader/sharp'),
+              adapter: sharp,
               format: 'webp',
             },
           },
