@@ -1,3 +1,5 @@
+'use client';
+
 import { ButtonLink } from '@/components/basic/button/button';
 import { cn } from '@/utils/tailwind';
 import { Optional } from '@/utils/types';
