@@ -15,7 +15,7 @@
     "start:prod": "cross-env NODE_OPTIONS=--no-deprecation rm -rf .next && npm run build && next start",
     "upgrade": "npm-check-updates -u && npm update",
     "upgrade:except": "npm-check-updates -u -x tailwindcss -x @hookform/resolvers -x zod -x next && npm update",
-    "test": "tsc --noEmit && vitest run --reporter=verbose --coverage",
+    "test": "next typegen && tsc --noEmit && vitest run --reporter=verbose --coverage",
     "test:watch": "vitest watch --reporter=verbose -u",
     "ts": "tsc --noEmit",
     "ts:watch": "tsc --noEmit --watch",
