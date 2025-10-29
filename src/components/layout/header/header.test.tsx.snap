@@ -10,7 +10,7 @@ exports[`Header > should match the snapshot 1`] = `
     >
       <button
         aria-autocomplete="none"
-        aria-controls="radix-«rd»"
+        aria-controls="radix-_r_d_"
         aria-expanded="false"
         aria-label="Font scale switcher"
         class="p-2 text-sm text-white"
@@ -27,7 +27,7 @@ exports[`Header > should match the snapshot 1`] = `
       </button>
       <button
         aria-autocomplete="none"
-        aria-controls="radix-«re»"
+        aria-controls="radix-_r_e_"
         aria-expanded="false"
         aria-label="Theme switcher"
         class="py-1.5 px-2 text-sm text-white"
@@ -86,7 +86,7 @@ exports[`Header > should match the snapshot 1`] = `
       </button>
       <button
         aria-autocomplete="none"
-        aria-controls="radix-«rf»"
+        aria-controls="radix-_r_f_"
         aria-expanded="false"
         aria-label="Locale switcher"
         class="px-2 py-1 -mr-2 text-sm text-white"

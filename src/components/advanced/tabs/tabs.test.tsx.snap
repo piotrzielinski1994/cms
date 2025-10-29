@@ -9,44 +9,44 @@ exports[`Tabs > should match the snapshot 1`] = `
       class="flex gap-2"
     >
       <label
-        aria-controls="«r1»__tabs__panel__0"
+        aria-controls="_r_1___tabs__panel__0"
         class="has-[:checked]:border-b border-foreground tw-has-focus:tw-cms-outline px-4 py-2 md:px-6 cursor-pointer"
-        id="«r1»__tabs__tab__0"
+        id="_r_1___tabs__tab__0"
       >
         <input
           checked=""
           class="peer sr-only"
-          name="tabs-«r1»__tabs"
+          name="tabs-_r_1___tabs"
           type="radio"
         />
         Tab 1
       </label>
       <label
-        aria-controls="«r1»__tabs__panel__1"
+        aria-controls="_r_1___tabs__panel__1"
         class="has-[:checked]:border-b border-foreground tw-has-focus:tw-cms-outline px-4 py-2 md:px-6 cursor-pointer"
-        id="«r1»__tabs__tab__1"
+        id="_r_1___tabs__tab__1"
       >
         <input
           class="peer sr-only"
-          name="tabs-«r1»__tabs"
+          name="tabs-_r_1___tabs"
           type="radio"
         />
         Tab 2
       </label>
     </div>
     <div
-      aria-labelledby="«r1»__tabs__tab__0"
+      aria-labelledby="_r_1___tabs__tab__0"
       class="p-4 md:px-6"
-      id="«r1»__tabs__panel__0"
+      id="_r_1___tabs__panel__0"
       role="tabpanel"
     >
       Content 1
     </div>
     <div
-      aria-labelledby="«r1»__tabs__tab__1"
+      aria-labelledby="_r_1___tabs__tab__1"
       class="p-4 md:px-6"
       hidden=""
-      id="«r1»__tabs__panel__1"
+      id="_r_1___tabs__panel__1"
       role="tabpanel"
     >
       Content 2

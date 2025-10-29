@@ -48,7 +48,7 @@ exports[`ProductGallery > should match the snapshot 1`] = `
           <input
             checked=""
             class="sr-only"
-            name="«r1»__product_gallery"
+            name="_r_1___product_gallery"
             type="radio"
           />
           <img
@@ -72,7 +72,7 @@ exports[`ProductGallery > should match the snapshot 1`] = `
         >
           <input
             class="sr-only"
-            name="«r1»__product_gallery"
+            name="_r_1___product_gallery"
             type="radio"
           />
           <img
@@ -96,7 +96,7 @@ exports[`ProductGallery > should match the snapshot 1`] = `
         >
           <input
             class="sr-only"
-            name="«r1»__product_gallery"
+            name="_r_1___product_gallery"
             type="radio"
           />
           <img

@@ -6,7 +6,7 @@ exports[`Tooltip > should match the snapshot 1`] = `
     class="relative inline-flex"
   >
     <button
-      aria-describedby="«r1»"
+      aria-describedby="_r_1_"
       class="focus-visible:tw-cms-outline"
       type="button"
     >
@@ -19,7 +19,7 @@ exports[`Tooltip > should match the snapshot 1`] = `
     >
       <div
         class="py-1 px-2 text-xs bg-foreground text-background"
-        id="«r1»"
+        id="_r_1_"
         role="tooltip"
       >
         Tooltip text
