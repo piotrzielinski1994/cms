@@ -31,10 +31,11 @@
   "include": [
     "**/*.ts",
     "**/*.tsx",
-    "redirects.js",
     "next.config.ts",
+    "redirects.js",
     "vitest.config.ts",
-    "vitest.setup.ts"
+    "vitest.setup.ts",
+    ".next/types/**/*.ts"
   ],
   "exclude": ["node_modules"]
 }

@@ -5,7 +5,6 @@ import Form from '@/components/basic/form/root/form';
 import { TextAreaContainer } from '@/components/basic/form/text-area/text-area.container';
 import { TextInputContainer } from '@/components/basic/form/text-input/text-input.container';
 import { cn } from '@/utils/tailwind';
-import { getZodErrorsMap } from '@/utils/zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from 'next-intl';
 import { ComponentProps, useId } from 'react';
@@ -17,17 +16,14 @@ type ContactFormProps = ComponentProps<typeof Form.Root> & {
 };
 
 const schema = z.object({
-  email: z.string().email(),
+  email: z.email(),
   message: z.string().min(50).max(2_000),
 });
 
 const ContactForm = ({ onSubmit, className, ...props }: ContactFormProps) => {
   const t = useTranslations('frontend');
-  const tZod = useTranslations('zod');
   const id = useId();
-  const form = useForm({
-    resolver: zodResolver(schema, { errorMap: getZodErrorsMap(tZod) }),
-  });
+  const form = useForm({ resolver: zodResolver(schema) });
 
   return (
     <Form.Root

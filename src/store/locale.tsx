@@ -1,6 +1,9 @@
+'use client';
+
 import { contentLocales, defaultContentLocale, translations } from '@/config/store/locales.config';
 import { Locale, NextIntlClientProvider, useLocale } from 'next-intl';
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren, useEffect } from 'react';
+import z from 'zod';
 
 const useLocaleStore = (): Locale => {
   const locale = useLocale();
@@ -8,6 +11,10 @@ const useLocaleStore = (): Locale => {
 };
 
 const LocaleProvider = ({ children, locale }: PropsWithChildren & { locale: Locale }) => {
+  useEffect(() => {
+    z.config(z.locales[locale]());
+  }, [locale]);
+
   return (
     <NextIntlClientProvider locale={locale} messages={translations[locale]}>
       {children}
