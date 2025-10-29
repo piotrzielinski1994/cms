@@ -1,0 +1,12 @@
+name: E2E
+
+on:
+  repository_dispatch:
+    types: [vercel.deployment.success]
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Deployment finished successfully! Running E2Es"
