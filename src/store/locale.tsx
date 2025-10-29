@@ -16,7 +16,7 @@ const LocaleProvider = ({ children, locale }: PropsWithChildren & { locale: Loca
   }, [locale]);
 
   return (
-    <NextIntlClientProvider locale={locale} messages={translations[locale]}>
+    <NextIntlClientProvider locale={locale} messages={translations[locale]} timeZone="UTC">
       {children}
     </NextIntlClientProvider>
   );

@@ -1,7 +1,7 @@
 import { SkipLinkContainer } from '@/components/advanced/skip-link/skip-link.container';
 import { clientEnv } from '@/config/env.client.config';
 import { FontScaleConstants } from '@/config/store/font-scales.config';
-import { LocalesConstants } from '@/config/store/locales.config';
+import { isLocale, LocalesConstants } from '@/config/store/locales.config';
 import { getThemeConfig, ThemeConstants } from '@/config/store/themes.config';
 import { AdminBar } from '@/payload/_old/components/AdminBar';
 import { CookiesBannerContainer } from '@/payload/blocks/advanced/cookies-banner/cookies-banner.container';
@@ -10,18 +10,19 @@ import { HeaderContainer } from '@/payload/blocks/layout/header.container';
 import { Providers } from '@/providers';
 import { getPreferences } from '@/utils/nextjs/headers';
 import { toPageMetadata } from '@/utils/nextjs/metadata';
-import { LocalizedRoute } from '@/utils/nextjs/types';
 import { cn } from '@/utils/tailwind';
 import { draftMode } from 'next/headers';
-import { ComponentProps, PropsWithChildren } from 'react';
+import { notFound } from 'next/navigation';
+import { ComponentProps } from 'react';
 import './globals.scss';
-
-type LayoutProps = PropsWithChildren & LocalizedRoute;
 
 const metadata = toPageMetadata();
 
-const Layout = async ({ children, params }: LayoutProps) => {
+const Layout = async ({ children, params }: LayoutProps<'/[locale]'>) => {
   const { locale } = await params;
+
+  if (!isLocale(locale)) return notFound();
+
   const { isEnabled } = await draftMode();
   const { colorPreference, theme, scale, cookiesConsent } = await getPreferences();
   const themeColorPreference = getThemeConfig(theme, colorPreference).colorPreference;

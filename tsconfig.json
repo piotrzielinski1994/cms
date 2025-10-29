@@ -3,7 +3,11 @@
     "baseUrl": ".",
     "esModuleInterop": true,
     "target": "ES2024",
-    "lib": ["DOM", "DOM.Iterable", "ES2024"],
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ES2024"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -17,15 +21,33 @@
     "resolveJsonModule": true,
     "sourceMap": true,
     "isolatedModules": true,
-    "plugins": [{ "name": "next" }],
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
     "paths": {
-      "react": ["./node_modules/@types/react"],
-      "@/*": ["./src/*"],
-      "@payload-config": ["./src/payload/payload.config.ts"],
-      "@/payload.types": ["./src/payload/payload.types.ts"],
-      "@/pages/frontend/*": ["./src/app/(frontend)/*"],
-      "@/pages/payload/*": ["./src/app/(payload)/*"],
-      "@/tailwind-config": ["./tailwind.config.ts"]
+      "react": [
+        "./node_modules/@types/react"
+      ],
+      "@/*": [
+        "./src/*"
+      ],
+      "@payload-config": [
+        "./src/payload/payload.config.ts"
+      ],
+      "@/payload.types": [
+        "./src/payload/payload.types.ts"
+      ],
+      "@/pages/frontend/*": [
+        "./src/app/(frontend)/*"
+      ],
+      "@/pages/payload/*": [
+        "./src/app/(payload)/*"
+      ],
+      "@/tailwind-config": [
+        "./tailwind.config.ts"
+      ]
     }
   },
   "include": [
@@ -34,7 +56,10 @@
     "next.config.ts",
     "redirects.js",
     "vitest.config.ts",
-    "vitest.setup.ts"
+    "vitest.setup.ts",
+    ".next/types/**/*.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }

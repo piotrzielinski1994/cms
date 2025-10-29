@@ -28,11 +28,16 @@ const translations = {
   pl: customPl,
 } satisfies Record<Locale, typeof customEn>;
 
+const isLocale = (value: string): value is Locale => {
+  return contentLocales.map(String).includes(value);
+};
+
 export {
   adminLocales,
   contentLocales,
   defaultAdminLocale,
   defaultContentLocale,
+  isLocale,
   LocalesConstants,
   translations,
   type AdminTranslations,
