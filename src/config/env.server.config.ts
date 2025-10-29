@@ -16,9 +16,9 @@ const envSchema = z.object({
 const parsedEnv = envSchema.parse({
   PAYLOAD_SECRET: process.env.PAYLOAD_SECRET,
   DATABASE_URI: process.env.DATABASE_URI,
-  SENTRY_ORG: process.env.SENTRY_ORG,
-  SENTRY_PROJECT: process.env.SENTRY_PROJECT,
-  BLOB_READ_WRITE_TOKEN: process.env.BLOB_READ_WRITE_TOKEN,
+  SENTRY_ORG: process.env.SENTRY_ORG || undefined,
+  SENTRY_PROJECT: process.env.SENTRY_PROJECT || undefined,
+  BLOB_READ_WRITE_TOKEN: process.env.BLOB_READ_WRITE_TOKEN || undefined,
 });
 
 const serverEnv = {
