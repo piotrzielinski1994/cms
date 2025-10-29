@@ -34,8 +34,7 @@
     "next.config.ts",
     "redirects.js",
     "vitest.config.ts",
-    "vitest.setup.ts",
-    ".next/types/**/*.ts"
+    "vitest.setup.ts"
   ],
   "exclude": ["node_modules"]
 }
