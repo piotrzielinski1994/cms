@@ -23,9 +23,9 @@ const styles = {
     'w-full max-w-none py-5',
     'bg-background1 shadow-sm-neg',
   ),
-  wrapper: 'flex flex-col gap-4 items-center sm:flex-row',
+  wrapper: 'grid gap-4 justify-center items-center sm:grid-cols-[1fr_auto]',
   content: 'flex-grow',
-  buttons: 'flex gap-2',
+  buttons: 'flex justify-center gap-2 flex-wrap',
 };
 
 const Component = forwardRef<HTMLDialogElement, CookiesBannerProps>((props, ref) => {
