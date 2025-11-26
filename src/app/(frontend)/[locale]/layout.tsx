@@ -60,7 +60,7 @@ const Layout = async ({ children, params }: LayoutProps<'/[locale]'>) => {
             {children}
           </main>
           <FooterContainer locale={locale} />
-          {clientEnv.gtmId && !cookiesConsent && <CookiesBannerContainer locale={locale} />}
+          {clientEnv.gtmId && <CookiesBannerContainer locale={locale} />}
         </Providers>
       </body>
     </html>
