@@ -11,6 +11,7 @@ import { Providers } from '@/providers';
 import { getPreferences } from '@/utils/nextjs/headers';
 import { toPageMetadata } from '@/utils/nextjs/metadata';
 import { cn } from '@/utils/tailwind';
+import { GoogleTagManager } from '@next/third-parties/google';
 import { draftMode } from 'next/headers';
 import { notFound } from 'next/navigation';
 import { ComponentProps } from 'react';
@@ -42,6 +43,12 @@ const Layout = async ({ children, params }: LayoutProps<'/[locale]'>) => {
     isAllowed: cookiesConsent,
   };
 
+  const renderGtm = () => {
+    if (clientEnv.gtmId === undefined) return null;
+    if (cookiesConsent) return <GoogleTagManager gtmId={clientEnv.gtmId} />;
+    return <CookiesBannerContainer locale={locale} />;
+  };
+
   return (
     <html {...htmlProps}>
       <head>
@@ -60,7 +67,7 @@ const Layout = async ({ children, params }: LayoutProps<'/[locale]'>) => {
             {children}
           </main>
           <FooterContainer locale={locale} />
-          {clientEnv.gtmId && <CookiesBannerContainer locale={locale} />}
+          {renderGtm()}
         </Providers>
       </body>
     </html>
