@@ -8,8 +8,8 @@ type ContactUsProps = ComponentProps<typeof ContactForm>;
 
 const ContactUs = ({ id, ...props }: ContactUsProps) => {
   return (
-    <Section id={id}>
-      <Container className={cn('px-4 py-6 md:px-6', 'bg-background1')}>
+    <Section id={id} className={cn('px-0')}>
+      <Container className={cn('px-4 py-6 sm:px-6', 'bg-background1')}>
         <ContactForm {...props} />
       </Container>
     </Section>

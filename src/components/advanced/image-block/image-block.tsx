@@ -26,7 +26,7 @@ const styles = {
     cn('order-1 md:order-2', { 'md:order-1': isReversed }),
   image: 'bg-background1 min-h-full',
   content: ({ isReversed }: BoolMap<'isReversed'>) =>
-    cn('grid justify-items-start content-center gap-4', 'order-2 md:order-1', {
+    cn('sm:px-6', 'grid justify-items-start content-center gap-4', 'order-2 md:order-1', {
       'md:order-2': isReversed,
     }),
   heading: 'text-4xl font-semibold',

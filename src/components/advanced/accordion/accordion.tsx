@@ -19,7 +19,7 @@ const styles = {
   item: cn('bg-components-accordion text-components-accordion-foreground', 'group'),
   itemHeader: ({ isActive }: BoolMap<'isActive'>) =>
     cn(
-      'w-full px-4 py-2 md:px-6 md:py-4',
+      'w-full px-4 py-2 sm:px-6 sm:py-4',
       'flex justify-between items-center gap-2 text-lg cursor-pointer select-none',
       { 'outline outline-2 outline-offset-2 outline-blue-500': isActive },
       'tw-has-focus:tw-cms-outline',
@@ -28,7 +28,7 @@ const styles = {
     cn('h-[1em] w-[1em] transition-transform', { 'rotate-180': isActive }),
   radio: 'sr-only',
   contentWrapper: 'overflow-hidden transition-[max-height] duration-300 ease-in-out',
-  content: 'px-4 pb-4 md:px-6',
+  content: 'px-4 pb-4 sm:px-6',
 };
 
 const Component = ({ items, activeItemIndex, ...rest }: AccordionProps) => {

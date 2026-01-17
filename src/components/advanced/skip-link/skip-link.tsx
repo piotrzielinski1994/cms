@@ -13,7 +13,7 @@ type SkipLinkProps = Optional<ComponentProps<typeof ButtonLink>, 'href'> & {
 
 const styles = {
   root: cn(
-    'fixed left-4 z-skipLink',
+    'fixed left-4 sm:left-6 z-skipLink',
     '-translate-y-full focus:translate-y-4 transition-transform',
     'w-fit',
   ),

@@ -18,7 +18,7 @@ const Header = ({ items }: HeaderProps) => {
     <>
       <HeaderHeightMonitor />
       <Section as="div" className="py-2 bg-black">
-        <Container className={cn('flex justify-end items-center')}>
+        <Container className={cn('sm:px-6', 'flex justify-end items-center')}>
           <FontScaler />
           <ThemeSwitcher />
           <LocaleSwitcher />
@@ -29,7 +29,7 @@ const Header = ({ items }: HeaderProps) => {
         className="sticky top-0 z-header py-5 bg-background1 shadow-sm"
         data-header
       >
-        <Container className={cn('flex items-center')}>
+        <Container className={cn('sm:px-6', 'flex items-center')}>
           <Logo className="text-2xl" />
           <HeaderNav items={items} />
         </Container>

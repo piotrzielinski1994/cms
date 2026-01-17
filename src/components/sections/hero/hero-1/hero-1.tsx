@@ -12,7 +12,7 @@ type Hero1Props = HTMLAttributes<HTMLElement> & {
 
 const Hero1 = ({ heading, subheading, buttons = [], ...props }: Hero1Props) => {
   return (
-    <Section {...props}>
+    <Section {...props} className={cn('px-0', props.className)}>
       <Container
         className={cn(
           'px-4 py-10 md:px-6',
