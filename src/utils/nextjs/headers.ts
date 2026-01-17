@@ -22,21 +22,25 @@ const getColorPreference = (
   const valueFromHeaders = headers.get('sec-ch-prefers-color-scheme');
   const valueFromCookies = cookies.get(ThemeConstants.COLOR_PREFERENCE_STORAGE_KEY)?.value;
   const prefersDark = (valueFromHeaders ?? valueFromCookies) === 'dark';
+  console.log('@@@ getColorPreference | ', { valueFromHeaders, valueFromCookies, prefersDark });
   return prefersDark ? 'dark' : 'light';
 };
 
 const getTheme = (cookies: ReadonlyRequestCookies): Theme => {
   const theme = cookies.get(ThemeConstants.STORAGE_KEY)?.value as Theme | undefined;
+  console.log('@@@ getTheme | ', { theme });
   return theme ?? 'system';
 };
 
 const getFontScale = (cookies: ReadonlyRequestCookies): FontScale => {
   const fontScale = cookies.get(FontScaleConstants.STORAGE_KEY)?.value as FontScale | undefined;
+  console.log('@@@ getFontScale | ', { fontScale });
   return fontScale ?? 'base';
 };
 
 const getCookiesConsent = (cookies: ReadonlyRequestCookies): boolean => {
   const cookiesConsent = cookies.get(CookiesConsentConstants.STORAGE_KEY)?.value;
+  console.log('@@@ getCookiesConsent | ', { cookiesConsent });
   return cookiesConsent === 'true';
 };
 
