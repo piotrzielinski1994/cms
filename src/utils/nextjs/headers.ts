@@ -7,7 +7,13 @@ import { cookies, headers } from 'next/headers';
 
 const getPreferences = async () => {
   const [cookieStore, headersStore] = await Promise.all([cookies(), headers()]);
-  console.log('@@@ getPreferences | ', { cookieStore, headersStore });
+  const c = cookieStore.getAll();
+  const h = (() => {
+    const m = {};
+    headersStore.forEach((value, key) => (m[key] = value));
+    return m;
+  })();
+  console.log('@@@ getPreferences | ', { c, h });
   return {
     colorPreference: getColorPreference(headersStore, cookieStore),
     theme: getTheme(cookieStore),
