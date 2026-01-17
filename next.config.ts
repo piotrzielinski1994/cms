@@ -33,10 +33,16 @@ export default withSentryConfig(withBundleAnalyzer(withNextIntl(withPayload(next
   org: serverEnv.sentry.org,
   project: serverEnv.sentry.project,
   widenClientFileUpload: true,
-  disableLogger: true,
-  automaticVercelMonitors: true,
+  webpack: {
+    automaticVercelMonitors: true,
+    reactComponentAnnotation: {
+      enabled: true,
+    },
+    treeshake: {
+      removeDebugLogging: true,
+    },
+  },
   silent: !clientEnv.sentryDsn,
   sourcemaps: { disable: true }, // Vercel heap limits
-  reactComponentAnnotation: { enabled: true },
   telemetry: false,
 });
