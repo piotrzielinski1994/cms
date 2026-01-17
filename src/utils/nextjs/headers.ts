@@ -8,6 +8,13 @@ import { cookies, headers } from 'next/headers';
 const getPreferences = async () => {
   const [cookieStore, headersStore] = await Promise.all([cookies(), headers()]);
 
+  const asd = {
+    colorPreference: getColorPreference(headersStore, cookieStore),
+    theme: getTheme(cookieStore),
+    scale: getFontScale(cookieStore),
+    cookiesConsent: getCookiesConsent(cookieStore),
+  };
+
   console.log('@@@ getPreferences | ', {
     c: {
       [ThemeConstants.COLOR_PREFERENCE_STORAGE_KEY]: cookieStore.get(
@@ -21,14 +28,10 @@ const getPreferences = async () => {
     h: {
       'sec-ch-prefers-color-scheme': headersStore.get('sec-ch-prefers-color-scheme'),
     },
+    asd,
   });
 
-  return {
-    colorPreference: getColorPreference(headersStore, cookieStore),
-    theme: getTheme(cookieStore),
-    scale: getFontScale(cookieStore),
-    cookiesConsent: getCookiesConsent(cookieStore),
-  };
+  return asd;
 };
 
 const getColorPreference = (
