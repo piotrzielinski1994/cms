@@ -20,6 +20,8 @@ const ProductCard = ({ product, layout = 'grid', className, ...props }: ProductC
   const prefersDark = themeConfig.colorPreference === 'dark';
   const imageToShow = prefersDark ? placeholderDarkWebp : placeholderWebp;
 
+  console.log('@@@ ProductCard | ', { prefersDark, imageToShow: imageToShow.src });
+
   return (
     <div
       {...props}
