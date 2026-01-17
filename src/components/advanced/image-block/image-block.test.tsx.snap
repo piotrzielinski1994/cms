@@ -23,7 +23,7 @@ exports[`ImageBlock > should match the snapshot 1`] = `
       />
     </div>
     <div
-      class="grid justify-items-start content-center gap-4 order-2 md:order-1"
+      class="sm:px-6 grid justify-items-start content-center gap-4 order-2 md:order-1"
     >
       <div
         class="text-4xl font-semibold"

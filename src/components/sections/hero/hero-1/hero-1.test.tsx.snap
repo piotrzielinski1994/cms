@@ -3,7 +3,7 @@
 exports[`Hero1 > should match the snapshot 1`] = `
 <div>
   <section
-    class="px-4 sm:px-6 grid cms-section"
+    class="sm:px-6 grid cms-section px-0"
   >
     <div
       class="w-full max-w-screen-2xl mx-auto grid cms-container px-4 py-10 md:px-6 justify-items-start content-center gap-4 bg-background1"

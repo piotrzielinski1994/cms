@@ -6,7 +6,7 @@ exports[`Header > should match the snapshot 1`] = `
     class="px-4 sm:px-6 grid cms-section py-2 bg-black"
   >
     <div
-      class="w-full max-w-screen-2xl mx-auto cms-container flex justify-end items-center"
+      class="w-full max-w-screen-2xl mx-auto cms-container sm:px-6 flex justify-end items-center"
     >
       <button
         aria-autocomplete="none"
@@ -108,7 +108,7 @@ exports[`Header > should match the snapshot 1`] = `
     data-header="true"
   >
     <div
-      class="w-full max-w-screen-2xl mx-auto cms-container flex items-center"
+      class="w-full max-w-screen-2xl mx-auto cms-container sm:px-6 flex items-center"
     >
       <a
         aria-label="Logo"

@@ -10,7 +10,7 @@ exports[`Accordion > should match the snapshot 1`] = `
       class="bg-components-accordion text-components-accordion-foreground group"
     >
       <label
-        class="w-full px-4 py-2 md:px-6 md:py-4 flex justify-between items-center gap-2 text-lg cursor-pointer select-none tw-has-focus:tw-cms-outline"
+        class="w-full px-4 py-2 sm:px-6 sm:py-4 flex justify-between items-center gap-2 text-lg cursor-pointer select-none tw-has-focus:tw-cms-outline"
         for="_r_1___0__input"
         id="_r_1___0__label"
       >
@@ -49,7 +49,7 @@ exports[`Accordion > should match the snapshot 1`] = `
         <div
           aria-hidden="true"
           aria-labelledby="_r_1___0__label"
-          class="px-4 pb-4 md:px-6"
+          class="px-4 pb-4 sm:px-6"
           role="region"
         >
           Content 1
@@ -60,7 +60,7 @@ exports[`Accordion > should match the snapshot 1`] = `
       class="bg-components-accordion text-components-accordion-foreground group"
     >
       <label
-        class="w-full px-4 py-2 md:px-6 md:py-4 flex justify-between items-center gap-2 text-lg cursor-pointer select-none tw-has-focus:tw-cms-outline"
+        class="w-full px-4 py-2 sm:px-6 sm:py-4 flex justify-between items-center gap-2 text-lg cursor-pointer select-none tw-has-focus:tw-cms-outline"
         for="_r_1___1__input"
         id="_r_1___1__label"
       >
@@ -99,7 +99,7 @@ exports[`Accordion > should match the snapshot 1`] = `
         <div
           aria-hidden="true"
           aria-labelledby="_r_1___1__label"
-          class="px-4 pb-4 md:px-6"
+          class="px-4 pb-4 sm:px-6"
           role="region"
         >
           Content 2
