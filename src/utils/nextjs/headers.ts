@@ -35,9 +35,9 @@ const getColorPreference = (
   headers: ReadonlyHeaders,
   cookies: ReadonlyRequestCookies,
 ): ThemeConfig['colorPreference'] => {
-  const valueFromHeaders = headers.get('sec-ch-prefers-color-scheme');
   const valueFromCookies = cookies.get(ThemeConstants.COLOR_PREFERENCE_STORAGE_KEY)?.value;
-  const prefersDark = (valueFromHeaders ?? valueFromCookies) === 'dark';
+  const valueFromHeaders = headers.get('sec-ch-prefers-color-scheme');
+  const prefersDark = (valueFromCookies ?? valueFromHeaders) === 'dark';
   return prefersDark ? 'dark' : 'light';
 };
 
