@@ -1,4 +1,4 @@
-name: E2E
+name: On release
 
 on:
   repository_dispatch:
