@@ -109,7 +109,7 @@
     "prettier": "^3.8.0",
     "puppeteer": "^24.35.0",
     "serve": "^14.2.5",
-    "tailwindcss": "^3.4.17",
+    "tailwindcss": "^4.1.18",
     "tsx": "^4.21.0",
     "tw-colors": "^3.3.2",
     "typescript": "5.9.3",
