@@ -3,6 +3,8 @@ name: On dependabot
 on:
   pull_request:
     types: [opened, synchronize, reopened]
+  pull_request_target:
+    types: [synchronize]
 
 jobs:
   automerge:
