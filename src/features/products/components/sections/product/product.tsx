@@ -2,7 +2,7 @@
 
 import { Accordion } from '@/components/advanced/accordion/accordion';
 import { Button } from '@/components/basic/button/button';
-import { Container } from '@/components/basic/container';
+import { Container } from '@/components/basic/container/container';
 import { Section } from '@/components/basic/section';
 import { useHeaderHeight } from '@/components/layout/header/header.hooks';
 import { ProductPrice } from '@/features/products/components/basic/product-price/product-price';

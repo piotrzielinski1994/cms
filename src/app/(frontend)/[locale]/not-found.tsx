@@ -1,5 +1,5 @@
 import { ButtonLink } from '@/components/basic/button/button';
-import { Container } from '@/components/basic/container';
+import { Container } from '@/components/basic/container/container';
 import { Section } from '@/components/basic/section';
 import { getTranslations } from 'next-intl/server';
 

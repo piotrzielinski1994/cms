@@ -1,5 +1,5 @@
 import { Button } from '@/components/basic/button/button';
-import { Container } from '@/components/basic/container';
+import { Container } from '@/components/basic/container/container';
 import { Section } from '@/components/basic/section';
 import { EnhancedHtmlProps, HtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';

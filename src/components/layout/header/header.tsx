@@ -1,4 +1,4 @@
-import { Container } from '@/components/basic/container';
+import { Container } from '@/components/basic/container/container';
 import { LogoContainer } from '@/components/basic/logo/logo.container';
 import { Section } from '@/components/basic/section';
 import { cn } from '@/utils/tailwind';
