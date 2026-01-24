@@ -1,5 +1,5 @@
 import { Container } from '@/components/basic/container';
-import { Logo } from '@/components/basic/logo';
+import { LogoContainer } from '@/components/basic/logo/logo.container';
 import { Section } from '@/components/basic/section';
 import { cn } from '@/utils/tailwind';
 import { ComponentProps } from 'react';
@@ -30,7 +30,7 @@ const Header = ({ items }: HeaderProps) => {
         data-header
       >
         <Container className={cn('sm:px-6', 'flex items-center')}>
-          <Logo className="text-2xl" />
+          <LogoContainer className="text-2xl" />
           <HeaderNav items={items} />
         </Container>
       </Section>
