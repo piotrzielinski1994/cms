@@ -6,7 +6,7 @@ import { useThemeStore } from '@/store/theme';
 
 const ImageBlock1Container = (props: ImageBlockBlock) => {
   const { isReversed, image, heading, subheading, buttons } = props;
-  const themeConfig = useThemeStore((store) => store.themeConfig);
+  const { themeConfig } = useThemeStore();
   const { default: defaultImage, dark: darkImage } = image as {
     default: ImageModel;
     dark?: ImageModel;

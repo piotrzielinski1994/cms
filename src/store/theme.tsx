@@ -2,9 +2,7 @@
 
 import { getThemeConfig, Theme, ThemeConfig, ThemeConstants } from '@/config/store/themes.config';
 import cookies from '@/utils/cookies';
-import { createStore } from '@/utils/store';
-import { PropsWithChildren, useEffect } from 'react';
-import { create } from 'zustand';
+import { createContext, PropsWithChildren, useContext, useEffect, useState } from 'react';
 
 type ThemeStore = {
   theme: Theme;
@@ -17,26 +15,32 @@ type ThemeProviderProps = PropsWithChildren & {
   colorPreference: ThemeConfig['colorPreference'];
 };
 
-const [Provider, useThemeStore] = createStore((initial: Omit<ThemeProviderProps, 'children'>) => {
-  return create<ThemeStore>((set) => {
-    return {
-      theme: initial.theme,
-      themeConfig: getThemeConfig(initial.theme, initial.colorPreference),
-      setTheme: (theme) => {
-        set({ theme, themeConfig: getThemeConfig(theme) });
-      },
-    };
-  });
-});
+const ThemeContext = createContext<ThemeStore | undefined>(undefined);
 
-const ThemeProvider = ({ children, ...rest }: ThemeProviderProps) => {
+const ThemeProvider = ({ children, ...initial }: ThemeProviderProps) => {
+  const [theme, setTheme] = useState(initial.theme);
+  const [themeConfig, setThemeConfig] = useState(() =>
+    getThemeConfig(initial.theme, initial.colorPreference),
+  );
+
+  const setThemeWithConfig = (newTheme: Theme) => {
+    setTheme(newTheme);
+    setThemeConfig(getThemeConfig(newTheme));
+  };
+
   return (
-    <Provider initialState={rest}>
+    <ThemeContext.Provider value={{ theme, themeConfig, setTheme: setThemeWithConfig }}>
       <ColorPreferenceListener />
       <ThemeListener />
       {children}
-    </Provider>
+    </ThemeContext.Provider>
   );
+};
+
+const useThemeStore = () => {
+  const context = useContext(ThemeContext);
+  if (!context) throw new Error('useThemeStore must be used within ThemeProvider');
+  return context;
 };
 
 const ColorPreferenceListener = () => {
@@ -44,12 +48,14 @@ const ColorPreferenceListener = () => {
 
   useEffect(() => {
     const media = window.matchMedia('(prefers-color-scheme: dark)');
+
     const syncColorPreference = (value: boolean) => {
       const colorPreference: ThemeConfig['colorPreference'] = value ? 'dark' : 'light';
       if (store.theme !== 'system') return;
       if (store.themeConfig.colorPreference === colorPreference) return;
       store.setTheme(store.theme); // Retrigger themeConfig computation
     };
+
     const onColorPreferenceChange = (e: MediaQueryListEvent) => syncColorPreference(e.matches);
 
     syncColorPreference(media.matches);
@@ -58,7 +64,7 @@ const ColorPreferenceListener = () => {
     return () => media.removeEventListener('change', onColorPreferenceChange);
   }, [store]);
 
-  return <></>;
+  return null;
 };
 
 const ThemeListener = () => {
@@ -76,7 +82,7 @@ const ThemeListener = () => {
     cookies.setPermament(ThemeConstants.COLOR_PREFERENCE_STORAGE_KEY, colorPreference);
   }, [store]);
 
-  return <></>;
+  return null;
 };
 
 export { ThemeProvider, useThemeStore };

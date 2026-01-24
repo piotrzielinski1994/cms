@@ -16,11 +16,9 @@ type ProductCardProps = HtmlProps<'div'> & {
 };
 
 const ProductCard = ({ product, layout = 'grid', className, ...props }: ProductCardProps) => {
-  const themeConfig = useThemeStore((store) => store.themeConfig);
+  const { themeConfig } = useThemeStore();
   const prefersDark = themeConfig.colorPreference === 'dark';
   const imageToShow = prefersDark ? placeholderDarkWebp : placeholderWebp;
-
-  console.log('@@@ ProductCard | ', { prefersDark, imageToShow: imageToShow.src });
 
   return (
     <div
