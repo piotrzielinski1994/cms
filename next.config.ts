@@ -11,6 +11,7 @@ const withBundleAnalyzer = bundleAnalyzer({ enabled: process.env.ANALYZE === 'tr
 const withNextIntl = createNextIntlPlugin('./src/config/next.routing.config.ts');
 const nextConfig = {
   reactStrictMode: true,
+  reactCompiler: true,
   images: {
     remotePatterns: [clientEnv.publicUrl].map((item) => {
       const url = new URL(item);
