@@ -1,7 +1,7 @@
 'use client';
 
 import { Container } from '@/components/basic/container/container';
-import { Section } from '@/components/basic/section';
+import { Section } from '@/components/basic/section/section';
 import { clientEnv } from '@/config/env.client.config';
 import { cn } from '@/utils/tailwind';
 import type { PayloadAdminBarProps, PayloadMeUser } from '@payloadcms/admin-bar';

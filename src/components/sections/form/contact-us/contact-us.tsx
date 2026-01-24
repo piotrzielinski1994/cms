@@ -1,6 +1,6 @@
 import { ContactForm } from '@/components/advanced/form/contact-form/contact-form';
 import { Container } from '@/components/basic/container/container';
-import { Section } from '@/components/basic/section';
+import { Section } from '@/components/basic/section/section';
 import { cn } from '@/utils/tailwind';
 import { ComponentProps } from 'react';
 

@@ -1,7 +1,7 @@
 import { Dialog } from '@/components/advanced/dialog/dialog';
 import { Button, ButtonLink } from '@/components/basic/button/button';
 import { Container } from '@/components/basic/container/container';
-import { Section } from '@/components/basic/section';
+import { Section } from '@/components/basic/section/section';
 import { EnhancedHtmlProps, HtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
 import { ComponentProps, forwardRef, ReactNode } from 'react';

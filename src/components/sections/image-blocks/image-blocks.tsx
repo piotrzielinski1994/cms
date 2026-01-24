@@ -1,5 +1,5 @@
 import { Container } from '@/components/basic/container/container';
-import { Section } from '@/components/basic/section';
+import { Section } from '@/components/basic/section/section';
 import { cn } from '@/utils/tailwind';
 import { HTMLAttributes, ReactNode } from 'react';
 

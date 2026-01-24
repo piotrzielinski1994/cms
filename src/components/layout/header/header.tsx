@@ -1,6 +1,6 @@
 import { Container } from '@/components/basic/container/container';
 import { LogoContainer } from '@/components/basic/logo/logo.container';
-import { Section } from '@/components/basic/section';
+import { Section } from '@/components/basic/section/section';
 import { cn } from '@/utils/tailwind';
 import { ComponentProps } from 'react';
 import { FontScaler } from './scaffold/font-scaler';

@@ -1,6 +1,6 @@
 import { ButtonLink } from '@/components/basic/button/button';
 import { Container } from '@/components/basic/container/container';
-import { Section } from '@/components/basic/section';
+import { Section } from '@/components/basic/section/section';
 import { cn } from '@/utils/tailwind';
 import { ComponentProps, HTMLAttributes } from 'react';
 
