@@ -57,7 +57,7 @@ const DialogContext = createContext<Pick<DialogProps, 'type' | 'onClose'>>({
   onClose: () => undefined,
 });
 
-const Root = (props: PropsWithChildren & Pick<DialogProps, 'type' | 'onClose'>) => {
+const Provider = (props: PropsWithChildren & Pick<DialogProps, 'type' | 'onClose'>) => {
   const { type = 'dialog', onClose, children } = props;
   return <DialogContext.Provider value={{ type, onClose }}>{children}</DialogContext.Provider>;
 };
@@ -66,7 +66,7 @@ const Backdrop = ({ className, ...rest }: HtmlProps<'div'>) => {
   return <div {...rest} className={cn(styles.backdrop, className)} />;
 };
 
-const Wrapper = forwardRef<HTMLDialogElement, HtmlProps<'dialog'>>((props, ref) => {
+const Root = forwardRef<HTMLDialogElement, HtmlProps<'dialog'>>((props, ref) => {
   const { className, ...rest } = props;
   const { type, onClose } = useContext(DialogContext);
   return (
@@ -117,10 +117,10 @@ const Dialog = Object.assign(
   forwardRef<HTMLDialogElement, DialogProps>((props, ref) => {
     const { children, type = 'dialog', header, footer, onClose, t, ...rest } = props;
     return (
-      <Root type={type} onClose={onClose}>
+      <Provider type={type} onClose={onClose}>
         <Section as="div" className={styles.root({ type })}>
           <Backdrop className={styles.backdropEnhanced({ type })} />
-          <Wrapper ref={ref} {...rest}>
+          <Root ref={ref} {...rest}>
             {Boolean(header || onClose) && (
               <header className="flex">
                 {header !== undefined && <Header>{header}</Header>}
@@ -129,12 +129,12 @@ const Dialog = Object.assign(
             )}
             <div className={styles.content}>{children}</div>
             {footer !== undefined && <footer className={styles.footer}>{footer}</footer>}
-          </Wrapper>
+          </Root>
         </Section>
-      </Root>
+      </Provider>
     );
   }),
-  { Root, Backdrop, Wrapper, Header, Footer, CloseButton },
+  { Provider, Backdrop, Root, Header, Footer, CloseButton },
 );
 
 export { Dialog, styles };
