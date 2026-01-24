@@ -28,24 +28,6 @@ const styles = {
   buttons: 'flex justify-center gap-2 flex-wrap',
 } as const;
 
-const Component = forwardRef<HTMLDialogElement, CookiesBannerProps>((props, ref) => {
-  const { onAccept, content, readMore, accept, ...rest } = props;
-  return (
-    <>
-      <Dialog.Backdrop />
-      <Root ref={ref} {...rest}>
-        <Wrapper>
-          <Content>{content}</Content>
-          <Buttons>
-            <ButtonLink href={readMore.url}>{readMore.label}</ButtonLink>
-            <Accept onClick={onAccept}>{accept}</Accept>
-          </Buttons>
-        </Wrapper>
-      </Root>
-    </>
-  );
-});
-
 const Root = forwardRef<HTMLDialogElement, HtmlProps<'dialog'>>(({ className, ...rest }, ref) => {
   const classNames = cn(styles.root, className);
   return <Section ref={ref} as="dialog" aria-modal={true} className={classNames} {...rest} />;
@@ -70,14 +52,25 @@ const ReadMore = (props: ComponentProps<typeof ButtonLink>) => {
 const Backdrop = Dialog.Backdrop;
 const Accept = Button;
 
-const CookiesBanner = Object.assign(Component, {
-  Backdrop,
-  Root,
-  Wrapper,
-  Content,
-  Buttons,
-  ReadMore,
-  Accept,
-});
+const CookiesBanner = Object.assign(
+  forwardRef<HTMLDialogElement, CookiesBannerProps>((props, ref) => {
+    const { onAccept, content, readMore, accept, ...rest } = props;
+    return (
+      <>
+        <Dialog.Backdrop />
+        <Root ref={ref} {...rest}>
+          <Wrapper>
+            <Content>{content}</Content>
+            <Buttons>
+              <ButtonLink href={readMore.url}>{readMore.label}</ButtonLink>
+              <Accept onClick={onAccept}>{accept}</Accept>
+            </Buttons>
+          </Wrapper>
+        </Root>
+      </>
+    );
+  }),
+  { Backdrop, Root, Wrapper, Content, Buttons, ReadMore, Accept },
+);
 
 export { CookiesBanner, styles };

@@ -57,28 +57,6 @@ const DialogContext = createContext<Pick<DialogProps, 'type' | 'onClose'>>({
   onClose: () => undefined,
 });
 
-const Component = forwardRef<HTMLDialogElement, DialogProps>((props, ref) => {
-  const { children, type = 'dialog', header, footer, onClose, t, ...rest } = props;
-
-  return (
-    <Root type={type} onClose={onClose}>
-      <Section as="div" className={styles.root({ type })}>
-        <Backdrop className={styles.backdropEnhanced({ type })} />
-        <Wrapper ref={ref} {...rest}>
-          {Boolean(header || onClose) && (
-            <header className="flex">
-              {header !== undefined && <Header>{header}</Header>}
-              {onClose !== undefined && <CloseButton onClick={onClose} aria-label={t?.close} />}
-            </header>
-          )}
-          <div className={styles.content}>{children}</div>
-          {footer !== undefined && <footer className={styles.footer}>{footer}</footer>}
-        </Wrapper>
-      </Section>
-    </Root>
-  );
-});
-
 const Root = (props: PropsWithChildren & Pick<DialogProps, 'type' | 'onClose'>) => {
   const { type = 'dialog', onClose, children } = props;
   return <DialogContext.Provider value={{ type, onClose }}>{children}</DialogContext.Provider>;
@@ -135,6 +113,28 @@ const Footer = ({ submitBtn, cancelBtn, children, className, ...rest }: FooterPr
   );
 };
 
-const Dialog = Object.assign(Component, { Root, Backdrop, Wrapper, Header, Footer, CloseButton });
+const Dialog = Object.assign(
+  forwardRef<HTMLDialogElement, DialogProps>((props, ref) => {
+    const { children, type = 'dialog', header, footer, onClose, t, ...rest } = props;
+    return (
+      <Root type={type} onClose={onClose}>
+        <Section as="div" className={styles.root({ type })}>
+          <Backdrop className={styles.backdropEnhanced({ type })} />
+          <Wrapper ref={ref} {...rest}>
+            {Boolean(header || onClose) && (
+              <header className="flex">
+                {header !== undefined && <Header>{header}</Header>}
+                {onClose !== undefined && <CloseButton onClick={onClose} aria-label={t?.close} />}
+              </header>
+            )}
+            <div className={styles.content}>{children}</div>
+            {footer !== undefined && <footer className={styles.footer}>{footer}</footer>}
+          </Wrapper>
+        </Section>
+      </Root>
+    );
+  }),
+  { Root, Backdrop, Wrapper, Header, Footer, CloseButton },
+);
 
 export { Dialog, styles };
