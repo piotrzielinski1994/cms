@@ -2,46 +2,45 @@
 
 import { FontScaleConstants, fontScales } from '@/config/store/font-scales.config';
 import cookies from '@/utils/cookies';
-import { createStore } from '@/utils/store';
-import { PropsWithChildren, useEffect } from 'react';
-import { create } from 'zustand';
+import { createContext, PropsWithChildren, useContext, useEffect, useState } from 'react';
 
 type FontScaleStore = {
   scale: keyof typeof fontScales;
-  setScale: (scale: FontScaleStore['scale']) => void;
+  setScale: (scale: keyof typeof fontScales) => void;
 };
 
-type FontScaleProviderProps = PropsWithChildren & Pick<FontScaleStore, 'scale'>;
+type FontScaleProviderProps = PropsWithChildren & {
+  scale: keyof typeof fontScales;
+};
 
-const [Provider, useFontScaleStore] = createStore((initial: Pick<FontScaleStore, 'scale'>) => {
-  return create<FontScaleStore>((set) => {
-    return {
-      scale: initial.scale,
-      setScale: (scale) => {
-        set({ scale });
-      },
-    };
-  });
-});
+const FontScaleContext = createContext<FontScaleStore | undefined>(undefined);
 
-const FontScaleProvider = ({ children, ...rest }: FontScaleProviderProps) => {
+const FontScaleProvider = ({ children, scale: initialScale }: FontScaleProviderProps) => {
+  const [scale, setScale] = useState(initialScale);
+
   return (
-    <Provider initialState={rest}>
+    <FontScaleContext.Provider value={{ scale, setScale }}>
       <FontScaleListener />
       {children}
-    </Provider>
+    </FontScaleContext.Provider>
   );
 };
 
+const useFontScaleStore = () => {
+  const context = useContext(FontScaleContext);
+  if (!context) throw new Error('useFontScaleStore must be used within FontScaleProvider');
+  return context;
+};
+
 const FontScaleListener = () => {
-  const scale = useFontScaleStore((state) => state.scale);
+  const { scale } = useFontScaleStore();
 
   useEffect(() => {
     document.documentElement.setAttribute(FontScaleConstants.DOM_KEY, scale);
     cookies.setPermament(FontScaleConstants.STORAGE_KEY, scale);
   }, [scale]);
 
-  return <></>;
+  return null;
 };
 
 export { FontScaleProvider, useFontScaleStore };
