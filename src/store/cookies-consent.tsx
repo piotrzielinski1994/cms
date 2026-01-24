@@ -2,47 +2,50 @@
 
 import { CookiesConsentConstants } from '@/config/store/cookies-consent.config';
 import cookies from '@/utils/cookies';
-import { createStore } from '@/utils/store';
-import { PropsWithChildren, useEffect } from 'react';
-import { create } from 'zustand';
+import { createContext, PropsWithChildren, useContext, useEffect, useState } from 'react';
 
 type CookiesConsentStore = {
   isAllowed: boolean;
   allow: () => void;
 };
 
-type CookiesConsentProviderProps = PropsWithChildren & Pick<CookiesConsentStore, 'isAllowed'>;
+type CookiesConsentProviderProps = PropsWithChildren & {
+  isAllowed: boolean;
+};
 
-const [Provider, useCookiesConsentStore] = createStore(
-  (initial: Pick<CookiesConsentStore, 'isAllowed'>) => {
-    return create<CookiesConsentStore>((set) => {
-      return {
-        isAllowed: initial.isAllowed,
-        allow: () => {
-          set({ isAllowed: true });
-        },
-      };
-    });
-  },
-);
+const CookiesConsentContext = createContext<CookiesConsentStore | undefined>(undefined);
 
-const CookiesConsentProvider = ({ children, ...rest }: CookiesConsentProviderProps) => {
+const CookiesConsentProvider = ({
+  children,
+  isAllowed: initialIsAllowed,
+}: CookiesConsentProviderProps) => {
+  const [isAllowed, setIsAllowed] = useState(initialIsAllowed);
+
+  const allow = () => setIsAllowed(true);
+
   return (
-    <Provider initialState={rest}>
+    <CookiesConsentContext.Provider value={{ isAllowed, allow }}>
       <CookiesConsentListener />
       {children}
-    </Provider>
+    </CookiesConsentContext.Provider>
   );
 };
 
+const useCookiesConsentStore = () => {
+  const context = useContext(CookiesConsentContext);
+  if (!context)
+    throw new Error('useCookiesConsentStore must be used within CookiesConsentProvider');
+  return context;
+};
+
 const CookiesConsentListener = () => {
-  const isAllowed = useCookiesConsentStore((state) => state.isAllowed);
+  const { isAllowed } = useCookiesConsentStore();
 
   useEffect(() => {
     cookies.setPermament(CookiesConsentConstants.STORAGE_KEY, isAllowed);
   }, [isAllowed]);
 
-  return <></>;
+  return null;
 };
 
 export { CookiesConsentProvider, useCookiesConsentStore };
