@@ -4,23 +4,34 @@ import { HtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
 import { BoolMap } from '@/utils/types';
 import { ChevronDown } from 'lucide-react';
-import { forwardRef, ReactNode, useEffect, useId, useRef, useState } from 'react';
+import {
+  ReactNode,
+  createContext,
+  useContext,
+  useId,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 
 type AccordionProps = HtmlProps<'div'> & {
-  items: {
-    heading: ReactNode;
-    content: ReactNode;
-  }[];
+  items: { heading: ReactNode; content: ReactNode }[];
   activeItemIndex?: number;
 };
 
+type AccordionContextValue = {
+  state: { activeIndex?: number };
+  actions: { setActiveIndex: (index?: number) => void };
+  meta: { id: string; contentRefs: HTMLDivElement[] };
+};
+
 const styles = {
-  root: cn('grid gap-2', 'cms-accordion'),
-  item: cn('bg-components-accordion text-components-accordion-foreground', 'group'),
+  root: 'grid gap-2 cms-accordion',
+  item: 'bg-components-accordion text-components-accordion-foreground group',
   itemHeader: ({ isActive }: BoolMap<'isActive'>) =>
     cn(
-      'w-full px-4 py-2 sm:px-6 sm:py-4',
-      'flex justify-between items-center gap-2 text-lg cursor-pointer select-none',
+      'w-full px-4 py-2 sm:px-6 sm:py-4 flex justify-between items-center gap-2 text-lg cursor-pointer select-none',
       { 'outline outline-2 outline-offset-2 outline-blue-500': isActive },
       'tw-has-focus:tw-cms-outline',
     ),
@@ -31,102 +42,132 @@ const styles = {
   content: 'px-4 pb-4 sm:px-6',
 } as const;
 
+const AccordionContext = createContext<AccordionContextValue | null>(null);
+
 const Component = ({ items, activeItemIndex, ...rest }: AccordionProps) => {
+  return (
+    <Provider activeItemIndex={activeItemIndex}>
+      <Root {...rest}>
+        {items.map((item, index) => (
+          <Item key={String(item.heading)}>
+            <ItemHeader index={index}>{item.heading}</ItemHeader>
+            <Content index={index}>{item.content}</Content>
+          </Item>
+        ))}
+      </Root>
+    </Provider>
+  );
+};
+
+const Provider = ({
+  children,
+  activeItemIndex,
+}: {
+  children: ReactNode;
+  activeItemIndex?: number;
+}) => {
+  const id = useId();
   const [activeIndex, setActiveIndex] = useState(activeItemIndex);
   const contentRefs = useRef<HTMLDivElement[]>([]);
-  const id = useId();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     contentRefs.current.forEach((content, index) => {
       if (!content) return;
       content.style.maxHeight = activeIndex === index ? content.scrollHeight + 'px' : '0';
     });
   }, [activeIndex]);
 
-  return (
-    <Root {...rest}>
-      {items.map(({ heading, content }, index) => {
-        const isActive = activeIndex === index;
-        return (
-          <Item key={String(heading)}>
-            <ItemHeader
-              isActive={isActive}
-              htmlFor={`${id}__${index}__input`}
-              id={`${id}__${index}__label`}
-            >
-              <Radio
-                name={`${id}-accordion`}
-                id={`${id}__${index}__input`}
-                checked={isActive}
-                onChange={() => setActiveIndex(isActive ? undefined : index)}
-                onClick={() => setActiveIndex(isActive ? undefined : index)}
-                onKeyDown={(e) => {
-                  if (![' ', 'Enter'].includes(e.key)) return;
-                  e.preventDefault();
-                  setActiveIndex(activeIndex === index ? undefined : index);
-                }}
-              />
-              <span>{heading}</span>
-              <Icon isActive={isActive} />
-            </ItemHeader>
-            <ContentWrapper
-              id={`${id}__${index}__content`}
-              style={{
-                maxHeight: isActive ? contentRefs.current[index]?.scrollHeight + 'px' : '0',
-              }}
-              ref={(el) => {
-                if (!el) return;
-                contentRefs.current[index] = el;
-              }}
-            >
-              <Content aria-labelledby={`${id}__${index}__label`} aria-hidden={!isActive}>
-                {content}
-              </Content>
-            </ContentWrapper>
-          </Item>
-        );
-      })}
-    </Root>
+  const value = useMemo(
+    () => ({
+      state: { activeIndex },
+      actions: { setActiveIndex },
+      meta: { id, contentRefs: contentRefs.current },
+    }),
+    [id, activeIndex],
   );
+
+  return <AccordionContext.Provider value={value}>{children}</AccordionContext.Provider>;
 };
 
 const Root = ({ className, ...rest }: HtmlProps<'div'>) => {
-  return <div role="radiogroup" {...rest} className={cn(styles.root, className)}></div>;
+  return <div role="radiogroup" {...rest} className={cn(styles.root, className)} />;
 };
 
 const Item = ({ className, ...rest }: HtmlProps<'div'>) => {
-  return <div {...rest} className={cn(styles.item, className)}></div>;
+  return <div {...rest} className={cn(styles.item, className)} />;
 };
 
-const ItemHeader = ({ isActive, className, ...rest }: HtmlProps<'label'> & BoolMap<'isActive'>) => {
-  return <label {...rest} className={cn(styles.itemHeader({ isActive }), className)}></label>;
+const ItemHeader = ({ index, className, children }: HtmlProps<'label'> & { index: number }) => {
+  const {
+    state: { activeIndex },
+    actions: { setActiveIndex },
+    meta: { id },
+  } = useAccordion();
+
+  const isActive = activeIndex === index;
+
+  return (
+    <label
+      htmlFor={`${id}__${index}__input`}
+      id={`${id}__${index}__label`}
+      className={cn(styles.itemHeader({ isActive }), className)}
+    >
+      <input
+        type="radio"
+        name={`${id}-accordion`}
+        id={`${id}__${index}__input`}
+        checked={isActive}
+        onChange={() => setActiveIndex(isActive ? undefined : index)}
+        onClick={() => setActiveIndex(isActive ? undefined : index)}
+        onKeyDown={(e) => {
+          if (![' ', 'Enter'].includes(e.key)) return;
+          e.preventDefault();
+          setActiveIndex(isActive ? undefined : index);
+        }}
+        className={styles.radio}
+      />
+      <span>{children}</span>
+      <ChevronDown className={cn(styles.icon({ isActive }))} />
+    </label>
+  );
 };
 
-const Radio = ({ className, ...rest }: HtmlProps<'input'>) => {
-  return <input type="radio" {...rest} className={cn(styles.radio, className)} />;
+const Content = ({ index, className, children }: HtmlProps<'div'> & { index: number }) => {
+  const {
+    state: { activeIndex },
+    meta: { id, contentRefs },
+  } = useAccordion();
+
+  const isActive = activeIndex === index;
+
+  return (
+    <div
+      ref={(el) => {
+        if (!el) return;
+        contentRefs[index] = el;
+      }}
+      id={`${id}__${index}__content`}
+      style={{ maxHeight: isActive ? contentRefs[index]?.scrollHeight + 'px' : '0' }}
+      className={cn(styles.contentWrapper, className)}
+    >
+      <div
+        role="region"
+        aria-labelledby={`${id}__${index}__label`}
+        aria-hidden={!isActive}
+        className={styles.content}
+      >
+        {children}
+      </div>
+    </div>
+  );
 };
 
-const Icon = ({ isActive, className, ...rest }: HtmlProps<'svg'> & BoolMap<'isActive'>) => {
-  return <ChevronDown {...rest} className={cn(styles.icon({ isActive }), className)} />;
+const Accordion = Object.assign(Component, { Provider, Root, Item, ItemHeader, Content });
+
+const useAccordion = () => {
+  const context = useContext(AccordionContext);
+  if (context) return context;
+  throw new Error('Accordion components must be used within Accordion.Provider');
 };
 
-const ContentWrapper = forwardRef<HTMLDivElement, HtmlProps<'div'>>((props, ref) => {
-  const { className, ...rest } = props;
-  return <div ref={ref} {...rest} className={cn(styles.contentWrapper, className)}></div>;
-});
-
-const Content = ({ className, ...rest }: HtmlProps<'div'>) => {
-  return <div role="region" {...rest} className={cn(styles.content, className)}></div>;
-};
-
-const Accordion = Object.assign(Component, {
-  Root,
-  Item,
-  ItemHeader,
-  Radio,
-  Icon,
-  ContentWrapper,
-  Content,
-});
-
-export { Accordion, styles };
+export { Accordion, styles, useAccordion };
