@@ -1,10 +1,12 @@
 'use client';
 
+import { ReactContextError } from '@/utils/error';
 import { HtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
 import { BoolMap } from '@/utils/types';
 import { ChevronDown } from 'lucide-react';
 import {
+  PropsWithChildren,
   ReactNode,
   createContext,
   useContext,
@@ -44,28 +46,8 @@ const styles = {
 
 const AccordionContext = createContext<AccordionContextValue | null>(null);
 
-const Component = ({ items, activeItemIndex, ...rest }: AccordionProps) => {
-  return (
-    <Provider activeItemIndex={activeItemIndex}>
-      <Root {...rest}>
-        {items.map((item, index) => (
-          <Item key={String(item.heading)}>
-            <ItemHeader index={index}>{item.heading}</ItemHeader>
-            <Content index={index}>{item.content}</Content>
-          </Item>
-        ))}
-      </Root>
-    </Provider>
-  );
-};
-
-const Provider = ({
-  children,
-  activeItemIndex,
-}: {
-  children: ReactNode;
-  activeItemIndex?: number;
-}) => {
+const Provider = (props: PropsWithChildren & { activeItemIndex?: number }) => {
+  const { children, activeItemIndex } = props;
   const id = useId();
   const [activeIndex, setActiveIndex] = useState(activeItemIndex);
   const contentRefs = useRef<HTMLDivElement[]>([]);
@@ -162,12 +144,29 @@ const Content = ({ index, className, children }: HtmlProps<'div'> & { index: num
   );
 };
 
-const Accordion = Object.assign(Component, { Provider, Root, Item, ItemHeader, Content });
+const Accordion = Object.assign(
+  (props: AccordionProps) => {
+    const { items, activeItemIndex, ...rest } = props;
+    return (
+      <Provider activeItemIndex={activeItemIndex}>
+        <Root {...rest}>
+          {items.map((item, index) => (
+            <Item key={String(item.heading)}>
+              <ItemHeader index={index}>{item.heading}</ItemHeader>
+              <Content index={index}>{item.content}</Content>
+            </Item>
+          ))}
+        </Root>
+      </Provider>
+    );
+  },
+  { Provider, Root, Item, ItemHeader, Content },
+);
 
 const useAccordion = () => {
   const context = useContext(AccordionContext);
   if (context) return context;
-  throw new Error('Accordion components must be used within Accordion.Provider');
+  throw new ReactContextError('Accordion');
 };
 
 export { Accordion, styles, useAccordion };

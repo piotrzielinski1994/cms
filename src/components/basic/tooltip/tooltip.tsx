@@ -1,3 +1,4 @@
+import { ReactContextError } from '@/utils/error';
 import { HtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
 import {
@@ -45,17 +46,6 @@ const styles = {
 } as const;
 
 const TooltipContext = createContext<TooltipContextValue | null>(null);
-
-const Component = ({ content, children, ...rest }: TooltipProps) => {
-  return (
-    <Provider>
-      <Root>
-        <Trigger {...rest}>{children}</Trigger>
-        <Content>{content}</Content>
-      </Root>
-    </Provider>
-  );
-};
 
 const Provider = ({ children }: { children: ReactNode }) => {
   const id = useId();
@@ -145,17 +135,24 @@ const Content = ({ className, ...rest }: HtmlProps<'div'>) => {
   );
 };
 
-const Tooltip = Object.assign(Component, {
-  Provider,
-  Root,
-  Trigger,
-  Content,
-});
+const Tooltip = Object.assign(
+  ({ content, children, ...rest }: TooltipProps) => {
+    return (
+      <Provider>
+        <Root>
+          <Trigger {...rest}>{children}</Trigger>
+          <Content>{content}</Content>
+        </Root>
+      </Provider>
+    );
+  },
+  { Provider, Root, Trigger, Content },
+);
 
 const useTooltip = () => {
   const context = useContext(TooltipContext);
   if (context) return context;
-  throw new Error('Tooltip components must be used within Tooltip.Provider');
+  throw new ReactContextError('Tooltip');
 };
 
 export { Tooltip, useTooltip };
