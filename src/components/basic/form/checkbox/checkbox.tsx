@@ -34,7 +34,7 @@ const styles = {
     );
   },
   icon: cn('hidden group-has-[:checked]:block', 'w-[0.7lh] h-[0.7lh]'),
-};
+} as const;
 
 const Component = forwardRef<HTMLInputElement, CheckboxProps>((props, ref) => {
   const { label, error, ...rest } = props;

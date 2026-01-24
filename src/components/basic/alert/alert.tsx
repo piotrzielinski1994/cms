@@ -16,7 +16,7 @@ const styles = {
   root: cn('p-2', 'flex gap-2 flex-wrap'),
   wrapper: 'flex-grow',
   closeButton: 'w-[1lh] h-[1lh]',
-};
+} as const;
 
 const iconMap = {
   success: <CheckCircle className="w-[1lh] h-[1lh]" />,

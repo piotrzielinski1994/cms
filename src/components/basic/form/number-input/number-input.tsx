@@ -45,7 +45,7 @@ const styles = {
   native: ({ isValid }: BoolMap<'isValid'>) =>
     cn(textInputStyles.native({ isValid }), 'w-full pr-6'),
   buttons: 'absolute inset-y-0 right-1 flex flex-col justify-center',
-};
+} as const;
 
 type InputRef = HTMLInputElement & { changeValue: (delta: number) => void };
 

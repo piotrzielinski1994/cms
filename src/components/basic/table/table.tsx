@@ -18,7 +18,7 @@ const styles = {
   column: 'px-4 py-2 md:px-6 md:py-4',
   footer: 'font-semibold',
   footerRow: ({ isOdd }: BoolMap<'isOdd'>) => cn('bg-background', { 'bg-background1': !isOdd }),
-};
+} as const;
 
 // We always map through header columns in case body or footer are of different length
 // Static tuple declarations won't work as we always .map before passing props -> loosing tuple

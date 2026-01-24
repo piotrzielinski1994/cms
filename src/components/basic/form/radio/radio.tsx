@@ -22,7 +22,7 @@ const styles = {
     cn(checkboxStyles.native({ isValid }), 'rounded-full'),
   native: 'sr-only',
   icon: cn(checkboxStyles.icon, 'w-[0.4lh] h-[0.4lh]', 'fill-current'),
-};
+} as const;
 
 const Component = forwardRef<HTMLInputElement, RadioProps>((props, ref) => {
   const { label, error, className, ...rest } = props;

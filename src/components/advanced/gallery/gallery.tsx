@@ -24,7 +24,7 @@ const styles = {
   item: 'group cursor-pointer',
   itemImage: cn('w-20 h-20', 'sm:w-40 sm:h-40', 'group-has-[:focus-visible]:tw-cms-outline'),
   radio: 'sr-only',
-};
+} as const;
 
 const Component = ({ images, ...rest }: GalleryProps) => {
   const [activeIndex, setActiveIndex] = useState<number | undefined>(undefined);

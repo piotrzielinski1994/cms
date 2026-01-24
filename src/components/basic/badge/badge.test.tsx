@@ -8,7 +8,7 @@ describe('Badge', () => {
   const defaultProps = {
     bgColor: '#000',
     textColor: '#fff',
-    label: 'Label',
+    children: 'Label',
   } satisfies ComponentProps<typeof Badge>;
 
   it('should have no accessibility violations', async () => {

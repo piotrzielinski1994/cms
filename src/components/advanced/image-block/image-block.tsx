@@ -31,7 +31,7 @@ const styles = {
     }),
   heading: 'text-4xl font-semibold',
   buttons: 'flex gap-4',
-};
+} as const;
 
 const Component = (props: ImageBlockProps) => {
   const { isReversed = false, image, heading, subheading, buttons = [], ...rest } = props;

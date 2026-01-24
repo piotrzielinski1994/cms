@@ -20,7 +20,7 @@ const styles = {
   ),
   content: 'p-4 md:px-6',
   radio: 'peer sr-only',
-};
+} as const;
 
 const Tabs = ({ tabs }: TabsProps) => {
   const [activeIndex, setActiveIndex] = useState(0);

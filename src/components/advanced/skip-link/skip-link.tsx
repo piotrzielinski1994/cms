@@ -17,7 +17,7 @@ const styles = {
     '-translate-y-full focus:translate-y-4 transition-transform',
     'w-fit',
   ),
-};
+} as const;
 
 const SkipLink = forwardRef<HTMLAnchorElement, SkipLinkProps>((props, ref) => {
   const { t, href = '#main', className, ...rest } = props;

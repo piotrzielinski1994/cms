@@ -50,7 +50,7 @@ const styles = {
   content: 'p-4 pt-0 md:p-6 md:pt-0',
   footerContent: 'flex justify-end gap-2 md:gap-4 flex-wrap',
   footer: 'p-4 pt-0 md:p-6 md:pt-0',
-};
+} as const;
 
 const DialogContext = createContext<Pick<DialogProps, 'type' | 'onClose'>>({
   type: 'dialog',

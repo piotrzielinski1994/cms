@@ -26,7 +26,7 @@ const styles = {
   wrapper: 'grid gap-4 justify-center items-center sm:grid-cols-[1fr_auto]',
   content: 'flex-grow',
   buttons: 'flex justify-center gap-2 flex-wrap',
-};
+} as const;
 
 const Component = forwardRef<HTMLDialogElement, CookiesBannerProps>((props, ref) => {
   const { onAccept, content, readMore, accept, ...rest } = props;

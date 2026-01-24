@@ -29,7 +29,7 @@ const styles = {
       'bg-background [&:not(:disabled)]:hover:bg-foreground/5',
     ),
   },
-};
+} as const;
 
 const Button = ({ variant = 'primary', className, ...rest }: ButtonProps) => {
   const classNames = cn(styles.button, styles.variant[variant], className);

@@ -6,7 +6,7 @@ const styles = {
   group: 'grid gap-1 content-start grid-rows-[auto_1fr]',
   label: 'self-end',
   error: 'min-h-[1em] text-sm text-red-500 leading-none',
-};
+} as const;
 
 const Root = (props: HtmlProps<'form'>) => {
   return <form {...props} />;

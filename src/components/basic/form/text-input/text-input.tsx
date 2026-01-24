@@ -24,7 +24,7 @@ const styles = {
       'outline-none ring-inset focus-within:ring-1 ring-current',
       { '[&:not(:focus)]:text-red-500': !isValid },
     ),
-};
+} as const;
 
 const Component = forwardRef<HTMLInputElement, TextInputProps>((props, ref) => {
   const { label, error, className, ...rest } = props;

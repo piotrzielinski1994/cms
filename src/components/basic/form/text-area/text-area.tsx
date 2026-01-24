@@ -21,7 +21,7 @@ const styles = {
     cn(textInputStyles.native({ isValid }), 'min-h-[calc(2*1px+2*0.5rem+3*1.5rem)]', {
       'resize-none': isDisabled,
     }),
-};
+} as const;
 
 const Component = forwardRef<HTMLTextAreaElement, TextAreaProps>((props, ref) => {
   const { label, error, className, ...rest } = props;

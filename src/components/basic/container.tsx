@@ -4,7 +4,7 @@ import { ElementType, forwardRef } from 'react';
 
 const styles = {
   root: cn('w-full max-w-screen-2xl', 'mx-auto', 'grid', 'cms-container'),
-};
+} as const;
 
 const Container: PolymorphicComponent = forwardRef(
   <T extends ElementType = 'div'>(props: PolymorphicProps<T>, ref: PolymorphicRef<T>) => {

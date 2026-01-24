@@ -53,7 +53,7 @@ const styles = {
     'disabled:cursor-not-allowed disabled:text-foreground/50',
   ),
   placeholder: 'flex-grow text-foreground/50',
-};
+} as const;
 
 const Component = ({ fileNames, onFileRemove, label, error, t, ...rest }: DropzoneInputProps) => {
   const [isDragging, setIsDragging] = useState(false);

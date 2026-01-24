@@ -4,7 +4,7 @@ import { ElementType, forwardRef } from 'react';
 
 const styles = {
   root: cn('px-4 sm:px-6', 'grid', 'cms-section'),
-};
+} as const;
 
 const Section: PolymorphicComponent = forwardRef(
   <T extends ElementType = 'section'>(props: PolymorphicProps<T>, ref: PolymorphicRef<T>) => {

@@ -35,7 +35,7 @@ const styles = {
   native: 'sr-only',
   items: 'flex-grow grid gap-1',
   placeholder: 'flex-grow text-foreground/50',
-};
+} as const;
 
 const Component = forwardRef<HTMLInputElement, FileInputProps>((props, ref) => {
   const { fileNames, onClear, label, error, className, ...rest } = props;

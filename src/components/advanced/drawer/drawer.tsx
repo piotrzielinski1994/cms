@@ -18,7 +18,7 @@ const styles = {
       `transform translate-x-full transition-transform`,
       { 'translate-x-0': isOpen },
     ),
-};
+} as const;
 
 const Drawer = ({ isOpen, onClose, className, ...rest }: DrawerProps) => {
   const ref = useRef<HTMLDivElement>(null);

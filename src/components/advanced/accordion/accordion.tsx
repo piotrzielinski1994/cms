@@ -29,7 +29,7 @@ const styles = {
   radio: 'sr-only',
   contentWrapper: 'overflow-hidden transition-[max-height] duration-300 ease-in-out',
   content: 'px-4 pb-4 sm:px-6',
-};
+} as const;
 
 const Component = ({ items, activeItemIndex, ...rest }: AccordionProps) => {
   const [activeIndex, setActiveIndex] = useState(activeItemIndex);

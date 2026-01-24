@@ -1,17 +1,68 @@
 import { HtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
-import { ReactNode, useId, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import {
+  ReactNode,
+  RefObject,
+  createContext,
+  useContext,
+  useId,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 
-type TooltipProps = HtmlProps<'button'> & {
-  content: ReactNode;
+type TooltipProps = HtmlProps<'button'> & { content: ReactNode };
+
+type Position = 'center' | 'left' | 'right';
+
+type TooltipContextValue = {
+  state: {
+    isVisible: boolean;
+    position: Position;
+  };
+  actions: {
+    setIsVisible: (v: boolean) => void;
+    setPosition: (p: Position) => void;
+  };
+  meta: {
+    id: string;
+    containerRef: RefObject<HTMLDivElement | null>;
+    tooltipRef: RefObject<HTMLDivElement | null>;
+  };
 };
 
-const Tooltip = ({ content, children, ...props }: TooltipProps) => {
+const styles = {
+  root: 'relative inline-flex',
+  trigger: 'focus-visible:tw-cms-outline',
+  contentWrapper: 'absolute top-full z-popover pt-2',
+  content: 'py-1 px-2 text-xs bg-foreground text-background',
+  position: {
+    left: 'left-0 -translate-x-0',
+    right: 'right-0 translate-x-0',
+    center: 'left-1/2 -translate-x-1/2',
+  },
+} as const;
+
+const TooltipContext = createContext<TooltipContextValue | null>(null);
+
+const Component = ({ content, children, ...rest }: TooltipProps) => {
+  return (
+    <Provider>
+      <Root>
+        <Trigger {...rest}>{children}</Trigger>
+        <Content>{content}</Content>
+      </Root>
+    </Provider>
+  );
+};
+
+const Provider = ({ children }: { children: ReactNode }) => {
   const id = useId();
   const [isVisible, setIsVisible] = useState(false);
-  const [position, setPosition] = useState<'center' | 'left' | 'right'>('center');
-  const containerRef = useRef<HTMLDivElement>(null);
-  const tooltipRef = useRef<HTMLDivElement>(null);
+  const [position, setPosition] = useState<Position>('center');
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const tooltipRef = useRef<HTMLDivElement | null>(null);
 
   useLayoutEffect(() => {
     if (!isVisible) return;
@@ -31,48 +82,80 @@ const Tooltip = ({ content, children, ...props }: TooltipProps) => {
     }
   }, [isVisible]);
 
-  const positionClasses = useMemo(() => {
-    switch (position) {
-      case 'left':
-        return 'left-0 -translate-x-0';
-      case 'right':
-        return 'right-0 translate-x-0';
-      default:
-        return 'left-1/2 -translate-x-1/2';
-    }
-  }, [position]);
+  const value = useMemo(
+    () => ({
+      state: { isVisible, position },
+      actions: { setIsVisible, setPosition },
+      meta: { id, containerRef, tooltipRef },
+    }),
+    [id, isVisible, position],
+  );
+
+  return <TooltipContext.Provider value={value}>{children}</TooltipContext.Provider>;
+};
+
+const Root = ({ className, ...rest }: HtmlProps<'div'>) => {
+  const {
+    actions: { setIsVisible },
+    meta: { containerRef },
+  } = useTooltip();
 
   return (
     <div
+      {...rest}
       ref={containerRef}
-      className="relative inline-flex"
+      className={cn(styles.root, className)}
       onMouseEnter={() => setIsVisible(true)}
       onMouseLeave={() => setIsVisible(false)}
-    >
-      <button
-        {...props}
-        type="button"
-        className="focus-visible:tw-cms-outline"
-        aria-describedby={isVisible ? id : undefined}
-        onClick={() => setIsVisible((prev) => !prev)}
-        onBlur={() => setIsVisible(false)}
-      >
-        {children}
-      </button>
+    />
+  );
+};
 
-      {isVisible && (
-        <div className={cn('absolute top-full z-popover pt-2', positionClasses)} ref={tooltipRef}>
-          <div
-            id={id}
-            role="tooltip"
-            className={cn('py-1 px-2 text-xs bg-foreground text-background')}
-          >
-            {content}
-          </div>
-        </div>
-      )}
+const Trigger = ({ className, ...rest }: HtmlProps<'button'>) => {
+  const {
+    state: { isVisible },
+    actions: { setIsVisible },
+    meta: { id },
+  } = useTooltip();
+
+  return (
+    <button
+      {...rest}
+      type="button"
+      className={cn(styles.trigger, className)}
+      aria-describedby={isVisible ? id : undefined}
+      onClick={() => setIsVisible(!isVisible)}
+      onBlur={() => setIsVisible(false)}
+    />
+  );
+};
+
+const Content = ({ className, ...rest }: HtmlProps<'div'>) => {
+  const {
+    state: { isVisible, position },
+    meta: { id, tooltipRef },
+  } = useTooltip();
+
+  if (!isVisible) return null;
+
+  return (
+    <div ref={tooltipRef} className={cn(styles.contentWrapper, styles.position[position])}>
+      <div id={id} role="tooltip" {...rest} className={cn(styles.content, className)} />
     </div>
   );
 };
 
-export { Tooltip };
+const Tooltip = Object.assign(Component, {
+  Provider,
+  Root,
+  Trigger,
+  Content,
+});
+
+const useTooltip = () => {
+  const context = useContext(TooltipContext);
+  if (context) return context;
+  throw new Error('Tooltip components must be used within Tooltip.Provider');
+};
+
+export { Tooltip, useTooltip };

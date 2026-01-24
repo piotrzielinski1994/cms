@@ -37,7 +37,7 @@ const styles = {
   option: 'text-foreground',
   placeholder: 'text-foreground/50',
   icon: 'col-start-1 row-start-1 justify-self-end mr-1',
-};
+} as const;
 
 const Component = forwardRef<HTMLSelectElement, SelectProps>((props, ref) => {
   const { label, error, options, placeholder = '', ...rest } = props;
