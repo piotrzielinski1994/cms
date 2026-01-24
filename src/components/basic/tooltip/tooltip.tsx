@@ -1,16 +1,17 @@
+import { HtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
-import { ComponentPropsWithoutRef, useId, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { ReactNode, useId, useLayoutEffect, useMemo, useRef, useState } from 'react';
 
-type TooltipProps = ComponentPropsWithoutRef<'button'> & {
-  content: string;
+type TooltipProps = HtmlProps<'button'> & {
+  content: ReactNode;
 };
 
 const Tooltip = ({ content, children, ...props }: TooltipProps) => {
   const id = useId();
   const [isVisible, setIsVisible] = useState(false);
   const [position, setPosition] = useState<'center' | 'left' | 'right'>('center');
-  const tooltipRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const tooltipRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
     if (!isVisible) return;

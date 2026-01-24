@@ -18,6 +18,20 @@ const styles = {
   closeButton: 'w-[1lh] h-[1lh]',
 };
 
+const iconMap = {
+  success: <CheckCircle className="w-[1lh] h-[1lh]" />,
+  info: <Info className="w-[1lh] h-[1lh]" />,
+  warn: <AlertTriangle className="w-[1lh] h-[1lh]" />,
+  error: <XCircle className="w-[1lh] h-[1lh]" />,
+} satisfies Record<AlertType, ReactNode>;
+
+const colorMap = {
+  success: 'bg-green-500 text-green-950',
+  info: 'bg-blue-500 text-blue-950',
+  warn: 'bg-orange-500 text-orange-950',
+  error: 'bg-red-500 text-red-950',
+} satisfies Record<AlertType, string>;
+
 const Component = ({ type = 'info', onClose, t, children, ...rest }: AlertProps) => {
   return (
     <Root type={type} {...rest}>
@@ -43,20 +57,6 @@ const Wrapper = ({ className, ...rest }: HtmlProps<'div'>) => {
 const CloseButton = ({ className, ...rest }: HtmlProps<'button'>) => {
   return <button type="button" {...rest} className={cn(styles.closeButton, className)} />;
 };
-
-const iconMap = {
-  success: <CheckCircle className="w-[1lh] h-[1lh]" />,
-  info: <Info className="w-[1lh] h-[1lh]" />,
-  warn: <AlertTriangle className="w-[1lh] h-[1lh]" />,
-  error: <XCircle className="w-[1lh] h-[1lh]" />,
-} satisfies Record<AlertType, ReactNode>;
-
-const colorMap = {
-  success: 'bg-green-500 text-green-950',
-  info: 'bg-blue-500 text-blue-950',
-  warn: 'bg-orange-500 text-orange-950',
-  error: 'bg-red-500 text-red-950',
-} satisfies Record<AlertType, string>;
 
 const Alert = Object.assign(Component, { Root, Wrapper, CloseButton });
 

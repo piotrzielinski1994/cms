@@ -3,12 +3,12 @@ import { cn } from '@/utils/tailwind';
 
 type SkeletonProps = Omit<HtmlProps<'div'>, 'children'>;
 
-const Skeleton = ({ className, ...props }: SkeletonProps) => {
+const Skeleton = ({ className, ...rest }: SkeletonProps) => {
   return (
     <div
       role="status"
       aria-busy={true}
-      {...props}
+      {...rest}
       className={cn(
         'h-[1lh] bg-components-skeleton relative overflow-hidden',
         'before:absolute before:inset-0 before:-translate-x-full',

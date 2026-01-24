@@ -15,7 +15,7 @@ const ImageBlocks = ({ heading, subheading, items, ...props }: ImageBlocksProps)
     <Section {...props}>
       <Container className="grid gap-8">
         {hasHeader && (
-          <header className="text-center">
+          <header className={cn('grid gap-4', 'text-center')}>
             {heading && <h2 className={cn('text-5xl font-semibold')}>{heading}</h2>}
             {subheading && <p>{subheading}</p>}
           </header>

@@ -1,20 +1,18 @@
+import { HtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
-import { PropsWithChildren } from 'react';
 
-type BadgeProps = PropsWithChildren & {
-  label: string;
+type BadgeProps = HtmlProps<'div'> & {
   bgColor: string;
   textColor: string;
 };
 
-const Badge = ({ label, bgColor, textColor }: BadgeProps) => {
+const Badge = ({ bgColor, textColor, className, style, ...rest }: BadgeProps) => {
   return (
     <div
-      className={cn('py-1 px-2 w-fit', 'flex gap-2 flex-wrap', 'text-xs font')}
-      style={{ backgroundColor: bgColor, color: textColor }}
-    >
-      {label}
-    </div>
+      {...rest}
+      className={cn('py-1 px-2 w-fit', 'flex gap-2 flex-wrap', 'text-xs font', className)}
+      style={{ backgroundColor: bgColor, color: textColor, ...style }}
+    />
   );
 };
 

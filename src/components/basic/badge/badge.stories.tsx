@@ -12,18 +12,18 @@ const meta = {
   component: BadgeComponent,
   title: 'Basic/Badge',
   argTypes: {
-    label: { control: 'text' },
+    children: { control: 'text' },
     bgColor: { control: 'text' },
     textColor: { control: 'text' },
   },
   args: {
-    label: DEFAULT_VALUE,
+    children: DEFAULT_VALUE,
     bgColor: DEFAULT_VALUE,
     textColor: DEFAULT_VALUE,
   },
 } satisfies Meta<Args>;
 
-const Render = ({ label, bgColor, textColor, ...args }: Args, context) => {
+const Render = ({ bgColor, textColor, children, ...args }: Args, context) => {
   const t = useTranslations('storybook.basic');
   const { theme } = context.globals as StoryContext['globals'];
 
@@ -31,10 +31,11 @@ const Render = ({ label, bgColor, textColor, ...args }: Args, context) => {
     <div className="flex gap-1">
       <BadgeComponent
         {...args}
-        label={getFallback(label, t('badge'))}
         bgColor={getFallback(bgColor, getThemeConfig(theme).foreground)}
         textColor={getFallback(textColor, getThemeConfig(theme).background)}
-      />
+      >
+        {getFallback(children, t('badge'))}
+      </BadgeComponent>
     </div>
   );
 };
