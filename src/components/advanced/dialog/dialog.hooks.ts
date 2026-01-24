@@ -3,7 +3,7 @@ import { Dialog } from './dialog';
 
 type UseDialogParams = {
   initialIsOpen?: boolean;
-  type?: ComponentProps<typeof Dialog.Root>['type'];
+  type?: ComponentProps<typeof Dialog.Provider>['type'];
 };
 
 const useDialog = ({ initialIsOpen = false, type = 'dialog' }: UseDialogParams = {}) => {
