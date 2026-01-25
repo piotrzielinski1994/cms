@@ -47,7 +47,7 @@ const GalleryContext = createContext<{
   };
 } | null>(null);
 
-const Provider = (props: PropsWithChildren & { images: GalleryProps['images'] }) => {
+const Provider = (props: PropsWithChildren & Pick<GalleryProps, 'images'>) => {
   const { images, children } = props;
   const id = useId();
   const [activeIndex, setActiveIndex] = useState<number | undefined>(undefined);
@@ -86,6 +86,7 @@ const ActiveItem = forwardRef<HTMLDialogElement>((props, ref) => {
 
   return (
     <dialog
+      {...props}
       ref={ref ?? dialogRef}
       className={cn(styles.activeItem)}
       onClick={() => setActiveIndex(undefined)}
@@ -103,8 +104,8 @@ const ActiveItem = forwardRef<HTMLDialogElement>((props, ref) => {
   );
 });
 
-const ActiveItemImage = ({ src, alt, className, ...rest }: ComponentProps<typeof Image>) => {
-  return <Image {...rest} src={src} alt={alt} className={cn(styles.activeItemImage, className)} />;
+const ActiveItemImage = ({ className, ...rest }: ComponentProps<typeof Image>) => {
+  return <Image {...rest} className={cn(styles.activeItemImage, className)} />;
 };
 
 const CloseButton = ({ children, className, ...rest }: HtmlProps<'button'>) => {
