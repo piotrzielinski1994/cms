@@ -1,18 +1,19 @@
 import { ButtonLink } from '@/components/basic/button/button';
 import { Container } from '@/components/basic/container/container';
 import { Section } from '@/components/basic/section/section';
+import { HtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
-import { ComponentProps, HTMLAttributes } from 'react';
+import { ComponentProps } from 'react';
 
-type Hero1Props = HTMLAttributes<HTMLElement> & {
+type Hero1Props = HtmlProps<'section'> & {
   heading?: string;
   subheading?: string;
   buttons?: Array<Pick<ComponentProps<typeof ButtonLink>, 'href' | 'variant'> & { label: string }>;
 };
 
-const Hero1 = ({ heading, subheading, buttons = [], ...props }: Hero1Props) => {
+const Hero1 = ({ heading, subheading, buttons = [], className, ...rest }: Hero1Props) => {
   return (
-    <Section {...props} className={cn('px-0', props.className)}>
+    <Section {...rest} className={cn('px-0', className)}>
       <Container
         className={cn(
           'px-4 py-10 md:px-6',
