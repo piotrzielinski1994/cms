@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import { useHeaderHeight } from '../header.hooks';
 
-const HeaderHeightMonitor = () => {
+const HeaderHeightListener = () => {
   const headerHeight = useHeaderHeight();
 
   useEffect(() => {
@@ -13,4 +13,4 @@ const HeaderHeightMonitor = () => {
   return <></>;
 };
 
-export { HeaderHeightMonitor };
+export { HeaderHeightListener };

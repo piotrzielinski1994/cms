@@ -5,7 +5,7 @@ const useHeaderHeight = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      const header = document.querySelector('[data-header]') as HTMLElement;
+      const header = document.querySelector<HTMLElement>('[data-header]');
       if (!header) return;
       setHeaderHeight(header.offsetHeight);
     };
