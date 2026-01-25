@@ -22,12 +22,6 @@ type AccordionProps = HtmlProps<'div'> & {
   activeItemIndex?: number;
 };
 
-type AccordionContextValue = {
-  state: { activeIndex?: number };
-  actions: { setActiveIndex: (index?: number) => void };
-  meta: { id: string; contentRefs: HTMLDivElement[] };
-};
-
 const styles = {
   root: 'grid gap-2 cms-accordion',
   item: 'bg-components-accordion text-components-accordion-foreground group',
@@ -44,7 +38,11 @@ const styles = {
   content: 'px-4 pb-4 sm:px-6',
 } as const;
 
-const AccordionContext = createContext<AccordionContextValue | null>(null);
+const AccordionContext = createContext<{
+  state: { activeIndex?: number };
+  actions: { setActiveIndex: (index?: number) => void };
+  meta: { id: string; contentRefs: HTMLDivElement[] };
+} | null>(null);
 
 const Provider = (props: PropsWithChildren & { activeItemIndex?: number }) => {
   const { children, activeItemIndex } = props;

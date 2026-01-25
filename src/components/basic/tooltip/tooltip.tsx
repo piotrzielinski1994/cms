@@ -17,7 +17,19 @@ type TooltipProps = HtmlProps<'button'> & { content: ReactNode };
 
 type Position = 'center' | 'left' | 'right';
 
-type TooltipContextValue = {
+const styles = {
+  root: 'relative inline-flex',
+  trigger: 'focus-visible:tw-cms-outline',
+  contentWrapper: 'absolute top-full z-popover pt-2',
+  content: 'py-1 px-2 text-xs bg-foreground text-background',
+  position: {
+    left: 'left-0 -translate-x-0',
+    right: 'right-0 translate-x-0',
+    center: 'left-1/2 -translate-x-1/2',
+  },
+} as const;
+
+const TooltipContext = createContext<{
   state: {
     isVisible: boolean;
     position: Position;
@@ -31,21 +43,7 @@ type TooltipContextValue = {
     containerRef: RefObject<HTMLDivElement | null>;
     tooltipRef: RefObject<HTMLDivElement | null>;
   };
-};
-
-const styles = {
-  root: 'relative inline-flex',
-  trigger: 'focus-visible:tw-cms-outline',
-  contentWrapper: 'absolute top-full z-popover pt-2',
-  content: 'py-1 px-2 text-xs bg-foreground text-background',
-  position: {
-    left: 'left-0 -translate-x-0',
-    right: 'right-0 translate-x-0',
-    center: 'left-1/2 -translate-x-1/2',
-  },
-} as const;
-
-const TooltipContext = createContext<TooltipContextValue | null>(null);
+} | null>(null);
 
 const Provider = ({ children }: { children: ReactNode }) => {
   const id = useId();
