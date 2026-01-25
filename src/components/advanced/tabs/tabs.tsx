@@ -1,6 +1,7 @@
-import { useHtmlId } from '@/utils/html/html.hooks';
+import { ReactContextError } from '@/utils/error';
+import { HtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
-import { ReactNode, useState } from 'react';
+import { ReactNode, createContext, useContext, useId, useMemo, useState } from 'react';
 
 type TabsProps = {
   tabs: Array<{
@@ -22,47 +23,123 @@ const styles = {
   radio: 'peer sr-only',
 } as const;
 
-const Tabs = ({ tabs }: TabsProps) => {
+const TabsContext = createContext<{
+  state: {
+    activeIndex: number;
+  };
+  actions: {
+    setActiveIndex: (i: number) => void;
+  };
+  meta: {
+    id: string;
+  };
+} | null>(null);
+
+const Provider = ({ children }: { children: ReactNode }) => {
+  const id = useId();
   const [activeIndex, setActiveIndex] = useState(0);
-  const { id, getId } = useHtmlId('tabs');
+
+  const value = useMemo(
+    () => ({
+      state: { activeIndex },
+      actions: { setActiveIndex },
+      meta: { id },
+    }),
+    [activeIndex, id],
+  );
+
+  return <TabsContext.Provider value={value}>{children}</TabsContext.Provider>;
+};
+
+const Root = ({ className, ...rest }: HtmlProps<'div'>) => {
+  return <div {...rest} className={cn(styles.root, className)} />;
+};
+
+const List = ({ className, ...rest }: HtmlProps<'div'>) => {
+  return <div {...rest} className={cn(styles.header, className)} />;
+};
+
+const Trigger = ({
+  index,
+  className,
+  children,
+}: {
+  index: number;
+  className?: string;
+  children: ReactNode;
+}) => {
+  const {
+    state: { activeIndex },
+    actions: { setActiveIndex },
+    meta: { id },
+  } = useTabs();
 
   return (
-    <div className={styles.root}>
-      <div className={styles.header}>
-        {tabs.map((tab, index) => {
-          return (
-            <label
-              key={index}
-              id={getId('tab', index)}
-              aria-controls={getId('panel', index)}
-              className={styles.tab}
-            >
-              <input
-                type="radio"
-                name={`tabs-${id}`}
-                className={styles.radio}
-                checked={index === activeIndex}
-                onChange={() => setActiveIndex(index)}
-              />
-              {tab.heading}
-            </label>
-          );
-        })}
-      </div>
-      {tabs.map((tab, index) => (
-        <div
-          key={index}
-          role="tabpanel"
-          id={getId('panel', index)}
-          aria-labelledby={getId('tab', index)}
-          hidden={index !== activeIndex}
-          className={styles.content}
-        >
-          {tab.content}
-        </div>
-      ))}
+    <label
+      id={`${id}-tab-${index}`}
+      aria-controls={`${id}-panel-${index}`}
+      className={cn(styles.tab, className)}
+    >
+      <input
+        type="radio"
+        name={`tabs-${id}`}
+        className={styles.radio}
+        checked={index === activeIndex}
+        onChange={() => setActiveIndex(index)}
+      />
+      {children}
+    </label>
+  );
+};
+
+const Content = (props: { index: number; className?: string; children: ReactNode }) => {
+  const { index, className, children } = props;
+  const {
+    state: { activeIndex },
+    meta: { id },
+  } = useTabs();
+
+  return (
+    <div
+      role="tabpanel"
+      id={`${id}-panel-${index}`}
+      aria-labelledby={`${id}-tab-${index}`}
+      hidden={index !== activeIndex}
+      className={cn(styles.content, className)}
+    >
+      {children}
     </div>
   );
 };
 
-export { Tabs };
+const Tabs = Object.assign(
+  ({ tabs }: TabsProps) => {
+    return (
+      <Provider>
+        <Root>
+          <List>
+            {tabs.map((tab, index) => (
+              <Trigger key={index} index={index}>
+                {tab.heading}
+              </Trigger>
+            ))}
+          </List>
+          {tabs.map((tab, index) => (
+            <Content key={index} index={index}>
+              {tab.content}
+            </Content>
+          ))}
+        </Root>
+      </Provider>
+    );
+  },
+  { Provider, Root, List, Trigger, Content },
+);
+
+const useTabs = () => {
+  const context = useContext(TabsContext);
+  if (context) return context;
+  throw new ReactContextError('Tabs');
+};
+
+export { Tabs, styles, useTabs };

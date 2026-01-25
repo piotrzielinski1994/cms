@@ -153,4 +153,4 @@ const useTooltip = () => {
   throw new ReactContextError('Tooltip');
 };
 
-export { Tooltip, useTooltip };
+export { Tooltip, styles, useTooltip };
