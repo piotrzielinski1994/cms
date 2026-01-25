@@ -3,7 +3,7 @@ import { HtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
 import { ReactNode, createContext, useContext, useId, useMemo, useState } from 'react';
 
-type TabsProps = {
+type TabsProps = HtmlProps<'div'> & {
   tabs: Array<{
     heading: ReactNode;
     content: ReactNode;
@@ -59,15 +59,8 @@ const List = ({ className, ...rest }: HtmlProps<'div'>) => {
   return <div {...rest} className={cn(styles.header, className)} />;
 };
 
-const Trigger = ({
-  index,
-  className,
-  children,
-}: {
-  index: number;
-  className?: string;
-  children: ReactNode;
-}) => {
+const Tab = (props: HtmlProps<'label'> & { index: number }) => {
+  const { index, className, children, ...rest } = props;
   const {
     state: { activeIndex },
     actions: { setActiveIndex },
@@ -76,6 +69,7 @@ const Trigger = ({
 
   return (
     <label
+      {...rest}
       id={`${id}-tab-${index}`}
       aria-controls={`${id}-panel-${index}`}
       className={cn(styles.tab, className)}
@@ -113,15 +107,15 @@ const Content = (props: { index: number; className?: string; children: ReactNode
 };
 
 const Tabs = Object.assign(
-  ({ tabs }: TabsProps) => {
+  ({ tabs, ...rest }: TabsProps) => {
     return (
       <Provider>
-        <Root>
+        <Root {...rest}>
           <List>
             {tabs.map((tab, index) => (
-              <Trigger key={index} index={index}>
+              <Tab key={index} index={index}>
                 {tab.heading}
-              </Trigger>
+              </Tab>
             ))}
           </List>
           {tabs.map((tab, index) => (
@@ -133,7 +127,7 @@ const Tabs = Object.assign(
       </Provider>
     );
   },
-  { Provider, Root, List, Trigger, Content },
+  { Provider, Root, List, Tab, Content },
 );
 
 const useTabs = () => {
