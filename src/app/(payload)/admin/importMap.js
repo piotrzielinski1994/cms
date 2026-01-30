@@ -15,7 +15,7 @@ import { FixedToolbarFeatureClient as FixedToolbarFeatureClient_e70f5e05f09f93e0
 import { RowLabel as RowLabel_a3e9ab8aaaf665c2ea9e019cdd8575f5 } from '@/payload/components/row-label'
 import { DocsLink as DocsLink_3f2897583ef43f2e24ee62fa407bdeb6 } from '@/payload/components/docs-link'
 import { VercelBlobClientUploadHandler as VercelBlobClientUploadHandler_16c82c5e25f430251a3e3ba57219ff4e } from '@payloadcms/storage-vercel-blob/client'
-import { CollectionCards as CollectionCards_ab83ff7e88da8d3530831f296ec4756a } from '@payloadcms/ui/rsc'
+import { CollectionCards as CollectionCards_f9c02e79a4aed9a3924487c0cd4cafb1 } from '@payloadcms/next/rsc'
 
 export const importMap = {
   "@payloadcms/richtext-lexical/rsc#RscEntryLexicalCell": RscEntryLexicalCell_44fe37237e0ebf4470c9990d8cb7b07e,
@@ -35,5 +35,5 @@ export const importMap = {
   "@/payload/components/row-label#RowLabel": RowLabel_a3e9ab8aaaf665c2ea9e019cdd8575f5,
   "@/payload/components/docs-link#DocsLink": DocsLink_3f2897583ef43f2e24ee62fa407bdeb6,
   "@payloadcms/storage-vercel-blob/client#VercelBlobClientUploadHandler": VercelBlobClientUploadHandler_16c82c5e25f430251a3e3ba57219ff4e,
-  "@payloadcms/ui/rsc#CollectionCards": CollectionCards_ab83ff7e88da8d3530831f296ec4756a
+  "@payloadcms/next/rsc#CollectionCards": CollectionCards_f9c02e79a4aed9a3924487c0cd4cafb1
 }

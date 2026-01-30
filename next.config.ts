@@ -5,10 +5,27 @@ import { withPayload } from '@payloadcms/next/withPayload';
 import { withSentryConfig } from '@sentry/nextjs';
 import type { NextConfig } from 'next';
 import createNextIntlPlugin from 'next-intl/plugin';
+import { pipe } from 'ramda';
 import { z } from 'zod';
 
 const withBundleAnalyzer = bundleAnalyzer({ enabled: process.env.ANALYZE === 'true' });
 const withNextIntl = createNextIntlPlugin('./src/config/next.routing.config.ts');
+const withSentry = (config: NextConfig) => {
+  return withSentryConfig(config, {
+    org: serverEnv.sentry.org,
+    project: serverEnv.sentry.project,
+    widenClientFileUpload: true,
+    webpack: {
+      automaticVercelMonitors: true,
+      reactComponentAnnotation: { enabled: true },
+      treeshake: { removeDebugLogging: true },
+    },
+    silent: !clientEnv.sentryDsn,
+    sourcemaps: { disable: true },
+    telemetry: false,
+  });
+};
+
 const nextConfig = {
   reactStrictMode: true,
   experimental: {
@@ -32,20 +49,4 @@ const nextConfig = {
   },
 } satisfies NextConfig;
 
-export default withSentryConfig(withBundleAnalyzer(withNextIntl(withPayload(nextConfig))), {
-  org: serverEnv.sentry.org,
-  project: serverEnv.sentry.project,
-  widenClientFileUpload: true,
-  webpack: {
-    automaticVercelMonitors: true,
-    reactComponentAnnotation: {
-      enabled: true,
-    },
-    treeshake: {
-      removeDebugLogging: true,
-    },
-  },
-  silent: !clientEnv.sentryDsn,
-  sourcemaps: { disable: true }, // Vercel heap limits
-  telemetry: false,
-});
+export default pipe(withPayload, withNextIntl, withBundleAnalyzer, withSentry)(nextConfig);
