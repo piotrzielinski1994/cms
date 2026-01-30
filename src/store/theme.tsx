@@ -1,7 +1,7 @@
 'use client';
 
 import { getThemeConfig, Theme, ThemeConfig, ThemeConstants } from '@/config/store/themes.config';
-import cookies from '@/utils/cookies';
+import { cookies } from '@/utils/cookies';
 import { createContext, PropsWithChildren, useContext, useEffect, useState } from 'react';
 
 type ThemeStore = {
@@ -39,8 +39,8 @@ const ThemeProvider = ({ children, ...initial }: ThemeProviderProps) => {
 
 const useThemeStore = () => {
   const context = useContext(ThemeContext);
-  if (!context) throw new Error('useThemeStore must be used within ThemeProvider');
-  return context;
+  if (context) return context;
+  throw new Error('useThemeStore must be used within ThemeProvider');
 };
 
 const ColorPreferenceListener = () => {

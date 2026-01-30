@@ -1,7 +1,7 @@
 'use client';
 
 import { FontScaleConstants, fontScales } from '@/config/store/font-scales.config';
-import cookies from '@/utils/cookies';
+import { cookies } from '@/utils/cookies';
 import { createContext, PropsWithChildren, useContext, useEffect, useState } from 'react';
 
 type FontScaleStore = {
@@ -28,8 +28,8 @@ const FontScaleProvider = ({ children, scale: initialScale }: FontScaleProviderP
 
 const useFontScaleStore = () => {
   const context = useContext(FontScaleContext);
-  if (!context) throw new Error('useFontScaleStore must be used within FontScaleProvider');
-  return context;
+  if (context) return context;
+  throw new Error('useFontScaleStore must be used within FontScaleProvider');
 };
 
 const FontScaleListener = () => {

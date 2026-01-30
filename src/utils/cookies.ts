@@ -6,4 +6,4 @@ const setPermament = (name: string, value: string | number | boolean | object) =
 
 const cookies = { setPermament };
 
-export default cookies;
+export { cookies };
