@@ -2,24 +2,28 @@ import { CookiesConsentProvider } from '@/store/cookies-consent';
 import { FontScaleProvider } from '@/store/font-scale';
 import { LocaleProvider } from '@/store/locale';
 import { ThemeProvider } from '@/store/theme';
-import { ComponentProps } from 'react';
+import { ComponentProps, PropsWithChildren, ReactNode } from 'react';
 
-type ProvidersProps = ComponentProps<typeof LocaleProvider> &
+type ProvidersProps = PropsWithChildren &
+  ComponentProps<typeof LocaleProvider> &
   ComponentProps<typeof ThemeProvider> &
   ComponentProps<typeof FontScaleProvider> &
   ComponentProps<typeof CookiesConsentProvider>;
 
 const Providers = (props: ProvidersProps) => {
-  return (
-    <LocaleProvider locale={props.locale}>
-      <ThemeProvider theme={props.theme} colorPreference={props.colorPreference}>
-        <FontScaleProvider scale={props.scale}>
-          <CookiesConsentProvider isAllowed={props.isAllowed}>
-            {props.children}
-          </CookiesConsentProvider>
-        </FontScaleProvider>
-      </ThemeProvider>
-    </LocaleProvider>
-  );
+  return typedPipe(
+    (children) => <LocaleProvider locale={props.locale} children={children} />,
+    (children) => <FontScaleProvider scale={props.scale} children={children} />,
+    (children) => <CookiesConsentProvider isAllowed={props.isAllowed} children={children} />,
+    (children) => {
+      const themeProps = { theme: props.theme, colorPreference: props.colorPreference, children };
+      return <ThemeProvider {...themeProps} />;
+    },
+  )(props.children);
 };
+
+const typedPipe = (...fns: ((children: ReactNode) => ReactNode)[]) => {
+  return (children: ReactNode) => fns.reduce((acc, fn) => fn(acc), children);
+};
+
 export { Providers };
