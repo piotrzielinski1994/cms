@@ -92,7 +92,7 @@
     "@testing-library/user-event": "^14.6.1",
     "@types/escape-html": "^1.0.4",
     "@types/jest-axe": "^3.5.9",
-    "@types/node": "25.0.10",
+    "@types/node": "25.1.0",
     "@types/ramda": "^0.31.1",
     "@types/react": "19.2.9",
     "@types/react-dom": "19.2.3",
