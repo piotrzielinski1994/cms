@@ -1,14 +1,10 @@
 import payloadConfig from '@/payload/payload.config';
 import { Locale } from 'next-intl';
-import { cacheTag } from 'next/cache';
 import { draftMode } from 'next/headers';
-import { connection } from 'next/server';
 import { getPayload } from 'payload';
 import { cache } from 'react';
 
 const getPages = async () => {
-  'use cache';
-  cacheTag('pages');
   const payload = await getPayload({ config: payloadConfig });
   return payload.find({
     collection: 'pages',
@@ -25,7 +21,6 @@ const getPages = async () => {
 };
 
 const queryPage = cache(async ({ path, locale }: { path: string; locale: Locale }) => {
-  await connection();
   const { isEnabled: draft } = await draftMode();
   const slug = path.split('/').at(-1) ?? '';
 

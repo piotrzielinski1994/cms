@@ -1,10 +1,13 @@
 import type { Config } from '@/payload.types';
 import configPromise from '@/payload/payload.config';
 import { Locale } from 'next-intl';
-import { cacheTag } from 'next/cache';
+import { unstable_cache } from 'next/cache';
 import { getPayload, GlobalSlug } from 'payload';
 
 type GlobalRevalidationTag = `global__${Locale}__${GlobalSlug}`;
+type CacheConfig = {
+  tags: GlobalRevalidationTag[];
+};
 
 const getGlobal = async <T extends GlobalSlug>(
   slug: T,
@@ -16,11 +19,8 @@ const getGlobal = async <T extends GlobalSlug>(
 };
 
 const getCachedGlobal = <T extends GlobalSlug>(slug: T, locale: Locale, depth = 1) => {
-  return async () => {
-    'use cache';
-    cacheTag(`global__${locale}__${slug}`);
-    return getGlobal<T>(slug, locale, depth);
-  };
+  const cacheConfig: CacheConfig = { tags: [`global__${locale}__${slug}`] };
+  return unstable_cache(() => getGlobal<T>(slug, locale, depth), [slug, locale], cacheConfig);
 };
 
 export { getCachedGlobal, type GlobalRevalidationTag };
