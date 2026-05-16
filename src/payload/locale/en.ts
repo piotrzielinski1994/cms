@@ -159,6 +159,7 @@ const en = {
       selectVariant: 'Select variant',
       description: 'Product description',
       buyNow: 'Buy Now',
+      addToCartError: 'Could not add to cart. Try again.',
     },
     cart: {
       title: 'Cart',

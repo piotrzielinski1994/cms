@@ -12,9 +12,20 @@ const createPage = async (
     page: Page,
   ) => Omit<Record<Config['locale'], PageToCreate>, typeof defaultContentLocale>,
 ) => {
+  const parentId =
+    typeof mainLocalePage.parent === 'object'
+      ? mainLocalePage.parent?.id
+      : mainLocalePage.parent;
   const existing = await payload.find({
     collection: 'pages',
-    where: { slug: { equals: mainLocalePage.slug } },
+    where: {
+      and: [
+        { slug: { equals: mainLocalePage.slug } },
+        parentId
+          ? { parent: { equals: parentId } }
+          : { parent: { exists: false } },
+      ],
+    },
     limit: 1,
     locale: defaultContentLocale,
   });

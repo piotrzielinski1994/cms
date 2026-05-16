@@ -84,7 +84,9 @@ const findAggregatorPage = cache(async ({ aggregatorOf }: { aggregatorOf: Aggreg
 
   if (docs.length === 0) return null;
   if (docs.length > 1) {
-    throw new Error(`Multiple aggregator pages for "${aggregatorOf}" — expected at most one`);
+    payload.logger.warn(
+      `Multiple aggregator pages for "${aggregatorOf}" — expected at most one. Using first.`,
+    );
   }
   return { pathPerLocale: (docs[0].path ?? {}) as Record<Locale, string> };
 });

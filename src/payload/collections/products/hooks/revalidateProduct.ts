@@ -34,14 +34,22 @@ const revalidateProduct: CollectionAfterChangeHook<Product> = async ({
 }) => {
   if (!context.disableRevalidate && isCollectionLocale(locale)) {
     const slug = typeof doc.slug === 'string' ? doc.slug : '';
+    const previousSlug = typeof previousDoc?.slug === 'string' ? previousDoc.slug : '';
+
     if (doc._status === 'published' && slug) {
       payload.logger.info(`Revalidating product "${slug}" for locale ${locale}`);
       await revalidateProductPath(payload, locale, slug);
       rebuildTag('sitemap');
     }
 
-    const previousSlug = typeof previousDoc?.slug === 'string' ? previousDoc.slug : '';
-    if (previousDoc?._status === 'published' && doc._status !== 'published' && previousSlug) {
+    const wasUnpublished =
+      previousDoc?._status === 'published' && doc._status !== 'published' && previousSlug;
+    const slugRenamed =
+      previousDoc?._status === 'published' &&
+      doc._status === 'published' &&
+      previousSlug &&
+      previousSlug !== slug;
+    if (wasUnpublished || slugRenamed) {
       await revalidateProductPath(payload, locale, previousSlug);
       rebuildTag('sitemap');
     }

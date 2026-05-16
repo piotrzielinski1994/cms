@@ -79,7 +79,7 @@ const seedProductsPages = async (payload: Payload) => {
           title: 'Produkty',
           seo: {
             title: 'Produkty',
-            description: 'Przegladaj wszystkie produkty',
+            description: 'Przeglądaj wszystkie produkty',
           },
           sections: [{ blockType: 'products-list' }],
           parent: homePage?.id,

@@ -5,7 +5,7 @@ import { useQueryParams } from '@/utils/query-params/query-params.hooks';
 import { useCart } from '@payloadcms/plugin-ecommerce/client/react';
 import { useTranslations } from 'next-intl';
 import { fromPairs } from 'ramda';
-import { useMemo, useTransition } from 'react';
+import { useMemo, useState, useTransition } from 'react';
 import { VariantGroupsRadio } from './variant-groups-radio';
 
 type Option = { label: string; value: string };
@@ -23,6 +23,7 @@ const Purchase = ({ productId, groups, variants, valueToOptionId }: PurchaseProp
   const { addItem } = useCart();
   const t = useTranslations('frontend.product');
   const [isPending, startTransition] = useTransition();
+  const [hasError, setHasError] = useState(false);
 
   const queryParamConfig = useMemo(
     () =>
@@ -59,8 +60,13 @@ const Purchase = ({ productId, groups, variants, valueToOptionId }: PurchaseProp
 
   const onAdd = () => {
     if (!isReadyToAdd) return;
+    setHasError(false);
     startTransition(async () => {
-      await addItem({ product: productId, variant: matchingVariant?.id }, 1);
+      try {
+        await addItem({ product: productId, variant: matchingVariant?.id }, 1);
+      } catch {
+        setHasError(true);
+      }
     });
   };
 
@@ -72,6 +78,11 @@ const Purchase = ({ productId, groups, variants, valueToOptionId }: PurchaseProp
       <Button onClick={onAdd} disabled={!isReadyToAdd || isPending}>
         {isPending ? t('adding') : !isReadyToAdd ? t('selectVariant') : t('addToCart')}
       </Button>
+      {hasError && (
+        <p className="text-sm text-red-600" role="alert">
+          {t('addToCartError')}
+        </p>
+      )}
     </div>
   );
 };

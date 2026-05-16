@@ -161,6 +161,7 @@ const pl = {
       selectVariant: 'Wybierz wariant',
       description: 'Opis produktu',
       buyNow: 'Kup teraz',
+      addToCartError: 'Nie udało się dodać do koszyka. Spróbuj ponownie.',
     },
     cart: {
       title: 'Koszyk',
