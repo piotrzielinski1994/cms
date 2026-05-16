@@ -157,6 +157,8 @@ const en = {
       inStock: 'In stock',
       relatedProducts: 'Related products',
       selectVariant: 'Select variant',
+      description: 'Product description',
+      buyNow: 'Buy Now',
     },
     cart: {
       title: 'Cart',
@@ -177,6 +179,7 @@ const en = {
       placeOrder: 'Place order',
       processing: 'Processing…',
       orderConfirmed: 'Order confirmed',
+      placeholder: 'Stripe checkout — implement Stripe Elements + payment-intent flow here.',
     },
   },
   zod: {

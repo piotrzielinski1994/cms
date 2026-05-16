@@ -24,7 +24,7 @@ const ProductsCollection: CollectionOverride = ({ defaultCollection }) => ({
   ...defaultCollection,
   admin: {
     ...defaultCollection?.admin,
-    defaultColumns: ['title', 'enableVariants', '_status', 'variants.variants'],
+    defaultColumns: ['title', 'enableVariants', '_status', 'variants'],
     livePreview: {
       url: ({ data, req }) =>
         generatePreviewPath({
@@ -113,28 +113,30 @@ const ProductsCollection: CollectionOverride = ({ defaultCollection }) => ({
                     },
                   },
                   filterOptions: ({ data }) => {
-                    if (data?.enableVariants && data?.variantTypes?.length) {
-                      const variantTypeIDs = (data.variantTypes as unknown[])
-                        .map((item) => {
-                          if (typeof item === 'object' && item !== null && 'id' in item) {
-                            return (item as { id: DefaultDocumentIDType }).id;
-                          }
-                          return item as DefaultDocumentIDType;
-                        })
-                        .filter(
-                          (id): id is DefaultDocumentIDType =>
-                            typeof id === 'string' || typeof id === 'number',
-                        );
+                    if (!data?.enableVariants || !data?.variantTypes?.length) {
+                      return { variantType: { in: [] } };
+                    }
+                    const variantTypeIDs = (data.variantTypes as unknown[])
+                      .map((item): DefaultDocumentIDType | null => {
+                        if (typeof item === 'string') return item;
+                        if (
+                          typeof item === 'object' &&
+                          item !== null &&
+                          'id' in item &&
+                          typeof item.id === 'string'
+                        ) {
+                          return item.id;
+                        }
+                        return null;
+                      })
+                      .filter((id): id is DefaultDocumentIDType => id !== null);
 
-                      if (variantTypeIDs.length === 0) {
-                        return { variantType: { in: [] } };
-                      }
-
-                      const query: Where = { variantType: { in: variantTypeIDs } };
-                      return query;
+                    if (variantTypeIDs.length === 0) {
+                      return { variantType: { in: [] } };
                     }
 
-                    return { variantType: { in: [] } };
+                    const query: Where = { variantType: { in: variantTypeIDs } };
+                    return query;
                   },
                 },
               ],

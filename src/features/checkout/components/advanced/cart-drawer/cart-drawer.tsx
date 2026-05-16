@@ -3,7 +3,6 @@
 import { Button, ButtonLink } from '@/components/basic/button/button';
 import { Image } from '@/components/basic/image/image';
 import { usePathname } from '@/config/next.routing.config';
-import { Product, Variant, VariantOption } from '@/payload.types';
 import { useEcommerceLinks } from '@/store/ecommerce-links';
 import { cn } from '@/utils/tailwind';
 import { useCart } from '@payloadcms/plugin-ecommerce/client/react';
@@ -91,18 +90,18 @@ const CartDrawer = () => {
                   {cart.items.map((item, i) => {
                     const product = item.product;
                     const variant = item.variant;
-                    const isProductPopulated = typeof product === 'object' && product !== null;
-                    const productTyped = isProductPopulated ? (product as Product) : null;
+                    const productTyped =
+                      typeof product === 'object' && product !== null ? product : null;
                     const title = productTyped?.title ?? `[deleted product ${product ?? ''}]`;
                     const firstImage =
                       typeof productTyped?.gallery?.[0]?.image === 'object'
                         ? productTyped?.gallery?.[0]?.image
                         : null;
 
-                    const isVariantPopulated = typeof variant === 'object' && variant !== null;
-                    const variantTyped = isVariantPopulated ? (variant as Variant) : null;
+                    const variantTyped =
+                      typeof variant === 'object' && variant !== null ? variant : null;
                     const variantLabel = variantTyped?.options
-                      ?.map((opt) => (typeof opt === 'object' ? (opt as VariantOption).label : null))
+                      ?.map((opt) => (typeof opt === 'object' ? opt.label : null))
                       .filter((it): it is string => Boolean(it))
                       .join(' / ');
                     const price = variantTyped?.priceInUSD ?? productTyped?.priceInUSD;

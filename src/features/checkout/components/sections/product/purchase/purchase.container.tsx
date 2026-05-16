@@ -65,17 +65,10 @@ const PurchaseContainer = async ({ product }: PurchaseContainerProps) => {
     })),
   }));
 
-  const optionIdByValue = new Map<string, string>();
-  optionsResult.docs.forEach((opt) => {
-    const typeName =
-      typeof opt.variantType === 'object' ? opt.variantType.name : undefined;
-    if (typeName) optionIdByValue.set(`${typeName}:${opt.value}`, opt.id);
-  });
-
   const variantsForClient = variants.map((v) => ({
     id: v.id,
     optionIds: (v.options ?? [])
-      .map((opt) => (isVariantOption(opt) ? opt.id : (opt as string)))
+      .map((opt) => (isVariantOption(opt) ? opt.id : opt))
       .filter((id): id is string => typeof id === 'string'),
   }));
 

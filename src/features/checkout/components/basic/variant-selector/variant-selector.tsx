@@ -60,7 +60,7 @@ const VariantSelector = async ({ product }: VariantSelectorProps) => {
   const variantsForClient = variants.map((v) => ({
     id: v.id,
     optionIds: (v.options ?? [])
-      .map((opt) => (isVariantOption(opt) ? opt.id : (opt as string)))
+      .map((opt) => (isVariantOption(opt) ? opt.id : opt))
       .filter((id): id is string => typeof id === 'string'),
   }));
 

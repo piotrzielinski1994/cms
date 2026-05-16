@@ -159,6 +159,8 @@ const pl = {
       inStock: 'Dostępny',
       relatedProducts: 'Powiązane produkty',
       selectVariant: 'Wybierz wariant',
+      description: 'Opis produktu',
+      buyNow: 'Kup teraz',
     },
     cart: {
       title: 'Koszyk',
@@ -179,6 +181,7 @@ const pl = {
       placeOrder: 'Złóż zamówienie',
       processing: 'Przetwarzanie…',
       orderConfirmed: 'Zamówienie potwierdzone',
+      placeholder: 'Stripe checkout — zaimplementuj Stripe Elements + payment-intent.',
     },
   },
   zod: {

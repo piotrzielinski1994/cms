@@ -8,9 +8,7 @@ const CheckoutContainer = async () => {
     <Section>
       <Container>
         <h1 className="text-3xl font-semibold">{t('title')}</h1>
-        <p className="mt-4 text-foreground/70">
-          Stripe checkout — implement Stripe Elements + payment-intent flow here.
-        </p>
+        <p className="mt-4 text-foreground/70">{t('placeholder')}</p>
       </Container>
     </Section>
   );

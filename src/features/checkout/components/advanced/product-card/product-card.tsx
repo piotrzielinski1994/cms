@@ -7,6 +7,7 @@ import { placeholderDarkWebp, placeholderWebp } from '@/placeholders';
 import { useThemeStore } from '@/store/theme';
 import { HtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
+import { useTranslations } from 'next-intl';
 
 type ProductCardProps = HtmlProps<'div'> & {
   layout?: 'grid' | 'list';
@@ -22,6 +23,7 @@ const formatPrice = (priceInUSD?: number | null) => {
 };
 
 const ProductCard = ({ product, href, layout = 'grid', className, ...props }: ProductCardProps) => {
+  const t = useTranslations('frontend.product');
   const { themeConfig } = useThemeStore();
   const prefersDark = themeConfig.colorPreference === 'dark';
   const placeholder = prefersDark ? placeholderDarkWebp : placeholderWebp;
@@ -51,7 +53,7 @@ const ProductCard = ({ product, href, layout = 'grid', className, ...props }: Pr
           <h2>{product.title}</h2>
           <span>{formatPrice(product.priceInUSD)}</span>
         </div>
-        <ButtonLink href={href}>Buy Now</ButtonLink>
+        <ButtonLink href={href}>{t('buyNow')}</ButtonLink>
       </div>
     </div>
   );

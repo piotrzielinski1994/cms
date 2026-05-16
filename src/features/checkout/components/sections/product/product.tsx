@@ -5,6 +5,7 @@ import { ProductPrice } from '@/features/checkout/components/basic/product-price
 import { Product as ProductType } from '@/payload/payload.types';
 import { cn } from '@/utils/tailwind';
 import { RichText } from '@payloadcms/richtext-lexical/react';
+import { getTranslations } from 'next-intl/server';
 import { PurchaseContainer } from './purchase/purchase.container';
 import { ThemedGallery } from './themed-gallery';
 
@@ -19,7 +20,8 @@ const formatPrice = (priceInUSD?: number | null) => {
   );
 };
 
-const Product = ({ product }: ProductProps) => {
+const Product = async ({ product }: ProductProps) => {
+  const t = await getTranslations('frontend.product');
   const galleryImages =
     product.gallery
       ?.map((entry) => {
@@ -62,7 +64,7 @@ const Product = ({ product }: ProductProps) => {
             activeItemIndex={0}
             items={[
               {
-                heading: 'Product description',
+                heading: t('description'),
                 content: <RichText data={product.description} />,
               },
             ]}
