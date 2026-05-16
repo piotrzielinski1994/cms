@@ -113,7 +113,6 @@
     "tsx": "^4.22.0",
     "tw-colors": "^3.3.2",
     "typescript": "5.9.3",
-    "vite-tsconfig-paths": "^6.1.1",
     "vitest": "^4.1.6",
     "vitest-axe": "^0.1.0"
   },
