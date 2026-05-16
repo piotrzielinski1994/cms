@@ -15,14 +15,19 @@ type ProvidersProps = PropsWithChildren &
 
 const Providers = (props: ProvidersProps) => {
   return typedPipe(
-    (children) => <LocaleProvider locale={props.locale} children={children} />,
-    (children) => <FontScaleProvider scale={props.scale} children={children} />,
-    (children) => <CookiesConsentProvider isAllowed={props.isAllowed} children={children} />,
-    (children) => {
-      const themeProps = { theme: props.theme, colorPreference: props.colorPreference, children };
-      return <ThemeProvider {...themeProps} />;
-    },
-    (children) => <EcommerceLinksProvider links={props.links} children={children} />,
+    (children) => <LocaleProvider locale={props.locale}>{children}</LocaleProvider>,
+    (children) => <FontScaleProvider scale={props.scale}>{children}</FontScaleProvider>,
+    (children) => (
+      <CookiesConsentProvider isAllowed={props.isAllowed}>{children}</CookiesConsentProvider>
+    ),
+    (children) => (
+      <ThemeProvider theme={props.theme} colorPreference={props.colorPreference}>
+        {children}
+      </ThemeProvider>
+    ),
+    (children) => (
+      <EcommerceLinksProvider links={props.links}>{children}</EcommerceLinksProvider>
+    ),
     (children) => <EcommerceProvider>{children}</EcommerceProvider>,
   )(props.children);
 };

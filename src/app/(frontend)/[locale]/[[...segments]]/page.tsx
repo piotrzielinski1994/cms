@@ -46,10 +46,11 @@ const generateStaticParams = async () => {
 
   const { docs: products } = await getProducts({ locale: 'all' });
   const productParams = products.flatMap((doc) => {
-    if (typeof doc.slug !== 'string') return [];
+    const slug = doc.slug;
+    if (typeof slug !== 'string') return [];
     return toPairs(aggregator.pathPerLocale).map(([locale, aggregatorPath]) => ({
       locale,
-      segments: [...aggregatorPath.split('/').filter(Boolean), doc.slug as string],
+      segments: [...aggregatorPath.split('/').filter(Boolean), slug],
     }));
   });
 

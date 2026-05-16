@@ -3,14 +3,14 @@ import { ImageBlock1Container } from '@/payload/blocks/advanced/image-block/imag
 import { imageBlock1BlockPayloadConfig } from '@/payload/blocks/advanced/image-block/image-block.payload';
 import { FaqContainer } from '@/payload/blocks/sections/faq/faq.container';
 import { faqSectionPayloadConfig } from '@/payload/blocks/sections/faq/faq.payload';
+import { CheckoutContainer } from '@/payload/blocks/sections/checkout/checkout.container';
+import { checkoutSectionPayloadConfig } from '@/payload/blocks/sections/checkout/checkout.payload';
 import { ContactUsContainer } from '@/payload/blocks/sections/form/contact-us/contact-us.container';
 import { contactUsSectionPayloadConfig } from '@/payload/blocks/sections/form/contact-us/contact-us.payload';
 import { Hero1Container } from '@/payload/blocks/sections/hero/hero-1/hero-1.container';
 import { hero1SectionPayloadConfig } from '@/payload/blocks/sections/hero/hero-1/hero-1.payload';
 import { ImageBlocksContainer } from '@/payload/blocks/sections/image-blocks/image-blocks.container';
 import { imageBlocksSectionPayloadConfig } from '@/payload/blocks/sections/image-blocks/image-blocks.payload';
-import { CheckoutContainer } from '@/payload/blocks/sections/checkout/checkout.container';
-import { checkoutSectionPayloadConfig } from '@/payload/blocks/sections/checkout/checkout.payload';
 import { ProductsListContainer } from '@/payload/blocks/sections/products-list/products-list.container';
 import { productsListSectionPayloadConfig } from '@/payload/blocks/sections/products-list/products-list.payload';
 
