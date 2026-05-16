@@ -9,6 +9,10 @@ import { Hero1Container } from '@/payload/blocks/sections/hero/hero-1/hero-1.con
 import { hero1SectionPayloadConfig } from '@/payload/blocks/sections/hero/hero-1/hero-1.payload';
 import { ImageBlocksContainer } from '@/payload/blocks/sections/image-blocks/image-blocks.container';
 import { imageBlocksSectionPayloadConfig } from '@/payload/blocks/sections/image-blocks/image-blocks.payload';
+import { CheckoutContainer } from '@/payload/blocks/sections/checkout/checkout.container';
+import { checkoutSectionPayloadConfig } from '@/payload/blocks/sections/checkout/checkout.payload';
+import { ProductsListContainer } from '@/payload/blocks/sections/products-list/products-list.container';
+import { productsListSectionPayloadConfig } from '@/payload/blocks/sections/products-list/products-list.payload';
 
 type RenderBlocksProps = {
   blocks: Page['sections'];
@@ -20,6 +24,8 @@ const blockComponents = {
   [imageBlock1BlockPayloadConfig.slug]: ImageBlock1Container,
   [contactUsSectionPayloadConfig.slug]: ContactUsContainer,
   [faqSectionPayloadConfig.slug]: FaqContainer,
+  [productsListSectionPayloadConfig.slug]: ProductsListContainer,
+  [checkoutSectionPayloadConfig.slug]: CheckoutContainer,
 };
 
 const RenderBlocks = ({ blocks }: RenderBlocksProps) => {

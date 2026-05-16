@@ -23,7 +23,15 @@ const users: RequiredDataFromCollectionSlug<'users'>[] = [
 
 const seedUsers = async (payload: Payload) => {
   return Promise.all(
-    users.map((it) => payload.create({ collection: 'users', depth: 0, data: it })),
+    users.map(async (it) => {
+      const existing = await payload.find({
+        collection: 'users',
+        where: { email: { equals: it.email } },
+        limit: 1,
+      });
+      if (existing.docs.length > 0) return existing.docs[0];
+      return payload.create({ collection: 'users', depth: 0, data: it });
+    }),
   );
 };
 

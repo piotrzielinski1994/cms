@@ -1,4 +1,6 @@
+import { EcommerceProvider } from '@/providers/ecommerce';
 import { CookiesConsentProvider } from '@/store/cookies-consent';
+import { EcommerceLinksProvider } from '@/store/ecommerce-links';
 import { FontScaleProvider } from '@/store/font-scale';
 import { LocaleProvider } from '@/store/locale';
 import { ThemeProvider } from '@/store/theme';
@@ -8,7 +10,8 @@ type ProvidersProps = PropsWithChildren &
   ComponentProps<typeof LocaleProvider> &
   ComponentProps<typeof ThemeProvider> &
   ComponentProps<typeof FontScaleProvider> &
-  ComponentProps<typeof CookiesConsentProvider>;
+  ComponentProps<typeof CookiesConsentProvider> &
+  ComponentProps<typeof EcommerceLinksProvider>;
 
 const Providers = (props: ProvidersProps) => {
   return typedPipe(
@@ -19,6 +22,8 @@ const Providers = (props: ProvidersProps) => {
       const themeProps = { theme: props.theme, colorPreference: props.colorPreference, children };
       return <ThemeProvider {...themeProps} />;
     },
+    (children) => <EcommerceLinksProvider links={props.links} children={children} />,
+    (children) => <EcommerceProvider>{children}</EcommerceProvider>,
   )(props.children);
 };
 

@@ -1,3 +1,5 @@
+'use client';
+
 import { Image } from '@/components/basic/image/image';
 import { cn } from '@/utils/tailwind';
 import { useEffect, useId, useRef, useState } from 'react';

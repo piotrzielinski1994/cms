@@ -1,4 +1,5 @@
 import { cloud } from './cloud';
+import { ecommerce } from './ecommerce';
 import { formBuilder } from './form-builder';
 import { nestedDocs } from './nested-docs';
 import { redirects } from './redirects';
@@ -12,6 +13,7 @@ const plugins = {
   seo,
   formBuilder,
   vercelStorage,
+  ecommerce,
 };
 
 export { plugins };

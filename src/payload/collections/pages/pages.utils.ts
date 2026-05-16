@@ -4,6 +4,8 @@ import { draftMode } from 'next/headers';
 import { getPayload } from 'payload';
 import { cache } from 'react';
 
+type AggregatorOf = 'products' | 'checkout';
+
 const getPages = async () => {
   const payload = await getPayload({ config: payloadConfig });
   return payload.find({
@@ -63,4 +65,28 @@ const queryPage = cache(async ({ path, locale }: { path: string; locale: Locale 
   return { page, pathPerLocale };
 });
 
-export { getPages, queryPage };
+const findAggregatorPage = cache(async ({ aggregatorOf }: { aggregatorOf: AggregatorOf }) => {
+  const payload = await getPayload({ config: payloadConfig });
+  const { docs } = await payload.find({
+    collection: 'pages',
+    locale: 'all',
+    draft: false,
+    overrideAccess: false,
+    pagination: false,
+    select: {
+      path: true,
+      aggregatorOf: true,
+    },
+    where: {
+      aggregatorOf: { equals: aggregatorOf },
+    },
+  });
+
+  if (docs.length === 0) return null;
+  if (docs.length > 1) {
+    throw new Error(`Multiple aggregator pages for "${aggregatorOf}" — expected at most one`);
+  }
+  return { pathPerLocale: (docs[0].path ?? {}) as Record<Locale, string> };
+});
+
+export { findAggregatorPage, getPages, queryPage };

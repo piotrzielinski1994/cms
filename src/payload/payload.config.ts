@@ -14,6 +14,8 @@ import { footer } from '@/payload/globals/footer/footer';
 import { header } from '@/payload/globals/header/header';
 import { plugins } from '@/payload/plugins';
 import { mongooseAdapter } from '@payloadcms/db-mongodb';
+import { nodemailerAdapter } from '@payloadcms/email-nodemailer';
+import nodemailer from 'nodemailer';
 import path from 'path';
 import { buildConfig } from 'payload';
 import { values } from 'ramda';
@@ -38,6 +40,11 @@ const payloadConfig = buildConfig({
       afterNavLinks: [
         {
           path: '@/payload/components/docs-link#DocsLink',
+        },
+      ],
+      beforeDashboard: [
+        {
+          path: '@/payload/components/seed-button#SeedButton',
         },
       ],
     },
@@ -72,6 +79,11 @@ const payloadConfig = buildConfig({
   editor: defaultLexical,
   db: mongooseAdapter({
     url: serverEnv.dbUri,
+  }),
+  email: nodemailerAdapter({
+    defaultFromAddress: 'noreply@cms.local',
+    defaultFromName: 'CMS',
+    transport: nodemailer.createTransport({ jsonTransport: true }),
   }),
   collections: values(collections),
   cors: [clientEnv.publicUrl],

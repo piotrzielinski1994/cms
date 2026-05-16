@@ -3,10 +3,12 @@ import { clientEnv } from '@/config/env.client.config';
 import { FontScaleConstants } from '@/config/store/font-scales.config';
 import { isLocale, LocalesConstants } from '@/config/store/locales.config';
 import { getThemeConfig, ThemeConstants } from '@/config/store/themes.config';
+import { CartDrawer } from '@/features/checkout/components/advanced/cart-drawer/cart-drawer';
 import { AdminBar } from '@/payload/_old/components/AdminBar';
 import { CookiesBannerContainer } from '@/payload/blocks/advanced/cookies-banner/cookies-banner.container';
 import { FooterContainer } from '@/payload/blocks/layout/footer.container';
 import { HeaderContainer } from '@/payload/blocks/layout/header.container';
+import { findAggregatorPage } from '@/payload/collections/pages/pages.utils';
 import { Providers } from '@/providers';
 import { getPreferences } from '@/utils/nextjs/headers';
 import { toPageMetadata } from '@/utils/nextjs/metadata';
@@ -35,12 +37,18 @@ const Layout = async ({ children, params }: LayoutProps<'/[locale]'>) => {
     [ThemeConstants.COLOR_PREFERENCE_DOM_KEY]: themeColorPreference,
     style: { colorScheme: themeColorPreference },
   };
+  const checkoutAggregator = await findAggregatorPage({ aggregatorOf: 'checkout' });
+  const checkoutHref = checkoutAggregator?.pathPerLocale[locale]
+    ? `/${locale}${checkoutAggregator.pathPerLocale[locale]}`
+    : null;
+
   const providersProps: Omit<ComponentProps<typeof Providers>, 'children'> = {
     locale,
     theme,
     colorPreference,
     scale,
     isAllowed: cookiesConsent,
+    links: { checkoutHref },
   };
 
   const renderGtm = () => {
@@ -59,6 +67,7 @@ const Layout = async ({ children, params }: LayoutProps<'/[locale]'>) => {
           <SkipLinkContainer />
           <AdminBar adminBarProps={{ preview: isEnabled }} />
           <HeaderContainer locale={locale} />
+          <CartDrawer />
           <main
             className={cn('flex-grow my-20 grid content-start gap-20', 'outline-none')}
             id="main"

@@ -96,12 +96,17 @@ const en = {
       singular: 'Redirect',
       plural: 'Redirects',
     },
+    products: {
+      singular: 'Product',
+      plural: 'Products',
+    },
   },
   enums: {
     role: {
       user: 'User',
       editor: 'Editor',
       admin: 'Admin',
+      customer: 'Customer',
     },
   },
   components: {
@@ -138,6 +143,40 @@ const en = {
           label: 'Message',
         },
       },
+    },
+    shop: {
+      title: 'Shop',
+      filterByCategory: 'Filter by category',
+      empty: 'No products found',
+    },
+    product: {
+      addToCart: 'Add to cart',
+      adding: 'Adding…',
+      added: 'Added to cart',
+      outOfStock: 'Out of stock',
+      inStock: 'In stock',
+      relatedProducts: 'Related products',
+      selectVariant: 'Select variant',
+    },
+    cart: {
+      title: 'Cart',
+      empty: 'Your cart is empty',
+      open: 'Open cart',
+      close: 'Close cart',
+      remove: 'Remove',
+      quantity: 'Quantity',
+      subtotal: 'Subtotal',
+      checkout: 'Checkout',
+      total: 'Total',
+    },
+    checkout: {
+      title: 'Checkout',
+      shippingAddress: 'Shipping address',
+      billingAddress: 'Billing address',
+      paymentMethod: 'Payment method',
+      placeOrder: 'Place order',
+      processing: 'Processing…',
+      orderConfirmed: 'Order confirmed',
     },
   },
   zod: {

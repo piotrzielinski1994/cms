@@ -6,6 +6,8 @@ import { faqSectionPayloadConfig } from '@/payload/blocks/sections/faq/faq.paylo
 import { contactUsSectionPayloadConfig } from '@/payload/blocks/sections/form/contact-us/contact-us.payload';
 import { hero1SectionPayloadConfig } from '@/payload/blocks/sections/hero/hero-1/hero-1.payload';
 import { imageBlocksSectionPayloadConfig } from '@/payload/blocks/sections/image-blocks/image-blocks.payload';
+import { checkoutSectionPayloadConfig } from '@/payload/blocks/sections/checkout/checkout.payload';
+import { productsListSectionPayloadConfig } from '@/payload/blocks/sections/products-list/products-list.payload';
 import { createSlugField } from '@/payload/fields/slug/slug';
 import { populatePublishedAt } from '@/payload/hooks/populatePublishedAt';
 import { authenticated, authenticatedOrPublished } from '@/payload/utils/access';
@@ -89,6 +91,8 @@ const Pages: CollectionConfig<'pages'> = {
                 imageBlock1BlockPayloadConfig,
                 contactUsSectionPayloadConfig,
                 faqSectionPayloadConfig,
+                productsListSectionPayloadConfig,
+                checkoutSectionPayloadConfig,
               ],
               required: true,
               admin: {
@@ -195,6 +199,17 @@ const Pages: CollectionConfig<'pages'> = {
         hidden: true,
         position: 'sidebar',
       },
+    },
+    {
+      name: 'aggregatorOf',
+      type: 'select',
+      admin: {
+        position: 'sidebar',
+      },
+      options: [
+        { label: 'Products', value: 'products' },
+        { label: 'Checkout', value: 'checkout' },
+      ],
     },
     createParentField('pages', {
       label: ({ t }: { t: AdminTranslations }) => t('fields:parent'),

@@ -12,6 +12,14 @@ const createPage = async (
     page: Page,
   ) => Omit<Record<Config['locale'], PageToCreate>, typeof defaultContentLocale>,
 ) => {
+  const existing = await payload.find({
+    collection: 'pages',
+    where: { slug: { equals: mainLocalePage.slug } },
+    limit: 1,
+    locale: defaultContentLocale,
+  });
+  if (existing.docs.length > 0) return existing.docs[0];
+
   const page = await payload.create({
     collection: 'pages',
     locale: defaultContentLocale,

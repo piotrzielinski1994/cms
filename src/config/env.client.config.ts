@@ -13,6 +13,7 @@ const envSchema = z.object({
     .string()
     .regex(/^GTM-[A-Z0-9]+$/)
     .optional(),
+  NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: z.string().optional(),
 });
 
 const parsedEnv = envSchema.parse({
@@ -23,6 +24,7 @@ const parsedEnv = envSchema.parse({
   NEXT_PUBLIC_STORYBOOK_URL: process.env.NEXT_PUBLIC_STORYBOOK_URL,
   NEXT_PUBLIC_SENTRY_DSN: process.env.NEXT_PUBLIC_SENTRY_DSN || undefined,
   NEXT_PUBLIC_GTM_ID: process.env.NEXT_PUBLIC_GTM_ID || undefined,
+  NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || undefined,
 });
 
 const clientEnv = {
@@ -31,6 +33,9 @@ const clientEnv = {
   storybookUrl: parsedEnv.NEXT_PUBLIC_STORYBOOK_URL,
   sentryDsn: parsedEnv.NEXT_PUBLIC_SENTRY_DSN,
   gtmId: parsedEnv.NEXT_PUBLIC_GTM_ID,
+  stripe: {
+    publishableKey: parsedEnv.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,
+  },
   internal: {
     nodeEnv: parsedEnv.NODE_ENV,
     nextRuntime: parsedEnv.NEXT_RUNTIME,

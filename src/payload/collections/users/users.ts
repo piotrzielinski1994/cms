@@ -57,6 +57,10 @@ const Users: CollectionConfig = {
           label: ({ t }: { t: AdminTranslations }) => t('enums:role:admin'),
           value: 'admin',
         },
+        {
+          label: ({ t }: { t: AdminTranslations }) => t('enums:role:customer'),
+          value: 'customer',
+        },
       ],
     },
   ],

@@ -98,12 +98,17 @@ const pl = {
       singular: 'Przekierowanie',
       plural: 'Przekierowania',
     },
+    products: {
+      singular: 'Produkt',
+      plural: 'Produkty',
+    },
   },
   enums: {
     role: {
       user: 'Użytkownik',
       editor: 'Edytor',
       admin: 'Administrator',
+      customer: 'Klient',
     },
   },
   components: {
@@ -140,6 +145,40 @@ const pl = {
           label: 'Wiadomość',
         },
       },
+    },
+    shop: {
+      title: 'Sklep',
+      filterByCategory: 'Filtruj po kategorii',
+      empty: 'Brak produktów',
+    },
+    product: {
+      addToCart: 'Dodaj do koszyka',
+      adding: 'Dodawanie…',
+      added: 'Dodano do koszyka',
+      outOfStock: 'Niedostępny',
+      inStock: 'Dostępny',
+      relatedProducts: 'Powiązane produkty',
+      selectVariant: 'Wybierz wariant',
+    },
+    cart: {
+      title: 'Koszyk',
+      empty: 'Koszyk jest pusty',
+      open: 'Otwórz koszyk',
+      close: 'Zamknij koszyk',
+      remove: 'Usuń',
+      quantity: 'Ilość',
+      subtotal: 'Suma częściowa',
+      checkout: 'Do kasy',
+      total: 'Razem',
+    },
+    checkout: {
+      title: 'Kasa',
+      shippingAddress: 'Adres dostawy',
+      billingAddress: 'Adres rozliczeniowy',
+      paymentMethod: 'Metoda płatności',
+      placeOrder: 'Złóż zamówienie',
+      processing: 'Przetwarzanie…',
+      orderConfirmed: 'Zamówienie potwierdzone',
     },
   },
   zod: {
