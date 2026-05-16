@@ -29,6 +29,7 @@ const withSentry = (config: NextConfig) => {
 const nextConfig = {
   reactStrictMode: true,
   reactCompiler: true,
+  cacheComponents: true,
   images: {
     remotePatterns: [clientEnv.publicUrl].map((item) => {
       const url = new URL(item);
