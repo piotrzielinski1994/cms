@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
     "esModuleInterop": true,
     "target": "ES2024",
     "lib": ["DOM", "DOM.Iterable", "ES2024"],

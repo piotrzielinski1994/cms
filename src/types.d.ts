@@ -1,3 +1,4 @@
+declare module '@payloadcms/next/css';
 declare module 'responsive-loader/sharp.js';
 declare module '*!rl' {
   interface ResponsiveImageOutput {

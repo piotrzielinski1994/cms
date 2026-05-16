@@ -1,7 +1,8 @@
 import { defaultContentLocale } from '@/config/store/locales.config';
 import { Config } from '@/payload.types';
-import { Options } from 'node_modules/payload/dist/globals/operations/local/update';
 import { DataFromGlobalSlug, GlobalSlug, Payload, SelectType } from 'payload';
+// @ts-expect-error -- payload does not re-export this type
+import type { Options } from 'payload/dist/globals/operations/local/update.js';
 import { toPairs } from 'ramda';
 
 const createGlobal = async <T extends GlobalSlug>(
