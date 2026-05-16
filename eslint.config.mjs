@@ -1,6 +1,9 @@
+import nextCoreWebVitals from 'eslint-config-next/core-web-vitals';
+import nextTypescript from 'eslint-config-next/typescript';
+
 const eslintConfig = [
-  ...compat.extends('next/core-web-vitals'),
-  ...compat.extends('next/typescript'),
+  ...nextCoreWebVitals,
+  ...nextTypescript,
   {
     rules: {
       'import/no-anonymous-default-export': 'off',
@@ -24,6 +27,9 @@ const eslintConfig = [
         },
       ],
     },
+  },
+  {
+    ignores: ['.next/', '.storybook/', 'src/payload/payload.types.ts'],
   },
 ];
 

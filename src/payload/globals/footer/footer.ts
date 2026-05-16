@@ -39,7 +39,7 @@ const footer = {
       ({ doc, req: { payload, context, locale } }) => {
         if (!context.disableRevalidate && isCollectionLocale(locale)) {
           payload.logger.info(`Revalidating footer`);
-          revalidateTag(`global__${locale}__footer`);
+          revalidateTag(`global__${locale}__footer`, 'max');
         }
 
         return doc;

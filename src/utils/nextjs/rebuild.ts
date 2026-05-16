@@ -3,7 +3,7 @@ import { Locale } from 'next-intl';
 import { revalidatePath, revalidateTag } from 'next/cache';
 
 const rebuildTag = (tag: GlobalRevalidationTag | 'sitemap' | 'redirects'): void => {
-  return revalidateTag(tag);
+  return revalidateTag(tag, 'max');
 };
 
 const rebuildPath = (path: `/${Locale}${string}`): void => {

@@ -28,9 +28,7 @@ const withSentry = (config: NextConfig) => {
 
 const nextConfig = {
   reactStrictMode: true,
-  experimental: {
-    reactCompiler: true,
-  },
+  reactCompiler: true,
   images: {
     remotePatterns: [clientEnv.publicUrl].map((item) => {
       const url = new URL(item);
@@ -39,6 +37,14 @@ const nextConfig = {
         protocol: z.enum(['http', 'https']).parse(url.protocol.replace(':', '')),
       };
     }),
+  },
+  turbopack: {
+    rules: {
+      '*.svg': {
+        loaders: [{ loader: '@svgr/webpack', options: { svgo: false } }],
+        as: '*.js',
+      },
+    },
   },
   webpack: (config) => {
     config.module.rules.push({
