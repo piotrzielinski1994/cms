@@ -1,6 +1,7 @@
 'use client';
 
 import { Link } from '@/config/next.routing.config';
+import { CartDrawer } from '@/features/checkout/components/advanced/cart-drawer/cart-drawer';
 
 type HeaderNavProps = {
   items: Array<{
@@ -23,6 +24,9 @@ const HeaderNav = ({ items }: HeaderNavProps) => {
             </li>
           );
         })}
+        <li className="contents">
+          <CartDrawer />
+        </li>
       </ul>
     </nav>
   );

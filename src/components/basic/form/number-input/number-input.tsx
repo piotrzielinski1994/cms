@@ -9,8 +9,9 @@ import {
   createContext,
   forwardRef,
   ReactNode,
-  RefObject,
+  useCallback,
   useContext,
+  useEffect,
   useMemo,
   useRef,
   useState,
@@ -47,9 +48,16 @@ const styles = {
   buttons: 'absolute inset-y-0 right-1 flex flex-col justify-center',
 } as const;
 
-type InputRef = HTMLInputElement & { changeValue: (delta: number) => void };
+type InputApi = { changeValue: (delta: number) => void };
+type InputContextValue = {
+  register: (api: InputApi) => () => void;
+  callChangeValue: (delta: number) => void;
+};
 
-const InputContext = createContext<RefObject<InputRef | undefined>>({ current: undefined });
+const InputContext = createContext<InputContextValue>({
+  register: () => () => undefined,
+  callChangeValue: () => undefined,
+});
 
 const Component = forwardRef<HTMLInputElement, NumberInputProps>((props, ref) => {
   const { label, error, t, className, ...rest } = props;
@@ -69,9 +77,19 @@ const Component = forwardRef<HTMLInputElement, NumberInputProps>((props, ref) =>
 });
 
 const Root = (props: ComponentProps<typeof Form.Root>) => {
-  const inputContext = useRef<InputRef>(undefined);
+  const apiRef = useRef<InputApi | undefined>(undefined);
+  const register = useCallback((api: InputApi) => {
+    apiRef.current = api;
+    return () => {
+      apiRef.current = undefined;
+    };
+  }, []);
+  const callChangeValue = useCallback((delta: number) => {
+    apiRef.current?.changeValue(delta);
+  }, []);
+  const value = useMemo(() => ({ register, callChangeValue }), [register, callChangeValue]);
   return (
-    <InputContext.Provider value={inputContext}>
+    <InputContext.Provider value={value}>
       <Form.Root {...props} />
     </InputContext.Provider>
   );
@@ -89,7 +107,7 @@ const Native = forwardRef<HTMLInputElement, NativeProps>((props, ref) => {
   });
 
   const [rawValue, setRawValue] = useState(props.value?.toString() ?? '');
-  const inputContext = useContext(InputContext);
+  const { register } = useContext(InputContext);
 
   const changeValue = (delta: number) => {
     const raw = rawValue.replace(',', '.') || '0';
@@ -112,16 +130,13 @@ const Native = forwardRef<HTMLInputElement, NativeProps>((props, ref) => {
     rest.onChange?.(event);
   };
 
-  const setRef = (element: HTMLInputElement | null) => {
-    if (typeof ref === 'function') ref(element);
-    else if (ref) ref.current = element;
-    const enhancedElement = element ? Object.assign(element, { changeValue }) : undefined;
-    inputContext.current = enhancedElement;
-  };
+  useEffect(() => {
+    return register({ changeValue });
+  });
 
   return (
     <input
-      ref={setRef}
+      ref={ref}
       inputMode={!!maxDecimalLength ? 'decimal' : 'numeric'}
       role="spinbutton"
       autoComplete="off"
@@ -149,7 +164,7 @@ const Native = forwardRef<HTMLInputElement, NativeProps>((props, ref) => {
 
 const Button = (props: HtmlProps<'button'> & { mode: 'increment' | 'decrement' }) => {
   const { mode, children, ...rest } = props;
-  const inputContext = useContext(InputContext);
+  const { callChangeValue } = useContext(InputContext);
   const renderZone = useMemo(() => {
     if (children) return children;
     return mode === 'increment' ? <ChevronUp size="1rem" /> : <ChevronDown size="1rem" />;
@@ -161,7 +176,7 @@ const Button = (props: HtmlProps<'button'> & { mode: 'increment' | 'decrement' }
       tabIndex={-1} // Use up/down arrows instead of focusing buttons
       {...rest}
       onClick={(e) => {
-        inputContext.current?.changeValue(mode === 'increment' ? 1 : -1);
+        callChangeValue(mode === 'increment' ? 1 : -1);
         rest.onClick?.(e);
       }}
     >

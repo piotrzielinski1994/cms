@@ -19,14 +19,20 @@ const formatPrice = (priceInUSD?: number | null) => {
 
 const CartDrawer = () => {
   const { cart, removeItem } = useCart();
-  const [isOpen, setIsOpen] = useState(false);
   const t = useTranslations('frontend.cart');
   const pathname = usePathname();
+  const [openState, setOpenState] = useState<{ isOpen: boolean; pathname: string }>({
+    isOpen: false,
+    pathname,
+  });
   const { checkoutHref } = useEcommerceLinks();
 
-  useEffect(() => {
-    setIsOpen(false);
-  }, [pathname]);
+  if (openState.pathname !== pathname) {
+    setOpenState({ isOpen: false, pathname });
+  }
+
+  const isOpen = openState.isOpen;
+  const setIsOpen = (value: boolean) => setOpenState({ isOpen: value, pathname });
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : '';

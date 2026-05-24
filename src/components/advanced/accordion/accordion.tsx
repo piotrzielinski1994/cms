@@ -38,20 +38,22 @@ const styles = {
   content: 'px-4 pb-4 sm:px-6',
 } as const;
 
+type ContentRefsArray = HTMLDivElement[];
+
 const AccordionContext = createContext<{
   state: { activeIndex?: number };
   actions: { setActiveIndex: (index?: number) => void };
-  meta: { id: string; contentRefs: HTMLDivElement[] };
+  meta: { id: string; contentRefsRef: { current: ContentRefsArray } };
 } | null>(null);
 
 const Provider = (props: PropsWithChildren & { activeItemIndex?: number }) => {
   const { children, activeItemIndex } = props;
   const id = useId();
   const [activeIndex, setActiveIndex] = useState(activeItemIndex);
-  const contentRefs = useRef<HTMLDivElement[]>([]);
+  const contentRefsRef = useRef<ContentRefsArray>([]);
 
   useLayoutEffect(() => {
-    contentRefs.current.forEach((content, index) => {
+    contentRefsRef.current.forEach((content, index) => {
       if (!content) return;
       content.style.maxHeight = activeIndex === index ? content.scrollHeight + 'px' : '0';
     });
@@ -61,7 +63,7 @@ const Provider = (props: PropsWithChildren & { activeItemIndex?: number }) => {
     () => ({
       state: { activeIndex },
       actions: { setActiveIndex },
-      meta: { id, contentRefs: contentRefs.current },
+      meta: { id, contentRefsRef },
     }),
     [id, activeIndex],
   );
@@ -115,7 +117,7 @@ const ItemHeader = ({ index, className, children }: HtmlProps<'label'> & { index
 const Content = ({ index, className, children }: HtmlProps<'div'> & { index: number }) => {
   const {
     state: { activeIndex },
-    meta: { id, contentRefs },
+    meta: { id, contentRefsRef },
   } = useAccordion();
 
   const isActive = activeIndex === index;
@@ -124,10 +126,9 @@ const Content = ({ index, className, children }: HtmlProps<'div'> & { index: num
     <div
       ref={(el) => {
         if (!el) return;
-        contentRefs[index] = el;
+        contentRefsRef.current[index] = el;
       }}
       id={`${id}__${index}__content`}
-      style={{ maxHeight: isActive ? contentRefs[index]?.scrollHeight + 'px' : '0' }}
       className={cn(styles.contentWrapper, className)}
     >
       <div

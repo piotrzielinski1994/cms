@@ -3,7 +3,6 @@ import { clientEnv } from '@/config/env.client.config';
 import { FontScaleConstants } from '@/config/store/font-scales.config';
 import { isLocale, LocalesConstants } from '@/config/store/locales.config';
 import { getThemeConfig, ThemeConstants } from '@/config/store/themes.config';
-import { CartDrawer } from '@/features/checkout/components/advanced/cart-drawer/cart-drawer';
 import { AdminBar } from '@/payload/_old/components/AdminBar';
 import { CookiesBannerContainer } from '@/payload/blocks/advanced/cookies-banner/cookies-banner.container';
 import { FooterContainer } from '@/payload/blocks/layout/footer.container';
@@ -67,7 +66,6 @@ const Layout = async ({ children, params }: LayoutProps<'/[locale]'>) => {
           <SkipLinkContainer />
           <AdminBar adminBarProps={{ preview: isEnabled }} />
           <HeaderContainer locale={locale} />
-          <CartDrawer />
           <main
             className={cn('flex-grow my-20 grid content-start gap-20', 'outline-none')}
             id="main"

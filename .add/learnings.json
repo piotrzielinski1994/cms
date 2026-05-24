@@ -1,0 +1,45 @@
+{
+  "active": [
+    {
+      "id": "L-001",
+      "date": "2026-05-24",
+      "scope": "project",
+      "category": "technical-discovery",
+      "severity": "low",
+      "title": "withProviders pulls full ecommerce stack including Stripe + Payload ecommerce client",
+      "body": "Tests rendering Header via withProviders fail with v8 OOM unless @payloadcms/plugin-ecommerce/client/react and /payments/stripe are mocked. Mock both EcommerceProvider (children passthrough) and useCart, plus stripeAdapterClient.",
+      "source": "TDD cycle for cart-icon-in-header"
+    },
+    {
+      "id": "L-002",
+      "date": "2026-05-24",
+      "scope": "project",
+      "category": "what-worked",
+      "severity": "low",
+      "title": "container.querySelectorAll('header nav > ul > li') is a robust assertion for nav structure",
+      "body": "Direct child selector with > is stable across className changes. N+1 li count assertion catches order regressions.",
+      "source": "header.test.tsx"
+    },
+    {
+      "id": "L-003",
+      "date": "2026-05-24",
+      "scope": "project",
+      "category": "didnt-work",
+      "severity": "medium",
+      "title": "Snapshot tests with radix UI components drift on every run",
+      "body": "Radix `aria-controls=radix-_r_X_` ids are non-deterministic. Snapshot diff shows _r_d_ → _r_17_ even on no-op. Either drop snapshot tests for components using radix, or normalize ids in custom serializer.",
+      "source": "header.test.tsx.snap"
+    },
+    {
+      "id": "L-004",
+      "date": "2026-05-24",
+      "scope": "library",
+      "category": "process",
+      "severity": "low",
+      "title": "ADD --quick mode fills config defaults blindly (e.g. npm run dev) without inspecting package.json",
+      "body": "After /add:init --quick, .add/config.json had run='npm run dev' but project script was `start: next dev`. Full /add:init or /add:init --reconfigure detects from package.json. Recommend always reconfigure after quick init for non-trivial projects.",
+      "source": "ADD trial in cms project"
+    }
+  ],
+  "archived": []
+}
