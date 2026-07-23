@@ -1,7 +1,7 @@
+import type { ComponentProps } from 'react';
 import { Link } from '@/config/next.routing.config';
 import LogoSvg from '@/icons/logo.svg';
-import { Optional } from '@/utils/types';
-import { ComponentProps } from 'react';
+import type { Optional } from '@/utils/types';
 
 const Logo = (props: Optional<ComponentProps<typeof Link>, 'href'>) => {
   return (

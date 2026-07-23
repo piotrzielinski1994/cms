@@ -1,5 +1,5 @@
 import { Hero1 } from '@/components/sections/hero/hero-1/hero-1';
-import { Hero1Block, Page } from '@/payload/payload.types';
+import type { Hero1Block, Page } from '@/payload/payload.types';
 
 const Hero1Container = ({ heading, subheading, buttons = [] }: Hero1Block) => {
   return (

@@ -1,8 +1,8 @@
-import Form from '@/components/basic/form/root/form';
-import { DEFAULT_VALUE, getFallback } from '@/config/storybook/utils';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useTranslations } from 'next-intl';
-import { useState, type ComponentProps } from 'react';
+import { type ComponentProps, useState } from 'react';
+import Form from '@/components/basic/form/root/form';
+import { DEFAULT_VALUE, getFallback } from '@/config/storybook/utils';
 import { NumberInput as NumberInputComponent } from './number-input';
 
 type Args = ComponentProps<typeof NumberInputComponent> & {
@@ -17,7 +17,7 @@ const ControlledInput = (props: Args) => {
       value={value}
       onChange={(e) => {
         const value = parseFloat(e.target.value);
-        setValue(isNaN(value) ? undefined : value);
+        setValue(Number.isNaN(value) ? undefined : value);
       }}
     />
   );

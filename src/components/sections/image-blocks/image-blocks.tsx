@@ -1,8 +1,8 @@
+import type { ReactNode } from 'react';
 import { Container } from '@/components/basic/container/container';
 import { Section } from '@/components/basic/section/section';
-import { HtmlProps } from '@/utils/html/html.types';
+import type { HtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
-import { ReactNode } from 'react';
 
 type ImageBlocksProps = HtmlProps<'section'> & {
   heading?: string;

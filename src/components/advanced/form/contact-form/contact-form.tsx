@@ -1,15 +1,15 @@
 'use client';
 
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useTranslations } from 'next-intl';
+import { type ComponentProps, useId } from 'react';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
 import { Button } from '@/components/basic/button/button';
 import Form from '@/components/basic/form/root/form';
 import { TextAreaContainer } from '@/components/basic/form/text-area/text-area.container';
 import { TextInputContainer } from '@/components/basic/form/text-input/text-input.container';
 import { cn } from '@/utils/tailwind';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useTranslations } from 'next-intl';
-import { ComponentProps, useId } from 'react';
-import { useForm } from 'react-hook-form';
-import { z } from 'zod';
 
 type ContactFormProps = ComponentProps<typeof Form.Root> & {
   onSubmit: (data: z.infer<typeof schema>) => void;

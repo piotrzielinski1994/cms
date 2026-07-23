@@ -1,8 +1,8 @@
+import type { ComponentProps, PropsWithChildren, ReactNode } from 'react';
 import { CookiesConsentProvider } from '@/store/cookies-consent';
 import { FontScaleProvider } from '@/store/font-scale';
 import { LocaleProvider } from '@/store/locale';
 import { ThemeProvider } from '@/store/theme';
-import { ComponentProps, PropsWithChildren, ReactNode } from 'react';
 
 type ProvidersProps = PropsWithChildren &
   ComponentProps<typeof LocaleProvider> &

@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, ElementType, ReactNode } from 'react';
+import type { ComponentPropsWithoutRef, ElementType, ReactNode } from 'react';
 
 type HtmlProps<T extends ElementType> = ComponentPropsWithoutRef<T>;
 
@@ -7,7 +7,7 @@ type HtmlProps<T extends ElementType> = ComponentPropsWithoutRef<T>;
 type EnhancedHtmlProps<
   T extends ElementType,
   // U extends Partial<HtmlProps<T>> & Record<string, unknown>
-  U extends { [key in keyof HtmlProps<T>]: unknown } & Record<string, unknown>
+  U extends { [key in keyof HtmlProps<T>]: unknown } & Record<string, unknown>,
 > = U & Omit<HtmlProps<T>, keyof U>;
 
 type HtmlElement<T extends ElementType> = T extends keyof HTMLElementTagNameMap

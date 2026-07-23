@@ -1,10 +1,10 @@
-import { clientEnv } from '@/config/env.client.config';
-import { defaultContentLocale } from '@/config/store/locales.config';
-import { Config, Image } from '@/payload.types';
 import configPromise from '@payload-config';
-import { StaticImageData } from 'next/image';
+import type { StaticImageData } from 'next/image';
 import { getPayload } from 'payload';
 import { toPairs } from 'ramda';
+import { clientEnv } from '@/config/env.client.config';
+import type { defaultContentLocale } from '@/config/store/locales.config';
+import type { Config, Image } from '@/payload.types';
 
 type ImageToCreate = Omit<Image, 'createdAt' | 'id' | 'updatedAt'>;
 

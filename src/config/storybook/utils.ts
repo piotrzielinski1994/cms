@@ -1,7 +1,7 @@
+import type { StaticImageData } from 'next/image';
+import type { ReactNode } from 'react';
 import { placeholderDarkWebp, placeholderWebp } from '@/placeholders';
-import { StaticImageData } from 'next/image';
-import { ReactNode } from 'react';
-import { ThemeConfig } from '../store/themes.config';
+import type { ThemeConfig } from '../store/themes.config';
 
 const DEFAULT_VALUE = '__default__' as const;
 const THUMBNAIL_ID = 'thumbnail';

@@ -1,7 +1,7 @@
-import { contentLocales, defaultContentLocale } from '@/config/store/locales.config';
-import { Config, Header, Page } from '@/payload.types';
-import { DataFromGlobalSlug, GlobalSlug, Payload } from 'payload';
+import type { DataFromGlobalSlug, GlobalSlug, Payload } from 'payload';
 import { fromPairs } from 'ramda';
+import { contentLocales, defaultContentLocale } from '@/config/store/locales.config';
+import type { Config, Header, Page } from '@/payload.types';
 import { createGlobal } from './helpers/globals';
 
 const seedLayoutItems = async (payload: Payload) => {

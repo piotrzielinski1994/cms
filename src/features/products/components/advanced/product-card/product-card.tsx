@@ -2,7 +2,7 @@ import { ButtonLink } from '@/components/basic/button/button';
 import { Image } from '@/components/basic/image/image';
 import { placeholderDarkWebp, placeholderWebp } from '@/placeholders';
 import { useThemeStore } from '@/store/theme';
-import { HtmlProps } from '@/utils/html/html.types';
+import type { HtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
 
 type ProductCardProps = HtmlProps<'div'> & {

@@ -1,6 +1,10 @@
-import { PolymorphicComponent, PolymorphicProps, PolymorphicRef } from '@/utils/html/html.types';
+import { type ElementType, forwardRef } from 'react';
+import type {
+  PolymorphicComponent,
+  PolymorphicProps,
+  PolymorphicRef,
+} from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
-import { ElementType, forwardRef } from 'react';
 
 const styles = {
   root: cn('px-4 sm:px-6', 'grid', 'cms-section'),

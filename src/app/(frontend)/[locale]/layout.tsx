@@ -1,3 +1,7 @@
+import { GoogleTagManager } from '@next/third-parties/google';
+import { draftMode } from 'next/headers';
+import { notFound } from 'next/navigation';
+import type { ComponentProps } from 'react';
 import { SkipLinkContainer } from '@/components/advanced/skip-link/skip-link.container';
 import { clientEnv } from '@/config/env.client.config';
 import { FontScaleConstants } from '@/config/store/font-scales.config';
@@ -11,10 +15,6 @@ import { Providers } from '@/providers';
 import { getPreferences } from '@/utils/nextjs/headers';
 import { toPageMetadata } from '@/utils/nextjs/metadata';
 import { cn } from '@/utils/tailwind';
-import { GoogleTagManager } from '@next/third-parties/google';
-import { draftMode } from 'next/headers';
-import { notFound } from 'next/navigation';
-import { ComponentProps } from 'react';
 import './globals.scss';
 
 const metadata = toPageMetadata();

@@ -1,9 +1,9 @@
+import type { ComponentProps } from 'react';
 import { Container } from '@/components/basic/container/container';
 import { LogoContainer } from '@/components/basic/logo/logo.container';
 import { Section } from '@/components/basic/section/section';
-import { HtmlProps } from '@/utils/html/html.types';
+import type { HtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
-import { ComponentProps } from 'react';
 import { FontScaler } from './scaffold/font-scaler';
 import { HeaderHeightListener } from './scaffold/header-height-listener';
 import { LocaleSwitcher } from './scaffold/locale-switcher';

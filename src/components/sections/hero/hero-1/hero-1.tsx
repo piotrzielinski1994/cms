@@ -1,9 +1,9 @@
+import type { ComponentProps } from 'react';
 import { ButtonLink } from '@/components/basic/button/button';
 import { Container } from '@/components/basic/container/container';
 import { Section } from '@/components/basic/section/section';
-import { HtmlProps } from '@/utils/html/html.types';
+import type { HtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
-import { ComponentProps } from 'react';
 
 type Hero1Props = HtmlProps<'section'> & {
   heading?: string;

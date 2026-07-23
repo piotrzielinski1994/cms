@@ -1,12 +1,15 @@
+import { type ComponentProps, forwardRef } from 'react';
 import { Link } from '@/config/next.routing.config';
-import { EnhancedHtmlProps } from '@/utils/html/html.types';
+import type { EnhancedHtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
-import { ComponentProps, forwardRef } from 'react';
 
 // prettier-ignore
-type ButtonProps = EnhancedHtmlProps<'button', {
-  variant?: keyof (typeof styles)['variant'];
-}>;
+type ButtonProps = EnhancedHtmlProps<
+  'button',
+  {
+    variant?: keyof (typeof styles)['variant'];
+  }
+>;
 
 type LinkButtonProps = ComponentProps<typeof Link> & Pick<ButtonProps, 'disabled' | 'variant'>;
 

@@ -112,4 +112,4 @@ const getThemeConfig = (
   return themes[browserColorPreference];
 };
 
-export { getThemeConfig, ThemeConstants, themes, type Theme, type ThemeConfig };
+export { getThemeConfig, type Theme, type ThemeConfig, ThemeConstants, themes };

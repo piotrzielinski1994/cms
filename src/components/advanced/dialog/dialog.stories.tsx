@@ -1,8 +1,8 @@
-import { Button } from '@/components/basic/button/button';
-import { DEFAULT_VALUE, getFallback } from '@/config/storybook/utils';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useTranslations } from 'next-intl';
-import { useEffect, type ComponentProps } from 'react';
+import { type ComponentProps, useEffect } from 'react';
+import { Button } from '@/components/basic/button/button';
+import { DEFAULT_VALUE, getFallback } from '@/config/storybook/utils';
 import { Dialog as DialogComponent } from './dialog';
 import { useDialog } from './dialog.hooks';
 
@@ -40,7 +40,7 @@ const Render = ({ type, ...args }: Args) => {
   const t2 = useTranslations('frontend');
   const { setIsOpen, dialogRef } = useDialog({ initialIsOpen: true, type });
 
-  useEffect(() => () => dialogRef.current?.close(), [type, dialogRef]);
+  useEffect(() => () => dialogRef.current?.close(), [dialogRef]);
 
   return (
     <>

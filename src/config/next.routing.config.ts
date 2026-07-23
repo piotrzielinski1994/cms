@@ -1,8 +1,8 @@
-import { contentLocales, defaultContentLocale, translations } from '@/config/store/locales.config';
 import { createNavigation } from 'next-intl/navigation';
 import { defineRouting } from 'next-intl/routing';
 import { getRequestConfig } from 'next-intl/server';
-import { TypedLocale } from 'payload';
+import type { TypedLocale } from 'payload';
+import { contentLocales, defaultContentLocale, translations } from '@/config/store/locales.config';
 
 // Types ====================================
 

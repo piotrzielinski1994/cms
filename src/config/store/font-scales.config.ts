@@ -1,4 +1,4 @@
-import { fullTailwindConfig } from '@/tailwind-config';
+import type { fullTailwindConfig } from '@/tailwind-config';
 
 type FontScale = keyof typeof fontScales;
 
@@ -13,4 +13,4 @@ const fontScales = {
   xl: 20,
 } satisfies Partial<Record<keyof typeof fullTailwindConfig.theme.fontSize, number>>;
 
-export { FontScaleConstants, fontScales, type FontScale };
+export { type FontScale, FontScaleConstants, fontScales };

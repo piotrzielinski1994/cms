@@ -1,7 +1,7 @@
+import { createContext, type ReactNode, useContext, useId, useMemo, useState } from 'react';
 import { ReactContextError } from '@/utils/error';
-import { HtmlProps } from '@/utils/html/html.types';
+import type { HtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
-import { ReactNode, createContext, useContext, useId, useMemo, useState } from 'react';
 
 type TabsProps = HtmlProps<'div'> & {
   tabs: Array<{
@@ -136,4 +136,4 @@ const useTabs = () => {
   throw new ReactContextError('Tabs');
 };
 
-export { Tabs, styles, useTabs };
+export { styles, Tabs, useTabs };

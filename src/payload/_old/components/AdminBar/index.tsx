@@ -1,13 +1,13 @@
 'use client';
 
-import { Container } from '@/components/basic/container/container';
-import { Section } from '@/components/basic/section/section';
-import { clientEnv } from '@/config/env.client.config';
-import { cn } from '@/utils/tailwind';
 import type { PayloadAdminBarProps, PayloadMeUser } from '@payloadcms/admin-bar';
 import { PayloadAdminBar } from '@payloadcms/admin-bar';
 import { useRouter, useSelectedLayoutSegments } from 'next/navigation';
 import React, { useState } from 'react';
+import { Container } from '@/components/basic/container/container';
+import { Section } from '@/components/basic/section/section';
+import { clientEnv } from '@/config/env.client.config';
+import { cn } from '@/utils/tailwind';
 import './index.scss';
 
 const baseClass = 'admin-bar';

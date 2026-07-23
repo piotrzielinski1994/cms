@@ -1,9 +1,9 @@
-import { CookiesConsentConstants } from '@/config/store/cookies-consent.config';
-import { FontScale, FontScaleConstants } from '@/config/store/font-scales.config';
-import { Theme, ThemeConfig, ThemeConstants } from '@/config/store/themes.config';
-import { ReadonlyHeaders } from 'next/dist/server/web/spec-extension/adapters/headers';
-import { ReadonlyRequestCookies } from 'next/dist/server/web/spec-extension/adapters/request-cookies';
+import type { ReadonlyHeaders } from 'next/dist/server/web/spec-extension/adapters/headers';
+import type { ReadonlyRequestCookies } from 'next/dist/server/web/spec-extension/adapters/request-cookies';
 import { cookies, headers } from 'next/headers';
+import { CookiesConsentConstants } from '@/config/store/cookies-consent.config';
+import { type FontScale, FontScaleConstants } from '@/config/store/font-scales.config';
+import { type Theme, type ThemeConfig, ThemeConstants } from '@/config/store/themes.config';
 
 const getPreferences = async () => {
   const [cookieStore, headersStore] = await Promise.all([cookies(), headers()]);

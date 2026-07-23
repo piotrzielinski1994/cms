@@ -1,7 +1,7 @@
+import type { Locale } from 'next-intl';
 import { Footer } from '@/components/layout/footer/footer';
-import { Page } from '@/payload/payload.types';
+import type { Page } from '@/payload/payload.types';
 import { getCachedGlobal } from '@/payload/utils/globals';
-import { Locale } from 'next-intl';
 
 type FooterContainerProps = {
   locale: Locale;

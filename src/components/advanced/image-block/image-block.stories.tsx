@@ -1,14 +1,14 @@
+import type { Meta, StoryObj } from '@storybook/react';
+import { useTranslations } from 'next-intl';
+import type { ComponentProps } from 'react';
 import { getThemeConfig } from '@/config/store/themes.config';
-import { StoryContext } from '@/config/storybook/components';
+import type { StoryContext } from '@/config/storybook/components';
 import {
   DEFAULT_VALUE,
   getFallback,
   imagesPerColorPref,
   THUMBNAIL_ID,
 } from '@/config/storybook/utils';
-import type { Meta, StoryObj } from '@storybook/react';
-import { useTranslations } from 'next-intl';
-import { type ComponentProps } from 'react';
 import { ImageBlock as ImageBlockComponent } from './image-block';
 
 type Args = ComponentProps<typeof ImageBlockComponent>;

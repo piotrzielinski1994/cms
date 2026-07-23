@@ -1,4 +1,3 @@
-import type { Page } from '@/payload.types';
 import { ImageBlock1Container } from '@/payload/blocks/advanced/image-block/image-block.container';
 import { imageBlock1BlockPayloadConfig } from '@/payload/blocks/advanced/image-block/image-block.payload';
 import { FaqContainer } from '@/payload/blocks/sections/faq/faq.container';
@@ -9,6 +8,7 @@ import { Hero1Container } from '@/payload/blocks/sections/hero/hero-1/hero-1.con
 import { hero1SectionPayloadConfig } from '@/payload/blocks/sections/hero/hero-1/hero-1.payload';
 import { ImageBlocksContainer } from '@/payload/blocks/sections/image-blocks/image-blocks.container';
 import { imageBlocksSectionPayloadConfig } from '@/payload/blocks/sections/image-blocks/image-blocks.payload';
+import type { Page } from '@/payload.types';
 
 type RenderBlocksProps = {
   blocks: Page['sections'];

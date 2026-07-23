@@ -1,7 +1,7 @@
-import { defaultContentLocale } from '@/config/store/locales.config';
-import { Config, Page } from '@/payload.types';
-import { Payload } from 'payload';
+import type { Payload } from 'payload';
 import { toPairs } from 'ramda';
+import { defaultContentLocale } from '@/config/store/locales.config';
+import type { Config, Page } from '@/payload.types';
 
 type PageToCreate = Omit<Page, 'createdAt' | 'id' | 'sizes' | 'updatedAt'>;
 

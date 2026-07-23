@@ -1,9 +1,9 @@
-import { getThemeConfig } from '@/config/store/themes.config';
-import { StoryContext } from '@/config/storybook/components';
-import { DEFAULT_VALUE, getFallback } from '@/config/storybook/utils';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useTranslations } from 'next-intl';
-import { type ComponentProps } from 'react';
+import type { ComponentProps } from 'react';
+import { getThemeConfig } from '@/config/store/themes.config';
+import type { StoryContext } from '@/config/storybook/components';
+import { DEFAULT_VALUE, getFallback } from '@/config/storybook/utils';
 import { Badge as BadgeComponent } from './badge';
 
 type Args = ComponentProps<typeof BadgeComponent>;

@@ -1,7 +1,7 @@
-import { DEFAULT_VALUE, getFallback, THUMBNAIL_ID } from '@/config/storybook/utils';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useTranslations } from 'next-intl';
-import { type ComponentProps } from 'react';
+import type { ComponentProps } from 'react';
+import { DEFAULT_VALUE, getFallback, THUMBNAIL_ID } from '@/config/storybook/utils';
 import { Faq as FaqComponent } from './faq';
 
 type Args = ComponentProps<typeof FaqComponent>;

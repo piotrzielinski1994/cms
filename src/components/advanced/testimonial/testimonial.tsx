@@ -1,5 +1,5 @@
 import { Image } from '@/components/basic/image/image';
-import { HtmlProps } from '@/utils/html/html.types';
+import type { HtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
 
 type TestimonialProps = HtmlProps<'figure'> & {

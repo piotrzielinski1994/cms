@@ -2,7 +2,7 @@ import { Container } from '@/components/basic/container/container';
 import { LogoContainer } from '@/components/basic/logo/logo.container';
 import { Section } from '@/components/basic/section/section';
 import { Link } from '@/config/next.routing.config';
-import { HtmlProps } from '@/utils/html/html.types';
+import type { HtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
 
 type FooterProps = HtmlProps<'footer'> & {

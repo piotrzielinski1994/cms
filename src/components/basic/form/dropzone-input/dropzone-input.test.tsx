@@ -1,10 +1,10 @@
-import { en } from '@/payload/locale/en';
-import { withProviders } from '@/utils/tests';
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { ComponentProps } from 'react';
+import type { ComponentProps } from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { axe } from 'vitest-axe';
+import { en } from '@/payload/locale/en';
+import { withProviders } from '@/utils/tests';
 import { DropzoneInput } from './dropzone-input';
 
 const t = en.frontend.component.uploadInput;
@@ -39,8 +39,8 @@ describe('DropzoneInput', () => {
       const { getByText } = render(withProviders(<DropzoneInput {...defaultProps} />));
 
       const input = getByText(t.clickToUpload)
-        .closest('label')!
-        .querySelector('input') as HTMLInputElement;
+        .closest('label')
+        ?.querySelector('input') as HTMLInputElement;
       const label = input.closest('label')!;
       const file = new File(['file contents'], newFileName, { type: 'image/webp' });
 
@@ -59,7 +59,7 @@ describe('DropzoneInput', () => {
       );
 
       const calledEvent = defaultProps.onChange.mock.calls[0][0];
-      expect(calledEvent.target.files![0].name).toBe(newFileName);
+      expect(calledEvent.target.files?.[0].name).toBe(newFileName);
       expect(defaultProps.onChange).toHaveBeenCalled();
     });
 
@@ -78,7 +78,7 @@ describe('DropzoneInput', () => {
       const { getByText, getAllByRole } = render(
         withProviders(<DropzoneInput {...defaultProps} />),
       );
-      const input = getByText(t.clickToUpload).closest('label')!.querySelector('input');
+      const input = getByText(t.clickToUpload).closest('label')?.querySelector('input');
       const buttons = getAllByRole('button');
 
       // Focus input

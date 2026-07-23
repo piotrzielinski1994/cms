@@ -1,5 +1,13 @@
-import { AdminTranslations, translations } from '@/config/store/locales.config';
-import { Page } from '@/payload.types';
+import { createBreadcrumbsField, createParentField } from '@payloadcms/plugin-nested-docs';
+import {
+  MetaDescriptionField,
+  MetaImageField,
+  MetaTitleField,
+} from '@payloadcms/plugin-seo/fields';
+import type { Locale } from 'next-intl';
+import type { CollectionConfig } from 'payload';
+import { fromPairs, toPairs } from 'ramda';
+import { type AdminTranslations, translations } from '@/config/store/locales.config';
 import { generatePreviewPath } from '@/payload/_old/utilities/generatePreviewPath';
 import { imageBlock1BlockPayloadConfig } from '@/payload/blocks/advanced/image-block/image-block.payload';
 import { faqSectionPayloadConfig } from '@/payload/blocks/sections/faq/faq.payload';
@@ -9,15 +17,7 @@ import { imageBlocksSectionPayloadConfig } from '@/payload/blocks/sections/image
 import { createSlugField } from '@/payload/fields/slug/slug';
 import { populatePublishedAt } from '@/payload/hooks/populatePublishedAt';
 import { authenticated, authenticatedOrPublished } from '@/payload/utils/access';
-import { createBreadcrumbsField, createParentField } from '@payloadcms/plugin-nested-docs';
-import {
-  MetaDescriptionField,
-  MetaImageField,
-  MetaTitleField,
-} from '@payloadcms/plugin-seo/fields';
-import { Locale } from 'next-intl';
-import type { CollectionConfig } from 'payload';
-import { fromPairs, toPairs } from 'ramda';
+import type { Page } from '@/payload.types';
 import { revalidatePage } from './hooks/revalidatePage';
 
 const Pages: CollectionConfig<'pages'> = {

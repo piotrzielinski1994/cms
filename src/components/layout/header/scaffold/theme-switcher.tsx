@@ -1,13 +1,13 @@
 'use client';
 
-import { getThemeConfig, ThemeConfig, themes } from '@/config/store/themes.config';
-import { useThemeStore } from '@/store/theme';
-import { cn } from '@/utils/tailwind';
 import * as SelectPrimitive from '@radix-ui/react-select';
 import { Laptop, Moon, Sun } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { keys } from 'ramda';
-import { FC } from 'react';
+import type { FC } from 'react';
+import { getThemeConfig, type ThemeConfig, themes } from '@/config/store/themes.config';
+import { useThemeStore } from '@/store/theme';
+import { cn } from '@/utils/tailwind';
 
 type SunOrMoonProps = { colorPreference: ThemeConfig['colorPreference'] };
 

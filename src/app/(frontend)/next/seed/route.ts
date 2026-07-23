@@ -1,7 +1,7 @@
-import config from '@/payload/payload.config';
-import { seed } from '@/payload/seeders';
 import { headers } from 'next/headers';
 import { createLocalReq, getPayload } from 'payload';
+import config from '@/payload/payload.config';
+import { seed } from '@/payload/seeders';
 
 export const maxDuration = 60;
 

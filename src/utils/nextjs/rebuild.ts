@@ -1,6 +1,6 @@
-import { GlobalRevalidationTag } from '@/payload/utils/globals';
-import { Locale } from 'next-intl';
 import { revalidatePath, revalidateTag } from 'next/cache';
+import type { Locale } from 'next-intl';
+import type { GlobalRevalidationTag } from '@/payload/utils/globals';
 
 const rebuildTag = (tag: GlobalRevalidationTag | 'sitemap' | 'redirects'): void => {
   return revalidateTag(tag, 'max');

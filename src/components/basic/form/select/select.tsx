@@ -1,8 +1,8 @@
-import { EnhancedHtmlProps, HtmlProps } from '@/utils/html/html.types';
-import { cn } from '@/utils/tailwind';
-import { BoolMap } from '@/utils/types';
 import { ChevronDown } from 'lucide-react';
-import { forwardRef, ReactNode } from 'react';
+import { forwardRef, type ReactNode } from 'react';
+import type { EnhancedHtmlProps, HtmlProps } from '@/utils/html/html.types';
+import { cn } from '@/utils/tailwind';
+import type { BoolMap } from '@/utils/types';
 import Form from '../root/form';
 import { styles as textInputStyles } from '../text-input/text-input';
 
@@ -17,10 +17,13 @@ type SelectProps = Omit<NativeProps, 'children'> & {
 };
 
 // prettier-ignore
-type NativeProps = EnhancedHtmlProps<'select', {
-  name: string;
-  value?: string;
-}>;
+type NativeProps = EnhancedHtmlProps<
+  'select',
+  {
+    name: string;
+    value?: string;
+  }
+>;
 
 const styles = {
   wrapper: 'grid items-center',
@@ -51,7 +54,11 @@ const Component = forwardRef<HTMLSelectElement, SelectProps>((props, ref) => {
           </Option>
           {options.map((o) => {
             // prettier-ignore
-            return <Option key={o.value} value={o.value}>{o.label}</Option>;
+            return (
+              <Option key={o.value} value={o.value}>
+                {o.label}
+              </Option>
+            );
           })}
         </Native>
         <ChevronDown size="1rem" className={styles.icon} />

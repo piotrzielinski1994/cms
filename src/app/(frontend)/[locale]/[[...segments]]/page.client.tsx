@@ -1,7 +1,8 @@
 'use client';
 
-import { SupportedLanguages } from '@payloadcms/translations';
-import React, { useEffect } from 'react';
+import type { SupportedLanguages } from '@payloadcms/translations';
+import type React from 'react';
+import { useEffect } from 'react';
 
 const PageClient: React.FC<{
   currentPaths: Partial<Record<keyof SupportedLanguages, string>>;

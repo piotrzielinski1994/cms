@@ -1,7 +1,7 @@
-import { EnhancedHtmlProps, HtmlProps } from '@/utils/html/html.types';
-import { cn } from '@/utils/tailwind';
 import { AlertTriangle, CheckCircle, Info, X, XCircle } from 'lucide-react';
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
+import type { EnhancedHtmlProps, HtmlProps } from '@/utils/html/html.types';
+import { cn } from '@/utils/tailwind';
 
 type AlertType = 'success' | 'info' | 'warn' | 'error';
 type RootProps = EnhancedHtmlProps<'div', { type?: AlertType }>;

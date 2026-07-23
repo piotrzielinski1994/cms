@@ -1,7 +1,7 @@
-import { AdminTranslations, translations } from '@/config/store/locales.config';
+import type { GlobalConfig } from 'payload';
+import { type AdminTranslations, translations } from '@/config/store/locales.config';
 import { rebuildTag } from '@/utils/nextjs/rebuild';
 import { isCollectionLocale } from '@/utils/payload';
-import type { GlobalConfig } from 'payload';
 
 const cookiesBanner = {
   slug: 'cookies-banner',

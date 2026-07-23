@@ -1,5 +1,5 @@
+import type { ComponentProps, ReactNode } from 'react';
 import { Providers } from '@/providers';
-import { ComponentProps, ReactNode } from 'react';
 
 const resolveServerComponent = async <T extends (props: unknown) => Promise<ReactNode>>(
   Component: T,

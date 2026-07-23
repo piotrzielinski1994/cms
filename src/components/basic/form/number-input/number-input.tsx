@@ -1,20 +1,20 @@
-import { EnhancedHtmlProps, HtmlProps } from '@/utils/html/html.types';
-import { cn } from '@/utils/tailwind';
-import { BoolMap } from '@/utils/types';
 import { ChevronDown, ChevronUp } from 'lucide-react';
-import { Locale } from 'next-intl';
+import type { Locale } from 'next-intl';
 import {
-  ChangeEvent,
-  ComponentProps,
+  type ChangeEvent,
+  type ComponentProps,
   createContext,
   forwardRef,
-  ReactNode,
-  RefObject,
+  type ReactNode,
+  type RefObject,
   useContext,
   useMemo,
   useRef,
   useState,
 } from 'react';
+import type { EnhancedHtmlProps, HtmlProps } from '@/utils/html/html.types';
+import { cn } from '@/utils/tailwind';
+import type { BoolMap } from '@/utils/types';
 import Form from '../root/form';
 import { styles as textInputStyles } from '../text-input/text-input';
 import { createNumberFormatter, createNumberUnformatter, isNumeric } from './number-input.utils';
@@ -29,16 +29,19 @@ type NumberInputProps = NativeProps & {
 };
 
 // prettier-ignore
-type NativeProps = EnhancedHtmlProps<'input', {
-  name: string;
-  value?: number | string; // To support formatted values
-  min?: number;
-  max?: number;
-  step?: number;
-  maxIntLength?: number;
-  maxDecimalLength?: number;
-  lang?: Locale;
-}>;
+type NativeProps = EnhancedHtmlProps<
+  'input',
+  {
+    name: string;
+    value?: number | string; // To support formatted values
+    min?: number;
+    max?: number;
+    step?: number;
+    maxIntLength?: number;
+    maxDecimalLength?: number;
+    lang?: Locale;
+  }
+>;
 
 const styles = {
   wrapper: 'relative',
@@ -122,7 +125,7 @@ const Native = forwardRef<HTMLInputElement, NativeProps>((props, ref) => {
   return (
     <input
       ref={setRef}
-      inputMode={!!maxDecimalLength ? 'decimal' : 'numeric'}
+      inputMode={maxDecimalLength ? 'decimal' : 'numeric'}
       role="spinbutton"
       autoComplete="off"
       {...rest}

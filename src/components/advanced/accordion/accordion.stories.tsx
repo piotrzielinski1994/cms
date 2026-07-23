@@ -1,7 +1,7 @@
-import { DEFAULT_VALUE, getFallback, THUMBNAIL_ID } from '@/config/storybook/utils';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useTranslations } from 'next-intl';
-import { type ComponentProps } from 'react';
+import type { ComponentProps } from 'react';
+import { DEFAULT_VALUE, getFallback, THUMBNAIL_ID } from '@/config/storybook/utils';
 import { Accordion as AccordionComponent } from './accordion';
 
 type Args = ComponentProps<typeof AccordionComponent>;

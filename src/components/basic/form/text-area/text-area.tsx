@@ -1,7 +1,7 @@
-import { EnhancedHtmlProps } from '@/utils/html/html.types';
+import { forwardRef, type ReactNode } from 'react';
+import type { EnhancedHtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
-import { BoolMap } from '@/utils/types';
-import { forwardRef, ReactNode } from 'react';
+import type { BoolMap } from '@/utils/types';
 import Form from '../root/form';
 import { styles as textInputStyles } from '../text-input/text-input';
 
@@ -11,10 +11,13 @@ type TextAreaProps = NativeProps & {
 };
 
 // prettier-ignore
-type NativeProps = EnhancedHtmlProps<'textarea', {
-  name: string;
-  value?: string;
-}>;
+type NativeProps = EnhancedHtmlProps<
+  'textarea',
+  {
+    name: string;
+    value?: string;
+  }
+>;
 
 const styles = {
   native: ({ isValid, isDisabled }: BoolMap<'isValid' | 'isDisabled'>) =>

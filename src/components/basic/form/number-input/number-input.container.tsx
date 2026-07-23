@@ -1,8 +1,8 @@
-import { useLocaleStore } from '@/store/locale';
-import { Optional } from '@/utils/types';
 import { useTranslations } from 'next-intl';
-import { ComponentProps } from 'react';
-import { Control, FieldValues, Path, useController } from 'react-hook-form';
+import type { ComponentProps } from 'react';
+import { type Control, type FieldValues, type Path, useController } from 'react-hook-form';
+import { useLocaleStore } from '@/store/locale';
+import type { Optional } from '@/utils/types';
 import { NumberInput } from './number-input';
 
 type NumberInputContainerProps<T extends FieldValues> = {

@@ -1,14 +1,10 @@
 'use client';
 
-import { ReactContextError } from '@/utils/error';
-import { HtmlProps } from '@/utils/html/html.types';
-import { cn } from '@/utils/tailwind';
-import { BoolMap } from '@/utils/types';
 import { ChevronDown } from 'lucide-react';
 import {
-  PropsWithChildren,
-  ReactNode,
   createContext,
+  type PropsWithChildren,
+  type ReactNode,
   useContext,
   useId,
   useLayoutEffect,
@@ -16,6 +12,10 @@ import {
   useRef,
   useState,
 } from 'react';
+import { ReactContextError } from '@/utils/error';
+import type { HtmlProps } from '@/utils/html/html.types';
+import { cn } from '@/utils/tailwind';
+import type { BoolMap } from '@/utils/types';
 
 type AccordionProps = HtmlProps<'div'> & {
   items: { heading: ReactNode; content: ReactNode }[];
@@ -53,7 +53,7 @@ const Provider = (props: PropsWithChildren & { activeItemIndex?: number }) => {
   useLayoutEffect(() => {
     contentRefs.current.forEach((content, index) => {
       if (!content) return;
-      content.style.maxHeight = activeIndex === index ? content.scrollHeight + 'px' : '0';
+      content.style.maxHeight = activeIndex === index ? `${content.scrollHeight}px` : '0';
     });
   }, [activeIndex]);
 
@@ -127,7 +127,7 @@ const Content = ({ index, className, children }: HtmlProps<'div'> & { index: num
         contentRefs[index] = el;
       }}
       id={`${id}__${index}__content`}
-      style={{ maxHeight: isActive ? contentRefs[index]?.scrollHeight + 'px' : '0' }}
+      style={{ maxHeight: isActive ? `${contentRefs[index]?.scrollHeight}px` : '0' }}
       className={cn(styles.contentWrapper, className)}
     >
       <div

@@ -1,6 +1,6 @@
+import { NextResponse } from 'next/server';
 import { clientEnv } from '@/config/env.client.config';
 import { contentLocales } from '@/config/store/locales.config';
-import { NextResponse } from 'next/server';
 
 const robotsTxt = `# *
 User-agent: *

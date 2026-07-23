@@ -1,9 +1,9 @@
-import { Link } from '@/components/basic/link/link';
-import { Tooltip } from '@/components/basic/tooltip/tooltip';
-import * as svgs from '@/icons';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useTranslations } from 'next-intl';
 import { toPairs } from 'ramda';
+import { Link } from '@/components/basic/link/link';
+import { Tooltip } from '@/components/basic/tooltip/tooltip';
+import * as svgs from '@/icons';
 
 const meta: Meta = {
   title: 'Basic/Icons',

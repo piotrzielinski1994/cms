@@ -1,7 +1,7 @@
-import { withProviders } from '@/utils/tests';
 import { render } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { axe } from 'vitest-axe';
+import { withProviders } from '@/utils/tests';
 import { Logo } from './logo';
 
 describe('Logo', () => {

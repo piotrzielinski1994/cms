@@ -1,8 +1,8 @@
-import { en } from '@/payload/locale/en';
 import { render } from '@testing-library/react';
-import { ComponentProps } from 'react';
+import type { ComponentProps } from 'react';
 import { describe, expect, it } from 'vitest';
 import { axe } from 'vitest-axe';
+import { en } from '@/payload/locale/en';
 import { Table } from './table';
 
 const t = en.storybook.basic.table;

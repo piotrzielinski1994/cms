@@ -1,7 +1,7 @@
-import { cn } from '@/utils/tailwind';
-import NextImage, { ImageProps as NextImageProps } from 'next/image';
+import NextImage, { type ImageProps as NextImageProps } from 'next/image';
 import { toPairs } from 'ramda';
 import defaultTheme from 'tailwindcss/defaultTheme';
+import { cn } from '@/utils/tailwind';
 
 type ImageSize = `${number}px` | `${number}rem` | `${number}vw`;
 type ImageProps = {

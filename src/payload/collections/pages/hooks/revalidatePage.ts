@@ -1,7 +1,7 @@
+import type { CollectionAfterChangeHook, CollectionAfterDeleteHook } from 'payload';
 import type { Page } from '@/payload.types';
 import { rebuildPath, rebuildTag } from '@/utils/nextjs/rebuild';
 import { isCollectionLocale } from '@/utils/payload';
-import type { CollectionAfterChangeHook, CollectionAfterDeleteHook } from 'payload';
 
 const revalidatePage: CollectionAfterChangeHook<Page> = ({
   doc,
@@ -11,7 +11,7 @@ const revalidatePage: CollectionAfterChangeHook<Page> = ({
   if (!context.disableRevalidate && isCollectionLocale(locale)) {
     if (doc._status === 'published') {
       const path: Parameters<typeof rebuildPath>[0] =
-        `/${locale}${doc.breadcrumbs!.at(-1)?.url ?? '/'}`;
+        `/${locale}${doc.breadcrumbs?.at(-1)?.url ?? '/'}`;
 
       payload.logger.info(`Revalidating page at path: ${path}`);
 
@@ -24,7 +24,7 @@ const revalidatePage: CollectionAfterChangeHook<Page> = ({
     // If the page was previously published, we need to revalidate the old path
     if (previousDoc?._status === 'published' && doc._status !== 'published') {
       const oldPath: Parameters<typeof rebuildPath>[0] =
-        `/${locale}${previousDoc.breadcrumbs!.at(-1)?.url ?? '/'}`;
+        `/${locale}${previousDoc.breadcrumbs?.at(-1)?.url ?? '/'}`;
 
       payload.logger.info(`Revalidating old page at path: ${oldPath}`);
 
@@ -37,7 +37,7 @@ const revalidatePage: CollectionAfterChangeHook<Page> = ({
 
 const revalidateDelete: CollectionAfterDeleteHook<Page> = ({ doc, req: { context, locale } }) => {
   if (!context.disableRevalidate && isCollectionLocale(locale)) {
-    rebuildPath(`/${locale}${doc.breadcrumbs!.at(-1)?.url ?? '/'}`);
+    rebuildPath(`/${locale}${doc.breadcrumbs?.at(-1)?.url ?? '/'}`);
     rebuildTag('sitemap');
   }
 

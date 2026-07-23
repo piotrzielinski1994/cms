@@ -1,7 +1,7 @@
-import { DEFAULT_VALUE, getFallback } from '@/config/storybook/utils';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useTranslations } from 'next-intl';
-import { useState, type ComponentProps } from 'react';
+import { type ComponentProps, useState } from 'react';
+import { DEFAULT_VALUE, getFallback } from '@/config/storybook/utils';
 import { DropzoneInput as DropzoneInputComponent } from './dropzone-input';
 
 type Args = ComponentProps<typeof DropzoneInputComponent> & {

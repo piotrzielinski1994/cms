@@ -1,8 +1,9 @@
 'use client';
 
 import { Button, FieldLabel, TextInput, useField, useForm, useFormFields } from '@payloadcms/ui';
-import { TextFieldClientProps } from 'payload';
-import React, { useCallback, useEffect, useMemo } from 'react';
+import type { TextFieldClientProps } from 'payload';
+import type React from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import { slugify } from '../hooks/formatSlug';
 
 type ComputedFieldProps = {
@@ -55,7 +56,7 @@ const ComputedField: React.FC<ComputedFieldProps> = ({
     if (!targetFieldValue) return setValue('');
     if (formatter === 'toSlug') setValue(formatters[formatter](targetFieldValue));
     if (formatter === 'toPath') setValue(formatters[formatter](targetFieldValue, prev));
-  }, [targetFieldValue, readOnly, setValue, value, path, prev, formatter]);
+  }, [targetFieldValue, readOnly, setValue, prev, formatter]);
 
   return (
     <div className="field-type">

@@ -1,5 +1,5 @@
-import { AdminTranslations } from '@/config/store/locales.config';
-import { Block } from 'payload';
+import type { Block } from 'payload';
+import type { AdminTranslations } from '@/config/store/locales.config';
 import thumbnail from './hero-1.webp';
 
 const hero1SectionPayloadConfig = {

@@ -1,6 +1,6 @@
-import { EnhancedHtmlProps } from '@/utils/html/html.types';
+import { forwardRef, type ReactNode } from 'react';
+import type { EnhancedHtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
-import { forwardRef, ReactNode } from 'react';
 import Form from '../root/form';
 
 type TextInputProps = NativeProps & {
@@ -9,10 +9,13 @@ type TextInputProps = NativeProps & {
 };
 
 // prettier-ignore
-type NativeProps = EnhancedHtmlProps<'input', {
-  name: string;
-  value?: string;
-}>;
+type NativeProps = EnhancedHtmlProps<
+  'input',
+  {
+    name: string;
+    value?: string;
+  }
+>;
 
 const styles = {
   native: ({ isValid }: { isValid: boolean }) =>

@@ -1,7 +1,7 @@
-import { DEFAULT_VALUE, getFallback } from '@/config/storybook/utils';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useTranslations } from 'next-intl';
-import { useEffect, useRef, type ComponentProps } from 'react';
+import { type ComponentProps, useEffect, useRef } from 'react';
+import { DEFAULT_VALUE, getFallback } from '@/config/storybook/utils';
 import { CookiesBanner as CookiesBannerComponent } from './cookies-banner';
 
 type Args = ComponentProps<typeof CookiesBannerComponent>;

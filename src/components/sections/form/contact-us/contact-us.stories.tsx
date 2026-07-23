@@ -1,6 +1,6 @@
-import { THUMBNAIL_ID } from '@/config/storybook/utils';
 import type { Meta, StoryObj } from '@storybook/react';
-import { type ComponentProps } from 'react';
+import type { ComponentProps } from 'react';
+import { THUMBNAIL_ID } from '@/config/storybook/utils';
 import { ContactUs as ContactUsComponent } from './contact-us';
 
 type Args = ComponentProps<typeof ContactUsComponent>;

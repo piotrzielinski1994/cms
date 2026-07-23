@@ -1,7 +1,7 @@
 'use client';
 
 import { ImageBlock } from '@/components/advanced/image-block/image-block';
-import { ImageBlockBlock, Image as ImageModel, Page } from '@/payload.types';
+import type { ImageBlockBlock, Image as ImageModel, Page } from '@/payload.types';
 import { useThemeStore } from '@/store/theme';
 
 const ImageBlock1Container = (props: ImageBlockBlock) => {

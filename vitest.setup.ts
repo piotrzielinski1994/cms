@@ -34,6 +34,7 @@ Object.defineProperty(window, 'DataTransfer', {
 });
 
 Object.defineProperty(window, 'DragEvent', {
+  // biome-ignore lint/complexity/useArrowFunction: must be constructable via `new DragEvent()`
   value: function (type: string, eventInitDict: EventInit & { dataTransfer?: DataTransfer }) {
     const event = new Event(type, eventInitDict) as Event & { dataTransfer: DataTransfer };
     event.dataTransfer = eventInitDict?.dataTransfer ?? new window.DataTransfer();

@@ -1,7 +1,7 @@
-import { clientEnv } from '@/config/env.client.config';
 import { init } from '@sentry/nextjs';
+import { clientEnv } from '@/config/env.client.config';
 
-if (!!clientEnv.sentryDsn) {
+if (clientEnv.sentryDsn) {
   init({
     dsn: clientEnv.sentryDsn,
     tracesSampleRate: 1,

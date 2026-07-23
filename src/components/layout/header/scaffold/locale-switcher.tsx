@@ -1,13 +1,13 @@
 'use client';
 
+import * as SelectPrimitive from '@radix-ui/react-select';
+import { useParams } from 'next/navigation';
+import { type Locale, useTranslations } from 'next-intl';
+import { useTransition } from 'react';
 import { useRouter } from '@/config/next.routing.config';
 import { contentLocales } from '@/config/store/locales.config';
 import { useLocaleStore } from '@/store/locale';
 import { cn } from '@/utils/tailwind';
-import * as SelectPrimitive from '@radix-ui/react-select';
-import { Locale, useTranslations } from 'next-intl';
-import { useParams } from 'next/navigation';
-import { useTransition } from 'react';
 
 const LocaleSwitcher = () => {
   const router = useRouter();

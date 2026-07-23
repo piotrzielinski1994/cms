@@ -1,5 +1,5 @@
-import deepMerge from '@/payload/_old/utilities/deepMerge';
 import type { ArrayField, Field } from 'payload';
+import deepMerge from '@/payload/_old/utilities/deepMerge';
 import type { LinkAppearances } from './link';
 import { link } from './link';
 

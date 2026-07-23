@@ -1,13 +1,13 @@
 'use client';
 
+import * as SelectPrimitive from '@radix-ui/react-select';
+import { useTranslations } from 'next-intl';
+import { keys } from 'ramda';
+import type { FC } from 'react';
 import { fontScales } from '@/config/store/font-scales.config';
 import FontScalerSvg from '@/icons/font-scaler.svg';
 import { useFontScaleStore } from '@/store/font-scale';
 import { cn } from '@/utils/tailwind';
-import * as SelectPrimitive from '@radix-ui/react-select';
-import { useTranslations } from 'next-intl';
-import { keys } from 'ramda';
-import { FC } from 'react';
 
 const FontScaler: FC = () => {
   const { scale, setScale } = useFontScaleStore();

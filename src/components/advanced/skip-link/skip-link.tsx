@@ -1,9 +1,9 @@
 'use client';
 
+import { type ComponentProps, forwardRef, type ReactNode } from 'react';
 import { ButtonLink } from '@/components/basic/button/button';
 import { cn } from '@/utils/tailwind';
-import { Optional } from '@/utils/types';
-import { ComponentProps, forwardRef, ReactNode } from 'react';
+import type { Optional } from '@/utils/types';
 
 type SkipLinkProps = Optional<ComponentProps<typeof ButtonLink>, 'href'> & {
   t: {

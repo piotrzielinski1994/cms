@@ -1,11 +1,11 @@
+import type { ReactRenderer } from '@storybook/nextjs';
+import { type ComponentProps, useEffect } from 'react';
+import type { DecoratorFunction } from 'storybook/internal/csf';
 import { FontScaleConstants } from '@/config/store/font-scales.config';
 import { LocalesConstants } from '@/config/store/locales.config';
 import { getThemeConfig, ThemeConstants } from '@/config/store/themes.config';
 import { Providers } from '@/providers';
-import { ReactRenderer } from '@storybook/nextjs';
-import { ComponentProps, useEffect } from 'react';
-import { DecoratorFunction } from 'storybook/internal/csf';
-import preview from './preview';
+import type preview from './preview';
 
 type GlobalTypes = typeof preview.globalTypes;
 type StoryContext = {
@@ -52,4 +52,4 @@ const DataAttributesSetter = ({ locale, theme, scale }: StoryContext['globals'])
   return <></>;
 };
 
-export { withProviders, type StoryContext };
+export { type StoryContext, withProviders };

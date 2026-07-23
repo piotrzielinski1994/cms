@@ -1,6 +1,6 @@
-import { Optional } from '@/utils/types';
 import { useTranslations } from 'next-intl';
-import { ComponentProps } from 'react';
+import type { ComponentProps } from 'react';
+import type { Optional } from '@/utils/types';
 import { SkipLink } from './skip-link';
 
 const SkipLinkContainer = (props: Optional<ComponentProps<typeof SkipLink>, 't'>) => {

@@ -1,5 +1,3 @@
-import { clientEnv } from '@/config/env.client.config';
-import { serverEnv } from '@/config/env.server.config';
 import bundleAnalyzer from '@next/bundle-analyzer';
 import { withPayload } from '@payloadcms/next/withPayload';
 import { withSentryConfig } from '@sentry/nextjs';
@@ -7,6 +5,8 @@ import type { NextConfig } from 'next';
 import createNextIntlPlugin from 'next-intl/plugin';
 import { pipe } from 'ramda';
 import { z } from 'zod';
+import { clientEnv } from '@/config/env.client.config';
+import { serverEnv } from '@/config/env.server.config';
 
 const withBundleAnalyzer = bundleAnalyzer({ enabled: process.env.ANALYZE === 'true' });
 const withNextIntl = createNextIntlPlugin('./src/config/next.routing.config.ts');
@@ -29,6 +29,9 @@ const withSentry = (config: NextConfig) => {
 const nextConfig = {
   reactStrictMode: true,
   reactCompiler: true,
+  // next 16's build-time type check doesn't yet support typescript@7 (crashes trying to
+  // auto-install a "missing" tsc). Type safety is enforced via `tsc --noEmit` in the `ts`/`test` scripts.
+  typescript: { ignoreBuildErrors: true },
   images: {
     remotePatterns: [clientEnv.publicUrl].map((item) => {
       const url = new URL(item);

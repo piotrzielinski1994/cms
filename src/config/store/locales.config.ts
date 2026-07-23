@@ -1,6 +1,4 @@
-import { en as customEn } from '@/payload/locale/en';
-import { pl as customPl } from '@/payload/locale/pl';
-import {
+import type {
   DefaultTranslationKeys,
   NestedKeysStripped,
   SupportedLanguages,
@@ -8,8 +6,10 @@ import {
 } from '@payloadcms/translations';
 import { en } from '@payloadcms/translations/languages/en';
 import { pl } from '@payloadcms/translations/languages/pl';
-import { Locale } from 'next-intl';
+import type { Locale } from 'next-intl';
 import { pick } from 'ramda';
+import { en as customEn } from '@/payload/locale/en';
+import { pl as customPl } from '@/payload/locale/pl';
 
 type AdminTranslations = TFunction<NestedKeysStripped<typeof customEn> | DefaultTranslationKeys>;
 
@@ -33,6 +33,7 @@ const isLocale = (value: string): value is Locale => {
 };
 
 export {
+  type AdminTranslations,
   adminLocales,
   contentLocales,
   defaultAdminLocale,
@@ -40,5 +41,4 @@ export {
   isLocale,
   LocalesConstants,
   translations,
-  type AdminTranslations,
 };

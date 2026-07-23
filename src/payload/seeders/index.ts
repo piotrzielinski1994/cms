@@ -1,4 +1,4 @@
-import { Payload, PayloadRequest } from 'payload';
+import type { Payload, PayloadRequest } from 'payload';
 import { seedLayoutItems } from './layout';
 import { seedPages } from './pages';
 import { seedUsers } from './users';

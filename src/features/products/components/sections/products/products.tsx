@@ -1,10 +1,10 @@
 'use client';
 
+import { LayoutGrid, LayoutList } from 'lucide-react';
+import { useState } from 'react';
 import { Container } from '@/components/basic/container/container';
 import { Section } from '@/components/basic/section/section';
 import { cn } from '@/utils/tailwind';
-import { LayoutGrid, LayoutList } from 'lucide-react';
-import { useState } from 'react';
 import { ProductCard } from '../../advanced/product-card/product-card';
 
 const products = Array.from({ length: 5 }, (_, i) => i).map((it) => {

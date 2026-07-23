@@ -1,10 +1,16 @@
 'use client';
 
-import { EnhancedHtmlProps, HtmlProps } from '@/utils/html/html.types';
-import { cn } from '@/utils/tailwind';
 import { Upload, X } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { ChangeEvent, ComponentPropsWithoutRef, forwardRef, ReactNode, useState } from 'react';
+import {
+  type ChangeEvent,
+  type ComponentPropsWithoutRef,
+  forwardRef,
+  type ReactNode,
+  useState,
+} from 'react';
+import type { EnhancedHtmlProps, HtmlProps } from '@/utils/html/html.types';
+import { cn } from '@/utils/tailwind';
 import Form from '../root/form';
 import { styles as testInputStyles } from '../text-input/text-input';
 
@@ -16,11 +22,17 @@ type FileInputProps = NativeProps & {
 };
 
 // prettier-ignore
-type NativeProps = Omit<EnhancedHtmlProps<'input', {
-  name: string;
-  accept?: string;
-  multiple?: boolean;
-}>, 'type'>;
+type NativeProps = Omit<
+  EnhancedHtmlProps<
+    'input',
+    {
+      name: string;
+      accept?: string;
+      multiple?: boolean;
+    }
+  >,
+  'type'
+>;
 
 const styles = {
   wrapper: ({ isValid, isDragging }: { isValid: boolean; isDragging: boolean }) =>

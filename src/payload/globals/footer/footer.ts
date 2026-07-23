@@ -1,8 +1,8 @@
-import { AdminTranslations, translations } from '@/config/store/locales.config';
-import { link } from '@/payload/fields/link';
-import { isCollectionLocale } from '@/utils/payload';
 import { revalidateTag } from 'next/cache';
 import type { GlobalConfig } from 'payload';
+import { type AdminTranslations, translations } from '@/config/store/locales.config';
+import { link } from '@/payload/fields/link';
+import { isCollectionLocale } from '@/utils/payload';
 
 const footer = {
   slug: 'footer',

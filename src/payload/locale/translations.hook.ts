@@ -1,7 +1,7 @@
-import { type NestedKeysStripped } from '@payloadcms/translations';
-import { enTranslations } from '@payloadcms/translations/languages/en';
+import type { NestedKeysStripped } from '@payloadcms/translations';
+import type { enTranslations } from '@payloadcms/translations/languages/en';
 import { useTranslation } from '@payloadcms/ui';
-import { en } from './en';
+import type { en } from './en';
 
 type CustomTranslationsKeys = NestedKeysStripped<typeof en & typeof enTranslations>;
 

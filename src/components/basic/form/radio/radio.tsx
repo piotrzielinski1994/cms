@@ -1,7 +1,7 @@
-import { EnhancedHtmlProps } from '@/utils/html/html.types';
-import { cn } from '@/utils/tailwind';
 import { Circle } from 'lucide-react';
 import { forwardRef } from 'react';
+import type { EnhancedHtmlProps } from '@/utils/html/html.types';
+import { cn } from '@/utils/tailwind';
 import { styles as checkboxStyles } from '../checkbox/checkbox';
 import Form from '../root/form';
 
@@ -11,10 +11,16 @@ type RadioProps = NativeProps & {
 };
 
 // prettier-ignore
-type NativeProps = Omit<EnhancedHtmlProps<'input', {
-  name: string;
-  value?: string;
-}>, 'type'>;
+type NativeProps = Omit<
+  EnhancedHtmlProps<
+    'input',
+    {
+      name: string;
+      value?: string;
+    }
+  >,
+  'type'
+>;
 
 const styles = {
   wrapper: checkboxStyles.wrapper,

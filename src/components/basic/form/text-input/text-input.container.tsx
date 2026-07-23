@@ -1,5 +1,5 @@
-import { ComponentProps } from 'react';
-import { Control, FieldValues, Path, useController } from 'react-hook-form';
+import type { ComponentProps } from 'react';
+import { type Control, type FieldValues, type Path, useController } from 'react-hook-form';
 import { TextInput } from './text-input';
 
 type TextInputContainerProps<T extends FieldValues> = {

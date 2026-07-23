@@ -1,10 +1,10 @@
-import { en } from '@/payload/locale/en';
-import { withProviders } from '@/utils/tests';
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { ComponentProps } from 'react';
+import type { ComponentProps } from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { axe } from 'vitest-axe';
+import { en } from '@/payload/locale/en';
+import { withProviders } from '@/utils/tests';
 import { FileInput } from './file-input';
 
 const t = en.frontend;
@@ -52,7 +52,7 @@ describe('FileInput', () => {
       );
 
       const calledEvent = defaultProps.onChange.mock.calls[0][0];
-      expect(calledEvent.target.files![0].name).toBe(newFileName);
+      expect(calledEvent.target.files?.[0].name).toBe(newFileName);
       expect(defaultProps.onChange).toHaveBeenCalled();
     });
 

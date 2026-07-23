@@ -1,8 +1,8 @@
-import { withProviders } from '@/utils/tests';
 import { render, waitFor } from '@testing-library/react';
-import { ComponentProps } from 'react';
+import type { ComponentProps } from 'react';
 import { describe, expect, it } from 'vitest';
 import { axe } from 'vitest-axe';
+import { withProviders } from '@/utils/tests';
 import { Header } from './header';
 
 describe('Header', () => {

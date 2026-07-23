@@ -1,7 +1,7 @@
-import { HtmlProps } from '@/utils/html/html.types';
+import { forwardRef, type ReactNode } from 'react';
+import type { HtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
-import { BoolMap } from '@/utils/types';
-import { forwardRef, ReactNode } from 'react';
+import type { BoolMap } from '@/utils/types';
 
 type TableProps = HtmlProps<'table'> & {
   header: ReactNode[];
@@ -43,7 +43,11 @@ const Component = forwardRef<HTMLTableElement, TableProps>((props, ref) => {
               return <Column key={index}>{cell}</Column>;
             });
             // prettier-ignore
-            return <Row key={index} className={styles.row({ isOdd })}>{cells}</Row>;
+            return (
+              <Row key={index} className={styles.row({ isOdd })}>
+                {cells}
+              </Row>
+            );
           })}
         </Body>
         {footer.length > 0 && (

@@ -1,8 +1,8 @@
 'use client';
 
-import { FontScaleConstants, fontScales } from '@/config/store/font-scales.config';
+import { createContext, type PropsWithChildren, useContext, useEffect, useState } from 'react';
+import { FontScaleConstants, type fontScales } from '@/config/store/font-scales.config';
 import { cookies } from '@/utils/cookies';
-import { createContext, PropsWithChildren, useContext, useEffect, useState } from 'react';
 
 type FontScaleStore = {
   scale: keyof typeof fontScales;

@@ -1,8 +1,8 @@
-import Form from '@/components/basic/form/root/form';
-import { DEFAULT_VALUE, getFallback } from '@/config/storybook/utils';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useTranslations } from 'next-intl';
-import { useState, type ComponentProps } from 'react';
+import { type ComponentProps, useState } from 'react';
+import Form from '@/components/basic/form/root/form';
+import { DEFAULT_VALUE, getFallback } from '@/config/storybook/utils';
 import { Select as SelectComponent } from './select';
 
 type Args = ComponentProps<typeof SelectComponent> & {

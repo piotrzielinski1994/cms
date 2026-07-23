@@ -1,8 +1,8 @@
-import type { Config } from '@/payload.types';
-import configPromise from '@/payload/payload.config';
-import { Locale } from 'next-intl';
 import { unstable_cache } from 'next/cache';
-import { getPayload, GlobalSlug } from 'payload';
+import type { Locale } from 'next-intl';
+import { type GlobalSlug, getPayload } from 'payload';
+import configPromise from '@/payload/payload.config';
+import type { Config } from '@/payload.types';
 
 type GlobalRevalidationTag = `global__${Locale}__${GlobalSlug}`;
 type CacheConfig = {
@@ -23,4 +23,4 @@ const getCachedGlobal = <T extends GlobalSlug>(slug: T, locale: Locale, depth = 
   return unstable_cache(() => getGlobal<T>(slug, locale, depth), [slug, locale], cacheConfig);
 };
 
-export { getCachedGlobal, type GlobalRevalidationTag };
+export { type GlobalRevalidationTag, getCachedGlobal };

@@ -1,18 +1,17 @@
 import type { Metadata } from 'next';
-
+import { draftMode } from 'next/headers';
+import type { Locale } from 'next-intl';
+import { toPairs } from 'ramda';
 import { RenderBlocks } from '@/components/sections/block';
 import { clientEnv } from '@/config/env.client.config';
 import { LivePreviewListener } from '@/payload/_old/components/LivePreviewListener';
 import { PayloadRedirects } from '@/payload/_old/components/PayloadRedirects';
 import { getPages, queryPage } from '@/payload/collections/pages/pages.utils';
-import { Image } from '@/payload/payload.types';
+import type { Image } from '@/payload/payload.types';
 import { toPageMetadata } from '@/utils/nextjs/metadata';
-import { LocalizedRoute } from '@/utils/nextjs/types';
+import type { LocalizedRoute } from '@/utils/nextjs/types';
 import { optional } from '@/utils/optional';
 import { toPath } from '@/utils/url';
-import { Locale } from 'next-intl';
-import { draftMode } from 'next/headers';
-import { toPairs } from 'ramda';
 import { PageClient } from './page.client';
 
 type PathPerLocale = Record<Locale, string>;

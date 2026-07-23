@@ -1,9 +1,9 @@
 import '@/app/(frontend)/[locale]/globals.scss';
-import { FontScale, fontScales } from '@/config/store/font-scales.config';
-import { contentLocales, defaultContentLocale } from '@/config/store/locales.config';
-import { Theme, themes } from '@/config/store/themes.config';
-import { Preview } from '@storybook/nextjs';
+import type { Preview } from '@storybook/nextjs';
 import { keys } from 'ramda';
+import { type FontScale, fontScales } from '@/config/store/font-scales.config';
+import { contentLocales, defaultContentLocale } from '@/config/store/locales.config';
+import { type Theme, themes } from '@/config/store/themes.config';
 import { withProviders } from './components';
 
 const preview = {

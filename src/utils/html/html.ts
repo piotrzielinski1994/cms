@@ -14,4 +14,4 @@ const getElementId = <T extends string>(blockId: T) => {
   return fn;
 };
 
-export { getElementId, type GetElementIdFunction };
+export { type GetElementIdFunction, getElementId };

@@ -1,4 +1,4 @@
-import { HtmlProps } from '@/utils/html/html.types';
+import type { HtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
 
 type SkeletonProps = Omit<HtmlProps<'div'>, 'children'>;

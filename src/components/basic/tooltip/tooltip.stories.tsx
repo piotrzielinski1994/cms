@@ -1,9 +1,9 @@
-import { DEFAULT_VALUE, getFallback } from '@/config/storybook/utils';
-import { cn } from '@/utils/tailwind';
 import type { Meta, StoryObj } from '@storybook/react';
 import { HelpCircle } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { type ComponentProps } from 'react';
+import type { ComponentProps } from 'react';
+import { DEFAULT_VALUE, getFallback } from '@/config/storybook/utils';
+import { cn } from '@/utils/tailwind';
 import { Tooltip as TooltipComponent } from './tooltip';
 
 type Args = ComponentProps<typeof TooltipComponent> & {

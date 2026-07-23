@@ -1,10 +1,7 @@
-import { ReactContextError } from '@/utils/error';
-import { HtmlProps } from '@/utils/html/html.types';
-import { cn } from '@/utils/tailwind';
 import {
-  ReactNode,
-  RefObject,
   createContext,
+  type ReactNode,
+  type RefObject,
   useContext,
   useId,
   useLayoutEffect,
@@ -12,6 +9,9 @@ import {
   useRef,
   useState,
 } from 'react';
+import { ReactContextError } from '@/utils/error';
+import type { HtmlProps } from '@/utils/html/html.types';
+import { cn } from '@/utils/tailwind';
 
 type TooltipProps = HtmlProps<'button'> & { content: ReactNode };
 
@@ -153,4 +153,4 @@ const useTooltip = () => {
   throw new ReactContextError('Tooltip');
 };
 
-export { Tooltip, styles, useTooltip };
+export { styles, Tooltip, useTooltip };

@@ -1,4 +1,4 @@
-import { Locale } from 'next-intl';
+import type { Locale } from 'next-intl';
 import { describe, expect } from 'vitest';
 import { createNumberFormatter, createNumberUnformatter, isNumeric } from './number-input.utils';
 

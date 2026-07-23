@@ -1,5 +1,5 @@
-import { formatSlugHook } from '@/payload/hooks/formatSlug';
 import type { CheckboxField, TextField } from 'payload';
+import { formatSlugHook } from '@/payload/hooks/formatSlug';
 
 // Types ====================================
 
@@ -14,10 +14,11 @@ type SlugConfig = {
 
 // Variables ====================================
 
-const createSlugField = ({ fieldToUse = 'title', name = 'slug', overrides }: SlugConfig = {}): [
-  TextField,
-  CheckboxField,
-] => {
+const createSlugField = ({
+  fieldToUse = 'title',
+  name = 'slug',
+  overrides,
+}: SlugConfig = {}): [TextField, CheckboxField] => {
   const checkBoxField: CheckboxField = {
     name: `${name}Lock`,
     type: 'checkbox',

@@ -1,7 +1,7 @@
 import { fromPairs, toPairs } from 'ramda';
 import type { Config } from 'tailwindcss';
 import resolveConfig from 'tailwindcss/resolveConfig';
-import { CSSRuleObject } from 'tailwindcss/types/config';
+import type { CSSRuleObject } from 'tailwindcss/types/config';
 import { fontScales } from './src/config/store/font-scales.config';
 import { themes } from './src/config/store/themes.config';
 

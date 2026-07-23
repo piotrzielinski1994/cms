@@ -1,9 +1,9 @@
 'use client';
 
-import { contentLocales, defaultContentLocale, translations } from '@/config/store/locales.config';
-import { Locale, NextIntlClientProvider, useLocale } from 'next-intl';
-import { PropsWithChildren, useEffect } from 'react';
+import { type Locale, NextIntlClientProvider, useLocale } from 'next-intl';
+import { type PropsWithChildren, useEffect } from 'react';
 import z from 'zod';
+import { contentLocales, defaultContentLocale, translations } from '@/config/store/locales.config';
 
 const useLocaleStore = (): Locale => {
   const locale = useLocale();

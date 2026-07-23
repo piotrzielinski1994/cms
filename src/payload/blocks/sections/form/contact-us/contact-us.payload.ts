@@ -1,4 +1,4 @@
-import { Block } from 'payload';
+import type { Block } from 'payload';
 import thumbnail from './contact-us.webp';
 
 const contactUsSectionPayloadConfig = {

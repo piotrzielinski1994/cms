@@ -1,9 +1,9 @@
-import { en } from '@/payload/locale/en';
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { ComponentProps } from 'react';
+import type { ComponentProps } from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { axe } from 'vitest-axe';
+import { en } from '@/payload/locale/en';
 import { Alert } from './alert';
 
 describe('Alert', () => {

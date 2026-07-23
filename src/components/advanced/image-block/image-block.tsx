@@ -1,12 +1,12 @@
 'use client';
 
+import type { StaticImageData } from 'next/image';
+import type { ComponentProps } from 'react';
 import { ButtonLink } from '@/components/basic/button/button';
 import { Image as BaseImage } from '@/components/basic/image/image';
-import { HtmlProps } from '@/utils/html/html.types';
+import type { HtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
-import { BoolMap } from '@/utils/types';
-import { StaticImageData } from 'next/image';
-import { ComponentProps } from 'react';
+import type { BoolMap } from '@/utils/types';
 
 type ImageBlockProps = HtmlProps<'div'> & {
   isReversed?: boolean;
@@ -41,9 +41,7 @@ const Component = (props: ImageBlockProps) => {
         <Image
           {...image}
           aspectRatio={
-            Boolean(image.width && image.height)
-              ? { width: image.width!, height: image.height! }
-              : undefined
+            image.width && image.height ? { width: image.width!, height: image.height! } : undefined
           }
         />
       </ImageWrapper>

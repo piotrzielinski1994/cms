@@ -1,7 +1,7 @@
+import { RichText } from '@payloadcms/richtext-lexical/react';
+import type { Locale } from 'next-intl';
 import { CookiesBannerContainer as CookiesBanner } from '@/components/advanced/cookies-banner/cookies-banner.container';
 import { getCachedGlobal } from '@/payload/utils/globals';
-import { RichText } from '@payloadcms/richtext-lexical/react';
-import { Locale } from 'next-intl';
 
 type CookiesBannerContainerProps = {
   locale: Locale;

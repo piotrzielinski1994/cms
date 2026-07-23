@@ -1,11 +1,11 @@
 'use client';
 
-import Form from '@/components/basic/form/root/form';
-import { EnhancedHtmlProps, HtmlProps } from '@/utils/html/html.types';
-import { cn } from '@/utils/tailwind';
-import { BoolMap } from '@/utils/types';
 import { Upload, X } from 'lucide-react';
-import { ChangeEvent, forwardRef, KeyboardEvent, ReactNode, useState } from 'react';
+import { type ChangeEvent, forwardRef, type KeyboardEvent, type ReactNode, useState } from 'react';
+import Form from '@/components/basic/form/root/form';
+import type { EnhancedHtmlProps, HtmlProps } from '@/utils/html/html.types';
+import { cn } from '@/utils/tailwind';
+import type { BoolMap } from '@/utils/types';
 
 type DropzoneInputProps = NativeProps & {
   label?: ReactNode;
@@ -20,11 +20,14 @@ type DropzoneInputProps = NativeProps & {
 };
 
 // prettier-ignore
-type NativeProps = EnhancedHtmlProps<'input', {
-  name: string;
-  accept?: string;
-  multiple?: boolean;
-}>;
+type NativeProps = EnhancedHtmlProps<
+  'input',
+  {
+    name: string;
+    accept?: string;
+    multiple?: boolean;
+  }
+>;
 
 const styles = {
   wrapper: ({ isValid, isDragging }: BoolMap<'isValid' | 'isDragging'>) =>

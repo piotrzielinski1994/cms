@@ -1,13 +1,16 @@
-import { EnhancedHtmlProps } from '@/utils/html/html.types';
-import { cn } from '@/utils/tailwind';
-import { BoolMap } from '@/utils/types';
 import { useEffect, useRef } from 'react';
+import type { EnhancedHtmlProps } from '@/utils/html/html.types';
+import { cn } from '@/utils/tailwind';
+import type { BoolMap } from '@/utils/types';
 
 // prettier-ignore
-type DrawerProps = EnhancedHtmlProps<'div', {
-  isOpen: boolean;
-  onClose: () => void;
-}>;
+type DrawerProps = EnhancedHtmlProps<
+  'div',
+  {
+    isOpen: boolean;
+    onClose: () => void;
+  }
+>;
 
 const styles = {
   root: ({ isOpen }: BoolMap<'isOpen'>) =>

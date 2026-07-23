@@ -7,8 +7,8 @@ import { Section } from '@/components/basic/section/section';
 import { useHeaderHeight } from '@/components/layout/header/header.hooks';
 import { ProductPrice } from '@/features/products/components/basic/product-price/product-price';
 import { ProductVariants } from '@/features/products/components/basic/product-variants/product-variants';
-import placeholderDarkWebp from '@/placeholders/placeholder-dark.webp';
 import placeholderWebp from '@/placeholders/placeholder.webp';
+import placeholderDarkWebp from '@/placeholders/placeholder-dark.webp';
 import { cn } from '@/utils/tailwind';
 import { ProductGallery } from '../../basic/product-gallery/product-gallery';
 

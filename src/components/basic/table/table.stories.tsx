@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useTranslations } from 'next-intl';
-import { type ComponentProps } from 'react';
+import type { ComponentProps } from 'react';
 import { Table as TableComponent } from './table';
 
 type Args = ComponentProps<typeof TableComponent>;

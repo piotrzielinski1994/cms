@@ -1,4 +1,4 @@
-import { Payload, RequiredDataFromCollectionSlug } from 'payload';
+import type { Payload, RequiredDataFromCollectionSlug } from 'payload';
 
 const users: RequiredDataFromCollectionSlug<'users'>[] = [
   {

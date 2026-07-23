@@ -1,7 +1,7 @@
-import { AdminTranslations, translations } from '@/config/store/locales.config';
-import { anyone, authenticated } from '@/payload/utils/access';
-import path from 'path';
+import path from 'node:path';
 import type { CollectionConfig } from 'payload';
+import { type AdminTranslations, translations } from '@/config/store/locales.config';
+import { anyone, authenticated } from '@/payload/utils/access';
 
 const root = path.resolve(process.cwd());
 

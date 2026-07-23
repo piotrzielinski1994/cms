@@ -1,6 +1,6 @@
-import { AdminTranslations } from '@/config/store/locales.config';
+import type { Block } from 'payload';
+import type { AdminTranslations } from '@/config/store/locales.config';
 import { imageBlock1BlockPayloadConfig } from '@/payload/blocks/advanced/image-block/image-block.payload';
-import { Block } from 'payload';
 import thumbnail from './image-blocks.webp';
 
 const imageBlocksSectionPayloadConfig = {

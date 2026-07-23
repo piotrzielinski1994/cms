@@ -1,10 +1,10 @@
-import { en } from '@/payload/locale/en';
-import { withProviders } from '@/utils/tests';
 import { render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { ComponentProps } from 'react';
+import type { ComponentProps } from 'react';
 import { describe, expect, it } from 'vitest';
 import { axe } from 'vitest-axe';
+import { en } from '@/payload/locale/en';
+import { withProviders } from '@/utils/tests';
 import { SkipLink } from './skip-link';
 
 describe('SkipLink', () => {

@@ -1,9 +1,9 @@
 'use client';
 
-import { clientEnv } from '@/config/env.client.config';
 import { RefreshRouteOnSave as PayloadLivePreview } from '@payloadcms/live-preview-react';
 import { useRouter } from 'next/navigation';
-import React from 'react';
+import type React from 'react';
+import { clientEnv } from '@/config/env.client.config';
 
 export const LivePreviewListener: React.FC = () => {
   const router = useRouter();

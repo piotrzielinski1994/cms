@@ -1,11 +1,11 @@
-import { Locale } from 'next-intl';
-import { ComponentProps } from 'react';
+import type { Locale } from 'next-intl';
+import type { ComponentProps } from 'react';
 import z from 'zod';
-import { NumberInput } from './number-input';
+import type { NumberInput } from './number-input';
 
 const createNumberFormatter = (locale: Locale) => (rawValue: string) => {
   const number = parseFloat(rawValue);
-  if (isNaN(number)) return rawValue;
+  if (Number.isNaN(number)) return rawValue;
 
   const intl = new Intl.NumberFormat(locale);
   const formatted = intl.format(number);
@@ -41,7 +41,11 @@ const isNumeric = ({
   int,
   frac = 0,
   negative = false,
-}: { int?: number; frac?: number; negative?: boolean } = {}) => {
+}: {
+  int?: number;
+  frac?: number;
+  negative?: boolean;
+} = {}) => {
   const signPart = negative ? '-?' : '';
   const intPart = int ? `\\d{1,${int}}` : '\\d+';
   const fracPart = frac > 0 ? `(\\.\\d{0,${frac}})?` : '';

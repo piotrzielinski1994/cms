@@ -1,5 +1,5 @@
-import { getElementId, GetElementIdFunction } from '@/utils/html/html';
 import { useId } from 'react';
+import { type GetElementIdFunction, getElementId } from '@/utils/html/html';
 
 const useHtmlId = <T extends string>(
   prefix: T,

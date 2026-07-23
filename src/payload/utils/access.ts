@@ -1,5 +1,5 @@
-import { User } from '@/payload.types';
-import { Access, FieldAccess } from 'payload';
+import type { Access, FieldAccess } from 'payload';
+import type { User } from '@/payload.types';
 
 const anyone: Access = () => true;
 

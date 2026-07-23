@@ -1,5 +1,5 @@
+import type * as React from 'react';
 import { cn } from '@/utils/tailwind';
-import * as React from 'react';
 
 const Textarea: React.FC<
   {

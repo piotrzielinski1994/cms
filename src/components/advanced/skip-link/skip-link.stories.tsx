@@ -1,10 +1,10 @@
+import type { Meta, StoryObj } from '@storybook/react';
+import { useTranslations } from 'next-intl';
+import { type ComponentProps, useEffect, useRef } from 'react';
 import Form from '@/components/basic/form/root/form';
 import { TextInput } from '@/components/basic/form/text-input/text-input';
 import { Link } from '@/components/basic/link/link';
 import { cn } from '@/utils/tailwind';
-import type { Meta, StoryObj } from '@storybook/react';
-import { useTranslations } from 'next-intl';
-import { useEffect, useRef, type ComponentProps } from 'react';
 import { SkipLink as SkipLinkComponent } from './skip-link';
 
 type Args = ComponentProps<typeof SkipLinkComponent> & {

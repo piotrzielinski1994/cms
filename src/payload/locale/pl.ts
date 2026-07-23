@@ -1,4 +1,4 @@
-import { en } from './en';
+import type { en } from './en';
 
 const pl = {
   common: {

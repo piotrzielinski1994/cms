@@ -1,6 +1,6 @@
-import { HtmlProps } from '@/utils/html/html.types';
+import type { ElementType } from 'react';
+import type { HtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
-import { ElementType } from 'react';
 
 const styles = {
   group: 'grid gap-1 content-start grid-rows-[auto_1fr]',

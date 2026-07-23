@@ -1,8 +1,8 @@
-import payloadConfig from '@/payload/payload.config';
-import { Locale } from 'next-intl';
 import { draftMode } from 'next/headers';
+import type { Locale } from 'next-intl';
 import { getPayload } from 'payload';
 import { cache } from 'react';
+import payloadConfig from '@/payload/payload.config';
 
 const getPages = async () => {
   const payload = await getPayload({ config: payloadConfig });

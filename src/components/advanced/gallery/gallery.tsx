@@ -1,17 +1,12 @@
 'use client';
 
-import { Image } from '@/components/basic/image/image';
-import { ReactContextError } from '@/utils/error';
-import { EnhancedHtmlProps, HtmlProps } from '@/utils/html/html.types';
-import { optional } from '@/utils/optional';
-import { cn } from '@/utils/tailwind';
 import { X } from 'lucide-react';
 import {
-  ComponentProps,
+  type ComponentProps,
   createContext,
   forwardRef,
-  PropsWithChildren,
-  RefObject,
+  type PropsWithChildren,
+  type RefObject,
   useContext,
   useEffect,
   useId,
@@ -19,11 +14,19 @@ import {
   useRef,
   useState,
 } from 'react';
+import { Image } from '@/components/basic/image/image';
+import { ReactContextError } from '@/utils/error';
+import type { EnhancedHtmlProps, HtmlProps } from '@/utils/html/html.types';
+import { optional } from '@/utils/optional';
+import { cn } from '@/utils/tailwind';
 
 // prettier-ignore
-type GalleryProps = EnhancedHtmlProps<'div', {
-  images: { src: string; alt: string }[];
-}>;
+type GalleryProps = EnhancedHtmlProps<
+  'div',
+  {
+    images: { src: string; alt: string }[];
+  }
+>;
 
 const styles = {
   root: 'grid gap-4',

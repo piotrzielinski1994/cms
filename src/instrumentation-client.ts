@@ -1,7 +1,7 @@
 import { captureRouterTransitionStart, init, replayIntegration } from '@sentry/nextjs';
 import { clientEnv } from './config/env.client.config';
 
-if (!!clientEnv.sentryDsn) {
+if (clientEnv.sentryDsn) {
   init({
     dsn: clientEnv.sentryDsn,
     integrations: [replayIntegration()],

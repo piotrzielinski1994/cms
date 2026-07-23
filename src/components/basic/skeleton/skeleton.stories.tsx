@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { type ComponentProps } from 'react';
+import type { ComponentProps } from 'react';
 import { Skeleton as SkeletonComponent } from './skeleton';
 
 type Args = ComponentProps<typeof SkeletonComponent>;

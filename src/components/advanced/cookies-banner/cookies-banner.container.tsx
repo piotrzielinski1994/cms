@@ -1,9 +1,9 @@
 'use client';
 
+import { GoogleTagManager } from '@next/third-parties/google';
+import { type ComponentProps, useEffect, useRef } from 'react';
 import { clientEnv } from '@/config/env.client.config';
 import { useCookiesConsentStore } from '@/store/cookies-consent';
-import { GoogleTagManager } from '@next/third-parties/google';
-import { ComponentProps, useEffect, useRef } from 'react';
 import { CookiesBanner } from './cookies-banner';
 
 const CookiesBannerContainer = (props: Omit<ComponentProps<typeof CookiesBanner>, 'onAccept'>) => {

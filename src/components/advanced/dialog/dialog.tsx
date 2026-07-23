@@ -1,33 +1,45 @@
+import { X } from 'lucide-react';
+import {
+  createContext,
+  forwardRef,
+  type PropsWithChildren,
+  type ReactNode,
+  useContext,
+} from 'react';
 import { Button } from '@/components/basic/button/button';
 import { Container } from '@/components/basic/container/container';
 import { Section } from '@/components/basic/section/section';
-import { EnhancedHtmlProps, HtmlProps } from '@/utils/html/html.types';
+import type { EnhancedHtmlProps, HtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
-import { X } from 'lucide-react';
-import { createContext, forwardRef, PropsWithChildren, ReactNode, useContext } from 'react';
 
 // prettier-ignore
-type DialogProps = EnhancedHtmlProps<'dialog', {
-  type?: 'dialog' | 'modal';
-  header?: ReactNode;
-  footer?: ReactNode;
-  onClose?: () => void;
-  t?: {
-    close: string
+type DialogProps = EnhancedHtmlProps<
+  'dialog',
+  {
+    type?: 'dialog' | 'modal';
+    header?: ReactNode;
+    footer?: ReactNode;
+    onClose?: () => void;
+    t?: {
+      close: string;
+    };
   }
-}>;
+>;
 
 // prettier-ignore
-type FooterProps = EnhancedHtmlProps<'div', {
-  submitBtn: {
-    label: ReactNode;
-    onClick: () => void;
-  };
-  cancelBtn?: {
-    label: ReactNode;
-    onClick: () => void;
-  };
-}>;
+type FooterProps = EnhancedHtmlProps<
+  'div',
+  {
+    submitBtn: {
+      label: ReactNode;
+      onClick: () => void;
+    };
+    cancelBtn?: {
+      label: ReactNode;
+      onClick: () => void;
+    };
+  }
+>;
 
 const styles = {
   root: ({ type }: Pick<DialogProps, 'type'>) =>
@@ -93,7 +105,7 @@ const Header = ({ className, ...rest }: HtmlProps<'div'>) => {
 
 const CloseButton = ({ children, className, ...rest }: HtmlProps<'button'>) => {
   return (
-    <button type="button" autoFocus={false} {...rest} className={cn(styles.closeButton, className)}>
+    <button type="button" {...rest} className={cn(styles.closeButton, className)}>
       {children ?? <X />}
     </button>
   );

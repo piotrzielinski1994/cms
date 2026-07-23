@@ -1,7 +1,7 @@
 import { render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { Locale } from 'next-intl';
-import { ComponentProps, useState } from 'react';
+import type { Locale } from 'next-intl';
+import { type ComponentProps, useState } from 'react';
 import { describe, expect, it } from 'vitest';
 import { axe } from 'vitest-axe';
 import { NumberInput } from './number-input';
@@ -22,7 +22,7 @@ describe('NumberInput', () => {
         value={value}
         onChange={(e) => {
           const value = parseFloat(e.target.value);
-          setValue(isNaN(value) ? undefined : value);
+          setValue(Number.isNaN(value) ? undefined : value);
         }}
       />
     );

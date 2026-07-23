@@ -1,7 +1,7 @@
-import placeholderDarkWebp from '@/placeholders/placeholder-dark.webp';
+import type { Payload } from 'payload';
 import placeholderWebp from '@/placeholders/placeholder.webp';
-import { Payload } from 'payload';
-import { FAQ, ImageBlocksSection } from '../payload.types';
+import placeholderDarkWebp from '@/placeholders/placeholder-dark.webp';
+import type { FAQ, ImageBlocksSection } from '../payload.types';
 import { createImage } from './helpers/files';
 import { createPage } from './helpers/pages';
 

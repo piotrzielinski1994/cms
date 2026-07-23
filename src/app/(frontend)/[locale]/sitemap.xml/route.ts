@@ -1,9 +1,9 @@
-import config from '@/payload/payload.config';
-import { LocalizedRoute } from '@/utils/nextjs/types';
-import { Locale } from 'next-intl';
-import { getServerSideSitemap } from 'next-sitemap';
 import { unstable_cache } from 'next/cache';
+import type { Locale } from 'next-intl';
+import { getServerSideSitemap } from 'next-sitemap';
 import { getPayload } from 'payload';
+import config from '@/payload/payload.config';
+import type { LocalizedRoute } from '@/utils/nextjs/types';
 
 const getSitemap = unstable_cache(
   async (locale: Locale) => {

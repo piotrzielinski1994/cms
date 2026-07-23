@@ -1,6 +1,6 @@
-import { Optional } from '@/utils/types';
 import { useTranslations } from 'next-intl';
-import { ComponentProps } from 'react';
+import type { ComponentProps } from 'react';
+import type { Optional } from '@/utils/types';
 import { DropzoneInput } from './dropzone-input';
 
 const DropzoneInputContainer = (props: Optional<ComponentProps<typeof DropzoneInput>, 't'>) => {

@@ -1,6 +1,6 @@
-import { AdminTranslations, translations } from '@/config/store/locales.config';
-import { revalidateRedirects } from '@/payload/hooks/revalidateRedirects';
 import { redirectsPlugin } from '@payloadcms/plugin-redirects';
+import { type AdminTranslations, translations } from '@/config/store/locales.config';
+import { revalidateRedirects } from '@/payload/hooks/revalidateRedirects';
 
 const redirects = redirectsPlugin({
   collections: ['pages'],

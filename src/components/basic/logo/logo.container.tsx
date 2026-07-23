@@ -1,5 +1,5 @@
 import { useTranslations } from 'next-intl';
-import { ComponentProps } from 'react';
+import type { ComponentProps } from 'react';
 import { Logo } from './logo';
 
 const LogoContainer = (props: ComponentProps<typeof Logo>) => {

@@ -1,3 +1,9 @@
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { mongooseAdapter } from '@payloadcms/db-mongodb';
+import { buildConfig } from 'payload';
+import { values } from 'ramda';
+import sharp from 'sharp';
 import { clientEnv } from '@/config/env.client.config';
 import { serverEnv } from '@/config/env.server.config';
 import {
@@ -13,12 +19,6 @@ import { cookiesBanner } from '@/payload/globals/cookies-banner/cookies-banner';
 import { footer } from '@/payload/globals/footer/footer';
 import { header } from '@/payload/globals/header/header';
 import { plugins } from '@/payload/plugins';
-import { mongooseAdapter } from '@payloadcms/db-mongodb';
-import path from 'path';
-import { buildConfig } from 'payload';
-import { values } from 'ramda';
-import sharp from 'sharp';
-import { fileURLToPath } from 'url';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
