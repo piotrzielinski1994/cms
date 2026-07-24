@@ -13,11 +13,16 @@ const meta = {
     totalPages: { control: 'number' },
     siblingCount: { control: 'number' },
   },
+  args: {
+    currentPage: 3,
+    totalPages: 5,
+    siblingCount: 1,
+  },
 } satisfies Meta<Args>;
 
 const getHref = (page: number) => `?page=${page}`;
 
-const Render = () => {
+const Render = ({ currentPage = 3, totalPages = 5, siblingCount = 1 }: Partial<Args>) => {
   const t = useTranslations('frontend.component.pagination');
   const labels = useTranslations('storybook.basic.pagination');
   const paginationT = {
@@ -30,7 +35,13 @@ const Render = () => {
     <div className="grid gap-8">
       <section className="grid gap-2">
         <h3>{labels('fewPages')}</h3>
-        <PaginationComponent currentPage={3} totalPages={5} getHref={getHref} t={paginationT} />
+        <PaginationComponent
+          currentPage={currentPage}
+          totalPages={totalPages}
+          siblingCount={siblingCount}
+          getHref={getHref}
+          t={paginationT}
+        />
       </section>
       <section className="grid gap-2">
         <h3>{labels('manyPages')}</h3>
