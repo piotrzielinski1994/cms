@@ -10,6 +10,7 @@ import { fromPairs, toPairs } from 'ramda';
 import { type AdminTranslations, translations } from '@/config/store/locales.config';
 import { generatePreviewPath } from '@/payload/_old/utilities/generatePreviewPath';
 import { imageBlock1BlockPayloadConfig } from '@/payload/blocks/advanced/image-block/image-block.payload';
+import { contentSectionPayloadConfig } from '@/payload/blocks/sections/content/content.payload';
 import { ctaSectionPayloadConfig } from '@/payload/blocks/sections/cta/cta.payload';
 import { faqSectionPayloadConfig } from '@/payload/blocks/sections/faq/faq.payload';
 import { featuresSectionPayloadConfig } from '@/payload/blocks/sections/features/features.payload';
@@ -95,6 +96,7 @@ const Pages: CollectionConfig<'pages'> = {
                 ctaSectionPayloadConfig,
                 testimonialsSectionPayloadConfig,
                 featuresSectionPayloadConfig,
+                contentSectionPayloadConfig,
               ],
               required: true,
               admin: {
