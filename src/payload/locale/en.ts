@@ -40,6 +40,7 @@ const en = {
     heading: 'Heading',
     subheading: 'Subheading',
     description: 'Description',
+    icon: 'Icon',
     image: 'Image',
     publishedAt: 'Published at',
     fullName: 'Full name',

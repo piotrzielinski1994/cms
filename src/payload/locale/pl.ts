@@ -42,6 +42,7 @@ const pl = {
     heading: 'Nagłówek',
     subheading: 'Podnagłówek',
     description: 'Opis',
+    icon: 'Ikona',
     image: 'Zdjęcie',
     publishedAt: 'Data publikacji',
     fullName: 'Imię i nazwisko',
