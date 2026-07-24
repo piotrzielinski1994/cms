@@ -138,6 +138,25 @@ describe('DropdownMenu', () => {
     expect(getByRole('menuitem', { name: 'Archive' })).not.toHaveFocus();
   });
 
+  // AC-004: ArrowUp roves focus back to the previous enabled item, skipping the disabled one.
+  it('should rove focus back with ArrowUp and skip the disabled item', async () => {
+    const user = userEvent.setup();
+    const { getByRole, findByRole } = renderMenu();
+    const trigger = getByRole('button', { name: TRIGGER });
+
+    trigger.focus();
+    await user.keyboard('{Enter}');
+    await findByRole('menu');
+
+    await user.keyboard('{ArrowDown}');
+    await user.keyboard('{ArrowDown}');
+    expect(getByRole('menuitem', { name: 'Delete' })).toHaveFocus();
+
+    await user.keyboard('{ArrowUp}');
+    expect(getByRole('menuitem', { name: 'Duplicate' })).toHaveFocus();
+    expect(getByRole('menuitem', { name: 'Archive' })).not.toHaveFocus();
+  });
+
   // TC-005 (AC-004): a disabled item exposes aria-disabled/data-disabled, is skipped by
   // roving focus, and clicking it neither fires onSelect nor closes the menu.
   it('should expose a disabled item as non-interactive and keep the menu open if it is clicked', async () => {
