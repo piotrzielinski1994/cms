@@ -328,6 +328,11 @@ const pl = {
         closeButton: 'Z przyciskiem "zamknij"',
       },
       badge: 'Etykieta',
+      card: {
+        header: 'Nagłówek karty',
+        body: 'Treść karty',
+        footer: 'Stopka karty',
+      },
       icons: {
         annotation: 'Dodatkowo, strona używa ikon z biblioteki <a>lucide</a>.',
       },

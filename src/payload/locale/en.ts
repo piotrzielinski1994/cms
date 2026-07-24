@@ -323,6 +323,11 @@ const en = {
         closeButton: 'With "close" button',
       },
       badge: 'Badge',
+      card: {
+        header: 'Card header',
+        body: 'Card body content',
+        footer: 'Card footer',
+      },
       icons: {
         annotation: 'Website also uses icons from <a>lucide</a> library.',
       },
