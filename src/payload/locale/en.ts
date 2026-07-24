@@ -43,6 +43,8 @@ const en = {
     image: 'Image',
     publishedAt: 'Published at',
     fullName: 'Full name',
+    quote: 'Quote',
+    annotation: 'Annotation',
     parent: 'Parent element',
     children: 'Child elements',
     role: {

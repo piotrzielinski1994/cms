@@ -45,6 +45,8 @@ const pl = {
     image: 'Zdjęcie',
     publishedAt: 'Data publikacji',
     fullName: 'Imię i nazwisko',
+    quote: 'Cytat',
+    annotation: 'Adnotacja',
     parent: 'Element nadrzędny',
     children: 'Elementy podrzędne',
     role: {
