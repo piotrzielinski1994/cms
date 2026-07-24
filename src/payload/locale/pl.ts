@@ -126,6 +126,12 @@ const pl = {
     component: {
       skipLink: 'Przejdź do głównej zawartości',
       tabs: 'Zakładki',
+      pagination: {
+        label: 'Paginacja',
+        previous: 'Przejdź do poprzedniej strony',
+        next: 'Przejdź do następnej strony',
+        morePages: 'Więcej stron',
+      },
       uploadInput: {
         clickToUpload: 'Kliknij, aby przesłać',
         orDragAndDrop: 'lub przeciągnij i upuść',
@@ -335,6 +341,10 @@ const pl = {
         header: 'Nagłówek karty',
         body: 'Treść karty',
         footer: 'Stopka karty',
+      },
+      pagination: {
+        fewPages: 'Kilka stron',
+        manyPages: 'Wiele stron',
       },
       icons: {
         annotation: 'Dodatkowo, strona używa ikon z biblioteki <a>lucide</a>.',

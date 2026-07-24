@@ -124,6 +124,12 @@ const en = {
     component: {
       skipLink: 'Go to the main content',
       tabs: 'Tabs',
+      pagination: {
+        label: 'Pagination',
+        previous: 'Go to previous page',
+        next: 'Go to next page',
+        morePages: 'More pages',
+      },
       uploadInput: {
         clickToUpload: 'Click to upload',
         orDragAndDrop: 'or drag and drop',
@@ -330,6 +336,10 @@ const en = {
         header: 'Card header',
         body: 'Card body content',
         footer: 'Card footer',
+      },
+      pagination: {
+        fewPages: 'Few pages',
+        manyPages: 'Many pages',
       },
       icons: {
         annotation: 'Website also uses icons from <a>lucide</a> library.',
