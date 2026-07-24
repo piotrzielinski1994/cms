@@ -130,6 +130,14 @@ const en = {
         next: 'Go to next page',
         morePages: 'More pages',
       },
+      carousel: {
+        label: 'Carousel',
+        previous: 'Previous slide',
+        next: 'Next slide',
+        play: 'Start automatic slide show',
+        pause: 'Stop automatic slide show',
+        slide: 'Slide {n} of {total}',
+      },
       uploadInput: {
         clickToUpload: 'Click to upload',
         orDragAndDrop: 'or drag and drop',
@@ -369,6 +377,10 @@ const en = {
       tabs: {
         tab: 'Tab',
         content: 'Content',
+      },
+      carousel: {
+        heading: 'Slide {index}',
+        body: 'Slide {index} content',
       },
       dropdownMenu: {
         trigger: 'Actions',

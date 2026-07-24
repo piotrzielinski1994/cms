@@ -1,0 +1,118 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Carousel > should match the snapshot on the default render 1`] = `
+<div>
+  <section
+    aria-label="SENTINEL_LABEL"
+    aria-roledescription="carousel"
+    class="relative grid gap-4 cms-carousel"
+  >
+    <div
+      class="relative overflow-hidden"
+    >
+      <div
+        aria-live="polite"
+        class="grid"
+        data-active-index="0"
+      >
+        <div
+          aria-label="SENTINEL_SLIDE 1 of 3"
+          aria-roledescription="slide"
+          class="col-start-1 row-start-1"
+          role="group"
+        >
+          Body 1
+        </div>
+        <div
+          aria-label="SENTINEL_SLIDE 2 of 3"
+          aria-roledescription="slide"
+          class="col-start-1 row-start-1"
+          hidden=""
+          role="group"
+        >
+          Body 2
+        </div>
+        <div
+          aria-label="SENTINEL_SLIDE 3 of 3"
+          aria-roledescription="slide"
+          class="col-start-1 row-start-1"
+          hidden=""
+          role="group"
+        >
+          Body 3
+        </div>
+      </div>
+    </div>
+    <div
+      class="flex items-center justify-between gap-2"
+    >
+      <button
+        aria-label="SENTINEL_PREV"
+        class="flex h-9 w-9 items-center justify-center border border-solid border-foreground/15 hover:bg-background1 focus-visible:tw-cms-outline"
+        type="button"
+      >
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-chevron-left h-4 w-4"
+          fill="none"
+          height="24"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="m15 18-6-6 6-6"
+          />
+        </svg>
+      </button>
+      <div
+        class="flex items-center justify-center gap-2"
+      >
+        <button
+          aria-current="true"
+          aria-label="SENTINEL_SLIDE 1 of 3"
+          class="h-3 w-3 rounded-full border border-solid border-foreground/40 focus-visible:tw-cms-outline bg-foreground"
+          type="button"
+        />
+        <button
+          aria-label="SENTINEL_SLIDE 2 of 3"
+          class="h-3 w-3 rounded-full border border-solid border-foreground/40 focus-visible:tw-cms-outline"
+          type="button"
+        />
+        <button
+          aria-label="SENTINEL_SLIDE 3 of 3"
+          class="h-3 w-3 rounded-full border border-solid border-foreground/40 focus-visible:tw-cms-outline"
+          type="button"
+        />
+      </div>
+      <button
+        aria-label="SENTINEL_NEXT"
+        class="flex h-9 w-9 items-center justify-center border border-solid border-foreground/15 hover:bg-background1 focus-visible:tw-cms-outline"
+        type="button"
+      >
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-chevron-right h-4 w-4"
+          fill="none"
+          height="24"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="m9 18 6-6-6-6"
+          />
+        </svg>
+      </button>
+    </div>
+  </section>
+</div>
+`;

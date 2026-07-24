@@ -132,6 +132,14 @@ const pl = {
         next: 'Przejdź do następnej strony',
         morePages: 'Więcej stron',
       },
+      carousel: {
+        label: 'Karuzela',
+        previous: 'Poprzedni slajd',
+        next: 'Następny slajd',
+        play: 'Uruchom automatyczny pokaz slajdów',
+        pause: 'Zatrzymaj automatyczny pokaz slajdów',
+        slide: 'Slajd {n} z {total}',
+      },
       uploadInput: {
         clickToUpload: 'Kliknij, aby przesłać',
         orDragAndDrop: 'lub przeciągnij i upuść',
@@ -374,6 +382,10 @@ const pl = {
       tabs: {
         tab: 'Zakładka',
         content: 'Treść',
+      },
+      carousel: {
+        heading: 'Slajd {index}',
+        body: 'Treść slajdu {index}',
       },
       dropdownMenu: {
         trigger: 'Akcje',
