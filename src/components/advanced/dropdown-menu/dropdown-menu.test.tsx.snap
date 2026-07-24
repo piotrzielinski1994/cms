@@ -1,0 +1,15 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`DropdownMenu > should match the snapshot in its closed state 1`] = `
+<div>
+  <button
+    aria-expanded="false"
+    aria-haspopup="menu"
+    data-state="closed"
+    id="radix-_r_1o_"
+    type="button"
+  >
+    Actions
+  </button>
+</div>
+`;
