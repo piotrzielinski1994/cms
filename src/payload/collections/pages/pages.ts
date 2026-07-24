@@ -15,6 +15,7 @@ import { faqSectionPayloadConfig } from '@/payload/blocks/sections/faq/faq.paylo
 import { contactUsSectionPayloadConfig } from '@/payload/blocks/sections/form/contact-us/contact-us.payload';
 import { hero1SectionPayloadConfig } from '@/payload/blocks/sections/hero/hero-1/hero-1.payload';
 import { imageBlocksSectionPayloadConfig } from '@/payload/blocks/sections/image-blocks/image-blocks.payload';
+import { testimonialsSectionPayloadConfig } from '@/payload/blocks/sections/testimonials/testimonials.payload';
 import { createSlugField } from '@/payload/fields/slug/slug';
 import { populatePublishedAt } from '@/payload/hooks/populatePublishedAt';
 import { authenticated, authenticatedOrPublished } from '@/payload/utils/access';
@@ -91,6 +92,7 @@ const Pages: CollectionConfig<'pages'> = {
                 contactUsSectionPayloadConfig,
                 faqSectionPayloadConfig,
                 ctaSectionPayloadConfig,
+                testimonialsSectionPayloadConfig,
               ],
               required: true,
               admin: {
