@@ -375,6 +375,19 @@ const pl = {
         tab: 'Zakładka',
         content: 'Treść',
       },
+      dropdownMenu: {
+        trigger: 'Akcje',
+        edit: 'Edytuj',
+        duplicate: 'Duplikuj',
+        archive: 'Archiwizuj',
+        delete: 'Usuń',
+      },
+      popover: {
+        trigger: 'Szczegóły',
+        title: 'Tytuł popovera',
+        content: 'Przykładowa treść popovera.',
+        close: 'Zamknij',
+      },
       skipLink: {
         navbar: 'Pasek nawigacyjny do pominięcia',
         link: 'Link',

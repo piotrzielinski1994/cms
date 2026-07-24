@@ -370,6 +370,19 @@ const en = {
         tab: 'Tab',
         content: 'Content',
       },
+      dropdownMenu: {
+        trigger: 'Actions',
+        edit: 'Edit',
+        duplicate: 'Duplicate',
+        archive: 'Archive',
+        delete: 'Delete',
+      },
+      popover: {
+        trigger: 'Details',
+        title: 'Popover title',
+        content: 'Some popover content.',
+        close: 'Close',
+      },
       skipLink: {
         navbar: 'Navbar to be skipped',
         link: 'Link',
