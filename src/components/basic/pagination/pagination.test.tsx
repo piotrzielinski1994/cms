@@ -86,7 +86,7 @@ describe('Pagination', () => {
 
     const anchors = nav.querySelectorAll('a');
     expect(anchors.length).toBeGreaterThan(0);
-    anchors.forEach((a) => expect(a).toHaveAttribute('href'));
+    for (const a of anchors) expect(a).toHaveAttribute('href');
   });
 
   // TC-003 (AC-004, AC-007): totalPages <= 7 shows every page as a link with no ellipsis.
@@ -256,7 +256,7 @@ describe('Pagination', () => {
 
     const rootRender = renderPagination({ className: 'custom-x' });
     const nav = getNav(rootRender.container);
-    rootBase.forEach((cls) => expect(nav.classList.contains(cls)).toBe(true));
+    for (const cls of rootBase) expect(nav.classList.contains(cls)).toBe(true);
     expect(nav.classList.contains('custom-x')).toBe(true);
 
     const linkRender = render(
@@ -268,7 +268,7 @@ describe('Pagination', () => {
     );
     const link = linkRender.container.querySelector('a');
     expect(link).not.toBeNull();
-    linkBase.forEach((cls) => expect(link?.classList.contains(cls)).toBe(true));
+    for (const cls of linkBase) expect(link?.classList.contains(cls)).toBe(true);
     expect(link?.classList.contains('custom-y')).toBe(true);
   });
 

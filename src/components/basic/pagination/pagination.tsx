@@ -149,10 +149,7 @@ const Component = ({
             {token === 'ellipsis' ? (
               <Ellipsis label={t.morePages} />
             ) : (
-              <Link
-                href={getHref(token)}
-                aria-current={token === currentPage ? 'page' : undefined}
-              >
+              <Link href={getHref(token)} aria-current={token === currentPage ? 'page' : undefined}>
                 {token}
               </Link>
             )}
