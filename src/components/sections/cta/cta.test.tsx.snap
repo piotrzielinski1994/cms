@@ -1,0 +1,54 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Cta > should match the snapshot for the default composed render 1`] = `
+<div>
+  <section
+    class="px-4 sm:px-6 grid cms-section py-10"
+  >
+    <div
+      class="w-full max-w-screen-2xl mx-auto grid cms-container"
+    >
+      <article
+        class="p-4 md:p-6 grid gap-4 bg-background1 border border-solid border-foreground/15"
+      >
+        <header
+          class="font-semibold"
+        >
+          <h2
+            class="text-4xl font-semibold"
+          >
+            Ready?
+          </h2>
+        </header>
+        <div
+          class=""
+        >
+          <p>
+            Start today
+          </p>
+        </div>
+        <footer
+          class=""
+        >
+          <div
+            class="flex gap-4"
+          >
+            <a
+              class="px-6 py-3 border-2 border-primary hover:border-primary/90 font-semibold whitespace-nowrap disabled:cursor-not-allowed focus-visible:tw-cms-outline bg-primary hover:bg-primary/90 text-primary-foreground disabled:border-primary/0 disabled:bg-primary/50"
+              href="/a"
+            >
+              Get started
+            </a>
+            <a
+              class="px-6 py-3 border-2 border-primary hover:border-primary/90 font-semibold whitespace-nowrap disabled:cursor-not-allowed focus-visible:tw-cms-outline text-primary disabled:border-primary/50 disabled:text-primary/50 bg-background [&:not(:disabled)]:hover:bg-foreground/5"
+              href="/b"
+            >
+              Learn more
+            </a>
+          </div>
+        </footer>
+      </article>
+    </div>
+  </section>
+</div>
+`;
