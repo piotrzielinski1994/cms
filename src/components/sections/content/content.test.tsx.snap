@@ -1,0 +1,31 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Content > should match the snapshot for the default composed render 1`] = `
+<div>
+  <section
+    class="px-4 sm:px-6 grid cms-section py-10"
+  >
+    <div
+      class="w-full max-w-screen-2xl mx-auto grid cms-container"
+    >
+      <header
+        class="text-center"
+      >
+        <h2
+          class="text-4xl font-semibold"
+        >
+          About us
+        </h2>
+        <p>
+          Who we are
+        </p>
+      </header>
+      <div>
+        <p>
+          We build tools.
+        </p>
+      </div>
+    </div>
+  </section>
+</div>
+`;
