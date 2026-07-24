@@ -33,6 +33,15 @@ Object.defineProperty(window, 'DataTransfer', {
   },
 });
 
+Object.defineProperty(globalThis, 'ResizeObserver', {
+  writable: true,
+  value: class {
+    observe() {}
+    unobserve() {}
+    disconnect() {}
+  },
+});
+
 Object.defineProperty(window, 'DragEvent', {
   // biome-ignore lint/complexity/useArrowFunction: must be constructable via `new DragEvent()`
   value: function (type: string, eventInitDict: EventInit & { dataTransfer?: DataTransfer }) {
