@@ -92,9 +92,7 @@ describe('Content', () => {
 
   // TC-004 -> AC-005, AC-003
   it('should render the header (h2 + subheading) but no prose content region when content is omitted', () => {
-    const { container, getByRole } = render(
-      withProviders(<Content heading="H" subheading="S" />),
-    );
+    const { container, getByRole } = render(withProviders(<Content heading="H" subheading="S" />));
 
     const h2 = getByRole('heading', { level: 2, name: 'H' });
     const header = h2.closest('header');

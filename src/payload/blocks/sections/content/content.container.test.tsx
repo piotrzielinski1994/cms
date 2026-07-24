@@ -16,7 +16,9 @@ const lexicalRoot = (text: string) => ({
       {
         type: 'paragraph',
         version: 1,
-        children: [{ type: 'text', version: 1, text, format: 0, detail: 0, mode: 'normal', style: '' }],
+        children: [
+          { type: 'text', version: 1, text, format: 0, detail: 0, mode: 'normal', style: '' },
+        ],
         direction: 'ltr' as const,
         format: '' as const,
         indent: 0,
