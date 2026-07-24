@@ -1,0 +1,21 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Popover > should match the snapshot in its closed state 1`] = `
+<div>
+  <div>
+    <button
+      aria-expanded="false"
+      aria-haspopup="dialog"
+      data-state="closed"
+      type="button"
+    >
+      Details
+    </button>
+    <span
+      data-testid="outside"
+    >
+      outside surface
+    </span>
+  </div>
+</div>
+`;
