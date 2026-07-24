@@ -1,0 +1,112 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Features > should match the snapshot for the default composed render 1`] = `
+<div>
+  <section
+    class="px-4 sm:px-6 grid cms-section"
+  >
+    <div
+      class="w-full max-w-screen-2xl mx-auto cms-container grid gap-8"
+    >
+      <header
+        class="text-center"
+      >
+        <h2
+          class="text-5xl font-semibold"
+        >
+          Everything you need
+        </h2>
+        <p>
+          Built for speed
+        </p>
+      </header>
+      <div
+        class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+      >
+        <article
+          class="p-4 md:p-6 grid gap-4 bg-background1 border border-solid border-foreground/15"
+        >
+          <header
+            class="font-semibold"
+          >
+            <svg
+              aria-hidden="true"
+              class="lucide lucide-rocket w-[1lh] h-[1lh]"
+              fill="none"
+              height="24"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"
+              />
+              <path
+                d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09"
+              />
+              <path
+                d="M9 12a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.4 22.4 0 0 1-4 2z"
+              />
+              <path
+                d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 .05 5 .05"
+              />
+            </svg>
+            <h3>
+              Fast
+            </h3>
+          </header>
+          <div
+            class=""
+          >
+            <p>
+              Ship quickly.
+            </p>
+          </div>
+        </article>
+        <article
+          class="p-4 md:p-6 grid gap-4 bg-background1 border border-solid border-foreground/15"
+        >
+          <header
+            class="font-semibold"
+          >
+            <svg
+              aria-hidden="true"
+              class="lucide lucide-shield-check w-[1lh] h-[1lh]"
+              fill="none"
+              height="24"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"
+              />
+              <path
+                d="m9 12 2 2 4-4"
+              />
+            </svg>
+            <h3>
+              Secure
+            </h3>
+          </header>
+          <div
+            class=""
+          >
+            <p>
+              Safe by default.
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+</div>
+`;
