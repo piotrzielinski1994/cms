@@ -1,14 +1,19 @@
 import type { ReactNode } from 'react';
 import { Container } from '@/components/basic/container/container';
 import { Section } from '@/components/basic/section/section';
-import type { HtmlProps } from '@/utils/html/html.types';
+import type { EnhancedHtmlProps } from '@/utils/html/html.types';
 import { cn } from '@/utils/tailwind';
 
-type ContentProps = HtmlProps<'section'> & {
-  heading?: string;
-  subheading?: string;
-  content?: ReactNode;
-};
+// `EnhancedHtmlProps` overwrites the native global `content` attribute (typed
+// `string`) with our `ReactNode`, the same way `cookies-banner` does.
+type ContentProps = EnhancedHtmlProps<
+  'section',
+  {
+    heading?: string;
+    subheading?: string;
+    content?: ReactNode;
+  }
+>;
 
 const Content = ({ heading, subheading, content, className, ...rest }: ContentProps) => {
   const hasHeader = Boolean(heading || subheading);

@@ -151,6 +151,7 @@ export interface Page {
     | CtaBlock
     | TestimonialsBlock
     | FeaturesBlock
+    | ContentBlock
   )[];
   seo?: {
     title?: string | null;
@@ -325,6 +326,32 @@ export interface CtaBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'cta';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContentBlock".
+ */
+export interface ContentBlock {
+  heading?: string | null;
+  subheading?: string | null;
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'content';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -699,6 +726,7 @@ export interface PagesSelect<T extends boolean = true> {
         cta?: T | CtaBlockSelect<T>;
         testimonials?: T | TestimonialsBlockSelect<T>;
         features?: T | FeaturesBlockSelect<T>;
+        content?: T | ContentBlockSelect<T>;
       };
   seo?:
     | T
@@ -828,6 +856,17 @@ export interface CtaBlockSelect<T extends boolean = true> {
         selector?: T;
         id?: T;
       };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContentBlock_select".
+ */
+export interface ContentBlockSelect<T extends boolean = true> {
+  heading?: T;
+  subheading?: T;
+  content?: T;
   id?: T;
   blockName?: T;
 }
