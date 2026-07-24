@@ -150,6 +150,7 @@ export interface Page {
     | FAQ
     | CtaBlock
     | TestimonialsBlock
+    | FeaturesBlock
   )[];
   seo?: {
     title?: string | null;
@@ -344,6 +345,38 @@ export interface TestimonialsBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'testimonials';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FeaturesBlock".
+ */
+export interface FeaturesBlock {
+  heading?: string | null;
+  subheading?: string | null;
+  items?:
+    | {
+        icon?:
+          | (
+              | 'rocket'
+              | 'zap'
+              | 'shield'
+              | 'sparkles'
+              | 'heart'
+              | 'star'
+              | 'settings'
+              | 'globe'
+              | 'lock'
+              | 'gauge'
+            )
+          | null;
+        title: string;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'features';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -665,6 +698,7 @@ export interface PagesSelect<T extends boolean = true> {
         faq?: T | FAQSelect<T>;
         cta?: T | CtaBlockSelect<T>;
         testimonials?: T | TestimonialsBlockSelect<T>;
+        features?: T | FeaturesBlockSelect<T>;
       };
   seo?:
     | T
@@ -811,6 +845,24 @@ export interface TestimonialsBlockSelect<T extends boolean = true> {
         quote?: T;
         name?: T;
         annotation?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FeaturesBlock_select".
+ */
+export interface FeaturesBlockSelect<T extends boolean = true> {
+  heading?: T;
+  subheading?: T;
+  items?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
         id?: T;
       };
   id?: T;
