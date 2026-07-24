@@ -142,7 +142,15 @@ export interface UserAuthOperations {
 export interface Page {
   id: string;
   title: string;
-  sections: (Hero1Block | ImageBlocksSection | ImageBlockBlock | ContactUsSection | FAQ | CtaBlock)[];
+  sections: (
+    | Hero1Block
+    | ImageBlocksSection
+    | ImageBlockBlock
+    | ContactUsSection
+    | FAQ
+    | CtaBlock
+    | TestimonialsBlock
+  )[];
   seo?: {
     title?: string | null;
     description?: string | null;
@@ -316,6 +324,26 @@ export interface CtaBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'cta';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TestimonialsBlock".
+ */
+export interface TestimonialsBlock {
+  heading?: string | null;
+  subheading?: string | null;
+  items?:
+    | {
+        image: string | Image;
+        quote: string;
+        name: string;
+        annotation?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'testimonials';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -636,6 +664,7 @@ export interface PagesSelect<T extends boolean = true> {
         'contact-us'?: T | ContactUsSectionSelect<T>;
         faq?: T | FAQSelect<T>;
         cta?: T | CtaBlockSelect<T>;
+        testimonials?: T | TestimonialsBlockSelect<T>;
       };
   seo?:
     | T
@@ -763,6 +792,25 @@ export interface CtaBlockSelect<T extends boolean = true> {
         label?: T;
         reference?: T;
         selector?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TestimonialsBlock_select".
+ */
+export interface TestimonialsBlockSelect<T extends boolean = true> {
+  heading?: T;
+  subheading?: T;
+  items?:
+    | T
+    | {
+        image?: T;
+        quote?: T;
+        name?: T;
+        annotation?: T;
         id?: T;
       };
   id?: T;
