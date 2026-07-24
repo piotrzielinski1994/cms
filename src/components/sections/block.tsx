@@ -8,6 +8,8 @@ import { ContactUsContainer } from '@/payload/blocks/sections/form/contact-us/co
 import { contactUsSectionPayloadConfig } from '@/payload/blocks/sections/form/contact-us/contact-us.payload';
 import { Hero1Container } from '@/payload/blocks/sections/hero/hero-1/hero-1.container';
 import { hero1SectionPayloadConfig } from '@/payload/blocks/sections/hero/hero-1/hero-1.payload';
+import { FeaturesContainer } from '@/payload/blocks/sections/features/features.container';
+import { featuresSectionPayloadConfig } from '@/payload/blocks/sections/features/features.payload';
 import { ImageBlocksContainer } from '@/payload/blocks/sections/image-blocks/image-blocks.container';
 import { imageBlocksSectionPayloadConfig } from '@/payload/blocks/sections/image-blocks/image-blocks.payload';
 import { TestimonialsContainer } from '@/payload/blocks/sections/testimonials/testimonials.container';
@@ -26,6 +28,7 @@ const blockComponents = {
   [faqSectionPayloadConfig.slug]: FaqContainer,
   [ctaSectionPayloadConfig.slug]: CtaContainer,
   [testimonialsSectionPayloadConfig.slug]: TestimonialsContainer,
+  [featuresSectionPayloadConfig.slug]: FeaturesContainer,
 };
 
 const RenderBlocks = ({ blocks }: RenderBlocksProps) => {

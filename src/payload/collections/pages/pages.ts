@@ -12,6 +12,7 @@ import { generatePreviewPath } from '@/payload/_old/utilities/generatePreviewPat
 import { imageBlock1BlockPayloadConfig } from '@/payload/blocks/advanced/image-block/image-block.payload';
 import { ctaSectionPayloadConfig } from '@/payload/blocks/sections/cta/cta.payload';
 import { faqSectionPayloadConfig } from '@/payload/blocks/sections/faq/faq.payload';
+import { featuresSectionPayloadConfig } from '@/payload/blocks/sections/features/features.payload';
 import { contactUsSectionPayloadConfig } from '@/payload/blocks/sections/form/contact-us/contact-us.payload';
 import { hero1SectionPayloadConfig } from '@/payload/blocks/sections/hero/hero-1/hero-1.payload';
 import { imageBlocksSectionPayloadConfig } from '@/payload/blocks/sections/image-blocks/image-blocks.payload';
@@ -93,6 +94,7 @@ const Pages: CollectionConfig<'pages'> = {
                 faqSectionPayloadConfig,
                 ctaSectionPayloadConfig,
                 testimonialsSectionPayloadConfig,
+                featuresSectionPayloadConfig,
               ],
               required: true,
               admin: {
