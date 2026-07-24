@@ -1,0 +1,31 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Card > should match the snapshot 1`] = `
+<div>
+  <article
+    class="p-4 md:p-6 grid gap-4 bg-background1 border border-solid border-foreground/15"
+  >
+    <header
+      class="font-semibold"
+    >
+      <h2>
+        Title
+      </h2>
+    </header>
+    <div
+      class=""
+    >
+      Body text
+    </div>
+    <footer
+      class=""
+    >
+      <button
+        type="button"
+      >
+        Act
+      </button>
+    </footer>
+  </article>
+</div>
+`;
