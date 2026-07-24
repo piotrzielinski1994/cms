@@ -1,5 +1,7 @@
 import { ImageBlock1Container } from '@/payload/blocks/advanced/image-block/image-block.container';
 import { imageBlock1BlockPayloadConfig } from '@/payload/blocks/advanced/image-block/image-block.payload';
+import { CtaContainer } from '@/payload/blocks/sections/cta/cta.container';
+import { ctaSectionPayloadConfig } from '@/payload/blocks/sections/cta/cta.payload';
 import { FaqContainer } from '@/payload/blocks/sections/faq/faq.container';
 import { faqSectionPayloadConfig } from '@/payload/blocks/sections/faq/faq.payload';
 import { ContactUsContainer } from '@/payload/blocks/sections/form/contact-us/contact-us.container';
@@ -20,6 +22,7 @@ const blockComponents = {
   [imageBlock1BlockPayloadConfig.slug]: ImageBlock1Container,
   [contactUsSectionPayloadConfig.slug]: ContactUsContainer,
   [faqSectionPayloadConfig.slug]: FaqContainer,
+  [ctaSectionPayloadConfig.slug]: CtaContainer,
 };
 
 const RenderBlocks = ({ blocks }: RenderBlocksProps) => {
