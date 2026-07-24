@@ -1,0 +1,99 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Testimonials > should match the snapshot for the default composed render 1`] = `
+<div>
+  <section
+    class="px-4 sm:px-6 grid cms-section"
+  >
+    <div
+      class="w-full max-w-screen-2xl mx-auto cms-container grid gap-8"
+    >
+      <header
+        class="text-center"
+      >
+        <h2
+          class="text-5xl font-semibold"
+        >
+          What our customers say
+        </h2>
+        <p>
+          Trusted worldwide
+        </p>
+      </header>
+      <div
+        class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+      >
+        <figure
+          class="p-4 md:p-6 grid grid-cols-[auto_1fr] gap-4 bg-background1"
+        >
+          <blockquote
+            class="col-span-2 italic"
+          >
+            <p>
+              Q1
+            </p>
+          </blockquote>
+          <img
+            alt="Ann"
+            class="object-cover cms-image w-14 h-14 rounded-full"
+            data-nimg="1"
+            decoding="async"
+            height="0"
+            loading="lazy"
+            sizes="100vw"
+            src="/_next/image?url=%2Fa.webp&w=3840&q=75"
+            srcset="/_next/image?url=%2Fa.webp&w=640&q=75 640w, /_next/image?url=%2Fa.webp&w=750&q=75 750w, /_next/image?url=%2Fa.webp&w=828&q=75 828w, /_next/image?url=%2Fa.webp&w=1080&q=75 1080w, /_next/image?url=%2Fa.webp&w=1200&q=75 1200w, /_next/image?url=%2Fa.webp&w=1920&q=75 1920w, /_next/image?url=%2Fa.webp&w=2048&q=75 2048w, /_next/image?url=%2Fa.webp&w=3840&q=75 3840w"
+            style="color: transparent;"
+            width="0"
+          />
+          <figcaption
+            class="grid content-center"
+          >
+            <span
+              class="font-semibold"
+            >
+              Ann
+            </span>
+            <span>
+              CEO
+            </span>
+          </figcaption>
+        </figure>
+        <figure
+          class="p-4 md:p-6 grid grid-cols-[auto_1fr] gap-4 bg-background1"
+        >
+          <blockquote
+            class="col-span-2 italic"
+          >
+            <p>
+              Q2
+            </p>
+          </blockquote>
+          <img
+            alt="Bob"
+            class="object-cover cms-image w-14 h-14 rounded-full"
+            data-nimg="1"
+            decoding="async"
+            height="0"
+            loading="lazy"
+            sizes="100vw"
+            src="/_next/image?url=%2Fb.webp&w=3840&q=75"
+            srcset="/_next/image?url=%2Fb.webp&w=640&q=75 640w, /_next/image?url=%2Fb.webp&w=750&q=75 750w, /_next/image?url=%2Fb.webp&w=828&q=75 828w, /_next/image?url=%2Fb.webp&w=1080&q=75 1080w, /_next/image?url=%2Fb.webp&w=1200&q=75 1200w, /_next/image?url=%2Fb.webp&w=1920&q=75 1920w, /_next/image?url=%2Fb.webp&w=2048&q=75 2048w, /_next/image?url=%2Fb.webp&w=3840&q=75 3840w"
+            style="color: transparent;"
+            width="0"
+          />
+          <figcaption
+            class="grid content-center"
+          >
+            <span
+              class="font-semibold"
+            >
+              Bob
+            </span>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+</div>
+`;
