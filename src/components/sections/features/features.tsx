@@ -70,5 +70,5 @@ const Features = ({ heading, subheading, items = [], className, ...rest }: Featu
   );
 };
 
-export { Features };
 export type { IconName };
+export { Features };

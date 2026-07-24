@@ -51,9 +51,7 @@ describe('FeaturesContainer', () => {
     const withIcon = {
       items: [{ icon: 'rocket', title: 'T' }],
     } as unknown as ContainerProps;
-    const { container: iconContainer } = render(
-      withProviders(<FeaturesContainer {...withIcon} />),
-    );
+    const { container: iconContainer } = render(withProviders(<FeaturesContainer {...withIcon} />));
     const iconArticle = iconContainer.querySelector('article');
     const svg = iconArticle?.querySelector('svg');
     expect(svg).not.toBeNull();
@@ -63,9 +61,7 @@ describe('FeaturesContainer', () => {
     const noIcon = {
       items: [{ icon: null, title: 'T' }],
     } as unknown as ContainerProps;
-    const { container: noIconContainer } = render(
-      withProviders(<FeaturesContainer {...noIcon} />),
-    );
+    const { container: noIconContainer } = render(withProviders(<FeaturesContainer {...noIcon} />));
     expect(noIconContainer.querySelector('article')?.querySelector('svg')).toBeNull();
   });
 });
